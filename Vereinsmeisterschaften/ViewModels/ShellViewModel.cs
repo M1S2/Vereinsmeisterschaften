@@ -7,12 +7,17 @@ using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls;
 
 using Vereinsmeisterschaften.Contracts.Services;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
 public class ShellViewModel : ObservableObject
 {
+#warning Change to non-fixed path!!!
+    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData";
+    public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
+
     private readonly INavigationService _navigationService;
     private HamburgerMenuItem _selectedMenuItem;
     private HamburgerMenuItem _selectedOptionsMenuItem;
@@ -21,6 +26,8 @@ public class ShellViewModel : ObservableObject
     private ICommand _optionsMenuItemInvokedCommand;
     private ICommand _loadedCommand;
     private ICommand _unloadedCommand;
+
+    private IWorkspaceService _workspaceService;
 
     public HamburgerMenuItem SelectedMenuItem
     {
@@ -58,14 +65,30 @@ public class ShellViewModel : ObservableObject
 
     public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
 
-    public ShellViewModel(INavigationService navigationService)
+    public ShellViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
+        _workspaceService = workspaceService;
     }
 
-    private void OnLoaded()
+    private async void OnLoaded()
     {
         _navigationService.Navigated += OnNavigated;
+        _workspaceService.OnWorkspaceProgress += (sender, p) =>
+        {
+        };
+
+        try
+        {
+#warning TEST CODE !!!
+            await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
+
+            await _workspaceService.SaveWorkspace(WorkspaceCancellationTokenSource.Token);
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 
     private void OnUnloaded()

@@ -71,6 +71,9 @@ public partial class App : Application
         services.AddSingleton<IPageService, PageService>();
         services.AddSingleton<INavigationService, NavigationService>();
 
+        services.AddSingleton<IPersonService, PersonService>();
+        services.AddSingleton<IWorkspaceService, WorkspaceService>();
+
         // Views and ViewModels
         services.AddTransient<IShellWindow, ShellWindow>();
         services.AddTransient<ShellViewModel>();

@@ -10,8 +10,8 @@
     xmlns:templateSelectors="clr-namespace:Vereinsmeisterschaften.TemplateSelectors"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
-    MinWidth="1100"
-    MinHeight="600"
+    Width="1400"
+    Height="800"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

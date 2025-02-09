@@ -2,6 +2,7 @@
     x:Class="Vereinsmeisterschaften.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -23,6 +24,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:EnumToLocalizedStringConverter x:Key="enumLocalizedStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

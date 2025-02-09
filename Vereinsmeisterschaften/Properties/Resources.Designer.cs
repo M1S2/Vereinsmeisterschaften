@@ -70,6 +70,69 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
+        /// </summary>
+        public static string BackstrokeString {
+            get {
+                return ResourceManager.GetString("BackstrokeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Birth Year ähnelt.
+        /// </summary>
+        public static string BirthYearString {
+            get {
+                return ResourceManager.GetString("BirthYearString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Breaststroke ähnelt.
+        /// </summary>
+        public static string BreaststrokeString {
+            get {
+                return ResourceManager.GetString("BreaststrokeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Butterfly ähnelt.
+        /// </summary>
+        public static string ButterflyString {
+            get {
+                return ResourceManager.GetString("ButterflyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name ähnelt.
+        /// </summary>
+        public static string FirstNameString {
+            get {
+                return ResourceManager.GetString("FirstNameString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Freestyle ähnelt.
+        /// </summary>
+        public static string FreestyleString {
+            get {
+                return ResourceManager.GetString("FreestyleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender ähnelt.
+        /// </summary>
+        public static string GenderString {
+            get {
+                return ResourceManager.GetString("GenderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Start ähnelt.
         /// </summary>
         public static string MainPageTitle {
@@ -79,11 +142,38 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Medley ähnelt.
+        /// </summary>
+        public static string MedleyString {
+            get {
+                return ResourceManager.GetString("MedleyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string NameString {
+            get {
+                return ResourceManager.GetString("NameString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die People ähnelt.
         /// </summary>
         public static string PeoplePageTitle {
             get {
                 return ResourceManager.GetString("PeoplePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ID ähnelt.
+        /// </summary>
+        public static string PersonIDString {
+            get {
+                return ResourceManager.GetString("PersonIDString", resourceCulture);
             }
         }
         
@@ -264,6 +354,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TimeInputPageTitle {
             get {
                 return ResourceManager.GetString("TimeInputPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Water Flea ähnelt.
+        /// </summary>
+        public static string WaterFleaString {
+            get {
+                return ResourceManager.GetString("WaterFleaString", resourceCulture);
             }
         }
     }

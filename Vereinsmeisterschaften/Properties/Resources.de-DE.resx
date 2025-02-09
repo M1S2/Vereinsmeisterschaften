@@ -186,4 +186,37 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Vereinsmeisterschaften</value>
   </data>
+  <data name="FirstNameString" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="NameString" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="BackstrokeString" xml:space="preserve">
+    <value>Rücken</value>
+  </data>
+  <data name="BirthYearString" xml:space="preserve">
+    <value>Geburtsjahr</value>
+  </data>
+  <data name="BreaststrokeString" xml:space="preserve">
+    <value>Brust</value>
+  </data>
+  <data name="ButterflyString" xml:space="preserve">
+    <value>Delphin</value>
+  </data>
+  <data name="FreestyleString" xml:space="preserve">
+    <value>Freistil</value>
+  </data>
+  <data name="GenderString" xml:space="preserve">
+    <value>Geschlecht</value>
+  </data>
+  <data name="MedleyString" xml:space="preserve">
+    <value>Lagen</value>
+  </data>
+  <data name="PersonIDString" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="WaterFleaString" xml:space="preserve">
+    <value>Wasserfloh</value>
+  </data>
 </root>

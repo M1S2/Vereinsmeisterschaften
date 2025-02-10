@@ -10,9 +10,9 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Services
 {
     /// <summary>
-    /// Service used to get and store a list of Person objects
+    /// Service used to get and store a list of Competition objects
     /// </summary>
-    public class PersonService : IPersonService
+    public class CompetitionService : ICompetitionService
     {
         /// <summary>
         /// Event that is raised when the file operation progress changes
@@ -27,16 +27,16 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Path to the person file
+        /// Path to the competition file
         /// </summary>
-        public string PersonFilePath { get; set; }
+        public string CompetitionFilePath { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// List with all people
+        /// List with all competitions
         /// </summary>
-        private List<Person> _personList { get; set; }
+        private List<Competition> _competitionList { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -45,23 +45,21 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        public PersonService(IFileService fileService)
+        public CompetitionService(IFileService fileService)
         {
-            _personList = new List<Person>();
+            _competitionList = new List<Competition>();
             _fileService = fileService;
 
             //#warning TESTDATA!!!!!!!!!!!!!!!!!!!!!!!!
-            //AddPerson(new Person() { FirstName = "Max", Name = "Mustermann", BirthYear = 2000, Gender = Genders.Male, Breaststroke = true, Freestyle = true });
-            //AddPerson(new Person() { FirstName = "Eva", Name = "Musterfrau", BirthYear = 1900, Gender = Genders.Female, Breaststroke = true, Backstroke = true, Butterfly = true, Medley = true });
-            //AddPerson(new Person() { FirstName = "Tim", Name = "Mustersohn", BirthYear = 2010, Gender = Genders.Male, WaterFlea = true });
+            //AddCompetition(new Competition() { ID = 1, Age = 8, Distance = 50, Gender = Genders.Male, SwimmingStyle = SwimmingStyles.Breaststroke, BestTime = new TimeSpan(0, 0, 0, 50, 20) });
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Load a list of Persons to the <see cref="_personList"/>.
+        /// Load a list of Competitions to the <see cref="_competitionList"/>.
         /// This is using a separate Task because the file possibly can be large.
-        /// If the file doesn't exist, the <see cref="_personList"/> is cleared and the functions returns loading success.
+        /// If the file doesn't exist, the <see cref="_competitionList"/> is cleared and the functions returns loading success.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
@@ -73,16 +71,15 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    
-                    if (!File.Exists(PersonFilePath))
+                    if (!File.Exists(CompetitionFilePath))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        _personList.Clear();
+                        _competitionList.Clear();
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else
                     {
-                        _personList = _fileService.LoadFromCsv<Person>(PersonFilePath, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
+                        _competitionList = _fileService.LoadFromCsv<Competition>(CompetitionFilePath, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
                     }
                     
                     importingResult = true;
@@ -104,7 +101,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Save the list of Persons to a file
+        /// Save the list of Competitions to a file
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
@@ -116,18 +113,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(PersonFilePath, _personList, cancellationToken, OnFileProgress, (data) =>
-                    {
-                        if (data is bool dataBool)
-                        {
-                            return dataBool ? "X" : "";
-                        }
-                        else
-                        {
-                            return data.ToString();
-                        }
-                    });
-
+                    _fileService.SaveToCsv(CompetitionFilePath, _competitionList, cancellationToken, OnFileProgress);
                     saveResult = true;
                 }
                 catch (OperationCanceledException)
@@ -147,34 +133,54 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Return all available Persons
+        /// Return all available Competitions
         /// </summary>
-        /// <returns>List of <see cref="Person"/> objects</returns>
-        public List<Person> GetPersons() => _personList;
+        /// <returns>List of <see cref="Competition"/> objects</returns>
+        public List<Competition> GetCompetitions() => _competitionList;
 
         /// <summary>
-        /// Clear all Persons
+        /// Clear all Competitions
         /// </summary>
         public void ClearAll()
         {
-            if (_personList == null) { _personList = new List<Person>(); }
-            _personList.Clear();
+            if (_competitionList == null) { _competitionList = new List<Competition>(); }
+            _competitionList.Clear();
         }
 
         /// <summary>
-        /// Add a new <see cref="Person"/> to the list of Persons
+        /// Add a new <see cref="Competition"/> to the list of Competitions.
         /// </summary>
-        /// <param name="person"><see cref="Person"/> to add</param>
-        public void AddPerson(Person person)
+        /// <param name="person"><see cref="Competition"/> to add</param>
+        public void AddCompetition(Competition competition)
         {
-            if(_personList == null) { _personList = new List<Person>(); }
-            person.PersonID = _personList.Count;
-            _personList.Add(person);
+            if (_competitionList == null) { _competitionList = new List<Competition>(); }
+            _competitionList.Add(competition);
         }
 
         /// <summary>
-        /// Return the number of <see cref="Person"/>
+        /// Return the number of <see cref="Competition"/>
         /// </summary>
-        public int PersonCount => _personList?.Count ?? 0;
+        /// <returns>Number of <see cref="Competition"/></returns>
+        public int CompetitionCount => _competitionList?.Count ?? 0;
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Return the competition that matches the person and swimming style
+        /// </summary>
+        /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
+        /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
+        /// <param name="competitionYear">Year in which the competition takes place</param>
+        /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
+        public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear)
+        {
+            if (!person.SwimmingStyles.Contains(swimmingStyle))
+            {
+                return null;
+            }
+            return _competitionList.Where(c => c.Gender == person.Gender &&
+                                               c.Age + person.BirthYear == competitionYear &&
+                                               c.SwimmingStyle == swimmingStyle).FirstOrDefault();
+        }
     }
 }

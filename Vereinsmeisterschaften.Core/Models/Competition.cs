@@ -41,21 +41,21 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _swimmingStyle, value);
         }
 
-        private int _age = 0;
+        private byte _age = 0;
         /// <summary>
         /// Age for the person that is assigned for this competition
         /// </summary>
-        public int Age
+        public byte Age
         {
             get => _age;
             set => SetProperty(ref _age, value);
         }
 
-        private int _distance = 0;
+        private ushort _distance = 0;
         /// <summary>
         /// Distance in meters for this competition (e.g. 25, 50, 100, 200)
         /// </summary>
-        public int Distance
+        public ushort Distance
         {
             get => _distance;
             set => SetProperty(ref _distance, value);
@@ -69,6 +69,22 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             get => _bestTime;
             set => SetProperty(ref _bestTime, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public static void SetPropertyFromString(Competition dataObj, string propertyName, string value)
+        {
+            switch (propertyName)
+            {
+                case nameof(ID): dataObj.ID = int.Parse(value); break;
+                case nameof(Gender): dataObj.Gender = (Genders)Enum.Parse(typeof(Genders), value); break;
+                case nameof(SwimmingStyle): dataObj.SwimmingStyle = (SwimmingStyles)Enum.Parse(typeof(SwimmingStyles), value); break;
+                case nameof(Age): dataObj.Age = byte.Parse(value); break;
+                case nameof(Distance): dataObj.Distance = ushort.Parse(value); break;
+                case nameof(BestTime): dataObj.BestTime = TimeSpan.Parse(value); break;
+                default: break;
+            }
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -6,14 +6,6 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
     /// <summary>
-    /// Delegate void for progress changes
-    /// </summary>
-    /// <param name="sender">Progress sender</param>
-    /// <param name="progress">Progress 0 .. 100 </param>
-    public delegate void ProgressDelegate(object sender, float progress);
-
-
-    /// <summary>
     /// Interface for a service used to get and store a list of Person objects
     /// </summary>
     public interface IPersonService
@@ -49,15 +41,15 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         string PersonFilePath { get; set; }
 
         /// <summary>
-        /// Return all available Persons.
+        /// Return all available Persons
         /// </summary>
         /// <returns>List of <see cref="Person"/> objects</returns>
         List<Person> GetPersons();
 
         /// <summary>
-        /// Clear all Persons.
+        /// Clear all Persons
         /// </summary>
-        void ClearPersons();
+        void ClearAll();
 
         /// <summary>
         /// Add a new <see cref="Person"/> to the list of Persons.

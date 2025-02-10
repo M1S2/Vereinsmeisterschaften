@@ -72,6 +72,7 @@ public partial class App : Application
         services.AddSingleton<INavigationService, NavigationService>();
 
         services.AddSingleton<IPersonService, PersonService>();
+        services.AddSingleton<ICompetitionService, CompetitionService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
 
         // Views and ViewModels

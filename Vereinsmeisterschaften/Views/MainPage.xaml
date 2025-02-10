@@ -36,6 +36,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" Orientation="Horizontal">
             <Image Height="60" HorizontalAlignment="Left" Source="/Resources/TSVLogo.png"/>
             <TextBlock Text="{x:Static properties:Resources.AppDisplayName}" VerticalAlignment="Center" FontSize="{StaticResource XLargeFontSize}" Margin="20,0"/>
+            <TextBlock Text="{Binding CompetitionYear}" VerticalAlignment="Center" FontSize="{StaticResource XXLargeFontSize}"/>
             <Image Height="60" HorizontalAlignment="Left" Margin="20,0" Source="/Resources/AppIcon.png"/>
         </StackPanel>
 

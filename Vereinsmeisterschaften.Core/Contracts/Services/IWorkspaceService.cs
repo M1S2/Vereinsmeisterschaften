@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
@@ -13,6 +14,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Path to the workspace folder
         /// </summary>
         string WorkspaceFolderPath { get; }
+
+        /// <summary>
+        /// Settings for the current workspace
+        /// </summary>
+        public WorkspaceSettings Settings { get; set; }
 
         /// <summary>
         /// Open the workspace and load all files

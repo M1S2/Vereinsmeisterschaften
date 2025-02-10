@@ -365,5 +365,14 @@ namespace Vereinsmeisterschaften.Properties {
                 return ResourceManager.GetString("WaterFleaString", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
+        /// </summary>
+        public static string WorkspaceString {
+            get {
+                return ResourceManager.GetString("WorkspaceString", resourceCulture);
+            }
+        }
     }
 }

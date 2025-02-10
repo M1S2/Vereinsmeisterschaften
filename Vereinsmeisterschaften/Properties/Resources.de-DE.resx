@@ -219,4 +219,7 @@
   <data name="WaterFleaString" xml:space="preserve">
     <value>Wasserfloh</value>
   </data>
+  <data name="WorkspaceString" xml:space="preserve">
+    <value>Arbeitsbereich</value>
+  </data>
 </root>

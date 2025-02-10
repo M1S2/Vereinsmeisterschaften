@@ -11,4 +11,6 @@
 
     <sys:Double x:Key="XLargeFontSize">22</sys:Double>
 
+    <sys:Double x:Key="XXLargeFontSize">40</sys:Double>
+
 </ResourceDictionary>

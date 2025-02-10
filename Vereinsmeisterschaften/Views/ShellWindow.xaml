@@ -91,26 +91,34 @@
         </templateSelectors:MenuItemTemplateSelector>
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
-        <controls:HamburgerMenu
-            x:Name="hamburgerMenu"
-            HamburgerButtonName="{x:Static properties:Resources.ShellHamburgerButtonName}"
-            IsPaneOpen="False"
-            DisplayMode="CompactInline"
-            ItemsSource="{Binding MenuItems}"
-            SelectedItem="{Binding SelectedMenuItem}"
-            ItemCommand="{Binding MenuItemInvokedCommand}"
-            OptionsItemsSource="{Binding OptionMenuItems}"
-            SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
-            OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
-            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
-            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
-            <controls:HamburgerMenu.Content>
-                <Frame
+        <DockPanel>
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem Content="{x:Static properties:Resources.WorkspaceString}"/>
+                <StatusBarItem Content="{Binding CurrentWorkspaceFolder}"/>
+            </StatusBar>
+
+            <controls:HamburgerMenu
+                x:Name="hamburgerMenu"
+                HamburgerButtonName="{x:Static properties:Resources.ShellHamburgerButtonName}"
+                IsPaneOpen="False"
+                DisplayMode="CompactInline"
+                ItemsSource="{Binding MenuItems}"
+                SelectedItem="{Binding SelectedMenuItem}"
+                ItemCommand="{Binding MenuItemInvokedCommand}"
+                OptionsItemsSource="{Binding OptionMenuItems}"
+                SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
+                OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
+                OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
+                ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+                <controls:HamburgerMenu.Content>
+                    <Frame
                     x:Name="shellFrame"
                     Grid.Row="1"
                     NavigationUIVisibility="Hidden"
                     Focusable="False" />
-            </controls:HamburgerMenu.Content>
-        </controls:HamburgerMenu>
+                </controls:HamburgerMenu.Content>
+            </controls:HamburgerMenu>
+        
+        </DockPanel>
     </controls:MetroWindow.Content>
 </controls:MetroWindow>

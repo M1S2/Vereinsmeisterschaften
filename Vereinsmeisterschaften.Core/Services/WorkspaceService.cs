@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -10,6 +11,7 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public class WorkspaceService : IWorkspaceService
     {
+        public const string WorkspaceSettingsFileName = "WorkspaceSettings.csv";
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
 
@@ -25,12 +27,19 @@ namespace Vereinsmeisterschaften.Core.Services
 
         public string WorkspaceFolderPath { get; private set; } = string.Empty;
 
-        private IPersonService _personService;
+        public WorkspaceSettings Settings { get; set; }
 
-        public WorkspaceService(IPersonService personService)
+        private IPersonService _personService;
+        private ICompetitionService _competitionService;
+        private IFileService _fileService;
+
+        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, IFileService fileService)
         {
             _personService = personService;
-            _personService.OnFileProgress += (sender, p) => OnWorkspaceProgress?.Invoke(this, p);
+            _competitionService = competitionService;
+            _fileService = fileService;
+            _personService.OnFileProgress += (sender, p) => OnWorkspaceProgress?.Invoke(this, p / 2);
+            _competitionService.OnFileProgress += (sender, p) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2));
         }
 
         /// <summary>
@@ -43,13 +52,23 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             WorkspaceFolderPath = workspacePath;
 
+            string workspaceSettingsPath = Path.Combine(WorkspaceFolderPath, WorkspaceSettingsFileName);
             _personService.PersonFilePath = Path.Combine(WorkspaceFolderPath, PersonFileName);
+            _competitionService.CompetitionFilePath = Path.Combine(WorkspaceFolderPath, CompetitionsFileName);
             bool openResult = false;
             Exception exception = null;
             try
             {
+                Settings = _fileService.LoadFromCsv<WorkspaceSettings>(workspaceSettingsPath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
+
                 openResult = await _personService.LoadFromFile(cancellationToken);
                 if(!openResult) { return openResult; }
+
+                openResult = await _competitionService.LoadFromFile(cancellationToken);
+
+#warning TEST
+                Competition comp = _competitionService.GetCompetitionForPerson(_personService.GetPersons().FirstOrDefault(), SwimmingStyles.Freestyle, Settings.CompetitionYear);
+
             }
             catch(Exception ex)
             {
@@ -67,12 +86,17 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
         public async Task<bool> SaveWorkspace(CancellationToken cancellationToken)
         {
+            string workspaceSettingsPath = Path.Combine(WorkspaceFolderPath, WorkspaceSettingsFileName);
             bool saveResult = false;
             Exception exception = null;
             try
             {
+                _fileService.SaveToCsv(workspaceSettingsPath, new List<WorkspaceSettings>() { Settings }, cancellationToken, null);
+
                 saveResult = await _personService.SaveToFile(cancellationToken);
                 if (!saveResult) { return saveResult; }
+
+                saveResult = await _competitionService.SaveToFile(cancellationToken);
             }
             catch (Exception ex)
             {
@@ -82,5 +106,6 @@ namespace Vereinsmeisterschaften.Core.Services
             if (exception != null) { throw exception; }
             return saveResult;
         }
+
     }
 }

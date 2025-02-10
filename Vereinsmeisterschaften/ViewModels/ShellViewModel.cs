@@ -18,6 +18,8 @@ public class ShellViewModel : ObservableObject
     public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData";
     public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
 
+    public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
+
     private readonly INavigationService _navigationService;
     private HamburgerMenuItem _selectedMenuItem;
     private HamburgerMenuItem _selectedOptionsMenuItem;
@@ -82,6 +84,7 @@ public class ShellViewModel : ObservableObject
         {
 #warning TEST CODE !!!
             await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
+            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
 
             await _workspaceService.SaveWorkspace(WorkspaceCancellationTokenSource.Token);
         }

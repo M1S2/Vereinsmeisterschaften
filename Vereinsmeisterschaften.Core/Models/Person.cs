@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -122,33 +123,105 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _waterFlea, value);
         }
 
-        //private List<SwimmingStyles> _swimmingStyles;
-        ///// <summary>
-        ///// List with all swimming styles, for which the person wants to start
-        ///// </summary>
-        //public List<SwimmingStyles> SwimmingStyles
-        //{
-        //    get => _swimmingStyles;
-        //    set => SetProperty(ref _swimmingStyles, value);
-        //}
+        /// <summary>
+        /// List with all swimming styles, for which the person wants to start
+        /// Only use this list to get the swimming styles for this Person! Changes to this list aren't reflected back!
+        /// </summary>
+        [FileServiceIgnore]
+        public List<SwimmingStyles> SwimmingStyles
+        {
+            get
+            {
+                List<SwimmingStyles> styles = new List<SwimmingStyles>();
+                if (Breaststroke) { styles.Add(Models.SwimmingStyles.Breaststroke); }
+                if (Freestyle) { styles.Add(Models.SwimmingStyles.Freestyle); }
+                if (Backstroke) { styles.Add(Models.SwimmingStyles.Backstroke); }
+                if (Butterfly) { styles.Add(Models.SwimmingStyles.Butterfly); }
+                if (Medley) { styles.Add(Models.SwimmingStyles.Medley); }
+                if (WaterFlea) { styles.Add(Models.SwimmingStyles.WaterFlea); }
+                return styles;
+            }
+        }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public void SetPropertyFromString(string propertyName, string value)
+        private TimeSpan _breaststrokeTime;
+        /// <summary>
+        /// Time for Breaststroke
+        /// </summary>
+        public TimeSpan BreaststrokeTime
+        {
+            get => _breaststrokeTime;
+            set => SetProperty(ref _breaststrokeTime, value);
+        }
+
+        private TimeSpan _freestyleTime;
+        /// <summary>
+        /// Time for Freestyle
+        /// </summary>
+        public TimeSpan FreestyleTime
+        {
+            get => _freestyleTime;
+            set => SetProperty(ref _freestyleTime, value);
+        }
+
+        private TimeSpan _backstrokeTime;
+        /// <summary>
+        /// Time for Backstroke
+        /// </summary>
+        public TimeSpan BackstrokeTime
+        {
+            get => _backstrokeTime;
+            set => SetProperty(ref _backstrokeTime, value);
+        }
+
+        private TimeSpan _butterflyTime;
+        /// <summary>
+        /// Time for Butterfly
+        /// </summary>
+        public TimeSpan ButterflyTime
+        {
+            get => _butterflyTime;
+            set => SetProperty(ref _butterflyTime, value);
+        }
+
+        private TimeSpan _medleyTime;
+        /// <summary>
+        /// Time for Medley
+        /// </summary>
+        public TimeSpan MedleyTime
+        {
+            get => _medleyTime;
+            set => SetProperty(ref _medleyTime, value);
+        }
+
+        private TimeSpan _waterFleaTime;
+        /// <summary>
+        /// Time for WaterFlea
+        /// </summary>
+        public TimeSpan WaterFleaTime
+        {
+            get => _waterFleaTime;
+            set => SetProperty(ref _waterFleaTime, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public static void SetPropertyFromString(Person dataObj, string propertyName, string value)
         {
             switch (propertyName)
             {
-                case nameof(PersonID): PersonID = int.Parse(value); break;
-                case nameof(FirstName): FirstName = value; break;
-                case nameof(Name): Name = value; break;
-                case nameof(Gender): Gender = (Genders)Enum.Parse(typeof(Genders), value); break;
-                case nameof(BirthYear): BirthYear = UInt16.Parse(value); break;
-                case nameof(Breaststroke): Breaststroke = !string.IsNullOrEmpty(value); break;
-                case nameof(Freestyle): Freestyle = !string.IsNullOrEmpty(value); break;
-                case nameof(Backstroke): Backstroke = !string.IsNullOrEmpty(value); break;
-                case nameof(Butterfly): Butterfly = !string.IsNullOrEmpty(value); break;
-                case nameof(Medley): Medley = !string.IsNullOrEmpty(value); break;
-                case nameof(WaterFlea): WaterFlea = !string.IsNullOrEmpty(value); break;
+                case nameof(PersonID): dataObj.PersonID = int.Parse(value); break;
+                case nameof(FirstName): dataObj.FirstName = value; break;
+                case nameof(Name): dataObj.Name = value; break;
+                case nameof(Gender): dataObj.Gender = (Genders)Enum.Parse(typeof(Genders), value); break;
+                case nameof(BirthYear): dataObj.BirthYear = UInt16.Parse(value); break;
+                case nameof(Breaststroke): dataObj.Breaststroke = !string.IsNullOrEmpty(value); break;
+                case nameof(Freestyle): dataObj.Freestyle = !string.IsNullOrEmpty(value); break;
+                case nameof(Backstroke): dataObj.Backstroke = !string.IsNullOrEmpty(value); break;
+                case nameof(Butterfly): dataObj.Butterfly = !string.IsNullOrEmpty(value); break;
+                case nameof(Medley): dataObj.Medley = !string.IsNullOrEmpty(value); break;
+                case nameof(WaterFlea): dataObj.WaterFlea = !string.IsNullOrEmpty(value); break;
                 default: break;
             }
         }

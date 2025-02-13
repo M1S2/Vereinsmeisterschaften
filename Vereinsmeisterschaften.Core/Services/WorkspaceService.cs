@@ -38,8 +38,8 @@ namespace Vereinsmeisterschaften.Core.Services
             _personService = personService;
             _competitionService = competitionService;
             _fileService = fileService;
-            _personService.OnFileProgress += (sender, p) => OnWorkspaceProgress?.Invoke(this, p / 2);
-            _competitionService.OnFileProgress += (sender, p) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2));
+            _personService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, p / 2, "Loading persons...");
+            _competitionService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
         }
 
         /// <summary>
@@ -59,11 +59,14 @@ namespace Vereinsmeisterschaften.Core.Services
             Exception exception = null;
             try
             {
+                // Workspace settings
                 Settings = _fileService.LoadFromCsv<WorkspaceSettings>(workspaceSettingsPath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
 
+                // Persons
                 openResult = await _personService.LoadFromFile(cancellationToken);
                 if(!openResult) { return openResult; }
 
+                // Competitions
                 openResult = await _competitionService.LoadFromFile(cancellationToken);
             }
             catch(Exception ex)
@@ -87,11 +90,14 @@ namespace Vereinsmeisterschaften.Core.Services
             Exception exception = null;
             try
             {
+                // Workspace settings
                 _fileService.SaveToCsv(workspaceSettingsPath, new List<WorkspaceSettings>() { Settings }, cancellationToken, null);
 
+                // Persons
                 saveResult = await _personService.SaveToFile(cancellationToken);
                 if (!saveResult) { return saveResult; }
 
+                // Competitions
                 saveResult = await _competitionService.SaveToFile(cancellationToken);
             }
             catch (Exception ex)

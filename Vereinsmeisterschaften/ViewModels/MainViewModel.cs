@@ -2,13 +2,20 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.Services;
+using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
-public class MainViewModel : ObservableObject
+public class MainViewModel : ObservableObject, INavigationAware
 {
-    public ushort CompetitionYear { get; set; }
+    private ushort _competitionYear;
+    public ushort CompetitionYear
+    {
+        get => _competitionYear;
+        set => SetProperty(ref _competitionYear, value);
+    }
 
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName)));
     public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareDocumentsViewModel).FullName)));
@@ -23,10 +30,22 @@ public class MainViewModel : ObservableObject
     private ICommand _resultsCommand;
     private ICommand _settingsCommand;
 
+    IWorkspaceService _workspaceService;
+
     public MainViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
+        _workspaceService = workspaceService;
 
-        CompetitionYear = workspaceService.Settings.CompetitionYear;
+        workspaceService.OnWorkspaceFinished += (sender, e) => CompetitionYear = workspaceService?.Settings?.CompetitionYear ?? 0;
+    }
+
+    public void OnNavigatedTo(object parameter)
+    {
+        CompetitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
+    }
+
+    public void OnNavigatedFrom()
+    {
     }
 }

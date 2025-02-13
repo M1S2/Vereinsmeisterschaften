@@ -1,11 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using MahApps.Metro.Controls;
-
+using MahApps.Metro.Controls.Dialogs;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Properties;
@@ -28,6 +30,9 @@ public class ShellViewModel : ObservableObject
     private ICommand _optionsMenuItemInvokedCommand;
     private ICommand _loadedCommand;
     private ICommand _unloadedCommand;
+    private ICommand _closingCommand;
+    private IDialogCoordinator _dialogCoordinator;
+    private ProgressDialogController _progressDialogController;
 
     private IWorkspaceService _workspaceService;
 
@@ -67,36 +72,45 @@ public class ShellViewModel : ObservableObject
 
     public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
 
-    public ShellViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
+    public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand(OnClosing));
+
+    public ShellViewModel(INavigationService navigationService, IDialogCoordinator dialogCoordinator, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
+        _dialogCoordinator = dialogCoordinator;
         _workspaceService = workspaceService;
+
+        _workspaceService.OnWorkspaceProgress += (sender, p, currentStep) =>
+        {
+            _progressDialogController?.SetProgress(p / 100);
+            _progressDialogController?.SetMessage((p / 100).ToString("P0") + Environment.NewLine + currentStep);   // Format to percentage with 0 decimal digits
+        };
+
+        _workspaceService.OnWorkspaceFinished += (sender, e) =>
+        {
+            try
+            {
+                _progressDialogController?.CloseAsync();
+            }
+            catch (Exception) { /* Nothing to do here. Seems already to be closed.*/ }
+        };
     }
 
     private async void OnLoaded()
     {
         _navigationService.Navigated += OnNavigated;
-        _workspaceService.OnWorkspaceProgress += (sender, p) =>
-        {
-        };
 
-        try
-        {
-#warning TEST CODE !!!
-            await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
-            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
-
-            await _workspaceService.SaveWorkspace(WorkspaceCancellationTokenSource.Token);
-        }
-        catch (Exception ex)
-        {
-
-        }
+        await LoadWorkspace();
     }
 
     private void OnUnloaded()
     {
         _navigationService.Navigated -= OnNavigated;
+    }
+
+    private void OnClosing()
+    {
+        SaveWorkspace(false);
     }
 
     private bool CanGoBack()
@@ -136,5 +150,48 @@ public class ShellViewModel : ObservableObject
         }
 
         GoBackCommand.NotifyCanExecuteChanged();
+    }
+
+    private async Task LoadWorkspace(bool showProgressDialog = true)
+    {
+        if (showProgressDialog)
+        {
+            _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.LoadWorkspaceString, "", true);
+            _progressDialogController.Canceled += (sender, e) => WorkspaceCancellationTokenSource.Cancel();
+        }
+        try
+        {
+            await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
+            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+        }
+        catch (Exception ex)
+        {
+            if (showProgressDialog)
+            {
+                await _progressDialogController.CloseAsync();
+                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            }
+        }
+    }
+
+    private async Task SaveWorkspace(bool showProgressDialog = true)
+    {
+        if (showProgressDialog)
+        {
+            _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.SaveWorkspaceString, "", true);
+            _progressDialogController.Canceled += (sender, e) => WorkspaceCancellationTokenSource.Cancel();
+        }
+        try
+        {
+            await _workspaceService.SaveWorkspace(WorkspaceCancellationTokenSource.Token);
+        }
+        catch (Exception ex)
+        {
+            if (showProgressDialog)
+            {
+                await _progressDialogController.CloseAsync();
+                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            }
+        }
     }
 }

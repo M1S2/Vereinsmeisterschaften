@@ -63,12 +63,12 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private List<PersonStart> _starts = new List<PersonStart>();
+        private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();
         /// <summary>
-        /// List with all starts of the person
+        /// Dictionary with all starts of the person
         /// </summary>
         [FileServiceIgnore]
-        public List<PersonStart> Starts
+        public Dictionary<SwimmingStyles, PersonStart> Starts
         {
             get => _starts;
             set => SetProperty(ref _starts, value);
@@ -81,10 +81,9 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Matching <see cref="PersonStart"/> or <see langword="null"/></returns>
         public PersonStart GetStartByStyle(SwimmingStyles style)
         {
-            if (Starts == null) { Starts = new List<PersonStart>(); return null; }
-            if (Starts.Count == 0) { return null; }
-            PersonStart start = Starts.Where(s => s.Style == style).FirstOrDefault();
-            return start;
+            if (Starts == null) { Starts = new Dictionary<SwimmingStyles, PersonStart>(); return null; }
+            if (Starts.Count == 0 || !Starts.ContainsKey(style)) { return null; }
+            return Starts[style];
         }
 
         /// <summary>
@@ -97,11 +96,11 @@ namespace Vereinsmeisterschaften.Core.Models
             PersonStart start = GetStartByStyle(style);
             if (start == null && available)
             {
-                Starts.Add(new PersonStart() { Style = style });
+                Starts.Add(style, new PersonStart() { Style = style });
             }
             else if (start != null && !available)
             {
-                Starts.Remove(start);
+                Starts.Remove(style);
             }
         }
 

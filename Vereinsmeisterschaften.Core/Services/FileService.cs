@@ -73,7 +73,7 @@ public class FileService : IFileService
             // 100 % shouldn't be reported here. Better do this after saving
             if ((processedElementsCnt + 1) < dataList.Count)
             {
-                onProgress?.Invoke(this, processedElementsCnt++ / (float)dataList.Count);
+                onProgress?.Invoke(this, (processedElementsCnt++ / (float)dataList.Count) * 100);
             }
         }
 
@@ -105,9 +105,11 @@ public class FileService : IFileService
                     cancellationToken.ThrowIfCancellationRequested();
                 }
                 dataList.Add(data);
-                onProgress?.Invoke(this, processedElementsCnt++ / (float)lines.Count);
+
+                onProgress?.Invoke(this, (processedElementsCnt++ / (float)lines.Count) * 100);
             }
         }
+        onProgress?.Invoke(this, 100);
         return dataList;
     }
 

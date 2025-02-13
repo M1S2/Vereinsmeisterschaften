@@ -49,9 +49,6 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             _competitionList = new List<Competition>();
             _fileService = fileService;
-
-            //#warning TESTDATA!!!!!!!!!!!!!!!!!!!!!!!!
-            //AddCompetition(new Competition() { ID = 1, Age = 8, Distance = 50, Gender = Genders.Male, SwimmingStyle = SwimmingStyles.Breaststroke, BestTime = new TimeSpan(0, 0, 0, 50, 20) });
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -174,7 +171,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear)
         {
-            if (person.Starts.Where(s => s.Style == swimmingStyle).Count() == 0)
+            if (!person.Starts.ContainsKey(swimmingStyle))
             {
                 return null;
             }

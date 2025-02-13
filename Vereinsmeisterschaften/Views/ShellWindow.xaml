@@ -8,6 +8,8 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:templateSelectors="clr-namespace:Vereinsmeisterschaften.TemplateSelectors"
+    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    Dialog:DialogParticipation.Register="{Binding}"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     Width="1400"
@@ -19,6 +21,9 @@
         </i:EventTrigger>
         <i:EventTrigger EventName="Unloaded">
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ClosingCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <controls:MetroWindow.LeftWindowCommands>

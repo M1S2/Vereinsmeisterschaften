@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
-
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -75,6 +75,8 @@ public partial class App : Application
         services.AddSingleton<ICompetitionService, CompetitionService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
+
+        services.AddSingleton<IDialogCoordinator>(DialogCoordinator.Instance);
 
         // Views and ViewModels
         services.AddTransient<IShellWindow, ShellWindow>();

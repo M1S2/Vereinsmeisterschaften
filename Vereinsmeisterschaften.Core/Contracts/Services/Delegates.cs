@@ -9,7 +9,8 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// </summary>
     /// <param name="sender">Progress sender</param>
     /// <param name="progress">Progress 0 .. 100 </param>
-    public delegate void ProgressDelegate(object sender, float progress);
+    /// <param name="currentStep">Optional string describing the current step</param>
+    public delegate void ProgressDelegate(object sender, float progress, string currentStep = "");
 
     /// <summary>
     /// Delegate to format data

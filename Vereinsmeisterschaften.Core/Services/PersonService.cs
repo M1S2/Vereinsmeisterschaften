@@ -49,11 +49,6 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             _personList = new List<Person>();
             _fileService = fileService;
-
-            //#warning TESTDATA!!!!!!!!!!!!!!!!!!!!!!!!
-            //AddPerson(new Person() { FirstName = "Max", Name = "Mustermann", BirthYear = 2000, Gender = Genders.Male, Breaststroke = true, Freestyle = true });
-            //AddPerson(new Person() { FirstName = "Eva", Name = "Musterfrau", BirthYear = 1900, Gender = Genders.Female, Breaststroke = true, Backstroke = true, Butterfly = true, Medley = true });
-            //AddPerson(new Person() { FirstName = "Tim", Name = "Mustersohn", BirthYear = 2010, Gender = Genders.Male, WaterFlea = true });
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

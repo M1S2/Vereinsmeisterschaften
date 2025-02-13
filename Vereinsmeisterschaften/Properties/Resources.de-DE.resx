@@ -222,4 +222,13 @@
   <data name="WorkspaceString" xml:space="preserve">
     <value>Arbeitsbereich</value>
   </data>
+  <data name="ErrorString" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="LoadWorkspaceString" xml:space="preserve">
+    <value>Lade Arbeitsbereich...</value>
+  </data>
+  <data name="SaveWorkspaceString" xml:space="preserve">
+    <value>Speichere Arbeitsbereich...</value>
+  </data>
 </root>

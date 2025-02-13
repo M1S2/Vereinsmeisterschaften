@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string ErrorString {
+            get {
+                return ResourceManager.GetString("ErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die First Name ähnelt.
         /// </summary>
         public static string FirstNameString {
@@ -129,6 +138,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string GenderString {
             get {
                 return ResourceManager.GetString("GenderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
+        /// </summary>
+        public static string LoadWorkspaceString {
+            get {
+                return ResourceManager.GetString("LoadWorkspaceString", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ResultsPageTitle {
             get {
                 return ResourceManager.GetString("ResultsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save Workspace... ähnelt.
+        /// </summary>
+        public static string SaveWorkspaceString {
+            get {
+                return ResourceManager.GetString("SaveWorkspaceString", resourceCulture);
             }
         }
         

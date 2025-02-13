@@ -32,9 +32,6 @@ public class PeopleViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        People.Clear();
-        List<Person> servicePeople = _personService?.GetPersons();
-        servicePeople?.ForEach(p => People.Add(p));
-        OnPropertyChanged(nameof(People));
+        People = _personService?.GetPersons();
     }
 }

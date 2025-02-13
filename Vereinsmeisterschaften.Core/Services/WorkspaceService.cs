@@ -65,10 +65,6 @@ namespace Vereinsmeisterschaften.Core.Services
                 if(!openResult) { return openResult; }
 
                 openResult = await _competitionService.LoadFromFile(cancellationToken);
-
-#warning TEST
-                Competition comp = _competitionService.GetCompetitionForPerson(_personService.GetPersons().FirstOrDefault(), SwimmingStyles.Freestyle, Settings.CompetitionYear);
-
             }
             catch(Exception ex)
             {

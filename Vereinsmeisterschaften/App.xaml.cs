@@ -74,6 +74,7 @@ public partial class App : Application
         services.AddSingleton<IPersonService, PersonService>();
         services.AddSingleton<ICompetitionService, CompetitionService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
+        services.AddSingleton<IScoreService, ScoreService>();
 
         // Views and ViewModels
         services.AddTransient<IShellWindow, ShellWindow>();

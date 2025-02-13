@@ -63,150 +63,181 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private bool _breaststroke;
+        private List<PersonStart> _starts = new List<PersonStart>();
+        /// <summary>
+        /// List with all starts of the person
+        /// </summary>
+        [FileServiceIgnore]
+        public List<PersonStart> Starts
+        {
+            get => _starts;
+            set => SetProperty(ref _starts, value);
+        }
+
+        /// <summary>
+        /// Get the first start in the list of starts of the person that matches the style
+        /// </summary>
+        /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
+        /// <returns>Matching <see cref="PersonStart"/> or <see langword="null"/></returns>
+        public PersonStart GetStartByStyle(SwimmingStyles style)
+        {
+            if (Starts == null) { Starts = new List<PersonStart>(); return null; }
+            if (Starts.Count == 0) { return null; }
+            PersonStart start = Starts.Where(s => s.Style == style).FirstOrDefault();
+            return start;
+        }
+
+        /// <summary>
+        /// Set the flag if the start is available
+        /// </summary>
+        /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
+        /// <param name="available">If true and the style isn't available yet, add it; If false and the style is already available, remove it</param>
+        public void SetStartAvailable(SwimmingStyles style, bool available)
+        {
+            PersonStart start = GetStartByStyle(style);
+            if (start == null && available)
+            {
+                Starts.Add(new PersonStart() { Style = style });
+            }
+            else if (start != null && !available)
+            {
+                Starts.Remove(start);
+            }
+        }
+
+        /// <summary>
+        /// Set the time for the matching start if available
+        /// </summary>
+        /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
+        /// <param name="time">Time to set for the start</param>
+        public void SetStartTime(SwimmingStyles style, TimeSpan time)
+        {
+            PersonStart start = GetStartByStyle(style);
+            if (start == null) { return; }
+            start.Time = time;
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // PROPERTIES FOR FASTER ACCESS AND FILE SAVING
+
         /// <summary>
         /// Starting with Breaststroke
         /// </summary>
         public bool Breaststroke
         {
-            get => _breaststroke;
-            set => SetProperty(ref _breaststroke, value);
+            get => GetStartByStyle(SwimmingStyles.Breaststroke) != null;
+            set { SetStartAvailable(SwimmingStyles.Breaststroke, value); OnPropertyChanged(); }
         }
 
-        private bool _freestyle;
         /// <summary>
         /// Starting with Freestyle
         /// </summary>
         public bool Freestyle
         {
-            get => _freestyle;
-            set => SetProperty(ref _freestyle, value);
+            get => GetStartByStyle(SwimmingStyles.Freestyle) != null;
+            set { SetStartAvailable(SwimmingStyles.Freestyle, value); OnPropertyChanged(); }
         }
 
-        private bool _backstroke;
         /// <summary>
         /// Starting with Backstroke
         /// </summary>
         public bool Backstroke
         {
-            get => _backstroke;
-            set => SetProperty(ref _backstroke, value);
+            get => GetStartByStyle(SwimmingStyles.Backstroke) != null;
+            set { SetStartAvailable(SwimmingStyles.Backstroke, value); OnPropertyChanged(); }
         }
 
-        private bool _butterfly;
         /// <summary>
         /// Starting with Butterfly
         /// </summary>
         public bool Butterfly
         {
-            get => _butterfly;
-            set => SetProperty(ref _butterfly, value);
+            get => GetStartByStyle(SwimmingStyles.Butterfly) != null;
+            set { SetStartAvailable(SwimmingStyles.Butterfly, value); OnPropertyChanged(); }
         }
 
-        private bool _medley;
         /// <summary>
         /// Starting with Medley
         /// </summary>
         public bool Medley
         {
-            get => _medley;
-            set => SetProperty(ref _medley, value);
+            get => GetStartByStyle(SwimmingStyles.Medley) != null;
+            set { SetStartAvailable(SwimmingStyles.Medley, value); OnPropertyChanged(); }
         }
 
-        private bool _waterFlea;
         /// <summary>
         /// Starting with WaterFlea
         /// </summary>
         public bool WaterFlea
         {
-            get => _waterFlea;
-            set => SetProperty(ref _waterFlea, value);
-        }
-
-        /// <summary>
-        /// List with all swimming styles, for which the person wants to start
-        /// Only use this list to get the swimming styles for this Person! Changes to this list aren't reflected back!
-        /// </summary>
-        [FileServiceIgnore]
-        public List<SwimmingStyles> SwimmingStyles
-        {
-            get
-            {
-                List<SwimmingStyles> styles = new List<SwimmingStyles>();
-                if (Breaststroke) { styles.Add(Models.SwimmingStyles.Breaststroke); }
-                if (Freestyle) { styles.Add(Models.SwimmingStyles.Freestyle); }
-                if (Backstroke) { styles.Add(Models.SwimmingStyles.Backstroke); }
-                if (Butterfly) { styles.Add(Models.SwimmingStyles.Butterfly); }
-                if (Medley) { styles.Add(Models.SwimmingStyles.Medley); }
-                if (WaterFlea) { styles.Add(Models.SwimmingStyles.WaterFlea); }
-                return styles;
-            }
+            get => GetStartByStyle(SwimmingStyles.WaterFlea) != null;
+            set { SetStartAvailable(SwimmingStyles.WaterFlea, value); OnPropertyChanged(); }
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private TimeSpan _breaststrokeTime;
         /// <summary>
         /// Time for Breaststroke
         /// </summary>
         public TimeSpan BreaststrokeTime
         {
-            get => _breaststrokeTime;
-            set => SetProperty(ref _breaststrokeTime, value);
+            get => GetStartByStyle(SwimmingStyles.Breaststroke)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.Breaststroke, value); OnPropertyChanged(); }
         }
 
-        private TimeSpan _freestyleTime;
         /// <summary>
         /// Time for Freestyle
         /// </summary>
         public TimeSpan FreestyleTime
         {
-            get => _freestyleTime;
-            set => SetProperty(ref _freestyleTime, value);
+            get => GetStartByStyle(SwimmingStyles.Freestyle)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.Freestyle, value); OnPropertyChanged(); }
         }
 
-        private TimeSpan _backstrokeTime;
         /// <summary>
         /// Time for Backstroke
         /// </summary>
         public TimeSpan BackstrokeTime
         {
-            get => _backstrokeTime;
-            set => SetProperty(ref _backstrokeTime, value);
+            get => GetStartByStyle(SwimmingStyles.Backstroke)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.Backstroke, value); OnPropertyChanged(); }
         }
 
-        private TimeSpan _butterflyTime;
         /// <summary>
         /// Time for Butterfly
         /// </summary>
         public TimeSpan ButterflyTime
         {
-            get => _butterflyTime;
-            set => SetProperty(ref _butterflyTime, value);
+            get => GetStartByStyle(SwimmingStyles.Butterfly)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.Butterfly, value); OnPropertyChanged(); }
         }
 
-        private TimeSpan _medleyTime;
         /// <summary>
         /// Time for Medley
         /// </summary>
         public TimeSpan MedleyTime
         {
-            get => _medleyTime;
-            set => SetProperty(ref _medleyTime, value);
+            get => GetStartByStyle(SwimmingStyles.Medley)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.Medley, value); OnPropertyChanged(); }
         }
 
-        private TimeSpan _waterFleaTime;
         /// <summary>
         /// Time for WaterFlea
         /// </summary>
         public TimeSpan WaterFleaTime
         {
-            get => _waterFleaTime;
-            set => SetProperty(ref _waterFleaTime, value);
+            get => GetStartByStyle(SwimmingStyles.WaterFlea)?.Time ?? new TimeSpan();
+            set { SetStartTime(SwimmingStyles.WaterFlea, value); OnPropertyChanged(); }
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Set the requested property in the <see cref="Person"/> object by parsing the given string value
+        /// </summary>
+        /// <param name="dataObj"><see cref="Person"/> in which to set the property</param>
+        /// <param name="propertyName">Name of the property to set</param>
+        /// <param name="value">String value that will be parsed and set to the property</param>
         public static void SetPropertyFromString(Person dataObj, string propertyName, string value)
         {
             switch (propertyName)
@@ -222,6 +253,12 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(Butterfly): dataObj.Butterfly = !string.IsNullOrEmpty(value); break;
                 case nameof(Medley): dataObj.Medley = !string.IsNullOrEmpty(value); break;
                 case nameof(WaterFlea): dataObj.WaterFlea = !string.IsNullOrEmpty(value); break;
+                case nameof(BreaststrokeTime): dataObj.BreaststrokeTime = TimeSpan.Parse(value); break;
+                case nameof(FreestyleTime): dataObj.FreestyleTime = TimeSpan.Parse(value); break;
+                case nameof(BackstrokeTime): dataObj.BackstrokeTime = TimeSpan.Parse(value); break;
+                case nameof(ButterflyTime): dataObj.ButterflyTime = TimeSpan.Parse(value); break;
+                case nameof(MedleyTime): dataObj.MedleyTime = TimeSpan.Parse(value); break;
+                case nameof(WaterFleaTime): dataObj.WaterFleaTime = TimeSpan.Parse(value); break;
                 default: break;
             }
         }

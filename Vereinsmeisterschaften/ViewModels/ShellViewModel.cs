@@ -17,7 +17,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 public class ShellViewModel : ObservableObject
 {
 #warning Change to non-fixed path!!!
-    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData";
+    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data2";
     public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
 
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
@@ -82,8 +82,8 @@ public class ShellViewModel : ObservableObject
 
         _workspaceService.OnWorkspaceProgress += (sender, p, currentStep) =>
         {
-            _progressDialogController?.SetProgress(p / 100);
-            _progressDialogController?.SetMessage((p / 100).ToString("P0") + Environment.NewLine + currentStep);   // Format to percentage with 0 decimal digits
+            //_progressDialogController?.SetProgress(p / 100);
+            //_progressDialogController?.SetMessage((p / 100).ToString("P0") + Environment.NewLine + currentStep);   // Format to percentage with 0 decimal digits
         };
 
         _workspaceService.OnWorkspaceFinished += (sender, e) =>
@@ -154,6 +154,7 @@ public class ShellViewModel : ObservableObject
 
     private async Task LoadWorkspace(bool showProgressDialog = true)
     {
+        WorkspaceCancellationTokenSource = new CancellationTokenSource();
         if (showProgressDialog)
         {
             _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.LoadWorkspaceString, "", true);
@@ -176,6 +177,7 @@ public class ShellViewModel : ObservableObject
 
     private async Task SaveWorkspace(bool showProgressDialog = true)
     {
+        WorkspaceCancellationTokenSource = new CancellationTokenSource();
         if (showProgressDialog)
         {
             _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.SaveWorkspaceString, "", true);

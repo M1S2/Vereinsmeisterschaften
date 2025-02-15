@@ -142,6 +142,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Highest Score ähnelt.
+        /// </summary>
+        public static string HighestScoreString {
+            get {
+                return ResourceManager.GetString("HighestScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
         /// </summary>
         public static string LoadWorkspaceString {

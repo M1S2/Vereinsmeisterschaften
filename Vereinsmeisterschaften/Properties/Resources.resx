@@ -231,4 +231,7 @@
   <data name="SaveWorkspaceString" xml:space="preserve">
     <value>Save Workspace...</value>
   </data>
+  <data name="HighestScoreString" xml:space="preserve">
+    <value>Highest Score</value>
+  </data>
 </root>

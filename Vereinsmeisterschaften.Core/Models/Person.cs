@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -73,6 +74,12 @@ namespace Vereinsmeisterschaften.Core.Models
             get => _starts;
             set => SetProperty(ref _starts, value);
         }
+
+        /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
+        /// </summary>
+        [FileServiceIgnore]
+        public double HighestScore => Starts?.Values.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
 
         /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
@@ -239,6 +246,8 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="value">String value that will be parsed and set to the property</param>
         public static void SetPropertyFromString(Person dataObj, string propertyName, string value)
         {
+            if(string.IsNullOrEmpty(value)) return;
+
             switch (propertyName)
             {
                 case nameof(PersonID): dataObj.PersonID = int.Parse(value); break;

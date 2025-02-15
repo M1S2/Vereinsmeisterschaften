@@ -14,13 +14,17 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Update all scores for this <see cref="Person"/>
         /// </summary>
         /// <param name="person"><see cref="Person"/> for which to update the scores</param>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        void UpdateScoresForPerson(Person person, ushort competitionYear);
+        void UpdateScoresForPerson(Person person);
 
         /// <summary>
         /// Update all scores for all <see cref="Person"/>
         /// </summary>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        void UpdateScoresForAllPersons(ushort competitionYear);
+        void UpdateScoresForAllPersons();
+
+        /// <summary>
+        /// Get all persons, sort them by their highest scores and return as new list
+        /// </summary>
+        /// <returns>List with <see cref="Person"/> sorted by <see cref="Person.HighestScore"/> (descending)</returns>
+        List<Person> GetPersonsSortedByScore();
     }
 }

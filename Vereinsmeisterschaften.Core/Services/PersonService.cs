@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime;
@@ -36,7 +37,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// List with all people
         /// </summary>
-        private List<Person> _personList { get; set; }
+        private ObservableCollection<Person> _personList { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -47,7 +48,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public PersonService(IFileService fileService)
         {
-            _personList = new List<Person>();
+            _personList = new ObservableCollection<Person>();
             _fileService = fileService;
         }
 
@@ -77,7 +78,8 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        _personList = _fileService.LoadFromCsv<Person>(PersonFilePath, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
+                        List<Person> list = _fileService.LoadFromCsv<Person>(PersonFilePath, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
+                        _personList = new ObservableCollection<Person>(list);
                     }
                     
                     importingResult = true;
@@ -111,7 +113,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(PersonFilePath, _personList, cancellationToken, OnFileProgress, (data) =>
+                    _fileService.SaveToCsv(PersonFilePath, _personList.ToList(), cancellationToken, OnFileProgress, (data) =>
                     {
                         if (data is bool dataBool)
                         {
@@ -145,14 +147,14 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Return all available Persons
         /// </summary>
         /// <returns>List of <see cref="Person"/> objects</returns>
-        public List<Person> GetPersons() => _personList;
+        public ObservableCollection<Person> GetPersons() => _personList;
 
         /// <summary>
         /// Clear all Persons
         /// </summary>
         public void ClearAll()
         {
-            if (_personList == null) { _personList = new List<Person>(); }
+            if (_personList == null) { _personList = new ObservableCollection<Person>(); }
             _personList.Clear();
         }
 
@@ -162,7 +164,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Person"/> to add</param>
         public void AddPerson(Person person)
         {
-            if(_personList == null) { _personList = new List<Person>(); }
+            if(_personList == null) { _personList = new ObservableCollection<Person>(); }
             person.PersonID = _personList.Count;
             _personList.Add(person);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -44,7 +45,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Return all available Persons
         /// </summary>
         /// <returns>List of <see cref="Person"/> objects</returns>
-        List<Person> GetPersons();
+        ObservableCollection<Person> GetPersons();
 
         /// <summary>
         /// Clear all Persons

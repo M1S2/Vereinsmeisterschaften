@@ -12,6 +12,17 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Person : ObservableObject, IEquatable<Person>
     {
+        private bool _isInEditMode;
+        /// <summary>
+        /// Person is in edit mode. Used in view model.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsInEditMode
+        {
+            get => _isInEditMode;
+            set => SetProperty(ref _isInEditMode, value);
+        }
+
         private int _personId = 0;
         /// <summary>
         /// Person ID assigned when adding this person to the data source

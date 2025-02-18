@@ -17,7 +17,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 public class ShellViewModel : ObservableObject
 {
 #warning Change to non-fixed path!!!
-    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data2";
+    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
     public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
 
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;

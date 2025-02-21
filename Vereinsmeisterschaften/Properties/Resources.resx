@@ -234,4 +234,13 @@
   <data name="HighestScoreString" xml:space="preserve">
     <value>Highest Score</value>
   </data>
+  <data name="CancelString" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RemovePersonConfirmationString" xml:space="preserve">
+    <value>Really remove this person? This can't be undone!</value>
+  </data>
+  <data name="RemovePersonString" xml:space="preserve">
+    <value>Remove Person</value>
+  </data>
 </root>

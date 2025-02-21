@@ -165,7 +165,6 @@ namespace Vereinsmeisterschaften.Core.Services
         public void AddPerson(Person person)
         {
             if(_personList == null) { _personList = new ObservableCollection<Person>(); }
-            person.PersonID = _personList.Count;
             _personList.Add(person);
         }
 

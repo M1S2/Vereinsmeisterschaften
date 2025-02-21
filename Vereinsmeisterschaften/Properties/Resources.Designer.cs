@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string CancelString {
+            get {
+                return ResourceManager.GetString("CancelString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         public static string ErrorString {
@@ -210,6 +219,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PrepareDocumentsPageTitle {
             get {
                 return ResourceManager.GetString("PrepareDocumentsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really remove this person? This can&apos;t be undone! ähnelt.
+        /// </summary>
+        public static string RemovePersonConfirmationString {
+            get {
+                return ResourceManager.GetString("RemovePersonConfirmationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Person ähnelt.
+        /// </summary>
+        public static string RemovePersonString {
+            get {
+                return ResourceManager.GetString("RemovePersonString", resourceCulture);
             }
         }
         

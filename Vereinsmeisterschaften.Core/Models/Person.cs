@@ -12,27 +12,6 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Person : ObservableObject, IEquatable<Person>
     {
-        private bool _isInEditMode;
-        /// <summary>
-        /// Person is in edit mode. Used in view model.
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsInEditMode
-        {
-            get => _isInEditMode;
-            set => SetProperty(ref _isInEditMode, value);
-        }
-
-        private int _personId = 0;
-        /// <summary>
-        /// Person ID assigned when adding this person to the data source
-        /// </summary>
-        public int PersonID
-        {
-            get => _personId;
-            set => SetProperty(ref _personId, value);
-        }
-
         private string _name = string.Empty;
         /// <summary>
         /// Last name of the person.
@@ -261,7 +240,6 @@ namespace Vereinsmeisterschaften.Core.Models
 
             switch (propertyName)
             {
-                case nameof(PersonID): dataObj.PersonID = int.Parse(value); break;
                 case nameof(FirstName): dataObj.FirstName = value; break;
                 case nameof(Name): dataObj.Name = value; break;
                 case nameof(Gender): dataObj.Gender = (Genders)Enum.Parse(typeof(Genders), value); break;

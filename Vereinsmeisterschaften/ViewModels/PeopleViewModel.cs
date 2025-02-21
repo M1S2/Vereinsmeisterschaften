@@ -1,10 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -20,29 +22,16 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         set => SetProperty(ref _people, value);
     }
 
-    private Person _personInEditMode;
-    public Person PersonInEditMode
-    {
-        get => _personInEditMode;
-        set
-        {
-            foreach(Person person in People)
-            {
-                person.IsInEditMode = false;
-            }
-            if (value != null)
-            {
-                value.IsInEditMode = true;
-            }
-            SetProperty(ref _personInEditMode, value);
-        }
-    }
+#warning Genders are not localized in the UI at the moment !!!
+    private List<Genders> _availablePersonGenders = Enum.GetValues(typeof(Genders)).Cast<Genders>().ToList();
+    public List<Genders> AvailablePersonGenders => _availablePersonGenders;
 
     private IPersonService _personService;
-
-    public PeopleViewModel(IPersonService personService)
+    private IDialogCoordinator _dialogCoordinator;
+    public PeopleViewModel(IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
         _personService = personService;
+        _dialogCoordinator = dialogCoordinator;
         People = new ObservableCollection<Person>();
     }
 
@@ -51,19 +40,15 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     {
         Person person = new Person();
         _personService.AddPerson(person);
-        PersonInEditMode = person;
     }));
 
-    private ICommand _editPersonCommand;
-    public ICommand EditPersonCommand => _editPersonCommand ?? (_editPersonCommand = new RelayCommand<Person>((person) =>
+    private ICommand _removePersonCommand;
+    public ICommand RemovePersonCommand => _removePersonCommand ?? (_removePersonCommand = new RelayCommand<Person>(async (person) =>
     {
-        if (PersonInEditMode != null && person.PersonID == PersonInEditMode.PersonID)
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+        if (result == MessageDialogResult.Affirmative)
         {
-            PersonInEditMode = null;
-        }
-        else
-        {
-            PersonInEditMode = person;
+            People.Remove(person);
         }
     }));
 

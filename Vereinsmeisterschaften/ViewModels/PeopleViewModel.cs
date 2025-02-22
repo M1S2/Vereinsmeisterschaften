@@ -13,6 +13,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
 using System.Reactive.Subjects;
+using System.Xml.Linq;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -26,6 +27,23 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     {
         get => _people;
         set => SetProperty(ref _people, value);
+    }
+
+    /// <summary>
+    /// String used to describe, which person is duplicated
+    /// </summary>
+    public string DuplicatePersonString
+    {
+        get
+        {
+            List<Person> duplicates = _personService.CheckForDuplicatePerson();
+            string duplicateString = string.Empty;
+            foreach(Person person in duplicates)
+            {
+                duplicateString += person.Name + ", " + person.FirstName + Environment.NewLine;
+            }
+            return duplicateString.Trim(Environment.NewLine.ToCharArray());
+        }
     }
 
     private ICollectionView _peopleCollectionView;
@@ -109,6 +127,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     {
         Person person = new Person();
         _personService.AddPerson(person);
+        person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
     }));
 
     private ICommand _removePersonCommand;
@@ -118,6 +137,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         if (result == MessageDialogResult.Affirmative)
         {
             People.Remove(person);
+            OnPropertyChanged(nameof(DuplicatePersonString));
         }
     }));
 
@@ -132,5 +152,10 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         People = _personService?.GetPersons();
         PeopleCollectionView = CollectionViewSource.GetDefaultView(People);
         PeopleCollectionView.Filter += PersonFilterPredicate;
+
+        foreach(Person person in People)
+        {
+            person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
+        }
     }
 }

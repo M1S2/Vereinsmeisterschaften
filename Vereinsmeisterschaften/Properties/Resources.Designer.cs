@@ -115,6 +115,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Duplicate Person found ähnelt.
+        /// </summary>
+        public static string DuplicatePersonFound {
+            get {
+                return ResourceManager.GetString("DuplicatePersonFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         public static string ErrorString {

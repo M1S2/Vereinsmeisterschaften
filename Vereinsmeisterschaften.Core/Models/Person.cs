@@ -303,7 +303,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return FirstName + ", " + Name + " (Birth Year: " + BirthYear.ToString() + ")";
+            return Name + ", " + FirstName + " (" + BirthYear.ToString() + ")";
         }
     }
 }

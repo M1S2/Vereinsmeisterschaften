@@ -243,4 +243,7 @@
   <data name="RemovePersonString" xml:space="preserve">
     <value>Person löschen</value>
   </data>
+  <data name="DuplicatePersonFound" xml:space="preserve">
+    <value>Doppelte Person gefunden</value>
+  </data>
 </root>

@@ -172,5 +172,27 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Return the number of <see cref="Person"/>
         /// </summary>
         public int PersonCount => _personList?.Count ?? 0;
+
+        /// <summary>
+        /// Find all duplicate <see cref="Person"/> objects.
+        /// </summary>
+        /// <returns>List with duplicate <see cref="Person"/></returns>
+        public List<Person> CheckForDuplicatePerson()
+        {
+            List<Person> tmpPersonList = new List<Person>();
+            List<Person> duplicates = new List<Person>();
+            foreach (Person person in _personList)
+            {
+                if(!tmpPersonList.Contains(person))
+                {
+                    tmpPersonList.Add(person);
+                }
+                else
+                {
+                    duplicates.Add(person);
+                }
+            }
+            return duplicates.Distinct().ToList();
+        }
     }
 }

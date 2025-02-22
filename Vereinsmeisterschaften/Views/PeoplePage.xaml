@@ -13,6 +13,7 @@
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1200">
+    
     <Page.Resources>
         <Style x:Key="DataGridHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -32,17 +33,41 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageTitleStyle}" Margin="{StaticResource MediumLeftMargin}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PageTitleStyle}" Margin="{StaticResource MediumLeftMargin}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
 
-        <Button Grid.Row="1" Margin="{StaticResource MediumLeftMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Circle}" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <!-- Add Person Button -->
+        <Button Grid.Row="1" Grid.Column="0" Margin="{StaticResource MediumLeftMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Circle}" VerticalAlignment="Center" HorizontalAlignment="Left">
             <controls:FontIcon Glyph="&#xE8FA;" Margin="10"/>
         </Button>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding People}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <!-- Search Bar -->
+        <DockPanel Grid.Row="1" Grid.Column="1" Margin="24,0,24,0">
+            <controls:FontIcon DockPanel.Dock="Left" Glyph="&#xF78B;" Margin="5" FontSize="25"/>
+            <Button DockPanel.Dock="Right" Command="{Binding ClearFilterCommand}">
+                <controls:FontIcon Glyph="&#xF78A;" Margin="10"/>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilterText}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBox HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource LargeFontSize}"/>
+        </DockPanel>
+
+        <!-- DataGrid with all people -->
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">

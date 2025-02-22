@@ -2,11 +2,17 @@
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Reactive;
+using System.Reactive.Linq;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
+using System.Reactive.Subjects;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -22,6 +28,64 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         set => SetProperty(ref _people, value);
     }
 
+    private ICollectionView _peopleCollectionView;
+    /// <summary>
+    /// CollectionView used to display the list of people and filter
+    /// </summary>
+    public ICollectionView PeopleCollectionView
+    {
+        get => _peopleCollectionView;
+        private set => SetProperty(ref _peopleCollectionView, value);
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private Subject<bool> filterInputSubject = new Subject<bool>();         // Used to delay the filter while typing
+
+    private string _filterText = "";
+    /// <summary>
+    /// Text used to filter the person list
+    /// </summary>
+    public string FilterText
+    {
+        get => _filterText;
+        set { SetProperty(ref _filterText, value); filterInputSubject?.OnNext(true); }
+    }
+
+    /// <summary>
+    /// Function used when filtering the person list
+    /// </summary>
+    public Predicate<object> PersonFilterPredicate
+    {
+        get
+        {
+            return (item) =>
+            {
+                Person person = item as Person;
+
+                bool filterResult = person.Name.ToLower().Contains(FilterText?.ToLower()) ||
+                                    person.FirstName.ToLower().Contains(FilterText?.ToLower()) ||
+                                    (person.FirstName.ToLower() + " " + person.Name.ToLower()).Contains(FilterText?.ToLower()) ||
+                                    (person.Name.ToLower() + " " + person.FirstName.ToLower()).Contains(FilterText?.ToLower()) ||
+                                    (person.FirstName.ToLower() + ", " + person.Name.ToLower()).Contains(FilterText?.ToLower()) ||
+                                    (person.Name.ToLower() + ", " + person.FirstName.ToLower()).Contains(FilterText?.ToLower()) ||
+                                    person.BirthYear.ToString().Contains(FilterText ?? "");
+                return filterResult;
+            };
+        }
+    }
+
+    private ICommand _clearFilterCommand;
+    /// <summary>
+    /// Command to clear the filter
+    /// </summary>
+    public ICommand ClearFilterCommand => _clearFilterCommand ?? (_clearFilterCommand = new RelayCommand(() =>
+    {
+        FilterText = string.Empty;
+    }));
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 #warning Genders are not localized in the UI at the moment !!!
     private List<Genders> _availablePersonGenders = Enum.GetValues(typeof(Genders)).Cast<Genders>().ToList();
     public List<Genders> AvailablePersonGenders => _availablePersonGenders;
@@ -33,7 +97,12 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
         People = new ObservableCollection<Person>();
+
+        // Delay the filtering to make the typing smoother
+        filterInputSubject.Throttle(TimeSpan.FromMilliseconds(100)).ObserveOn(SynchronizationContext.Current).Subscribe((b) => PeopleCollectionView.Refresh());
     }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private ICommand _addPersonCommand;
     public ICommand AddPersonCommand => _addPersonCommand ?? (_addPersonCommand = new RelayCommand(() =>
@@ -52,6 +121,8 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         }
     }));
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     public void OnNavigatedFrom()
     {
     }
@@ -59,5 +130,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     public void OnNavigatedTo(object parameter)
     {
         People = _personService?.GetPersons();
+        PeopleCollectionView = CollectionViewSource.GetDefaultView(People);
+        PeopleCollectionView.Filter += PersonFilterPredicate;
     }
 }

@@ -5,16 +5,16 @@ using System.Text;
 namespace Vereinsmeisterschaften.Core.Models
 {
     /// <summary>
-    /// Available swimming styles
+    /// Available result types
     /// </summary>
-    public enum SwimmingStyles
+    public enum ResultTypes
     {
+        Overall,
         Breaststroke,
         Freestyle,
         Backstroke,
         Butterfly,
         Medley,
-        WaterFlea,
-        Unknown
+        WaterFlea
     }
 }

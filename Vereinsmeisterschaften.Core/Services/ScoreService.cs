@@ -71,14 +71,63 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
-        /// Get all persons, sort them by their highest scores and return as new list
+        /// Get all persons, sort them depending on the requested <see cref="ResultTypes"/> and return as new list
         /// </summary>
-        /// <returns>List with <see cref="Person"/> sorted by <see cref="Person.HighestScore"/> (descending)</returns>
-        public List<Person> GetPersonsSortedByScore()
+        /// <param name="resultType">The list with all persons is sorted depending on this parameter</param>
+        /// <returns>List with <see cref="Person"/> sorted (descending)</returns>
+        public List<Person> GetPersonsSortedByScore(ResultTypes resultType)
         {
             UpdateScoresForAllPersons();
             List<Person> persons = new List<Person>(_personService.GetPersons());
-            return persons.OrderByDescending(p => p.HighestScore).ToList();
+
+            if (resultType == ResultTypes.Overall)
+            {
+                return persons.OrderByDescending(p => p.HighestScore).ToList();
+            }
+            else
+            {
+                SwimmingStyles style = getStyleFromResultType(resultType);
+                return persons.Where(p => p.Starts.ContainsKey(style)).OrderByDescending(p => p.Starts[style].Score).ToList();
+            }       
+        }
+
+        /// <summary>
+        /// Find the best starts of all persons depending on the <see cref="ResultTypes"/>
+        /// </summary>
+        /// <param name="resultType">Only regard starts that match this <see cref="ResultTypes"/></param>
+        /// <param name="numberOfStartsToReturn">Maximum number of starts to return</param>
+        /// <returns>List with best <see cref="PersonStart"/></returns>
+        public List<PersonStart> GetBestPersonStarts(ResultTypes resultType, int numberOfStartsToReturn)
+        {
+            List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
+            List<PersonStart> bestStarts = new List<PersonStart>();
+            if(resultType == ResultTypes.Overall)
+            {
+                bestStarts = sortedPersons.Where(p => p.Starts.ContainsKey(p.HighestScoreStyle))?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
+            }
+            else
+            {
+                SwimmingStyles style = getStyleFromResultType(resultType);
+                bestStarts = sortedPersons.Where(p => p.Starts.ContainsKey(style))?.Select(p => p.Starts[style]).ToList();
+            }
+            bestStarts = bestStarts.Take(numberOfStartsToReturn).ToList();  // Limit the number of starts to maximum numberOfStartsToReturn (less elements possible)
+            bestStarts.AddRange(Enumerable.Repeat<PersonStart>(null, numberOfStartsToReturn - bestStarts.Count));   // Add null until the numberOfStartsToReturn elements are reached
+            return bestStarts.Take(numberOfStartsToReturn).ToList();
+        }
+
+        private SwimmingStyles getStyleFromResultType(ResultTypes resultType)
+        {
+            switch (resultType)
+            {
+                case ResultTypes.Overall: return SwimmingStyles.Unknown;
+                case ResultTypes.Breaststroke: return SwimmingStyles.Breaststroke;
+                case ResultTypes.Freestyle: return SwimmingStyles.Freestyle;
+                case ResultTypes.Backstroke: return SwimmingStyles.Backstroke;
+                case ResultTypes.Butterfly: return SwimmingStyles.Butterfly;
+                case ResultTypes.Medley: return SwimmingStyles.Medley;
+                case ResultTypes.WaterFlea: return SwimmingStyles.WaterFlea;
+                default: return SwimmingStyles.Unknown;
+            }
         }
     }
 }

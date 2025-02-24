@@ -15,6 +15,24 @@ public class ResultsViewModel : ObservableObject, INavigationAware
         set => SetProperty(ref _sortedPersons, value);
     }
 
+    private ResultTypes _resultType = ResultTypes.Overall;
+    public ResultTypes ResultType
+    {
+        get => _resultType;
+        set
+        {
+            SetProperty(ref _resultType, value);
+            SortedPersons = _scoreService.GetPersonsSortedByScore(_resultType);
+            OnPropertyChanged(nameof(BestStartsForResultType));
+        }
+    }
+
+    public List<PersonStart> BestStartsForResultType => _scoreService.GetBestPersonStarts(ResultType);
+
+#warning ResultTypes are not localized in the UI at the moment !!!
+    private List<ResultTypes> _availableResultTypes = Enum.GetValues(typeof(ResultTypes)).Cast<ResultTypes>().ToList();
+    public List<ResultTypes> AvailableResultTypes => _availableResultTypes;
+
     private IScoreService _scoreService;
 
     public ResultsViewModel(IScoreService scoreService)
@@ -28,6 +46,6 @@ public class ResultsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        SortedPersons = _scoreService.GetPersonsSortedByScore();
+        ResultType = ResultTypes.Overall;
     }
 }

@@ -72,6 +72,12 @@ namespace Vereinsmeisterschaften.Core.Models
         public double HighestScore => Starts?.Values.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
 
         /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// </summary>
+        [FileServiceIgnore]
+        public SwimmingStyles HighestScoreStyle => Starts?.Values.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+
+        /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
         /// </summary>
         /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
@@ -93,7 +99,7 @@ namespace Vereinsmeisterschaften.Core.Models
             PersonStart start = GetStartByStyle(style);
             if (start == null && available)
             {
-                Starts.Add(style, new PersonStart() { Style = style });
+                Starts.Add(style, new PersonStart() { Style = style, PersonObj = this });
             }
             else if (start != null && !available)
             {

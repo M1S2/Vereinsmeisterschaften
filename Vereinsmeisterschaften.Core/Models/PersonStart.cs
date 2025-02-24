@@ -7,6 +7,13 @@ namespace Vereinsmeisterschaften.Core.Models
 {
     public class PersonStart : ObservableObject
     {
+        private Person _personObj;
+        public Person PersonObj
+        {
+            get => _personObj;
+            set => SetProperty(ref _personObj, value);
+        }
+
         private SwimmingStyles _style;
         public SwimmingStyles Style
         {

@@ -92,12 +92,13 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
-        /// Find the best starts of all persons depending on the <see cref="ResultTypes"/>
+        /// Find the best starts of all persons depending on the <see cref="ResultTypes"/> and requested <see cref="ResultPodiumsPlaces"/>
+        /// This method returns a list of start because there is the possibility to have more than one person with the same score.
         /// </summary>
         /// <param name="resultType">Only regard starts that match this <see cref="ResultTypes"/></param>
-        /// <param name="numberOfStartsToReturn">Maximum number of starts to return</param>
-        /// <returns>List with best <see cref="PersonStart"/></returns>
-        public List<PersonStart> GetBestPersonStarts(ResultTypes resultType, int numberOfStartsToReturn)
+        /// <param name="podiumsPlace">Return the starts for this podium place</param>
+        /// <returns>List with best <see cref="PersonStart"/> or null if no elements are found</returns>
+        public List<PersonStart> GetWinnersPodiumStarts(ResultTypes resultType, ResultPodiumsPlaces podiumsPlace)
         {
             List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
             List<PersonStart> bestStarts = new List<PersonStart>();
@@ -110,9 +111,22 @@ namespace Vereinsmeisterschaften.Core.Services
                 SwimmingStyles style = getStyleFromResultType(resultType);
                 bestStarts = sortedPersons.Where(p => p.Starts.ContainsKey(style))?.Select(p => p.Starts[style]).ToList();
             }
-            bestStarts = bestStarts.Take(numberOfStartsToReturn).ToList();  // Limit the number of starts to maximum numberOfStartsToReturn (less elements possible)
-            bestStarts.AddRange(Enumerable.Repeat<PersonStart>(null, numberOfStartsToReturn - bestStarts.Count));   // Add null until the numberOfStartsToReturn elements are reached
-            return bestStarts.Take(numberOfStartsToReturn).ToList();
+            
+            // Group all starts by the score. It is possible to have more than one start with the same score leading to the same podium place
+            List<IGrouping<double, PersonStart>> groupedStarts = bestStarts.GroupBy(s => s.Score).ToList();
+            if(podiumsPlace == ResultPodiumsPlaces.Gold && groupedStarts.Count > 0)
+            {
+                return groupedStarts[0].ToList();
+            }
+            else if (podiumsPlace == ResultPodiumsPlaces.Silver && groupedStarts.Count > 1)
+            {
+                return groupedStarts[1].ToList();
+            }
+            else if (podiumsPlace == ResultPodiumsPlaces.Bronze && groupedStarts.Count > 2)
+            {
+                return groupedStarts[2].ToList();
+            }
+            return null;
         }
 
         private SwimmingStyles getStyleFromResultType(ResultTypes resultType)

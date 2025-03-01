@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1200">
     
@@ -28,59 +29,46 @@
         <ComboBox Grid.Row="1" Margin="{StaticResource MediumLeftRightMargin}" ItemsSource="{Binding AvailableResultTypes}" SelectedValue="{Binding ResultType}"/>
 
         <!-- Winner's podium -->
-        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="{StaticResource MediumLeftRightMargin}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="110"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
-            
-            <DockPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom">
-                <Grid DockPanel.Dock="Bottom">
-                    <Border Height="50" Background="#b7b7b7"/>
-                    <Label Height="50" Content="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-                </Grid>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[1].PersonObj.Name, FallbackValue='---'}" HorizontalAlignment="Center"/>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[1].PersonObj.FirstName}" HorizontalAlignment="Center"/>
-            </DockPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ItemsControl ItemsSource="{Binding PodiumSilverStarts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:ResultsUserControlPodiumPersonStart Start="{Binding}" PodiumsPlace="Silver"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding PodiumGoldStarts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:ResultsUserControlPodiumPersonStart Start="{Binding}" PodiumsPlace="Gold"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding PodiumBronzeStarts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:ResultsUserControlPodiumPersonStart Start="{Binding}" PodiumsPlace="Bronze"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
 
-            <DockPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
-                <Grid DockPanel.Dock="Bottom">
-                    <Border Height="70" Background="#d5a500"/>
-                    <Label Height="70" Content="1" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-                </Grid>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[0].PersonObj.Name, FallbackValue='---'}" HorizontalAlignment="Center"/>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[0].PersonObj.FirstName}" HorizontalAlignment="Center"/>
-            </DockPanel>
-
-            <DockPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom">
-                <Grid DockPanel.Dock="Bottom">
-                    <Border Height="40" Background="#a17419"/>
-                    <Label Height="40" Content="3" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-                </Grid>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[2].PersonObj.Name, FallbackValue='---'}" HorizontalAlignment="Center"/>
-                <TextBlock DockPanel.Dock="Bottom" Text="{Binding BestStartsForResultType[2].PersonObj.FirstName}" HorizontalAlignment="Center"/>
-            </DockPanel>
-
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding BestStartsForResultType[1].Style}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding BestStartsForResultType[1].Time}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding BestStartsForResultType[1].Score, StringFormat=N1}" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding BestStartsForResultType[0].Style}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BestStartsForResultType[0].Time}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding BestStartsForResultType[0].Score, StringFormat=N1}" HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding BestStartsForResultType[2].Style}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding BestStartsForResultType[2].Time}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding BestStartsForResultType[2].Score, StringFormat=N1}" HorizontalAlignment="Center"/>
-        </Grid>
-
+        <!-- Complete results overview -->
         <ListView Grid.Row="3" ItemsSource="{Binding SortedPersons}" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">

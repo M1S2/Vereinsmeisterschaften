@@ -29,11 +29,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         List<Person> GetPersonsSortedByScore(ResultTypes resultType = ResultTypes.Overall);
 
         /// <summary>
-        /// Find the best starts of all persons depending on the <see cref="ResultTypes"/>
+        /// Find the best starts of all persons depending on the <see cref="ResultTypes"/> and requested <see cref="ResultPodiumsPlaces"/>
+        /// This method returns a list of start because there is the possibility to have more than one person with the same score.
         /// </summary>
         /// <param name="resultType">Only regard starts that match this <see cref="ResultTypes"/></param>
-        /// <param name="numberOfStartsToReturn">Maximum number of starts to return</param>
-        /// <returns>List with best <see cref="PersonStart"/></returns>
-        List<PersonStart> GetBestPersonStarts(ResultTypes resultType = ResultTypes.Overall, int numberOfStartsToReturn = 3);
+        /// <param name="podiumsPlace">Return the starts for this podium place</param>
+        /// <returns>List with best <see cref="PersonStart"/> or null if no elements are found</returns>
+        List<PersonStart> GetWinnersPodiumStarts(ResultTypes resultType, ResultPodiumsPlaces podiumsPlace);
     }
 }

@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Vereinsmeisterschaften.Views.ResultsUserControlPodiumPersonStart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
+             mc:Ignorable="d"
+             Width="150" d:DesignHeight="185">
+    
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="colorBrushGold" Color="#d5a500"/>
+        <SolidColorBrush x:Key="colorBrushSilver" Color="#b7b7b7"/>
+        <SolidColorBrush x:Key="colorBrushBronze" Color="#a17419"/>
+
+        <sys:Double x:Key="podiumHeightGold">70</sys:Double>
+        <sys:Double x:Key="podiumHeightSilver">50</sys:Double>
+        <sys:Double x:Key="podiumHeightBronze">40</sys:Double>
+    </UserControl.Resources>
+
+    <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" VerticalAlignment="Bottom">
+            <Grid DockPanel.Dock="Bottom">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Background" Value="Red"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Gold">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightGold}"/>
+                                    <Setter Property="Background" Value="{StaticResource colorBrushGold}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Silver">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightSilver}"/>
+                                    <Setter Property="Background" Value="{StaticResource colorBrushSilver}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Bronze">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightBronze}"/>
+                                    <Setter Property="Background" Value="{StaticResource colorBrushBronze}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Content" Value="?"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Gold">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightGold}"/>
+                                    <Setter Property="Content" Value="1"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Silver">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightSilver}"/>
+                                    <Setter Property="Content" Value="2"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Bronze">
+                                    <Setter Property="Height" Value="{StaticResource podiumHeightBronze}"/>
+                                    <Setter Property="Content" Value="3"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </Grid>
+            <TextBlock DockPanel.Dock="Bottom" Text="{Binding Start.PersonObj.Name, FallbackValue='---'}" HorizontalAlignment="Center"/>
+            <TextBlock DockPanel.Dock="Bottom" Text="{Binding Start.PersonObj.FirstName}" HorizontalAlignment="Center"/>
+        </DockPanel>
+
+        <TextBlock Grid.Row="1" Text="{Binding Start.Style}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="{Binding Start.Time}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="{Binding Start.Score, StringFormat=N1}" HorizontalAlignment="Center"/>
+    </Grid>
+</UserControl>

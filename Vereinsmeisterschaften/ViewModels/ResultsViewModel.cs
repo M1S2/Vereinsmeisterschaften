@@ -23,11 +23,16 @@ public class ResultsViewModel : ObservableObject, INavigationAware
         {
             SetProperty(ref _resultType, value);
             SortedPersons = _scoreService.GetPersonsSortedByScore(_resultType);
-            OnPropertyChanged(nameof(BestStartsForResultType));
+            OnPropertyChanged(nameof(PodiumGoldStarts));
+            OnPropertyChanged(nameof(PodiumSilverStarts));
+            OnPropertyChanged(nameof(PodiumBronzeStarts));
         }
     }
 
-    public List<PersonStart> BestStartsForResultType => _scoreService.GetBestPersonStarts(ResultType);
+    public List<PersonStart> PodiumGoldStarts => _scoreService.GetWinnersPodiumStarts(ResultType, ResultPodiumsPlaces.Gold);
+    public List<PersonStart> PodiumSilverStarts => _scoreService.GetWinnersPodiumStarts(ResultType, ResultPodiumsPlaces.Silver);
+    public List<PersonStart> PodiumBronzeStarts => _scoreService.GetWinnersPodiumStarts(ResultType, ResultPodiumsPlaces.Bronze);
+
 
 #warning ResultTypes are not localized in the UI at the moment !!!
     private List<ResultTypes> _availableResultTypes = Enum.GetValues(typeof(ResultTypes)).Cast<ResultTypes>().ToList();

@@ -171,7 +171,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear)
         {
-            if (!person.Starts.ContainsKey(swimmingStyle))
+            if (person.Starts[swimmingStyle] == null)
             {
                 return null;
             }

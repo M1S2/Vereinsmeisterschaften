@@ -12,6 +12,19 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Person : ObservableObject, IEquatable<Person>
     {
+        public Person()
+        {
+            Starts = new Dictionary<SwimmingStyles, PersonStart>();
+            List<SwimmingStyles> availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().ToList();
+            availableSwimmingStyles.Remove(SwimmingStyles.Unknown);
+            foreach(SwimmingStyles style in availableSwimmingStyles)
+            {
+                Starts.Add(style, null);
+            }
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private string _name = string.Empty;
         /// <summary>
         /// Last name of the person.
@@ -69,13 +82,13 @@ namespace Vereinsmeisterschaften.Core.Models
         /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
         /// </summary>
         [FileServiceIgnore]
-        public double HighestScore => Starts?.Values.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
+        public double HighestScore => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
 
         /// <summary>
         /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
         /// </summary>
         [FileServiceIgnore]
-        public SwimmingStyles HighestScoreStyle => Starts?.Values.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
 
         /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
@@ -84,8 +97,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Matching <see cref="PersonStart"/> or <see langword="null"/></returns>
         public PersonStart GetStartByStyle(SwimmingStyles style)
         {
-            if (Starts == null) { Starts = new Dictionary<SwimmingStyles, PersonStart>(); return null; }
-            if (Starts.Count == 0 || !Starts.ContainsKey(style)) { return null; }
             return Starts[style];
         }
 
@@ -99,11 +110,11 @@ namespace Vereinsmeisterschaften.Core.Models
             PersonStart start = GetStartByStyle(style);
             if (start == null && available)
             {
-                Starts.Add(style, new PersonStart() { Style = style, PersonObj = this });
+                Starts[style] = new PersonStart() { Style = style, PersonObj = this };
             }
             else if (start != null && !available)
             {
-                Starts.Remove(style);
+                Starts[style] = null;
             }
         }
 

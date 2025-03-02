@@ -36,6 +36,8 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             foreach (PersonStart start in person?.Starts?.Values)
             {
+                if (start == null) { continue; }
+
                 Competition competition = _competitionService.GetCompetitionForPerson(person, start.Style, _workspaceService.Settings.CompetitionYear);
                 if (competition == null) { continue; }
                 // If the start time equals the competition best time the score will be 100
@@ -87,7 +89,7 @@ namespace Vereinsmeisterschaften.Core.Services
             else
             {
                 SwimmingStyles style = getStyleFromResultType(resultType);
-                return persons.Where(p => p.Starts.ContainsKey(style)).OrderByDescending(p => p.Starts[style].Score).ToList();
+                return persons.Where(p => p.Starts[style] != null).OrderByDescending(p => p.Starts[style].Score).ToList();
             }       
         }
 
@@ -102,14 +104,14 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
             List<PersonStart> bestStarts = new List<PersonStart>();
-            if(resultType == ResultTypes.Overall)
+            if (resultType == ResultTypes.Overall)
             {
-                bestStarts = sortedPersons.Where(p => p.Starts.ContainsKey(p.HighestScoreStyle))?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
+                bestStarts = sortedPersons.Where(p => p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
             }
             else
             {
                 SwimmingStyles style = getStyleFromResultType(resultType);
-                bestStarts = sortedPersons.Where(p => p.Starts.ContainsKey(style))?.Select(p => p.Starts[style]).ToList();
+                bestStarts = sortedPersons.Where(p => p.Starts[style] != null)?.Select(p => p.Starts[style]).ToList();
             }
             
             // Group all starts by the score. It is possible to have more than one start with the same score leading to the same podium place

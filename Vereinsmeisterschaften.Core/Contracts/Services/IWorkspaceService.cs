@@ -16,12 +16,18 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         string WorkspaceFolderPath { get; }
 
         /// <summary>
+        /// If true, a workspace is loaded; if false, not workspace is loaded
+        /// </summary>
+        bool IsWorkspaceOpen { get; set; }
+
+        /// <summary>
         /// Settings for the current workspace
         /// </summary>
         public WorkspaceSettings Settings { get; set; }
 
         /// <summary>
-        /// Open the workspace and load all files
+        /// Open the workspace and load all files.
+        /// If there is already an open workspace, save the files first. Then open the new workspace.
         /// </summary>
         /// <param name="workspacePath">Path to the workspace folder</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -36,6 +42,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         Task<bool> SaveWorkspace(CancellationToken cancellationToken);
 
         /// <summary>
+        /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)
+        /// </summary>
+        /// <param name="save">If true, <see cref="SaveWorkspace(CancellationToken)"/> is called before</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>true if saving during close succeeded; false if saving failed (e.g. canceled)</returns>
+        Task<bool> CloseWorkspace(bool save, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Event that is raised when the workspace operation progress changes
         /// </summary>
         event ProgressDelegate OnWorkspaceProgress;
@@ -44,5 +58,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Event that is raised when the workspace operation is finished.
         /// </summary>
         event EventHandler OnWorkspaceFinished;
+
+        /// <summary>
+        /// Event that is called whenever the <see cref="IsWorkspaceOpen"/> changed
+        /// </summary>
+        event EventHandler OnIsWorkspaceOpenChanged;
     }
 }

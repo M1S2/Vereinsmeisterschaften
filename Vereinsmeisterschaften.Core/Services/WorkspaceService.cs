@@ -25,7 +25,22 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public event EventHandler OnWorkspaceFinished;
 
+        /// <summary>
+        /// Event that is called whenever the <see cref="IsWorkspaceOpen"/> changed
+        /// </summary>
+        public event EventHandler OnIsWorkspaceOpenChanged;
+
         public string WorkspaceFolderPath { get; private set; } = string.Empty;
+
+        private bool _isWorkspaceOpen;
+        /// <summary>
+        /// If true, a workspace is loaded; if false, not workspace is loaded
+        /// </summary>
+        public bool IsWorkspaceOpen
+        {
+            get => _isWorkspaceOpen;
+            set { _isWorkspaceOpen = value; OnIsWorkspaceOpenChanged?.Invoke(this, null); }
+        }
 
         public WorkspaceSettings Settings { get; set; }
 
@@ -38,6 +53,7 @@ namespace Vereinsmeisterschaften.Core.Services
             _personService = personService;
             _competitionService = competitionService;
             _fileService = fileService;
+            IsWorkspaceOpen = false;
             _personService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, p / 2, "Loading persons...");
             _competitionService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
         }
@@ -50,6 +66,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if opening succeeded; false if opening failed (e.g. canceled)</returns>
         public async Task<bool> OpenWorkspace(string workspacePath, CancellationToken cancellationToken)
         {
+            if(IsWorkspaceOpen)
+            {
+                await CloseWorkspace(true, cancellationToken);
+            }
+
             WorkspaceFolderPath = workspacePath;
 
             string workspaceSettingsPath = Path.Combine(WorkspaceFolderPath, WorkspaceSettingsFileName);
@@ -68,6 +89,8 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Competitions
                 openResult = await _competitionService.LoadFromFile(cancellationToken);
+
+                IsWorkspaceOpen = openResult;
             }
             catch(Exception ex)
             {
@@ -106,6 +129,30 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             OnWorkspaceFinished?.Invoke(this, null);
             if (exception != null) { throw exception; }
+            return saveResult;
+        }
+
+        /// <summary>
+        /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)
+        /// </summary>
+        /// <param name="save">If true, <see cref="SaveWorkspace(CancellationToken)"/> is called before</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>true if saving during close succeeded; false if saving failed (e.g. canceled)</returns>
+        public async Task<bool> CloseWorkspace(bool save, CancellationToken cancellationToken)
+        {
+            bool saveResult = true;
+            if (save)
+            {
+                saveResult = await SaveWorkspace(cancellationToken);
+            }
+
+            WorkspaceFolderPath = string.Empty;
+            Settings = null;
+            _personService.ClearAll();
+            _competitionService.ClearAll();
+            IsWorkspaceOpen = false;
+            
+            OnWorkspaceFinished?.Invoke(this, null);
             return saveResult;
         }
 

@@ -51,6 +51,7 @@ public class ShellViewModel : ObservableObject
     public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE80F", TargetPageType = typeof(MainViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.ShellWorkspacePage, Glyph = "\uE821", TargetPageType = typeof(WorkspaceViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellPeoplePage, Glyph = "\uE77B", TargetPageType = typeof(PeopleViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellPrepareDocumentsPage, Glyph = "\uE8A5", TargetPageType = typeof(PrepareDocumentsViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellTimeInputPage, Glyph = "\uE916", TargetPageType = typeof(TimeInputViewModel) },
@@ -93,6 +94,18 @@ public class ShellViewModel : ObservableObject
                 _progressDialogController?.CloseAsync();
             }
             catch (Exception) { /* Nothing to do here. Seems already to be closed.*/ }
+        };
+
+        _workspaceService.OnIsWorkspaceOpenChanged += (sender, e) =>
+        {
+            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+
+            foreach(HamburgerMenuItem menuItem in MenuItems)
+            {
+                if(menuItem.TargetPageType == typeof(MainViewModel) || menuItem.TargetPageType == typeof(WorkspaceViewModel)) { continue; }
+
+                menuItem.IsEnabled = _workspaceService.IsWorkspaceOpen;
+            }
         };
     }
 
@@ -163,7 +176,6 @@ public class ShellViewModel : ObservableObject
         try
         {
             await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
-            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
         }
         catch (Exception ex)
         {

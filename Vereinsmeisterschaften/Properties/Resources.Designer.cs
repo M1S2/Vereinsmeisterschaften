@@ -115,6 +115,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        public static string CloseString {
+            get {
+                return ResourceManager.GetString("CloseString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Year ähnelt.
+        /// </summary>
+        public static string CompetitionYearString {
+            get {
+                return ResourceManager.GetString("CompetitionYearString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Duplicate Person found ähnelt.
         /// </summary>
         public static string DuplicatePersonFound {
@@ -205,6 +223,33 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Persons ähnelt.
+        /// </summary>
+        public static string NumberPersonsString {
+            get {
+                return ResourceManager.GetString("NumberPersonsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Starts ähnelt.
+        /// </summary>
+        public static string NumberStartsString {
+            get {
+                return ResourceManager.GetString("NumberStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
+        /// </summary>
+        public static string OpenString {
+            get {
+                return ResourceManager.GetString("OpenString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die People ähnelt.
         /// </summary>
         public static string PeoplePageTitle {
@@ -255,6 +300,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ResultsPageTitle {
             get {
                 return ResourceManager.GetString("ResultsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        public static string SaveString {
+            get {
+                return ResourceManager.GetString("SaveString", resourceCulture);
             }
         }
         
@@ -421,6 +475,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
+        /// </summary>
+        public static string ShellWorkspacePage {
+            get {
+                return ResourceManager.GetString("ShellWorkspacePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TimeInput ähnelt.
         /// </summary>
         public static string TimeInputPageTitle {
@@ -435,6 +498,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string WaterFleaString {
             get {
                 return ResourceManager.GetString("WaterFleaString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
+        /// </summary>
+        public static string WorkspacePageTitle {
+            get {
+                return ResourceManager.GetString("WorkspacePageTitle", resourceCulture);
             }
         }
         

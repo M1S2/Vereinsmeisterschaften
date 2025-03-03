@@ -174,6 +174,11 @@ namespace Vereinsmeisterschaften.Core.Services
         public int PersonCount => _personList?.Count ?? 0;
 
         /// <summary>
+        /// Return the total number of starts of all persons
+        /// </summary>
+        public int PersonStarts => _personList.Sum(p => p.Starts.Where(s => s.Value != null).Count());
+
+        /// <summary>
         /// Find all duplicate <see cref="Person"/> objects.
         /// </summary>
         /// <returns>List with duplicate <see cref="Person"/></returns>

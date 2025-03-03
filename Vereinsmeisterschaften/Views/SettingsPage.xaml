@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:models="clr-namespace:Vereinsmeisterschaften.Models"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
@@ -20,9 +21,12 @@
                 <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock
-                Style="{StaticResource PageTitleStyle}"
-                Text="{x:Static properties:Resources.SettingsPageTitle}" />
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource MediumLeftMargin}">
+                <controls:FontIcon FontSize="40" Margin="0,0,10,0" Glyph="&#xE713;"/>
+                <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.SettingsPageTitle}" />
+            </StackPanel>
+
             <StackPanel
                 x:Name="ContentArea"
                 Grid.Row="1"

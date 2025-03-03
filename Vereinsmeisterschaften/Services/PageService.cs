@@ -17,6 +17,7 @@ public class PageService : IPageService
     {
         _serviceProvider = serviceProvider;
         Configure<MainViewModel, MainPage>();
+        Configure<WorkspaceViewModel, WorkspacePage>();
         Configure<PeopleViewModel, PeoplePage>();
         Configure<PrepareDocumentsViewModel, PrepareDocumentsPage>();
         Configure<TimeInputViewModel, TimeInputPage>();

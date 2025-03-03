@@ -65,6 +65,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         int PersonCount { get; }
 
         /// <summary>
+        /// Return the total number of starts of all persons
+        /// </summary>
+        int PersonStarts { get; }
+
+        /// <summary>
         /// Find all duplicate <see cref="Person"/> objects.
         /// </summary>
         /// <returns>List with duplicate <see cref="Person"/></returns>

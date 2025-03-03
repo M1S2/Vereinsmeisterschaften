@@ -246,4 +246,28 @@
   <data name="DuplicatePersonFound" xml:space="preserve">
     <value>Duplicate Person found</value>
   </data>
+  <data name="ShellWorkspacePage" xml:space="preserve">
+    <value>Workspace</value>
+  </data>
+  <data name="WorkspacePageTitle" xml:space="preserve">
+    <value>Workspace</value>
+  </data>
+  <data name="CloseString" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="OpenString" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="SaveString" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CompetitionYearString" xml:space="preserve">
+    <value>Competition Year</value>
+  </data>
+  <data name="NumberPersonsString" xml:space="preserve">
+    <value>Number Persons</value>
+  </data>
+  <data name="NumberStartsString" xml:space="preserve">
+    <value>Number Starts</value>
+  </data>
 </root>

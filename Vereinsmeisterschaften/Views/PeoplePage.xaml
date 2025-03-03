@@ -29,28 +29,32 @@
             <Setter Property="ClickMode" Value="Press"/>
         </Style>
     </Page.Resources>
-    
-    <Grid>
+
+    <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="75"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PageTitleStyle}" Margin="{StaticResource MediumLeftMargin}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
-
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <controls:FontIcon FontSize="40" Glyph="&#xE77B;"/>
+            <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
+        </StackPanel>
+        
         <!-- Add Person Button -->
-        <Button Grid.Row="1" Grid.Column="0" Margin="{StaticResource MediumLeftMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Circle}" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <Button Grid.Row="2" Grid.Column="0" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Circle}" VerticalAlignment="Center" HorizontalAlignment="Left">
             <controls:FontIcon Glyph="&#xE8FA;" Margin="10"/>
         </Button>
 
         <!-- Search Bar -->
-        <DockPanel Grid.Row="1" Grid.Column="1" Margin="24,0,24,0">
+        <DockPanel Grid.Row="2" Grid.Column="1" Margin="24,0,24,0">
             <controls:FontIcon DockPanel.Dock="Left" Glyph="&#xF78B;" Margin="5" FontSize="25"/>
             <Button DockPanel.Dock="Right" Command="{Binding ClearFilterCommand}">
                 <controls:FontIcon Glyph="&#xF78A;" Margin="10"/>
@@ -68,7 +72,7 @@
         </DockPanel>
 
         <!-- DataGrid with all people -->
-        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
@@ -198,7 +202,7 @@
         </DataGrid>
         
         <!-- Duplicate Person Warning -->
-        <Expander Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
+        <Expander Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
                   controls:HeaderedControlHelper.HeaderBackground="OrangeRed" BorderBrush="OrangeRed">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">

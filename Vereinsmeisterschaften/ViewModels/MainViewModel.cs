@@ -17,19 +17,19 @@ public class MainViewModel : ObservableObject, INavigationAware
         set => SetProperty(ref _competitionYear, value);
     }
 
-    public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName)));
-    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareDocumentsViewModel).FullName)));
-    public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(TimeInputViewModel).FullName)));
-    public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(ResultsViewModel).FullName)));
-    public ICommand SettingsCommand => _settingsCommand ?? (_settingsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(SettingsViewModel).FullName)));
-
+    public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
+    public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareDocumentsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(TimeInputViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(ResultsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    
     private readonly INavigationService _navigationService;
+    private ICommand _workspaceCommand;
     private ICommand _peopleCommand;
     private ICommand _prepareDocumentsCommand;
     private ICommand _timeInputCommand;
     private ICommand _resultsCommand;
-    private ICommand _settingsCommand;
-
+    
     IWorkspaceService _workspaceService;
 
     public MainViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
@@ -38,6 +38,13 @@ public class MainViewModel : ObservableObject, INavigationAware
         _workspaceService = workspaceService;
 
         workspaceService.OnWorkspaceFinished += (sender, e) => CompetitionYear = workspaceService?.Settings?.CompetitionYear ?? 0;
+        workspaceService.OnIsWorkspaceOpenChanged += (sender, e) =>
+        {
+            ((RelayCommand)PeopleCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)TimeInputCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)ResultsCommand).NotifyCanExecuteChanged();
+        };
     }
 
     public void OnNavigatedTo(object parameter)

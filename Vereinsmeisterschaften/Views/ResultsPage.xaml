@@ -16,20 +16,24 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
     </Page.Resources>
-    
-    <Grid>
+
+    <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="30" />
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource PageTitleStyle}" Margin="{StaticResource MediumLeftMargin}" Text="{x:Static properties:Resources.ResultsPageTitle}" />
 
-        <ComboBox Grid.Row="1" Margin="{StaticResource MediumLeftRightMargin}" ItemsSource="{Binding AvailableResultTypes}" SelectedValue="{Binding ResultType}"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <controls:FontIcon FontSize="40" Glyph="&#xE9F9;"/>
+            <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.ResultsPageTitle}" />
+        </StackPanel>
+
+        <ComboBox Grid.Row="1" ItemsSource="{Binding AvailableResultTypes}" SelectedValue="{Binding ResultType}"/>
 
         <!-- Winner's podium -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="{StaticResource SmallLeftTopRightBottomMargin}">
             <ItemsControl ItemsSource="{Binding PodiumSilverStarts}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -69,7 +73,7 @@
         </StackPanel>
 
         <!-- Complete results overview -->
-        <ListView Grid.Row="3" ItemsSource="{Binding SortedPersons}" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+        <ListView Grid.Row="3" ItemsSource="{Binding SortedPersons}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />

@@ -23,6 +23,15 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        public Person(Person other) : this()
+        {
+            this.Name = other.Name;
+            this.FirstName = other.FirstName;
+            this.Gender = other.Gender;
+            this.BirthYear = other.BirthYear;
+            this.Starts = new Dictionary<SwimmingStyles, PersonStart>(other.Starts);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private string _name = string.Empty;

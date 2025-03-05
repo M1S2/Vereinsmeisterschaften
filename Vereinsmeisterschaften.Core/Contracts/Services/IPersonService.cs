@@ -74,5 +74,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <returns>List with duplicate <see cref="Person"/></returns>
         public List<Person> CheckForDuplicatePerson();
+
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> was changed since loading it from the file.
+        /// True, if changed; otherwise false.
+        /// </summary>
+        bool WasPersonListChangedSinceLoading { get; }
     }
 }

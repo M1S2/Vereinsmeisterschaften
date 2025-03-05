@@ -21,6 +21,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         bool IsWorkspaceOpen { get; set; }
 
         /// <summary>
+        /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
+        /// True, if changed; otherwise false.
+        /// </summary>
+        bool WasWorkspaceChangedSinceLoading { get; }
+
+        /// <summary>
         /// Settings for the current workspace
         /// </summary>
         public WorkspaceSettings Settings { get; set; }

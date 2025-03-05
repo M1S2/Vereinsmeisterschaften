@@ -11,6 +11,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 {
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
 
+    public bool WasWorkspaceChangedSinceLoading => _workspaceService.WasWorkspaceChangedSinceLoading;
+
     public ushort CompetitionYear
     {
         get => _workspaceService?.Settings?.CompetitionYear ?? 0;
@@ -20,6 +22,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             {
                 _workspaceService.Settings.CompetitionYear = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
             }
         }
     }
@@ -35,12 +38,15 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     {
         await _workspaceService?.CloseWorkspace(true, CancellationToken.None);
         OnPropertyChanged(nameof(NumberPersons));
+        OnPropertyChanged(nameof(NumberStarts));
+        OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
     }, () => _workspaceService.IsWorkspaceOpen));
 
     private ICommand _saveWorkspaceCommand;
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async() =>
     {
         await _workspaceService?.SaveWorkspace(CancellationToken.None);
+        OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
     }, () => _workspaceService.IsWorkspaceOpen));
 
     private ICommand _loadWorkspaceCommand;
@@ -52,6 +58,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             await _workspaceService?.OpenWorkspace(folderDialog.SelectedPath, CancellationToken.None);
             OnPropertyChanged(nameof(NumberPersons));
+            OnPropertyChanged(nameof(NumberStarts));
+            OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
         }
     }));
 
@@ -68,6 +76,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             OnPropertyChanged(nameof(CurrentWorkspaceFolder));
             OnPropertyChanged(nameof(CompetitionYear));
+            OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
             ((RelayCommand)LoadWorkspaceCommand).NotifyCanExecuteChanged();
             ((RelayCommand)SaveWorkspaceCommand).NotifyCanExecuteChanged();
             ((RelayCommand)CloseWorkspaceCommand).NotifyCanExecuteChanged();
@@ -78,7 +87,11 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
+        OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+        OnPropertyChanged(nameof(CompetitionYear));
         OnPropertyChanged(nameof(NumberPersons));
+        OnPropertyChanged(nameof(NumberStarts));
+        OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
     }
 
     public void OnNavigatedFrom()

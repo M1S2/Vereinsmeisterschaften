@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -38,6 +39,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// List with all people
         /// </summary>
         private ObservableCollection<Person> _personList { get; set; }
+
+        /// <summary>
+        /// List with all people at the time the <see cref="LoadFromFile(CancellationToken)"/> method was called.
+        /// </summary>
+        private List<Person> _personListOnLoad { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -81,7 +87,9 @@ namespace Vereinsmeisterschaften.Core.Services
                         List<Person> list = _fileService.LoadFromCsv<Person>(PersonFilePath, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
                         _personList = new ObservableCollection<Person>(list);
                     }
-                    
+
+                    _personListOnLoad = _personList.ToList().ConvertAll(p => new Person(p));
+
                     importingResult = true;
                 }
                 catch (OperationCanceledException)
@@ -125,6 +133,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         }
                     });
 
+                    _personListOnLoad = _personList.ToList().ConvertAll(p => new Person(p));
                     saveResult = true;
                 }
                 catch (OperationCanceledException)
@@ -199,5 +208,11 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             return duplicates.Distinct().ToList();
         }
+
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> was changed since loading it from the file.
+        /// True, if changed; otherwise false.
+        /// </summary>
+        public bool WasPersonListChangedSinceLoading => (_personList != null && _personListOnLoad != null) ? !_personList.ToList().SequenceEqual(_personListOnLoad) : false;
     }
 }

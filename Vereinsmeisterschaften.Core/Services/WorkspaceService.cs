@@ -42,7 +42,15 @@ namespace Vereinsmeisterschaften.Core.Services
             set { _isWorkspaceOpen = value; OnIsWorkspaceOpenChanged?.Invoke(this, null); }
         }
 
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
+        /// True, if changed; otherwise false.
+        /// </summary>
+        public bool WasWorkspaceChangedSinceLoading => _personService.WasPersonListChangedSinceLoading || (!Settings?.Equals(_settingsOnLoad) ?? true);
+
         public WorkspaceSettings Settings { get; set; }
+
+        private WorkspaceSettings _settingsOnLoad;
 
         private IPersonService _personService;
         private ICompetitionService _competitionService;
@@ -90,6 +98,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Competitions
                 openResult = await _competitionService.LoadFromFile(cancellationToken);
 
+                _settingsOnLoad = new WorkspaceSettings(Settings);
                 IsWorkspaceOpen = openResult;
             }
             catch(Exception ex)

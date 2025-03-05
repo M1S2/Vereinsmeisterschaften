@@ -22,6 +22,8 @@ public class ShellViewModel : ObservableObject
 
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
 
+    public bool WasWorkspaceChangedSinceLoading => _workspaceService.WasWorkspaceChangedSinceLoading;
+
     private readonly INavigationService _navigationService;
     private HamburgerMenuItem _selectedMenuItem;
     private HamburgerMenuItem _selectedOptionsMenuItem;
@@ -163,6 +165,8 @@ public class ShellViewModel : ObservableObject
         }
 
         GoBackCommand.NotifyCanExecuteChanged();
+
+        OnPropertyChanged(nameof(WasWorkspaceChangedSinceLoading));
     }
 
     private async Task LoadWorkspace(bool showProgressDialog = true)

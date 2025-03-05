@@ -11,6 +11,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 {
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
 
+    public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
+
     public ushort CompetitionYear
     {
         get => _workspaceService?.Settings?.CompetitionYear ?? 0;
@@ -35,6 +37,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     {
         await _workspaceService?.CloseWorkspace(true, CancellationToken.None);
         OnPropertyChanged(nameof(NumberPersons));
+        OnPropertyChanged(nameof(NumberStarts));
     }, () => _workspaceService.IsWorkspaceOpen));
 
     private ICommand _saveWorkspaceCommand;
@@ -52,6 +55,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             await _workspaceService?.OpenWorkspace(folderDialog.SelectedPath, CancellationToken.None);
             OnPropertyChanged(nameof(NumberPersons));
+            OnPropertyChanged(nameof(NumberStarts));
         }
     }));
 
@@ -76,12 +80,28 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        switch(e.PropertyName)
+        {
+            case nameof(IWorkspaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+            default: break;
+        }
+    }
+
     public void OnNavigatedTo(object parameter)
     {
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
+
+        OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+        OnPropertyChanged(nameof(CompetitionYear));
         OnPropertyChanged(nameof(NumberPersons));
+        OnPropertyChanged(nameof(NumberStarts));
+        OnPropertyChanged(nameof(HasUnsavedChanges));
     }
 
     public void OnNavigatedFrom()
     {
+        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 }

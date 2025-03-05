@@ -99,7 +99,17 @@
         <DockPanel>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem Content="{x:Static properties:Resources.WorkspaceString}"/>
-                <StatusBarItem Content="{Binding CurrentWorkspaceFolder}"/>
+                <StatusBarItem Content="{Binding CurrentWorkspaceFolder}">
+                    <StatusBarItem.Style>
+                        <Style TargetType="{x:Type StatusBarItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StatusBarItem.Style>
+                </StatusBarItem>
             </StatusBar>
 
             <controls:HamburgerMenu

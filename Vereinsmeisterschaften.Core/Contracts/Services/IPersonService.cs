@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -9,7 +10,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <summary>
     /// Interface for a service used to get and store a list of Person objects
     /// </summary>
-    public interface IPersonService
+    public interface IPersonService : INotifyPropertyChanged
     {
         /// <summary>
         /// Load a list of Persons to the <see cref="PersonList"/>.
@@ -74,5 +75,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <returns>List with duplicate <see cref="Person"/></returns>
         public List<Person> CheckForDuplicatePerson();
+
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> has not saved changed.
+        /// True, if unsaved changes exist; otherwise false.
+        /// </summary>
+        bool HasUnsavedChanges { get; }
     }
 }

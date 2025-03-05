@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -8,7 +9,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <summary>
     /// Interface for a service used to manage a workspace
     /// </summary>
-    public interface IWorkspaceService
+    public interface IWorkspaceService : INotifyPropertyChanged
     {
         /// <summary>
         /// Path to the workspace folder
@@ -19,6 +20,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// If true, a workspace is loaded; if false, not workspace is loaded
         /// </summary>
         bool IsWorkspaceOpen { get; set; }
+
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
+        /// True, if unsaved changes exist; otherwise false.
+        /// </summary>
+        bool HasUnsavedChanges { get; }
 
         /// <summary>
         /// Settings for the current workspace

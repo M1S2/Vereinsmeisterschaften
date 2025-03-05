@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -9,11 +10,13 @@ namespace Vereinsmeisterschaften.Core.Services
     /// <summary>
     /// Service used to manage a workspace
     /// </summary>
-    public class WorkspaceService : IWorkspaceService
+    public class WorkspaceService : ObservableObject, IWorkspaceService
     {
         public const string WorkspaceSettingsFileName = "WorkspaceSettings.csv";
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Event that is raised when the workspace operation progress changes
@@ -30,6 +33,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public event EventHandler OnIsWorkspaceOpenChanged;
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         public string WorkspaceFolderPath { get; private set; } = string.Empty;
 
         private bool _isWorkspaceOpen;
@@ -42,8 +47,29 @@ namespace Vereinsmeisterschaften.Core.Services
             set { _isWorkspaceOpen = value; OnIsWorkspaceOpenChanged?.Invoke(this, null); }
         }
 
-        public WorkspaceSettings Settings { get; set; }
+        /// <summary>
+        /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
+        /// True, if unsaved changes exist; otherwise false.
+        /// </summary>
+        public bool HasUnsavedChanges => _personService.HasUnsavedChanges || (!Settings?.Equals(_settingsPersistedInFile) ?? true);
 
+
+        private WorkspaceSettings _settings;
+        public WorkspaceSettings Settings
+        {
+            get => _settings;
+            set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private WorkspaceSettings _settingsPersistedInFile;
         private IPersonService _personService;
         private ICompetitionService _competitionService;
         private IFileService _fileService;
@@ -56,7 +82,18 @@ namespace Vereinsmeisterschaften.Core.Services
             IsWorkspaceOpen = false;
             _personService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, p / 2, "Loading persons...");
             _competitionService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
+
+            _personService.PropertyChanged += (sender, e) =>
+            {
+                switch(e.PropertyName)
+                {
+                    case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    default: break;
+                }
+            };
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Open the workspace and load all files
@@ -82,6 +119,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 // Workspace settings
                 Settings = _fileService.LoadFromCsv<WorkspaceSettings>(workspaceSettingsPath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
+                Settings.PropertyChanged += Settings_PropertyChanged;
 
                 // Persons
                 openResult = await _personService.LoadFromFile(cancellationToken);
@@ -90,6 +128,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Competitions
                 openResult = await _competitionService.LoadFromFile(cancellationToken);
 
+                _settingsPersistedInFile = new WorkspaceSettings(Settings);
+                OnPropertyChanged(nameof(HasUnsavedChanges));
                 IsWorkspaceOpen = openResult;
             }
             catch(Exception ex)
@@ -100,6 +140,8 @@ namespace Vereinsmeisterschaften.Core.Services
             if (exception != null) { throw exception; }
             return openResult;
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Save all workspace files
@@ -122,6 +164,9 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Competitions
                 saveResult = await _competitionService.SaveToFile(cancellationToken);
+
+                _settingsPersistedInFile = new WorkspaceSettings(Settings);
+                OnPropertyChanged(nameof(HasUnsavedChanges));
             }
             catch (Exception ex)
             {
@@ -131,6 +176,8 @@ namespace Vereinsmeisterschaften.Core.Services
             if (exception != null) { throw exception; }
             return saveResult;
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)
@@ -147,6 +194,7 @@ namespace Vereinsmeisterschaften.Core.Services
             }
 
             WorkspaceFolderPath = string.Empty;
+            Settings.PropertyChanged -= Settings_PropertyChanged;
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();

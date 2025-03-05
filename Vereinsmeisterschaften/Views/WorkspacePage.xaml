@@ -42,8 +42,18 @@
                     <TextBlock Text="{x:Static properties:Resources.CloseString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
-            
-            <TextBlock Text="{Binding CurrentWorkspaceFolder}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
+
+            <TextBlock Text="{Binding CurrentWorkspaceFolder}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </DockPanel>
 
         <Grid Grid.Row="2" Margin="{StaticResource MediumTopMargin}">

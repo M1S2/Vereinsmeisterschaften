@@ -22,6 +22,8 @@ public class ShellViewModel : ObservableObject
 
     public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
 
+    public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
+
     private readonly INavigationService _navigationService;
     private HamburgerMenuItem _selectedMenuItem;
     private HamburgerMenuItem _selectedOptionsMenuItem;
@@ -109,9 +111,19 @@ public class ShellViewModel : ObservableObject
         };
     }
 
+    private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(IWorkspaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+            default: break;
+        }
+    }
+
     private async void OnLoaded()
     {
         _navigationService.Navigated += OnNavigated;
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
 
         await LoadWorkspace();
     }
@@ -119,6 +131,7 @@ public class ShellViewModel : ObservableObject
     private void OnUnloaded()
     {
         _navigationService.Navigated -= OnNavigated;
+        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 
     private void OnClosing()

@@ -10,7 +10,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class describing a person.
     /// </summary>
-    public class Person : ObservableObject, IEquatable<Person>
+    public class Person : ObservableObject, IEquatable<Person>, ICloneable
     {
         public Person()
         {
@@ -23,8 +23,17 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        public Person(Person other) : this()
+        {
+            this.Name = other.Name;
+            this.FirstName = other.FirstName;
+            this.Gender = other.Gender;
+            this.BirthYear = other.BirthYear;
+            this.Starts = new Dictionary<SwimmingStyles, PersonStart>(other.Starts);
+        }
 
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        
         private string _name = string.Empty;
         /// <summary>
         /// Last name of the person.
@@ -110,13 +119,24 @@ namespace Vereinsmeisterschaften.Core.Models
             PersonStart start = GetStartByStyle(style);
             if (start == null && available)
             {
-                Starts[style] = new PersonStart() { Style = style, PersonObj = this };
+                PersonStart newStart = new PersonStart() { Style = style, PersonObj = this };
+                newStart.PropertyChanged += PersonStart_PropertyChanged;
+                Starts[style] = newStart;
             }
             else if (start != null && !available)
             {
+                Starts[style].PropertyChanged -= PersonStart_PropertyChanged;
                 Starts[style] = null;
             }
+            OnPropertyChanged(nameof(Starts));
         }
+
+        private void PersonStart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Starts));
+        }
+
+
 
         /// <summary>
         /// Set the time for the matching start if available
@@ -277,8 +297,6 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         /// <summary>
         /// Compare if two Persons are equal
         /// </summary>
@@ -292,7 +310,8 @@ namespace Vereinsmeisterschaften.Core.Models
             return Name.Equals(other.Name) &&
                 FirstName.Equals(other.FirstName) &&
                 Gender.Equals(other.Gender) &&
-                BirthYear.Equals(other.BirthYear);
+                BirthYear.Equals(other.BirthYear) &&
+                CompareDictionaries(Starts, other.Starts);
         }
 
         /// <summary>
@@ -321,6 +340,43 @@ namespace Vereinsmeisterschaften.Core.Models
         public override string ToString()
         {
             return Name + ", " + FirstName + " (" + BirthYear.ToString() + ")";
+        }
+
+        /// <summary>
+        /// Create a new object that has the same property values than this one
+        /// </summary>
+        /// <returns>Cloned object of type</returns>
+        public object Clone()
+        {
+            return new Person(this);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Compare if two dictionaries are equal (same keys and same values)
+        /// </summary>
+        /// <typeparam name="TKey">Type of the keys</typeparam>
+        /// <typeparam name="TValue">Type of the values</typeparam>
+        /// <param name="dict1">Dictionary 1</param>
+        /// <param name="dict2">Dictionary 2</param>
+        /// <returns>Are the dictionaries equal?</returns>
+        /// <see cref="https://stackoverflow.com/questions/3804367/testing-for-equality-between-dictionaries-in-c-sharp"/>
+        private bool CompareDictionaries<TKey, TValue>(Dictionary<TKey, TValue> dict1, Dictionary<TKey, TValue> dict2)
+        {
+            if (dict1 == dict2) return true;
+            if ((dict1 == null) || (dict2 == null)) return false;
+            if (dict1.Count != dict2.Count) return false;
+
+            EqualityComparer<TValue> valueComparer = EqualityComparer<TValue>.Default;
+
+            foreach (KeyValuePair<TKey, TValue> kvp in dict1)
+            {
+                TValue value2;
+                if (!dict2.TryGetValue(kvp.Key, out value2)) return false;
+                if (!valueComparer.Equals(kvp.Value, value2)) return false;
+            }
+            return true;
         }
     }
 }

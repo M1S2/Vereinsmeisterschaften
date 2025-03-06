@@ -50,7 +50,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
-        public bool HasUnsavedChanges => _personService.HasUnsavedChanges || (!Settings?.Equals(_settingsPersistedInFile) ?? true);
+        public bool HasUnsavedChanges => _personService.HasUnsavedChanges || (Settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true));
 
 
         private WorkspaceSettings _settings;
@@ -107,6 +107,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 await CloseWorkspace(true, cancellationToken);
             }
 
+            string previousPath = PersistentPath;
             PersistentPath = path;
 
             bool openResult = false;
@@ -130,6 +131,9 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             catch(Exception ex)
             {
+                PersistentPath = previousPath;
+                OnPropertyChanged(nameof(HasUnsavedChanges));
+                OnPropertyChanged(nameof(IsWorkspaceOpen));
                 exception = ex;
             }
             OnFileFinished?.Invoke(this, null);
@@ -168,6 +172,7 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             catch (Exception ex)
             {
+                OnPropertyChanged(nameof(HasUnsavedChanges));
                 exception = ex;
             }
             OnFileFinished?.Invoke(this, null);

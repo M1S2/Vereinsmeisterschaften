@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls.Dialogs;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -35,15 +37,29 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     private ICommand _closeWorkspaceCommand;
     public ICommand CloseWorkspaceCommand => _closeWorkspaceCommand ?? (_closeWorkspaceCommand = new RelayCommand(async() =>
     {
-        await _workspaceService?.CloseWorkspace(true, CancellationToken.None);
-        OnPropertyChanged(nameof(NumberPersons));
-        OnPropertyChanged(nameof(NumberStarts));
+        try
+        {
+            await _workspaceService?.CloseWorkspace(true, CancellationToken.None);
+            OnPropertyChanged(nameof(NumberPersons));
+            OnPropertyChanged(nameof(NumberStarts));
+        }
+        catch (Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+        }
     }, () => _workspaceService.IsWorkspaceOpen));
 
     private ICommand _saveWorkspaceCommand;
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async() =>
     {
-        await _workspaceService?.Save(CancellationToken.None);
+        try
+        {
+            await _workspaceService?.Save(CancellationToken.None);
+        }
+        catch (Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+        }
     }, () => _workspaceService.IsWorkspaceOpen));
 
     private ICommand _loadWorkspaceCommand;
@@ -53,9 +69,16 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         folderDialog.InitialDirectory = CurrentWorkspaceFolder;
         if(folderDialog.ShowDialog() == DialogResult.OK)
         {
-            await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
-            OnPropertyChanged(nameof(NumberPersons));
-            OnPropertyChanged(nameof(NumberStarts));
+            try
+            {
+                await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
+                OnPropertyChanged(nameof(NumberPersons));
+                OnPropertyChanged(nameof(NumberStarts));
+            }
+            catch (Exception ex)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            }
         }
     }));
 
@@ -63,11 +86,13 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
+    private IDialogCoordinator _dialogCoordinator;
 
-    public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService)
+    public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
         _workspaceService = workspaceService;
         _personService = personService;
+        _dialogCoordinator = dialogCoordinator;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

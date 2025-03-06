@@ -18,7 +18,6 @@ public class ShellViewModel : ObservableObject
 {
 #warning Change to non-fixed path!!!
     public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
-    public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
 
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
 
@@ -35,7 +34,6 @@ public class ShellViewModel : ObservableObject
     private ICommand _closingCommand;
     private ICommand _saveWorkspaceCommand;
     private IDialogCoordinator _dialogCoordinator;
-    private ProgressDialogController _progressDialogController;
 
     private IWorkspaceService _workspaceService;
 
@@ -85,21 +83,6 @@ public class ShellViewModel : ObservableObject
         _navigationService = navigationService;
         _dialogCoordinator = dialogCoordinator;
         _workspaceService = workspaceService;
-
-        _workspaceService.OnFileProgress += (sender, p, currentStep) =>
-        {
-            //_progressDialogController?.SetProgress(p / 100);
-            //_progressDialogController?.SetMessage((p / 100).ToString("P0") + Environment.NewLine + currentStep);   // Format to percentage with 0 decimal digits
-        };
-
-        _workspaceService.OnFileFinished += (sender, e) =>
-        {
-            try
-            {
-                _progressDialogController?.CloseAsync();
-            }
-            catch (Exception) { /* Nothing to do here. Seems already to be closed.*/ }
-        };
     }
 
     private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -139,7 +122,7 @@ public class ShellViewModel : ObservableObject
 
     private void OnClosing()
     {
-        SaveWorkspace(false);
+        SaveWorkspace();
     }
 
     private bool CanGoBack()
@@ -181,47 +164,27 @@ public class ShellViewModel : ObservableObject
         GoBackCommand.NotifyCanExecuteChanged();
     }
 
-    private async Task LoadWorkspace(bool showProgressDialog = true)
+    private async Task LoadWorkspace()
     {
-        WorkspaceCancellationTokenSource = new CancellationTokenSource();
-        if (showProgressDialog)
-        {
-            _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.LoadWorkspaceString, "", true);
-            _progressDialogController.Canceled += (sender, e) => WorkspaceCancellationTokenSource.Cancel();
-        }
         try
         {
-            await _workspaceService.Load(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
+            await _workspaceService.Load(DefaultWorkspaceFolder, CancellationToken.None);
         }
         catch (Exception ex)
         {
-            if (showProgressDialog)
-            {
-                await _progressDialogController.CloseAsync();
-                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-            }
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
     }
 
-    private async Task SaveWorkspace(bool showProgressDialog = true)
+    private async Task SaveWorkspace()
     {
-        WorkspaceCancellationTokenSource = new CancellationTokenSource();
-        if (showProgressDialog)
-        {
-            _progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, Resources.SaveWorkspaceString, "", true);
-            _progressDialogController.Canceled += (sender, e) => WorkspaceCancellationTokenSource.Cancel();
-        }
         try
         {
-            await _workspaceService.Save(WorkspaceCancellationTokenSource.Token);
+            await _workspaceService.Save(CancellationToken.None);
         }
         catch (Exception ex)
         {
-            if (showProgressDialog)
-            {
-                await _progressDialogController.CloseAsync();
-                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-            }
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
     }
 }

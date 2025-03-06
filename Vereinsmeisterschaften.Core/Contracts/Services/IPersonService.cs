@@ -10,38 +10,8 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <summary>
     /// Interface for a service used to get and store a list of Person objects
     /// </summary>
-    public interface IPersonService : INotifyPropertyChanged
+    public interface IPersonService : INotifyPropertyChanged, ISaveable
     {
-        /// <summary>
-        /// Load a list of Persons to the <see cref="PersonList"/>.
-        /// This is using a separate Task because the file possibly can be large.
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
-        Task<bool> LoadFromFile(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Save the list of Persons to a file
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
-        Task<bool> SaveToFile(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Event that is raised when the file operation progress changes
-        /// </summary>
-        event ProgressDelegate OnFileProgress;
-
-        /// <summary>
-        /// Event that is raised when the file operation is finished.
-        /// </summary>
-        event EventHandler OnFileFinished;
-
-        /// <summary>
-        /// Path to the person file
-        /// </summary>
-        string PersonFilePath { get; set; }
-
         /// <summary>
         /// Return all available Persons
         /// </summary>
@@ -60,6 +30,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void AddPerson(Person person);
 
         /// <summary>
+        /// Remove the given <see cref="Person"/> from the list of Persons
+        /// </summary>
+        /// <param name="person">Person to remove</param>
+        void RemovePerson(Person person);
+
+        /// <summary>
         /// Return the number of <see cref="Person"/>
         /// </summary>
         /// <returns>Number of <see cref="Person"/></returns>
@@ -75,11 +51,5 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <returns>List with duplicate <see cref="Person"/></returns>
         public List<Person> CheckForDuplicatePerson();
-
-        /// <summary>
-        /// Check if the list of <see cref="Person"/> has not saved changed.
-        /// True, if unsaved changes exist; otherwise false.
-        /// </summary>
-        bool HasUnsavedChanges { get; }
     }
 }

@@ -8,38 +8,8 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <summary>
     /// Interface for a service used to get and store a list of Competition objects
     /// </summary>
-    public interface ICompetitionService
+    public interface ICompetitionService : ISaveable
     {
-        /// <summary>
-        /// Load a list of Competitions to the <see cref="CompetitionList"/>.
-        /// This is using a separate Task because the file possibly can be large.
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
-        Task<bool> LoadFromFile(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Save the list of Competitions to a file
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
-        Task<bool> SaveToFile(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Event that is raised when the file operation progress changes
-        /// </summary>
-        event ProgressDelegate OnFileProgress;
-
-        /// <summary>
-        /// Event that is raised when the file operation is finished.
-        /// </summary>
-        event EventHandler OnFileFinished;
-
-        /// <summary>
-        /// Path to the competition file
-        /// </summary>
-        string CompetitionFilePath { get; set; }
-
         /// <summary>
         /// Return all available Competitions
         /// </summary>

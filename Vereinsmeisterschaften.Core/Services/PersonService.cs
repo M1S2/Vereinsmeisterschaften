@@ -32,7 +32,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Path to the person file
         /// </summary>
-        public string PersonFilePath { get; set; }
+        public string PersistentPath { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -42,7 +42,7 @@ namespace Vereinsmeisterschaften.Core.Services
         private ObservableCollection<Person> _personList { get; set; }
 
         /// <summary>
-        /// List with all people at the time the <see cref="LoadFromFile(CancellationToken)"/> method was called.
+        /// List with all people at the time the <see cref="Load(string, CancellationToken)"/> method was called.
         /// </summary>
         private List<Person> _personListOnLoad { get; set; }
 
@@ -66,9 +66,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// This is using a separate Task because the file possibly can be large.
         /// If the file doesn't exist, the <see cref="_personList"/> is cleared and the functions returns loading success.
         /// </summary>
+        /// <param name="path">Path from where to load</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
-        public async Task<bool> LoadFromFile(CancellationToken cancellationToken)
+        public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
             bool importingResult = false;
             Exception exception = null;
@@ -76,8 +77,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    
-                    if (!File.Exists(PersonFilePath))
+                    if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
                         ClearAll();
@@ -85,7 +85,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Person> list = _fileService.LoadFromCsv<Person>(PersonFilePath, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
+                        List<Person> list = _fileService.LoadFromCsv<Person>(path, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
                         _personList = new ObservableCollection<Person>();
                         foreach (Person person in list)
                         {
@@ -95,6 +95,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
                     _personListOnLoad = _personList.ToList().ConvertAll(p => new Person(p));
 
+                    PersistentPath = path;
                     importingResult = true;
                 }
                 catch (OperationCanceledException)
@@ -117,16 +118,19 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Save the list of Persons to a file
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="path">Path to which to save</param>
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
-        public async Task<bool> SaveToFile(CancellationToken cancellationToken)
+        public async Task<bool> Save(CancellationToken cancellationToken, string path = "")
         {
+            if(string.IsNullOrEmpty(path)) { path = PersistentPath; }
+
             bool saveResult = false;
             Exception exception = null;
             await Task.Run(() =>
             {
                 try
                 {
-                    _fileService.SaveToCsv(PersonFilePath, _personList.ToList(), cancellationToken, OnFileProgress, (data) =>
+                    _fileService.SaveToCsv(path, _personList.ToList(), cancellationToken, OnFileProgress, (data) =>
                     {
                         if (data is bool dataBool)
                         {
@@ -192,6 +196,19 @@ namespace Vereinsmeisterschaften.Core.Services
 
             person.PropertyChanged += Person_PropertyChanged;
             
+            OnPropertyChanged(nameof(PersonCount));
+            OnPropertyChanged(nameof(PersonStarts));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        /// <summary>
+        /// Remove the given <see cref="Person"/> from the list of Persons
+        /// </summary>
+        /// <param name="person">Person to remove</param>
+        public void RemovePerson(Person person)
+        {
+            person.PropertyChanged -= Person_PropertyChanged;
+            _personList?.Remove(person);
             OnPropertyChanged(nameof(PersonCount));
             OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));

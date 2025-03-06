@@ -20,7 +20,7 @@ public class ShellViewModel : ObservableObject
     public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
     public CancellationTokenSource WorkspaceCancellationTokenSource = new CancellationTokenSource();
 
-    public string CurrentWorkspaceFolder => _workspaceService.WorkspaceFolderPath;
+    public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
 
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
 
@@ -33,6 +33,7 @@ public class ShellViewModel : ObservableObject
     private ICommand _loadedCommand;
     private ICommand _unloadedCommand;
     private ICommand _closingCommand;
+    private ICommand _saveWorkspaceCommand;
     private IDialogCoordinator _dialogCoordinator;
     private ProgressDialogController _progressDialogController;
 
@@ -77,37 +78,27 @@ public class ShellViewModel : ObservableObject
 
     public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand(OnClosing));
 
+    public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async () => await _workspaceService?.Save(CancellationToken.None)));
+
     public ShellViewModel(INavigationService navigationService, IDialogCoordinator dialogCoordinator, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
         _dialogCoordinator = dialogCoordinator;
         _workspaceService = workspaceService;
 
-        _workspaceService.OnWorkspaceProgress += (sender, p, currentStep) =>
+        _workspaceService.OnFileProgress += (sender, p, currentStep) =>
         {
             //_progressDialogController?.SetProgress(p / 100);
             //_progressDialogController?.SetMessage((p / 100).ToString("P0") + Environment.NewLine + currentStep);   // Format to percentage with 0 decimal digits
         };
 
-        _workspaceService.OnWorkspaceFinished += (sender, e) =>
+        _workspaceService.OnFileFinished += (sender, e) =>
         {
             try
             {
                 _progressDialogController?.CloseAsync();
             }
             catch (Exception) { /* Nothing to do here. Seems already to be closed.*/ }
-        };
-
-        _workspaceService.OnIsWorkspaceOpenChanged += (sender, e) =>
-        {
-            OnPropertyChanged(nameof(CurrentWorkspaceFolder));
-
-            foreach(HamburgerMenuItem menuItem in MenuItems)
-            {
-                if(menuItem.TargetPageType == typeof(MainViewModel) || menuItem.TargetPageType == typeof(WorkspaceViewModel)) { continue; }
-
-                menuItem.IsEnabled = _workspaceService.IsWorkspaceOpen;
-            }
         };
     }
 
@@ -116,6 +107,18 @@ public class ShellViewModel : ObservableObject
         switch (e.PropertyName)
         {
             case nameof(IWorkspaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+            case nameof(IWorkspaceService.PersistentPath): OnPropertyChanged(nameof(CurrentWorkspaceFolder)); break;
+            case nameof(IWorkspaceService.IsWorkspaceOpen):
+                {
+                    OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+                    foreach (HamburgerMenuItem menuItem in MenuItems)
+                    {
+                        if (menuItem.TargetPageType == typeof(MainViewModel) || menuItem.TargetPageType == typeof(WorkspaceViewModel)) { continue; }
+
+                        menuItem.IsEnabled = _workspaceService.IsWorkspaceOpen;
+                    }
+                    break;
+                }
             default: break;
         }
     }
@@ -188,7 +191,7 @@ public class ShellViewModel : ObservableObject
         }
         try
         {
-            await _workspaceService.OpenWorkspace(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
+            await _workspaceService.Load(DefaultWorkspaceFolder, WorkspaceCancellationTokenSource.Token);
         }
         catch (Exception ex)
         {
@@ -210,7 +213,7 @@ public class ShellViewModel : ObservableObject
         }
         try
         {
-            await _workspaceService.SaveWorkspace(WorkspaceCancellationTokenSource.Token);
+            await _workspaceService.Save(WorkspaceCancellationTokenSource.Token);
         }
         catch (Exception ex)
         {

@@ -16,26 +16,25 @@ namespace Vereinsmeisterschaften.Core.Services
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
 
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <summary>
-        /// Event that is raised when the workspace operation progress changes
-        /// </summary>
-        public event ProgressDelegate OnWorkspaceProgress;
-
-        /// <summary>
-        /// Event that is raised when the workspace operation is finished.
-        /// </summary>
-        public event EventHandler OnWorkspaceFinished;
-
-        /// <summary>
-        /// Event that is called whenever the <see cref="IsWorkspaceOpen"/> changed
-        /// </summary>
-        public event EventHandler OnIsWorkspaceOpenChanged;
+        public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
+        public string PersonFilePath => Path.Combine(PersistentPath, PersonFileName);
+        public string CompetitionsFilePath => Path.Combine(PersistentPath, CompetitionsFileName);
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public string WorkspaceFolderPath { get; private set; } = string.Empty;
+        /// <summary>
+        /// Event that is raised when the file operation progress changes
+        /// </summary>
+        public event ProgressDelegate OnFileProgress;
+
+        /// <summary>
+        /// Event that is raised when the file operation is finished.
+        /// </summary>
+        public event EventHandler OnFileFinished;
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public string PersistentPath { get; private set; } = string.Empty;
 
         private bool _isWorkspaceOpen;
         /// <summary>
@@ -44,7 +43,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool IsWorkspaceOpen
         {
             get => _isWorkspaceOpen;
-            set { _isWorkspaceOpen = value; OnIsWorkspaceOpenChanged?.Invoke(this, null); }
+            set => SetProperty(ref _isWorkspaceOpen, value);
         }
 
         /// <summary>
@@ -80,8 +79,8 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionService = competitionService;
             _fileService = fileService;
             IsWorkspaceOpen = false;
-            _personService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, p / 2, "Loading persons...");
-            _competitionService.OnFileProgress += (sender, p, currentStep) => OnWorkspaceProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
+            _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 2, "Loading persons...");
+            _competitionService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
 
             _personService.PropertyChanged += (sender, e) =>
             {
@@ -98,35 +97,32 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Open the workspace and load all files
         /// </summary>
-        /// <param name="workspacePath">Path to the workspace folder</param>
+        /// <param name="path">Path from where to load</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>true if opening succeeded; false if opening failed (e.g. canceled)</returns>
-        public async Task<bool> OpenWorkspace(string workspacePath, CancellationToken cancellationToken)
+        /// <returns>true if loading succeeded; false if importing failed (e.g. canceled)</returns>
+        public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
             if(IsWorkspaceOpen)
             {
                 await CloseWorkspace(true, cancellationToken);
             }
 
-            WorkspaceFolderPath = workspacePath;
+            PersistentPath = path;
 
-            string workspaceSettingsPath = Path.Combine(WorkspaceFolderPath, WorkspaceSettingsFileName);
-            _personService.PersonFilePath = Path.Combine(WorkspaceFolderPath, PersonFileName);
-            _competitionService.CompetitionFilePath = Path.Combine(WorkspaceFolderPath, CompetitionsFileName);
             bool openResult = false;
             Exception exception = null;
             try
             {
                 // Workspace settings
-                Settings = _fileService.LoadFromCsv<WorkspaceSettings>(workspaceSettingsPath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
+                Settings = _fileService.LoadFromCsv<WorkspaceSettings>(WorkspaceSettingsFilePath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
                 Settings.PropertyChanged += Settings_PropertyChanged;
 
                 // Persons
-                openResult = await _personService.LoadFromFile(cancellationToken);
+                openResult = await _personService.Load(PersonFilePath, cancellationToken);
                 if(!openResult) { return openResult; }
 
                 // Competitions
-                openResult = await _competitionService.LoadFromFile(cancellationToken);
+                openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
 
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -136,7 +132,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 exception = ex;
             }
-            OnWorkspaceFinished?.Invoke(this, null);
+            OnFileFinished?.Invoke(this, null);
             if (exception != null) { throw exception; }
             return openResult;
         }
@@ -147,23 +143,25 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Save all workspace files
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="path">Path to which to save</param>
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
-        public async Task<bool> SaveWorkspace(CancellationToken cancellationToken)
+        public async Task<bool> Save(CancellationToken cancellationToken, string path = "")
         {
-            string workspaceSettingsPath = Path.Combine(WorkspaceFolderPath, WorkspaceSettingsFileName);
+            if (string.IsNullOrEmpty(path)) { path = PersistentPath; }
+
             bool saveResult = false;
             Exception exception = null;
             try
             {
                 // Workspace settings
-                _fileService.SaveToCsv(workspaceSettingsPath, new List<WorkspaceSettings>() { Settings }, cancellationToken, null);
+                _fileService.SaveToCsv(WorkspaceSettingsFilePath, new List<WorkspaceSettings>() { Settings }, cancellationToken, null);
 
                 // Persons
-                saveResult = await _personService.SaveToFile(cancellationToken);
+                saveResult = await _personService.Save(cancellationToken, PersonFilePath);
                 if (!saveResult) { return saveResult; }
 
                 // Competitions
-                saveResult = await _competitionService.SaveToFile(cancellationToken);
+                saveResult = await _competitionService.Save(cancellationToken, CompetitionsFilePath);
 
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -172,7 +170,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 exception = ex;
             }
-            OnWorkspaceFinished?.Invoke(this, null);
+            OnFileFinished?.Invoke(this, null);
             if (exception != null) { throw exception; }
             return saveResult;
         }
@@ -190,17 +188,17 @@ namespace Vereinsmeisterschaften.Core.Services
             bool saveResult = true;
             if (save)
             {
-                saveResult = await SaveWorkspace(cancellationToken);
+                saveResult = await Save(cancellationToken);
             }
 
-            WorkspaceFolderPath = string.Empty;
             Settings.PropertyChanged -= Settings_PropertyChanged;
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();
+            PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
             
-            OnWorkspaceFinished?.Invoke(this, null);
+            OnFileFinished?.Invoke(this, null);
             return saveResult;
         }
 

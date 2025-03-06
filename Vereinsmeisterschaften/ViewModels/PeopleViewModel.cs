@@ -136,7 +136,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
-            People.Remove(person);
+            _personService.RemovePerson(person);
             OnPropertyChanged(nameof(DuplicatePersonString));
         }
     }));

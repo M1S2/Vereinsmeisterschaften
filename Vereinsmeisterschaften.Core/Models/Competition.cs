@@ -9,8 +9,24 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class describing a competition.
     /// </summary>
-    public class Competition : ObservableObject, IEquatable<Person>
+    public class Competition : ObservableObject, IEquatable<Person>, ICloneable
     {
+        public Competition()
+        {
+        }
+
+        public Competition(Competition other) : this()
+        {
+            this.ID = other.ID;
+            this.Gender = other.Gender;
+            this.SwimmingStyle = other.SwimmingStyle;
+            this.Age = other.Age;
+            this.Distance = other.Distance;
+            this.BestTime = other.BestTime;
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private int _id = 0;
         /// <summary>
         /// Competition ID
@@ -133,6 +149,15 @@ namespace Vereinsmeisterschaften.Core.Models
         public override string ToString()
         {
             return $"{ID}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
+        }
+
+        /// <summary>
+        /// Create a new object that has the same property values than this one
+        /// </summary>
+        /// <returns>Cloned object of type</returns>
+        public object Clone()
+        {
+            return new Competition(this);
         }
     }
 }

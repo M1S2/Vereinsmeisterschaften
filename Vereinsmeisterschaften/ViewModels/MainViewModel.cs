@@ -10,12 +10,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 
 public class MainViewModel : ObservableObject, INavigationAware
 {
-    private ushort _competitionYear;
-    public ushort CompetitionYear
-    {
-        get => _competitionYear;
-        set => SetProperty(ref _competitionYear, value);
-    }
+    public ushort CompetitionYear => _workspaceService?.Settings?.CompetitionYear ?? 0;
 
     public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
@@ -36,23 +31,32 @@ public class MainViewModel : ObservableObject, INavigationAware
     {
         _navigationService = navigationService;
         _workspaceService = workspaceService;
+    }
 
-        workspaceService.OnWorkspaceFinished += (sender, e) => CompetitionYear = workspaceService?.Settings?.CompetitionYear ?? 0;
-        workspaceService.OnIsWorkspaceOpenChanged += (sender, e) =>
+    private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
         {
-            ((RelayCommand)PeopleCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)TimeInputCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)ResultsCommand).NotifyCanExecuteChanged();
-        };
+            case nameof(IWorkspaceService.Settings): OnPropertyChanged(nameof(CompetitionYear)); break;
+            case nameof(IWorkspaceService.IsWorkspaceOpen):
+                {
+                    ((RelayCommand)PeopleCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)TimeInputCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)ResultsCommand).NotifyCanExecuteChanged();
+                    break;
+                }
+            default: break;
+        }
     }
 
     public void OnNavigatedTo(object parameter)
     {
-        CompetitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
     }
 
     public void OnNavigatedFrom()
     {
+        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 }

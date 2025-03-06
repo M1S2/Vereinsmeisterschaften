@@ -97,7 +97,7 @@
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
         <DockPanel>
-            <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar DockPanel.Dock="Bottom" Height="30">
                 <StatusBarItem Content="{x:Static properties:Resources.WorkspaceString}"/>
                 <StatusBarItem Content="{Binding CurrentWorkspaceFolder}">
                     <StatusBarItem.Style>
@@ -105,10 +105,27 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
                                     <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </StatusBarItem.Style>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <StatusBarItem.Style>
+                        <Style TargetType="{x:Type StatusBarItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StatusBarItem.Style>
+                    <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding SaveWorkspaceCommand}">
+                        <StackPanel>
+                            <controls:FontIcon FontSize="16" Glyph="&#xE74E;"/>
+                        </StackPanel>
+                    </Button>
                 </StatusBarItem>
             </StatusBar>
 

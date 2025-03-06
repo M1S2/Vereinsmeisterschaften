@@ -49,6 +49,7 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
                                 <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

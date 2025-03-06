@@ -29,7 +29,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Path to the competition file
         /// </summary>
-        public string CompetitionFilePath { get; set; }
+        public string PersistentPath { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -37,6 +37,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// List with all competitions
         /// </summary>
         private List<Competition> _competitionList { get; set; }
+
+        /// <summary>
+        /// List with all competitions at the time the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        private List<Competition> _competitionListOnLoad { get; set; }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -58,9 +63,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// This is using a separate Task because the file possibly can be large.
         /// If the file doesn't exist, the <see cref="_competitionList"/> is cleared and the functions returns loading success.
         /// </summary>
+        /// <param name="path">Path from where to load</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
-        public async Task<bool> LoadFromFile(CancellationToken cancellationToken)
+        public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
             bool importingResult = false;
             Exception exception = null;
@@ -68,7 +74,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    if (!File.Exists(CompetitionFilePath))
+                    if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
                         _competitionList.Clear();
@@ -76,9 +82,12 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        _competitionList = _fileService.LoadFromCsv<Competition>(CompetitionFilePath, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
+                        _competitionList = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
                     }
-                    
+
+                    _competitionListOnLoad = _competitionList.ConvertAll(c => new Competition(c));
+
+                    PersistentPath = path;
                     importingResult = true;
                 }
                 catch (OperationCanceledException)
@@ -101,16 +110,21 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Save the list of Competitions to a file
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="path">Path to which to save</param>
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
-        public async Task<bool> SaveToFile(CancellationToken cancellationToken)
+        public async Task<bool> Save(CancellationToken cancellationToken, string path = "")
         {
+            if (string.IsNullOrEmpty(path)) { path = PersistentPath; }
+
             bool saveResult = false;
             Exception exception = null;
             await Task.Run(() =>
             {
                 try
                 {
-                    _fileService.SaveToCsv(CompetitionFilePath, _competitionList, cancellationToken, OnFileProgress);
+                    _fileService.SaveToCsv(path, _competitionList, cancellationToken, OnFileProgress);
+
+                    _competitionListOnLoad = _competitionList.ConvertAll(c => new Competition(c));
                     saveResult = true;
                 }
                 catch (OperationCanceledException)
@@ -179,5 +193,13 @@ namespace Vereinsmeisterschaften.Core.Services
                                                c.Age + person.BirthYear == competitionYear &&
                                                c.SwimmingStyle == swimmingStyle).FirstOrDefault();
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Check if the list of <see cref="Competition"/> has not saved changed.
+        /// True, if unsaved changes exist; otherwise false.
+        /// </summary>
+        public bool HasUnsavedChanges => (_competitionList != null && _competitionListOnLoad != null) ? !_competitionList.SequenceEqual(_competitionListOnLoad) : false;
     }
 }

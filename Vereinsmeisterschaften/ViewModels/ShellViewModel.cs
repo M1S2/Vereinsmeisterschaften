@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
-
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Extensions.Logging;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Properties;
+using Windows.UI.WindowManagement;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -74,7 +78,7 @@ public class ShellViewModel : ObservableObject
 
     public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
 
-    public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand(OnClosing));
+    public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand<CancelEventArgs>(OnClosing));
 
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async () => await _workspaceService?.Save(CancellationToken.None)));
 
@@ -120,9 +124,32 @@ public class ShellViewModel : ObservableObject
         _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 
-    private void OnClosing()
+    // Close behaviour: https://github.com/MahApps/MahApps.Metro/issues/3535
+    bool ForceClose = false;
+    public event EventHandler WindowCloseRequested;
+    protected void OnClosing(CancelEventArgs e)
     {
-        SaveWorkspace();
+        // force method to abort - we'll force a close explicitly
+        e.Cancel = true;
+
+        if (ForceClose)
+        {
+            // cleanup code already ran
+            e.Cancel = false;
+            return;
+        }
+
+        // execute shutdown logic - set ForceClose and request Close() to actually close the window
+        Dispatcher.CurrentDispatcher.InvokeAsync(async () =>
+        {
+            bool save = await checkForUnsavedChangesAndQueryUserAction();
+            if (save)
+            {
+                await SaveWorkspace();
+            }
+            ForceClose = true;
+            WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
+        }, DispatcherPriority.Normal);
     }
 
     private bool CanGoBack()
@@ -186,5 +213,32 @@ public class ShellViewModel : ObservableObject
         {
             await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
+    }
+
+    /// <summary>
+    /// Show a dialog to the user when there are unsave changes. The user can choose to save or not save.
+    /// </summary>
+    /// <returns>If True, changes should be saved; otherwise save nothing</returns>
+    private async Task<bool> checkForUnsavedChangesAndQueryUserAction()
+    {
+        bool save = false;
+        if (_workspaceService?.HasUnsavedChanges ?? false)
+        {
+            MetroDialogSettings dialogButtonSettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = Resources.SaveString,
+                NegativeButtonText = Resources.DontSaveString,
+                DefaultButtonFocus = MessageDialogResult.Affirmative
+            };
+            MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(this, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
+                                                                                        MessageDialogStyle.AffirmativeAndNegative, dialogButtonSettings);
+            switch (dialogResult)
+            {
+                case MessageDialogResult.Affirmative: save = true; break;
+                case MessageDialogResult.Negative: save = false; break;
+                default: break;
+            }
+        }
+        return save;
     }
 }

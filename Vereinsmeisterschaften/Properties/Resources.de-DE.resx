@@ -270,4 +270,13 @@
   <data name="NumberStartsString" xml:space="preserve">
     <value>Anzahl Starts</value>
   </data>
+  <data name="UnsavedChangesSavePromptString" xml:space="preserve">
+    <value>Es gibt noch nicht gespeicherte Änderungen. Speichern vor dem Fortfahren?</value>
+  </data>
+  <data name="UnsavedChangesString" xml:space="preserve">
+    <value>Nicht gespeicherte Änderungen</value>
+  </data>
+  <data name="DontSaveString" xml:space="preserve">
+    <value>Nicht speichern</value>
+  </data>
 </root>

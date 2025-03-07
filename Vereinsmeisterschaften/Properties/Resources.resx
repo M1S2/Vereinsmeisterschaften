@@ -270,4 +270,13 @@
   <data name="NumberStartsString" xml:space="preserve">
     <value>Number Starts</value>
   </data>
+  <data name="DontSaveString" xml:space="preserve">
+    <value>Don't save</value>
+  </data>
+  <data name="UnsavedChangesSavePromptString" xml:space="preserve">
+    <value>There are unsaved changes. Should they be saved before continuing?</value>
+  </data>
+  <data name="UnsavedChangesString" xml:space="preserve">
+    <value>Unsaved changes</value>
+  </data>
 </root>

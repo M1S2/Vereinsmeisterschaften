@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Resources;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
@@ -43,14 +44,17 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool IsWorkspaceOpen
         {
             get => _isWorkspaceOpen;
-            set => SetProperty(ref _isWorkspaceOpen, value);
+            set { SetProperty(ref _isWorkspaceOpen, value); OnPropertyChanged(nameof(HasUnsavedChanges)); }
         }
 
         /// <summary>
         /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
-        public bool HasUnsavedChanges => _personService.HasUnsavedChanges || (Settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true));
+        public bool HasUnsavedChanges => IsWorkspaceOpen && 
+                                        ((_personService?.HasUnsavedChanges ?? false) || 
+                                         (_competitionService?.HasUnsavedChanges ?? false) ||
+                                         (Settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true)));
 
 
         private WorkspaceSettings _settings;
@@ -96,6 +100,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         /// <summary>
         /// Open the workspace and load all files
+        /// Caution: If there is already a workspace opened that has unsaved changed, the changes are saved! To change this behaviour, call the <see cref="CloseWorkspace(CancellationToken, bool)"/> with the save flag set to false before calling this method.
         /// </summary>
         /// <param name="path">Path from where to load</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -104,7 +109,7 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             if(IsWorkspaceOpen)
             {
-                await CloseWorkspace(true, cancellationToken);
+                await CloseWorkspace(cancellationToken, true);
             }
 
             string previousPath = PersistentPath;
@@ -185,10 +190,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)
         /// </summary>
-        /// <param name="save">If true, <see cref="SaveWorkspace(CancellationToken)"/> is called before</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="save">If true, <see cref="Save(CancellationToken, string)"/> is called before</param>
         /// <returns>true if saving during close succeeded; false if saving failed (e.g. canceled)</returns>
-        public async Task<bool> CloseWorkspace(bool save, CancellationToken cancellationToken)
+        public async Task<bool> CloseWorkspace(CancellationToken cancellationToken, bool save = true)
         {
             bool saveResult = true;
             if (save)
@@ -206,6 +211,5 @@ namespace Vereinsmeisterschaften.Core.Services
             OnFileFinished?.Invoke(this, null);
             return saveResult;
         }
-
     }
 }

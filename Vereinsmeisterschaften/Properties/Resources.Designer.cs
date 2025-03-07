@@ -133,6 +133,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Don&apos;t save ähnelt.
+        /// </summary>
+        public static string DontSaveString {
+            get {
+                return ResourceManager.GetString("DontSaveString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Duplicate Person found ähnelt.
         /// </summary>
         public static string DuplicatePersonFound {
@@ -489,6 +498,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TimeInputPageTitle {
             get {
                 return ResourceManager.GetString("TimeInputPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are unsaved changes. Should they be saved before continuing? ähnelt.
+        /// </summary>
+        public static string UnsavedChangesSavePromptString {
+            get {
+                return ResourceManager.GetString("UnsavedChangesSavePromptString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unsaved changes ähnelt.
+        /// </summary>
+        public static string UnsavedChangesString {
+            get {
+                return ResourceManager.GetString("UnsavedChangesString", resourceCulture);
             }
         }
         

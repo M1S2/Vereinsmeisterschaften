@@ -13,6 +13,7 @@ public partial class ShellWindow : MetroWindow, IShellWindow
     {
         InitializeComponent();
         DataContext = viewModel;
+        viewModel.WindowCloseRequested += (sender, e) => CloseWindow();
     }
 
     public Frame GetNavigationFrame()

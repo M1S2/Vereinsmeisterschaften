@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
@@ -39,15 +40,23 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     {
         try
         {
-            await _workspaceService?.CloseWorkspace(true, CancellationToken.None);
-            OnPropertyChanged(nameof(NumberPersons));
-            OnPropertyChanged(nameof(NumberStarts));
+            bool save = true, cancel = false;
+            (save, cancel) = await checkForUnsavedChangesAndQueryUserAction();
+
+            if (!cancel)
+            {
+                await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
+                OnPropertyChanged(nameof(NumberPersons));
+                OnPropertyChanged(nameof(NumberStarts));
+            }
         }
         catch (Exception ex)
         {
             await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
     }, () => _workspaceService.IsWorkspaceOpen));
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private ICommand _saveWorkspaceCommand;
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async() =>
@@ -62,18 +71,31 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         }
     }, () => _workspaceService.IsWorkspaceOpen));
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     private ICommand _loadWorkspaceCommand;
     public ICommand LoadWorkspaceCommand => _loadWorkspaceCommand ?? (_loadWorkspaceCommand = new RelayCommand(async() =>
     {
-        FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-        folderDialog.InitialDirectory = CurrentWorkspaceFolder;
-        if(folderDialog.ShowDialog() == DialogResult.OK)
+        bool save = true, cancel = false;
+        (save, cancel) = await checkForUnsavedChangesAndQueryUserAction();
+
+        if (!cancel)
         {
             try
             {
-                await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
-                OnPropertyChanged(nameof(NumberPersons));
-                OnPropertyChanged(nameof(NumberStarts));
+                if (_workspaceService?.IsWorkspaceOpen ?? false)
+                {
+                    await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
+                }
+
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                folderDialog.InitialDirectory = CurrentWorkspaceFolder;
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
+                    OnPropertyChanged(nameof(NumberPersons));
+                    OnPropertyChanged(nameof(NumberStarts));
+                }
             }
             catch (Exception ex)
             {
@@ -81,6 +103,37 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             }
         }
     }));
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    /// <summary>
+    /// Show a dialog to the user when there are unsave changes. The user can choose to save, not save or cancel.
+    /// </summary>
+    /// <returns>Tuple of two bools (save, cancel)</returns>
+    private async Task<(bool saveOut, bool cancelOut)> checkForUnsavedChangesAndQueryUserAction()
+    {
+        bool save = true, cancel = false;
+        if (_workspaceService?.HasUnsavedChanges ?? false)
+        {
+            MetroDialogSettings dialogButtonSettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = Resources.SaveString,
+                NegativeButtonText = Resources.DontSaveString,
+                FirstAuxiliaryButtonText = Resources.CancelString,
+                DefaultButtonFocus = MessageDialogResult.Affirmative
+            };
+            MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(this, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
+                                                                                        MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogButtonSettings);
+            switch (dialogResult)
+            {
+                case MessageDialogResult.Affirmative: save = true; cancel = false; break;
+                case MessageDialogResult.Negative: save = false; cancel = false; break;
+                case MessageDialogResult.FirstAuxiliary: save = false; cancel = true; break;
+                default: break;
+            }
+        }
+        return (save, cancel);
+    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

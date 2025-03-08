@@ -21,29 +21,26 @@ namespace Vereinsmeisterschaften.ViewModels;
 public class ShellViewModel : ObservableObject
 {
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
-
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
 
-    private readonly INavigationService _navigationService;
-    private HamburgerMenuItem _selectedMenuItem;
-    private HamburgerMenuItem _selectedOptionsMenuItem;
-    private RelayCommand _goBackCommand;
-    private ICommand _menuItemInvokedCommand;
-    private ICommand _optionsMenuItemInvokedCommand;
-    private ICommand _loadedCommand;
-    private ICommand _unloadedCommand;
-    private ICommand _closingCommand;
-    private ICommand _saveWorkspaceCommand;
-    private IDialogCoordinator _dialogCoordinator;
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    private readonly INavigationService _navigationService;
+    private IDialogCoordinator _dialogCoordinator;
     private IWorkspaceService _workspaceService;
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Hamburger menu items
+
+    private HamburgerMenuItem _selectedMenuItem;
     public HamburgerMenuItem SelectedMenuItem
     {
         get { return _selectedMenuItem; }
         set { SetProperty(ref _selectedMenuItem, value); }
     }
 
+    private HamburgerMenuItem _selectedOptionsMenuItem;
     public HamburgerMenuItem SelectedOptionsMenuItem
     {
         get { return _selectedOptionsMenuItem; }
@@ -65,25 +62,68 @@ public class ShellViewModel : ObservableObject
         new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) }
     };
 
-    public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
+    #endregion
 
-    public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new RelayCommand(OnMenuItemInvoked));
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new RelayCommand(OnOptionsMenuItemInvoked));
+    #region Commands
 
+    private RelayCommand _goBackCommand;
+    public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => _navigationService.GoBack(), () => _navigationService.CanGoBack));
+
+    private ICommand _menuItemInvokedCommand;
+    public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new RelayCommand(() => NavigateTo(SelectedMenuItem.TargetPageType)));
+
+    private ICommand _optionsMenuItemInvokedCommand;
+    public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new RelayCommand(() => NavigateTo(SelectedOptionsMenuItem.TargetPageType)));
+
+    private ICommand _loadedCommand;
     public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
 
+    private ICommand _unloadedCommand;
     public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
 
+    private ICommand _closingCommand;
     public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand<CancelEventArgs>(OnClosing));
 
+    private ICommand _saveWorkspaceCommand;
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async () => await _workspaceService?.Save(CancellationToken.None)));
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public ShellViewModel(INavigationService navigationService, IDialogCoordinator dialogCoordinator, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
         _dialogCoordinator = dialogCoordinator;
         _workspaceService = workspaceService;
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Load and unload
+
+    private async void OnLoaded()
+    {
+        _navigationService.Navigated += OnNavigated;
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
+
+        // Load the workspace
+        try
+        {
+            await _workspaceService.Load(Settings.Default.LastWorkspaceFolder, CancellationToken.None);
+        }
+        catch (Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+        }
+    }
+
+    private void OnUnloaded()
+    {
+        _navigationService.Navigated -= OnNavigated;
+        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 
     private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -107,27 +147,11 @@ public class ShellViewModel : ObservableObject
         }
     }
 
-    private async void OnLoaded()
-    {
-        _navigationService.Navigated += OnNavigated;
-        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
+    #endregion
 
-        // Load the workspace
-        try
-        {
-            await _workspaceService.Load(Settings.Default.LastWorkspaceFolder, CancellationToken.None);
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-        }
-    }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    private void OnUnloaded()
-    {
-        _navigationService.Navigated -= OnNavigated;
-        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
-    }
+    #region Closing
 
     // Close behaviour: https://github.com/MahApps/MahApps.Metro/issues/3535
     bool ForceClose = false;
@@ -166,45 +190,6 @@ public class ShellViewModel : ObservableObject
         }, DispatcherPriority.Normal);
     }
 
-    private bool CanGoBack()
-        => _navigationService.CanGoBack;
-
-    private void OnGoBack()
-        => _navigationService.GoBack();
-
-    private void OnMenuItemInvoked()
-        => NavigateTo(SelectedMenuItem.TargetPageType);
-
-    private void OnOptionsMenuItemInvoked()
-        => NavigateTo(SelectedOptionsMenuItem.TargetPageType);
-
-    private void NavigateTo(Type targetViewModel)
-    {
-        if (targetViewModel != null)
-        {
-            _navigationService.NavigateTo(targetViewModel.FullName);
-        }
-    }
-
-    private void OnNavigated(object sender, string viewModelName)
-    {
-        var item = MenuItems
-                    .OfType<HamburgerMenuItem>()
-                    .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
-        if (item != null)
-        {
-            SelectedMenuItem = item;
-        }
-        else
-        {
-            SelectedOptionsMenuItem = OptionMenuItems
-                    .OfType<HamburgerMenuItem>()
-                    .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
-        }
-
-        GoBackCommand.NotifyCanExecuteChanged();
-    }
-
     /// <summary>
     /// Show a dialog to the user when there are unsave changes. The user can choose to save or not save.
     /// </summary>
@@ -230,5 +215,31 @@ public class ShellViewModel : ObservableObject
             }
         }
         return save;
+    }
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private void NavigateTo(Type targetViewModel)
+    {
+        if (targetViewModel != null)
+        {
+            _navigationService.NavigateTo(targetViewModel.FullName);
+        }
+    }
+
+    private void OnNavigated(object sender, string viewModelName)
+    {
+        var item = MenuItems.OfType<HamburgerMenuItem>().FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
+        if (item != null)
+        {
+            SelectedMenuItem = item;
+        }
+        else
+        {
+            SelectedOptionsMenuItem = OptionMenuItems.OfType<HamburgerMenuItem>().FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
+        }
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 }

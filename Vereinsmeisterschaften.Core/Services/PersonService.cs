@@ -238,9 +238,10 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             List<Person> tmpPersonList = new List<Person>();
             List<Person> duplicates = new List<Person>();
+            PersonBasicEqualityComparer basicPersonComparer = new PersonBasicEqualityComparer();
             foreach (Person person in _personList)
             {
-                if(!tmpPersonList.Contains(person))
+                if(!tmpPersonList.Contains(person, basicPersonComparer))
                 {
                     tmpPersonList.Add(person);
                 }

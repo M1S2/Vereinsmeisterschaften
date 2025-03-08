@@ -107,6 +107,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if loading succeeded; false if importing failed (e.g. canceled)</returns>
         public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
+            if (!Directory.Exists(path)) { return false; }
+
             if(IsWorkspaceOpen)
             {
                 await CloseWorkspace(cancellationToken, true);

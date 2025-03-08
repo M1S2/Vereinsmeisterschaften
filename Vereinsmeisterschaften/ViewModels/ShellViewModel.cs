@@ -20,9 +20,6 @@ namespace Vereinsmeisterschaften.ViewModels;
 
 public class ShellViewModel : ObservableObject
 {
-#warning Change to non-fixed path!!!
-    public const string DefaultWorkspaceFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
-
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
 
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
@@ -115,7 +112,15 @@ public class ShellViewModel : ObservableObject
         _navigationService.Navigated += OnNavigated;
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
 
-        await LoadWorkspace();
+        // Load the workspace
+        try
+        {
+            await _workspaceService.Load(Settings.Default.LastWorkspaceFolder, CancellationToken.None);
+        }
+        catch (Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+        }
     }
 
     private void OnUnloaded()
@@ -145,8 +150,17 @@ public class ShellViewModel : ObservableObject
             bool save = await checkForUnsavedChangesAndQueryUserAction();
             if (save)
             {
-                await SaveWorkspace();
+                try
+                {
+                    await _workspaceService.Save(CancellationToken.None);
+                }
+                catch (Exception ex)
+                {
+                    await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+                }
             }
+            Settings.Default.LastWorkspaceFolder = CurrentWorkspaceFolder;
+            Settings.Default.Save();
             ForceClose = true;
             WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
         }, DispatcherPriority.Normal);
@@ -189,30 +203,6 @@ public class ShellViewModel : ObservableObject
         }
 
         GoBackCommand.NotifyCanExecuteChanged();
-    }
-
-    private async Task LoadWorkspace()
-    {
-        try
-        {
-            await _workspaceService.Load(DefaultWorkspaceFolder, CancellationToken.None);
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-        }
-    }
-
-    private async Task SaveWorkspace()
-    {
-        try
-        {
-            await _workspaceService.Save(CancellationToken.None);
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-        }
     }
 
     /// <summary>

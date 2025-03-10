@@ -303,53 +303,36 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Person to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Person"/></returns>
         public override bool Equals(object obj)
-        {
-            Person other = obj as Person;
-            if (other == null) return false;
-
-            return Name.Equals(other.Name) &&
-                FirstName.Equals(other.FirstName) &&
-                Gender.Equals(other.Gender) &&
-                BirthYear.Equals(other.BirthYear) &&
-                CompareDictionaries(Starts, other.Starts);
-        }
-
+            => obj is Person p && (p.Name.ToUpper(), p.FirstName.ToUpper(), p.Gender, p.BirthYear).Equals((Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear)) && CompareDictionaries(Starts, p.Starts);
+        
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">Other object to compare.</param>
         /// <returns>true if the current object is equal to the other parameter; otherwise false.</returns>
         public bool Equals(Person other)
-        {
-            return Equals((object)other);
-        }
+            => Equals((object)other);
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+            => (Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear, Starts).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-        {
-            return Name + ", " + FirstName + " (" + BirthYear.ToString() + ")";
-        }
+            => Name + ", " + FirstName + " (" + BirthYear.ToString() + ")";
 
         /// <summary>
         /// Create a new object that has the same property values than this one
         /// </summary>
         /// <returns>Cloned object of type</returns>
         public object Clone()
-        {
-            return new Person(this);
-        }
+            => new Person(this);
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

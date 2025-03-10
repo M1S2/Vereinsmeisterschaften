@@ -42,21 +42,12 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         public override bool Equals(object obj)
-        {
-            WorkspaceSettings other = obj as WorkspaceSettings;
-            if (other == null) return false;
-
-            return CompetitionYear.Equals(other.CompetitionYear);
-        }
+            => obj is WorkspaceSettings s && s.CompetitionYear.Equals(CompetitionYear);
 
         public bool Equals(WorkspaceSettings other)
-        {
-            return Equals((object)other);
-        }
+            => Equals((object)other);
 
         public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+            => CompetitionYear.GetHashCode();
     }
 }

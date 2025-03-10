@@ -22,21 +22,10 @@ namespace Vereinsmeisterschaften.Core.Models
             if (ReferenceEquals(y, null)) return false;
             if (x.GetType() != y.GetType()) return false;
 
-            return x.Name.ToUpper().Equals(y.Name.ToUpper()) &&
-                   x.FirstName.ToUpper().Equals(y.FirstName.ToUpper()) &&
-                   x.Gender.Equals(y.Gender) &&
-                   x.BirthYear.Equals(y.BirthYear);
+            return (x.Name.ToUpper(), x.FirstName.ToUpper(), x.Gender, x.BirthYear).Equals((y.Name.ToUpper(), y.FirstName.ToUpper(), y.Gender, y.BirthYear));
         }
 
         public int GetHashCode(Person obj)
-        {
-            if(ReferenceEquals(obj, null)) return 0;
-            
-            int hashPersonName = obj.Name == null ? 0 : obj.Name.GetHashCode();
-            int hashPersonFirstName = obj.FirstName == null ? 0 : obj.FirstName.GetHashCode();
-            int hashPersonGender = obj.Gender.GetHashCode();
-            int hashPersonBirthYear = obj.BirthYear.GetHashCode();
-            return hashPersonName ^ hashPersonFirstName ^ hashPersonGender ^ hashPersonBirthYear;
-        }
+            => obj == null ? 0 : (obj.Name.ToUpper(), obj.FirstName.ToUpper(), obj.Gender, obj.BirthYear).GetHashCode();
     }
 }

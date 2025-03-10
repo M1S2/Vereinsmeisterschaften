@@ -9,7 +9,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class describing a competition.
     /// </summary>
-    public class Competition : ObservableObject, IEquatable<Person>, ICloneable
+    public class Competition : ObservableObject, IEquatable<Competition>, ICloneable
     {
         public Competition()
         {
@@ -111,53 +111,35 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Competition to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Competition"/></returns>
         public override bool Equals(object obj)
-        {
-            Competition other = obj as Competition;
-            if (other == null) return false;
-
-            return ID.Equals(other.ID) &&
-                Gender.Equals(other.Gender) &&
-                SwimmingStyle.Equals(other.SwimmingStyle) &&
-                Age.Equals(other.Age) &&
-                Distance.Equals(other.Distance) &&
-                BestTime.Equals(other.BestTime);
-        }
+            => obj is Competition c && (c.ID, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime).Equals((ID, Gender, SwimmingStyle, Age, Distance, BestTime));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">Other object to compare.</param>
         /// <returns>true if the current object is equal to the other parameter; otherwise false.</returns>
-        public bool Equals(Person other)
-        {
-            return Equals((object)other);
-        }
+        public bool Equals(Competition other)
+            => Equals((object)other);
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+            => (ID, Gender, SwimmingStyle, Age, Distance, BestTime).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-        {
-            return $"{ID}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
-        }
+            => $"{ID}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
 
         /// <summary>
         /// Create a new object that has the same property values than this one
         /// </summary>
         /// <returns>Cloned object of type</returns>
         public object Clone()
-        {
-            return new Competition(this);
-        }
+            => new Competition(this);
     }
 }

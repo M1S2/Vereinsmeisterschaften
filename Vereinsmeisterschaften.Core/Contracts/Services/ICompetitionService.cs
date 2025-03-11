@@ -41,5 +41,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear);
+
+        public void CalculateRunOrder(ushort competitionYear);
     }
 }

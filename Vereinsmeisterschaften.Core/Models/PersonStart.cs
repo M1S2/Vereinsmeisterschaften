@@ -18,6 +18,7 @@ namespace Vereinsmeisterschaften.Core.Models
             this.Style = other.Style;
             this.Time = other.Time;
             this.Score = other.Score;
+            this.RunNumber = other.RunNumber;
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -48,6 +49,13 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             get => _score;
             set => SetProperty(ref _score, value);
+        }
+
+        private int _runNumber;
+        public int RunNumber
+        {
+            get => _runNumber;
+            set => SetProperty(ref _runNumber, value);
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

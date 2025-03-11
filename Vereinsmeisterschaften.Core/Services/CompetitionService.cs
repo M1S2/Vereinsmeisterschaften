@@ -6,6 +6,7 @@ using System.Runtime;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using static Vereinsmeisterschaften.Core.Services.CompetitionService;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -46,14 +47,16 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IFileService _fileService;
+        private IPersonService _personService;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CompetitionService(IFileService fileService)
+        public CompetitionService(IFileService fileService, IPersonService personService)
         {
             _competitionList = new List<Competition>();
             _fileService = fileService;
+            _personService = personService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -177,6 +180,14 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
+        /// Check if the list of <see cref="Competition"/> has not saved changed.
+        /// True, if unsaved changes exist; otherwise false.
+        /// </summary>
+        public bool HasUnsavedChanges => (_competitionList != null && _competitionListOnLoad != null) ? !_competitionList.SequenceEqual(_competitionListOnLoad) : false;
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
         /// Return the competition that matches the person and swimming style
         /// </summary>
         /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
@@ -196,10 +207,26 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <summary>
-        /// Check if the list of <see cref="Competition"/> has not saved changed.
-        /// True, if unsaved changes exist; otherwise false.
-        /// </summary>
-        public bool HasUnsavedChanges => (_competitionList != null && _competitionListOnLoad != null) ? !_competitionList.SequenceEqual(_competitionListOnLoad) : false;
+        public void CalculateRunOrder(ushort competitionYear)
+        {
+            List<PersonStart> starts = new List<PersonStart>();
+            List<Competition> startCompetitions = new List<Competition>();
+            foreach(Person person in _personService.GetPersons())
+            {
+                List<PersonStart> personStarts = person.Starts.Values.Cast<PersonStart>().Where(s => s != null).ToList();
+                starts.AddRange(personStarts);
+                startCompetitions.AddRange(personStarts.Select(s => GetCompetitionForPerson(person, s.Style, competitionYear)));
+            }
+
+            //List<int> tmpStartsRunNumbers = Enumerable.Repeat(1, starts.Count).ToList();       // initialize the list with all ones
+            //for (double hugeNumber = 0; hugeNumber < Math.Pow(starts.Count, starts.Count); hugeNumber++)
+            //{
+            //    for (int i = 0; i < starts.Count; i++)
+            //    {
+
+            //    }
+            //}
+        }
+
     }
 }

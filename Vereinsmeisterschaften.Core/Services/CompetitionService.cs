@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime;
 using System.Text;
@@ -207,7 +208,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public void CalculateRunOrder(ushort competitionYear)
+        public async void CalculateRunOrder(ushort competitionYear)
         {
             List<PersonStart> starts = new List<PersonStart>();
             List<Competition> startCompetitions = new List<Competition>();
@@ -218,6 +219,10 @@ namespace Vereinsmeisterschaften.Core.Services
                 startCompetitions.AddRange(personStarts.Select(s => GetCompetitionForPerson(person, s.Style, competitionYear)));
             }
 
+            // Test some partitioning methods
+            await ParallelPartitioningWithCallback.Main();
+
+
             //List<int> tmpStartsRunNumbers = Enumerable.Repeat(1, starts.Count).ToList();       // initialize the list with all ones
             //for (double hugeNumber = 0; hugeNumber < Math.Pow(starts.Count, starts.Count); hugeNumber++)
             //{
@@ -227,6 +232,252 @@ namespace Vereinsmeisterschaften.Core.Services
             //    }
             //}
         }
-
     }
+
+    // ##########################################################################################
+
+    #region Parallel Partitioning With Callback
+    // Generiert durch Chat GPT
+    class ParallelPartitioningWithCallback
+    {
+        public async static Task Main()
+        {
+            int n = 4; // Anzahl der Elemente (Test mit kleineren Werten, dann n=60)
+            List<int> numbers = Enumerable.Range(1, n).ToList();
+
+            // Callback-Methode zur Verarbeitung der Ergebnisse
+            Action<List<List<int>>> onPartitionFound = partition =>
+            {
+                Trace.WriteLine("Partition gefunden: " + FormatPartition(partition));
+            };
+
+            // Parallele Berechnung starten
+            int maxParallelTasks = Environment.ProcessorCount; // Begrenze parallele Tasks
+            using (SemaphoreSlim semaphore = new SemaphoreSlim(maxParallelTasks))
+            {
+                await GeneratePartitionsParallel(numbers, new List<List<int>>(), onPartitionFound, semaphore);
+            }
+
+            Console.WriteLine("Alle Partitionen wurden berechnet!");
+        }
+
+        static async Task GeneratePartitionsParallel(List<int> remaining, List<List<int>> currentPartition, Action<List<List<int>>> callback, SemaphoreSlim semaphore)
+        {
+            if (remaining.Count == 0)
+            {
+                callback(new List<List<int>>(currentPartition)); // Partition speichern
+                return;
+            }
+
+            List<Task> tasks = new List<Task>();
+
+            // Erzeuge ALLE Kombinationen von 1 bis 3 Elementen aus "remaining"
+            foreach (var group in GetAllGroups(remaining, 3))
+            {
+                List<int> newRemaining = remaining.Except(group).ToList();
+                List<List<int>> newPartition = new List<List<int>>(currentPartition) { group };
+
+                // SemaphoreSlim begrenzt parallele Tasks
+                await semaphore.WaitAsync();
+                var task = GeneratePartitionsParallel(newRemaining, newPartition, callback, semaphore)
+                    .ContinueWith(t => semaphore.Release()); // Freigabe nach Abschluss
+
+                tasks.Add(task);
+            }
+
+            await Task.WhenAll(tasks); // Warten, bis alle Tasks beendet sind
+        }
+
+        static List<List<int>> GetAllGroups(List<int> elements, int maxSize)
+        {
+            List<List<int>> groups = new List<List<int>>();
+
+            // Erzeuge alle Gruppen von 1 bis maxSize
+            for (int size = 1; size <= Math.Min(maxSize, elements.Count); size++)
+            {
+                groups.AddRange(GetCombinations(elements, size));
+            }
+
+            return groups;
+        }
+
+        static List<List<int>> GetCombinations(List<int> elements, int length)
+        {
+            if (length == 0) return new List<List<int>> { new List<int>() };
+            if (elements.Count == 0) return new List<List<int>>();
+
+            List<List<int>> result = new List<List<int>>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                int current = elements[i];
+                List<int> remaining = elements.Skip(i + 1).ToList();
+                foreach (var subCombo in GetCombinations(remaining, length - 1))
+                {
+                    subCombo.Insert(0, current);
+                    result.Add(subCombo);
+                }
+            }
+            return result;
+        }
+
+        static string FormatPartition(List<List<int>> partition)
+        {
+            return "[" + string.Join(", ", partition.Select(group => $"[{string.Join(", ", group)}]")) + "]";
+        }
+    }
+
+    #endregion
+
+    // ##########################################################################################
+
+    #region Simple Partitioning
+
+    // Generiert durch Chat GPT
+    class Partitioning
+    {
+        public static void Main()
+        {
+            int n = 8; // Anzahl der Elemente
+            List<int> numbers = Enumerable.Range(1, n).ToList();
+
+            List<List<List<int>>> partitions = GeneratePartitions(numbers, 3);
+
+            // Gib die Ergebnisse aus
+            foreach (var partition in partitions)
+            {
+                Console.WriteLine($"[{string.Join(", ", partition.Select(group => $"[{string.Join(", ", group)}]"))}]");
+            }
+        }
+
+        static List<List<List<int>>> GeneratePartitions(List<int> elements, int maxGroupSize)
+        {
+            List<List<List<int>>> result = new List<List<List<int>>>();
+            List<List<int>> currentPartition = new List<List<int>>();
+            GeneratePartitionsRecursive(elements, maxGroupSize, currentPartition, result);
+            return result;
+        }
+
+        static void GeneratePartitionsRecursive(List<int> remaining, int maxGroupSize, List<List<int>> currentPartition, List<List<List<int>>> result)
+        {
+            if (remaining.Count == 0)
+            {
+                result.Add(currentPartition.Select(group => new List<int>(group)).ToList());
+                return;
+            }
+
+            // Erzeuge Gruppen von 1 bis maxGroupSize
+            for (int size = 1; size <= Math.Min(maxGroupSize, remaining.Count); size++)
+            {
+                foreach (var group in GetCombinations(remaining, size))
+                {
+                    List<int> newRemaining = new List<int>(remaining);
+                    foreach (var item in group)
+                    {
+                        newRemaining.Remove(item);
+                    }
+
+                    currentPartition.Add(group);
+                    GeneratePartitionsRecursive(newRemaining, maxGroupSize, currentPartition, result);
+                    currentPartition.RemoveAt(currentPartition.Count - 1);
+                }
+            }
+        }
+
+        static List<List<int>> GetCombinations(List<int> elements, int length)
+        {
+            if (length == 0) return new List<List<int>> { new List<int>() };
+            if (elements.Count == 0) return new List<List<int>>();
+
+            List<List<int>> result = new List<List<int>>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                int current = elements[i];
+                List<int> remaining = elements.Skip(i + 1).ToList();
+                foreach (var subCombo in GetCombinations(remaining, length - 1))
+                {
+                    subCombo.Insert(0, current);
+                    result.Add(subCombo);
+                }
+            }
+            return result;
+        }
+    }
+
+#endregion
+
+    // ##########################################################################################
+
+    #region DP Backtracking Partitioning
+
+    // Generiert durch Chat GPT
+    class DPBacktrackingPartitioning
+    {
+        public static void Main()
+        {
+            int n = 8; // Anzahl der Elemente
+            string outputPath = "C:\\Users\\Markus\\Desktop\\partitions_dp.txt"; // Datei zum Speichern
+
+            // Falls die Datei existiert, vorher löschen
+            if (File.Exists(outputPath))
+                File.Delete(outputPath);
+
+            List<int> numbers = Enumerable.Range(1, n).ToList();
+            GeneratePartitions(numbers, new List<List<int>>(), outputPath);
+
+            Console.WriteLine("Alle Partitionen wurden berechnet und gespeichert.");
+        }
+
+        static void GeneratePartitions(List<int> remaining, List<List<int>> currentPartition, string filePath)
+        {
+            if (remaining.Count == 0)
+            {
+                // Partition formatieren
+                string partitionString = "[" + string.Join(", ", currentPartition.Select(group => $"[{string.Join(", ", group)}]")) + "]";
+
+                // Partition in Datei schreiben
+                File.AppendAllText(filePath, partitionString + Environment.NewLine);
+                return;
+            }
+
+            // Erzeuge Gruppen von 1 bis 3 Elementen
+            for (int size = 1; size <= Math.Min(3, remaining.Count); size++)
+            {
+                foreach (var group in GetCombinations(remaining, size))
+                {
+                    List<int> newRemaining = new List<int>(remaining);
+                    foreach (var item in group)
+                    {
+                        newRemaining.Remove(item);
+                    }
+
+                    currentPartition.Add(group);
+                    GeneratePartitions(newRemaining, currentPartition, filePath);
+                    currentPartition.RemoveAt(currentPartition.Count - 1);
+                }
+            }
+        }
+
+        static List<List<int>> GetCombinations(List<int> elements, int length)
+        {
+            if (length == 0) return new List<List<int>> { new List<int>() };
+            if (elements.Count == 0) return new List<List<int>>();
+
+            List<List<int>> result = new List<List<int>>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                int current = elements[i];
+                List<int> remaining = elements.Skip(i + 1).ToList();
+                foreach (var subCombo in GetCombinations(remaining, length - 1))
+                {
+                    subCombo.Insert(0, current);
+                    result.Add(subCombo);
+                }
+            }
+            return result;
+        }
+    }
+
+#endregion
+
+
 }

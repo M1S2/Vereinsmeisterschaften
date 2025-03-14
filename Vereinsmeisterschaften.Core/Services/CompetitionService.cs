@@ -220,19 +220,171 @@ namespace Vereinsmeisterschaften.Core.Services
             }
 
             // Test some partitioning methods
-            await ParallelPartitioningWithCallback.Main();
-
-
-            //List<int> tmpStartsRunNumbers = Enumerable.Repeat(1, starts.Count).ToList();       // initialize the list with all ones
-            //for (double hugeNumber = 0; hugeNumber < Math.Pow(starts.Count, starts.Count); hugeNumber++)
-            //{
-            //    for (int i = 0; i < starts.Count; i++)
-            //    {
-
-            //    }
-            //}
+            await MonteCarloPartitioning.Main();
+            //await ParallelPartitioningWithCallback.Main();
         }
     }
+
+    // ##########################################################################################
+
+    #region Monte Carlo Partitioning
+
+    // Generiert durch Chat GPT
+    public class MonteCarloPartitioning
+    {
+        static Random _random = new Random();
+
+        public static async Task Main()
+        {
+            int n = 60; // Beispiel n=8
+            List<int> numbers = Enumerable.Range(1, n).ToList();
+
+            // Callback für Fortschritt
+            Action<double> onProgressUpdate = progress =>
+            {
+                // Fortschritt alle 5% melden
+                if (progress % 5 == 0)
+                {
+                    Trace.WriteLine($"Fortschritt: {progress:F2}%");
+                }
+            };
+
+            // Maximale Anzahl der Elemente pro Gruppe (z.B. max 3 Elemente pro Gruppe)
+            int maxElementsPerGroup = 3;
+
+            // Predicate, das überprüft, ob eine Partition gültig ist
+            Func<List<List<int>>, bool> isValidPartition = partition =>
+            {
+                // Partition ist ungültig, wenn mehr als 25% der Gruppen nur ein Element enthalten
+                int oneElementGroups = partition.Count(group => group.Count == 1);
+                return oneElementGroups <= partition.Count * 0.25;
+            };
+
+            // Monte-Carlo-Simulation starten
+            int simulationRuns = 1000000;
+            HashSet<string> uniquePartitions = new HashSet<string>(); // Set für eindeutige Partitionen
+            List<List<List<int>>> sampledPartitions = new List<List<List<int>>>();
+
+            await Task.Run(() =>
+            {
+                for (int i = 0; i < simulationRuns; i++)
+                {
+                    List<List<int>> partition = GenerateRandomPartition(numbers, maxElementsPerGroup);
+
+                    // Sicherstellen, dass die Partition gültig ist
+                    if (isValidPartition(partition))
+                    {
+                        // Partition als "Schlüssel" in HashSet speichern, um Duplikate zu vermeiden
+                        string partitionKey = GetPartitionKey(partition);
+                        if (uniquePartitions.Add(partitionKey)) // Wenn Partition neu ist
+                        {
+                            sampledPartitions.Add(partition);
+                        }
+                    }
+
+                    // Fortschritt melden
+                    double progress = (double)(i + 1) / simulationRuns * 100;
+                    onProgressUpdate(progress);
+                }
+            });
+
+            // Analyse der Ergebnisse
+            AnalyzeResults(sampledPartitions);
+
+            // Ausgabe der Partitionen
+            Trace.WriteLine($"Sampled Partitions: {sampledPartitions.Count}");
+            foreach (var partition in sampledPartitions.Take(10)) // Ausgabe der ersten 10 Partitionen
+            {
+                Trace.WriteLine($"Partition: {string.Join(" | ", partition.Select(group => $"[{string.Join(", ", group)}]"))}");
+            }
+
+            Trace.WriteLine("Monte Carlo Simulation abgeschlossen!");
+        }
+
+        // Generiere zufällige Partitionen mit maximaler Gruppengröße
+        static List<List<int>> GenerateRandomPartition(List<int> elements, int maxElementsPerGroup)
+        {
+            List<List<int>> partition = new List<List<int>>();
+            List<int> remainingElements = new List<int>(elements);
+
+            while (remainingElements.Count > 0)
+            {
+                // Gewichtung: Wahrscheinlichkeit für größere Gruppen (mehr als ein Element) ist höher
+                int groupSize = GetWeightedGroupSize(remainingElements.Count, maxElementsPerGroup);
+
+                groupSize = Math.Min(groupSize, remainingElements.Count); // Verhindern, dass die Gruppe zu groß wird
+
+                List<int> group = new List<int>();
+                for (int i = 0; i < groupSize; i++)
+                {
+                    int index = _random.Next(remainingElements.Count);
+                    group.Add(remainingElements[index]);
+                    remainingElements.RemoveAt(index);
+                }
+
+                partition.Add(group);
+            }
+
+            return partition;
+        }
+
+        // Gewichtete Gruppengröße, die größere Gruppen bevorzugt
+        static int GetWeightedGroupSize(int remainingElementsCount, int maxElementsPerGroup)
+        {
+            if (remainingElementsCount <= maxElementsPerGroup)
+            {
+                // Wenn weniger als maxElementsPerGroup übrig sind, dann 1 oder 2 Gruppen
+                return _random.Next(1, maxElementsPerGroup + 1);
+            }
+            else
+            {
+                // Definiere Wahrscheinlichkeiten für jede Gruppengröße
+                int rand = _random.Next(1, 101);
+
+                if (rand <= 70) // 70% Wahrscheinlichkeit für die größte Gruppe
+                    return maxElementsPerGroup;
+                else if (rand <= 90) // 20% Wahrscheinlichkeit für eine Gruppe mit einem Element weniger
+                    return maxElementsPerGroup - 1;
+                else // 10% Wahrscheinlichkeit für eine Gruppe mit nur einem Element
+                    return 1;
+            }
+        }
+
+        // Methode zur Erzeugung eines "Schlüssels" für die Partition, der die Reihenfolge ignoriert
+        static string GetPartitionKey(List<List<int>> partition)
+        {
+            var sortedPartition = partition.Select(group => string.Join(",", group.OrderBy(x => x)))
+                                          .OrderBy(group => group) // Sortiert die Gruppen, sodass die Reihenfolge keine Rolle spielt
+                                          .ToList();
+
+            return string.Join(" | ", sortedPartition); // Partition als string zurückgeben
+        }
+
+        // Analyse der Ergebnisse
+        static void AnalyzeResults(List<List<List<int>>> sampledPartitions)
+        {
+            int count3Elements = 0;
+            int count2Elements = 0;
+            int count1Elements = 0;
+
+            foreach (var partition in sampledPartitions)
+            {
+                foreach (var group in partition)
+                {
+                    if (group.Count == 3) count3Elements++;
+                    else if (group.Count == 2) count2Elements++;
+                    else if (group.Count == 1) count1Elements++;
+                }
+            }
+
+            // Ausgabe der Häufigkeiten der Gruppen mit 3, 2 und 1 Elementen
+            Trace.WriteLine($"Gruppen mit 3 Elementen: {count3Elements}");
+            Trace.WriteLine($"Gruppen mit 2 Elementen: {count2Elements}");
+            Trace.WriteLine($"Gruppen mit 1 Element: {count1Elements}");
+        }
+    }
+
+    #endregion
 
     // ##########################################################################################
 
@@ -240,62 +392,153 @@ namespace Vereinsmeisterschaften.Core.Services
     // Generiert durch Chat GPT
     class ParallelPartitioningWithCallback
     {
-        public async static Task Main()
+        public static async Task Main()
         {
-            int n = 4; // Anzahl der Elemente (Test mit kleineren Werten, dann n=60)
+            int n = 8; // Beispiel n=8
             List<int> numbers = Enumerable.Range(1, n).ToList();
 
-            // Callback-Methode zur Verarbeitung der Ergebnisse
+            completedPartitions = 0;
+            // Callbacks
             Action<List<List<int>>> onPartitionFound = partition =>
             {
-                Trace.WriteLine("Partition gefunden: " + FormatPartition(partition));
+                Interlocked.Increment(ref completedPartitions);
+                //Trace.WriteLine($"Partition gefunden ({completedPartitions}): " + FormatPartition(partition));
             };
 
-            // Parallele Berechnung starten
-            int maxParallelTasks = Environment.ProcessorCount; // Begrenze parallele Tasks
-            using (SemaphoreSlim semaphore = new SemaphoreSlim(maxParallelTasks))
+            Action<double> onProgressUpdate = progress =>
             {
-                await GeneratePartitionsParallel(numbers, new List<List<int>>(), onPartitionFound, semaphore);
+                //Trace.WriteLine($"Fortschritt: {progress:F2}%");
+            };
+
+            // Ermittlung der Gesamtzahl der Partitionen
+            long estimatedPartitions = CalculateTotalPartitions(n);
+
+            int maxParallelTasks = Environment.ProcessorCount;
+            using (var semaphore = new SemaphoreSlim(maxParallelTasks))
+            {
+                await GeneratePartitionsParallel(numbers, new List<List<int>>(), onPartitionFound, onProgressUpdate, semaphore, estimatedPartitions);
             }
 
-            Console.WriteLine("Alle Partitionen wurden berechnet!");
+            Trace.WriteLine($"Alle Partitionen ({completedPartitions}) wurden berechnet!");
         }
 
-        static async Task GeneratePartitionsParallel(List<int> remaining, List<List<int>> currentPartition, Action<List<List<int>>> callback, SemaphoreSlim semaphore)
+        static long completedPartitions = 0; // Sicher für Interlocked.Increment
+
+        static long CalculateTotalPartitions(int n)
+        {
+            // Diese Schätzung basiert auf der Anzahl der Gruppen und ist eine grobe Abschätzung.
+            // Sie kann für größere n weiter optimiert werden.
+            long totalPartitions = 0;
+
+            // Berechne alle Partitionen mit Gruppengrößen 1, 2 und 3.
+            // Zum Beispiel: Partitionen für n=8 umfassen alle Kombinationen von 1, 2, 3 Elementen aus 8.
+            // Wir müssen den Algorithmus dafür finden oder eine empirische Schätzung aus den Berechnungen ziehen.
+
+            // Beispielhafte Berechnung (einfacher Ansatz, hier nur zur Illustration):
+            // Diese Funktion könnte auf Basis deiner Problemdomäne genauer angepasst werden.
+            for (int i = 1; i <= n; i++)
+            {
+                totalPartitions += Factorial(n) / (Factorial(i) * Factorial(n - i));
+            }
+
+            return totalPartitions;
+        }
+
+        static long Factorial(int number)
+        {
+            long result = 1;
+            for (int i = 1; i <= number; i++)
+            {
+                result *= i;
+            }
+            return result;
+        }
+
+        static async Task GeneratePartitionsParallel(List<int> remaining, List<List<int>> currentPartition, Action<List<List<int>>> onPartitionFound, Action<double> onProgressUpdate, SemaphoreSlim semaphore, long estimatedPartitions)
         {
             if (remaining.Count == 0)
             {
-                callback(new List<List<int>>(currentPartition)); // Partition speichern
+                onPartitionFound(new List<List<int>>(currentPartition));
+
+                // Berechnung des Fortschritts
+                double progress = Math.Min((double)completedPartitions / estimatedPartitions * 100, 99.9);
+                onProgressUpdate(progress);
+
                 return;
             }
 
             List<Task> tasks = new List<Task>();
 
-            // Erzeuge ALLE Kombinationen von 1 bis 3 Elementen aus "remaining"
-            foreach (var group in GetAllGroups(remaining, 3))
+            foreach (var group in GetPriorityGroups(remaining))
             {
                 List<int> newRemaining = remaining.Except(group).ToList();
                 List<List<int>> newPartition = new List<List<int>>(currentPartition) { group };
 
-                // SemaphoreSlim begrenzt parallele Tasks
-                await semaphore.WaitAsync();
-                var task = GeneratePartitionsParallel(newRemaining, newPartition, callback, semaphore)
-                    .ContinueWith(t => semaphore.Release()); // Freigabe nach Abschluss
-
-                tasks.Add(task);
+                if (semaphore.CurrentCount > 0)
+                {
+                    await semaphore.WaitAsync();
+                    var task = Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await GeneratePartitionsSequential(newRemaining, newPartition, onPartitionFound, onProgressUpdate, estimatedPartitions);
+                        }
+                        finally
+                        {
+                            semaphore.Release();
+                        }
+                    });
+                    tasks.Add(task);
+                }
+                else
+                {
+                    await GeneratePartitionsSequential(newRemaining, newPartition, onPartitionFound, onProgressUpdate, estimatedPartitions);
+                }
             }
 
-            await Task.WhenAll(tasks); // Warten, bis alle Tasks beendet sind
+            await Task.WhenAll(tasks);
         }
 
-        static List<List<int>> GetAllGroups(List<int> elements, int maxSize)
+        static async Task GeneratePartitionsSequential(List<int> remaining, List<List<int>> currentPartition, Action<List<List<int>>> onPartitionFound, Action<double> onProgressUpdate, long estimatedPartitions)
+        {
+            if (remaining.Count == 0)
+            {
+                onPartitionFound(new List<List<int>>(currentPartition));
+
+                // Fortschritt berechnen
+                double progress = Math.Min((double)completedPartitions / estimatedPartitions * 100, 99.9);
+                onProgressUpdate(progress);
+
+                return;
+            }
+
+            foreach (var group in GetPriorityGroups(remaining))
+            {
+                List<int> newRemaining = remaining.Except(group).ToList();
+                List<List<int>> newPartition = new List<List<int>>(currentPartition) { group };
+
+                await GeneratePartitionsSequential(newRemaining, newPartition, onPartitionFound, onProgressUpdate, estimatedPartitions);
+            }
+        }
+
+        static List<List<int>> GetPriorityGroups(List<int> elements)
         {
             List<List<int>> groups = new List<List<int>>();
 
-            // Erzeuge alle Gruppen von 1 bis maxSize
-            for (int size = 1; size <= Math.Min(maxSize, elements.Count); size++)
+            // **Zuerst Gruppen mit 3 Elementen**
+            if (elements.Count >= 3)
             {
-                groups.AddRange(GetCombinations(elements, size));
+                groups.AddRange(GetCombinations(elements, 3));
+            }
+            // **Falls nicht genug übrig sind, versuche Gruppen mit 2**
+            if (elements.Count >= 2)
+            {
+                groups.AddRange(GetCombinations(elements, 2));
+            }
+            // **Nur als letzte Option einzelne Elemente**
+            if (elements.Count > 0)
+            {
+                groups.AddRange(GetCombinations(elements, 1));
             }
 
             return groups;

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Diagnostics;
 using System.Net.NetworkInformation;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -19,7 +20,16 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        _competitionService.CalculateRunOrder(_workspaceService?.Settings?.CompetitionYear ?? 0);
+        ProgressDelegate onProgress = (sender, progress, currentStep) =>
+        {
+            // Only report progress all 1%
+            if (progress % 1 == 0)
+            {
+                Trace.WriteLine($"Progress: {progress:F2}%");
+            }
+        };
+
+        _competitionService.CalculateRunOrder(_workspaceService?.Settings?.CompetitionYear ?? 0, 3, onProgress);
     }
 
     public void OnNavigatedFrom()

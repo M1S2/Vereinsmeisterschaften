@@ -208,7 +208,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public async void CalculateRunOrder(ushort competitionYear)
+        public async void CalculateRunOrder(ushort competitionYear, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
         {
             List<PersonStart> starts = new List<PersonStart>();
             List<Competition> startCompetitions = new List<Competition>();
@@ -219,9 +219,24 @@ namespace Vereinsmeisterschaften.Core.Services
                 startCompetitions.AddRange(personStarts.Select(s => GetCompetitionForPerson(person, s.Style, competitionYear)));
             }
 
-            // Test some partitioning methods
-            await MonteCarloPartitioning.Main();
-            //await ParallelPartitioningWithCallback.Main();
+            // ***** Do Monte Carlo Partitioning *****
+            List<int> startIndices = Enumerable.Range(1, starts.Count).ToList();
+            List<List<List<int>>> sampledPartitions = new List<List<List<int>>>();
+            Action<float> onMonteCarloProgressUpdate = progress => onProgress?.Invoke(this, progress, "Monte Carlo");
+            Action<List<List<int>>> onPartitionFound = partition =>
+            {
+                // Count the number of groups with only one element
+                // Check if it is less than 25% of the total number of groups --> valid partition
+                int oneElementGroups = partition.Count(group => group.Count == 1);
+                bool isPartitionValid = oneElementGroups <= partition.Count * 0.25;
+
+                if(isPartitionValid)
+                {
+                    sampledPartitions.Add(partition);
+                }
+            };
+            await MonteCarloPartitioning.CalculatePartitions(startIndices, onMonteCarloProgressUpdate, onPartitionFound, numberAvailableSwimLanes, 10000000);
+            MonteCarloPartitioning.AnalyzeAndReportResults(sampledPartitions);
         }
     }
 
@@ -229,90 +244,59 @@ namespace Vereinsmeisterschaften.Core.Services
 
     #region Monte Carlo Partitioning
 
-    // Generiert durch Chat GPT
     public class MonteCarloPartitioning
     {
-        static Random _random = new Random();
+        private static Random _random = new Random();
 
-        public static async Task Main()
+        /// <summary>
+        /// Calculate all possible partitions of a list of numbers
+        /// </summary>
+        /// <param name="numbers">List with all possible numbers</param>
+        /// <param name="onProgressUpdate">Action that is called when the progress of the Monte Carlo simulation changes</param>
+        /// <param name="onPartitionFound">Action that is called when a new partition is found</param>
+        /// <param name="maxElementsPerGroup">Maximum number of elements for each group</param>
+        /// <param name="simulationRuns">Number of loops for the Monte Carlo simulation</param>
+        /// <returns></returns>
+        public static async Task CalculatePartitions(List<int> numbers, Action<float> onProgressUpdate = null, Action<List<List<int>>> onPartitionFound = null, int maxElementsPerGroup = 3, int simulationRuns = 1000000)
         {
-            int n = 60; // Beispiel n=8
-            List<int> numbers = Enumerable.Range(1, n).ToList();
-
-            // Callback für Fortschritt
-            Action<double> onProgressUpdate = progress =>
-            {
-                // Fortschritt alle 5% melden
-                if (progress % 5 == 0)
-                {
-                    Trace.WriteLine($"Fortschritt: {progress:F2}%");
-                }
-            };
-
-            // Maximale Anzahl der Elemente pro Gruppe (z.B. max 3 Elemente pro Gruppe)
-            int maxElementsPerGroup = 3;
-
-            // Predicate, das überprüft, ob eine Partition gültig ist
-            Func<List<List<int>>, bool> isValidPartition = partition =>
-            {
-                // Partition ist ungültig, wenn mehr als 25% der Gruppen nur ein Element enthalten
-                int oneElementGroups = partition.Count(group => group.Count == 1);
-                return oneElementGroups <= partition.Count * 0.25;
-            };
-
-            // Monte-Carlo-Simulation starten
-            int simulationRuns = 1000000;
-            HashSet<string> uniquePartitions = new HashSet<string>(); // Set für eindeutige Partitionen
-            List<List<List<int>>> sampledPartitions = new List<List<List<int>>>();
-
+            HashSet<string> uniquePartitions = new HashSet<string>();
             await Task.Run(() =>
             {
                 for (int i = 0; i < simulationRuns; i++)
                 {
                     List<List<int>> partition = GenerateRandomPartition(numbers, maxElementsPerGroup);
 
-                    // Sicherstellen, dass die Partition gültig ist
-                    if (isValidPartition(partition))
+                    // Generate and store partition key to avoid duplicates
+                    string partitionKey = GetPartitionKey(partition);
+                    if (uniquePartitions.Add(partitionKey))
                     {
-                        // Partition als "Schlüssel" in HashSet speichern, um Duplikate zu vermeiden
-                        string partitionKey = GetPartitionKey(partition);
-                        if (uniquePartitions.Add(partitionKey)) // Wenn Partition neu ist
-                        {
-                            sampledPartitions.Add(partition);
-                        }
+                        // only if the partition is new
+                        onPartitionFound?.Invoke(partition);
                     }
 
-                    // Fortschritt melden
-                    double progress = (double)(i + 1) / simulationRuns * 100;
-                    onProgressUpdate(progress);
+                    // Report progress
+                    float progress = ((i + 1) / (float)simulationRuns) * 100.0f;
+                    onProgressUpdate?.Invoke(progress);
                 }
             });
-
-            // Analyse der Ergebnisse
-            AnalyzeResults(sampledPartitions);
-
-            // Ausgabe der Partitionen
-            Trace.WriteLine($"Sampled Partitions: {sampledPartitions.Count}");
-            foreach (var partition in sampledPartitions.Take(10)) // Ausgabe der ersten 10 Partitionen
-            {
-                Trace.WriteLine($"Partition: {string.Join(" | ", partition.Select(group => $"[{string.Join(", ", group)}]"))}");
-            }
-
-            Trace.WriteLine("Monte Carlo Simulation abgeschlossen!");
         }
 
-        // Generiere zufällige Partitionen mit maximaler Gruppengröße
-        static List<List<int>> GenerateRandomPartition(List<int> elements, int maxElementsPerGroup)
+        /// <summary>
+        /// Generates random partitions with a maximum group size
+        /// </summary>
+        /// <param name="elements">List with all elements</param>
+        /// <param name="maxElementsPerGroup">Maximum number of elements for each group</param>
+        /// <returns>List of Groups</returns>
+        private static List<List<int>> GenerateRandomPartition(List<int> elements, int maxElementsPerGroup)
         {
             List<List<int>> partition = new List<List<int>>();
             List<int> remainingElements = new List<int>(elements);
 
             while (remainingElements.Count > 0)
             {
-                // Gewichtung: Wahrscheinlichkeit für größere Gruppen (mehr als ein Element) ist höher
+                // Weighted group size that prefers larger groups
                 int groupSize = GetWeightedGroupSize(remainingElements.Count, maxElementsPerGroup);
-
-                groupSize = Math.Min(groupSize, remainingElements.Count); // Verhindern, dass die Gruppe zu groß wird
+                groupSize = Math.Min(groupSize, remainingElements.Count); // Avoid that the group gets too large
 
                 List<int> group = new List<int>();
                 for (int i = 0; i < groupSize; i++)
@@ -321,47 +305,50 @@ namespace Vereinsmeisterschaften.Core.Services
                     group.Add(remainingElements[index]);
                     remainingElements.RemoveAt(index);
                 }
-
                 partition.Add(group);
             }
-
             return partition;
         }
 
-        // Gewichtete Gruppengröße, die größere Gruppen bevorzugt
-        static int GetWeightedGroupSize(int remainingElementsCount, int maxElementsPerGroup)
+        /// <summary>
+        /// Get weighted group size that prefers larger groups
+        /// </summary>
+        /// <param name="remainingElementsCount">Number of remaining elements</param>
+        /// <param name="maxElementsPerGroup">Maximum number of elements for each group</param>
+        /// <returns>Weighted group size</returns>
+        private static int GetWeightedGroupSize(int remainingElementsCount, int maxElementsPerGroup)
         {
             if (remainingElementsCount <= maxElementsPerGroup)
             {
-                // Wenn weniger als maxElementsPerGroup übrig sind, dann 1 oder 2 Gruppen
                 return _random.Next(1, maxElementsPerGroup + 1);
             }
             else
             {
-                // Definiere Wahrscheinlichkeiten für jede Gruppengröße
                 int rand = _random.Next(1, 101);
-
-                if (rand <= 70) // 70% Wahrscheinlichkeit für die größte Gruppe
-                    return maxElementsPerGroup;
-                else if (rand <= 90) // 20% Wahrscheinlichkeit für eine Gruppe mit einem Element weniger
+                if (rand <= 70)                 // 70% probability for the largest group
+                    return maxElementsPerGroup; 
+                else if (rand <= 90) // 20% probability for a group with one element less
                     return maxElementsPerGroup - 1;
-                else // 10% Wahrscheinlichkeit für eine Gruppe mit nur einem Element
+                else // 10% probability for a group with only one element
                     return 1;
             }
         }
 
-        // Methode zur Erzeugung eines "Schlüssels" für die Partition, der die Reihenfolge ignoriert
-        static string GetPartitionKey(List<List<int>> partition)
+        /// <summary>
+        /// Method to generate a "key" for the partition that ignores the order
+        /// </summary>
+        /// <param name="partition">Partition for which a key is generated</param>
+        /// <returns>Key that can be used for e.g. a <see cref="HashSet{T}"/></returns>
+        private static string GetPartitionKey(List<List<int>> partition)
         {
-            var sortedPartition = partition.Select(group => string.Join(",", group.OrderBy(x => x)))
-                                          .OrderBy(group => group) // Sortiert die Gruppen, sodass die Reihenfolge keine Rolle spielt
-                                          .ToList();
+            List<string> sortedPartition = partition.Select(group => string.Join(",", group.OrderBy(x => x)))
+                                                    .OrderBy(group => group) // Sort groups so that the order does not matter
+                                                    .ToList();
 
-            return string.Join(" | ", sortedPartition); // Partition als string zurückgeben
+            return string.Join(" | ", sortedPartition);
         }
 
-        // Analyse der Ergebnisse
-        static void AnalyzeResults(List<List<List<int>>> sampledPartitions)
+        public static void AnalyzeAndReportResults(List<List<List<int>>> sampledPartitions)
         {
             int count3Elements = 0;
             int count2Elements = 0;
@@ -377,10 +364,14 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
             }
 
-            // Ausgabe der Häufigkeiten der Gruppen mit 3, 2 und 1 Elementen
-            Trace.WriteLine($"Gruppen mit 3 Elementen: {count3Elements}");
-            Trace.WriteLine($"Gruppen mit 2 Elementen: {count2Elements}");
-            Trace.WriteLine($"Gruppen mit 1 Element: {count1Elements}");
+            Trace.WriteLine($"Groups with 3 elements: {count3Elements}");
+            Trace.WriteLine($"Groups with 2 elements: {count2Elements}");
+            Trace.WriteLine($"Groups with 1 element: {count1Elements}");
+            Trace.WriteLine($"Number sampled Partitions: {sampledPartitions.Count}");
+            foreach (var partition in sampledPartitions.Take(10)) // Show the first 10 partitions
+            {
+                Trace.WriteLine($"Partition: {string.Join(" | ", partition.Select(group => $"[{string.Join(", ", group)}]"))}");
+            }
         }
     }
 

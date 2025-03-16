@@ -209,7 +209,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public async void CalculateRunOrder(ushort competitionYear, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
+        public async Task<bool> CalculateRunOrder(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
         {
             List<PersonStart> starts = new List<PersonStart>();
             List<Competition> startCompetitions = new List<Competition>();
@@ -218,6 +218,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 List<PersonStart> personStarts = person.Starts.Values.Cast<PersonStart>().Where(s => s != null).ToList();
                 starts.AddRange(personStarts);
                 startCompetitions.AddRange(personStarts.Select(s => GetCompetitionForPerson(person, s.Style, competitionYear)));
+
+                cancellationToken.ThrowIfCancellationRequested();
             }
 
             // ***** Do Monte Carlo Partitioning *****
@@ -252,8 +254,9 @@ namespace Vereinsmeisterschaften.Core.Services
                 return isPartitionValid;
             };
             
-            await MonteCarloPartitioning<int>.CalculatePartitions(startIndices, numberAvailableSwimLanes, 5, 10000000);
+            await MonteCarloPartitioning<int>.CalculatePartitions(startIndices, cancellationToken, numberAvailableSwimLanes, 5, 10000000);
             MonteCarloPartitioning<int>.AnalyzeAndReportResults(sampledPartitions);
+            return sampledPartitions.Count > 0;
         }
     }
 
@@ -285,11 +288,12 @@ namespace Vereinsmeisterschaften.Core.Services
         /// This method breaks after maxSimulationRuns loops or when minNumberPartitions are found.
         /// </summary>
         /// <param name="numbers">List with all possible numbers</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="maxElementsPerGroup">Maximum number of elements for each group</param>
         /// <param name="minNumberPartitions">Minimum number of partitions. If this number of valid partitions is reached, the calculation breaks.</param>
         /// <param name="maxSimulationRuns">Maximum number of loops for the Monte Carlo simulation</param>
         /// <returns></returns>
-        public static async Task CalculatePartitions(List<T> numbers, int maxElementsPerGroup = 3, int minNumberPartitions = 5, int maxSimulationRuns = 10000000)
+        public static async Task CalculatePartitions(List<T> numbers, CancellationToken cancellationToken, int maxElementsPerGroup = 3, int minNumberPartitions = 5, int maxSimulationRuns = 10000000)
         {
             ConcurrentDictionary<string, bool> uniquePartitions = new ConcurrentDictionary<string, bool>();
             int maxParallelTasks = Environment.ProcessorCount;
@@ -303,12 +307,14 @@ namespace Vereinsmeisterschaften.Core.Services
                 {
                     for (int i = 0; i < maxParallelTasks && totalSimulationRuns < maxSimulationRuns; i++)
                     {
-                        await semaphore.WaitAsync();
+                        await semaphore.WaitAsync(cancellationToken);
                         int currentRun = totalSimulationRuns++;
                         tasks.Add(Task.Run(() =>
                         {
                             try
                             {
+                                cancellationToken.ThrowIfCancellationRequested();
+
                                 List<List<T>> partition = GenerateRandomPartition(numbers, maxElementsPerGroup);
 
                                 // only if the partition is new and valid
@@ -330,7 +336,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             {
                                 semaphore.Release();
                             }
-                        }));
+                        }, cancellationToken));
                     }
 
                     await Task.WhenAll(tasks);

@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
@@ -20,14 +22,7 @@
             <controls:FontIcon FontSize="40" Glyph="&#xE8A5;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareDocumentsPageTitle}" />
         </StackPanel>
-        
-        <Grid
-            Grid.Row="1"
-            Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <!--
-            The Mahapps Gray10 color represents where you should place your content.
-            Place your content here.
-            -->
-        </Grid>
+
+        <Button Grid.Row="1" Content="Calculate run order" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateRunOrderCommand}"/>
     </Grid>
 </Page>

@@ -42,6 +42,6 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear);
 
-        public void CalculateRunOrder(ushort competitionYear, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
+        public Task<bool> CalculateRunOrder(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
     }
 }

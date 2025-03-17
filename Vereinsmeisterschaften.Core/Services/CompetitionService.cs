@@ -222,6 +222,25 @@ namespace Vereinsmeisterschaften.Core.Services
                 cancellationToken.ThrowIfCancellationRequested();
             }
 
+            var sets = new List<List<string>>
+            {
+                new List<string> { "A1", "A2", "A3", "A4" },
+                new List<string> { "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8" },
+                new List<string> { "C1", "C2" }
+            };
+
+            var generator = new EvolutionaryGroupGenerator<string>(sets, 50, 100,
+                progress => { Trace.WriteLine($"Fortschritt: {progress:F2}%"); onProgress?.Invoke(this, (float)progress, "Evolutionary Generator"); });
+            var results = await generator.GenerateAsync();
+
+            foreach (var combination in results)
+            {
+                Trace.WriteLine(string.Join(" | ", combination.Select(g => $"[{string.Join(", ", g)}]")));
+            }
+
+            return true;
+
+#if false
             // ***** Do Monte Carlo Partitioning *****
             List<int> startIndices = Enumerable.Range(0, starts.Count).ToList();
             List<List<List<int>>> sampledPartitions = new List<List<List<int>>>();
@@ -257,8 +276,195 @@ namespace Vereinsmeisterschaften.Core.Services
             await MonteCarloPartitioning<int>.CalculatePartitions(startIndices, cancellationToken, numberAvailableSwimLanes, 5, 10000000);
             MonteCarloPartitioning<int>.AnalyzeAndReportResults(sampledPartitions);
             return sampledPartitions.Count > 0;
+#endif
         }
     }
+
+    // ##########################################################################################
+
+    #region EvolutionaryGroupGenerator
+
+    // Generiert durch Chat GPT
+    public class EvolutionaryGroupGenerator<T>
+    {
+        private readonly List<List<T>> _sets;
+        private readonly Action<double> _progressCallback;
+        private readonly Random _random = new Random();
+        private readonly int _populationSize;
+        private readonly int _generations;
+        private readonly double _maxOneElementGroupPercentage = 0.25;  // Maximal 25% 1er-Gruppen
+
+        public EvolutionaryGroupGenerator(List<List<T>> sets, int populationSize, int generations, Action<double> progressCallback)
+        {
+            _sets = sets;
+            _populationSize = populationSize;
+            _generations = generations;
+            _progressCallback = progressCallback;
+        }
+
+        public async Task<List<List<List<T>>>> GenerateAsync()
+        {
+            var bestGroupings = new ConcurrentBag<List<List<T>>>();
+
+            var population = new List<List<List<T>>>();
+            for (int i = 0; i < _populationSize; i++)
+                population.Add(CreateValidGrouping());
+
+            // Parallelisierte Generation und Evolution
+            for (int gen = 0; gen < _generations; gen++)
+            {
+                // Verwenden von Task.WhenAll für parallele Ausführung
+                var evolvedPopulation = await Task.WhenAll(population.Select(async individual =>
+                {
+                    return await EvolveAsync(individual);
+                })).ConfigureAwait(false);
+
+                // Konvertieren des Ergebnisses von Task<List<List<T>>>[] in List<List<List<T>>>
+                population = evolvedPopulation.ToList();
+
+                UpdateProgress((double)gen / _generations * 100);
+            }
+
+            // Hinzufügen von einzigartigen Gruppierungen
+            foreach (var grouping in population.Distinct(new GroupingComparer<T>()))
+            {
+                bestGroupings.Add(grouping);
+            }
+
+            return bestGroupings.OrderBy(_ => _random.Next()).ToList(); // Zufällige Reihenfolge
+        }
+
+        private List<List<T>> CreateValidGrouping()
+        {
+            var groups = new List<List<T>>();
+            int oneElementGroupsCount = 0;  // Zähler für 1er-Gruppen
+
+            foreach (var set in _sets)
+            {
+                var remainingElements = new HashSet<T>(set);
+
+                // Falls ein Set weniger als 4 Elemente hat, lasse es als Gruppe zusammen
+                if (remainingElements.Count <= 3)
+                {
+                    groups.Add(remainingElements.ToList());
+                    continue;
+                }
+
+                // Andernfalls in Gruppen aufteilen
+                while (remainingElements.Count > 0)
+                {
+                    int groupSize = _random.Next(2, Math.Min(4, remainingElements.Count + 1)); // 1er-Gruppen weitestgehend vermeiden
+                    var selectedGroup = remainingElements.OrderBy(_ => _random.Next()).Take(groupSize).ToList();
+
+                    if (groupSize == 1)
+                    {
+                        oneElementGroupsCount++;
+                    }
+
+                    groups.Add(selectedGroup);
+                    foreach (var item in selectedGroup)
+                        remainingElements.Remove(item);
+                }
+            }
+
+            // Wenn mehr als 25% der Gruppen 1er-Gruppen sind, verwerfen wir diese Gruppen und generieren neue
+            if ((double)oneElementGroupsCount / groups.Count > _maxOneElementGroupPercentage)
+            {
+                return CreateValidGrouping(); // Rekursion, bis wir eine valide Gruppierung haben
+            }
+
+            return groups.OrderBy(_ => _random.Next()).ToList(); // Reihenfolge zufällig mischen
+        }
+
+        private async Task<List<List<T>>> EvolveAsync(List<List<T>> individual)
+        {
+            var newIndividual = individual;
+
+            // Parallelisierung der Mutation
+            await Task.Run(() =>
+            {
+                newIndividual = _random.NextDouble() < 0.4 ? Mutate(newIndividual) : newIndividual;
+            }).ConfigureAwait(false);
+
+            return newIndividual;
+        }
+
+        private List<List<T>> Mutate(List<List<T>> groups)
+        {
+            var newGroups = groups.Select(g => new List<T>(g)).ToList();
+
+            if (newGroups.Count < 2) return newGroups;
+
+            int g1 = _random.Next(newGroups.Count);
+            int g2 = _random.Next(newGroups.Count);
+
+            if (g1 == g2 || GetSetIndex(newGroups[g1][0]) != GetSetIndex(newGroups[g2][0]))
+                return newGroups;
+
+            var swapIdx1 = _random.Next(newGroups[g1].Count);
+            var swapIdx2 = _random.Next(newGroups[g2].Count);
+
+            var temp = newGroups[g1][swapIdx1];
+            newGroups[g1][swapIdx1] = newGroups[g2][swapIdx2];
+            newGroups[g2][swapIdx2] = temp;
+
+            return newGroups.OrderBy(_ => _random.Next()).ToList(); // Reihenfolge zufällig mischen
+        }
+
+        private int GetSetIndex(T element)
+        {
+            for (int i = 0; i < _sets.Count; i++)
+            {
+                if (_sets[i].Contains(element))
+                    return i;
+            }
+            return -1;
+        }
+
+        private void UpdateProgress(double progress)
+        {
+            _progressCallback?.Invoke(progress);
+        }
+    }
+
+    public class GroupingComparer<T> : IEqualityComparer<List<List<T>>>
+    {
+        public bool Equals(List<List<T>> x, List<List<T>> y)
+        {
+            if (x.Count != y.Count) return false;
+            return !x.Except(y, new GroupComparer<T>()).Any();
+        }
+
+        public int GetHashCode(List<List<T>> obj)
+        {
+            int hash = 17;
+            foreach (var group in obj.OrderBy(g => g.Count))
+            {
+                foreach (var item in group.OrderBy(e => e))
+                    hash = hash * 23 + item.GetHashCode();
+            }
+            return hash;
+        }
+    }
+
+    public class GroupComparer<T> : IEqualityComparer<List<T>>
+    {
+        public bool Equals(List<T> x, List<T> y)
+        {
+            return x.OrderBy(e => e).SequenceEqual(y.OrderBy(e => e));
+        }
+
+        public int GetHashCode(List<T> obj)
+        {
+            int hash = 17;
+            foreach (var item in obj.OrderBy(e => e))
+                hash = hash * 23 + item.GetHashCode();
+            return hash;
+        }
+    }
+
+
+    #endregion
 
     // ##########################################################################################
 

@@ -42,6 +42,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear);
 
-        public Task<bool> CalculateRunOrder(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
+        /// <summary>
+        /// Calculate the run order for all person starts
+        /// </summary>
+        /// <param name="competitionYear">Year in which the competition takes place</param>
+        /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
+        /// <param name="numberAvailableSwimLanes">Number of available swimming lanes. This determines the maximum number of parallel starts</param>
+        /// <param name="onProgress">Callback used to report progress of the calculation</param>
+        /// <returns>Best result if calculation was finished successfully; otherwise <see langword="null"/></returns>
+        public Task<List<List<int>>> CalculateRunOrder(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
     }
 }

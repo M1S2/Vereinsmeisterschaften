@@ -45,7 +45,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
         try
         {
-            bool result = await _competitionService.CalculateRunOrder(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
+            List<List<int>> result = await _competitionService.CalculateRunOrder(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
         }
         catch (OperationCanceledException)
         {

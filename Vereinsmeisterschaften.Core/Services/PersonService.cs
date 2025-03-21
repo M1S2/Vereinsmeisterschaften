@@ -258,5 +258,28 @@ namespace Vereinsmeisterschaften.Core.Services
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
         public bool HasUnsavedChanges => (_personList != null && _personListOnLoad != null) ? !_personList.ToList().SequenceEqual(_personListOnLoad) : false;
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Get all <see cref="PersonStart"/> objects for the given <see cref="Person"/> that are not <see langword="null"/>.
+        /// </summary>
+        /// <param name="person">Person for which the <see cref="PersonStart"/> objects are found</param>
+        /// <returns>List with <see cref="PersonStart"/> objects</returns>
+        public List<PersonStart> GetAllPersonStartsForPerson(Person person) => person.Starts.Values.Cast<PersonStart>().Where(s => s != null).ToList();
+
+        /// <summary>
+        /// Get all <see cref="PersonStart"/> objects for all <see cref="Person"/> objects that are not <see langword="null"/>.
+        /// </summary>
+        /// <returns>List with <see cref="PersonStart"/> objects</returns>
+        public List<PersonStart> GetAllPersonStarts()
+        {
+            List<PersonStart> allPersonStarts = new List<PersonStart>();
+            foreach (Person person in _personList)
+            {
+                allPersonStarts.AddRange(GetAllPersonStartsForPerson(person));
+            }
+            return allPersonStarts;
+        }
     }
 }

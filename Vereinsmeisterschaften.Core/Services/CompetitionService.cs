@@ -210,26 +210,23 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Calculate the run order for all person starts
+        /// List with the the <see cref="CompetitionRaces"/> of the last time <see cref="CalculateRunOrder(ushort, CancellationToken, int, ProgressDelegate)"/> was called
+        /// </summary>
+        public List<CompetitionRaces> LastCalculatedCompetitionRaces { get; set; }
+
+        /// <summary>
+        /// Calculate some combination variants for all person starts
         /// </summary>
         /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
         /// <param name="numberAvailableSwimLanes">Number of available swimming lanes. This determines the maximum number of parallel starts</param>
         /// <param name="onProgress">Callback used to report progress of the calculation</param>
-        /// <returns>Best result if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        public async Task<List<List<int>>> CalculateRunOrder(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
+        /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
+        public async Task<List<CompetitionRaces>> CalculateCompetitionRaces(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
         {
             // Collect all starts and corresponding competitions
-            List<PersonStart> starts = new List<PersonStart>();
-            List<Competition> startCompetitions = new List<Competition>();
-            foreach(Person person in _personService.GetPersons())
-            {
-                List<PersonStart> personStarts = person.Starts.Values.Cast<PersonStart>().Where(s => s != null).ToList();
-                starts.AddRange(personStarts);
-                startCompetitions.AddRange(personStarts.Select(s => GetCompetitionForPerson(person, s.Style, competitionYear)));
-
-                cancellationToken.ThrowIfCancellationRequested();
-            }
+            List<PersonStart> starts = _personService.GetAllPersonStarts();
+            List<Competition> startCompetitions = starts.Select(s => GetCompetitionForPerson(s.PersonObj, s.Style, competitionYear)).ToList();
 
             // Create groups of competitions with same style and distance and save the indices in the original array
             Dictionary<(SwimmingStyles, int), List<int>> groupedValues = new Dictionary<(SwimmingStyles, int), List<int>>();
@@ -250,16 +247,25 @@ namespace Vereinsmeisterschaften.Core.Services
             }
 
             int numberOfResultsToGenerate = 100;
-            EvolutionaryGroupGenerator<int> generator = new EvolutionaryGroupGenerator<int>(groupedValues.Values.ToList(), numberOfResultsToGenerate, 1000, numberAvailableSwimLanes, 0.25,
+            EvolutionaryGroupGenerator<int> generator = new EvolutionaryGroupGenerator<int>(groupedValues.Values.ToList(), numberOfResultsToGenerate, 100, numberAvailableSwimLanes, 0.25,
                 progress => onProgress?.Invoke(this, (float)progress, "Evolutionary Generator"));
             List<List<List<int>>> results = await generator.GenerateAsync(cancellationToken);
 
+            LastCalculatedCompetitionRaces = new List<CompetitionRaces>();
             foreach (List<List<int>> combination in results)
             {
                 Trace.WriteLine(string.Join(" | ", combination.Select(g => $"[{string.Join(", ", g)}]")));
+
+                CompetitionRaces competitionRaces = new CompetitionRaces();
+                foreach(List<int> group in combination)
+                {
+                    Race race = new Race(group.Select(index => starts[index]).ToList(), group.Select(index => startCompetitions[index]).ToList());
+                    competitionRaces.Races.Add(race);
+                }
+                LastCalculatedCompetitionRaces.Add(competitionRaces);
             }
 
-            return results?.Count == 0 ? null : results.First();
+            return LastCalculatedCompetitionRaces?.Count == 0 ? null : LastCalculatedCompetitionRaces;
 
 #if false
             // ***** Do Monte Carlo Partitioning *****

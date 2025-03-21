@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calculate Competition Races ähnelt.
+        /// </summary>
+        public static string CalculateCompetitionRacesString {
+            get {
+                return ResourceManager.GetString("CalculateCompetitionRacesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string CancelString {
@@ -129,6 +138,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CompetitionYearString {
             get {
                 return ResourceManager.GetString("CompetitionYearString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Displayed Variant ähnelt.
+        /// </summary>
+        public static string DisplayedVariantString {
+            get {
+                return ResourceManager.GetString("DisplayedVariantString", resourceCulture);
             }
         }
         
@@ -196,6 +214,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die HightlightMode ähnelt.
+        /// </summary>
+        public static string HighlightModeString {
+            get {
+                return ResourceManager.GetString("HighlightModeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
         /// </summary>
         public static string LoadWorkspaceString {
@@ -246,6 +273,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NumberStartsString {
             get {
                 return ResourceManager.GetString("NumberStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die of ähnelt.
+        /// </summary>
+        public static string OfString {
+            get {
+                return ResourceManager.GetString("OfString", resourceCulture);
             }
         }
         

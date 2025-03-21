@@ -18,7 +18,7 @@ namespace Vereinsmeisterschaften.Core.Models
             this.Style = other.Style;
             this.Time = other.Time;
             this.Score = other.Score;
-            this.RunNumber = other.RunNumber;
+            this.IsHighlighted = other.IsHighlighted;
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -51,11 +51,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _score, value);
         }
 
-        private int _runNumber;
-        public int RunNumber
+        private bool _isHighlighted;
+        public bool IsHighlighted
         {
-            get => _runNumber;
-            set => SetProperty(ref _runNumber, value);
+            get => _isHighlighted;
+            set => SetProperty(ref _isHighlighted, value);
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

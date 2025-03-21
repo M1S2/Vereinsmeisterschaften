@@ -279,4 +279,16 @@
   <data name="UnsavedChangesString" xml:space="preserve">
     <value>Unsaved changes</value>
   </data>
+  <data name="CalculateCompetitionRacesString" xml:space="preserve">
+    <value>Calculate Competition Races</value>
+  </data>
+  <data name="HighlightModeString" xml:space="preserve">
+    <value>HightlightMode</value>
+  </data>
+  <data name="DisplayedVariantString" xml:space="preserve">
+    <value>Displayed Variant</value>
+  </data>
+  <data name="OfString" xml:space="preserve">
+    <value>of</value>
+  </data>
 </root>

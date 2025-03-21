@@ -270,13 +270,25 @@
   <data name="NumberStartsString" xml:space="preserve">
     <value>Anzahl Starts</value>
   </data>
+  <data name="DontSaveString" xml:space="preserve">
+    <value>Nicht speichern</value>
+  </data>
   <data name="UnsavedChangesSavePromptString" xml:space="preserve">
     <value>Es gibt noch nicht gespeicherte Änderungen. Speichern vor dem Fortfahren?</value>
   </data>
   <data name="UnsavedChangesString" xml:space="preserve">
     <value>Nicht gespeicherte Änderungen</value>
   </data>
-  <data name="DontSaveString" xml:space="preserve">
-    <value>Nicht speichern</value>
+  <data name="CalculateCompetitionRacesString" xml:space="preserve">
+    <value>Wettkampf Läufe berechnen</value>
+  </data>
+  <data name="HighlightModeString" xml:space="preserve">
+    <value>Hervorhebungsmodus</value>
+  </data>
+  <data name="DisplayedVariantString" xml:space="preserve">
+    <value>Angezeigte Variante</value>
+  </data>
+  <data name="OfString" xml:space="preserve">
+    <value>von</value>
   </data>
 </root>

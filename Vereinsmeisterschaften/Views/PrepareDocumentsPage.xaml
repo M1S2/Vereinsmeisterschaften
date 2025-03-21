@@ -14,15 +14,111 @@
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE8A5;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareDocumentsPageTitle}" />
         </StackPanel>
 
-        <Button Grid.Row="1" Content="Calculate run order" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateRunOrderCommand}"/>
+        <Button Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}">
+            <StackPanel>
+                <controls:FontIcon FontSize="50" Glyph="&#xF0E3;"/>
+                <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+            </StackPanel>
+        </Button>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.DisplayedVariantString}" VerticalAlignment="Center"/>
+                <controls:NumericUpDown Margin="5,0,0,0" Width="150" Value="{Binding IndexCurrentCompetitionRaceDisplay}" VerticalAlignment="Center"/>
+                <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.OfString}" VerticalAlignment="Center"/>
+                <TextBlock Margin="5,0,0,0" Text="{Binding CalculatedCompetitionRaces.Count, FallbackValue=?}" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="{x:Static properties:Resources.HighlightModeString}" VerticalAlignment="Center"/>
+                <ComboBox Margin="5,0,0,0" Width="150" ItemsSource="{Binding AvailableHighlightPersonStartModes}" SelectedValue="{Binding HighlightPersonStartMode}" VerticalAlignment="Center"/>
+                <!-- List with all persons: only visible for HighlightByPerson mode -->
+                <ComboBox Margin="5,0,0,0" Width="250" ItemsSource="{Binding AvailablePersons}" SelectedValue="{Binding HighlightedPerson}" VerticalAlignment="Center">
+                    <ComboBox.Style>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <!-- List with all swimming styles: only visible for HighlightBySwimmingStyle mode -->
+                <ComboBox Margin="5,0,0,0" Width="250" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedValue="{Binding HighlightedSwimmingStyle}" VerticalAlignment="Center">
+                    <ComboBox.Style>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Padding="5" Width="150" Background="{DynamicResource MahApps.Brushes.Accent}" BorderBrush="{DynamicResource MahApps.Brushes.Gray3}" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Style}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding Starts}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1" Width="250">
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+                                                        <Setter Property="Background" Value="Orange"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="PersonObj.FirstName" />
+                                                    <Binding Path="PersonObj.Name" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

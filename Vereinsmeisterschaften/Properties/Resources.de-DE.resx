@@ -291,4 +291,19 @@
   <data name="OfString" xml:space="preserve">
     <value>von</value>
   </data>
+  <data name="CalculatedScoreString" xml:space="preserve">
+    <value>Berechnete Bewertung</value>
+  </data>
+  <data name="ScoreSingleStartsString" xml:space="preserve">
+    <value>Bewertung Einzelstarts</value>
+  </data>
+  <data name="ScoreSameStyleSequenceString" xml:space="preserve">
+    <value>Bewertung gleiche Lage in Reihe</value>
+  </data>
+  <data name="ScorePersonGapsString" xml:space="preserve">
+    <value>Bewertung Pausen für Personen</value>
+  </data>
+  <data name="ScoreStyleOrderString" xml:space="preserve">
+    <value>Bewertung Lagenreihenfolge</value>
+  </data>
 </root>

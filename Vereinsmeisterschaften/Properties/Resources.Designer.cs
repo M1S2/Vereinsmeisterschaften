@@ -115,6 +115,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calculated Score ähnelt.
+        /// </summary>
+        public static string CalculatedScoreString {
+            get {
+                return ResourceManager.GetString("CalculatedScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string CancelString {
@@ -363,6 +372,42 @@ namespace Vereinsmeisterschaften.Properties {
         public static string SaveWorkspaceString {
             get {
                 return ResourceManager.GetString("SaveWorkspaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Person Gaps ähnelt.
+        /// </summary>
+        public static string ScorePersonGapsString {
+            get {
+                return ResourceManager.GetString("ScorePersonGapsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Same Style Sequence ähnelt.
+        /// </summary>
+        public static string ScoreSameStyleSequenceString {
+            get {
+                return ResourceManager.GetString("ScoreSameStyleSequenceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Single Starts ähnelt.
+        /// </summary>
+        public static string ScoreSingleStartsString {
+            get {
+                return ResourceManager.GetString("ScoreSingleStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Style Order ähnelt.
+        /// </summary>
+        public static string ScoreStyleOrderString {
+            get {
+                return ResourceManager.GetString("ScoreStyleOrderString", resourceCulture);
             }
         }
         

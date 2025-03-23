@@ -36,6 +36,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             {
                 SetProperty(ref _indexCurrentCompetitionRace, value);
                 CurrentCompetitionRace = CalculatedCompetitionRaces[_indexCurrentCompetitionRace];
+
+                CurrentCompetitionRace.CalculateScore();
             }
         }
     }
@@ -120,12 +122,12 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             if (progress % 0.5 == 0)
             {
                 _progressController?.SetProgress(progress / 100);
-                _progressController?.SetMessage($"{currentStep}: {progress:F1}%");
+                _progressController?.SetMessage(string.IsNullOrEmpty(currentStep) ? $"{progress:F1}%" : $"{currentStep}: {progress:F1}%");
             }
         };
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.PrepareDocumentsPageTitle, "", true);
+        _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.CalculateCompetitionRacesString, "", true);
         _progressController.Canceled += (sender, e) => cancellationTokenSource.Cancel();
 
         try

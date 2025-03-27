@@ -34,11 +34,13 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Person"/> for which to update the scores</param>
         public void UpdateScoresForPerson(Person person)
         {
+            _competitionService.UpdateAllCompetitionsForPersonStarts(person, _workspaceService.Settings.CompetitionYear);
+
             foreach (PersonStart start in person?.Starts?.Values)
             {
                 if (start == null) { continue; }
 
-                Competition competition = _competitionService.GetCompetitionForPerson(person, start.Style, _workspaceService.Settings.CompetitionYear);
+                Competition competition = start.CompetitionObj;
                 if (competition == null) { continue; }
                 // If the start time equals the competition best time the score will be 100
                 // If the person swims faster, the score is higher

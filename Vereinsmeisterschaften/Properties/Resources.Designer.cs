@@ -376,11 +376,11 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Score Person Gaps ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Person Pauses ähnelt.
         /// </summary>
-        public static string ScorePersonGapsString {
+        public static string ScorePersonStartPausesString {
             get {
-                return ResourceManager.GetString("ScorePersonGapsString", resourceCulture);
+                return ResourceManager.GetString("ScorePersonStartPausesString", resourceCulture);
             }
         }
         

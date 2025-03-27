@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
+#if false
     /// <summary>
     /// Generator for creating groups of elements that must not be mixed with other groups.
     /// This class was generated with the help of ChatGPT.
@@ -224,4 +225,5 @@ namespace Vereinsmeisterschaften.Core.Services
             return obj.Select(item => item.GetHashCode()).Aggregate(0, (a, b) => a ^ b);
         }
     }
+#endif
 }

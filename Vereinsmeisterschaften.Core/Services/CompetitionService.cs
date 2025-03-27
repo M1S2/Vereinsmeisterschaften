@@ -204,8 +204,41 @@ namespace Vereinsmeisterschaften.Core.Services
                 return null;
             }
             return _competitionList.Where(c => c.Gender == person.Gender &&
-                                               c.Age + person.BirthYear == competitionYear &&
-                                               c.SwimmingStyle == swimmingStyle).FirstOrDefault();
+                                               c.SwimmingStyle == swimmingStyle &&
+                                               (c.SwimmingStyle == SwimmingStyles.WaterFlea ? true : c.Age + person.BirthYear == competitionYear)).FirstOrDefault();
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Update all <see cref="PersonStart"/> objects for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
+        /// </summary>
+        /// <param name="person"><see cref="Person"/> to update</param>
+        /// <param name="competitionYear">Year in which the competition takes place</param>
+        public void UpdateAllCompetitionsForPersonStarts(Person person, ushort competitionYear)
+        {
+            foreach(PersonStart personStart in _personService.GetAllPersonStartsForPerson(person))
+            {
+                Competition competition = GetCompetitionForPerson(person, personStart.Style, competitionYear);
+                if (competition != null)
+                {
+                    personStart.CompetitionObj = competition;
+                }
+            }
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Update all <see cref="PersonStart"/> objects with the corresponding <see cref="Competition"/> objects
+        /// </summary>
+        /// <param name="competitionYear">Year in which the competition takes place</param>
+        public void UpdateAllCompetitionsForPersonStarts(ushort competitionYear)
+        {
+            foreach (Person person in _personService.GetPersons())
+            {
+                UpdateAllCompetitionsForPersonStarts(person, competitionYear);
+            }
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -225,22 +258,45 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
         public async Task<List<CompetitionRaces>> CalculateCompetitionRaces(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
         {
-            // Collect all starts and corresponding competitions
+            // Collect all starts
+            UpdateAllCompetitionsForPersonStarts(competitionYear);
             List<PersonStart> starts = _personService.GetAllPersonStarts();
-            List<Competition> startCompetitions = starts.Select(s => GetCompetitionForPerson(s.PersonObj, s.Style, competitionYear)).ToList();
 
-            // Create groups of competitions with same style and distance and save the indices in the original array
-            Dictionary<(SwimmingStyles, int), List<int>> groupedValues = new Dictionary<(SwimmingStyles, int), List<int>>();
-            for(int i = 0; i < Math.Min(starts.Count, startCompetitions.Count); i++)
+            // Create groups of competitions with same style and distance
+            Dictionary<(SwimmingStyles, ushort), List<PersonStart>> groupedValuesStarts = new Dictionary<(SwimmingStyles, ushort), List<PersonStart>>();
+            for (int i = 0; i < starts.Count; i++)
             {
-                if (startCompetitions[i] == null) { continue; }
+                if (starts[i].CompetitionObj == null) { continue; }
 
-                (SwimmingStyles, int) key = (startCompetitions[i].SwimmingStyle, startCompetitions[i].Distance);
-                if (!groupedValues.ContainsKey(key))
+                (SwimmingStyles, ushort) key = (starts[i].CompetitionObj.SwimmingStyle, starts[i].CompetitionObj.Distance);
+                if (!groupedValuesStarts.ContainsKey(key))
+                {
+                    groupedValuesStarts.Add(key, new List<PersonStart>());
+                }
+                else if(groupedValuesStarts[key] == null)
+                {
+                    groupedValuesStarts[key] = new List<PersonStart>();
+                }
+                groupedValuesStarts[key].Add(starts[i]);
+            }
+
+            int numberOfResultsToGenerate = 100;
+            CompetitionRaceGenerator generator = new CompetitionRaceGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 90);
+            LastCalculatedCompetitionRaces = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
+
+#if false
+            // Create groups of competitions with same style and distance
+            Dictionary<(SwimmingStyles, ushort), List<int>> groupedValues = new Dictionary<(SwimmingStyles, ushort), List<int>>();
+            for (int i = 0; i < starts.Count; i++)
+            {
+                if (starts[i].CompetitionObj == null) { continue; }
+
+                (SwimmingStyles, ushort) key = (starts[i].CompetitionObj.SwimmingStyle, starts[i].CompetitionObj.Distance);
+                if (!groupedValuesStarts.ContainsKey(key))
                 {
                     groupedValues.Add(key, new List<int>());
                 }
-                else if(groupedValues[key] == null)
+                else if (groupedValuesStarts[key] == null)
                 {
                     groupedValues[key] = new List<int>();
                 }
@@ -248,9 +304,9 @@ namespace Vereinsmeisterschaften.Core.Services
             }
 
             int numberOfResultsToGenerate = 100;
-            EvolutionaryGroupGenerator<int> generator = new EvolutionaryGroupGenerator<int>(groupedValues.Values.ToList(), numberOfResultsToGenerate, 300, numberAvailableSwimLanes, 0.25,
+            EvolutionaryGroupGenerator<int> generator2 = new EvolutionaryGroupGenerator<int>(groupedValues.Values.ToList(), numberOfResultsToGenerate, 300, numberAvailableSwimLanes, 0.25,
                 progress => onProgress?.Invoke(this, (float)progress, ""));
-            List<List<List<int>>> results = await generator.GenerateAsync(cancellationToken);
+            List<List<List<int>>> results = await generator2.GenerateAsync(cancellationToken);
 
             LastCalculatedCompetitionRaces = new List<CompetitionRaces>();
             foreach (List<List<int>> combination in results)
@@ -260,13 +316,15 @@ namespace Vereinsmeisterschaften.Core.Services
                 CompetitionRaces competitionRaces = new CompetitionRaces();
                 foreach(List<int> group in combination)
                 {
-                    Race race = new Race(group.Select(index => starts[index]).ToList(), group.Select(index => startCompetitions[index]).ToList());
+                    Race race = new Race(group.Select(index => starts[index]).ToList());
                     competitionRaces.Races.Add(race);
                 }
                 LastCalculatedCompetitionRaces.Add(competitionRaces);
             }
 
             LastCalculatedCompetitionRaces = LastCalculatedCompetitionRaces.OrderByDescending(compRace => compRace.CalculateScore()).ToList();
+#endif
+
             return LastCalculatedCompetitionRaces?.Count == 0 ? null : LastCalculatedCompetitionRaces;
         }
     }

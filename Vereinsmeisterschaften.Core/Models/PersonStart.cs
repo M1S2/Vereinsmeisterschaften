@@ -58,6 +58,13 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _isHighlighted, value);
         }
 
+        private Competition _competitionObj;
+        public Competition CompetitionObj
+        {
+            get => _competitionObj;
+            set => SetProperty(ref _competitionObj, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
@@ -88,7 +95,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-            => $"Start for {PersonObj} in {Style}";
+            => $"Start for {PersonObj} in {Style}" + (CompetitionObj != null ? $" (Distance: {CompetitionObj.Distance}m)" : "");
 
         /// <summary>
         /// Create a new object that has the same property values than this one

@@ -124,8 +124,8 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.ScoreSameStyleSequenceString}"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreSameStyleSequence, StringFormat={}{0:N2}%}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.ScorePersonGapsString}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScorePersonGaps, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.ScorePersonStartPausesString}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScorePersonStartPauses, StringFormat={}{0:N2}%}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStyleOrderString}"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreStyleOrder, StringFormat={}{0:N2}%}"/>

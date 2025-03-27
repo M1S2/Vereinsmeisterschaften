@@ -300,7 +300,7 @@
   <data name="ScoreSameStyleSequenceString" xml:space="preserve">
     <value>Bewertung gleiche Lage in Reihe</value>
   </data>
-  <data name="ScorePersonGapsString" xml:space="preserve">
+  <data name="ScorePersonStartPausesString" xml:space="preserve">
     <value>Bewertung Pausen für Personen</value>
   </data>
   <data name="ScoreStyleOrderString" xml:space="preserve">

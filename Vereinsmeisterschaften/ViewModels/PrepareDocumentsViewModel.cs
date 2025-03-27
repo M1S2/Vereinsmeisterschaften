@@ -36,8 +36,6 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             {
                 SetProperty(ref _indexCurrentCompetitionRace, value);
                 CurrentCompetitionRace = CalculatedCompetitionRaces[_indexCurrentCompetitionRace];
-
-                CurrentCompetitionRace.CalculateScore();
             }
         }
     }
@@ -171,15 +169,13 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         List<PersonStart> personStarts = _personService.GetAllPersonStarts();
         foreach(PersonStart personStart in personStarts)
         {
-            Competition startCompetition = _competitionService.GetCompetitionForPerson(personStart.PersonObj, personStart.Style, _workspaceService?.Settings?.CompetitionYear ?? 0);
-
             switch (HighlightPersonStartMode)
             {
                 case HighlightPersonStartModes.Person: personStart.IsHighlighted = personStart.PersonObj.Equals(HighlightedPerson); break;
                 case HighlightPersonStartModes.SwimmingStyle: personStart.IsHighlighted = personStart.Style.Equals(HighlightedSwimmingStyle); break;
-                case HighlightPersonStartModes.All50m: personStart.IsHighlighted = startCompetition?.Distance == 50; break;
-                case HighlightPersonStartModes.All100m: personStart.IsHighlighted = startCompetition?.Distance == 100; break;
-                case HighlightPersonStartModes.All200m: personStart.IsHighlighted = startCompetition?.Distance == 200; break;
+                case HighlightPersonStartModes.All50m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 50; break;
+                case HighlightPersonStartModes.All100m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 100; break;
+                case HighlightPersonStartModes.All200m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 200; break;
                 case HighlightPersonStartModes.None: personStart.IsHighlighted = false; break;
                 default: personStart.IsHighlighted = false; break;
             }

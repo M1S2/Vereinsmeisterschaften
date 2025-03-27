@@ -12,27 +12,23 @@ namespace Vereinsmeisterschaften.Core.Models
     public class Race : ObservableObject
     {
         public ObservableCollection<PersonStart> Starts { get; set; }
-        public ObservableCollection<Competition> Competitions { get; set; }
 
         public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
-        public int Distance => Competitions?.FirstOrDefault()?.Distance ?? 0;
+        public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
 
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();
-            Competitions = new ObservableCollection<Competition>();
         }
 
-        public Race(List<PersonStart> starts, List<Competition> competitions)
+        public Race(List<PersonStart> starts)
         {
-            Starts = new ObservableCollection<PersonStart>(starts);
-            Competitions = new ObservableCollection<Competition>(competitions);
+            Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
         }
 
-        public Race(ObservableCollection<PersonStart> starts, ObservableCollection<Competition> competitions)
+        public Race(ObservableCollection<PersonStart> starts)
         {
             Starts = starts;
-            Competitions = competitions;
         }
     }
 }

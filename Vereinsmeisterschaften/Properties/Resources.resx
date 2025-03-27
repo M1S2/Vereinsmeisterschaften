@@ -300,8 +300,8 @@
   <data name="ScoreSameStyleSequenceString" xml:space="preserve">
     <value>Score Same Style Sequence</value>
   </data>
-  <data name="ScorePersonGapsString" xml:space="preserve">
-    <value>Score Person Gaps</value>
+  <data name="ScorePersonStartPausesString" xml:space="preserve">
+    <value>Score Person Pauses</value>
   </data>
   <data name="ScoreStyleOrderString" xml:space="preserve">
     <value>Score Style Order</value>

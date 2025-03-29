@@ -14,6 +14,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         public PersonStart(PersonStart other) : this()
         {
+            if (other == null) { return; }
             this.PersonObj = other.PersonObj;
             this.Style = other.Style;
             this.Time = other.Time;

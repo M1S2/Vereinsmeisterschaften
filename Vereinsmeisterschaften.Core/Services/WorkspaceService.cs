@@ -16,10 +16,12 @@ namespace Vereinsmeisterschaften.Core.Services
         public const string WorkspaceSettingsFileName = "WorkspaceSettings.csv";
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
+        public const string BestRaceFileName = "BestRace.csv";
 
         public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
         public string PersonFilePath => Path.Combine(PersistentPath, PersonFileName);
         public string CompetitionsFilePath => Path.Combine(PersistentPath, CompetitionsFileName);
+        public string BestRaceFilePath => Path.Combine(PersistentPath, BestRaceFileName);
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -54,6 +56,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool HasUnsavedChanges => IsWorkspaceOpen && 
                                         ((_personService?.HasUnsavedChanges ?? false) || 
                                          (_competitionService?.HasUnsavedChanges ?? false) ||
+                                         (_raceService?.HasUnsavedChanges ?? false) ||
                                          (Settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true)));
 
 
@@ -85,14 +88,23 @@ namespace Vereinsmeisterschaften.Core.Services
             _raceService = raceService;
             _fileService = fileService;
             IsWorkspaceOpen = false;
-            _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 2, "Loading persons...");
-            _competitionService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, 50 + (p / 2), "Loading competitions...");
+            _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 3, "Loading persons...");
+            _competitionService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, (100 / 3) + (p / 3), "Loading competitions...");
+            _raceService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, (2 * (100 / 3)) + (p / 3), "Loading best race...");
 
             _personService.PropertyChanged += (sender, e) =>
             {
                 switch(e.PropertyName)
                 {
                     case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    default: break;
+                }
+            };
+            _raceService.PropertyChanged += (sender, e) =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(RaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
                     default: break;
                 }
             };
@@ -133,6 +145,12 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Competitions
                 openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
+                if (!openResult) { return openResult; }
+
+                _competitionService.UpdateAllCompetitionsForPersonStarts(Settings?.CompetitionYear ?? 0);
+
+                // Best Race
+                openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);
 
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -176,6 +194,9 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Competitions
                 saveResult = await _competitionService.Save(cancellationToken, CompetitionsFilePath);
 
+                // Best Race
+                saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
+
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChanged(nameof(HasUnsavedChanges));
             }
@@ -210,6 +231,7 @@ namespace Vereinsmeisterschaften.Core.Services
             _personService.ClearAll();
             _competitionService.ClearAll();
             _raceService.LastCalculatedCompetitionRaces = null;
+            _raceService.BestCompetitionRaces = null;
             PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
             

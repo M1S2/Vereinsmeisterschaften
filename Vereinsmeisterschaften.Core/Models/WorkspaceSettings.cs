@@ -23,11 +23,13 @@ namespace Vereinsmeisterschaften.Core.Models
 
         public WorkspaceSettings()
         {
+            CompetitionYear = 0;
         }
 
         public WorkspaceSettings(WorkspaceSettings other)
         {
-            CompetitionYear = other?.CompetitionYear ?? 0;
+            if (other == null) { return; }
+            CompetitionYear = other.CompetitionYear;
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

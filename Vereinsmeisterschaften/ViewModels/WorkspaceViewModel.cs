@@ -83,15 +83,14 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             try
             {
-                if (_workspaceService?.IsWorkspaceOpen ?? false)
-                {
-                    await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
-                }
-
                 FolderBrowserDialog folderDialog = new FolderBrowserDialog();
                 folderDialog.InitialDirectory = CurrentWorkspaceFolder;
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
+                    if (_workspaceService?.IsWorkspaceOpen ?? false)
+                    {
+                        await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
+                    }
                     await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
                     OnPropertyChanged(nameof(NumberPersons));
                     OnPropertyChanged(nameof(NumberStarts));

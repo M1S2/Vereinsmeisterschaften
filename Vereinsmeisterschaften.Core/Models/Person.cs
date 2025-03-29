@@ -25,6 +25,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         public Person(Person other) : this()
         {
+            if (other == null) { return; }
             this.Name = other.Name;
             this.FirstName = other.FirstName;
             this.Gender = other.Gender;

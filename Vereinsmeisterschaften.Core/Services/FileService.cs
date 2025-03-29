@@ -41,19 +41,24 @@ public class FileService : IFileService
         }
     }
 
-    public void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, char delimiter = ';')
+    public void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';')
     {
         // https://stackoverflow.com/questions/25683161/fastest-way-to-convert-a-list-of-objects-to-csv-with-each-object-values-in-a-new
         onProgress?.Invoke(this, 0);
         List<string> lines = new List<string>();
         List<PropertyDescriptor> props = TypeDescriptor.GetProperties(typeof(T)).OfType<PropertyDescriptor>().ToList();
-        List<string> headers = props.Where(p => p.Attributes.OfType<FileServiceIgnoreAttribute>().Count() == 0).Select(p => p.Name).ToList();
-        lines.Add(string.Join(delimiter.ToString(), headers));
+        props = props.Where(p => p.Attributes.OfType<FileServiceIgnoreAttribute>().Count() == 0).ToList();
+
+        List<string> originalHeaders = props.Select(p => p.Name).ToList();
+        List<string> formatedHeaders = props.Select(p => formatDataHeader == null ? p.Name : formatDataHeader(p.Name, p.PropertyType)).ToList();
+
+        lines.Add(string.Join(delimiter.ToString(), formatedHeaders));
+                
         int processedElementsCnt = 0;
         foreach (T data in dataList)
         {
             string line = string.Empty;
-            foreach (string header in headers)
+            foreach (string header in originalHeaders)
             {
                 object dataObj = typeof(T).GetProperty(header)?.GetValue(data, null);
                 if(formatData != null)

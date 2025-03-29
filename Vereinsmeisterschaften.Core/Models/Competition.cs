@@ -17,6 +17,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         public Competition(Competition other) : this()
         {
+            if (other == null) { return; }
             this.ID = other.ID;
             this.Gender = other.Gender;
             this.SwimmingStyle = other.SwimmingStyle;

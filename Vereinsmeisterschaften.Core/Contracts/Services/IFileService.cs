@@ -17,8 +17,9 @@ public interface IFileService
     /// <param name="cancellationToken">Used to cancel the save process</param>
     /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report save progress</param>
     /// <param name="formatData">Callback that can be used to format the data. Use <see langword="null"/> to use the default ToString method</param>
+    /// <param name="formatDataHeader">Callback that can be used to format the data headers. Use <see langword="null"/> to use the default header</param>
     /// <param name="delimiter">Delimiter for the .csv file</param>
-    void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, char delimiter = ';');
+    void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';');
 
     /// <summary>
     /// Load the .csv file to a list of data

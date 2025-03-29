@@ -19,12 +19,11 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 {
     #region Calculated Races
 
-    private List<CompetitionRaces> _calculatedCompetitionRaces;
-    public List<CompetitionRaces> CalculatedCompetitionRaces
-    {
-        get => _calculatedCompetitionRaces;
-        set => SetProperty(ref _calculatedCompetitionRaces, value);
-    }
+    public List<CompetitionRaces> CalculatedCompetitionRaces => _raceService?.LastCalculatedCompetitionRaces;
+
+    public CompetitionRaces BestCompetitionRaces => _raceService?.BestCompetitionRaces;
+
+    public bool AreRacesAvailable => CalculatedCompetitionRaces?.Count > 0 || BestCompetitionRaces != null;
 
     private int _indexCurrentCompetitionRace;
     public int IndexCurrentCompetitionRace
@@ -36,6 +35,11 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             {
                 SetProperty(ref _indexCurrentCompetitionRace, value);
                 CurrentCompetitionRace = CalculatedCompetitionRaces[_indexCurrentCompetitionRace];
+            }
+            else if(value == -1)
+            {
+                SetProperty(ref _indexCurrentCompetitionRace, value);
+                CurrentCompetitionRace = BestCompetitionRaces;
             }
         }
     }
@@ -130,8 +134,11 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
         try
         {
-            CalculatedCompetitionRaces = await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
+            await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
             IndexCurrentCompetitionRace = 0;
+            OnPropertyChanged(nameof(CalculatedCompetitionRaces));
+            OnPropertyChanged(nameof(BestCompetitionRaces));
+            OnPropertyChanged(nameof(AreRacesAvailable));
         }
         catch (OperationCanceledException)
         {
@@ -154,8 +161,10 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        CalculatedCompetitionRaces = _raceService?.LastCalculatedCompetitionRaces;
-        IndexCurrentCompetitionRace = 0;
+        OnPropertyChanged(nameof(CalculatedCompetitionRaces));
+        OnPropertyChanged(nameof(BestCompetitionRaces));
+        OnPropertyChanged(nameof(AreRacesAvailable));
+        IndexCurrentCompetitionRaceDisplay = BestCompetitionRaces == null ? 1 : 0;
     }
 
     public void OnNavigatedFrom()

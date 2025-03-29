@@ -10,7 +10,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class that represents a combination of all single races.
     /// </summary>
-    public class CompetitionRaces : ObservableObject
+    public class CompetitionRaces : ObservableObject, IEquatable<CompetitionRaces>, ICloneable
     {
         /// <summary>
         /// List with races
@@ -25,12 +25,24 @@ namespace Vereinsmeisterschaften.Core.Models
         public CompetitionRaces(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
+            CalculateScore();
         }
 
         public CompetitionRaces(ObservableCollection<Race> races)
         {
             Races = races;
+            CalculateScore();
         }
+
+        public CompetitionRaces(CompetitionRaces other) : this()
+        {
+            if(other == null) { return; }
+            // Create a deep copy of the list
+            Races = new ObservableCollection<Race>(other.Races.Select(item => (Race)item.Clone()));
+            CalculateScore();
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Overall score. This combines all single score using weights.
@@ -263,5 +275,37 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             return Math.Max(min, Math.Min(max, value));
         }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Compare if two <see cref="CompetitionRaces"/> are equal
+        /// </summary>
+        /// <param name="obj">Other <see cref="CompetitionRaces"/> to compare against this instance.</param>
+        /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="CompetitionRaces"/></returns>
+        public override bool Equals(object obj)
+            => obj is CompetitionRaces r && r.Score == Score && r.Races.SequenceEqual(Races);
+
+        /// <summary>
+        /// Indicates wheather the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">Other object to compare.</param>
+        /// <returns>true if the current object is equal to the other parameter; otherwise false.</returns>
+        public bool Equals(CompetitionRaces other)
+            => Equals((object)other);
+
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
+        public override int GetHashCode()
+            => (Races, Score).GetHashCode();
+
+        /// <summary>
+        /// Create a new object that has the same property values than this one
+        /// </summary>
+        /// <returns>Cloned object of type</returns>
+        public object Clone()
+            => new CompetitionRaces(this);
     }
 }

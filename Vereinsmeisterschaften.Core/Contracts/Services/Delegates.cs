@@ -20,6 +20,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public delegate string FormatDataDelegate(object data);
 
     /// <summary>
+    /// Delegate to format data headers
+    /// </summary>
+    /// <param name="header">Input header to format</param>
+    /// <param name="type">Type of the header object</param>
+    /// <returns>Return the formated object as string</returns>
+    public delegate string FormatDataHeaderDelegate(string header, Type type);
+
+    /// <summary>
     /// Delegate to change a specific property in the data object
     /// </summary>
     /// <typeparam name="T">Type of the data object</typeparam>

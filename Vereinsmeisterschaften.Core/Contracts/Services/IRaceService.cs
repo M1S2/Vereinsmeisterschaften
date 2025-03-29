@@ -10,12 +10,17 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <summary>
     /// Interface for a service used to manage Race objects
     /// </summary>
-    public interface IRaceService : INotifyPropertyChanged //, ISaveable
+    public interface IRaceService : INotifyPropertyChanged, ISaveable
     {
         /// <summary>
         /// List with the the <see cref="CompetitionRaces"/> of the last time <see cref="CalculateRunOrder(ushort, CancellationToken, int, ProgressDelegate)"/> was called
         /// </summary>
         List<CompetitionRaces> LastCalculatedCompetitionRaces { get; set; }
+
+        /// <summary>
+        /// <see cref="CompetitionRaces"/> object that is marked as best result.
+        /// </summary>
+        CompetitionRaces BestCompetitionRaces { get; set; }
 
         /// <summary>
         /// Calculate some combination variants for all person starts

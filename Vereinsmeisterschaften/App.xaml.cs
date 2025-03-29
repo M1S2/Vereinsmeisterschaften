@@ -75,6 +75,7 @@ public partial class App : Application
         services.AddSingleton<ICompetitionService, CompetitionService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
+        services.AddSingleton<IRaceService, RaceService>();
 
         services.AddSingleton<IDialogCoordinator>(DialogCoordinator.Instance);
 

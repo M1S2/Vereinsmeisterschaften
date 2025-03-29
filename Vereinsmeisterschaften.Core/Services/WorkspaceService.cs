@@ -75,12 +75,14 @@ namespace Vereinsmeisterschaften.Core.Services
         private WorkspaceSettings _settingsPersistedInFile;
         private IPersonService _personService;
         private ICompetitionService _competitionService;
+        private IRaceService _raceService;
         private IFileService _fileService;
 
-        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, IFileService fileService)
+        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, IRaceService raceService, IFileService fileService)
         {
             _personService = personService;
             _competitionService = competitionService;
+            _raceService = raceService;
             _fileService = fileService;
             IsWorkspaceOpen = false;
             _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 2, "Loading persons...");
@@ -207,7 +209,7 @@ namespace Vereinsmeisterschaften.Core.Services
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();
-            _competitionService.LastCalculatedCompetitionRaces = null;
+            _raceService.LastCalculatedCompetitionRaces = null;
             PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
             

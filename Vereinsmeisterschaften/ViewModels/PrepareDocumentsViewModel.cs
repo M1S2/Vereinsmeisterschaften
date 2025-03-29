@@ -94,15 +94,15 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    private ICompetitionService _competitionService;
+    private IRaceService _raceService;
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
     private ProgressDialogController _progressController;
 
-    public PrepareDocumentsViewModel(ICompetitionService competitionService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    public PrepareDocumentsViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
-        _competitionService = competitionService;
+        _raceService = raceService;
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
@@ -130,7 +130,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
         try
         {
-            CalculatedCompetitionRaces = await _competitionService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
+            CalculatedCompetitionRaces = await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
             IndexCurrentCompetitionRace = 0;
         }
         catch (OperationCanceledException)
@@ -154,7 +154,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        CalculatedCompetitionRaces = _competitionService?.LastCalculatedCompetitionRaces;
+        CalculatedCompetitionRaces = _raceService?.LastCalculatedCompetitionRaces;
         IndexCurrentCompetitionRace = 0;
     }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
@@ -63,8 +64,17 @@ namespace Vereinsmeisterschaften.Core.Services
         public CompetitionRaces BestCompetitionRaces
         {
             get => _bestCompetitionRaces;
-            set { SetProperty(ref _bestCompetitionRaces, value); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+            set
+            {
+                if (_bestCompetitionRaces != null) { _bestCompetitionRaces.PropertyChanged -= _bestCompetitionRaces_PropertyChanged; }
+                SetProperty(ref _bestCompetitionRaces, value);
+                OnPropertyChanged(nameof(HasUnsavedChanges));
+                if (_bestCompetitionRaces != null) { _bestCompetitionRaces.PropertyChanged += _bestCompetitionRaces_PropertyChanged; }
+            }
         }
+
+        private void _bestCompetitionRaces_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => OnPropertyChanged(nameof(HasUnsavedChanges));
 
         /// <summary>
         /// <see cref="CompetitionRaces"/> object that is marked as best result at the time the <see cref="Load(string, CancellationToken)"/> method was called.

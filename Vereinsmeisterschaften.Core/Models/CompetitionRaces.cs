@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Net.NetworkInformation;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
@@ -20,18 +22,23 @@ namespace Vereinsmeisterschaften.Core.Models
         public CompetitionRaces()
         {
             Races = new ObservableCollection<Race>();
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
         }
 
         public CompetitionRaces(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
             CalculateScore();
+            updateRaceStartsCollectionChangedEvent();
         }
 
         public CompetitionRaces(ObservableCollection<Race> races)
         {
             Races = races;
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
             CalculateScore();
+            updateRaceStartsCollectionChangedEvent();
         }
 
         public CompetitionRaces(CompetitionRaces other) : this()
@@ -39,7 +46,25 @@ namespace Vereinsmeisterschaften.Core.Models
             if(other == null) { return; }
             // Create a deep copy of the list
             Races = new ObservableCollection<Race>(other.Races.Select(item => (Race)item.Clone()));
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
             CalculateScore();
+            updateRaceStartsCollectionChangedEvent();
+        }
+
+        private void updateRaceStartsCollectionChangedEvent()
+        {
+            OnPropertyChanged(nameof(Races));
+            foreach (Race race in Races)
+            {
+                race.Starts.CollectionChanged -= collectionChangedEventHandler;
+                race.Starts.CollectionChanged += collectionChangedEventHandler;
+            }
+        }
+
+        private void collectionChangedEventHandler(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            CalculateScore();
+            OnPropertyChanged(nameof(Races));
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

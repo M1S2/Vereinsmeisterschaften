@@ -98,6 +98,10 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler();
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     private IRaceService _raceService;
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;

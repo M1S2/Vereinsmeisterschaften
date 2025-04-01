@@ -306,4 +306,8 @@
   <data name="ScoreStyleOrderString" xml:space="preserve">
     <value>Score Style Order</value>
   </data>
+  <data name="PersonStartDragDropErrorString" xml:space="preserve">
+    <value>No dropping allowed here
+(incompatible styles/distances or too many items)</value>
+  </data>
 </root>

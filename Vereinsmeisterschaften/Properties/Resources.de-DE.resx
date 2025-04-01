@@ -306,4 +306,8 @@
   <data name="ScoreStyleOrderString" xml:space="preserve">
     <value>Bewertung Lagenreihenfolge</value>
   </data>
+  <data name="PersonStartDragDropErrorString" xml:space="preserve">
+    <value>Kein Verschieben möglich
+(inkompatible Stile/Distanzen oder zu viele Elemente)</value>
+  </data>
 </root>

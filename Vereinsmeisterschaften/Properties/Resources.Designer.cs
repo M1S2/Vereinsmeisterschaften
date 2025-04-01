@@ -322,6 +322,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No dropping allowed here
+        ///(incompatible styles/distances or too many items) ähnelt.
+        /// </summary>
+        public static string PersonStartDragDropErrorString {
+            get {
+                return ResourceManager.GetString("PersonStartDragDropErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die PrepareDocuments ähnelt.
         /// </summary>
         public static string PrepareDocumentsPageTitle {

@@ -54,7 +54,32 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
     public CompetitionRaces CurrentCompetitionRace
     {
         get => _currentCompetitionRace;
-        set => SetProperty(ref _currentCompetitionRace, value);
+        set { SetProperty(ref _currentCompetitionRace, value); updateNotAssignedStarts(); }
+    }
+
+    private List<PersonStart> _notAssignedStarts;
+    public List<PersonStart> NotAssignedStarts
+    {
+        get => _notAssignedStarts;
+        set => SetProperty(ref _notAssignedStarts, value);
+    }
+
+    private void updateNotAssignedStarts()
+    {
+        List<PersonStart> allStarts = _personService?.GetAllPersonStarts();
+        List<PersonStart> raceStarts = CurrentCompetitionRace?.GetAllStarts();
+        if (allStarts == null)
+        {
+            NotAssignedStarts = new List<PersonStart>();
+        }
+        else if(raceStarts == null)
+        {
+            NotAssignedStarts = allStarts;
+        }
+        else
+        {
+            NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
+        }
     }
 
     #endregion
@@ -114,6 +139,27 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+
+        if (BestCompetitionRaces != null) { BestCompetitionRaces.PropertyChanged += (sender, e) => updateNotAssignedStarts(); }
+
+        updateNotAssignedStarts();
+
+        _raceService.PropertyChanged += (sender, e) =>
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(RaceService.BestCompetitionRaces):
+                    OnPropertyChanged(nameof(BestCompetitionRaces));
+                    if (BestCompetitionRaces != null) { BestCompetitionRaces.PropertyChanged += (sender, e) => updateNotAssignedStarts(); }
+                    break;
+                case nameof(RaceService.CalculateCompetitionRaces):
+                    OnPropertyChanged(nameof(CalculatedCompetitionRaces));
+                    OnPropertyChanged(nameof(AreRacesAvailable));
+                    break;
+                default:
+                    break;
+            }
+        };
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -142,6 +188,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             IndexCurrentCompetitionRace = 0;
             OnPropertyChanged(nameof(CalculatedCompetitionRaces));
             OnPropertyChanged(nameof(BestCompetitionRaces));
+            OnPropertyChanged(nameof(NotAssignedStarts));
             OnPropertyChanged(nameof(AreRacesAvailable));
         }
         catch (OperationCanceledException)
@@ -167,6 +214,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
     {
         OnPropertyChanged(nameof(CalculatedCompetitionRaces));
         OnPropertyChanged(nameof(BestCompetitionRaces));
+        OnPropertyChanged(nameof(NotAssignedStarts));
         OnPropertyChanged(nameof(AreRacesAvailable));
         IndexCurrentCompetitionRaceDisplay = BestCompetitionRaces == null ? 1 : 0;
     }

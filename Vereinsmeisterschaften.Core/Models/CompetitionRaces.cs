@@ -70,6 +70,17 @@ namespace Vereinsmeisterschaften.Core.Models
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
+        /// Get a list with all <see cref="PersonStart"> objects of this <see cref="CompetitionRaces"/>
+        /// </summary>
+        /// <returns>List with all <see cref="PersonStart"/> objects of this <see cref="CompetitionRaces"/></returns>
+        public List<PersonStart> GetAllStarts()
+        {
+            return Races.SelectMany(r => r.Starts).ToList();
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
         /// Overall score. This combines all single score using weights.
         /// </summary>
         public double Score

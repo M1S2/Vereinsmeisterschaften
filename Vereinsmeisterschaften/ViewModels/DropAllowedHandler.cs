@@ -30,7 +30,6 @@ namespace Vereinsmeisterschaften.ViewModels
                 dropInfo.DropTargetHintState = DropHintState.Error;
                 dropInfo.DropHintText = Properties.Resources.PersonStartDragDropErrorString;
                 dropInfo.Effects = DragDropEffects.None;
-                return;
             }
         }
 
@@ -45,16 +44,37 @@ namespace Vereinsmeisterschaften.ViewModels
         // only allow drag and drop if the source and destination items have the same swimming style and distance and limit the number of items in the target collection to MaxItemsInTargetCollection
         private bool dropAllowed(IDropInfo dropInfo)
         {
-            ICollection sourceList = dropInfo.DragInfo.SourceCollection as ICollection;
-            ICollection targetList = dropInfo.TargetCollection as ICollection;
-            
-            return CanAcceptData(dropInfo) &&
-                   dropInfo.DragInfo.SourceItem is PersonStart dragItem &&
-                   dropInfo.TargetItem is PersonStart dropItem &&
-                   dragItem.Style == dropItem.Style &&
-                   dragItem.CompetitionObj?.Distance == dropItem.CompetitionObj?.Distance &&
-                   (targetList == sourceList ||
-                   targetList != sourceList && targetList.Count + 1 <= MaxItemsInTargetCollection);
+            ICollection sourceCollection = dropInfo.DragInfo.SourceCollection as ICollection;
+            ICollection targetCollection = dropInfo.TargetCollection as ICollection;
+
+            PersonStart dragItem = dropInfo.DragInfo.SourceItem as PersonStart;
+            PersonStart dropItem = dropInfo.TargetItem as PersonStart;
+
+            bool dropAllowed = (targetCollection == sourceCollection ||
+                                targetCollection != sourceCollection && targetCollection.Count + 1 <= MaxItemsInTargetCollection);
+            if (!CanAcceptData(dropInfo))
+            {
+                return false;
+            }
+            else if (dragItem != null && dropItem != null)
+            {
+                return dropAllowed && 
+                       dragItem.Style == dropItem.Style &&
+                       dragItem.CompetitionObj?.Distance == dropItem.CompetitionObj?.Distance;
+            }
+            else if (dragItem != null && dropItem == null && targetCollection.Count == 0)
+            {
+                return dropAllowed;
+            }
+            else if (dragItem != null && dropItem == null && targetCollection.Count > 0)
+            {
+                PersonStart firstStart = (targetCollection as IList)?.Cast<PersonStart>().FirstOrDefault();
+
+                return dropAllowed &&
+                       dragItem.Style == firstStart?.Style &&
+                       dragItem.CompetitionObj?.Distance == firstStart?.CompetitionObj?.Distance;
+            }
+            return false;
         }
 
     }

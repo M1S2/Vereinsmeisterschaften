@@ -11,24 +11,53 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Race : ObservableObject, IEquatable<Race>, ICloneable
     {
+        /// <summary>
+        /// List with all starts of this <see cref="Race"/>
+        /// </summary>
         public ObservableCollection<PersonStart> Starts { get; set; }
 
+        /// <summary>
+        /// <see cref="SwimmingStyles"> for this <see cref="Race"/>. This is the <see cref="SwimmingStyles"/>> from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
+        /// </summary>
         public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+
+        /// <summary>
+        /// Distance for this <see cref="Race"/>. This is the distance from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
+        /// </summary>
         public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
+
+        /// <summary>
+        /// A <see cref="Race"/> is considered as valid, when:
+        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
+        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
+        /// </summary>
+        public bool IsValid => Starts?.GroupBy(s => s?.CompetitionObj?.Distance).Count() == 1 &&
+                               Starts?.GroupBy(s => s?.Style).Count() == 1;
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();
+            Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
         }
 
         public Race(List<PersonStart> starts)
         {
             Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
+            if(Starts != null)
+            {
+                Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+            }
         }
 
         public Race(ObservableCollection<PersonStart> starts)
         {
             Starts = starts;
+            if (Starts != null)
+            {
+                Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+            }
         }
 
         public Race(Race other) : this()
@@ -36,6 +65,7 @@ namespace Vereinsmeisterschaften.Core.Models
             if (other == null) { return; }
             // Create a deep copy of the list
             Starts = new ObservableCollection<PersonStart>(other.Starts.Select(item => (PersonStart)item.Clone()));
+            Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

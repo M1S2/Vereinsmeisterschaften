@@ -54,7 +54,21 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
     public CompetitionRaces CurrentCompetitionRace
     {
         get => _currentCompetitionRace;
-        set { SetProperty(ref _currentCompetitionRace, value); updateNotAssignedStarts(); }
+        set
+        {
+            SetProperty(ref _currentCompetitionRace, value);
+            updateNotAssignedStarts();
+            if (_currentCompetitionRace != null)
+            {
+                _currentCompetitionRace.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == nameof(CompetitionRaces.IsValid))
+                    {
+                        OnPropertyChanged(nameof(CurrentCompetitionRaceIsValid));
+                    }
+                };
+            }
+        }
     }
 
     private List<PersonStart> _notAssignedStarts;
@@ -81,6 +95,13 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
         }
     }
+
+    /// <summary>
+    /// The <see cref="CurrentCompetitionRace"/> is consideres valid when:
+    /// - The <see cref="CompetitionRaces.IsValid"/> property is true
+    /// - There are no empty unassigned races
+    /// </summary>
+    public bool CurrentCompetitionRaceIsValid => (CurrentCompetitionRace?.IsValid ?? true) && NotAssignedStarts.Count == 0;
 
     #endregion
 
@@ -124,6 +145,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler();
+
+    public DropAllowedHandlerParkingLot DropAllowedHandlerParkingLotObj { get; } = new DropAllowedHandlerParkingLot();
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -203,6 +226,21 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         finally
         {
             await _progressController?.CloseAsync();
+        }
+    }));
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Other Commands
+
+    private ICommand _addNewRaceCommand;
+    public ICommand AddNewRaceCommand => _addNewRaceCommand ?? (_addNewRaceCommand = new RelayCommand(() =>
+    {
+        if(CurrentCompetitionRace != null)
+        {
+            CurrentCompetitionRace.Races.Add(new Race());
         }
     }));
 

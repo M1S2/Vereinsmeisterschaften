@@ -310,4 +310,7 @@
     <value>No dropping allowed here
 (incompatible styles/distances or too many items)</value>
   </data>
+  <data name="AddEmptyRaceString" xml:space="preserve">
+    <value>Add new empty race</value>
+  </data>
 </root>

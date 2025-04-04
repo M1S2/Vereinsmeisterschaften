@@ -149,7 +149,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        BestCompetitionRaces = null;
+                        BestCompetitionRaces = new CompetitionRaces();
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else

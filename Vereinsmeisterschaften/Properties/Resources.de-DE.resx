@@ -310,4 +310,7 @@
     <value>Kein Verschieben möglich
 (inkompatible Stile/Distanzen oder zu viele Elemente)</value>
   </data>
+  <data name="AddEmptyRaceString" xml:space="preserve">
+    <value>Neues leeres Rennen hinzufügen</value>
+  </data>
 </root>

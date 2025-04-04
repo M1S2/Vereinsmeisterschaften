@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new empty race ähnelt.
+        /// </summary>
+        public static string AddEmptyRaceString {
+            get {
+                return ResourceManager.GetString("AddEmptyRaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vereinsmeisterschaften ähnelt.
         /// </summary>
         public static string AppDisplayName {

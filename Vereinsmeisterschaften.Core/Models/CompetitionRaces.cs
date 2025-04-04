@@ -19,16 +19,26 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         public ObservableCollection<Race> Races { get; set; }
 
+        /// <summary>
+        /// The <see cref="CompetitionRaces"/> is consideres valid when:
+        /// - All <see cref="Races"/> are valid
+        /// - There are no empty races (with 0 starts)
+        /// </summary>
+        public bool IsValid => Races?.All(r => r.IsValid) ?? true &&
+                               Races?.Count(r => r.Starts.Count == 0) == 0;
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         public CompetitionRaces()
         {
             Races = new ObservableCollection<Race>();
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
         }
 
         public CompetitionRaces(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
             CalculateScore();
             updateRaceStartsCollectionChangedEvent();
         }
@@ -36,7 +46,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public CompetitionRaces(ObservableCollection<Race> races)
         {
             Races = races;
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
             CalculateScore();
             updateRaceStartsCollectionChangedEvent();
         }
@@ -46,7 +56,7 @@ namespace Vereinsmeisterschaften.Core.Models
             if(other == null) { return; }
             // Create a deep copy of the list
             Races = new ObservableCollection<Race>(other.Races.Select(item => (Race)item.Clone()));
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); };
+            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
             CalculateScore();
             updateRaceStartsCollectionChangedEvent();
         }
@@ -65,6 +75,7 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             CalculateScore();
             OnPropertyChanged(nameof(Races));
+            OnPropertyChanged(nameof(IsValid));
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

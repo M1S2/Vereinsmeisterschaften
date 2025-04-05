@@ -124,7 +124,7 @@ namespace Vereinsmeisterschaften.Core.Services
             // If too many single element groups were created → Adjust instead of restart
             if ((double)oneElementGroupsCount / groups.Count > _maxOneElementGroupPercentage)
             {
-                groups = MergeSmallGroups(groups);
+                groups = MergeSmallGroups(groups, sets);
             }
 
             var competitionRaces = new CompetitionRaces();
@@ -140,24 +140,64 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Merge small groups to reduce the number of single element groups
         /// </summary>
         /// <param name="groups">Groups to merge</param>
+        /// <param name="sets">Sets which elements are combined</param>
         /// <returns>Merged groups</returns>
-        private List<List<PersonStart>> MergeSmallGroups(List<List<PersonStart>> groups)
+        private List<List<PersonStart>> MergeSmallGroups(List<List<PersonStart>> groups, List<List<PersonStart>> sets)
         {
-            List<List<PersonStart>> mergedGroups = new List<List<PersonStart>>();
-            List<List<PersonStart>> smallGroups = groups.Where(g => g.Count == 1).ToList();
-            List<List<PersonStart>> otherGroups = groups.Where(g => g.Count > 1).ToList();
+            List<List<PersonStart>> result = new();
+            HashSet<int> mergedIndices = new();
 
-            while (smallGroups.Count > 1)
+            for (int i = 0; i < groups.Count; i++)
             {
-                List<PersonStart> newGroup = smallGroups.Take(2).SelectMany(g => g).ToList();
-                mergedGroups.Add(newGroup);
-                smallGroups.RemoveRange(0, 2);
+                if (mergedIndices.Contains(i))
+                    continue;
+
+                var groupA = groups[i];
+
+                // Nur kleine Gruppen betrachten
+                if (groupA.Count >= 1)
+                {
+                    result.Add(groupA);
+                    continue;
+                }
+
+                bool merged = false;
+
+                for (int j = i + 1; j < groups.Count; j++)
+                {
+                    if (mergedIndices.Contains(j))
+                        continue;
+
+                    var groupB = groups[j];
+
+                    if (groupA.Count + groupB.Count <= _maxGroupSize &&
+                        AreFromSameSet(groupA.Concat(groupB).ToList(), sets))
+                    {
+                        result.Add(groupA.Concat(groupB).ToList());
+                        mergedIndices.Add(i);
+                        mergedIndices.Add(j);
+                        merged = true;
+                        break;
+                    }
+                }
+
+                if (!merged)
+                {
+                    result.Add(groupA);
+                }
             }
 
-            mergedGroups.AddRange(smallGroups);
-            mergedGroups.AddRange(otherGroups);
+            return result;
+        }
 
-            return mergedGroups;
+        private bool AreFromSameSet(List<PersonStart> starts, List<List<PersonStart>> sets)
+        {
+            foreach (var set in sets)
+            {
+                if (starts.All(p => set.Contains(p)))
+                    return true;
+            }
+            return false;
         }
     }
 }

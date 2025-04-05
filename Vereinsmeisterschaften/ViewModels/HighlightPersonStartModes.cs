@@ -40,6 +40,16 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <summary>
         /// Highlight all <see cref="PersonStart"/> objects that have a competition with a distance of 200m
         /// </summary>
-        All200m
+        All200m,
+
+        /// <summary>
+        /// Highlight all <see cref="PersonStart"/> objects that have a gender of Male
+        /// </summary>
+        AllMale,
+
+        /// <summary>
+        /// Highlight all <see cref="PersonStart"/> objects that have a gender of Female
+        /// </summary>
+        AllFemale
     }
 }

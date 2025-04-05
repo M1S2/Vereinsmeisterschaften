@@ -275,6 +275,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
                 case HighlightPersonStartModes.All50m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 50; break;
                 case HighlightPersonStartModes.All100m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 100; break;
                 case HighlightPersonStartModes.All200m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 200; break;
+                case HighlightPersonStartModes.AllMale: personStart.IsHighlighted = personStart.PersonObj.Gender == Genders.Male; break;
+                case HighlightPersonStartModes.AllFemale: personStart.IsHighlighted = personStart.PersonObj.Gender == Genders.Female; break;
                 case HighlightPersonStartModes.None: personStart.IsHighlighted = false; break;
                 default: personStart.IsHighlighted = false; break;
             }

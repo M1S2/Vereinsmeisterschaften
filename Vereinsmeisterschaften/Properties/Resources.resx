@@ -313,4 +313,7 @@
   <data name="AddEmptyRaceString" xml:space="preserve">
     <value>Add new empty race</value>
   </data>
+  <data name="ScoreStartGendersString" xml:space="preserve">
+    <value>Score Start Genders</value>
+  </data>
 </root>

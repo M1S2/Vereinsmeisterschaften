@@ -313,4 +313,7 @@
   <data name="AddEmptyRaceString" xml:space="preserve">
     <value>Neues leeres Rennen hinzufügen</value>
   </data>
+  <data name="ScoreStartGendersString" xml:space="preserve">
+    <value>Bewertung gleiche Geschlechter</value>
+  </data>
 </root>

@@ -101,8 +101,9 @@ namespace Vereinsmeisterschaften.Core.Models
                 double score = 0;
                 score += ScoreSingleStarts * 0.15;          // 15% Weight
                 score += ScoreSameStyleSequence * 0.05;     //  5% Weight
-                score += ScorePersonStartPauses * 0.70;     // 70% Weight
+                score += ScorePersonStartPauses * 0.65;     // 65% Weight
                 score += ScoreStyleOrder * 0.10;            // 10% Weight
+                score += ScoreStartGenders * 0.05;          //  5% Weight
 
                 return LimitValue(score, 0, 100);
             }
@@ -148,6 +149,16 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _scoreStyleOrder, value);
         }
 
+        private double _scoreStartGenders;
+        /// <summary>
+        /// Score regarding the homogenity of genders in the starts
+        /// </summary>
+        public double ScoreStartGenders
+        {
+            get => _scoreStartGenders;
+            set => SetProperty(ref _scoreStartGenders, value);
+        }
+
         /// <summary>
         /// Recalculate all scores
         /// </summary>
@@ -160,6 +171,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 ScoreSameStyleSequence = 0;
                 ScorePersonStartPauses = 0;
                 ScoreStyleOrder = 0;
+                ScoreStartGenders = 0;
             }
             else
             {
@@ -167,6 +179,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 ScoreSameStyleSequence = EvaluateSameStyleSequence();
                 ScorePersonStartPauses = EvaluatePersonStartPauses();
                 ScoreStyleOrder = EvaluateStyleOrder();
+                ScoreStartGenders = EvaluateStartGenders();
             }
             OnPropertyChanged(nameof(Score));
             return Score;
@@ -309,6 +322,31 @@ namespace Vereinsmeisterschaften.Core.Models
 
             double maxPenalty = Races.Count * STYLE_PRIORITY.Count;
             return 100 - LimitValue(100 * (penalty / maxPenalty), 0, 100);
+        }
+
+        /// <summary>
+        /// Score for start genders:
+        /// Homogenous genders in starts are better than heterogeneous ones.
+        /// </summary>
+        /// <returns>Score for start genders</returns>
+        private double EvaluateStartGenders()
+        {
+            if (Races.Count == 0) return 100.0;
+
+            int totalRaces = Races.Count;
+            int homogeneousCount = 0;
+
+            foreach (Race race in Races)
+            {
+                List<Genders> genders = race.Starts.Select(s => s.PersonObj.Gender).Distinct().ToList();
+                if (genders.Count == 1)
+                {
+                    homogeneousCount++;
+                }
+            }
+
+            double score = 100.0 * homogeneousCount / totalRaces;
+            return LimitValue(score, 0, 100);
         }
 
         /// <summary>

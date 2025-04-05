@@ -134,6 +134,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -150,6 +151,9 @@
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStyleOrderString}"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreStyleOrder, StringFormat={}{0:N2}%}"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStartGendersString}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreStartGenders, StringFormat={}{0:N2}%}"/>
             </Grid>
         </Expander>
 
@@ -190,7 +194,7 @@
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Padding="7" Width="300" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
+                                    <Border Padding="7" Width="275" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
                                         <Border.Style>
                                             <Style TargetType="{x:Type Border}">
                                                 <Style.Triggers>

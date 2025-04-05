@@ -422,6 +422,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Start Genders ähnelt.
+        /// </summary>
+        public static string ScoreStartGendersString {
+            get {
+                return ResourceManager.GetString("ScoreStartGendersString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Score Style Order ähnelt.
         /// </summary>
         public static string ScoreStyleOrderString {

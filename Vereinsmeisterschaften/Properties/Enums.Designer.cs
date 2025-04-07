@@ -77,5 +77,194 @@ namespace Vereinsmeisterschaften.Properties {
                 return ResourceManager.GetString("Genders_Male", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All 100m ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_All100m {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_All100m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All 200m ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_All200m {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_All200m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All 50m ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_All50m {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_All50m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_Gender {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_None {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Person ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_Person {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_Person", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
+        /// </summary>
+        public static string HighlightPersonStartModes_SwimmingStyle {
+            get {
+                return ResourceManager.GetString("HighlightPersonStartModes_SwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
+        /// </summary>
+        public static string ResultTypes_Backstroke {
+            get {
+                return ResourceManager.GetString("ResultTypes_Backstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Breaststroke ähnelt.
+        /// </summary>
+        public static string ResultTypes_Breaststroke {
+            get {
+                return ResourceManager.GetString("ResultTypes_Breaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Butterfly ähnelt.
+        /// </summary>
+        public static string ResultTypes_Butterfly {
+            get {
+                return ResourceManager.GetString("ResultTypes_Butterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Freestyle ähnelt.
+        /// </summary>
+        public static string ResultTypes_Freestyle {
+            get {
+                return ResourceManager.GetString("ResultTypes_Freestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Medley ähnelt.
+        /// </summary>
+        public static string ResultTypes_Medley {
+            get {
+                return ResourceManager.GetString("ResultTypes_Medley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overall ähnelt.
+        /// </summary>
+        public static string ResultTypes_Overall {
+            get {
+                return ResourceManager.GetString("ResultTypes_Overall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die WaterFlea ähnelt.
+        /// </summary>
+        public static string ResultTypes_WaterFlea {
+            get {
+                return ResourceManager.GetString("ResultTypes_WaterFlea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Backstroke {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Backstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Breaststroke ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Breaststroke {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Breaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Butterfly ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Butterfly {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Butterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Freestyle ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Freestyle {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Freestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Medley ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Medley {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Medley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unknown ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_Unknown {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Water Flea ähnelt.
+        /// </summary>
+        public static string SwimmingStyles_WaterFlea {
+            get {
+                return ResourceManager.GetString("SwimmingStyles_WaterFlea", resourceCulture);
+            }
+        }
     }
 }

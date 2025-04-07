@@ -123,4 +123,67 @@
   <data name="Genders_Female" xml:space="preserve">
     <value>Female</value>
   </data>
+  <data name="HighlightPersonStartModes_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="HighlightPersonStartModes_SwimmingStyle" xml:space="preserve">
+    <value>Swimming Style</value>
+  </data>
+  <data name="HighlightPersonStartModes_Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="HighlightPersonStartModes_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="HighlightPersonStartModes_All50m" xml:space="preserve">
+    <value>All 50m</value>
+  </data>
+  <data name="HighlightPersonStartModes_All100m" xml:space="preserve">
+    <value>All 100m</value>
+  </data>
+  <data name="HighlightPersonStartModes_All200m" xml:space="preserve">
+    <value>All 200m</value>
+  </data>
+  <data name="SwimmingStyles_Breaststroke" xml:space="preserve">
+    <value>Breaststroke</value>
+  </data>
+  <data name="SwimmingStyles_Freestyle" xml:space="preserve">
+    <value>Freestyle</value>
+  </data>
+  <data name="SwimmingStyles_Backstroke" xml:space="preserve">
+    <value>Backstroke</value>
+  </data>
+  <data name="SwimmingStyles_Butterfly" xml:space="preserve">
+    <value>Butterfly</value>
+  </data>
+  <data name="SwimmingStyles_Medley" xml:space="preserve">
+    <value>Medley</value>
+  </data>
+  <data name="SwimmingStyles_WaterFlea" xml:space="preserve">
+    <value>Water Flea</value>
+  </data>
+  <data name="SwimmingStyles_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="ResultTypes_Overall" xml:space="preserve">
+    <value>Overall</value>
+  </data>
+  <data name="ResultTypes_Breaststroke" xml:space="preserve">
+    <value>Breaststroke</value>
+  </data>
+  <data name="ResultTypes_Freestyle" xml:space="preserve">
+    <value>Freestyle</value>
+  </data>
+  <data name="ResultTypes_Backstroke" xml:space="preserve">
+    <value>Backstroke</value>
+  </data>
+  <data name="ResultTypes_Butterfly" xml:space="preserve">
+    <value>Butterfly</value>
+  </data>
+  <data name="ResultTypes_Medley" xml:space="preserve">
+    <value>Medley</value>
+  </data>
+  <data name="ResultTypes_WaterFlea" xml:space="preserve">
+    <value>WaterFlea</value>
+  </data>
 </root>

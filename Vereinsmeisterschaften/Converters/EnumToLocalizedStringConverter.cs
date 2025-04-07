@@ -13,12 +13,19 @@ namespace Vereinsmeisterschaften.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Enum enumValue = (Enum)value;
+            if (value == null || !value.GetType().IsEnum)
+            {
+                return null;
+            }
+            else
+            {
+                Enum enumValue = (Enum)value;
 
-            // https://stackoverflow.com/questions/17380900/enum-localization
-            ResourceManager rm = new ResourceManager(typeof(Properties.Enums));
-            string resourceDisplayName = rm.GetString(enumValue.GetType().Name + "_" + enumValue);
-            return string.IsNullOrWhiteSpace(resourceDisplayName) ? string.Format("{0}", enumValue) : resourceDisplayName;
+                // https://stackoverflow.com/questions/17380900/enum-localization
+                ResourceManager rm = new ResourceManager(typeof(Properties.Enums));
+                string resourceDisplayName = rm.GetString(enumValue.GetType().Name + "_" + enumValue);
+                return string.IsNullOrWhiteSpace(resourceDisplayName) ? string.Format("{0}", enumValue) : resourceDisplayName;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -8,6 +8,8 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1200">
     
@@ -15,6 +17,12 @@
         <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
+
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableResultTypes">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="coreModels:ResultTypes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -30,7 +38,13 @@
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.ResultsPageTitle}" />
         </StackPanel>
 
-        <ComboBox Grid.Row="1" ItemsSource="{Binding AvailableResultTypes}" SelectedValue="{Binding ResultType}"/>
+        <ComboBox Grid.Row="1" ItemsSource="{Binding Source={StaticResource AvailableResultTypes}}" SelectedValue="{Binding ResultType}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <!-- Winner's podium -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="{StaticResource SmallLeftTopRightBottomMargin}">

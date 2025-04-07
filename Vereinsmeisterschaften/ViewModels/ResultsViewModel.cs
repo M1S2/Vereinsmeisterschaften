@@ -33,11 +33,6 @@ public class ResultsViewModel : ObservableObject, INavigationAware
     public List<PersonStart> PodiumSilverStarts => _scoreService.GetWinnersPodiumStarts(ResultType, ResultPodiumsPlaces.Silver);
     public List<PersonStart> PodiumBronzeStarts => _scoreService.GetWinnersPodiumStarts(ResultType, ResultPodiumsPlaces.Bronze);
 
-
-#warning ResultTypes are not localized in the UI at the moment !!!
-    private List<ResultTypes> _availableResultTypes = Enum.GetValues(typeof(ResultTypes)).Cast<ResultTypes>().ToList();
-    public List<ResultTypes> AvailableResultTypes => _availableResultTypes;
-
     private IScoreService _scoreService;
 
     public ResultsViewModel(IScoreService scoreService)

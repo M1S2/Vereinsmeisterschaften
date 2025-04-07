@@ -25,6 +25,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     public bool AreRacesAvailable => CalculatedCompetitionRaces?.Count > 0 || BestCompetitionRaces != null;
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private int _indexCurrentCompetitionRace;
     public int IndexCurrentCompetitionRace
     {
@@ -50,6 +52,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         set => IndexCurrentCompetitionRace = value - 1;
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private CompetitionRaces _currentCompetitionRace;
     public CompetitionRaces CurrentCompetitionRace
     {
@@ -70,6 +74,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
             }
         }
     }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private List<PersonStart> _notAssignedStarts;
     public List<PersonStart> NotAssignedStarts
@@ -96,6 +102,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     /// <summary>
     /// The <see cref="CurrentCompetitionRace"/> is consideres valid when:
     /// - The <see cref="CompetitionRaces.IsValid"/> property is true
@@ -116,9 +124,7 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         set { SetProperty(ref _highlightPersonStartMode, value); recalculateHighlightedPersonStarts(); }
     }
 
-#warning HighlightPersonStartModes are not localized in the UI at the moment !!!
-    private List<HighlightPersonStartModes> _availableHighlightPersonStartModes = Enum.GetValues(typeof(HighlightPersonStartModes)).Cast<HighlightPersonStartModes>().ToList();
-    public List<HighlightPersonStartModes> AvailableHighlightPersonStartModes => _availableHighlightPersonStartModes;
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     public ObservableCollection<Person> AvailablePersons => _personService?.GetPersons();
 
@@ -129,7 +135,8 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         set { SetProperty(ref _highlightedPerson, value); recalculateHighlightedPersonStarts(); }
     }
 
-#warning SwimmingStyles are not localized in the UI at the moment !!!
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
     public List<SwimmingStyles> AvailableSwimmingStyles => _availableSwimmingStyles;
 
@@ -138,6 +145,36 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
     {
         get => _highlightedSwimmingStyle;
         set { SetProperty(ref _highlightedSwimmingStyle, value); recalculateHighlightedPersonStarts(); }
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private Genders _highlightedGender;
+    public Genders HighlightedGender
+    {
+        get => _highlightedGender;
+        set { SetProperty(ref _highlightedGender, value); recalculateHighlightedPersonStarts(); }
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void recalculateHighlightedPersonStarts()
+    {
+        List<PersonStart> personStarts = _personService.GetAllPersonStarts();
+        foreach (PersonStart personStart in personStarts)
+        {
+            switch (HighlightPersonStartMode)
+            {
+                case HighlightPersonStartModes.Person: personStart.IsHighlighted = personStart.PersonObj.Equals(HighlightedPerson); break;
+                case HighlightPersonStartModes.SwimmingStyle: personStart.IsHighlighted = personStart.Style.Equals(HighlightedSwimmingStyle); break;
+                case HighlightPersonStartModes.Gender: personStart.IsHighlighted = personStart.PersonObj.Gender.Equals(HighlightedGender); break;
+                case HighlightPersonStartModes.All50m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 50; break;
+                case HighlightPersonStartModes.All100m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 100; break;
+                case HighlightPersonStartModes.All200m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 200; break;
+                case HighlightPersonStartModes.None: personStart.IsHighlighted = false; break;
+                default: personStart.IsHighlighted = false; break;
+            }
+        }
     }
 
     #endregion
@@ -259,27 +296,5 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedFrom()
     {
-    }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    private void recalculateHighlightedPersonStarts()
-    {
-        List<PersonStart> personStarts = _personService.GetAllPersonStarts();
-        foreach(PersonStart personStart in personStarts)
-        {
-            switch (HighlightPersonStartMode)
-            {
-                case HighlightPersonStartModes.Person: personStart.IsHighlighted = personStart.PersonObj.Equals(HighlightedPerson); break;
-                case HighlightPersonStartModes.SwimmingStyle: personStart.IsHighlighted = personStart.Style.Equals(HighlightedSwimmingStyle); break;
-                case HighlightPersonStartModes.All50m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 50; break;
-                case HighlightPersonStartModes.All100m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 100; break;
-                case HighlightPersonStartModes.All200m: personStart.IsHighlighted = personStart.CompetitionObj?.Distance == 200; break;
-                case HighlightPersonStartModes.AllMale: personStart.IsHighlighted = personStart.PersonObj.Gender == Genders.Male; break;
-                case HighlightPersonStartModes.AllFemale: personStart.IsHighlighted = personStart.PersonObj.Gender == Genders.Female; break;
-                case HighlightPersonStartModes.None: personStart.IsHighlighted = false; break;
-                default: personStart.IsHighlighted = false; break;
-            }
-        }
     }
 }

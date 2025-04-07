@@ -99,27 +99,32 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
-                <!-- Converter={StaticResource enumLocalizedStringConverter} -->
-                <DataGridComboBoxColumn SelectedValueBinding="{Binding Gender}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
-                    <DataGridComboBoxColumn.Header>
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                    <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
                             <TextBlock Text="{x:Static properties:Resources.GenderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </StackPanel>
-                    </DataGridComboBoxColumn.Header>
-                    <DataGridComboBoxColumn.ElementStyle>
-                        <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.AvailablePersonGenders, RelativeSource={RelativeSource AncestorType=Page}}" />
-                        </Style>
-                    </DataGridComboBoxColumn.ElementStyle>
-                    <DataGridComboBoxColumn.EditingElementStyle>
-                        <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.AvailablePersonGenders, RelativeSource={RelativeSource AncestorType=Page}}" />
-                        </Style>
-                    </DataGridComboBoxColumn.EditingElementStyle>
-                </DataGridComboBoxColumn>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding Gender, Converter={StaticResource enumLocalizedStringConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox HorizontalAlignment="Center"
+                                      ItemsSource="{Binding Path=DataContext.AvailablePersonGenders, RelativeSource={RelativeSource AncestorType=Page}}"
+                                      SelectedValue="{Binding Gender}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTextColumn Binding="{Binding BirthYear}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>

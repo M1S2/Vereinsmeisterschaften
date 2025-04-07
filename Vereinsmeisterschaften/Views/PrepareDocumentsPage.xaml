@@ -7,6 +7,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
     xmlns:dd="urn:gong-wpf-dragdrop"
@@ -27,6 +30,18 @@
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="coreModels:Genders"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableHighlightPersonStartModes">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="viewModels:HighlightPersonStartModes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -66,46 +81,16 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            
+
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.DisplayedVariantString}" VerticalAlignment="Center"/>
                 <controls:NumericUpDown Margin="5,0,0,0" Width="150" Value="{Binding IndexCurrentCompetitionRaceDisplay}" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.OfString}" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding CalculatedCompetitionRaces.Count, FallbackValue=?}" VerticalAlignment="Center"/>
             </StackPanel>
-
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <TextBlock Text="{x:Static properties:Resources.HighlightModeString}" VerticalAlignment="Center"/>
-                <ComboBox Margin="5,0,0,0" Width="150" ItemsSource="{Binding AvailableHighlightPersonStartModes}" SelectedValue="{Binding HighlightPersonStartMode}" VerticalAlignment="Center"/>
-                <!-- List with all persons: only visible for HighlightByPerson mode -->
-                <ComboBox Margin="5,0,0,0" Width="250" ItemsSource="{Binding AvailablePersons}" SelectedValue="{Binding HighlightedPerson}" VerticalAlignment="Center">
-                    <ComboBox.Style>
-                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                </ComboBox>
-                <!-- List with all swimming styles: only visible for HighlightBySwimmingStyle mode -->
-                <ComboBox Margin="5,0,0,0" Width="250" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedValue="{Binding HighlightedSwimmingStyle}" VerticalAlignment="Center">
-                    <ComboBox.Style>
-                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                </ComboBox>
-            </StackPanel>
         </StackPanel>
 
+        <!-- Score -->
         <Expander Grid.Row="2" Grid.Column="2" Margin="30,0,0,0">
             <Expander.Style>
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
@@ -157,6 +142,7 @@
             </Grid>
         </Expander>
 
+        <!-- View for current competition races -->
         <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
@@ -176,7 +162,7 @@
                             </Border.Style>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Style}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                         <ListBox ItemsSource="{Binding Starts}"
@@ -221,15 +207,60 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="4" Grid.Column="0" Margin="0,0,0,10" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">
-            <StackPanel Orientation="Horizontal">
-                <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
-                <TextBlock Text="{x:Static properties:Resources.AddEmptyRaceString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            </StackPanel>
-        </Button>
+        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,10" LastChildFill="False">
+            <Button DockPanel.Dock="Left" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
+                    <TextBlock Text="{x:Static properties:Resources.AddEmptyRaceString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
 
+            <!-- Highlight mode controls -->
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <TextBlock Text="{x:Static properties:Resources.HighlightModeString}" VerticalAlignment="Center"/>
+                <ComboBox Margin="5,0,0,0" Width="150" ItemsSource="{Binding Source={StaticResource AvailableHighlightPersonStartModes}}" SelectedValue="{Binding HighlightPersonStartMode}" VerticalAlignment="Center">
+                    <!-- https://www.codeproject.com/Articles/767834/WPF-Binding-to-an-enum-with-localization -->
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center">
+                    <ComboBox.Style>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
+                                    <Setter Property="ItemsSource" Value="{Binding AvailablePersons}"/>
+                                    <Setter Property="SelectedValue" Value="{Binding HighlightedPerson}"/>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
+                                    <Setter Property="ItemsSource" Value="{Binding AvailableSwimmingStyles}"/>
+                                    <Setter Property="SelectedValue" Value="{Binding HighlightedSwimmingStyle}"/>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Gender">
+                                    <Setter Property="ItemsSource" Value="{Binding Source={StaticResource AvailableGenders}}"/>
+                                    <Setter Property="SelectedValue" Value="{Binding HighlightedGender}"/>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </DockPanel>
+        
         <!-- Parking lot for PersonStarts -->
-        <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
+        <ListBox Grid.Row="3" Grid.Column="2" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
                  dd:DragDrop.IsDragSource="True"
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"
@@ -253,7 +284,7 @@
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}m {1}">
                                         <Binding Path="CompetitionObj.Distance" />
-                                        <Binding Path="Style" />
+                                        <Binding Path="Style" Converter="{StaticResource enumLocalizedStringConverter}"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

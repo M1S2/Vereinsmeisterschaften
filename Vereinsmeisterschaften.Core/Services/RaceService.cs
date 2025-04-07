@@ -240,7 +240,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        int maxNumberStarts = BestCompetitionRaces.Races.Select(r => r.Starts.Count).Max();
+                        int maxNumberStarts = BestCompetitionRaces.Races.Count == 0 ? 0 : BestCompetitionRaces.Races.Select(r => r.Starts.Count).Max();
                         _fileService.SaveToCsv(path, BestCompetitionRaces.Races.ToList(), cancellationToken, OnFileProgress,
                         (data) =>
                         {

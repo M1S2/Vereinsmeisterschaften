@@ -92,6 +92,9 @@ public partial class App : Application
         services.AddTransient<PeopleViewModel>();
         services.AddTransient<PeoplePage>();
 
+        services.AddTransient<PrepareRacesViewModel>();
+        services.AddTransient<PrepareRacesPage>();
+
         services.AddTransient<PrepareDocumentsViewModel>();
         services.AddTransient<PrepareDocumentsPage>();
 

@@ -22,6 +22,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
@@ -50,19 +51,25 @@
                 <TextBlock Text="{x:Static properties:Resources.ShellPeoplePage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
             </StackPanel>
         </Button>
-        <Button Grid.Row="2" Grid.Column="2" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding PrepareDocumentsCommand}">
+        <Button Grid.Row="2" Grid.Column="2" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding PrepareRacesCommand}">
+            <StackPanel>
+                <controls:FontIcon FontSize="50" Glyph="&#xE7C1;" Margin="10"/>
+                <TextBlock Text="{x:Static properties:Resources.ShellPrepareRacesPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding PrepareDocumentsCommand}">
             <StackPanel>
                 <controls:FontIcon FontSize="50" Glyph="&#xE8A5;" Margin="10"/>
                 <TextBlock Text="{x:Static properties:Resources.ShellPrepareDocumentsPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
             </StackPanel>
         </Button>
-        <Button Grid.Row="2" Grid.Column="3" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding TimeInputCommand}">
+        <Button Grid.Row="2" Grid.Column="4" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding TimeInputCommand}">
             <StackPanel>
                 <controls:FontIcon FontSize="50" Glyph="&#xE916;" Margin="10"/>
                 <TextBlock Text="{x:Static properties:Resources.ShellTimeInputPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
             </StackPanel>
         </Button>
-        <Button Grid.Row="2" Grid.Column="4" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ResultsCommand}">
+        <Button Grid.Row="2" Grid.Column="5" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ResultsCommand}">
             <StackPanel>
                 <controls:FontIcon FontSize="50" Glyph="&#xE9F9;" Margin="10"/>
                 <TextBlock Text="{x:Static properties:Resources.ShellResultsPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>

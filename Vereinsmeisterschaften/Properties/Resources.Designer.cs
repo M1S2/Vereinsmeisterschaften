@@ -350,6 +350,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PrepareRaces ähnelt.
+        /// </summary>
+        public static string PrepareRacesPageTitle {
+            get {
+                return ResourceManager.GetString("PrepareRacesPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really remove this person? This can&apos;t be undone! ähnelt.
         /// </summary>
         public static string RemovePersonConfirmationString {
@@ -562,6 +571,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ShellPrepareDocumentsPage {
             get {
                 return ResourceManager.GetString("ShellPrepareDocumentsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PrepareRaces ähnelt.
+        /// </summary>
+        public static string ShellPrepareRacesPage {
+            get {
+                return ResourceManager.GetString("ShellPrepareRacesPage", resourceCulture);
             }
         }
         

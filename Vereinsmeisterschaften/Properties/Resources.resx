@@ -316,4 +316,10 @@
   <data name="ScoreStartGendersString" xml:space="preserve">
     <value>Score Start Genders</value>
   </data>
+  <data name="ShellPrepareRacesPage" xml:space="preserve">
+    <value>PrepareRaces</value>
+  </data>
+  <data name="PrepareRacesPageTitle" xml:space="preserve">
+    <value>PrepareRaces</value>
+  </data>
 </root>

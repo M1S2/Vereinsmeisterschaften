@@ -3,6 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -26,6 +28,12 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:EnumToLocalizedStringConverter x:Key="enumLocalizedStringConverter"/>
+
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="coreModels:Genders"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

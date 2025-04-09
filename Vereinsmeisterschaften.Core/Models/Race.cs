@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -26,20 +27,41 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
 
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_SameDistances => Starts?.GroupBy(s => s?.CompetitionObj?.Distance).Count() <= 1;
+
+        /// <summary>
+        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_SameStyles => Starts?.GroupBy(s => s?.Style).Count() <= 1;
+
+        /// <summary>
+        /// True when the starts are not empty
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_StartsAvailable => Starts?.Count > 0;
+
         /// <summary>
         /// A <see cref="Race"/> is considered as valid, when:
         /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
         /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
+        /// - the starts are not empty
         /// </summary>
-        public bool IsValid => Starts?.GroupBy(s => s?.CompetitionObj?.Distance).Count() == 1 &&
-                               Starts?.GroupBy(s => s?.Style).Count() == 1;
+        [FileServiceIgnore]
+        public bool IsValid => IsValid_SameStyles && IsValid_SameDistances && IsValid_StartsAvailable;
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();
-            Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+            Starts.CollectionChanged += Starts_CollectionChanged;
         }
 
         public Race(List<PersonStart> starts)
@@ -47,7 +69,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
             if(Starts != null)
             {
-                Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+                Starts.CollectionChanged += Starts_CollectionChanged;
             }
         }
 
@@ -56,7 +78,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Starts = starts;
             if (Starts != null)
             {
-                Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+                Starts.CollectionChanged += Starts_CollectionChanged;
             }
         }
 
@@ -65,7 +87,17 @@ namespace Vereinsmeisterschaften.Core.Models
             if (other == null) { return; }
             // Create a deep copy of the list
             Starts = new ObservableCollection<PersonStart>(other.Starts.Select(item => (PersonStart)item.Clone()));
-            Starts.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(Style)); OnPropertyChanged(nameof(Distance)); OnPropertyChanged(nameof(IsValid)); };
+            Starts.CollectionChanged += Starts_CollectionChanged;
+        }
+
+        private void Starts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Style));
+            OnPropertyChanged(nameof(Distance));
+            OnPropertyChanged(nameof(IsValid_SameStyles));
+            OnPropertyChanged(nameof(IsValid_SameDistances));
+            OnPropertyChanged(nameof(IsValid_StartsAvailable));
+            OnPropertyChanged(nameof(IsValid));
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

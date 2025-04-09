@@ -31,5 +31,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="onProgress">Callback used to report progress of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
         Task<List<CompetitionRaces>> CalculateCompetitionRaces(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
+
+        /// <summary>
+        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="BestCompetitionRaces"/> and <see cref="LastCalculatedCompetitionRaces"/>.
+        /// Also delete empty races.
+        /// </summary>
+        void CleanupCompetitionRaces();
     }
 }

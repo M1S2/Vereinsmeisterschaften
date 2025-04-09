@@ -100,16 +100,23 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         {
             NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
         }
+        OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
+        OnPropertyChanged(nameof(CurrentCompetitionRaceIsValid));
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True when there are no empty unassigned races
+    /// </summary>
+    public bool IsValid_AllStartsAssigned => NotAssignedStarts.Count == 0;
 
     /// <summary>
     /// The <see cref="CurrentCompetitionRace"/> is consideres valid when:
     /// - The <see cref="CompetitionRaces.IsValid"/> property is true
     /// - There are no empty unassigned races
     /// </summary>
-    public bool CurrentCompetitionRaceIsValid => (CurrentCompetitionRace?.IsValid ?? true) && NotAssignedStarts.Count == 0;
+    public bool CurrentCompetitionRaceIsValid => (CurrentCompetitionRace?.IsValid ?? true) && IsValid_AllStartsAssigned;
 
     #endregion
 
@@ -281,12 +288,20 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         }
     }));
 
+    private ICommand _cleanupRacesCommand;
+    public ICommand CleanupRacesCommand => _cleanupRacesCommand ?? (_cleanupRacesCommand = new RelayCommand(() =>
+    {
+        _raceService?.CleanupCompetitionRaces();
+    }));
+
     #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public void OnNavigatedTo(object parameter)
     {
+        _raceService.CleanupCompetitionRaces();
+
         OnPropertyChanged(nameof(CalculatedCompetitionRaces));
         OnPropertyChanged(nameof(BestCompetitionRaces));
         OnPropertyChanged(nameof(NotAssignedStarts));

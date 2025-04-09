@@ -322,4 +322,28 @@
   <data name="PrepareRacesPageTitle" xml:space="preserve">
     <value>PrepareRaces</value>
   </data>
+  <data name="CleanupRacesString" xml:space="preserve">
+    <value>Cleanup races</value>
+  </data>
+  <data name="AddNewPerson" xml:space="preserve">
+    <value>Add new person</value>
+  </data>
+  <data name="InvalidRacesString" xml:space="preserve">
+    <value>There is at least one invalid race.</value>
+  </data>
+  <data name="NotAssignedStartsString" xml:space="preserve">
+    <value>There are not assigned starts.</value>
+  </data>
+  <data name="RaceDistancesMismatchString" xml:space="preserve">
+    <value>The distances in this race don't match.</value>
+  </data>
+  <data name="RaceStylesMismatchString" xml:space="preserve">
+    <value>The styles in this race don't match.</value>
+  </data>
+  <data name="RaceEmptyString" xml:space="preserve">
+    <value>The race is empty (zero starts).</value>
+  </data>
+  <data name="PersonStartCompetitionObjMissingString" xml:space="preserve">
+    <value>There is no assigned competition object.</value>
+  </data>
 </root>

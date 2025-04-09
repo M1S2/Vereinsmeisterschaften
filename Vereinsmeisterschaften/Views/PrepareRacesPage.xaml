@@ -9,6 +9,7 @@
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
@@ -31,17 +32,13 @@
             </DataTemplate.Triggers>
         </DataTemplate>
 
-        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="coreModels:Genders"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableHighlightPersonStartModes">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="viewModels:HighlightPersonStartModes"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -53,45 +50,25 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE7C1;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareRacesPageTitle}" />
         </StackPanel>
 
-        <Button Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}">
-            <StackPanel>
-                <controls:FontIcon FontSize="50" Glyph="&#xF0E3;"/>
-                <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+        <!-- Calculate races button -->
+        <Button Grid.Row="1" Grid.Column="0" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}">
+            <StackPanel Orientation="Horizontal">
+                <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
+                <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
             </StackPanel>
         </Button>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" VerticalAlignment="Center">
-            <StackPanel.Style>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.DisplayedVariantString}" VerticalAlignment="Center"/>
-                <controls:NumericUpDown Margin="5,0,0,0" Width="150" Value="{Binding IndexCurrentCompetitionRaceDisplay}" VerticalAlignment="Center"/>
-                <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.OfString}" VerticalAlignment="Center"/>
-                <TextBlock Margin="5,0,0,0" Text="{Binding CalculatedCompetitionRaces.Count, FallbackValue=?}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-
         <!-- Score -->
-        <Expander Grid.Row="2" Grid.Column="2" Margin="30,0,0,0">
+        <Expander Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Expander.Style>
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -105,12 +82,29 @@
                     </Style.Triggers>
                 </Style>
             </Expander.Style>
-            
+
             <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center"/>
-                    <TextBlock Margin="5,0,0,0" Text="{Binding CurrentCompetitionRace.Score, StringFormat={}{0:N2}%}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
-                </StackPanel>
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                        <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding CurrentCompetitionRace.Score, StringFormat={}{0:N2}%}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <!-- At least one race is invalid -->
+                        <Grid Visibility="{Binding CurrentCompetitionRace.IsValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                              ToolTip="{x:Static properties:Resources.InvalidRacesString}">
+                            <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
+                            <controls:FontIcon FontSize="20" Glyph="&#xEA83;" Margin="0,5,0,0"/>
+                        </Grid>
+
+                        <!-- There are not assigned starts -->
+                        <Grid Margin="5,0,0,0" Visibility="{Binding IsValid_AllStartsAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                              ToolTip="{x:Static properties:Resources.NotAssignedStartsString}">
+                            <controls:FontIcon FontSize="20" Glyph="&#xE77B;"/>
+                            <controls:FontIcon FontSize="10" Glyph="&#xE712;" Margin="0,17,0,0"/>
+                        </Grid>
+                    </StackPanel>
+                </DockPanel>
             </Expander.Header>
 
             <Grid>
@@ -142,14 +136,33 @@
             </Grid>
         </Expander>
 
+        <!-- Displayed variant -->
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+
+            <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.DisplayedVariantString}" VerticalAlignment="Center"/>
+            <controls:NumericUpDown Margin="5,0,0,0" Width="150" Value="{Binding IndexCurrentCompetitionRaceDisplay}" VerticalAlignment="Center"/>
+            <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.OfString}" VerticalAlignment="Center"/>
+            <TextBlock Margin="5,0,0,0" Text="{Binding CalculatedCompetitionRaces.Count, FallbackValue=?}" VerticalAlignment="Center"/>
+        </StackPanel>
+
         <!-- View for current competition races -->
-        <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
+        <ListBox Grid.Row="3" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel LastChildFill="True">
-                        <Border DockPanel.Dock="Left" Padding="7" Width="150" BorderBrush="{DynamicResource MahApps.Brushes.Gray3}" BorderThickness="1">
+                        <Border DockPanel.Dock="Left" Padding="7" Width="200" BorderBrush="{DynamicResource MahApps.Brushes.Gray3}" BorderThickness="1">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
@@ -160,19 +173,42 @@
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
-                            </StackPanel>
+
+                            <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                    <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+                                    <!-- No starts available -->
+                                    <controls:FontIcon FontSize="20" Glyph="&#xE75D;"
+                                                       Visibility="{Binding IsValid_StartsAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                                       ToolTip="{x:Static properties:Resources.RaceEmptyString}"/>
+
+                                    <!-- distances mismatch -->
+                                    <Grid Visibility="{Binding IsValid_SameDistances, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                          ToolTip="{x:Static properties:Resources.RaceDistancesMismatchString}">
+                                        <controls:FontIcon FontSize="20" Glyph="&#xECC6;"/>
+                                        <controls:FontIcon FontSize="20" Glyph="&#xEA83;" Margin="3,5,0,0"/>
+                                    </Grid>
+                                    
+                                    <!-- styles mismatch -->
+                                    <controls:FontIcon FontSize="20" Glyph="&#xE7BA;" Margin="5,0,0,0"
+                                                       Visibility="{Binding IsValid_SameStyles, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                                       ToolTip="{x:Static properties:Resources.RaceStylesMismatchString}"/>
+                                </StackPanel>
+                            </DockPanel>
                         </Border>
-                        <ListBox ItemsSource="{Binding Starts}"
+                        <ListBox x:Name="InnerListBoxRace"
+                                 ItemsSource="{Binding Starts}"                                 
                                  dd:DragDrop.IsDragSource="True"
                                  dd:DragDrop.IsDropTarget="True"
                                  dd:DragDrop.UseDefaultDragAdorner="True"
                                  dd:DragDrop.SelectDroppedItems="False"
                                  dd:DragDrop.UseDropTargetHint="True"
                                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerObj}"
-                                 dd:DragDrop.DropHintDataTemplate="{StaticResource DefaultDropHintTemplate}">
+                                 dd:DragDrop.DropHintDataTemplate="{StaticResource DefaultDropHintTemplate}"
+                                 PreviewMouseWheel="InnerListBoxRace_PreviewMouseWheel">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
@@ -184,20 +220,28 @@
                                         <Border.Style>
                                             <Style TargetType="{x:Type Border}">
                                                 <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
+                                                        <Setter Property="Background" Value="#B48B0000" />
+                                                    </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
                                                         <Setter Property="Background" Value="Orange"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Border.Style>
-                                        <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="{}{0} {1}">
-                                                    <Binding Path="PersonObj.FirstName" />
-                                                    <Binding Path="PersonObj.Name" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                        <DockPanel LastChildFill="True">
+                                            <controls:FontIcon DockPanel.Dock="Right" FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
+                                                               Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                                               ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1}">
+                                                        <Binding Path="PersonObj.FirstName" />
+                                                        <Binding Path="PersonObj.Name" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
                                     </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -207,11 +251,71 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,10" LastChildFill="False">
-            <Button DockPanel.Dock="Left" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">
+        <!-- Parking lot for PersonStarts -->
+        <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
+                 dd:DragDrop.IsDragSource="True"
+                 dd:DragDrop.IsDropTarget="True"
+                 dd:DragDrop.UseDefaultDragAdorner="True"
+                 dd:DragDrop.UseDropTargetHint="True"
+                 dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerParkingLotObj}"
+                 BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="7" Width="150" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
+                                        <Setter Property="Background" Value="#B48B0000" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+                                        <Setter Property="Background" Value="Orange"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}m {1}">
+                                        <Binding Path="CompetitionObj.Distance" />
+                                        <Binding Path="Style" Converter="{StaticResource enumLocalizedStringConverter}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
+                                               Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                               ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="PersonObj.FirstName" />
+                                        <Binding Path="PersonObj.Name" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Edit competition races and highlight controls-->
+        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" LastChildFill="False">
+            <!-- Add empty race button -->
+            <Button DockPanel.Dock="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
                     <TextBlock Text="{x:Static properties:Resources.AddEmptyRaceString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Cleanup races button -->
+            <Button DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CleanupRacesCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xEA99;"/>
+                    <TextBlock Text="{x:Static properties:Resources.CleanupRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
 
@@ -258,48 +362,5 @@
                 </ComboBox>
             </StackPanel>
         </DockPanel>
-        
-        <!-- Parking lot for PersonStarts -->
-        <ListBox Grid.Row="3" Grid.Column="2" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
-                 dd:DragDrop.IsDragSource="True"
-                 dd:DragDrop.IsDropTarget="True"
-                 dd:DragDrop.UseDefaultDragAdorner="True"
-                 dd:DragDrop.UseDropTargetHint="True"
-                 dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerParkingLotObj}"
-                 BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="7" Width="150" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
-                        <Border.Style>
-                            <Style TargetType="{x:Type Border}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
-                                        <Setter Property="Background" Value="Orange"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}m {1}">
-                                        <Binding Path="CompetitionObj.Distance" />
-                                        <Binding Path="Style" Converter="{StaticResource enumLocalizedStringConverter}"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="PersonObj.FirstName" />
-                                        <Binding Path="PersonObj.Name" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </Page>

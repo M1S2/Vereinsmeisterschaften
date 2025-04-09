@@ -292,6 +292,35 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
+        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="BestCompetitionRaces"/> and <see cref="LastCalculatedCompetitionRaces"/>.
+        /// Also delete empty <see cref="Race">.
+        /// </summary>
+        public void CleanupCompetitionRaces()
+        {
+            List<CompetitionRaces> competitionRacesList = new List<CompetitionRaces>();
+            if (LastCalculatedCompetitionRaces != null) { competitionRacesList.AddRange(LastCalculatedCompetitionRaces); }
+            if (BestCompetitionRaces != null) { competitionRacesList.Add(BestCompetitionRaces); }
+
+            List<PersonStart> validPersonStarts = _personService.GetAllPersonStarts();
+
+            foreach (CompetitionRaces competitionRaces in competitionRacesList)
+            {
+                foreach(Race race in competitionRaces.Races)
+                {
+                    // Find all starts in this race that are no longer part of the valid PersonStarts and remove them from the Race
+                    List<PersonStart> startsToDelete = race.Starts.Except(validPersonStarts).ToList();
+                    startsToDelete.ForEach(s => race.Starts.Remove(s));
+                }
+
+                // Find all empty races and remove them from the CompetitionRaces
+                List<Race> racesToDelete = competitionRaces.Races.Where(r => r.Starts.Count == 0).ToList();
+                racesToDelete.ForEach(r => competitionRaces.Races.Remove(r));
+            }
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
         /// Check if the <see cref="BestCompetitionRaces"> has not saved changed.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>

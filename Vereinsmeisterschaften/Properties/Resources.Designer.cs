@@ -70,6 +70,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new person ähnelt.
+        /// </summary>
+        public static string AddNewPerson {
+            get {
+                return ResourceManager.GetString("AddNewPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vereinsmeisterschaften ähnelt.
         /// </summary>
         public static string AppDisplayName {
@@ -138,6 +147,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CancelString {
             get {
                 return ResourceManager.GetString("CancelString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cleanup races ähnelt.
+        /// </summary>
+        public static string CleanupRacesString {
+            get {
+                return ResourceManager.GetString("CleanupRacesString", resourceCulture);
             }
         }
         
@@ -241,6 +259,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is at least one invalid race. ähnelt.
+        /// </summary>
+        public static string InvalidRacesString {
+            get {
+                return ResourceManager.GetString("InvalidRacesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
         /// </summary>
         public static string LoadWorkspaceString {
@@ -273,6 +300,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NameString {
             get {
                 return ResourceManager.GetString("NameString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are not assigned starts. ähnelt.
+        /// </summary>
+        public static string NotAssignedStartsString {
+            get {
+                return ResourceManager.GetString("NotAssignedStartsString", resourceCulture);
             }
         }
         
@@ -331,6 +367,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no assigned competition object. ähnelt.
+        /// </summary>
+        public static string PersonStartCompetitionObjMissingString {
+            get {
+                return ResourceManager.GetString("PersonStartCompetitionObjMissingString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No dropping allowed here
         ///(incompatible styles/distances or too many items) ähnelt.
         /// </summary>
@@ -355,6 +400,33 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PrepareRacesPageTitle {
             get {
                 return ResourceManager.GetString("PrepareRacesPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The distances in this race don&apos;t match. ähnelt.
+        /// </summary>
+        public static string RaceDistancesMismatchString {
+            get {
+                return ResourceManager.GetString("RaceDistancesMismatchString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The race is empty (zero starts). ähnelt.
+        /// </summary>
+        public static string RaceEmptyString {
+            get {
+                return ResourceManager.GetString("RaceEmptyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The styles in this race don&apos;t match. ähnelt.
+        /// </summary>
+        public static string RaceStylesMismatchString {
+            get {
+                return ResourceManager.GetString("RaceStylesMismatchString", resourceCulture);
             }
         }
         

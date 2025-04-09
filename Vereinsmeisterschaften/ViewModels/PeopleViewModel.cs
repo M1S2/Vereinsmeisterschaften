@@ -104,10 +104,6 @@ public class PeopleViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#warning Genders are not localized in the UI at the moment !!!
-    private List<Genders> _availablePersonGenders = Enum.GetValues(typeof(Genders)).Cast<Genders>().ToList();
-    public List<Genders> AvailablePersonGenders => _availablePersonGenders;
-
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
     public PeopleViewModel(IPersonService personService, IDialogCoordinator dialogCoordinator)

@@ -37,24 +37,19 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="75"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE77B;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
         </StackPanel>
         
-        <!-- Add Person Button -->
-        <Button Grid.Row="2" Grid.Column="0" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Circle}" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <controls:FontIcon Glyph="&#xE8FA;" Margin="10"/>
-        </Button>
-
         <!-- Search Bar -->
-        <DockPanel Grid.Row="2" Grid.Column="1" Margin="24,0,24,0">
+        <DockPanel Grid.Row="2" Margin="24,0,24,0">
             <controls:FontIcon DockPanel.Dock="Left" Glyph="&#xF78B;" Margin="5" FontSize="25"/>
             <Button DockPanel.Dock="Right" Command="{Binding ClearFilterCommand}">
                 <controls:FontIcon Glyph="&#xF78A;" Margin="10"/>
@@ -72,7 +67,7 @@
         </DockPanel>
 
         <!-- DataGrid with all people -->
-        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="3" Grid.Column="0" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
@@ -114,7 +109,7 @@
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <ComboBox HorizontalAlignment="Center"
-                                      ItemsSource="{Binding Path=DataContext.AvailablePersonGenders, RelativeSource={RelativeSource AncestorType=Page}}"
+                                      ItemsSource="{Binding Source={StaticResource AvailableGenders}}"
                                       SelectedValue="{Binding Gender}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -205,9 +200,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
+        <!-- Add Person Button -->
+        <Button Grid.Row="4" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <controls:FontIcon FontSize="20" Glyph="&#xE8FA;"/>
+                <TextBlock Text="{x:Static properties:Resources.AddNewPerson}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Button>
+
         <!-- Duplicate Person Warning -->
-        <Expander Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
+        <Expander Grid.Row="5" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
                   controls:HeaderedControlHelper.HeaderBackground="OrangeRed" BorderBrush="OrangeRed">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">

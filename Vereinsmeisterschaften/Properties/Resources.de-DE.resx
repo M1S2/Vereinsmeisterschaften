@@ -280,7 +280,7 @@
     <value>Nicht gespeicherte Änderungen</value>
   </data>
   <data name="CalculateCompetitionRacesString" xml:space="preserve">
-    <value>Wettkampf Läufe berechnen</value>
+    <value>Varianten für Rennen berechnen</value>
   </data>
   <data name="HighlightModeString" xml:space="preserve">
     <value>Hervorhebungsmodus</value>
@@ -321,5 +321,29 @@
   </data>
   <data name="PrepareRacesPageTitle" xml:space="preserve">
     <value>Rennen vorbereiten</value>
+  </data>
+  <data name="CleanupRacesString" xml:space="preserve">
+    <value>Rennen bereinigen</value>
+  </data>
+  <data name="AddNewPerson" xml:space="preserve">
+    <value>Neue Person hinzufügen</value>
+  </data>
+  <data name="InvalidRacesString" xml:space="preserve">
+    <value>Es gibt mindestens ein ungültiges Rennen.</value>
+  </data>
+  <data name="NotAssignedStartsString" xml:space="preserve">
+    <value>Es gibt noch nicht zugeordnete Starts.</value>
+  </data>
+  <data name="RaceDistancesMismatchString" xml:space="preserve">
+    <value>Die Distanzen in diesem Rennen stimmen nicht überein.</value>
+  </data>
+  <data name="RaceStylesMismatchString" xml:space="preserve">
+    <value>Die Schwimmstile in diesem Rennen stimmen nicht überein.</value>
+  </data>
+  <data name="RaceEmptyString" xml:space="preserve">
+    <value>Das Rennen ist leer (keine Starts).</value>
+  </data>
+  <data name="PersonStartCompetitionObjMissingString" xml:space="preserve">
+    <value>Kein Wettkampf ist zugewiesen.</value>
   </data>
 </root>

@@ -19,36 +19,38 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         public ObservableCollection<Race> Races { get; set; }
 
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         /// <summary>
         /// The <see cref="CompetitionRaces"/> is consideres valid when:
         /// - All <see cref="Races"/> are valid
         /// - There are no empty races (with 0 starts)
         /// </summary>
-        public bool IsValid => Races?.All(r => r.IsValid) ?? true &&
-                               Races?.Count(r => r.Starts.Count == 0) == 0;
+        [FileServiceIgnore]
+        public bool IsValid => Races?.All(r => r.IsValid) ?? true;
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public CompetitionRaces()
         {
             Races = new ObservableCollection<Race>();
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
+            Races.CollectionChanged += Races_CollectionChanged;
         }
 
         public CompetitionRaces(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
-            CalculateScore();
-            updateRaceStartsCollectionChangedEvent();
+            Races.CollectionChanged += Races_CollectionChanged;
+
+            Races_CollectionChanged(Races, null);
         }
 
         public CompetitionRaces(ObservableCollection<Race> races)
         {
             Races = races;
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
-            CalculateScore();
-            updateRaceStartsCollectionChangedEvent();
+            Races.CollectionChanged += Races_CollectionChanged;
+
+            Races_CollectionChanged(Races, null);
         }
 
         public CompetitionRaces(CompetitionRaces other) : this()
@@ -56,9 +58,9 @@ namespace Vereinsmeisterschaften.Core.Models
             if(other == null) { return; }
             // Create a deep copy of the list
             Races = new ObservableCollection<Race>(other.Races.Select(item => (Race)item.Clone()));
-            Races.CollectionChanged += (s, e) => { CalculateScore(); updateRaceStartsCollectionChangedEvent(); OnPropertyChanged(nameof(IsValid)); };
-            CalculateScore();
-            updateRaceStartsCollectionChangedEvent();
+            Races.CollectionChanged += Races_CollectionChanged;
+
+            Races_CollectionChanged(Races, null);
         }
 
         private void updateRaceStartsCollectionChangedEvent()
@@ -66,15 +68,22 @@ namespace Vereinsmeisterschaften.Core.Models
             OnPropertyChanged(nameof(Races));
             foreach (Race race in Races)
             {
-                race.Starts.CollectionChanged -= collectionChangedEventHandler;
-                race.Starts.CollectionChanged += collectionChangedEventHandler;
+                race.Starts.CollectionChanged -= raceStartsCollectionChangedEventHandler;
+                race.Starts.CollectionChanged += raceStartsCollectionChangedEventHandler;
             }
         }
 
-        private void collectionChangedEventHandler(object sender, NotifyCollectionChangedEventArgs e)
+        private void raceStartsCollectionChangedEventHandler(object sender, NotifyCollectionChangedEventArgs e)
         {
             CalculateScore();
             OnPropertyChanged(nameof(Races));
+            OnPropertyChanged(nameof(IsValid));
+        }
+
+        private void Races_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            CalculateScore();
+            updateRaceStartsCollectionChangedEvent();
             OnPropertyChanged(nameof(IsValid));
         }
 

@@ -43,6 +43,7 @@ public class MainViewModel : ObservableObject, INavigationAware
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
                     ((RelayCommand)PeopleCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)PrepareRacesCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)TimeInputCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)ResultsCommand).NotifyCanExecuteChanged();

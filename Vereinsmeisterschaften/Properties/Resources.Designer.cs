@@ -79,6 +79,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add Variant ähnelt.
+        /// </summary>
+        public static string AddRaceVariantString {
+            get {
+                return ResourceManager.GetString("AddRaceVariantString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vereinsmeisterschaften ähnelt.
         /// </summary>
         public static string AppDisplayName {
@@ -174,15 +183,6 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CompetitionYearString {
             get {
                 return ResourceManager.GetString("CompetitionYearString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Displayed Variant ähnelt.
-        /// </summary>
-        public static string DisplayedVariantString {
-            get {
-                return ResourceManager.GetString("DisplayedVariantString", resourceCulture);
             }
         }
         
@@ -331,15 +331,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die of ähnelt.
-        /// </summary>
-        public static string OfString {
-            get {
-                return ResourceManager.GetString("OfString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
         /// </summary>
         public static string OpenString {
@@ -445,6 +436,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string RemovePersonString {
             get {
                 return ResourceManager.GetString("RemovePersonString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Variant ähnelt.
+        /// </summary>
+        public static string RemoveRaceVariantString {
+            get {
+                return ResourceManager.GetString("RemoveRaceVariantString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reorder Variants ähnelt.
+        /// </summary>
+        public static string ReorderRaceVariantsString {
+            get {
+                return ResourceManager.GetString("ReorderRaceVariantsString", resourceCulture);
             }
         }
         
@@ -715,6 +724,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string UnsavedChangesString {
             get {
                 return ResourceManager.GetString("UnsavedChangesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variant ähnelt.
+        /// </summary>
+        public static string VariantString {
+            get {
+                return ResourceManager.GetString("VariantString", resourceCulture);
             }
         }
         

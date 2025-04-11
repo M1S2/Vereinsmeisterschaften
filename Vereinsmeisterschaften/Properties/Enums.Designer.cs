@@ -79,29 +79,11 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All 100m ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distance (m) ähnelt.
         /// </summary>
-        public static string HighlightPersonStartModes_All100m {
+        public static string HighlightPersonStartModes_Distance {
             get {
-                return ResourceManager.GetString("HighlightPersonStartModes_All100m", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All 200m ähnelt.
-        /// </summary>
-        public static string HighlightPersonStartModes_All200m {
-            get {
-                return ResourceManager.GetString("HighlightPersonStartModes_All200m", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All 50m ähnelt.
-        /// </summary>
-        public static string HighlightPersonStartModes_All50m {
-            get {
-                return ResourceManager.GetString("HighlightPersonStartModes_All50m", resourceCulture);
+                return ResourceManager.GetString("HighlightPersonStartModes_Distance", resourceCulture);
             }
         }
         

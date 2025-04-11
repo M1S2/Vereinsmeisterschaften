@@ -34,6 +34,8 @@
                     <x:Type TypeName="coreModels:Genders"/>
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
+
+            <SolidColorBrush x:Key="BrushError">#B48B0000</SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

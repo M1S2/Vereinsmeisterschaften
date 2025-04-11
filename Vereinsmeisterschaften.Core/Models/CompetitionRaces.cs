@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
@@ -28,6 +29,41 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         [FileServiceIgnore]
         public bool IsValid => Races?.All(r => r.IsValid) ?? true;
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private bool _isPersistent;
+        /// <summary>
+        /// If true, this <see cref="CompetitionRaces"/> should be persisted (to a file).
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsPersistent
+        {
+            get => _isPersistent;
+            set { SetProperty(ref _isPersistent, value); OnPropertyChanged(nameof(KeepWhileRacesCalculation)); }
+        }
+
+        private bool _keepWhileRacesCalculation;
+        /// <summary>
+        /// Keep this <see cref="CompetitionRaces"/> while calculating new variants
+        /// </summary>
+        [FileServiceIgnore]
+        public bool KeepWhileRacesCalculation
+        {
+            get => _keepWhileRacesCalculation || IsPersistent;
+            set => SetProperty(ref _keepWhileRacesCalculation, value);
+        }
+
+        private int _variantID;
+        /// <summary>
+        /// Number for this <see cref="CompetitionRaces"/> variant
+        /// </summary>
+        [FileServiceIgnore]
+        public int VariantID
+        {
+            get => _variantID;
+            set => SetProperty(ref _variantID, value);
+        }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -378,7 +414,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other <see cref="CompetitionRaces"/> to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="CompetitionRaces"/></returns>
         public override bool Equals(object obj)
-            => obj is CompetitionRaces r && r.Score == Score && r.Races.SequenceEqual(Races);
+            => obj is CompetitionRaces r && r.VariantID == VariantID;
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -393,7 +429,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-            => (Races, Score).GetHashCode();
+            => VariantID.GetHashCode();
 
         /// <summary>
         /// Create a new object that has the same property values than this one

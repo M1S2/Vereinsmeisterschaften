@@ -135,14 +135,8 @@
   <data name="HighlightPersonStartModes_Gender" xml:space="preserve">
     <value>Geschlecht</value>
   </data>
-  <data name="HighlightPersonStartModes_All50m" xml:space="preserve">
-    <value>Alle 50m</value>
-  </data>
-  <data name="HighlightPersonStartModes_All100m" xml:space="preserve">
-    <value>Alle 100m</value>
-  </data>
-  <data name="HighlightPersonStartModes_All200m" xml:space="preserve">
-    <value>Alle 200m</value>
+  <data name="HighlightPersonStartModes_Distance" xml:space="preserve">
+    <value>Distanz (m)</value>
   </data>
   <data name="SwimmingStyles_Breaststroke" xml:space="preserve">
     <value>Brust</value>

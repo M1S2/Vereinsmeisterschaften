@@ -84,7 +84,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 });
             }, cancellationToken);
 
-            return bestRaces.OrderByDescending(r => r.Score).ToList();
+            return bestRaces.OrderByDescending(r => r.Score).Take(_requiredVariantsCount).ToList();
         }
 
         /// <summary>

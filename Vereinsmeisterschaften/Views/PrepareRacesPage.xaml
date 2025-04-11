@@ -27,10 +27,21 @@
                     <Setter TargetName="DropHintRootBorder" Property="Background" Value="#5B008000" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=HintState}" Value="Error">
-                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="#B48B0000" />
+                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushError}" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+
+        <!-- Style that removes all effects (e.g. mouse over, highlight color ...) from the toggle button -->
+        <Style x:Key="PlainToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableHighlightPersonStartModes">
             <ObjectDataProvider.MethodParameters>
@@ -38,9 +49,13 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
+        <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
+
         <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
     </Page.Resources>
 
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -54,19 +69,50 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Page title -->
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE7C1;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareRacesPageTitle}" />
         </StackPanel>
 
-        <!-- Calculate races button -->
-        <Button Grid.Row="1" Grid.Column="0" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}">
-            <StackPanel Orientation="Horizontal">
-                <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
-                <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            </StackPanel>
-        </Button>
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
+        <!-- Buttons to manage the race variants -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,10,0,10" VerticalAlignment="Top">
+            <!-- Calculate races button -->
+            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
+                    <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Add race variant button -->
+            <Button Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceVariantCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
+                    <TextBlock Text="{x:Static properties:Resources.AddRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Remove race variant button -->
+            <Button Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding RemoveRaceVariantCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE738;"/>
+                    <TextBlock Text="{x:Static properties:Resources.RemoveRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Reorder race variants button -->
+            <Button Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ReorderRaceVariantsCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE8CB;"/>
+                    <TextBlock Text="{x:Static properties:Resources.ReorderRaceVariantsString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Score -->
         <Expander Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Expander.Style>
@@ -77,7 +123,7 @@
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding CurrentCompetitionRaceIsValid}" Value="False">
-                            <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="#B48B0000" />
+                            <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushError}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -136,25 +182,103 @@
             </Grid>
         </Expander>
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Displayed variant -->
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-            <StackPanel.Style>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
+            <ComboBox HorizontalAlignment="Left" Width="225"
+                      ItemsSource="{Binding AllCompetitionRaces}"
+                      SelectedValue="{Binding CurrentVariantID}"
+                      SelectedValuePath="VariantID"
+                      HorizontalContentAlignment="Stretch">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel LastChildFill="False">
+                            <TextBlock DockPanel.Dock="Left" Text="{x:Static properties:Resources.VariantString}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding VariantID, StringFormat=#{0}}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Score, StringFormat=({0:N2}%)}" Margin="5,0,0,0"/>
 
-            <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.DisplayedVariantString}" VerticalAlignment="Center"/>
-            <controls:NumericUpDown Margin="5,0,0,0" Width="150" Value="{Binding IndexCurrentCompetitionRaceDisplay}" VerticalAlignment="Center"/>
-            <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.OfString}" VerticalAlignment="Center"/>
-            <TextBlock Margin="5,0,0,0" Text="{Binding CalculatedCompetitionRaces.Count, FallbackValue=?}" VerticalAlignment="Center"/>
+                            <!-- Show filled pin for element that should be kept during race calculation -->
+                            <Grid DockPanel.Dock="Right" Margin="0,0,10,0" Visibility="{Binding KeepWhileRacesCalculation, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <!-- Pin empty-->
+                                <controls:FontIcon FontSize="15" Glyph="&#xE840;"/>
+                                <!-- Fill for pin -->
+                                <controls:FontIcon FontSize="15" Glyph="&#xE842;"/>
+                            </Grid>
+
+                            <!-- Show filled start for persisted element -->
+                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE735;" Visibility="{Binding IsPersistent, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- Toggle button for IsPersistent of current competition race -->
+            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRaceIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
+                          Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <controls:FontIcon FontSize="25">
+                    <controls:FontIcon.Style>
+                        <Style TargetType="{x:Type controls:FontIcon}">
+                            <!-- Star empty -->
+                            <Setter Property="Glyph" Value="&#xE734;"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCompetitionRaceIsPersistent}" Value="True">
+                                    <!-- Star filled -->
+                                    <Setter Property="Glyph" Value="&#xE735;"/>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <!-- Star filled -->
+                                    <Setter Property="Glyph" Value="&#xE735;"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:FontIcon.Style>
+                </controls:FontIcon>
+            </ToggleButton>
+
+            <!-- Toggle button for KeepWhileRacesCalculation of current competition race -->
+            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentCompetitionRaceIsPersistent}" Value="False">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <Grid>
+                    <!--Pin empty-->
+                    <controls:FontIcon FontSize="25" Glyph="&#xE840;"/>
+                    <!--Fill for pin-->
+                    <controls:FontIcon FontSize="25" Glyph="&#xE842;">
+                        <controls:FontIcon.Style>
+                            <Style TargetType="{x:Type controls:FontIcon}">
+                                <Setter Property="Foreground" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </controls:FontIcon.Style>
+                    </controls:FontIcon>
+                </Grid>
+            </ToggleButton>
         </StackPanel>
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- View for current competition races -->
         <ListBox Grid.Row="3" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True"
@@ -168,7 +292,7 @@
                                     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsValid}" Value="False">
-                                            <Setter Property="Background" Value="#B48B0000" />
+                                            <Setter Property="Background" Value="{StaticResource BrushError}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -221,15 +345,26 @@
                                             <Style TargetType="{x:Type Border}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
-                                                        <Setter Property="Background" Value="#B48B0000" />
+                                                        <Setter Property="Background" Value="{StaticResource BrushError}" />
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
-                                                        <Setter Property="Background" Value="Orange"/>
+                                                        <Setter Property="Background" Value="{StaticResource BrushHighlight}"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Border.Style>
-                                        <DockPanel LastChildFill="True">
+                                        <Border.ToolTip>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0}m {1}" FallbackValue="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}">
+                                                        <Binding Path="CompetitionObj.Distance" />
+                                                        <Binding Path="CompetitionObj.SwimmingStyle" Converter="{StaticResource enumLocalizedStringConverter}" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </Border.ToolTip>
+                                        <DockPanel LastChildFill="True" Background="Transparent">  <!-- Background = Transparent seems to be important here to show the tooltip of the parent border correctly over empty space -->
+                                            <!-- competition missing -->
                                             <controls:FontIcon DockPanel.Dock="Right" FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
@@ -251,6 +386,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Parking lot for PersonStarts -->
         <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
                  dd:DragDrop.IsDragSource="True"
@@ -266,10 +402,10 @@
                             <Style TargetType="{x:Type Border}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
-                                        <Setter Property="Background" Value="#B48B0000" />
+                                        <Setter Property="Background" Value="{StaticResource BrushError}" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
-                                        <Setter Property="Background" Value="Orange"/>
+                                        <Setter Property="Background" Value="{StaticResource BrushHighlight}"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -301,6 +437,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Edit competition races and highlight controls-->
         <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" LastChildFill="False">
             <!-- Add empty race button -->
@@ -360,6 +497,20 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+
+                <controls:NumericUpDown Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
+                                        Value="{Binding HighlightedDistance}" Minimum="0">
+                    <controls:NumericUpDown.Style>
+                        <Style TargetType="{x:Type controls:NumericUpDown}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Distance">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:NumericUpDown.Style>
+                </controls:NumericUpDown>
             </StackPanel>
         </DockPanel>
     </Grid>

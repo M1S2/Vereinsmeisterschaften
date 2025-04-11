@@ -230,8 +230,7 @@ namespace Vereinsmeisterschaften.Core.Services
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();
-            _raceService.LastCalculatedCompetitionRaces = null;
-            _raceService.BestCompetitionRaces = null;
+            _raceService.AllCompetitionRaces.Clear();
             PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
             

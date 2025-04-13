@@ -352,4 +352,16 @@
   <data name="ReorderRaceVariantsString" xml:space="preserve">
     <value>Varianten neu ordnen</value>
   </data>
+  <data name="DeleteConfirmationTitleString" xml:space="preserve">
+    <value>Wirklich löschen?</value>
+  </data>
+  <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
+    <value>Soll die ausgewählte Variante wirklich gelöscht werden. Das kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="RaceIsPersistentTooltipString" xml:space="preserve">
+    <value>Aktivieren, um diese Variante in eine Datei zu speichern. Nur eine Variante kann gleichzeitig als persistent markiert werden.</value>
+  </data>
+  <data name="RaceKeepWhileCalculationTooltipString" xml:space="preserve">
+    <value>Aktivieren, um diese Variante während der Berechnung von neuen Varianten zu behalten.</value>
+  </data>
 </root>

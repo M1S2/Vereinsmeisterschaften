@@ -10,6 +10,7 @@ using System.Text;
 using System.Xml.Linq;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -137,6 +138,8 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             bool importingResult = false;
             Exception exception = null;
+
+            SynchronizationContext uiContext = SynchronizationContext.Current;
             await Task.Run(() =>
             {
                 try
@@ -144,7 +147,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        ClearAllCompetitionRaces();
+                        uiContext.Send((d) => { ClearAllCompetitionRaces(); }, null);
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else
@@ -152,8 +155,11 @@ namespace Vereinsmeisterschaften.Core.Services
                         List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress);
                         CompetitionRaces bestCompetitionRaces = new CompetitionRaces(raceList);
                         bestCompetitionRaces.IsPersistent = true;
-                        ClearAllCompetitionRaces();
-                        AddCompetitionRaces(bestCompetitionRaces);
+                        uiContext.Send((d) =>
+                        {
+                            ClearAllCompetitionRaces();
+                            AddCompetitionRaces(bestCompetitionRaces);
+                        }, null);
                     }
 
                     if (PersistedCompetitionRaces == null) { _bestCompetitionRacesOnLoad = null; }

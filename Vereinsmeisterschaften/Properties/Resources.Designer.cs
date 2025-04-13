@@ -187,6 +187,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
+        /// </summary>
+        public static string DeleteConfirmationTitleString {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really delete the selected variant? This can&apos;t be undone. ähnelt.
+        /// </summary>
+        public static string DeleteRaceVariantConfirmationString {
+            get {
+                return ResourceManager.GetString("DeleteRaceVariantConfirmationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Don&apos;t save ähnelt.
         /// </summary>
         public static string DontSaveString {
@@ -409,6 +427,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string RaceEmptyString {
             get {
                 return ResourceManager.GetString("RaceEmptyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
+        /// </summary>
+        public static string RaceIsPersistentTooltipString {
+            get {
+                return ResourceManager.GetString("RaceIsPersistentTooltipString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to keep this variant while calculating new race variants. ähnelt.
+        /// </summary>
+        public static string RaceKeepWhileCalculationTooltipString {
+            get {
+                return ResourceManager.GetString("RaceKeepWhileCalculationTooltipString", resourceCulture);
             }
         }
         

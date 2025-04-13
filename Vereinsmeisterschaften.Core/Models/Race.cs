@@ -13,11 +13,6 @@ namespace Vereinsmeisterschaften.Core.Models
     public class Race : ObservableObject, IEquatable<Race>, ICloneable
     {
         /// <summary>
-        /// List with all starts of this <see cref="Race"/>
-        /// </summary>
-        public ObservableCollection<PersonStart> Starts { get; set; }
-
-        /// <summary>
         /// <see cref="SwimmingStyles"> for this <see cref="Race"/>. This is the <see cref="SwimmingStyles"/>> from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
         /// </summary>
         public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
@@ -26,6 +21,11 @@ namespace Vereinsmeisterschaften.Core.Models
         /// Distance for this <see cref="Race"/>. This is the distance from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
         /// </summary>
         public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
+
+        /// <summary>
+        /// List with all starts of this <see cref="Race"/>
+        /// </summary>
+        public ObservableCollection<PersonStart> Starts { get; set; }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

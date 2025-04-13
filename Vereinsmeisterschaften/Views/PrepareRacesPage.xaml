@@ -219,7 +219,8 @@
 
             <!-- Toggle button for IsPersistent of current competition race -->
             <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRaceIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
-                          Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                          Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          ToolTip="{x:Static properties:Resources.RaceIsPersistentTooltipString}">
                 <controls:FontIcon FontSize="25">
                     <controls:FontIcon.Style>
                         <Style TargetType="{x:Type controls:FontIcon}">
@@ -241,7 +242,8 @@
             </ToggleButton>
 
             <!-- Toggle button for KeepWhileRacesCalculation of current competition race -->
-            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}">
+            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}"
+                          ToolTip="{x:Static properties:Resources.RaceKeepWhileCalculationTooltipString}">
                 <ToggleButton.Style>
                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -475,17 +477,17 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
                                     <Setter Property="ItemsSource" Value="{Binding AvailablePersons}"/>
-                                    <Setter Property="SelectedValue" Value="{Binding HighlightedPerson}"/>
+                                    <Setter Property="SelectedItem" Value="{Binding HighlightedPerson}"/>
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
                                     <Setter Property="ItemsSource" Value="{Binding AvailableSwimmingStyles}"/>
-                                    <Setter Property="SelectedValue" Value="{Binding HighlightedSwimmingStyle}"/>
+                                    <Setter Property="SelectedItem" Value="{Binding HighlightedSwimmingStyle}"/>
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Gender">
                                     <Setter Property="ItemsSource" Value="{Binding Source={StaticResource AvailableGenders}}"/>
-                                    <Setter Property="SelectedValue" Value="{Binding HighlightedGender}"/>
+                                    <Setter Property="SelectedItem" Value="{Binding HighlightedGender}"/>
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>

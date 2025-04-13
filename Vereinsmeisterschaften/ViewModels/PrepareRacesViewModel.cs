@@ -342,20 +342,27 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     }));
 
     private ICommand _removeRaceVariantCommand;
-    public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(() =>
+    public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(async () =>
     {
-        int index = AllCompetitionRaces.IndexOf(CurrentCompetitionRace);
-        _raceService?.RemoveCompetitionRaces(CurrentCompetitionRace);
-        if (index == AllCompetitionRaces.Count && AllCompetitionRaces.Count >= 1)
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.DeleteConfirmationTitleString,
+            Properties.Resources.DeleteRaceVariantConfirmationString,
+            MessageDialogStyle.AffirmativeAndNegative,
+            new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.RemoveRaceVariantString, NegativeButtonText = Properties.Resources.CancelString });
+        if (result == MessageDialogResult.Affirmative)
         {
-            index--;
+            int index = AllCompetitionRaces.IndexOf(CurrentCompetitionRace);
+            _raceService?.RemoveCompetitionRaces(CurrentCompetitionRace);
+            if (index == AllCompetitionRaces.Count && AllCompetitionRaces.Count >= 1)
+            {
+                index--;
+            }
+            CurrentCompetitionRace = null;      // Set to null and then to the correct value to update the combobox on the view
+            CurrentCompetitionRace = (index >= 0 && index < AllCompetitionRaces.Count) ? AllCompetitionRaces[index] : AllCompetitionRaces?.FirstOrDefault();
+            OnPropertyChanged(nameof(AreRacesAvailable));
+            OnPropertyChanged(nameof(CurrentCompetitionRace));
+            OnPropertyChanged(nameof(AllCompetitionRaces));
+            OnPropertyChanged(nameof(CurrentVariantID));
         }
-        CurrentCompetitionRace = null;      // Set to null and then to the correct value to update the combobox on the view
-        CurrentCompetitionRace = (index >= 0 && index < AllCompetitionRaces.Count) ? AllCompetitionRaces[index] : AllCompetitionRaces?.FirstOrDefault();
-        OnPropertyChanged(nameof(AreRacesAvailable));
-        OnPropertyChanged(nameof(CurrentCompetitionRace));
-        OnPropertyChanged(nameof(AllCompetitionRaces));
-        OnPropertyChanged(nameof(CurrentVariantID));
     }, () => AreRacesAvailable));
 
     private ICommand _reorderRaceVariantsCommand;

@@ -352,4 +352,16 @@
   <data name="ReorderRaceVariantsString" xml:space="preserve">
     <value>Reorder Variants</value>
   </data>
+  <data name="DeleteConfirmationTitleString" xml:space="preserve">
+    <value>Really delete?</value>
+  </data>
+  <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
+    <value>Really delete the selected variant? This can't be undone.</value>
+  </data>
+  <data name="RaceIsPersistentTooltipString" xml:space="preserve">
+    <value>Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
+  </data>
+  <data name="RaceKeepWhileCalculationTooltipString" xml:space="preserve">
+    <value>Enable this to keep this variant while calculating new race variants.</value>
+  </data>
 </root>

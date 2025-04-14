@@ -122,7 +122,7 @@
                         <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentCompetitionRaceIsValid}" Value="False">
+                        <DataTrigger Binding="{Binding CurrentCompetitionRace.IsValid}" Value="False">
                             <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushError}" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -137,14 +137,14 @@
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
                         <!-- At least one race is invalid -->
-                        <Grid Visibility="{Binding CurrentCompetitionRace.IsValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                        <Grid Visibility="{Binding CurrentCompetitionRace.IsValid_AllRacesValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                               ToolTip="{x:Static properties:Resources.InvalidRacesString}">
                             <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
                             <controls:FontIcon FontSize="20" Glyph="&#xEA83;" Margin="0,5,0,0"/>
                         </Grid>
 
                         <!-- There are not assigned starts -->
-                        <Grid Margin="5,0,0,0" Visibility="{Binding IsValid_AllStartsAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                        <Grid Margin="5,0,0,0" Visibility="{Binding CurrentCompetitionRace.IsValid_AllStartsAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                               ToolTip="{x:Static properties:Resources.NotAssignedStartsString}">
                             <controls:FontIcon FontSize="20" Glyph="&#xE77B;"/>
                             <controls:FontIcon FontSize="10" Glyph="&#xE712;" Margin="0,17,0,0"/>
@@ -185,7 +185,7 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Displayed variant -->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
-            <ComboBox HorizontalAlignment="Left" Width="225"
+            <ComboBox HorizontalAlignment="Left" Width="250"
                       ItemsSource="{Binding AllCompetitionRaces}"
                       SelectedValue="{Binding CurrentVariantID}"
                       SelectedValuePath="VariantID"
@@ -202,8 +202,15 @@
                             <TextBlock DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding VariantID, StringFormat=#{0}}"/>
                             <TextBlock DockPanel.Dock="Left" Text="{Binding Score, StringFormat=({0:N2}%)}" Margin="5,0,0,0"/>
 
+                            <!-- Show warning icon if element is not valid -->
+                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE7BA;"
+                                               Visibility="{Binding IsValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                               ToolTip="{x:Static properties:Resources.RaceVariantContainsErrorTooltipString}"/>
+                            
                             <!-- Show filled pin for element that should be kept during race calculation -->
-                            <Grid DockPanel.Dock="Right" Margin="0,0,10,0" Visibility="{Binding KeepWhileRacesCalculation, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid DockPanel.Dock="Right" Margin="0,0,10,0"
+                                  Visibility="{Binding KeepWhileRacesCalculation, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  ToolTip="{x:Static properties:Resources.RaceVariantKeepWhileCalculationTooltipString}">
                                 <!-- Pin empty-->
                                 <controls:FontIcon FontSize="15" Glyph="&#xE840;"/>
                                 <!-- Fill for pin -->
@@ -211,7 +218,9 @@
                             </Grid>
 
                             <!-- Show filled start for persisted element -->
-                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE735;" Visibility="{Binding IsPersistent, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE735;"
+                                               Visibility="{Binding IsPersistent, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                               ToolTip="{x:Static properties:Resources.RaceVariantIsPersistentIconTooltipString}"/>
                         </DockPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
@@ -220,7 +229,7 @@
             <!-- Toggle button for IsPersistent of current competition race -->
             <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRaceIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
                           Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          ToolTip="{x:Static properties:Resources.RaceIsPersistentTooltipString}">
+                          ToolTip="{x:Static properties:Resources.RaceVariantIsPersistentToggleButtonTooltipString}">
                 <controls:FontIcon FontSize="25">
                     <controls:FontIcon.Style>
                         <Style TargetType="{x:Type controls:FontIcon}">
@@ -243,7 +252,7 @@
 
             <!-- Toggle button for KeepWhileRacesCalculation of current competition race -->
             <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}"
-                          ToolTip="{x:Static properties:Resources.RaceKeepWhileCalculationTooltipString}">
+                          ToolTip="{x:Static properties:Resources.RaceVariantKeepWhileCalculationToggleButtonTooltipString}">
                 <ToggleButton.Style>
                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -390,7 +399,7 @@
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Parking lot for PersonStarts -->
-        <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding NotAssignedStarts}"
+        <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding CurrentCompetitionRace.NotAssignedStarts}"
                  dd:DragDrop.IsDragSource="True"
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"

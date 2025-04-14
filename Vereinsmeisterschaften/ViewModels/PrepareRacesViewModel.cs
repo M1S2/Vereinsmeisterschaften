@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Threading;
@@ -19,12 +20,23 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 {
     #region Calculated Races
 
+    /// <summary>
+    /// List with all <see cref="CompetitionRaces"/>
+    /// </summary>
     public ObservableCollection<CompetitionRaces> AllCompetitionRaces => _raceService?.AllCompetitionRaces;
 
+    /// <summary>
+    /// True, if there is at least one element in <see cref="AllCompetitionRaces"/>
+    /// </summary>
     public bool AreRacesAvailable => AllCompetitionRaces?.Count > 0;
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+    /// <summary>
+    /// <see cref="CompetitionRaces.VariantID"/> of the <see cref="CurrentCompetitionRace"/>
+    /// Use 0 to select the <see cref="RaceService.PersistedCompetitionRaces"/> or the first element in <see cref="AllCompetitionRaces"/> if <see cref="CurrentCompetitionRace"/> is null.
+    /// Use -1 to clear the current selection in the combobox
+    /// </summary>
     public int CurrentVariantID
     {
         get => CurrentCompetitionRace?.VariantID ?? -1;
@@ -36,7 +48,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             }
             else if(value == 0)
             {
-                CurrentCompetitionRace = (_raceService?.PersistedCompetitionRaces != null) ? _raceService?.PersistedCompetitionRaces : _raceService?.AllCompetitionRaces.FirstOrDefault();
+                CurrentCompetitionRace = (_raceService?.PersistedCompetitionRaces != null) ? _raceService?.PersistedCompetitionRaces : AllCompetitionRaces?.FirstOrDefault();
             }
             else
             {
@@ -46,31 +58,28 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private CompetitionRaces _currentCompetitionRace;
+    /// <summary>
+    /// <see cref="CompetitionRaces"/> that is currently displayed on the view
+    /// </summary>
     public CompetitionRaces CurrentCompetitionRace
     {
         get => _currentCompetitionRace;
         set
         {
             SetProperty(ref _currentCompetitionRace, value);
-            updateNotAssignedStarts();
-            if (_currentCompetitionRace != null)
-            {
-                _currentCompetitionRace.PropertyChanged += (sender, e) =>
-                {
-                    if (e.PropertyName == nameof(CompetitionRaces.IsValid))
-                    {
-                        OnPropertyChanged(nameof(CurrentCompetitionRaceIsValid));
-                    }
-                };
-            }
+            _currentCompetitionRace?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
             OnPropertyChanged(nameof(CurrentCompetitionRaceIsPersistent));
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private void recalculateVariantIDs()
     {
-        int currentID = CurrentCompetitionRace?.VariantID ?? -1;
+        int currentID = CurrentVariantID;
         CurrentVariantID = -1; // Set to -1 to clear the current selection in the combobox
         int newVariantID = _raceService?.RecalculateVariantIDs(currentID) ?? -1;
         OnPropertyChanged(nameof(AllCompetitionRaces));
@@ -78,49 +87,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         CurrentVariantID = newVariantID == -1 ? 0 : newVariantID;
         OnPropertyChanged(nameof(CurrentCompetitionRace));
     }
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    private List<PersonStart> _notAssignedStarts;
-    public List<PersonStart> NotAssignedStarts
-    {
-        get => _notAssignedStarts;
-        set => SetProperty(ref _notAssignedStarts, value);
-    }
-
-    private void updateNotAssignedStarts()
-    {
-        List<PersonStart> allStarts = _personService?.GetAllPersonStarts();
-        List<PersonStart> raceStarts = CurrentCompetitionRace?.GetAllStarts();
-        if (allStarts == null)
-        {
-            NotAssignedStarts = new List<PersonStart>();
-        }
-        else if(raceStarts == null)
-        {
-            NotAssignedStarts = allStarts;
-        }
-        else
-        {
-            NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
-        }
-        OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
-        OnPropertyChanged(nameof(CurrentCompetitionRaceIsValid));
-    }
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True when there are no empty unassigned races
-    /// </summary>
-    public bool IsValid_AllStartsAssigned => NotAssignedStarts.Count == 0;
-
-    /// <summary>
-    /// The <see cref="CurrentCompetitionRace"/> is consideres valid when:
-    /// - The <see cref="CompetitionRaces.IsValid"/> property is true
-    /// - There are no empty unassigned races
-    /// </summary>
-    public bool CurrentCompetitionRaceIsValid => (CurrentCompetitionRace?.IsValid ?? true) && IsValid_AllStartsAssigned;
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -241,8 +207,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
 
-        updateNotAssignedStarts();
-
         _raceService.PropertyChanged += (sender, e) =>
         {
             switch (e.PropertyName)
@@ -255,7 +219,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
                 default:
                     break;
             }
-            updateNotAssignedStarts();
         };
         _raceService.AllCompetitionRaces.CollectionChanged += (sender, e) =>
         {
@@ -290,7 +253,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         {
             await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
             
-            OnPropertyChanged(nameof(NotAssignedStarts));
             recalculateVariantIDs();
         }
         catch (OperationCanceledException)
@@ -323,11 +285,15 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         }
     }, () => AreRacesAvailable));
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private ICommand _cleanupRacesCommand;
     public ICommand CleanupRacesCommand => _cleanupRacesCommand ?? (_cleanupRacesCommand = new RelayCommand(() =>
     {
         _raceService?.CleanupCompetitionRaces();
     }, () => AreRacesAvailable));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _addNewRaceVariantCommand;
     public ICommand AddNewRaceVariantCommand => _addNewRaceVariantCommand ?? (_addNewRaceVariantCommand = new RelayCommand(() =>
@@ -340,6 +306,8 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(AllCompetitionRaces));
         OnPropertyChanged(nameof(CurrentVariantID));
     }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _removeRaceVariantCommand;
     public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(async () =>
@@ -365,6 +333,8 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         }
     }, () => AreRacesAvailable));
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     private ICommand _reorderRaceVariantsCommand;
     public ICommand ReorderRaceVariantsCommand => _reorderRaceVariantsCommand ?? (_reorderRaceVariantsCommand = new RelayCommand(() =>
     {
@@ -381,9 +351,8 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _raceService.CleanupCompetitionRaces();
 
         OnPropertyChanged(nameof(AllCompetitionRaces));
-        OnPropertyChanged(nameof(NotAssignedStarts));
         OnPropertyChanged(nameof(AreRacesAvailable));
-        CurrentCompetitionRace = (_raceService?.PersistedCompetitionRaces != null) ? _raceService?.PersistedCompetitionRaces : _raceService?.AllCompetitionRaces.FirstOrDefault();
+        CurrentVariantID = 0;
     }
 
     public void OnNavigatedFrom()

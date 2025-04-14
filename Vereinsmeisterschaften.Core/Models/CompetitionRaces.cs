@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -22,13 +23,75 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        private int _variantID;
         /// <summary>
-        /// The <see cref="CompetitionRaces"/> is consideres valid when:
-        /// - All <see cref="Races"/> are valid
-        /// - There are no empty races (with 0 starts)
+        /// Number for this <see cref="CompetitionRaces"/> variant
         /// </summary>
         [FileServiceIgnore]
-        public bool IsValid => Races?.All(r => r.IsValid) ?? true;
+        public int VariantID
+        {
+            get => _variantID;
+            set => SetProperty(ref _variantID, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private List<PersonStart> _notAssignedStarts;
+        /// <summary>
+        /// List with not assigned <see cref="PersonStart"> objects (not part of any <see cref="Race"/> in <see cref="Races"/>)
+        /// </summary>
+        public List<PersonStart> NotAssignedStarts
+        {
+            get => _notAssignedStarts;
+            set => SetProperty(ref _notAssignedStarts, value);
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Update the list of not assigned <see cref="PersonStart"> objects
+        /// </summary>
+        /// <param name="allStarts">Complete list with all <see cref="PersonStart"/> objects</param>
+        public void UpdateNotAssignedStarts(List<PersonStart> allStarts)
+        {
+            List<PersonStart> raceStarts = GetAllStarts();
+            if (allStarts == null)
+            {
+                NotAssignedStarts = new List<PersonStart>();
+            }
+            else if (raceStarts == null)
+            {
+                NotAssignedStarts = allStarts;
+            }
+            else
+            {
+                NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
+            }
+            OnPropertyChanged(nameof(IsValid_AllRacesValid));
+            OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
+            OnPropertyChanged(nameof(IsValid));
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// True when all <see cref="Races"/> are valid
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_AllRacesValid => Races?.All(r => r.IsValid) ?? true;
+
+        /// <summary>
+        /// True when there are no empty unassigned races
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_AllStartsAssigned => NotAssignedStarts?.Count == 0;
+
+        /// <summary>
+        /// This <see cref="CompetitionRaces"/> is consideres valid when:
+        /// - All <see cref="Races"/> are valid
+        /// - There are no empty unassigned races
+        /// </summary>
+        public bool IsValid => IsValid_AllRacesValid && IsValid_AllStartsAssigned;
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -43,6 +106,8 @@ namespace Vereinsmeisterschaften.Core.Models
             set { SetProperty(ref _isPersistent, value); OnPropertyChanged(nameof(KeepWhileRacesCalculation)); }
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         private bool _keepWhileRacesCalculation;
         /// <summary>
         /// Keep this <see cref="CompetitionRaces"/> while calculating new variants
@@ -52,17 +117,6 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             get => _keepWhileRacesCalculation || IsPersistent;
             set => SetProperty(ref _keepWhileRacesCalculation, value);
-        }
-
-        private int _variantID;
-        /// <summary>
-        /// Number for this <see cref="CompetitionRaces"/> variant
-        /// </summary>
-        [FileServiceIgnore]
-        public int VariantID
-        {
-            get => _variantID;
-            set => SetProperty(ref _variantID, value);
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -99,6 +153,8 @@ namespace Vereinsmeisterschaften.Core.Models
             Races_CollectionChanged(Races, null);
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         private void updateRaceStartsCollectionChangedEvent()
         {
             OnPropertyChanged(nameof(Races));
@@ -113,6 +169,8 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             CalculateScore();
             OnPropertyChanged(nameof(Races));
+            OnPropertyChanged(nameof(IsValid_AllRacesValid));
+            OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
             OnPropertyChanged(nameof(IsValid));
         }
 
@@ -120,6 +178,8 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             CalculateScore();
             updateRaceStartsCollectionChangedEvent();
+            OnPropertyChanged(nameof(IsValid_AllRacesValid));
+            OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
             OnPropertyChanged(nameof(IsValid));
         }
 
@@ -153,6 +213,8 @@ namespace Vereinsmeisterschaften.Core.Models
                 return LimitValue(score, 0, 100);
             }
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         private double _scoreSingleStarts;
         /// <summary>
@@ -204,6 +266,8 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _scoreStartGenders, value);
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
         /// Recalculate all scores
         /// </summary>
@@ -230,6 +294,8 @@ namespace Vereinsmeisterschaften.Core.Models
             return Score;
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
         /// Score for single starts:
         /// The less races with only one start the better
@@ -245,6 +311,8 @@ namespace Vereinsmeisterschaften.Core.Models
             // The less single starts, the better
             return 100 * (1 - ratio);
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// Score for same styles in sequence:
@@ -264,6 +332,8 @@ namespace Vereinsmeisterschaften.Core.Models
 
             return 100 * ((double)matchingPairs / (Races.Count - 1));
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// Score for person pauses:
@@ -333,6 +403,8 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         private readonly Dictionary<SwimmingStyles, int> STYLE_PRIORITY = new()
         {
             { SwimmingStyles.Breaststroke, 1 },     // lower numbers should start earlier
@@ -369,6 +441,8 @@ namespace Vereinsmeisterschaften.Core.Models
             return 100 - LimitValue(100 * (penalty / maxPenalty), 0, 100);
         }
 
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
         /// Score for start genders:
         /// Homogenous genders in starts are better than heterogeneous ones.
@@ -393,6 +467,8 @@ namespace Vereinsmeisterschaften.Core.Models
             double score = 100.0 * homogeneousCount / totalRaces;
             return LimitValue(score, 0, 100);
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// Limit the value to [min, max] (both inclusive)

@@ -358,10 +358,19 @@
   <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
     <value>Soll die ausgewählte Variante wirklich gelöscht werden. Das kann nicht rückgängig gemacht werden!</value>
   </data>
-  <data name="RaceIsPersistentTooltipString" xml:space="preserve">
+  <data name="RaceVariantIsPersistentToggleButtonTooltipString" xml:space="preserve">
     <value>Aktivieren, um diese Variante in eine Datei zu speichern. Nur eine Variante kann gleichzeitig als persistent markiert werden.</value>
   </data>
-  <data name="RaceKeepWhileCalculationTooltipString" xml:space="preserve">
+  <data name="RaceVariantKeepWhileCalculationToggleButtonTooltipString" xml:space="preserve">
     <value>Aktivieren, um diese Variante während der Berechnung von neuen Varianten zu behalten.</value>
+  </data>
+  <data name="RaceVariantIsPersistentIconTooltipString" xml:space="preserve">
+    <value>Diese Variante in eine Datei speichern. Nur eine Variante kann gleichzeitig als persistent markiert werden.</value>
+  </data>
+  <data name="RaceVariantKeepWhileCalculationTooltipString" xml:space="preserve">
+    <value>Diese Variante während der Berechnung von neuen Varianten behalten.</value>
+  </data>
+  <data name="RaceVariantContainsErrorTooltipString" xml:space="preserve">
+    <value>Diese Variante enthält Fehler.</value>
   </data>
 </root>

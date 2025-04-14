@@ -431,29 +431,56 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The styles in this race don&apos;t match. ähnelt.
+        /// </summary>
+        public static string RaceStylesMismatchString {
+            get {
+                return ResourceManager.GetString("RaceStylesMismatchString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
+        /// </summary>
+        public static string RaceVariantContainsErrorTooltipString {
+            get {
+                return ResourceManager.GetString("RaceVariantContainsErrorTooltipString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
+        /// </summary>
+        public static string RaceVariantIsPersistentIconTooltipString {
+            get {
+                return ResourceManager.GetString("RaceVariantIsPersistentIconTooltipString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
         /// </summary>
-        public static string RaceIsPersistentTooltipString {
+        public static string RaceVariantIsPersistentToggleButtonTooltipString {
             get {
-                return ResourceManager.GetString("RaceIsPersistentTooltipString", resourceCulture);
+                return ResourceManager.GetString("RaceVariantIsPersistentToggleButtonTooltipString", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to keep this variant while calculating new race variants. ähnelt.
         /// </summary>
-        public static string RaceKeepWhileCalculationTooltipString {
+        public static string RaceVariantKeepWhileCalculationToggleButtonTooltipString {
             get {
-                return ResourceManager.GetString("RaceKeepWhileCalculationTooltipString", resourceCulture);
+                return ResourceManager.GetString("RaceVariantKeepWhileCalculationToggleButtonTooltipString", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The styles in this race don&apos;t match. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Keep this variant while calculating new race variants. ähnelt.
         /// </summary>
-        public static string RaceStylesMismatchString {
+        public static string RaceVariantKeepWhileCalculationTooltipString {
             get {
-                return ResourceManager.GetString("RaceStylesMismatchString", resourceCulture);
+                return ResourceManager.GetString("RaceVariantKeepWhileCalculationTooltipString", resourceCulture);
             }
         }
         

@@ -358,6 +358,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 if (competitionRaces.VariantID == oldVariantID) { newVariantID = _nextVariantID; }
                 competitionRaces.VariantID = _nextVariantID;
                 _nextVariantID++;
+
+                competitionRaces.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
             }
             OnPropertyChanged(nameof(AllCompetitionRaces));
             return newVariantID;
@@ -365,6 +367,10 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private void competitionRaces_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == nameof(CompetitionRaces.Races))
+            {
+                (sender as CompetitionRaces)?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+            }
             OnPropertyChanged(nameof(HasUnsavedChanges));
             OnPropertyChanged(nameof(AllCompetitionRaces));
             OnPropertyChanged(nameof(PersistedCompetitionRaces));

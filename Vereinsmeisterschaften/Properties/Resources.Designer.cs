@@ -133,20 +133,20 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Calculate Competition Races ähnelt.
-        /// </summary>
-        public static string CalculateCompetitionRacesString {
-            get {
-                return ResourceManager.GetString("CalculateCompetitionRacesString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Calculated Score ähnelt.
         /// </summary>
         public static string CalculatedScoreString {
             get {
                 return ResourceManager.GetString("CalculatedScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calculate Races Variants ähnelt.
+        /// </summary>
+        public static string CalculateRacesVariantsString {
+            get {
+                return ResourceManager.GetString("CalculateRacesVariantsString", resourceCulture);
             }
         }
         

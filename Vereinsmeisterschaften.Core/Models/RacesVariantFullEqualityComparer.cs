@@ -7,13 +7,13 @@ using System.Xml.Linq;
 namespace Vereinsmeisterschaften.Core.Models
 {
     /// <summary>
-    /// Comparer that only uses most properties of a <see cref="CompetitionRaces"/> to determine equality:
-    /// - <see cref="CompetitionRaces.Score"/>
-    /// - <see cref="CompetitionRaces.Races"/>
+    /// Comparer that only uses most properties of a <see cref="RacesVariant"/> to determine equality:
+    /// - <see cref="RacesVariant.Score"/>
+    /// - <see cref="RacesVariant.Races"/>
     /// </summary>
-    public class CompetitionRacesFullEqualityComparer : IEqualityComparer<CompetitionRaces>
+    public class RacesVariantFullEqualityComparer : IEqualityComparer<RacesVariant>
     {
-        public bool Equals(CompetitionRaces x, CompetitionRaces y)
+        public bool Equals(RacesVariant x, RacesVariant y)
         {
             if (ReferenceEquals(x, y)) return true;
             if (ReferenceEquals(x, null)) return false;
@@ -23,7 +23,7 @@ namespace Vereinsmeisterschaften.Core.Models
             return x.Score == y.Score && x.Races.SequenceEqual(y.Races);
         }
 
-        public int GetHashCode(CompetitionRaces obj)
+        public int GetHashCode(RacesVariant obj)
             => obj == null ? 0 : (obj.Races, obj.Score).GetHashCode();
     }
 }

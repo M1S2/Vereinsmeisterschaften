@@ -19,7 +19,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 public class PrepareRacesViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
-    /// Number of available swim lanes. This is used during calculation of the new <see cref="CompetitionRaces"/>
+    /// Number of available swim lanes. This is used during calculation of the new <see cref="RacesVariant"/>
     /// </summary>
     public const int NUM_AVAILABLE_SWIM_LANES = 3;
 
@@ -28,38 +28,38 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     #region Calculated Races
 
     /// <summary>
-    /// List with all <see cref="CompetitionRaces"/>
+    /// List with all <see cref="RacesVariant"/>
     /// </summary>
-    public ObservableCollection<CompetitionRaces> AllCompetitionRaces => _raceService?.AllCompetitionRaces;
+    public ObservableCollection<RacesVariant> AllRacesVariants => _raceService?.AllRacesVariants;
 
     /// <summary>
-    /// True, if there is at least one element in <see cref="AllCompetitionRaces"/>
+    /// True, if there is at least one element in <see cref="AllRacesVariants"/>
     /// </summary>
-    public bool AreRacesAvailable => AllCompetitionRaces?.Count > 0;
+    public bool AreRacesVariantsAvailable => AllRacesVariants?.Count > 0;
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
-    /// <see cref="CompetitionRaces.VariantID"/> of the <see cref="CurrentCompetitionRace"/>
-    /// Use 0 to select the <see cref="RaceService.PersistedCompetitionRaces"/> or the first element in <see cref="AllCompetitionRaces"/> if <see cref="CurrentCompetitionRace"/> is null.
+    /// <see cref="RacesVariant.VariantID"/> of the <see cref="CurrentRacesVariant"/>
+    /// Use 0 to select the <see cref="RaceService.PersistedRacesVariant"/> or the first element in <see cref="AllRacesVariants"/> if <see cref="CurrentRacesVariant"/> is null.
     /// Use -1 to clear the current selection in the combobox
     /// </summary>
     public int CurrentVariantID
     {
-        get => CurrentCompetitionRace?.VariantID ?? -1;
+        get => CurrentRacesVariant?.VariantID ?? -1;
         set
         {
             if (value > 0)
             {
-                CurrentCompetitionRace = AllCompetitionRaces?.Where(r => r.VariantID == value).FirstOrDefault();
+                CurrentRacesVariant = AllRacesVariants?.Where(r => r.VariantID == value).FirstOrDefault();
             }
             else if(value == 0)
             {
-                CurrentCompetitionRace = (_raceService?.PersistedCompetitionRaces != null) ? _raceService?.PersistedCompetitionRaces : AllCompetitionRaces?.FirstOrDefault();
+                CurrentRacesVariant = (_raceService?.PersistedRacesVariant != null) ? _raceService?.PersistedRacesVariant : AllRacesVariants?.FirstOrDefault();
             }
             else
             {
-                CurrentCompetitionRace = null;
+                CurrentRacesVariant = null;
             }
             OnPropertyChanged();
         }
@@ -67,25 +67,25 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    private CompetitionRaces _currentCompetitionRace;
+    private RacesVariant _currentRacesVariant;
     /// <summary>
-    /// <see cref="CompetitionRaces"/> that is currently displayed on the view
+    /// <see cref="RacesVariant"/> that is currently displayed on the view
     /// </summary>
-    public CompetitionRaces CurrentCompetitionRace
+    public RacesVariant CurrentRacesVariant
     {
-        get => _currentCompetitionRace;
+        get => _currentRacesVariant;
         set
         {
-            SetProperty(ref _currentCompetitionRace, value);
-            _currentCompetitionRace?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
-            OnPropertyChanged(nameof(CurrentCompetitionRaceIsPersistent));
+            SetProperty(ref _currentRacesVariant, value);
+            _currentRacesVariant?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+            OnPropertyChanged(nameof(CurrentRacesVariantIsPersistent));
         }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
-    /// Recalculate the variant IDs for all elements in <see cref="AllCompetitionRaces"/>
+    /// Recalculate the variant IDs for all elements in <see cref="AllRacesVariants"/>
     /// </summary>
     private void recalculateVariantIDs()
     {
@@ -93,28 +93,28 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         CurrentVariantID = -1;      // Set to -1 to clear the current selection in the combobox
         int newVariantID = _raceService?.RecalculateVariantIDs(currentID) ?? -1;
         CurrentVariantID = newVariantID == -1 ? 0 : newVariantID;       // If newVariantID is -1, select the persisted race or first element instead of nothing
-        OnPropertyChanged(nameof(AllCompetitionRaces));
-        OnPropertyChanged(nameof(AreRacesAvailable));
+        OnPropertyChanged(nameof(AllRacesVariants));
+        OnPropertyChanged(nameof(AreRacesVariantsAvailable));
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
-    /// Property wrapper for the <see cref="CompetitionRaces.IsPersistent"/> property of the <see cref="CurrentCompetitionRace"/>.
-    /// This wrapper first disables the <see cref="CompetitionRaces.IsPersistent"/> property of all elements in <see cref="AllCompetitionRaces"/> and then sets the property of the <see cref="CurrentCompetitionRace"/>
+    /// Property wrapper for the <see cref="RacesVariant.IsPersistent"/> property of the <see cref="CurrentRacesVariant"/>.
+    /// This wrapper first disables the <see cref="RacesVariant.IsPersistent"/> property of all elements in <see cref="AllRacesVariants"/> and then sets the property of the <see cref="CurrentRacesVariant"/>
     /// </summary>
-    public bool CurrentCompetitionRaceIsPersistent
+    public bool CurrentRacesVariantIsPersistent
     {
-        get => CurrentCompetitionRace?.IsPersistent ?? false;
+        get => CurrentRacesVariant?.IsPersistent ?? false;
         set
         {
-            if (CurrentCompetitionRace != null)
+            if (CurrentRacesVariant != null)
             {
-                foreach (CompetitionRaces item in AllCompetitionRaces)
+                foreach (RacesVariant item in AllRacesVariants)
                 {
                     item.IsPersistent = false;
                 }
-                CurrentCompetitionRace.IsPersistent = value;
+                CurrentRacesVariant.IsPersistent = value;
             }
             OnPropertyChanged();
         }
@@ -224,12 +224,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     #region Drop Handlers
 
     /// <summary>
-    /// Drop Handler for the <see cref="CurrentCompetitionRace"/>
+    /// Drop Handler for the <see cref="CurrentRacesVariant"/>
     /// </summary>
     public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler() { MaxItemsInTargetCollection = NUM_AVAILABLE_SWIM_LANES };
 
     /// <summary>
-    /// Drop Handler for the parking lot region containing the <see cref="CompetitionRaces.NotAssignedStarts"/>
+    /// Drop Handler for the parking lot region containing the <see cref="RacesVariant.NotAssignedStarts"/>
     /// </summary>
     public DropAllowedHandlerParkingLot DropAllowedHandlerParkingLotObj { get; } = new DropAllowedHandlerParkingLot();
 
@@ -254,16 +254,16 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         {
             switch (e.PropertyName)
             {
-                case nameof(RaceService.AllCompetitionRaces):
-                    OnPropertyChanged(nameof(CurrentCompetitionRace));
-                    OnPropertyChanged(nameof(AllCompetitionRaces));
-                    OnPropertyChanged(nameof(AreRacesAvailable));
+                case nameof(RaceService.AllRacesVariants):
+                    OnPropertyChanged(nameof(CurrentRacesVariant));
+                    OnPropertyChanged(nameof(AllRacesVariants));
+                    OnPropertyChanged(nameof(AreRacesVariantsAvailable));
                     break;
                 default:
                     break;
             }
         };
-        _raceService.AllCompetitionRaces.CollectionChanged += (sender, e) =>
+        _raceService.AllRacesVariants.CollectionChanged += (sender, e) =>
         {
             ((RelayCommand)AddNewRaceCommand).NotifyCanExecuteChanged();
             ((RelayCommand)CleanupRacesCommand).NotifyCanExecuteChanged();
@@ -274,13 +274,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region Calculate Competition Races Command
+    #region Calculate Races Variants Command
 
-    private ICommand _calculateCompetitionRacesCommand;
+    private ICommand _salculateRacesVariantsCommand;
     /// <summary>
-    /// Command to calculate new <see cref="CompetitionRaces"/> variants
+    /// Command to calculate new <see cref="RacesVariant"/> variants
     /// </summary>
-    public ICommand CalculateCompetitionRacesCommand => _calculateCompetitionRacesCommand ?? (_calculateCompetitionRacesCommand = new RelayCommand(async() => 
+    public ICommand CalculateRacesVariantsCommand => _salculateRacesVariantsCommand ?? (_salculateRacesVariantsCommand = new RelayCommand(async() => 
     {
         ProgressDelegate onProgress = (sender, progress, currentStep) =>
         {
@@ -294,12 +294,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         // Open a user dialog to show the current calculation progress
-        _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.CalculateCompetitionRacesString, "", true);
+        _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.CalculateRacesVariantsString, "", true);
         _progressController.Canceled += (sender, e) => cancellationTokenSource.Cancel();
 
         try
         {
-            await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, NUM_AVAILABLE_SWIM_LANES, onProgress);
+            await _raceService.CalculateRacesVariants(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, NUM_AVAILABLE_SWIM_LANES, onProgress);
             recalculateVariantIDs();
         }
         catch (OperationCanceledException)
@@ -325,41 +325,41 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     private ICommand _addNewRaceCommand;
     /// <summary>
-    /// Command to add a new <see cref="Race"/> to the <see cref="CurrentCompetitionRace"/>
+    /// Command to add a new <see cref="Race"/> to the <see cref="CurrentRacesVariant"/>
     /// </summary>
     public ICommand AddNewRaceCommand => _addNewRaceCommand ?? (_addNewRaceCommand = new RelayCommand(() =>
     {
-        if(CurrentCompetitionRace != null)
+        if(CurrentRacesVariant != null)
         {
-            CurrentCompetitionRace.Races.Add(new Race());
+            CurrentRacesVariant.Races.Add(new Race());
         }
-    }, () => AreRacesAvailable));
+    }, () => AreRacesVariantsAvailable));
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _cleanupRacesCommand;
     /// <summary>
-    /// Command to cleanup all <see cref="CompetitionRaces"/> in <see cref="RaceService.AllCompetitionRaces"/>
+    /// Command to cleanup all <see cref="RacesVariant"/> in <see cref="RaceService.AllRacesVariants"/>
     /// </summary>
     public ICommand CleanupRacesCommand => _cleanupRacesCommand ?? (_cleanupRacesCommand = new RelayCommand(() =>
     {
-        _raceService?.CleanupCompetitionRaces();
-    }, () => AreRacesAvailable));
+        _raceService?.CleanupRacesVariants();
+    }, () => AreRacesVariantsAvailable));
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _addNewRaceVariantCommand;
     /// <summary>
-    /// Add a new <see cref="CompetitionRaces"/> element to the <see cref="RaceService.AllCompetitionRaces"/>
+    /// Add a new <see cref="RacesVariant"/> element to the <see cref="RaceService.AllRacesVariants"/>
     /// </summary>
     public ICommand AddNewRaceVariantCommand => _addNewRaceVariantCommand ?? (_addNewRaceVariantCommand = new RelayCommand(() =>
     {
-        CompetitionRaces newVariant = new CompetitionRaces();
-        _raceService?.AddCompetitionRaces(newVariant);
-        CurrentCompetitionRace = newVariant;
-        OnPropertyChanged(nameof(AreRacesAvailable));
-        OnPropertyChanged(nameof(CurrentCompetitionRace));
-        OnPropertyChanged(nameof(AllCompetitionRaces));
+        RacesVariant newVariant = new RacesVariant();
+        _raceService?.AddRacesVariant(newVariant);
+        CurrentRacesVariant = newVariant;
+        OnPropertyChanged(nameof(AreRacesVariantsAvailable));
+        OnPropertyChanged(nameof(CurrentRacesVariant));
+        OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(CurrentVariantID));
     }));
 
@@ -367,7 +367,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     private ICommand _removeRaceVariantCommand;
     /// <summary>
-    /// Remove the <see cref="CurrentCompetitionRace"/> from the <see cref="RaceService.AllCompetitionRaces"/>
+    /// Remove the <see cref="CurrentRacesVariant"/> from the <see cref="RaceService.AllRacesVariants"/>
     /// </summary>
     public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(async () =>
     {
@@ -379,32 +379,32 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         if (result == MessageDialogResult.Affirmative)
         {
-            int index = AllCompetitionRaces.IndexOf(CurrentCompetitionRace);
-            _raceService?.RemoveCompetitionRaces(CurrentCompetitionRace);
-            if (index == AllCompetitionRaces.Count && AllCompetitionRaces.Count >= 1)
+            int index = AllRacesVariants.IndexOf(CurrentRacesVariant);
+            _raceService?.RemoveRacesVariant(CurrentRacesVariant);
+            if (index == AllRacesVariants.Count && AllRacesVariants.Count >= 1)
             {
                 index--;
             }
-            CurrentCompetitionRace = null;      // Set to null and then to the correct value to update the combobox on the view
-            CurrentCompetitionRace = (index >= 0 && index < AllCompetitionRaces.Count) ? AllCompetitionRaces[index] : AllCompetitionRaces?.FirstOrDefault();
-            OnPropertyChanged(nameof(AreRacesAvailable));
-            OnPropertyChanged(nameof(CurrentCompetitionRace));
-            OnPropertyChanged(nameof(AllCompetitionRaces));
+            CurrentRacesVariant = null;      // Set to null and then to the correct value to update the combobox on the view
+            CurrentRacesVariant = (index >= 0 && index < AllRacesVariants.Count) ? AllRacesVariants[index] : AllRacesVariants?.FirstOrDefault();
+            OnPropertyChanged(nameof(AreRacesVariantsAvailable));
+            OnPropertyChanged(nameof(CurrentRacesVariant));
+            OnPropertyChanged(nameof(AllRacesVariants));
             OnPropertyChanged(nameof(CurrentVariantID));
         }
-    }, () => AreRacesAvailable));
+    }, () => AreRacesVariantsAvailable));
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _reorderRaceVariantsCommand;
     /// <summary>
-    /// Reorder the <see cref="CompetitionRaces"/> variants by score and then recalculate the variant IDs.
+    /// Reorder the <see cref="RacesVariant"/> variants by score and then recalculate the variant IDs.
     /// </summary>
     public ICommand ReorderRaceVariantsCommand => _reorderRaceVariantsCommand ?? (_reorderRaceVariantsCommand = new RelayCommand(() =>
     {
         _raceService?.SortVariantsByScore();
         recalculateVariantIDs();
-    }, () => AreRacesAvailable));
+    }, () => AreRacesVariantsAvailable));
 
     #endregion
 
@@ -412,10 +412,10 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        _raceService.CleanupCompetitionRaces();
+        _raceService.CleanupRacesVariants();
 
-        OnPropertyChanged(nameof(AllCompetitionRaces));
-        OnPropertyChanged(nameof(AreRacesAvailable));
+        OnPropertyChanged(nameof(AllRacesVariants));
+        OnPropertyChanged(nameof(AreRacesVariantsAvailable));
         CurrentVariantID = 0;
     }
 

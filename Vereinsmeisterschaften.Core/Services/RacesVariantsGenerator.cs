@@ -9,9 +9,10 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Services
 {
     /// <summary>
-    /// Class to generate different variants of <see cref="CompetitionRaces"/> using the score calculation.
+    /// Class to generate different variants of <see cref="RacesVariant"/> using the score calculation.
+    /// This was created with the help of ChatGPT.
     /// </summary>
-    public class CompetitionRaceGenerator
+    public class RacesVariantsGenerator
     {
         private readonly Random _random = new();
         private readonly double _minScoreThreshold;
@@ -22,15 +23,15 @@ namespace Vereinsmeisterschaften.Core.Services
         private readonly int _maxIterations;
 
         /// <summary>
-        /// Create a new instance of <see cref="CompetitionRaceGenerator"/>. This isn't running any calculation yet.
+        /// Create a new instance of <see cref="RacesVariantsGenerator"/>. This isn't running any calculation yet.
         /// </summary>
         /// <param name="progress">Progress reporting functionality</param>
         /// <param name="requiredVariantsCount">Number of required variants to generate. If this number is reached, the loop breaks.</param>
         /// <param name="maxIterations">Maximum number of iterations the loop will run in the worst case.</param>
-        /// <param name="minScoreThreshold">Only <see cref="CompetitionRaces"/> with a score higher or equal this value are kept.</param>
+        /// <param name="minScoreThreshold">Only <see cref="RacesVariant"/> with a score higher or equal this value are kept.</param>
         /// <param name="maxGroupSize">Maximum allowed number of elements per group</param>
         /// <param name="maxOneElementGroupPercentage">Maximum percentage of single-item groups allowed in the final result</param>
-        public CompetitionRaceGenerator(IProgress<double> progress = null, int requiredVariantsCount = 100, int maxIterations = 100000, int minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
+        public RacesVariantsGenerator(IProgress<double> progress = null, int requiredVariantsCount = 100, int maxIterations = 100000, int minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
         {
             _progress = progress;
             _maxGroupSize = maxGroupSize;
@@ -45,10 +46,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="sets">Sets with elements to combine. The elements are not mixed between sets.</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>List with different <see cref="CompetitionRaces"/> all with a score above <see cref="_minScoreThreshold"/></returns>
-        public async Task<List<CompetitionRaces>> GenerateBestRacesAsync(List<List<PersonStart>> sets, CancellationToken cancellationToken = default)
+        /// <returns>List with different <see cref="RacesVariant"/> all with a score above <see cref="_minScoreThreshold"/></returns>
+        public async Task<List<RacesVariant>> GenerateBestRacesAsync(List<List<PersonStart>> sets, CancellationToken cancellationToken = default)
         {
-            ConcurrentBag<CompetitionRaces> bestRaces = new ConcurrentBag<CompetitionRaces>();
+            ConcurrentBag<RacesVariant> bestRaces = new ConcurrentBag<RacesVariant>();
             int attempts = 0;
             int foundVariants = 0;
 
@@ -63,7 +64,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
 
                     // Random grouping creation
-                    CompetitionRaces candidate = CreateValidGrouping(sets);
+                    RacesVariant candidate = CreateValidGrouping(sets);
 
                     // Calculate score and keep if above threshold
                     double score = candidate.CalculateScore();
@@ -91,8 +92,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Create a valid group by combining the elements within the sets randomly.
         /// </summary>
         /// <param name="sets">Sets which elements are combined</param>
-        /// <returns>Randomly created <see cref="CompetitionRaces"/></returns>
-        private CompetitionRaces CreateValidGrouping(List<List<PersonStart>> sets)
+        /// <returns>Randomly created <see cref="RacesVariant"/></returns>
+        private RacesVariant CreateValidGrouping(List<List<PersonStart>> sets)
         {
             List<List<PersonStart>> groups = new List<List<PersonStart>>();
             List<List<PersonStart>> shuffledSets = sets.OrderBy(_ => _random.Next()).ToList(); // Shuffle sets for more randomness
@@ -127,13 +128,13 @@ namespace Vereinsmeisterschaften.Core.Services
                 groups = MergeSmallGroups(groups, sets);
             }
 
-            var competitionRaces = new CompetitionRaces();
+            RacesVariant variant = new RacesVariant();
             foreach (var group in groups)
             {
-                competitionRaces.Races.Add(new Race(group));
+                variant.Races.Add(new Race(group));
             }
 
-            return competitionRaces;
+            return variant;
         }
 
         /// <summary>

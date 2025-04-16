@@ -12,9 +12,9 @@ using Vereinsmeisterschaften.Core.Services;
 namespace Vereinsmeisterschaften.Core.Models
 {
     /// <summary>
-    /// Class that represents a combination of all single races.
+    /// Class that represents a combination variant of all single races.
     /// </summary>
-    public class CompetitionRaces : ObservableObject, IEquatable<CompetitionRaces>, ICloneable
+    public class RacesVariant : ObservableObject, IEquatable<RacesVariant>, ICloneable
     {
         /// <summary>
         /// List with races
@@ -25,7 +25,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         private int _variantID;
         /// <summary>
-        /// Number for this <see cref="CompetitionRaces"/> variant
+        /// Number for this <see cref="RacesVariant"/>
         /// </summary>
         [FileServiceIgnore]
         public int VariantID
@@ -87,7 +87,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public bool IsValid_AllStartsAssigned => NotAssignedStarts?.Count == 0;
 
         /// <summary>
-        /// This <see cref="CompetitionRaces"/> is consideres valid when:
+        /// This <see cref="RacesVariant"/> is consideres valid when:
         /// - All <see cref="Races"/> are valid
         /// - There are no empty unassigned races
         /// </summary>
@@ -97,7 +97,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         private bool _isPersistent;
         /// <summary>
-        /// If true, this <see cref="CompetitionRaces"/> should be persisted (to a file).
+        /// If true, this <see cref="RacesVariant"/> should be persisted (to a file).
         /// </summary>
         [FileServiceIgnore]
         public bool IsPersistent
@@ -110,7 +110,7 @@ namespace Vereinsmeisterschaften.Core.Models
 
         private bool _keepWhileRacesCalculation;
         /// <summary>
-        /// Keep this <see cref="CompetitionRaces"/> while calculating new variants
+        /// Keep this <see cref="RacesVariant"/> while calculating new variants
         /// </summary>
         [FileServiceIgnore]
         public bool KeepWhileRacesCalculation
@@ -121,13 +121,13 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public CompetitionRaces()
+        public RacesVariant()
         {
             Races = new ObservableCollection<Race>();
             Races.CollectionChanged += Races_CollectionChanged;
         }
 
-        public CompetitionRaces(List<Race> races)
+        public RacesVariant(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
             Races.CollectionChanged += Races_CollectionChanged;
@@ -135,7 +135,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Races_CollectionChanged(Races, null);
         }
 
-        public CompetitionRaces(ObservableCollection<Race> races)
+        public RacesVariant(ObservableCollection<Race> races)
         {
             Races = races;
             Races.CollectionChanged += Races_CollectionChanged;
@@ -143,7 +143,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Races_CollectionChanged(Races, null);
         }
 
-        public CompetitionRaces(CompetitionRaces other) : this()
+        public RacesVariant(RacesVariant other) : this()
         {
             if(other == null) { return; }
             // Create a deep copy of the list
@@ -186,9 +186,9 @@ namespace Vereinsmeisterschaften.Core.Models
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Get a list with all <see cref="PersonStart"> objects of this <see cref="CompetitionRaces"/>
+        /// Get a list with all <see cref="PersonStart"> objects of this <see cref="RacesVariant"/>
         /// </summary>
-        /// <returns>List with all <see cref="PersonStart"/> objects of this <see cref="CompetitionRaces"/></returns>
+        /// <returns>List with all <see cref="PersonStart"/> objects of this <see cref="RacesVariant"/></returns>
         public List<PersonStart> GetAllStarts()
         {
             return Races.SelectMany(r => r.Starts).ToList();
@@ -485,19 +485,19 @@ namespace Vereinsmeisterschaften.Core.Models
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Compare if two <see cref="CompetitionRaces"/> are equal
+        /// Compare if two <see cref="RacesVariant"/> are equal
         /// </summary>
-        /// <param name="obj">Other <see cref="CompetitionRaces"/> to compare against this instance.</param>
-        /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="CompetitionRaces"/></returns>
+        /// <param name="obj">Other <see cref="RacesVariant"/> to compare against this instance.</param>
+        /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="RacesVariant"/></returns>
         public override bool Equals(object obj)
-            => obj is CompetitionRaces r && r.VariantID == VariantID;
+            => obj is RacesVariant r && r.VariantID == VariantID;
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">Other object to compare.</param>
         /// <returns>true if the current object is equal to the other parameter; otherwise false.</returns>
-        public bool Equals(CompetitionRaces other)
+        public bool Equals(RacesVariant other)
             => Equals((object)other);
 
         /// <summary>
@@ -512,6 +512,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>Cloned object of type</returns>
         public object Clone()
-            => new CompetitionRaces(this);
+            => new RacesVariant(this);
     }
 }

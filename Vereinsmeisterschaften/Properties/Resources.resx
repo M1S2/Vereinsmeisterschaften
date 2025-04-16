@@ -279,8 +279,8 @@
   <data name="UnsavedChangesString" xml:space="preserve">
     <value>Unsaved changes</value>
   </data>
-  <data name="CalculateCompetitionRacesString" xml:space="preserve">
-    <value>Calculate Competition Races</value>
+  <data name="CalculateRacesVariantsString" xml:space="preserve">
+    <value>Calculate Races Variants</value>
   </data>
   <data name="HighlightModeString" xml:space="preserve">
     <value>HightlightMode</value>

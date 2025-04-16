@@ -8,7 +8,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 namespace Vereinsmeisterschaften.Core.Models
 {
     /// <summary>
-    /// Class that represents a single race in the complete competition race.
+    /// Class that represents a single race.
     /// </summary>
     public class Race : ObservableObject, IEquatable<Race>, ICloneable
     {

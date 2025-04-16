@@ -15,13 +15,13 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Vereinsmeisterschaften.Core.Services
 {
     /// <summary>
-    /// service used to manage Race objects
+    /// Service used to manage <see cref="Race"> and <see cref="RacesVariant"/> objects
     /// </summary>
     public class RaceService : ObservableObject, IRaceService
     {
         /// <summary>
-        /// Number of variants in <see cref="AllCompetitionRaces"/> after calling <see cref="CalculateCompetitionRaces(ushort, CancellationToken, int, ProgressDelegate)"/>
-        /// The number of variants to keep (marked with <see cref="CompetitionRaces.KeepWhileRacesCalculation"/>) is subtracted before calculating the remaining elements.
+        /// Number of variants in <see cref="AllRacesVariants"/> after calling <see cref="CalculateRacesVariants(ushort, CancellationToken, int, ProgressDelegate)"/>
+        /// The number of variants to keep (marked with <see cref="RacesVariant.KeepWhileRacesCalculation"/>) is subtracted before calculating the remaining elements.
         /// </summary>
         public const int NUM_VARIANTS_AFTER_CALCULATION = 100;
 
@@ -58,19 +58,19 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// List with all <see cref="CompetitionRaces"/> (including the loaded and calculated ones)
+        /// List with all <see cref="RacesVariant"/> (including the loaded and calculated ones)
         /// </summary>
-        public ObservableCollection<CompetitionRaces> AllCompetitionRaces { get; private set; } = new ObservableCollection<CompetitionRaces>();
+        public ObservableCollection<RacesVariant> AllRacesVariants { get; private set; } = new ObservableCollection<RacesVariant>();
 
         /// <summary>
-        /// <see cref="CompetitionRaces"/> object that is persisted (saved/loaded to/from a file).
+        /// <see cref="RacesVariant"/> object that is persisted (saved/loaded to/from a file).
         /// </summary>
-        public CompetitionRaces PersistedCompetitionRaces => AllCompetitionRaces.Where(r => r.IsPersistent).FirstOrDefault();
+        public RacesVariant PersistedRacesVariant => AllRacesVariants.Where(r => r.IsPersistent).FirstOrDefault();
 
         /// <summary>
-        /// <see cref="CompetitionRaces"/> object that is marked as best result at the time the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// <see cref="RacesVariant"/> object that is marked as best result at the time the <see cref="Load(string, CancellationToken)"/> method was called.
         /// </summary>
-        private CompetitionRaces _bestCompetitionRacesOnLoad { get; set; }
+        private RacesVariant _bestRacesVariantOnLoad { get; set; }
 
         /// <summary>
         /// Path to the race file
@@ -80,14 +80,14 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Calculate some combination variants for all person starts
+        /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
         /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
         /// <param name="numberAvailableSwimLanes">Number of available swimming lanes. This determines the maximum number of parallel starts</param>
         /// <param name="onProgress">Callback used to report progress of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        public async Task<ObservableCollection<CompetitionRaces>> CalculateCompetitionRaces(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
+        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
         {
             // Collect all starts
             _competitionService.UpdateAllCompetitionsForPersonStarts(competitionYear);
@@ -111,25 +111,25 @@ namespace Vereinsmeisterschaften.Core.Services
                 groupedValuesStarts[key].Add(starts[i]);
             }
 
-            List<CompetitionRaces> racesToDelete = AllCompetitionRaces.Where(r => !r.KeepWhileRacesCalculation).ToList();
-            racesToDelete.ForEach(r => AllCompetitionRaces.Remove(r));
-            int numberOfResultsToGenerate = Math.Max(0, NUM_VARIANTS_AFTER_CALCULATION - AllCompetitionRaces.Count(r => r.KeepWhileRacesCalculation));
+            List<RacesVariant> racesToDelete = AllRacesVariants.Where(r => !r.KeepWhileRacesCalculation).ToList();
+            racesToDelete.ForEach(r => AllRacesVariants.Remove(r));
+            int numberOfResultsToGenerate = Math.Max(0, NUM_VARIANTS_AFTER_CALCULATION - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
             
-            CompetitionRaceGenerator generator = new CompetitionRaceGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 20, numberAvailableSwimLanes);
-            List<CompetitionRaces> tmpCompetitionRaces = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
+            RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 20, numberAvailableSwimLanes);
+            List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
             
-            tmpCompetitionRaces.ForEach(AddCompetitionRaces);
+            tmpRacesVariants.ForEach(AddRacesVariant);
             SortVariantsByScore();
-            OnPropertyChanged(nameof(PersistedCompetitionRaces));
-            return AllCompetitionRaces;
+            OnPropertyChanged(nameof(PersistedRacesVariant));
+            return AllRacesVariants;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Load the best race as the only element to the <see cref="AllCompetitionRaces"/>.
+        /// Load the best race as the only element to the <see cref="AllRacesVariants"/>.
         /// This is using a separate Task because the file possibly can be large.
-        /// If the file doesn't exist, the <see cref="AllCompetitionRaces"/> is cleared and the functions returns loading success.
+        /// If the file doesn't exist, the <see cref="AllRacesVariants"/> is cleared and the functions returns loading success.
         /// </summary>
         /// <param name="path">Path from where to load</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -147,23 +147,23 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        uiContext.Send((d) => { ClearAllCompetitionRaces(); }, null);
+                        uiContext.Send((d) => { ClearAllRacesVariants(); }, null);
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else
                     {
                         List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress);
-                        CompetitionRaces bestCompetitionRaces = new CompetitionRaces(raceList);
-                        bestCompetitionRaces.IsPersistent = true;
+                        RacesVariant bestRacesVariant = new RacesVariant(raceList);
+                        bestRacesVariant.IsPersistent = true;
                         uiContext.Send((d) =>
                         {
-                            ClearAllCompetitionRaces();
-                            AddCompetitionRaces(bestCompetitionRaces);
+                            ClearAllRacesVariants();
+                            AddRacesVariant(bestRacesVariant);
                         }, null);
                     }
 
-                    if (PersistedCompetitionRaces == null) { _bestCompetitionRacesOnLoad = null; }
-                    else { _bestCompetitionRacesOnLoad = new CompetitionRaces(PersistedCompetitionRaces); }
+                    if (PersistedRacesVariant == null) { _bestRacesVariantOnLoad = null; }
+                    else { _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant); }
 
                     PersistentPath = path;
                     importingResult = true;
@@ -223,7 +223,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Save the <see cref="BestCompetitionRaces"/> to a file
+        /// Save the <see cref="PersistedRacesVariant"/> to a file
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="path">Path to which to save</param>
@@ -238,15 +238,15 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    if (PersistedCompetitionRaces == null)
+                    if (PersistedRacesVariant == null)
                     {
                         if (File.Exists(path)) { File.Delete(path); }
-                        _bestCompetitionRacesOnLoad = null;
+                        _bestRacesVariantOnLoad = null;
                     }
                     else
                     {
-                        int maxNumberStarts = PersistedCompetitionRaces.Races.Count == 0 ? 0 : PersistedCompetitionRaces.Races.Select(r => r.Starts.Count).Max();
-                        _fileService.SaveToCsv(path, PersistedCompetitionRaces.Races.ToList(), cancellationToken, OnFileProgress,
+                        int maxNumberStarts = PersistedRacesVariant.Races.Count == 0 ? 0 : PersistedRacesVariant.Races.Select(r => r.Starts.Count).Max();
+                        _fileService.SaveToCsv(path, PersistedRacesVariant.Races.ToList(), cancellationToken, OnFileProgress,
                         (data) =>
                         {
                             if (data is IList<PersonStart> dataList)
@@ -276,7 +276,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             }
                         });
 
-                        _bestCompetitionRacesOnLoad = new CompetitionRaces(PersistedCompetitionRaces);
+                        _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant);
                     }
                     saveResult = true;
                 }
@@ -297,55 +297,55 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Add a new <see cref="CompetitionRaces"/> to the list <see cref="AllCompetitionRaces"/>
+        /// Add a new <see cref="RacesVariant"/> to the list <see cref="AllRacesVariants"/>
         /// </summary>
-        /// <param name="competitionRaces"><see cref="CompetitionRaces"/> to add</param>
-        public void AddCompetitionRaces(CompetitionRaces competitionRaces)
+        /// <param name="racesVariant"><see cref="RacesVariant"/> to add</param>
+        public void AddRacesVariant(RacesVariant racesVariant)
         {
-            AllCompetitionRaces.Add(competitionRaces);
-            competitionRaces.VariantID = _nextVariantID;
+            AllRacesVariants.Add(racesVariant);
+            racesVariant.VariantID = _nextVariantID;
             _nextVariantID++;
-            competitionRaces.PropertyChanged += competitionRaces_PropertyChanged;
+            racesVariant.PropertyChanged += RacesVariant_PropertyChanged;
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         /// <summary>
-        /// Remove the given <see cref="CompetitionRaces"/> object from the list <see cref="AllCompetitionRaces"/>
+        /// Remove the given <see cref="RacesVariant"/> object from the list <see cref="AllRacesVariants"/>
         /// </summary>
-        /// <param name="competitionRaces"><see cref="CompetitionRaces"/> object to remove</param>
-        public void RemoveCompetitionRaces(CompetitionRaces competitionRaces)
+        /// <param name="racesVariant"><see cref="RacesVariant"/> object to remove</param>
+        public void RemoveRacesVariant(RacesVariant racesVariant)
         {
-            if(competitionRaces == null) { return; }
-            competitionRaces.PropertyChanged -= competitionRaces_PropertyChanged;
-            AllCompetitionRaces.Remove(competitionRaces);
+            if(racesVariant == null) { return; }
+            racesVariant.PropertyChanged -= RacesVariant_PropertyChanged;
+            AllRacesVariants.Remove(racesVariant);
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         /// <summary>
-        /// Remove all <see cref="CompetitionRaces"/> from the list <see cref="AllCompetitionRaces"/>
+        /// Remove all <see cref="RacesVariant"/> from the list <see cref="AllRacesVariants"/>
         /// </summary>
-        public void ClearAllCompetitionRaces()
+        public void ClearAllRacesVariants()
         {
-            foreach(CompetitionRaces competitionRaces in AllCompetitionRaces)
+            foreach(RacesVariant racesVariant in AllRacesVariants)
             {
-                competitionRaces.PropertyChanged -= competitionRaces_PropertyChanged;
-                AllCompetitionRaces.Remove(competitionRaces);
+                racesVariant.PropertyChanged -= RacesVariant_PropertyChanged;
+                AllRacesVariants.Remove(racesVariant);
             }
             OnPropertyChanged(nameof(HasUnsavedChanges));
             _nextVariantID = 1;
         }
 
         /// <summary>
-        /// Sort the complete list <see cref="AllCompetitionRaces"/> descending by the <see cref="CompetitionRaces.Score"/>
+        /// Sort the complete list <see cref="AllRacesVariants"/> descending by the <see cref="RacesVariant.Score"/>
         /// </summary>
         public void SortVariantsByScore()
         {
-            AllCompetitionRaces = new ObservableCollection<CompetitionRaces>(AllCompetitionRaces.OrderByDescending(r => r.Score));
-            OnPropertyChanged(nameof(AllCompetitionRaces));
+            AllRacesVariants = new ObservableCollection<RacesVariant>(AllRacesVariants.OrderByDescending(r => r.Score));
+            OnPropertyChanged(nameof(AllRacesVariants));
         }
 
         /// <summary>
-        /// Reassign all <see cref="CompetitionRaces.VariantID"/> so that the IDs start from 1 and have no gaps.
+        /// Reassign all <see cref="RacesVariant.VariantID"/> so that the IDs start from 1 and have no gaps.
         /// </summary>
         /// <param name="oldVariantID">If not -1, the method returns the new variant ID after reordering that matches this old variant ID</param>
         /// <returns>New variant ID after reordering matching the oldVariantID; if oldVariantID == -1 this returns -1</returns>
@@ -353,70 +353,70 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             int newVariantID = -1;
             _nextVariantID = 1;
-            foreach (CompetitionRaces competitionRaces in AllCompetitionRaces)
+            foreach (RacesVariant racesVariant in AllRacesVariants)
             {
-                if (competitionRaces.VariantID == oldVariantID) { newVariantID = _nextVariantID; }
-                competitionRaces.VariantID = _nextVariantID;
+                if (racesVariant.VariantID == oldVariantID) { newVariantID = _nextVariantID; }
+                racesVariant.VariantID = _nextVariantID;
                 _nextVariantID++;
 
-                competitionRaces.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+                racesVariant.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
             }
-            OnPropertyChanged(nameof(AllCompetitionRaces));
+            OnPropertyChanged(nameof(AllRacesVariants));
             return newVariantID;
         }
 
-        private void competitionRaces_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void RacesVariant_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(CompetitionRaces.Races))
+            if (e.PropertyName == nameof(RacesVariant.Races))
             {
-                (sender as CompetitionRaces)?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+                (sender as RacesVariant)?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
             }
             OnPropertyChanged(nameof(HasUnsavedChanges));
-            OnPropertyChanged(nameof(AllCompetitionRaces));
-            OnPropertyChanged(nameof(PersistedCompetitionRaces));
+            OnPropertyChanged(nameof(AllRacesVariants));
+            OnPropertyChanged(nameof(PersistedRacesVariant));
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="AllCompetitionRaces"/>.
+        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="AllRacesVariants"/>.
         /// Also delete empty <see cref="Race">.
         /// </summary>
-        public void CleanupCompetitionRaces()
+        public void CleanupRacesVariants()
         {
             List<PersonStart> validPersonStarts = _personService.GetAllPersonStarts();
 
-            foreach (CompetitionRaces competitionRaces in AllCompetitionRaces)
+            foreach (RacesVariant racesVariant in AllRacesVariants)
             {
-                foreach(Race race in competitionRaces.Races)
+                foreach(Race race in racesVariant.Races)
                 {
                     // Find all starts in this race that are no longer part of the valid PersonStarts and remove them from the Race
                     List<PersonStart> startsToDelete = race.Starts.Except(validPersonStarts).ToList();
                     startsToDelete.ForEach(s => race.Starts.Remove(s));
                 }
 
-                // Find all empty races and remove them from the CompetitionRaces
-                List<Race> racesToDelete = competitionRaces.Races.Where(r => r.Starts.Count == 0).ToList();
-                racesToDelete.ForEach(r => competitionRaces.Races.Remove(r));
+                // Find all empty races and remove them from the variant
+                List<Race> racesToDelete = racesVariant.Races.Where(r => r.Starts.Count == 0).ToList();
+                racesToDelete.ForEach(r => racesVariant.Races.Remove(r));
             }
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Check if the <see cref="BestCompetitionRaces"> has not saved changed.
+        /// Check if the <see cref="PersistedRacesVariant"> has not saved changed.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
         public bool HasUnsavedChanges
         {
             get
             {
-                if(PersistedCompetitionRaces != null && _bestCompetitionRacesOnLoad != null)
+                if(PersistedRacesVariant != null && _bestRacesVariantOnLoad != null)
                 {
-                    CompetitionRacesFullEqualityComparer fullEqualityComparer = new CompetitionRacesFullEqualityComparer();
-                    return !fullEqualityComparer.Equals(PersistedCompetitionRaces, _bestCompetitionRacesOnLoad);
+                    RacesVariantFullEqualityComparer fullEqualityComparer = new RacesVariantFullEqualityComparer();
+                    return !fullEqualityComparer.Equals(PersistedRacesVariant, _bestRacesVariantOnLoad);
                 }
-                else if(PersistedCompetitionRaces == null && _bestCompetitionRacesOnLoad == null)
+                else if(PersistedRacesVariant == null && _bestRacesVariantOnLoad == null)
                 {
                     return false;
                 }

@@ -78,10 +78,10 @@
         <!-- Buttons to manage the race variants -->
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,10,0,10" VerticalAlignment="Top">
             <!-- Calculate races button -->
-            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateCompetitionRacesCommand}">
+            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateRacesVariantsCommand}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
-                    <TextBlock Text="{x:Static properties:Resources.CalculateCompetitionRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock Text="{x:Static properties:Resources.CalculateRacesVariantsString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
 
@@ -113,11 +113,11 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Score -->
         <Expander Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                  Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                  Visibility="{Binding AreRacesVariantsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Expander.Style>
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding CurrentCompetitionRace.IsValid}" Value="False">
+                        <DataTrigger Binding="{Binding CurrentRacesVariant.IsValid}" Value="False">
                             <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushError}" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -128,18 +128,18 @@
                 <DockPanel VerticalAlignment="Center" LastChildFill="False">
                     <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                         <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="5,0,0,0" Text="{Binding CurrentCompetitionRace.Score, StringFormat={}{0:N2}%}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding CurrentRacesVariant.Score, StringFormat={}{0:N2}%}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
                         <!-- At least one race is invalid -->
-                        <Grid Visibility="{Binding CurrentCompetitionRace.IsValid_AllRacesValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                        <Grid Visibility="{Binding CurrentRacesVariant.IsValid_AllRacesValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                               ToolTip="{x:Static properties:Resources.InvalidRacesString}">
                             <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
                             <controls:FontIcon FontSize="20" Glyph="&#xEA83;" Margin="0,5,0,0"/>
                         </Grid>
 
                         <!-- There are not assigned starts -->
-                        <Grid Margin="5,0,0,0" Visibility="{Binding CurrentCompetitionRace.IsValid_AllStartsAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                        <Grid Margin="5,0,0,0" Visibility="{Binding CurrentRacesVariant.IsValid_AllStartsAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                               ToolTip="{x:Static properties:Resources.NotAssignedStartsString}">
                             <controls:FontIcon FontSize="20" Glyph="&#xE77B;"/>
                             <controls:FontIcon FontSize="10" Glyph="&#xE712;" Margin="0,17,0,0"/>
@@ -161,19 +161,19 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.ScoreSingleStartsString}"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreSingleStarts, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreSingleStarts, StringFormat={}{0:N2}%}"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.ScoreSameStyleSequenceString}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreSameStyleSequence, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreSameStyleSequence, StringFormat={}{0:N2}%}"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.ScorePersonStartPausesString}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScorePersonStartPauses, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScorePersonStartPauses, StringFormat={}{0:N2}%}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStyleOrderString}"/>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreStyleOrder, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreStyleOrder, StringFormat={}{0:N2}%}"/>
 
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStartGendersString}"/>
-                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentCompetitionRace.ScoreStartGenders, StringFormat={}{0:N2}%}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreStartGenders, StringFormat={}{0:N2}%}"/>
             </Grid>
         </Expander>
 
@@ -181,7 +181,7 @@
         <!-- Displayed variant -->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
             <ComboBox HorizontalAlignment="Left" Width="250"
-                      ItemsSource="{Binding AllCompetitionRaces}"
+                      ItemsSource="{Binding AllRacesVariants}"
                       SelectedValue="{Binding CurrentVariantID}"
                       SelectedValuePath="VariantID"
                       HorizontalContentAlignment="Stretch">
@@ -221,9 +221,9 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <!-- Toggle button for IsPersistent of current competition race -->
-            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRaceIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
-                          Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            <!-- Toggle button for IsPersistent of current races variant -->
+            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentRacesVariantIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
+                          Visibility="{Binding AreRacesVariantsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                           ToolTip="{x:Static properties:Resources.RaceVariantIsPersistentToggleButtonTooltipString}">
                 <controls:FontIcon FontSize="25">
                     <controls:FontIcon.Style>
@@ -231,7 +231,7 @@
                             <!-- Star empty -->
                             <Setter Property="Glyph" Value="&#xE734;"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CurrentCompetitionRaceIsPersistent}" Value="True">
+                                <DataTrigger Binding="{Binding CurrentRacesVariantIsPersistent}" Value="True">
                                     <!-- Star filled -->
                                     <Setter Property="Glyph" Value="&#xE735;"/>
                                 </DataTrigger>
@@ -245,17 +245,17 @@
                 </controls:FontIcon>
             </ToggleButton>
 
-            <!-- Toggle button for KeepWhileRacesCalculation of current competition race -->
-            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}"
+            <!-- Toggle button for KeepWhileRacesCalculation of current races variant -->
+            <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentRacesVariant.KeepWhileRacesCalculation}"
                           ToolTip="{x:Static properties:Resources.RaceVariantKeepWhileCalculationToggleButtonTooltipString}">
                 <ToggleButton.Style>
                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentCompetitionRaceIsPersistent}" Value="False">
+                            <DataTrigger Binding="{Binding CurrentRacesVariantIsPersistent}" Value="False">
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
+                            <DataTrigger Binding="{Binding AreRacesVariantsAvailable}" Value="False">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -270,7 +270,7 @@
                             <Style TargetType="{x:Type controls:FontIcon}">
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding CurrentCompetitionRace.KeepWhileRacesCalculation}" Value="True">
+                                    <DataTrigger Binding="{Binding CurrentRacesVariant.KeepWhileRacesCalculation}" Value="True">
                                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
                                     </DataTrigger>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -285,8 +285,8 @@
         </StackPanel>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <!-- View for current competition races -->
-        <ListBox Grid.Row="3" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
+        <!-- View for current races variant -->
+        <ListBox Grid.Row="3" Margin="0,10" ItemsSource="{Binding CurrentRacesVariant.Races}"
                  dd:DragDrop.IsDragSource="True"
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"
@@ -404,7 +404,7 @@
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Parking lot for PersonStarts -->
-        <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding CurrentCompetitionRace.NotAssignedStarts}"
+        <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding CurrentRacesVariant.NotAssignedStarts}"
                  dd:DragDrop.IsDragSource="True"
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"
@@ -460,7 +460,7 @@
         </ListBox>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <!-- Edit competition races and highlight controls-->
+        <!-- Edit races variant and highlight controls-->
         <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" LastChildFill="False">
             <!-- Add empty race button -->
             <Button DockPanel.Dock="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">

@@ -279,7 +279,7 @@
   <data name="UnsavedChangesString" xml:space="preserve">
     <value>Nicht gespeicherte Änderungen</value>
   </data>
-  <data name="CalculateCompetitionRacesString" xml:space="preserve">
+  <data name="CalculateRacesVariantsString" xml:space="preserve">
     <value>Varianten für Rennen berechnen</value>
   </data>
   <data name="HighlightModeString" xml:space="preserve">

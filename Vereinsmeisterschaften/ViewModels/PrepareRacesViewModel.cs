@@ -18,6 +18,13 @@ namespace Vereinsmeisterschaften.ViewModels;
 
 public class PrepareRacesViewModel : ObservableObject, INavigationAware
 {
+    /// <summary>
+    /// Number of available swim lanes. This is used during calculation of the new <see cref="CompetitionRaces"/>
+    /// </summary>
+    public const int NUM_AVAILABLE_SWIM_LANES = 3;
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     #region Calculated Races
 
     /// <summary>
@@ -77,15 +84,17 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+    /// <summary>
+    /// Recalculate the variant IDs for all elements in <see cref="AllCompetitionRaces"/>
+    /// </summary>
     private void recalculateVariantIDs()
     {
         int currentID = CurrentVariantID;
-        CurrentVariantID = -1; // Set to -1 to clear the current selection in the combobox
+        CurrentVariantID = -1;      // Set to -1 to clear the current selection in the combobox
         int newVariantID = _raceService?.RecalculateVariantIDs(currentID) ?? -1;
+        CurrentVariantID = newVariantID == -1 ? 0 : newVariantID;       // If newVariantID is -1, select the persisted race or first element instead of nothing
         OnPropertyChanged(nameof(AllCompetitionRaces));
         OnPropertyChanged(nameof(AreRacesAvailable));
-        CurrentVariantID = newVariantID == -1 ? 0 : newVariantID;
-        OnPropertyChanged(nameof(CurrentCompetitionRace));
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,6 +127,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     #region Highlight Feature
 
     private HighlightPersonStartModes _highlightPersonStartMode;
+    /// <summary>
+    /// Currently active highlight mode.
+    /// </summary>
     public HighlightPersonStartModes HighlightPersonStartMode
     {
         get => _highlightPersonStartMode;
@@ -126,9 +138,15 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+    /// <summary>
+    /// List with all available <see cref="Person"/> objects.
+    /// </summary>
     public ObservableCollection<Person> AvailablePersons => _personService?.GetPersons();
 
     private Person _highlightedPerson;
+    /// <summary>
+    /// All <see cref="PersonStart"/> elements that match this <see cref="Person"/> will be highlighted if the <see cref="HighlightPersonStartMode"/> is <see cref="HighlightPersonStartModes.Person"/>
+    /// </summary>
     public Person HighlightedPerson
     {
         get => _highlightedPerson;
@@ -138,9 +156,15 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
+    /// <summary>
+    /// List with all available <see cref="SwimmingStyles"/>
+    /// </summary>
     public List<SwimmingStyles> AvailableSwimmingStyles => _availableSwimmingStyles;
 
     private SwimmingStyles _highlightedSwimmingStyle;
+    /// <summary>
+    /// All <see cref="PersonStart"/> elements that match this <see cref="SwimmingStyles"/> will be highlighted if the <see cref="HighlightPersonStartMode"/> is <see cref="HighlightPersonStartModes.SwimmingStyle"/>
+    /// </summary>
     public SwimmingStyles HighlightedSwimmingStyle
     {
         get => _highlightedSwimmingStyle;
@@ -150,6 +174,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private Genders _highlightedGender;
+    /// <summary>
+    /// All <see cref="PersonStart"/> elements that match this <see cref="Genders"/> will be highlighted if the <see cref="HighlightPersonStartMode"/> is <see cref="HighlightPersonStartModes.Gender"/>
+    /// </summary>
     public Genders HighlightedGender
     {
         get => _highlightedGender;
@@ -159,6 +186,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ushort _highlightedDistance;
+    /// <summary>
+    /// All <see cref="PersonStart"/> elements that match this distance will be highlighted if the <see cref="HighlightPersonStartMode"/> is <see cref="HighlightPersonStartModes.Distance"/>
+    /// </summary>
     public ushort HighlightedDistance
     {
         get => _highlightedDistance;
@@ -167,6 +197,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+    /// <summary>
+    /// Recalculate the <see cref="PersonStart.IsHighlighted"/> property for all <see cref="PersonStart"/> objects depending on the <see cref="HighlightPersonStartMode"/>
+    /// </summary>
     private void recalculateHighlightedPersonStarts()
     {
         List<PersonStart> personStarts = _personService.GetAllPersonStarts();
@@ -188,9 +221,19 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler();
+    #region Drop Handlers
 
+    /// <summary>
+    /// Drop Handler for the <see cref="CurrentCompetitionRace"/>
+    /// </summary>
+    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler() { MaxItemsInTargetCollection = NUM_AVAILABLE_SWIM_LANES };
+
+    /// <summary>
+    /// Drop Handler for the parking lot region containing the <see cref="CompetitionRaces.NotAssignedStarts"/>
+    /// </summary>
     public DropAllowedHandlerParkingLot DropAllowedHandlerParkingLotObj { get; } = new DropAllowedHandlerParkingLot();
+
+    #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -234,10 +277,14 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     #region Calculate Competition Races Command
 
     private ICommand _calculateCompetitionRacesCommand;
+    /// <summary>
+    /// Command to calculate new <see cref="CompetitionRaces"/> variants
+    /// </summary>
     public ICommand CalculateCompetitionRacesCommand => _calculateCompetitionRacesCommand ?? (_calculateCompetitionRacesCommand = new RelayCommand(async() => 
     {
         ProgressDelegate onProgress = (sender, progress, currentStep) =>
         {
+            // Only report all 0.5%. This is enough.
             if (progress % 0.5 == 0)
             {
                 _progressController?.SetProgress(progress / 100);
@@ -246,13 +293,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         };
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        // Open a user dialog to show the current calculation progress
         _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.CalculateCompetitionRacesString, "", true);
         _progressController.Canceled += (sender, e) => cancellationTokenSource.Cancel();
 
         try
         {
-            await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, 3, onProgress);
-            
+            await _raceService.CalculateCompetitionRaces(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, NUM_AVAILABLE_SWIM_LANES, onProgress);
             recalculateVariantIDs();
         }
         catch (OperationCanceledException)
@@ -277,6 +324,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     #region Other Commands
 
     private ICommand _addNewRaceCommand;
+    /// <summary>
+    /// Command to add a new <see cref="Race"/> to the <see cref="CurrentCompetitionRace"/>
+    /// </summary>
     public ICommand AddNewRaceCommand => _addNewRaceCommand ?? (_addNewRaceCommand = new RelayCommand(() =>
     {
         if(CurrentCompetitionRace != null)
@@ -288,6 +338,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _cleanupRacesCommand;
+    /// <summary>
+    /// Command to cleanup all <see cref="CompetitionRaces"/> in <see cref="RaceService.AllCompetitionRaces"/>
+    /// </summary>
     public ICommand CleanupRacesCommand => _cleanupRacesCommand ?? (_cleanupRacesCommand = new RelayCommand(() =>
     {
         _raceService?.CleanupCompetitionRaces();
@@ -296,6 +349,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _addNewRaceVariantCommand;
+    /// <summary>
+    /// Add a new <see cref="CompetitionRaces"/> element to the <see cref="RaceService.AllCompetitionRaces"/>
+    /// </summary>
     public ICommand AddNewRaceVariantCommand => _addNewRaceVariantCommand ?? (_addNewRaceVariantCommand = new RelayCommand(() =>
     {
         CompetitionRaces newVariant = new CompetitionRaces();
@@ -310,12 +366,17 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _removeRaceVariantCommand;
+    /// <summary>
+    /// Remove the <see cref="CurrentCompetitionRace"/> from the <see cref="RaceService.AllCompetitionRaces"/>
+    /// </summary>
     public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(async () =>
     {
+        // Ask the user for deletion confirmation
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.DeleteConfirmationTitleString,
             Properties.Resources.DeleteRaceVariantConfirmationString,
             MessageDialogStyle.AffirmativeAndNegative,
             new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.RemoveRaceVariantString, NegativeButtonText = Properties.Resources.CancelString });
+
         if (result == MessageDialogResult.Affirmative)
         {
             int index = AllCompetitionRaces.IndexOf(CurrentCompetitionRace);
@@ -336,6 +397,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _reorderRaceVariantsCommand;
+    /// <summary>
+    /// Reorder the <see cref="CompetitionRaces"/> variants by score and then recalculate the variant IDs.
+    /// </summary>
     public ICommand ReorderRaceVariantsCommand => _reorderRaceVariantsCommand ?? (_reorderRaceVariantsCommand = new RelayCommand(() =>
     {
         _raceService?.SortVariantsByScore();

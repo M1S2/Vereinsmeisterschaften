@@ -28,6 +28,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:EnumToLocalizedStringConverter x:Key="enumLocalizedStringConverter"/>
+            <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
 
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
                 <ObjectDataProvider.MethodParameters>

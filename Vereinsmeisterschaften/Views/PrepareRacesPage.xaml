@@ -50,8 +50,6 @@
         </ObjectDataProvider>
 
         <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
-
-        <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
     </Page.Resources>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -114,14 +112,11 @@
         
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Score -->
-        <Expander Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <Expander Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                  Visibility="{Binding AreRacesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Expander.Style>
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
-                    <Setter Property="Visibility" Value="Visible"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding AreRacesAvailable}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
                         <DataTrigger Binding="{Binding CurrentCompetitionRace.IsValid}" Value="False">
                             <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushError}" />
                         </DataTrigger>
@@ -292,11 +287,15 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- View for current competition races -->
         <ListBox Grid.Row="3" Margin="0,10" ItemsSource="{Binding CurrentCompetitionRace.Races}"
-                 dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True"
+                 dd:DragDrop.IsDragSource="True"
+                 dd:DragDrop.IsDropTarget="True"
+                 dd:DragDrop.UseDefaultDragAdorner="True"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
             <ListBox.ItemTemplate>
+                <!-- Item template for the complete race row -->
                 <DataTemplate>
                     <DockPanel LastChildFill="True">
+                        <!-- Row header -->
                         <Border DockPanel.Dock="Left" Padding="7" Width="200" BorderBrush="{DynamicResource MahApps.Brushes.Gray3}" BorderThickness="1">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
@@ -310,10 +309,12 @@
                             </Border.Style>
 
                             <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                                <!-- Distance and style for the race -->
                                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                                     <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
                                     <TextBlock Margin="5,0,0,0" Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
                                 </StackPanel>
+                                <!-- Error icons for the race -->
                                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
                                     <!-- No starts available -->
                                     <controls:FontIcon FontSize="20" Glyph="&#xE75D;"
@@ -334,6 +335,7 @@
                                 </StackPanel>
                             </DockPanel>
                         </Border>
+                        <!-- List with all PersonStarts-->
                         <ListBox x:Name="InnerListBoxRace"
                                  ItemsSource="{Binding Starts}"                                 
                                  dd:DragDrop.IsDragSource="True"
@@ -350,6 +352,7 @@
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
+                                <!-- Item template for one PersonStart -->
                                 <DataTemplate>
                                     <Border Padding="7" Width="275" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
                                         <Border.Style>
@@ -379,6 +382,8 @@
                                             <controls:FontIcon DockPanel.Dock="Right" FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+
+                                            <!-- Show the name of the person -->
                                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <TextBlock.Text>
                                                     <MultiBinding StringFormat="{}{0} {1}">
@@ -407,6 +412,7 @@
                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerParkingLotObj}"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
             <ListBox.ItemTemplate>
+                <!-- Item template for the parking lot elements -->
                 <DataTemplate>
                     <Border Padding="7" Width="150" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
                         <Border.Style>
@@ -422,6 +428,7 @@
                             </Style>
                         </Border.Style>
                         <StackPanel Orientation="Vertical">
+                            <!-- Show the distance and style if a competition object is assigned -->
                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <TextBlock.Text>
@@ -431,9 +438,13 @@
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
+                            
+                            <!-- Show an error icon if no competition object is assigned -->
                             <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                            
+                            <!-- Show the name of the person -->
                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} {1}">
@@ -470,6 +481,7 @@
             <!-- Highlight mode controls -->
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                 <TextBlock Text="{x:Static properties:Resources.HighlightModeString}" VerticalAlignment="Center"/>
+                <!-- Selection for highlight mode -->
                 <ComboBox Margin="5,0,0,0" Width="150" ItemsSource="{Binding Source={StaticResource AvailableHighlightPersonStartModes}}" SelectedValue="{Binding HighlightPersonStartMode}" VerticalAlignment="Center">
                     <!-- https://www.codeproject.com/Articles/767834/WPF-Binding-to-an-enum-with-localization -->
                     <ComboBox.ItemTemplate>
@@ -479,16 +491,12 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
+                <!-- Selection for swimming style or gender. This combobox uses localization and changes the bound items depending on the highlight mode. This is only visible if highlight mode is SwimmingStyle or Gender. -->
                 <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center">
                     <ComboBox.Style>
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
                             <Setter Property="Visibility" Value="Collapsed"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
-                                    <Setter Property="ItemsSource" Value="{Binding AvailablePersons}"/>
-                                    <Setter Property="SelectedItem" Value="{Binding HighlightedPerson}"/>
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
                                     <Setter Property="ItemsSource" Value="{Binding AvailableSwimmingStyles}"/>
                                     <Setter Property="SelectedItem" Value="{Binding HighlightedSwimmingStyle}"/>
@@ -509,6 +517,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
+                <!-- Selection / Numeric input for distance. This is only visible if highlight mode is Distance. -->
                 <controls:NumericUpDown Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
                                         Value="{Binding HighlightedDistance}" Minimum="0">
                     <controls:NumericUpDown.Style>
@@ -522,6 +531,22 @@
                         </Style>
                     </controls:NumericUpDown.Style>
                 </controls:NumericUpDown>
+
+                <!-- Selection for highlighted person. This is only visible if highlight mode is Person. -->
+                <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
+                          ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding HighlightedPerson}">
+                    <ComboBox.Style>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Person">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -115,7 +115,7 @@ namespace Vereinsmeisterschaften.Core.Services
             racesToDelete.ForEach(r => AllCompetitionRaces.Remove(r));
             int numberOfResultsToGenerate = Math.Max(0, NUM_VARIANTS_AFTER_CALCULATION - AllCompetitionRaces.Count(r => r.KeepWhileRacesCalculation));
             
-            CompetitionRaceGenerator generator = new CompetitionRaceGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 20);
+            CompetitionRaceGenerator generator = new CompetitionRaceGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 20, numberAvailableSwimLanes);
             List<CompetitionRaces> tmpCompetitionRaces = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
             
             tmpCompetitionRaces.ForEach(AddCompetitionRaces);
@@ -379,7 +379,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="BestCompetitionRaces"/> and <see cref="LastCalculatedCompetitionRaces"/>.
+        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="AllCompetitionRaces"/>.
         /// Also delete empty <see cref="Race">.
         /// </summary>
         public void CleanupCompetitionRaces()

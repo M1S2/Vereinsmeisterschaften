@@ -113,7 +113,7 @@ public class ShellViewModel : ObservableObject
         // Load the workspace
         try
         {
-            await _workspaceService.Load(Settings.Default.LastWorkspaceFolder, CancellationToken.None);
+            await _workspaceService.Load(App.Current.Properties["LastWorkspaceFolder"]?.ToString(), CancellationToken.None);
         }
         catch (Exception ex)
         {
@@ -184,8 +184,7 @@ public class ShellViewModel : ObservableObject
                     await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
                 }
             }
-            Settings.Default.LastWorkspaceFolder = CurrentWorkspaceFolder;
-            Settings.Default.Save();
+            App.Current.Properties["LastWorkspaceFolder"] = CurrentWorkspaceFolder;
             ForceClose = true;
             WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
         }, DispatcherPriority.Normal);

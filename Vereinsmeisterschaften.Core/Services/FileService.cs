@@ -10,6 +10,13 @@ namespace Vereinsmeisterschaften.Core.Services;
 
 public class FileService : IFileService
 {
+    /// <summary>
+    /// Read the given file and deserialize it to the given type.
+    /// </summary>
+    /// <typeparam name="T">Type to deserialize to</typeparam>
+    /// <param name="folderPath">Path where the file is located</param>
+    /// <param name="fileName">Filename with extension</param>
+    /// <returns>Deserialized object</returns>
     public T Read<T>(string folderPath, string fileName)
     {
         var path = Path.Combine(folderPath, fileName);
@@ -22,6 +29,15 @@ public class FileService : IFileService
         return default;
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Save the given object to a file. The file is overwritten if it already exists.
+    /// </summary>
+    /// <typeparam name="T">Type of the object to serialize</typeparam>
+    /// <param name="folderPath">Path where the file should be saved</param>
+    /// <param name="fileName">Filename with extension</param>
+    /// <param name="content">Object to save</param>
     public void Save<T>(string folderPath, string fileName, T content)
     {
         if (!Directory.Exists(folderPath))
@@ -29,10 +45,17 @@ public class FileService : IFileService
             Directory.CreateDirectory(folderPath);
         }
 
-        var fileContent = JsonConvert.SerializeObject(content);
+        var fileContent = JsonConvert.SerializeObject(content, Formatting.Indented);
         File.WriteAllText(Path.Combine(folderPath, fileName), fileContent, Encoding.UTF8);
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Delete the given file.
+    /// </summary>
+    /// <param name="folderPath">Path where the file is located</param>
+    /// <param name="fileName">Filename with extension</param>
     public void Delete(string folderPath, string fileName)
     {
         if (fileName != null && File.Exists(Path.Combine(folderPath, fileName)))
@@ -41,6 +64,19 @@ public class FileService : IFileService
         }
     }
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    /// <summary>
+    /// Save the given data list to a .csv file
+    /// </summary>
+    /// <typeparam name="T">Type of the data elements</typeparam>
+    /// <param name="filePath">Save to this file</param>
+    /// <param name="dataList">List with data to save</param>
+    /// <param name="cancellationToken">Used to cancel the save process</param>
+    /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report save progress</param>
+    /// <param name="formatData">Callback that can be used to format the data. Use <see langword="null"/> to use the default ToString method</param>
+    /// <param name="formatDataHeader">Callback that can be used to format the data headers. Use <see langword="null"/> to use the default header</param>
+    /// <param name="delimiter">Delimiter for the .csv file</param>
     public void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';')
     {
         // https://stackoverflow.com/questions/25683161/fastest-way-to-convert-a-list-of-objects-to-csv-with-each-object-values-in-a-new
@@ -86,6 +122,18 @@ public class FileService : IFileService
         onProgress?.Invoke(this, 100);
     }
 
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Load the .csv file to a list of data
+    /// </summary>
+    /// <typeparam name="T">Type of the data elements</typeparam>
+    /// <param name="filePath">Load from this file</param>
+    /// <param name="cancellationToken">Used to cancel the load process</param>
+    /// <param name="setPropertyFromStringDelegate">Delegate used to change the data element properties</param>
+    /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report load progress</param>
+    /// <param name="delimiter">Delimiter for the .csv file</param>
+    /// <returns>Loaded data list</returns>
     public List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, ProgressDelegate onProgress = null, char delimiter = ';') where T : new()
     {
         List<T> dataList = new List<T>();

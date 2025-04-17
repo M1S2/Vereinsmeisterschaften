@@ -13,7 +13,7 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public class WorkspaceService : ObservableObject, IWorkspaceService
     {
-        public const string WorkspaceSettingsFileName = "WorkspaceSettings.csv";
+        public const string WorkspaceSettingsFileName = "WorkspaceSettings.json";
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
         public const string BestRaceFileName = "BestRace.csv";
@@ -138,7 +138,7 @@ namespace Vereinsmeisterschaften.Core.Services
             try
             {
                 // Workspace settings
-                Settings = _fileService.LoadFromCsv<WorkspaceSettings>(WorkspaceSettingsFilePath, cancellationToken, WorkspaceSettings.SetPropertyFromString, null)?.FirstOrDefault() ?? new WorkspaceSettings();
+                Settings = _fileService.Read<WorkspaceSettings>(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath)) ?? new WorkspaceSettings();
                 Settings.PropertyChanged += Settings_PropertyChanged;
 
                 // Persons
@@ -187,7 +187,7 @@ namespace Vereinsmeisterschaften.Core.Services
             try
             {
                 // Workspace settings
-                _fileService.SaveToCsv(WorkspaceSettingsFilePath, new List<WorkspaceSettings>() { Settings }, cancellationToken, null);
+                _fileService.Save(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath), Settings);
 
                 // Persons
                 saveResult = await _personService.Save(cancellationToken, PersonFilePath);

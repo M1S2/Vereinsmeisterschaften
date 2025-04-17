@@ -521,6 +521,33 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Persons saved ähnelt.
+        /// </summary>
+        public static string SavedStatusPersonsString {
+            get {
+                return ResourceManager.GetString("SavedStatusPersonsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Races saved ähnelt.
+        /// </summary>
+        public static string SavedStatusRacesString {
+            get {
+                return ResourceManager.GetString("SavedStatusRacesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings saved ähnelt.
+        /// </summary>
+        public static string SavedStatusSettingsString {
+            get {
+                return ResourceManager.GetString("SavedStatusSettingsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         public static string SaveString {

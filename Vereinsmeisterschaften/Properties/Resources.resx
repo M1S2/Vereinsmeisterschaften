@@ -391,4 +391,13 @@
   <data name="InfoString" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="SavedStatusPersonsString" xml:space="preserve">
+    <value>Persons saved</value>
+  </data>
+  <data name="SavedStatusRacesString" xml:space="preserve">
+    <value>Races saved</value>
+  </data>
+  <data name="SavedStatusSettingsString" xml:space="preserve">
+    <value>Settings saved</value>
+  </data>
 </root>

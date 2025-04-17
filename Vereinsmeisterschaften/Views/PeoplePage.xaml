@@ -76,20 +76,20 @@
             </DataGrid.RowHeaderStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
-                    <DataGridTextColumn.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
-                            <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </StackPanel>
-                    </DataGridTextColumn.Header>
-                </DataGridTextColumn>
-
                 <DataGridTextColumn Binding="{Binding FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
                             <TextBlock Text="{x:Static properties:Resources.FirstNameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </StackPanel>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>

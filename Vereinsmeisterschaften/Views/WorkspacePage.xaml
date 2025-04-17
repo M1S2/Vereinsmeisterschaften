@@ -32,7 +32,20 @@
         </Style>
 
         <Thickness x:Key="MarginNames" Left="10" Top="0" Right="10" Bottom="0"/>
-        <Thickness x:Key="MarginIcons" Left="0" Top="3" Right="0" Bottom="3"/>
+        <Thickness x:Key="MarginIcons" Left="5" Top="5" Right="0" Bottom="5"/>
+
+        <ControlTemplate x:Key="ControlTemplateOkIndicator">
+            <Grid>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="#008000"/>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13E;"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ControlTemplateErrorIndicator">
+            <Grid>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="#8B0000"/>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13D;"/>
+            </Grid>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -86,7 +99,7 @@
             <!-- Settings for workspace -->
             <StackPanel Grid.Row="2" Orientation="Vertical">
                 <!-- General settings -->
-                <Expander Header="{x:Static properties:Resources.SettingsGeneralString}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}">
+                <Expander Header="{x:Static properties:Resources.SettingsGeneralString}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <!-- Competition year -->
                     <DockPanel>
                         <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE787;"/>
@@ -96,7 +109,7 @@
                 </Expander>
 
                 <!-- Settings for race variant calculation -->
-                <Expander Header="{x:Static properties:Resources.SettingsRacesVariantsCalculation}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}">
+                <Expander Header="{x:Static properties:Resources.SettingsRacesVariantsCalculation}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <StackPanel>
                         <!-- NumberOfSwimLanes -->
                         <DockPanel>
@@ -134,6 +147,10 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -155,6 +172,54 @@
                     <controls:FontIcon Grid.Row="3" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
                     <TextBlock Grid.Row="3" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberStartsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     <TextBlock Grid.Row="3" Grid.Column="2" Margin="{StaticResource MarginNames}" Text="{Binding NumberStarts}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
+
+                    <Separator Grid.Row="4" Grid.ColumnSpan="3" Background="{StaticResource MahApps.Brushes.Accent}"/>
+
+                    <!-- Save states -->
+                    <controls:FontIcon Grid.Row="5" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <ContentControl Grid.Row="5" Grid.Column="2">
+                        <ContentControl.Style>
+                            <Style TargetType="{x:Type ContentControl}">
+                                <Setter Property="Template" Value="{StaticResource ControlTemplateErrorIndicator}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasUnsavedChanges_Persons}" Value="False">
+                                        <Setter Property="Template" Value="{StaticResource ControlTemplateOkIndicator}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
+
+                    <controls:FontIcon Grid.Row="6" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusRacesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <ContentControl Grid.Row="6" Grid.Column="2">
+                        <ContentControl.Style>
+                            <Style TargetType="{x:Type ContentControl}">
+                                <Setter Property="Template" Value="{StaticResource ControlTemplateErrorIndicator}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasUnsavedChanges_Races}" Value="False">
+                                        <Setter Property="Template" Value="{StaticResource ControlTemplateOkIndicator}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
+
+                    <controls:FontIcon Grid.Row="7" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusSettingsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <ContentControl Grid.Row="7" Grid.Column="2">
+                        <ContentControl.Style>
+                            <Style TargetType="{x:Type ContentControl}">
+                                <Setter Property="Template" Value="{StaticResource ControlTemplateErrorIndicator}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasUnsavedChanges_Settings}" Value="False">
+                                        <Setter Property="Template" Value="{StaticResource ControlTemplateOkIndicator}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
                 </Grid>
             </Border>
         </DockPanel>

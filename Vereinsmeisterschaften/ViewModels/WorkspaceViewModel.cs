@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
@@ -16,6 +17,11 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
 
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
+
+    public bool HasUnsavedChanges_Persons => _workspaceService?.HasUnsavedChanges_Persons ?? false;
+    public bool HasUnsavedChanges_Competitions => _workspaceService?.HasUnsavedChanges_Competitions ?? false;
+    public bool HasUnsavedChanges_Races => _workspaceService?.HasUnsavedChanges_Races ?? false;
+    public bool HasUnsavedChanges_Settings => _workspaceService?.HasUnsavedChanges_Settings ?? false;
 
     public WorkspaceSettings Settings => _workspaceService?.Settings;
 
@@ -144,6 +150,10 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         switch (e.PropertyName)
         {
             case nameof(IWorkspaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+            case nameof(IWorkspaceService.HasUnsavedChanges_Persons): OnPropertyChanged(nameof(HasUnsavedChanges_Persons)); break;
+            case nameof(IWorkspaceService.HasUnsavedChanges_Competitions): OnPropertyChanged(nameof(HasUnsavedChanges_Competitions)); break;
+            case nameof(IWorkspaceService.HasUnsavedChanges_Races): OnPropertyChanged(nameof(HasUnsavedChanges_Races)); break;
+            case nameof(IWorkspaceService.HasUnsavedChanges_Settings): OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); break;
             case nameof(IWorkspaceService.PersistentPath): OnPropertyChanged(nameof(CurrentWorkspaceFolder)); break;
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {

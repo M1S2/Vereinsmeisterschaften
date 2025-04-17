@@ -46,30 +46,63 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool IsWorkspaceOpen
         {
             get => _isWorkspaceOpen;
-            set { SetProperty(ref _isWorkspaceOpen, value); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+            set
+            {
+                SetProperty(ref _isWorkspaceOpen, value);
+                OnPropertyChangedAllHasUnsavedChanges();
+            }
         }
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         /// <summary>
-        /// Check if the list of <see cref="Person"/> and the <see cref="Settings"/> were changed since loading it from the file.
-        /// True, if unsaved changes exist; otherwise false.
+        /// Unsaved changes exist in the <see cref="PersonService"/>
+        /// </summary>
+        public bool HasUnsavedChanges_Persons => _personService?.HasUnsavedChanges ?? false;
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="CompetitionService"/>
+        /// </summary>
+        public bool HasUnsavedChanges_Competitions => _competitionService?.HasUnsavedChanges ?? false;
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="RaceService"/>
+        /// </summary>
+        public bool HasUnsavedChanges_Races => _raceService?.HasUnsavedChanges ?? false;
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="Settings"/>. This is true if the <see cref="Settings"/> was changed since loading it from the file.
+        /// </summary>
+        public bool HasUnsavedChanges_Settings => _settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true);
+
+        /// <summary>
+        /// Check if there are unsaved changes in the workspace.
         /// </summary>
         public bool HasUnsavedChanges => IsWorkspaceOpen && 
-                                        ((_personService?.HasUnsavedChanges ?? false) || 
-                                         (_competitionService?.HasUnsavedChanges ?? false) ||
-                                         (_raceService?.HasUnsavedChanges ?? false) ||
-                                         (Settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true)));
+                                        (HasUnsavedChanges_Persons || HasUnsavedChanges_Competitions || HasUnsavedChanges_Races || HasUnsavedChanges_Settings);
 
+        private void OnPropertyChangedAllHasUnsavedChanges()
+        {
+            OnPropertyChanged(nameof(HasUnsavedChanges_Persons));
+            OnPropertyChanged(nameof(HasUnsavedChanges_Competitions));
+            OnPropertyChanged(nameof(HasUnsavedChanges_Races));
+            OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private WorkspaceSettings _settings;
         public WorkspaceSettings Settings
         {
             get => _settings;
-            set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+            set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); OnPropertyChanged(nameof(HasUnsavedChanges)); }
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
@@ -98,7 +131,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 switch(e.PropertyName)
                 {
-                    case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges_Persons)); OnPropertyChanged(nameof(HasUnsavedChanges)); break;
                     default: break;
                 }
             };
@@ -106,7 +139,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(RaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    case nameof(RaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges_Races)); OnPropertyChanged(nameof(HasUnsavedChanges)); break;
                     default: break;
                 }
             };
@@ -155,13 +188,13 @@ namespace Vereinsmeisterschaften.Core.Services
                 openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);
 
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
-                OnPropertyChanged(nameof(HasUnsavedChanges));
+                OnPropertyChangedAllHasUnsavedChanges();
                 IsWorkspaceOpen = openResult;
             }
             catch(Exception ex)
             {
                 PersistentPath = previousPath;
-                OnPropertyChanged(nameof(HasUnsavedChanges));
+                OnPropertyChangedAllHasUnsavedChanges();
                 OnPropertyChanged(nameof(IsWorkspaceOpen));
                 exception = ex;
             }
@@ -200,11 +233,11 @@ namespace Vereinsmeisterschaften.Core.Services
                 saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
 
                 _settingsPersistedInFile = new WorkspaceSettings(Settings);
-                OnPropertyChanged(nameof(HasUnsavedChanges));
+                OnPropertyChangedAllHasUnsavedChanges();
             }
             catch (Exception ex)
             {
-                OnPropertyChanged(nameof(HasUnsavedChanges));
+                OnPropertyChangedAllHasUnsavedChanges();
                 exception = ex;
             }
             OnFileFinished?.Invoke(this, null);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
@@ -20,6 +21,26 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Settings for the current workspace
         /// </summary>
         public WorkspaceSettings Settings { get; set; }
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="PersonService"/>
+        /// </summary>
+        bool HasUnsavedChanges_Persons { get; }
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="CompetitionService"/>
+        /// </summary>
+        bool HasUnsavedChanges_Competitions { get; }
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="RaceService"/>
+        /// </summary>
+        bool HasUnsavedChanges_Races { get; }
+
+        /// <summary>
+        /// Unsaved changes exist in the <see cref="Settings"/>. This is true if the <see cref="Settings"/> was changed since loading it from the file.
+        /// </summary>
+        bool HasUnsavedChanges_Settings { get; }
 
         /// <summary>
         /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)

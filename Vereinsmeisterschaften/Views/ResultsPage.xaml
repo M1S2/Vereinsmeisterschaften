@@ -97,15 +97,6 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="120">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
                     <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="120">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
@@ -115,6 +106,15 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="120">
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                                <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score, StringFormat=N1}" Width="90">
                         <GridViewColumn.Header>
                             <TextBlock Text="{x:Static properties:Resources.BreaststrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>

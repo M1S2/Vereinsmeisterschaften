@@ -20,12 +20,6 @@ namespace Vereinsmeisterschaften.Core.Services
     public class RaceService : ObservableObject, IRaceService
     {
         /// <summary>
-        /// Number of variants in <see cref="AllRacesVariants"/> after calling <see cref="CalculateRacesVariants(ushort, CancellationToken, int, ProgressDelegate)"/>
-        /// The number of variants to keep (marked with <see cref="RacesVariant.KeepWhileRacesCalculation"/>) is subtracted before calculating the remaining elements.
-        /// </summary>
-        public const int NUM_VARIANTS_AFTER_CALCULATION = 100;
-
-        /// <summary>
         /// Event that is raised when the file operation progress changes
         /// </summary>
         public event ProgressDelegate OnFileProgress;
@@ -40,6 +34,7 @@ namespace Vereinsmeisterschaften.Core.Services
         private IFileService _fileService;
         private IPersonService _personService;
         private ICompetitionService _competitionService;
+        private IWorkspaceService _workspaceService;
 
         private int _nextVariantID;
 
@@ -53,6 +48,16 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionService = competitionService;
 
             _nextVariantID = 1;
+        }
+
+        /// <summary>
+        /// Save the reference to the <see cref="IWorkspaceService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> implementation</param>
+        public void SetWorkspaceServiceObj(IWorkspaceService workspaceService)
+        {
+            _workspaceService = workspaceService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -82,15 +87,13 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
-        /// <param name="numberAvailableSwimLanes">Number of available swimming lanes. This determines the maximum number of parallel starts</param>
         /// <param name="onProgress">Callback used to report progress of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null)
+        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgress = null)
         {
             // Collect all starts
-            _competitionService.UpdateAllCompetitionsForPersonStarts(competitionYear);
+            _competitionService.UpdateAllCompetitionsForPersonStarts();
             List<PersonStart> starts = _personService.GetAllPersonStarts();
 
             // Create groups of competitions with same style and distance
@@ -111,16 +114,24 @@ namespace Vereinsmeisterschaften.Core.Services
                 groupedValuesStarts[key].Add(starts[i]);
             }
 
-            List<RacesVariant> racesToDelete = AllRacesVariants.Where(r => !r.KeepWhileRacesCalculation).ToList();
-            racesToDelete.ForEach(r => AllRacesVariants.Remove(r));
-            int numberOfResultsToGenerate = Math.Max(0, NUM_VARIANTS_AFTER_CALCULATION - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
+            ushort numRequestedVariants = _workspaceService?.Settings?.NumberRacesVariantsAfterCalculation ?? WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
+            int numberOfResultsToGenerate = Math.Max(0, numRequestedVariants - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
             
-            RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")), numberOfResultsToGenerate, 1000000, 20, numberAvailableSwimLanes);
+            RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")),
+                                                                          numberOfResultsToGenerate,
+                                                                          1000000,
+                                                                          _workspaceService?.Settings?.MinRacesVariantsScore ?? WorkspaceSettings.DEFAULT_MIN_RACESVARIANTS_SCORE,
+                                                                          _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES);
             List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
-            
-            tmpRacesVariants.ForEach(AddRacesVariant);
-            SortVariantsByScore();
-            OnPropertyChanged(nameof(PersistedRacesVariant));
+
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                List<RacesVariant> racesToDelete = AllRacesVariants.Where(r => !r.KeepWhileRacesCalculation).ToList();
+                racesToDelete.ForEach(r => AllRacesVariants.Remove(r));
+                tmpRacesVariants.ForEach(AddRacesVariant);
+                SortVariantsByScore();
+                OnPropertyChanged(nameof(PersistedRacesVariant));
+            }
             return AllRacesVariants;
         }
 

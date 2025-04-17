@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
@@ -16,18 +17,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
 
-    public ushort CompetitionYear
-    {
-        get => _workspaceService?.Settings?.CompetitionYear ?? 0;
-        set
-        {
-            if(_workspaceService != null && _workspaceService.Settings != null)
-            {
-                _workspaceService.Settings.CompetitionYear = value;
-                OnPropertyChanged();
-            }
-        }
-    }
+    public WorkspaceSettings Settings => _workspaceService?.Settings;
 
     public int NumberPersons => _personService?.PersonCount ?? 0;
 
@@ -158,7 +148,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
                     OnPropertyChanged(nameof(CurrentWorkspaceFolder));
-                    OnPropertyChanged(nameof(CompetitionYear));
+                    OnPropertyChanged(nameof(Settings));
                     ((RelayCommand)LoadWorkspaceCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)SaveWorkspaceCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)CloseWorkspaceCommand).NotifyCanExecuteChanged();
@@ -173,7 +163,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
 
         OnPropertyChanged(nameof(CurrentWorkspaceFolder));
-        OnPropertyChanged(nameof(CompetitionYear));
+        OnPropertyChanged(nameof(Settings));
         OnPropertyChanged(nameof(NumberPersons));
         OnPropertyChanged(nameof(NumberStarts));
         OnPropertyChanged(nameof(HasUnsavedChanges));

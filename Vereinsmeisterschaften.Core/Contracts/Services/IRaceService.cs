@@ -13,6 +13,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public interface IRaceService : INotifyPropertyChanged, ISaveable
     {
         /// <summary>
+        /// Save the reference to the <see cref="IWorkspaceService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> implementation</param>
+        void SetWorkspaceServiceObj(IWorkspaceService workspaceService);
+
+        /// <summary>
         /// List with all <see cref="RacesVariant"/> (including the loaded and calculated ones)
         /// </summary>
         ObservableCollection<RacesVariant> AllRacesVariants { get; }
@@ -25,12 +32,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <summary>
         /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
-        /// <param name="numberAvailableSwimLanes">Number of available swimming lanes. This determines the maximum number of parallel starts</param>
         /// <param name="onProgress">Callback used to report progress of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(ushort competitionYear, CancellationToken cancellationToken, int numberAvailableSwimLanes = 3, ProgressDelegate onProgress = null);
+        Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgress = null);
 
         /// <summary>
         /// Add a new <see cref="RacesVariant"/> to the list <see cref="AllRacesVariants"/>

@@ -11,6 +11,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public interface ICompetitionService : ISaveable
     {
         /// <summary>
+        /// Save the reference to the <see cref="IWorkspaceService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> implementation</param>
+        void SetWorkspaceServiceObj(IWorkspaceService workspaceService);
+
+        /// <summary>
         /// Return all available Competitions
         /// </summary>
         /// <returns>List of <see cref="Competition"/> objects</returns>
@@ -38,21 +45,18 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
         /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
-        Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear);
+        Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle);
 
         /// <summary>
         /// Update all <see cref="PersonStart"/> objects for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
         /// </summary>
         /// <param name="person"><see cref="Person"/> to update</param>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        void UpdateAllCompetitionsForPersonStarts(Person person, ushort competitionYear);
+        void UpdateAllCompetitionsForPersonStarts(Person person);
 
         /// <summary>
         /// Update all <see cref="PersonStart"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        void UpdateAllCompetitionsForPersonStarts(ushort competitionYear);
+        void UpdateAllCompetitionsForPersonStarts();
     }
 }

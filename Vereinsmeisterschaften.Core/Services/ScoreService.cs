@@ -34,7 +34,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Person"/> for which to update the scores</param>
         public void UpdateScoresForPerson(Person person)
         {
-            _competitionService.UpdateAllCompetitionsForPersonStarts(person, _workspaceService.Settings.CompetitionYear);
+            _competitionService.UpdateAllCompetitionsForPersonStarts(person);
 
             foreach (PersonStart start in person?.Starts?.Values)
             {

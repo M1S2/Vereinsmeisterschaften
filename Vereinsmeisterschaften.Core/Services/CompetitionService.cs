@@ -51,6 +51,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IFileService _fileService;
         private IPersonService _personService;
+        private IWorkspaceService _workspaceService;
 
         /// <summary>
         /// Constructor
@@ -60,6 +61,16 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionList = new List<Competition>();
             _fileService = fileService;
             _personService = personService;
+        }
+
+        /// <summary>
+        /// Save the reference to the <see cref="IWorkspaceService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> implementation</param>
+        public void SetWorkspaceServiceObj(IWorkspaceService workspaceService)
+        {
+            _workspaceService = workspaceService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -195,14 +206,14 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
         /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
-        public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, ushort competitionYear)
+        public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle)
         {
             if (person.Starts[swimmingStyle] == null)
             {
                 return null;
             }
+            ushort competitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
             return _competitionList.Where(c => c.Gender == person.Gender &&
                                                c.SwimmingStyle == swimmingStyle &&
                                                (c.SwimmingStyle == SwimmingStyles.WaterFlea ? true : c.Age + person.BirthYear == competitionYear)).FirstOrDefault();
@@ -214,12 +225,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Update all <see cref="PersonStart"/> objects for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
         /// </summary>
         /// <param name="person"><see cref="Person"/> to update</param>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        public void UpdateAllCompetitionsForPersonStarts(Person person, ushort competitionYear)
+        public void UpdateAllCompetitionsForPersonStarts(Person person)
         {
             foreach(PersonStart personStart in _personService.GetAllPersonStartsForPerson(person))
             {
-                Competition competition = GetCompetitionForPerson(person, personStart.Style, competitionYear);
+                Competition competition = GetCompetitionForPerson(person, personStart.Style);
                 if (competition != null)
                 {
                     personStart.CompetitionObj = competition;
@@ -232,12 +242,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Update all <see cref="PersonStart"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
-        /// <param name="competitionYear">Year in which the competition takes place</param>
-        public void UpdateAllCompetitionsForPersonStarts(ushort competitionYear)
+        public void UpdateAllCompetitionsForPersonStarts()
         {
             foreach (Person person in _personService.GetPersons())
             {
-                UpdateAllCompetitionsForPersonStarts(person, competitionYear);
+                UpdateAllCompetitionsForPersonStarts(person);
             }
         }
     }

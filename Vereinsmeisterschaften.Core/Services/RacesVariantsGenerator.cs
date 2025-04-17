@@ -31,7 +31,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="minScoreThreshold">Only <see cref="RacesVariant"/> with a score higher or equal this value are kept.</param>
         /// <param name="maxGroupSize">Maximum allowed number of elements per group</param>
         /// <param name="maxOneElementGroupPercentage">Maximum percentage of single-item groups allowed in the final result</param>
-        public RacesVariantsGenerator(IProgress<double> progress = null, int requiredVariantsCount = 100, int maxIterations = 100000, int minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
+        public RacesVariantsGenerator(IProgress<double> progress = null, int requiredVariantsCount = 100, int maxIterations = 100000, double minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
         {
             _progress = progress;
             _maxGroupSize = maxGroupSize;

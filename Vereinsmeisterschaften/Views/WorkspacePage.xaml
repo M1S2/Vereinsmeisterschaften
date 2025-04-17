@@ -12,6 +12,29 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
+    <Page.Resources>
+        <Style x:Key="StyleShowWhenWorkspaceOpen" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentWorkspaceFolder}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="StyleShowExpanderWhenWorkspaceOpen" TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentWorkspaceFolder}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Thickness x:Key="MarginNames" Left="10" Top="0" Right="10" Bottom="0"/>
+        <Thickness x:Key="MarginIcons" Left="0" Top="3" Right="0" Bottom="3"/>
+    </Page.Resources>
+
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -59,43 +82,82 @@
             </TextBlock>
         </DockPanel>
 
-        <Grid Grid.Row="2" Margin="{StaticResource MediumTopMargin}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Style>
-                <Style TargetType="{x:Type Grid}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding CurrentWorkspaceFolder}" Value="">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
+        <DockPanel Grid.Row="2" Margin="{StaticResource MediumTopMargin}" LastChildFill="False">            
+            <!-- Settings for workspace -->
+            <StackPanel Grid.Row="2" Orientation="Vertical">
+                <!-- General settings -->
+                <Expander Header="{x:Static properties:Resources.SettingsGeneralString}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}">
+                    <!-- Competition year -->
+                    <DockPanel>
+                        <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE787;"/>
+                        <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.CompetitionYear, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="3000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
+                        <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.CompetitionYearString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    </DockPanel>
+                </Expander>
 
-            <!-- Competition year -->
-            <controls:FontIcon Grid.Row="0" Grid.Column="0" FontSize="30" Glyph="&#xE787;"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static properties:Resources.CompetitionYearString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-            <TextBox Grid.Row="0" Grid.Column="2" Width="150" Text="{Binding CompetitionYear, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource LargeFontSize}"/>
+                <!-- Settings for race variant calculation -->
+                <Expander Header="{x:Static properties:Resources.SettingsRacesVariantsCalculation}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}">
+                    <StackPanel>
+                        <!-- NumberOfSwimLanes -->
+                        <DockPanel>
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE9E9;"/>
+                            <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberOfSwimLanes, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberOfSwimLanesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                        <!-- NumberRacesVariantsAfterCalculation -->
+                        <DockPanel>
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
+                            <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberRacesVariantsAfterCalculation, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberRacesVariantsAfterCalculationString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                        <!-- MinRacesVariantsScore -->
+                        <DockPanel>
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xEDE1;" RenderTransformOrigin="0.5,0.5">
+                                <controls:FontIcon.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="-90"/>
+                                    </TransformGroup>
+                                </controls:FontIcon.RenderTransform>
+                            </controls:FontIcon>
+                            <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.MinRacesVariantsScore, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.MinimumRacesVariantsScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
 
-            <!-- NumberPersons -->
-            <controls:FontIcon Grid.Row="1" Grid.Column="0" FontSize="30" Glyph="&#xE77B;"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Static properties:Resources.NumberPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding NumberPersons}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
+            <!-- Info section for workspace -->
+            <Border DockPanel.Dock="Right" BorderThickness="2" BorderBrush="{StaticResource MahApps.Brushes.Accent}" CornerRadius="5" Style="{StaticResource StyleShowWhenWorkspaceOpen}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <!-- NumberStarts -->
-            <controls:FontIcon Grid.Row="2" Grid.Column="0" FontSize="30" Glyph="&#xE7C1;"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Static properties:Resources.NumberStartsString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding NumberStarts}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-        </Grid>
+                    <!-- Title -->
+                    <controls:FontIcon Grid.Row="0" Grid.Column="0" FontSize="30" Glyph="&#xE946;" Foreground="{StaticResource MahApps.Brushes.Accent}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static properties:Resources.InfoString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{StaticResource MahApps.Brushes.Accent}"/>
+                    <Separator Grid.Row="1" Grid.ColumnSpan="3" Background="{StaticResource MahApps.Brushes.Accent}"/>
 
+                    <!-- NumberPersons -->
+                    <controls:FontIcon Grid.Row="2" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE77B;"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Margin="{StaticResource MarginNames}" Text="{Binding NumberPersons}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
+
+                    <!-- NumberStarts -->
+                    <controls:FontIcon Grid.Row="3" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberStartsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Margin="{StaticResource MarginNames}" Text="{Binding NumberStarts}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
+                </Grid>
+            </Border>
+        </DockPanel>
+        
     </Grid>
 </Page>

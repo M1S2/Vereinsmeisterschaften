@@ -200,12 +200,12 @@
                             <!-- Show warning icon if element is not valid -->
                             <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE7BA;"
                                                Visibility="{Binding IsValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
-                                               ToolTip="{x:Static properties:Resources.RaceVariantContainsErrorTooltipString}"/>
+                                               ToolTip="{x:Static properties:Resources.TooltipRaceVariantContainsError}"/>
                             
                             <!-- Show filled pin for element that should be kept during race calculation -->
                             <Grid DockPanel.Dock="Right" Margin="0,0,10,0"
                                   Visibility="{Binding KeepWhileRacesCalculation, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  ToolTip="{x:Static properties:Resources.RaceVariantKeepWhileCalculationTooltipString}">
+                                  ToolTip="{x:Static properties:Resources.TooltipRaceVariantKeepWhileCalculation}">
                                 <!-- Pin empty-->
                                 <controls:FontIcon FontSize="15" Glyph="&#xE840;"/>
                                 <!-- Fill for pin -->
@@ -215,7 +215,7 @@
                             <!-- Show filled start for persisted element -->
                             <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE735;"
                                                Visibility="{Binding IsPersistent, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                               ToolTip="{x:Static properties:Resources.RaceVariantIsPersistentIconTooltipString}"/>
+                                               ToolTip="{x:Static properties:Resources.TooltipRaceVariantIsPersistentIcon}"/>
                         </DockPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
@@ -224,7 +224,7 @@
             <!-- Toggle button for IsPersistent of current races variant -->
             <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentRacesVariantIsPersistent}" Style="{StaticResource PlainToggleButtonStyle}"
                           Visibility="{Binding AreRacesVariantsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          ToolTip="{x:Static properties:Resources.RaceVariantIsPersistentToggleButtonTooltipString}">
+                          ToolTip="{x:Static properties:Resources.TooltipRaceVariantIsPersistentToggleButton}">
                 <controls:FontIcon FontSize="25">
                     <controls:FontIcon.Style>
                         <Style TargetType="{x:Type controls:FontIcon}">
@@ -247,7 +247,7 @@
 
             <!-- Toggle button for KeepWhileRacesCalculation of current races variant -->
             <ToggleButton Margin="10,0,0,0" IsChecked="{Binding CurrentRacesVariant.KeepWhileRacesCalculation}"
-                          ToolTip="{x:Static properties:Resources.RaceVariantKeepWhileCalculationToggleButtonTooltipString}">
+                          ToolTip="{x:Static properties:Resources.TooltipRaceVariantKeepWhileCalculationToggleButton}">
                 <ToggleButton.Style>
                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
                         <Setter Property="Visibility" Value="Collapsed"/>

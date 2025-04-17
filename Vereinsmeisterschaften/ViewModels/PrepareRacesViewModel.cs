@@ -18,13 +18,6 @@ namespace Vereinsmeisterschaften.ViewModels;
 
 public class PrepareRacesViewModel : ObservableObject, INavigationAware
 {
-    /// <summary>
-    /// Number of available swim lanes. This is used during calculation of the new <see cref="RacesVariant"/>
-    /// </summary>
-    public const int NUM_AVAILABLE_SWIM_LANES = 3;
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     #region Calculated Races
 
     /// <summary>
@@ -226,7 +219,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <summary>
     /// Drop Handler for the <see cref="CurrentRacesVariant"/>
     /// </summary>
-    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler() { MaxItemsInTargetCollection = NUM_AVAILABLE_SWIM_LANES };
+    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler();
 
     /// <summary>
     /// Drop Handler for the parking lot region containing the <see cref="RacesVariant.NotAssignedStarts"/>
@@ -270,6 +263,8 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             ((RelayCommand)RemoveRaceVariantCommand).NotifyCanExecuteChanged();
             ((RelayCommand)ReorderRaceVariantsCommand).NotifyCanExecuteChanged();
         };
+
+        DropAllowedHandlerObj.MaxItemsInTargetCollection = _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -299,7 +294,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         try
         {
-            await _raceService.CalculateRacesVariants(_workspaceService?.Settings?.CompetitionYear ?? 0, cancellationTokenSource.Token, NUM_AVAILABLE_SWIM_LANES, onProgress);
+            await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgress);
             recalculateVariantIDs();
         }
         catch (OperationCanceledException)

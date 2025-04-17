@@ -358,19 +358,37 @@
   <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
     <value>Really delete the selected variant? This can't be undone.</value>
   </data>
-  <data name="RaceVariantIsPersistentToggleButtonTooltipString" xml:space="preserve">
+  <data name="TooltipRaceVariantIsPersistentToggleButton" xml:space="preserve">
     <value>Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
   </data>
-  <data name="RaceVariantKeepWhileCalculationToggleButtonTooltipString" xml:space="preserve">
+  <data name="TooltipRaceVariantKeepWhileCalculationToggleButton" xml:space="preserve">
     <value>Enable this to keep this variant while calculating new race variants.</value>
   </data>
-  <data name="RaceVariantIsPersistentIconTooltipString" xml:space="preserve">
+  <data name="TooltipRaceVariantIsPersistentIcon" xml:space="preserve">
     <value>Persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
   </data>
-  <data name="RaceVariantKeepWhileCalculationTooltipString" xml:space="preserve">
+  <data name="TooltipRaceVariantKeepWhileCalculation" xml:space="preserve">
     <value>Keep this variant while calculating new race variants.</value>
   </data>
-  <data name="RaceVariantContainsErrorTooltipString" xml:space="preserve">
+  <data name="TooltipRaceVariantContainsError" xml:space="preserve">
     <value>This variant contains errors.</value>
+  </data>
+  <data name="NumberOfSwimLanesString" xml:space="preserve">
+    <value>Number of lanes</value>
+  </data>
+  <data name="NumberRacesVariantsAfterCalculationString" xml:space="preserve">
+    <value>Number Race Variants after calculation</value>
+  </data>
+  <data name="MinimumRacesVariantsScoreString" xml:space="preserve">
+    <value>Minimum Race Variant score</value>
+  </data>
+  <data name="SettingsGeneralString" xml:space="preserve">
+    <value>General settings</value>
+  </data>
+  <data name="SettingsRacesVariantsCalculation" xml:space="preserve">
+    <value>Races Variants calculation settings</value>
+  </data>
+  <data name="InfoString" xml:space="preserve">
+    <value>Info</value>
   </data>
 </root>

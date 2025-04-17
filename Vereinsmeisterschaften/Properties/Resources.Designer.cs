@@ -277,6 +277,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
+        /// </summary>
+        public static string InfoString {
+            get {
+                return ResourceManager.GetString("InfoString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There is at least one invalid race. ähnelt.
         /// </summary>
         public static string InvalidRacesString {
@@ -313,6 +322,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Minimum Race Variant score ähnelt.
+        /// </summary>
+        public static string MinimumRacesVariantsScoreString {
+            get {
+                return ResourceManager.GetString("MinimumRacesVariantsScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string NameString {
@@ -331,11 +349,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of lanes ähnelt.
+        /// </summary>
+        public static string NumberOfSwimLanesString {
+            get {
+                return ResourceManager.GetString("NumberOfSwimLanesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number Persons ähnelt.
         /// </summary>
         public static string NumberPersonsString {
             get {
                 return ResourceManager.GetString("NumberPersonsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Race Variants after calculation ähnelt.
+        /// </summary>
+        public static string NumberRacesVariantsAfterCalculationString {
+            get {
+                return ResourceManager.GetString("NumberRacesVariantsAfterCalculationString", resourceCulture);
             }
         }
         
@@ -436,51 +472,6 @@ namespace Vereinsmeisterschaften.Properties {
         public static string RaceStylesMismatchString {
             get {
                 return ResourceManager.GetString("RaceStylesMismatchString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
-        /// </summary>
-        public static string RaceVariantContainsErrorTooltipString {
-            get {
-                return ResourceManager.GetString("RaceVariantContainsErrorTooltipString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
-        /// </summary>
-        public static string RaceVariantIsPersistentIconTooltipString {
-            get {
-                return ResourceManager.GetString("RaceVariantIsPersistentIconTooltipString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
-        /// </summary>
-        public static string RaceVariantIsPersistentToggleButtonTooltipString {
-            get {
-                return ResourceManager.GetString("RaceVariantIsPersistentToggleButtonTooltipString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to keep this variant while calculating new race variants. ähnelt.
-        /// </summary>
-        public static string RaceVariantKeepWhileCalculationToggleButtonTooltipString {
-            get {
-                return ResourceManager.GetString("RaceVariantKeepWhileCalculationToggleButtonTooltipString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Keep this variant while calculating new race variants. ähnelt.
-        /// </summary>
-        public static string RaceVariantKeepWhileCalculationTooltipString {
-            get {
-                return ResourceManager.GetString("RaceVariantKeepWhileCalculationTooltipString", resourceCulture);
             }
         }
         
@@ -593,6 +584,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General settings ähnelt.
+        /// </summary>
+        public static string SettingsGeneralString {
+            get {
+                return ResourceManager.GetString("SettingsGeneralString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Application for the club championships of the swimming department. ähnelt.
         /// </summary>
         public static string SettingsPageAboutText {
@@ -670,6 +670,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Races Variants calculation settings ähnelt.
+        /// </summary>
+        public static string SettingsRacesVariantsCalculation {
+            get {
+                return ResourceManager.GetString("SettingsRacesVariantsCalculation", resourceCulture);
             }
         }
         
@@ -769,6 +778,51 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TimeInputPageTitle {
             get {
                 return ResourceManager.GetString("TimeInputPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantContainsError {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantContainsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantIsPersistentIcon {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantIsPersistentIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantIsPersistentToggleButton {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantIsPersistentToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Keep this variant while calculating new race variants. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantKeepWhileCalculation {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantKeepWhileCalculation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable this to keep this variant while calculating new race variants. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantKeepWhileCalculationToggleButton {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantKeepWhileCalculationToggleButton", resourceCulture);
             }
         }
         

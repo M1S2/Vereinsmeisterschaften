@@ -85,7 +85,9 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             _personService = personService;
             _competitionService = competitionService;
+            _competitionService.SetWorkspaceServiceObj(this);   // Dependency Injection can't be used in the constructor because of circular dependency
             _raceService = raceService;
+            _raceService.SetWorkspaceServiceObj(this);          // Dependency Injection can't be used in the constructor because of circular dependency
             _fileService = fileService;
             IsWorkspaceOpen = false;
             _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 3, "Loading persons...");
@@ -147,7 +149,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
                 if (!openResult) { return openResult; }
 
-                _competitionService.UpdateAllCompetitionsForPersonStarts(Settings?.CompetitionYear ?? 0);
+                _competitionService.UpdateAllCompetitionsForPersonStarts();
 
                 // Best Race
                 openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);

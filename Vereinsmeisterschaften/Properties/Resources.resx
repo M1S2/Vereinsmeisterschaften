@@ -400,4 +400,30 @@
   <data name="SavedStatusSettingsString" xml:space="preserve">
     <value>Settings saved</value>
   </data>
+  <data name="MaxRacesVariantCalculationLoopsString" xml:space="preserve">
+    <value>Maximum number of variant calculation loops</value>
+  </data>
+  <data name="CalculationWarningTooLessVariantsString" xml:space="preserve">
+    <value>Less variants than requested were calculated ({0} / {1}). This can be caused by:
+- too high minimum score for the variants
+- too less maximum calculation loops</value>
+  </data>
+  <data name="TooltipNumberOfSwimLanes" xml:space="preserve">
+    <value>Number of available swim lanes.
+This is used during calculation of the race variants (determines the maximum number of parallel starts).</value>
+  </data>
+  <data name="TooltipNumberRacesVariantsAfterCalculation" xml:space="preserve">
+    <value>Number of variants after calculation.
+The number of variants to keep (marked with the pin icon) is subtracted before calculating the remaining elements.</value>
+  </data>
+  <data name="TooltipMaxRacesVariantCalculationLoops" xml:space="preserve">
+    <value>Maximum number of iterations the race variant calculation loop will run in the worst case.
+If the number of variants after calculation is reached earlier, the loop will break.</value>
+  </data>
+  <data name="TooltipMinRacesVariantsScore" xml:space="preserve">
+    <value>Only variants with a score higher or equal this value (in percent) are kept during calculation.</value>
+  </data>
+  <data name="TooltipCompetitionYear" xml:space="preserve">
+    <value>Year in which the competition takes place</value>
+  </data>
 </root>

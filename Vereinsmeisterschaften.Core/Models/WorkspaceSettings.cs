@@ -9,7 +9,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
-    public class WorkspaceSettings : ObservableObject, IEquatable<WorkspaceSettings>
+    public class WorkspaceSettings : ObservableObject, IEquatable<WorkspaceSettings>, ICloneable
     {
         private ushort _competitionYear;
         /// <summary>
@@ -52,6 +52,21 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+        public const int DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS = 1000000;
+
+        private int _maxRacesVariantCalculationLoops;
+        /// <summary>
+        /// Maximum number of iterations the race variant calculation loop will run in the worst case.
+        /// If <see cref="NumberRacesVariantsAfterCalculation"/> are reached earlier, the loop will break.
+        /// </summary>
+        public int MaxRacesVariantCalculationLoops
+        {
+            get => _maxRacesVariantCalculationLoops;
+            set => SetProperty(ref _maxRacesVariantCalculationLoops, value);
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
         public const double DEFAULT_MIN_RACESVARIANTS_SCORE = 90.0;
 
         private double _minRacesVariantsScore;
@@ -71,6 +86,7 @@ namespace Vereinsmeisterschaften.Core.Models
             CompetitionYear = 0;
             NumberOfSwimLanes = DEFAULT_NUMBER_OF_SWIM_LANES;
             NumberRacesVariantsAfterCalculation = DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
+            MaxRacesVariantCalculationLoops = DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS;
             MinRacesVariantsScore = DEFAULT_MIN_RACESVARIANTS_SCORE;
         }
 
@@ -80,6 +96,7 @@ namespace Vereinsmeisterschaften.Core.Models
             CompetitionYear = other.CompetitionYear;
             NumberOfSwimLanes = other.NumberOfSwimLanes;
             NumberRacesVariantsAfterCalculation = other.NumberRacesVariantsAfterCalculation;
+            MaxRacesVariantCalculationLoops = other.MaxRacesVariantCalculationLoops;
             MinRacesVariantsScore = other.MinRacesVariantsScore;
         }
 
@@ -92,19 +109,23 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(CompetitionYear): dataObj.CompetitionYear = ushort.Parse(value); break;
                 case nameof(NumberOfSwimLanes): dataObj.NumberOfSwimLanes = ushort.Parse(value); break;
                 case nameof(NumberRacesVariantsAfterCalculation): dataObj.NumberRacesVariantsAfterCalculation = ushort.Parse(value); break;
+                case nameof(MaxRacesVariantCalculationLoops): dataObj.MaxRacesVariantCalculationLoops = int.Parse(value); break;
                 case nameof(MinRacesVariantsScore): dataObj.MinRacesVariantsScore = double.Parse(value); break;
                 default: break;
             }
         }
 
         public override bool Equals(object obj)
-            => obj is WorkspaceSettings s && (s.CompetitionYear, s.NumberOfSwimLanes, s.NumberRacesVariantsAfterCalculation, s.MinRacesVariantsScore)
-                                              .Equals((CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MinRacesVariantsScore));
+            => obj is WorkspaceSettings s && (s.CompetitionYear, s.NumberOfSwimLanes, s.NumberRacesVariantsAfterCalculation, s.MaxRacesVariantCalculationLoops, s.MinRacesVariantsScore)
+                                              .Equals((CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore));
 
         public bool Equals(WorkspaceSettings other)
             => Equals((object)other);
 
         public override int GetHashCode()
-            => (CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MinRacesVariantsScore).GetHashCode();
+            => (CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore).GetHashCode();
+
+        public object Clone()
+            => new WorkspaceSettings(this);
     }
 }

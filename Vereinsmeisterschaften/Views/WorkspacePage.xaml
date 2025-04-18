@@ -101,7 +101,7 @@
                 <!-- General settings -->
                 <Expander Header="{x:Static properties:Resources.SettingsGeneralString}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <!-- Competition year -->
-                    <DockPanel>
+                    <DockPanel ToolTip="{x:Static properties:Resources.TooltipCompetitionYear}">
                         <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE787;"/>
                         <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.CompetitionYear, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="3000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                         <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.CompetitionYearString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
@@ -112,19 +112,25 @@
                 <Expander Header="{x:Static properties:Resources.SettingsRacesVariantsCalculation}" IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <StackPanel>
                         <!-- NumberOfSwimLanes -->
-                        <DockPanel>
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipNumberOfSwimLanes}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE9E9;"/>
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberOfSwimLanes, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberOfSwimLanesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
                         <!-- NumberRacesVariantsAfterCalculation -->
-                        <DockPanel>
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipNumberRacesVariantsAfterCalculation}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberRacesVariantsAfterCalculation, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberRacesVariantsAfterCalculationString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
+                        <!-- MaxRacesVariantCalculationLoops -->
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipMaxRacesVariantCalculationLoops}">
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE895;"/>
+                            <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.MaxRacesVariantCalculationLoops, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.MaxRacesVariantCalculationLoopsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
                         <!-- MinRacesVariantsScore -->
-                        <DockPanel>
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipMinRacesVariantsScore}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xEDE1;" RenderTransformOrigin="0.5,0.5">
                                 <controls:FontIcon.RenderTransform>
                                     <TransformGroup>

@@ -277,11 +277,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CalculateRacesVariantsCommand => _salculateRacesVariantsCommand ?? (_salculateRacesVariantsCommand = new RelayCommand(async() => 
     {
+        double nextProgressLevel = 0.0;
         ProgressDelegate onProgress = (sender, progress, currentStep) =>
         {
-            // Only report all 0.5%. This is enough.
-            if (progress % 0.5 == 0)
+            if (progress >= nextProgressLevel)
             {
+                nextProgressLevel += 0.5;   // Only report all 0.5%. This is enough.
                 _progressController?.SetProgress(progress / 100);
                 _progressController?.SetMessage(string.IsNullOrEmpty(currentStep) ? $"{progress:F1}%" : $"{currentStep}: {progress:F1}%");
             }
@@ -296,19 +297,25 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         {
             await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgress);
             recalculateVariantIDs();
+
+            await _progressController?.CloseAsync();
+
+            int numberVariants = AllRacesVariants.Count;
+            ushort numberRequestedVariants = _workspaceService?.Settings?.NumberRacesVariantsAfterCalculation ?? WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
+            if (numberVariants < numberRequestedVariants)
+            {
+                // Less variants than required are calculated    
+                await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.CalculateRacesVariantsString, string.Format(Properties.Resources.CalculationWarningTooLessVariantsString, numberVariants, numberRequestedVariants));
+            }
         }
         catch (OperationCanceledException)
         {
-            /* Nothing to do here if user canceled */
+            await _progressController?.CloseAsync();
         }
         catch (Exception ex)
         {
             await _progressController?.CloseAsync();
             await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.ErrorString, ex.Message);
-        }
-        finally
-        {
-            await _progressController?.CloseAsync();
         }
     }));
 

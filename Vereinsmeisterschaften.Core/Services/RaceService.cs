@@ -119,7 +119,7 @@ namespace Vereinsmeisterschaften.Core.Services
             
             RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")),
                                                                           numberOfResultsToGenerate,
-                                                                          1000000,
+                                                                          _workspaceService?.Settings?.MaxRacesVariantCalculationLoops ?? WorkspaceSettings.DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS,
                                                                           _workspaceService?.Settings?.MinRacesVariantsScore ?? WorkspaceSettings.DEFAULT_MIN_RACESVARIANTS_SCORE,
                                                                           _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES);
             List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);

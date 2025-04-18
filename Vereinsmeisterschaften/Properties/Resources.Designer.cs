@@ -151,6 +151,17 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Less variants than requested were calculated ({0} / {1}). This can be caused by:
+        ///- too high minimum score for the variants
+        ///- too less maximum calculation loops ähnelt.
+        /// </summary>
+        public static string CalculationWarningTooLessVariantsString {
+            get {
+                return ResourceManager.GetString("CalculationWarningTooLessVariantsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string CancelString {
@@ -309,6 +320,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string MainPageTitle {
             get {
                 return ResourceManager.GetString("MainPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Maximum number of variant calculation loops ähnelt.
+        /// </summary>
+        public static string MaxRacesVariantCalculationLoopsString {
+            get {
+                return ResourceManager.GetString("MaxRacesVariantCalculationLoopsString", resourceCulture);
             }
         }
         
@@ -805,6 +825,54 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TimeInputPageTitle {
             get {
                 return ResourceManager.GetString("TimeInputPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place ähnelt.
+        /// </summary>
+        public static string TooltipCompetitionYear {
+            get {
+                return ResourceManager.GetString("TooltipCompetitionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Maximum number of iterations the race variant calculation loop will run in the worst case.
+        ///If the number of variants after calculation is reached earlier, the loop will break. ähnelt.
+        /// </summary>
+        public static string TooltipMaxRacesVariantCalculationLoops {
+            get {
+                return ResourceManager.GetString("TooltipMaxRacesVariantCalculationLoops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only variants with a score higher or equal this value (in percent) are kept during calculation. ähnelt.
+        /// </summary>
+        public static string TooltipMinRacesVariantsScore {
+            get {
+                return ResourceManager.GetString("TooltipMinRacesVariantsScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of available swim lanes.
+        ///This is used during calculation of the race variants (determines the maximum number of parallel starts). ähnelt.
+        /// </summary>
+        public static string TooltipNumberOfSwimLanes {
+            get {
+                return ResourceManager.GetString("TooltipNumberOfSwimLanes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of variants after calculation.
+        ///The number of variants to keep (marked with the pin icon) is subtracted before calculating the remaining elements. ähnelt.
+        /// </summary>
+        public static string TooltipNumberRacesVariantsAfterCalculation {
+            get {
+                return ResourceManager.GetString("TooltipNumberRacesVariantsAfterCalculation", resourceCulture);
             }
         }
         

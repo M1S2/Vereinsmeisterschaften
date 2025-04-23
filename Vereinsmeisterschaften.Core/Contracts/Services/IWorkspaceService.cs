@@ -20,7 +20,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <summary>
         /// Settings for the current workspace
         /// </summary>
-        public WorkspaceSettings Settings { get; set; }
+        WorkspaceSettings Settings { get; set; }
+
+        /// <summary>
+        /// Settings loaded from the file for the current workspace. This can be used to compare for changes.
+        /// </summary>
+        WorkspaceSettings SettingsPersistedInFile { get; }
 
         /// <summary>
         /// Unsaved changes exist in the <see cref="PersonService"/>

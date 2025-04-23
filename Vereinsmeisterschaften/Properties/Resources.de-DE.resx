@@ -426,4 +426,13 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="TooltipCompetitionYear" xml:space="preserve">
     <value>Jahr in dem der Wettkampf stattfindet</value>
   </data>
+  <data name="SettingsResetString" xml:space="preserve">
+    <value>Einstellungen auf den letzten gespeicherten Zustand zurücksetzen.</value>
+  </data>
+  <data name="SettingsDefaultString" xml:space="preserve">
+    <value>Einstellungen auf die Standardwerte zurücksetzen.</value>
+  </data>
+  <data name="OpenInExplorerString" xml:space="preserve">
+    <value>Im Explorer öffnen</value>
+  </data>
 </root>

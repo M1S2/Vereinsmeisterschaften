@@ -55,7 +55,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
             await Task.Run(() =>
             {
-                Parallel.For(0, _maxIterations, (i, state) =>
+                Parallel.For(0, _maxIterations, new ParallelOptions() { MaxDegreeOfParallelism = (int)(0.5 * Environment.ProcessorCount) }, (i, state) =>
                 {
                     if (cancellationToken.IsCancellationRequested || bestRaces.Count >= _requiredVariantsCount)
                     {

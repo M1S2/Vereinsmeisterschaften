@@ -234,14 +234,16 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
+    private INavigationService _navigationService;
     private ProgressDialogController _progressController;
 
-    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, INavigationService navigationService)
     {
         _raceService = raceService;
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+        _navigationService = navigationService;
 
         _raceService.PropertyChanged += (sender, e) =>
         {
@@ -265,17 +267,19 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         };
 
         DropAllowedHandlerObj.MaxItemsInTargetCollection = _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES;
+        _navigationService = navigationService;
+
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     #region Calculate Races Variants Command
 
-    private ICommand _salculateRacesVariantsCommand;
+    private ICommand _calculateRacesVariantsCommand;
     /// <summary>
     /// Command to calculate new <see cref="RacesVariant"/> variants
     /// </summary>
-    public ICommand CalculateRacesVariantsCommand => _salculateRacesVariantsCommand ?? (_salculateRacesVariantsCommand = new RelayCommand(async() => 
+    public ICommand CalculateRacesVariantsCommand => _calculateRacesVariantsCommand ?? (_calculateRacesVariantsCommand = new RelayCommand(async() => 
     {
         double nextProgressLevel = 0.0;
         ProgressDelegate onProgress = (sender, progress, currentStep) =>

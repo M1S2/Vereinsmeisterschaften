@@ -73,7 +73,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Unsaved changes exist in the <see cref="Settings"/>. This is true if the <see cref="Settings"/> was changed since loading it from the file.
         /// </summary>
-        public bool HasUnsavedChanges_Settings => _settings != null && _settingsPersistedInFile != null && (!Settings?.Equals(_settingsPersistedInFile) ?? true);
+        public bool HasUnsavedChanges_Settings => _settings != null && SettingsPersistedInFile != null && (!Settings?.Equals(SettingsPersistedInFile) ?? true);
 
         /// <summary>
         /// Check if there are unsaved changes in the workspace.
@@ -109,6 +109,14 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private WorkspaceSettings _settingsPersistedInFile;
+        public WorkspaceSettings SettingsPersistedInFile
+        {
+            get => _settingsPersistedInFile;
+            private set { SetProperty(ref _settingsPersistedInFile, value); }
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private IPersonService _personService;
         private ICompetitionService _competitionService;
         private IRaceService _raceService;
@@ -131,7 +139,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 switch(e.PropertyName)
                 {
-                    case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges_Persons)); OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    case nameof(PersonService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
                     default: break;
                 }
             };
@@ -139,7 +147,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(RaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges_Races)); OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    case nameof(RaceService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
                     default: break;
                 }
             };
@@ -187,7 +195,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Best Race
                 openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);
 
-                _settingsPersistedInFile = new WorkspaceSettings(Settings);
+                SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
                 IsWorkspaceOpen = openResult;
             }
@@ -232,7 +240,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Best Race
                 saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
 
-                _settingsPersistedInFile = new WorkspaceSettings(Settings);
+                SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
             }
             catch (Exception ex)

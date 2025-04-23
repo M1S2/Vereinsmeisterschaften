@@ -426,4 +426,13 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="TooltipCompetitionYear" xml:space="preserve">
     <value>Year in which the competition takes place</value>
   </data>
+  <data name="SettingsResetString" xml:space="preserve">
+    <value>Reset the settings to the last persisted state.</value>
+  </data>
+  <data name="SettingsDefaultString" xml:space="preserve">
+    <value>Set the settings to the default values.</value>
+  </data>
+  <data name="OpenInExplorerString" xml:space="preserve">
+    <value>Open in Explorer</value>
+  </data>
 </root>

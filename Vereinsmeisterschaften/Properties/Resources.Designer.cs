@@ -405,6 +405,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open in Explorer ähnelt.
+        /// </summary>
+        public static string OpenInExplorerString {
+            get {
+                return ResourceManager.GetString("OpenInExplorerString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
         /// </summary>
         public static string OpenString {
@@ -631,6 +640,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set the settings to the default values. ähnelt.
+        /// </summary>
+        public static string SettingsDefaultString {
+            get {
+                return ResourceManager.GetString("SettingsDefaultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die General settings ähnelt.
         /// </summary>
         public static string SettingsGeneralString {
@@ -726,6 +744,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string SettingsRacesVariantsCalculation {
             get {
                 return ResourceManager.GetString("SettingsRacesVariantsCalculation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset the settings to the last persisted state. ähnelt.
+        /// </summary>
+        public static string SettingsResetString {
+            get {
+                return ResourceManager.GetString("SettingsResetString", resourceCulture);
             }
         }
         

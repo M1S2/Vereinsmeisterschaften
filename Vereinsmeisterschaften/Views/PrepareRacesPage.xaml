@@ -68,10 +68,10 @@
         </Grid.ColumnDefinitions>
 
         <!-- Page title -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE7C1;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareRacesPageTitle}" />
-        </StackPanel>
+        </DockPanel>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 

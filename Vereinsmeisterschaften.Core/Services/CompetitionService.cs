@@ -209,10 +209,6 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle)
         {
-            if (person.Starts[swimmingStyle] == null)
-            {
-                return null;
-            }
             ushort competitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
             return _competitionList.Where(c => c.Gender == person.Gender &&
                                                c.SwimmingStyle == swimmingStyle &&
@@ -222,31 +218,45 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Update all <see cref="PersonStart"/> objects for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
+        /// Update all <see cref="PersonStart"/> objects and the <see cref="Person.AvailableCompetitions"/> for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
         /// </summary>
         /// <param name="person"><see cref="Person"/> to update</param>
-        public void UpdateAllCompetitionsForPersonStarts(Person person)
+        public void UpdateAllCompetitionsForPerson(Person person)
         {
-            foreach(PersonStart personStart in _personService.GetAllPersonStartsForPerson(person))
+            // Update the available competitions for the person
+            List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
+            Dictionary<SwimmingStyles, Competition> availableCompetitions = new Dictionary<SwimmingStyles, Competition>();
+            foreach (SwimmingStyles swimmingStyle in _availableSwimmingStyles)
             {
-                Competition competition = GetCompetitionForPerson(person, personStart.Style);
-                if (competition != null)
+                Competition competition = GetCompetitionForPerson(person, swimmingStyle);
+                if (availableCompetitions.ContainsKey(swimmingStyle))
                 {
-                    personStart.CompetitionObj = competition;
+                    availableCompetitions[swimmingStyle] = competition;
                 }
+                else
+                {
+                    availableCompetitions.Add(swimmingStyle, competition);
+                }
+            }
+            person.AvailableCompetitions = availableCompetitions;
+
+            // Update the competitions for the person starts
+            foreach (PersonStart personStart in _personService.GetAllPersonStartsForPerson(person))
+            {
+                personStart.CompetitionObj = person.AvailableCompetitions[personStart.Style];
             }
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Update all <see cref="PersonStart"/> objects with the corresponding <see cref="Competition"/> objects
+        /// Update all <see cref="PersonStart"/> and the <see cref="Person.AvailableCompetitions"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
-        public void UpdateAllCompetitionsForPersonStarts()
+        public void UpdateAllCompetitionsForPerson()
         {
             foreach (Person person in _personService.GetPersons())
             {
-                UpdateAllCompetitionsForPersonStarts(person);
+                UpdateAllCompetitionsForPerson(person);
             }
         }
     }

@@ -93,7 +93,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgress = null)
         {
             // Collect all starts
-            _competitionService.UpdateAllCompetitionsForPersonStarts();
+            _competitionService.UpdateAllCompetitionsForPerson();
             List<PersonStart> starts = _personService.GetAllPersonStarts();
 
             // Create groups of competitions with same style and distance

@@ -14,6 +14,7 @@ using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
 using System.Reactive.Subjects;
 using System.Xml.Linq;
+using System;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -105,12 +106,13 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private IPersonService _personService;
+    private ICompetitionService _competitionService;
     private IDialogCoordinator _dialogCoordinator;
-    public PeopleViewModel(IPersonService personService, IDialogCoordinator dialogCoordinator)
+    public PeopleViewModel(IPersonService personService, ICompetitionService competitionService, IDialogCoordinator dialogCoordinator)
     {
         _personService = personService;
+        _competitionService = competitionService;
         _dialogCoordinator = dialogCoordinator;
-        People = new ObservableCollection<Person>();
 
         // Delay the filtering to make the typing smoother
         filterInputSubject.Throttle(TimeSpan.FromMilliseconds(100)).ObserveOn(SynchronizationContext.Current).Subscribe((b) => PeopleCollectionView.Refresh());
@@ -122,7 +124,9 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     public ICommand AddPersonCommand => _addPersonCommand ?? (_addPersonCommand = new RelayCommand(() =>
     {
         Person person = new Person();
+        person.PropertyChanged += Person_PropertyChanged;
         _personService.AddPerson(person);
+        _competitionService.UpdateAllCompetitionsForPerson(person);
         person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
     }));
 
@@ -148,10 +152,21 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         People = _personService?.GetPersons();
         PeopleCollectionView = CollectionViewSource.GetDefaultView(People);
         PeopleCollectionView.Filter += PersonFilterPredicate;
+        _competitionService.UpdateAllCompetitionsForPerson();
 
         foreach(Person person in People)
         {
-            person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
+            person.PropertyChanged -= Person_PropertyChanged; // Unsubscribe from the event to avoid multiple subscriptions
+            person.PropertyChanged += Person_PropertyChanged;
+        }
+    }
+
+    private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(DuplicatePersonString));
+        if (e.PropertyName != nameof(Person.Starts) && e.PropertyName != nameof(Person.AvailableCompetitions) && e.PropertyName != nameof(Person.AvailableCompetitionsFlags))
+        {
+            _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
         }
     }
 }

@@ -190,7 +190,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
                 if (!openResult) { return openResult; }
 
-                _competitionService.UpdateAllCompetitionsForPersonStarts();
+                _competitionService.UpdateAllCompetitionsForPerson();
 
                 // Best Race
                 openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);

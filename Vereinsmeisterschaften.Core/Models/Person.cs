@@ -77,6 +77,35 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        private Dictionary<SwimmingStyles, Competition> _availableCompetitions = new Dictionary<SwimmingStyles, Competition>();
+        /// <summary>
+        /// Dictionary with all available <see cref="Competition"/> of the person
+        /// </summary>
+        [FileServiceIgnore]
+        public Dictionary<SwimmingStyles, Competition> AvailableCompetitions
+        {
+            get => _availableCompetitions;
+            set { SetProperty(ref _availableCompetitions, value); OnPropertyChanged(nameof(AvailableCompetitionsFlags)); }
+        }
+
+        /// <summary>
+        /// Representation for the <see cref="AvailableCompetitions"/> as boolean flags (true = when competition is available, false = when Competition is null)
+        /// </summary>
+        public Dictionary<SwimmingStyles, bool> AvailableCompetitionsFlags
+        {
+            get
+            {
+                Dictionary<SwimmingStyles, bool> availableCompetitionsFlags = new Dictionary<SwimmingStyles, bool>();
+                foreach (KeyValuePair<SwimmingStyles, Competition> kvp in AvailableCompetitions)
+                {
+                    availableCompetitionsFlags.Add(kvp.Key, kvp.Value != null);
+                }
+                return availableCompetitionsFlags;
+            }
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();
         /// <summary>
         /// Dictionary with all starts of the person
@@ -136,8 +165,6 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             OnPropertyChanged(nameof(Starts));
         }
-
-
 
         /// <summary>
         /// Set the time for the matching start if available

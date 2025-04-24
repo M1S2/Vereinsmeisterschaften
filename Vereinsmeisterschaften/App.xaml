@@ -36,7 +36,10 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
-            <SolidColorBrush x:Key="BrushError">#B48B0000</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushError">#FF8B0000</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushErrorWithTransparency">#B48B0000</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushOk">#FF008000</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushOkWithTransparency">#5B008000</SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

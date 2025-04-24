@@ -28,6 +28,13 @@
             <Setter Property="MinWidth" Value="20"/>
             <Setter Property="ClickMode" Value="Press"/>
         </Style>
+
+        <SolidColorBrush x:Key="BrushCompetitionMissingAndSelected" Color="{Binding Source={StaticResource BrushError}, Path=Color}"/>
+        <SolidColorBrush x:Key="BrushCompetitionMissing" Color="{StaticResource MahApps.Colors.Gray}"/>
+
+        <converters:PersonCompetitionStatusToBrushConverter x:Key="PersonCompetitionStatusBrushConverter"
+                                                            BrushCompetitionMissingAndSelected="{StaticResource BrushCompetitionMissingAndSelected}"
+                                                            BrushCompetitionMissing="{StaticResource BrushCompetitionMissing}"/>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -39,11 +46,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE77B;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PeoplePageTitle}" />
         </StackPanel>
@@ -67,7 +71,7 @@
         </DockPanel>
 
         <!-- DataGrid with all people -->
-        <DataGrid Grid.Row="3" Grid.Column="0" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
@@ -76,6 +80,7 @@
             </DataGrid.RowHeaderStyle>
 
             <DataGrid.Columns>
+                <!-- First Name -->
                 <DataGridTextColumn Binding="{Binding FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
@@ -85,6 +90,7 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
+                <!-- Name -->
                 <DataGridTextColumn Binding="{Binding Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
@@ -94,6 +100,7 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
+                <!-- Gender -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
@@ -121,6 +128,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
+                <!-- Birth Year -->
                 <DataGridTextColumn Binding="{Binding BirthYear}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
@@ -130,36 +138,88 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
+                <!-- Breaststroke -->
                 <DataGridCheckBoxColumn Binding="{Binding Breaststroke}"
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}" EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.BreaststrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[Breaststroke]" />
+                                        <Binding Path="Breaststroke" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
+                <!-- Freestyle -->
                 <DataGridCheckBoxColumn Binding="{Binding Freestyle}"
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.FreestyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[Freestyle]" />
+                                        <Binding Path="Freestyle" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
+                <!-- Backstroke -->
                 <DataGridCheckBoxColumn Binding="{Binding Backstroke}"
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.BackstrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[Backstroke]" />
+                                        <Binding Path="Backstroke" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
+                <!-- Butterfly -->
                 <DataGridCheckBoxColumn Binding="{Binding Butterfly}"
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.ButterflyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[Butterfly]" />
+                                        <Binding Path="Butterfly" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
                 <DataGridCheckBoxColumn Binding="{Binding Medley}"
@@ -168,20 +228,46 @@
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.MedleyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[Medley]" />
+                                        <Binding Path="Medley" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
+                <!-- WaterFlea -->
                 <DataGridCheckBoxColumn Binding="{Binding WaterFlea}"
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{x:Static properties:Resources.WaterFleaString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     </DataGridCheckBoxColumn.Header>
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PersonCompetitionStatusBrushConverter}">
+                                        <Binding Path="AvailableCompetitionsFlags[WaterFlea]" />
+                                        <Binding Path="WaterFlea" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
+                <!-- Remove Person Button -->
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="DetailsButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
+                            <Button x:Name="RemovePersonButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
                                         Visibility="Hidden" Width="30" Height="30" 
                                         Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemovePersonCommand}" CommandParameter="{Binding}"
                                         ToolTip="{x:Static properties:Resources.RemovePersonString}">
@@ -189,10 +275,10 @@
                             </Button>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsMouseOver}" Value="True">
-                                    <Setter TargetName="DetailsButton" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="RemovePersonButton" Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsSelected}" Value="True">
-                                    <Setter TargetName="DetailsButton" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="RemovePersonButton" Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
@@ -201,16 +287,26 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Add Person Button -->
-        <Button Grid.Row="4" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal">
-                <controls:FontIcon FontSize="20" Glyph="&#xE8FA;"/>
-                <TextBlock Text="{x:Static properties:Resources.AddNewPerson}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <DockPanel Grid.Row="4" LastChildFill="False">
+            <!-- Add Person Button -->
+            <Button DockPanel.Dock="Left" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE8FA;"/>
+                    <TextBlock Text="{x:Static properties:Resources.AddNewPerson}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="{StaticResource MediumLeftRightMargin}">
+                <Border Background="{StaticResource BrushCompetitionMissing}">
+                    <TextBlock Margin="5" Text="{x:Static properties:Resources.CompetitionMissingString}" VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource BrushCompetitionMissingAndSelected}">
+                    <TextBlock Margin="5" Text="{x:Static properties:Resources.CompetitionMissingAndSelectedString}" Foreground="{StaticResource MahApps.Brushes.IdealForeground}" VerticalAlignment="Center"/>
+                </Border>
             </StackPanel>
-        </Button>
-
+        </DockPanel>
+        
         <!-- Duplicate Person Warning -->
-        <Expander Grid.Row="5" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
+        <Expander Grid.Row="5" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
                   controls:HeaderedControlHelper.HeaderBackground="OrangeRed" BorderBrush="OrangeRed">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">

@@ -435,4 +435,10 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="OpenInExplorerString" xml:space="preserve">
     <value>Im Explorer öffnen</value>
   </data>
+  <data name="CompetitionMissingString" xml:space="preserve">
+    <value>Wettkampf fehlt</value>
+  </data>
+  <data name="CompetitionMissingAndSelectedString" xml:space="preserve">
+    <value>Wettkampf fehlt und Start ausgewählt</value>
+  </data>
 </root>

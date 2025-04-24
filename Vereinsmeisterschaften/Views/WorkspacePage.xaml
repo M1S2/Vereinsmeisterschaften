@@ -78,13 +78,13 @@
 
         <ControlTemplate x:Key="ControlTemplateOkIndicator">
             <Grid>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="#008000"/>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushOk}"/>
                 <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
             </Grid>
         </ControlTemplate>
         <ControlTemplate x:Key="ControlTemplateErrorIndicator">
             <Grid>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="#8B0000"/>
+                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushError}"/>
                 <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13D;" Foreground="White"/>
             </Grid>
         </ControlTemplate>

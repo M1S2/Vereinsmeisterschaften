@@ -24,10 +24,10 @@
             </Border>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=HintState}" Value="Active">
-                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="#5B008000" />
+                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushOkWithTransparency}" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=HintState}" Value="Error">
-                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushError}" />
+                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -118,7 +118,7 @@
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CurrentRacesVariant.IsValid}" Value="False">
-                            <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushError}" />
+                            <Setter Property="controls:HeaderedControlHelper.HeaderBackground" Value="{StaticResource BrushErrorWithTransparency}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -302,7 +302,7 @@
                                     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsValid}" Value="False">
-                                            <Setter Property="Background" Value="{StaticResource BrushError}" />
+                                            <Setter Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -359,7 +359,7 @@
                                             <Style TargetType="{x:Type Border}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
-                                                        <Setter Property="Background" Value="{StaticResource BrushError}" />
+                                                        <Setter Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
                                                         <Setter Property="Background" Value="{StaticResource BrushHighlight}"/>
@@ -419,7 +419,7 @@
                             <Style TargetType="{x:Type Border}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
-                                        <Setter Property="Background" Value="{StaticResource BrushError}" />
+                                        <Setter Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
                                         <Setter Property="Background" Value="{StaticResource BrushHighlight}"/>

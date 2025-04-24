@@ -49,14 +49,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle);
 
         /// <summary>
-        /// Update all <see cref="PersonStart"/> objects for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
+        /// Update all <see cref="PersonStart"/> objects and the <see cref="Person.AvailableCompetitions"/> for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
         /// </summary>
         /// <param name="person"><see cref="Person"/> to update</param>
-        void UpdateAllCompetitionsForPersonStarts(Person person);
+        void UpdateAllCompetitionsForPerson(Person person);
 
         /// <summary>
-        /// Update all <see cref="PersonStart"/> objects with the corresponding <see cref="Competition"/> objects
+        /// Update all <see cref="PersonStart"/> and the <see cref="Person.AvailableCompetitions"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
-        void UpdateAllCompetitionsForPersonStarts();
+        void UpdateAllCompetitionsForPerson();
     }
 }

@@ -209,10 +209,14 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
         public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle)
         {
+            // Find the competition with the maximum age that matches the swimming style and gender
+            byte maxAge = _competitionList.Where(c => c.Gender == person.Gender && c.SwimmingStyle == swimmingStyle).OrderByDescending(c => c.Age).FirstOrDefault()?.Age ?? 0;
+
             ushort competitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
+            int personAge = competitionYear - person.BirthYear;
             return _competitionList.Where(c => c.Gender == person.Gender &&
                                                c.SwimmingStyle == swimmingStyle &&
-                                               (c.SwimmingStyle == SwimmingStyles.WaterFlea ? true : c.Age + person.BirthYear == competitionYear)).FirstOrDefault();
+                                               (c.SwimmingStyle == SwimmingStyles.WaterFlea ? personAge <= c.Age : c.Age == (personAge <= maxAge ? personAge : maxAge))).FirstOrDefault();
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

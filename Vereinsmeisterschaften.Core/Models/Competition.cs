@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -32,6 +33,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Competition ID
         /// </summary>
+        [FileServiceOrder]
         public int ID
         {
             get => _id;
@@ -42,6 +44,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Gender for this competition
         /// </summary>
+        [FileServiceOrder]
         public Genders Gender
         {
             get => _gender;
@@ -52,6 +55,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Swimming style for this competition
         /// </summary>
+        [FileServiceOrder]
         public SwimmingStyles SwimmingStyle
         {
             get => _swimmingStyle;
@@ -62,6 +66,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Age for the person that is assigned for this competition
         /// </summary>
+        [FileServiceOrder]
         public byte Age
         {
             get => _age;
@@ -72,6 +77,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Distance in meters for this competition (e.g. 25, 50, 100, 200)
         /// </summary>
+        [FileServiceOrder]
         public ushort Distance
         {
             get => _distance;
@@ -82,6 +88,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for this competition to reach the maximum points
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan BestTime
         {
             get => _bestTime;

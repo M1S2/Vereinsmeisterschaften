@@ -15,16 +15,19 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// <see cref="SwimmingStyles"> for this <see cref="Race"/>. This is the <see cref="SwimmingStyles"/>> from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
         /// </summary>
+        [FileServiceOrder]
         public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
 
         /// <summary>
         /// Distance for this <see cref="Race"/>. This is the distance from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
         /// </summary>
+        [FileServiceOrder]
         public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
 
         /// <summary>
         /// List with all starts of this <see cref="Race"/>
         /// </summary>
+        [FileServiceOrder]
         public ObservableCollection<PersonStart> Starts { get; set; }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

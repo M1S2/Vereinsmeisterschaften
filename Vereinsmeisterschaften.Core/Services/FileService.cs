@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -82,8 +83,10 @@ public class FileService : IFileService
         // https://stackoverflow.com/questions/25683161/fastest-way-to-convert-a-list-of-objects-to-csv-with-each-object-values-in-a-new
         onProgress?.Invoke(this, 0);
         List<string> lines = new List<string>();
-        List<PropertyDescriptor> props = TypeDescriptor.GetProperties(typeof(T)).OfType<PropertyDescriptor>().ToList();
-        props = props.Where(p => p.Attributes.OfType<FileServiceIgnoreAttribute>().Count() == 0).ToList();
+
+        List<PropertyInfo> props = typeof(T).GetProperties().ToList();
+        props = props.Where(p => p.GetCustomAttributes<FileServiceIgnoreAttribute>().Count() == 0).ToList();
+        props = props.OrderBy(p => p.GetCustomAttribute<FileServiceOrderAttribute>()?.Order ?? 0).ToList();
 
         List<string> originalHeaders = props.Select(p => p.Name).ToList();
         List<string> formatedHeaders = props.Select(p => formatDataHeader == null ? p.Name : formatDataHeader(p.Name, p.PropertyType)).ToList();
@@ -118,7 +121,7 @@ public class FileService : IFileService
             }
         }
 
-        File.WriteAllLines(filePath, lines.ToArray());
+        File.WriteAllLines(filePath, lines.ToArray(), Encoding.UTF8);
         onProgress?.Invoke(this, 100);
     }
 
@@ -141,7 +144,7 @@ public class FileService : IFileService
 
         onProgress?.Invoke(this, 0);
 
-        List<string> lines = File.ReadAllLines(filePath).ToList();
+        List<string> lines = File.ReadAllLines(filePath, Encoding.UTF8).ToList();
         if (lines.Count >= 2)
         {
             List<string> headers = lines.First().Split(delimiter).ToList();

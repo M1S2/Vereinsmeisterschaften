@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -39,6 +40,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Last name of the person.
         /// </summary>
+        [FileServiceOrder]
         public string Name
         {
             get => _name;
@@ -49,6 +51,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// First name of the person.
         /// </summary>
+        [FileServiceOrder]
         public string FirstName
         {
             get => _firstName;
@@ -59,6 +62,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Gender of the person.
         /// </summary>
+        [FileServiceOrder]
         public Genders Gender
         {
             get => _gender;
@@ -69,6 +73,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Birth year of the person.
         /// </summary>
+        [FileServiceOrder]
         public UInt16 BirthYear
         {
             get => _birthYear;
@@ -91,6 +96,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Representation for the <see cref="AvailableCompetitions"/> as boolean flags (true = when competition is available, false = when Competition is null)
         /// </summary>
+        [FileServiceIgnore]
         public Dictionary<SwimmingStyles, bool> AvailableCompetitionsFlags
         {
             get
@@ -184,6 +190,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with Breaststroke
         /// </summary>
+        [FileServiceOrder]
         public bool Breaststroke
         {
             get => GetStartByStyle(SwimmingStyles.Breaststroke) != null;
@@ -193,6 +200,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with Freestyle
         /// </summary>
+        [FileServiceOrder]
         public bool Freestyle
         {
             get => GetStartByStyle(SwimmingStyles.Freestyle) != null;
@@ -202,6 +210,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with Backstroke
         /// </summary>
+        [FileServiceOrder]
         public bool Backstroke
         {
             get => GetStartByStyle(SwimmingStyles.Backstroke) != null;
@@ -211,6 +220,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with Butterfly
         /// </summary>
+        [FileServiceOrder]
         public bool Butterfly
         {
             get => GetStartByStyle(SwimmingStyles.Butterfly) != null;
@@ -220,6 +230,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with Medley
         /// </summary>
+        [FileServiceOrder]
         public bool Medley
         {
             get => GetStartByStyle(SwimmingStyles.Medley) != null;
@@ -229,6 +240,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Starting with WaterFlea
         /// </summary>
+        [FileServiceOrder]
         public bool WaterFlea
         {
             get => GetStartByStyle(SwimmingStyles.WaterFlea) != null;
@@ -240,6 +252,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for Breaststroke
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan BreaststrokeTime
         {
             get => GetStartByStyle(SwimmingStyles.Breaststroke)?.Time ?? new TimeSpan();
@@ -249,6 +262,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for Freestyle
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan FreestyleTime
         {
             get => GetStartByStyle(SwimmingStyles.Freestyle)?.Time ?? new TimeSpan();
@@ -258,6 +272,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for Backstroke
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan BackstrokeTime
         {
             get => GetStartByStyle(SwimmingStyles.Backstroke)?.Time ?? new TimeSpan();
@@ -267,6 +282,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for Butterfly
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan ButterflyTime
         {
             get => GetStartByStyle(SwimmingStyles.Butterfly)?.Time ?? new TimeSpan();
@@ -276,6 +292,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for Medley
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan MedleyTime
         {
             get => GetStartByStyle(SwimmingStyles.Medley)?.Time ?? new TimeSpan();
@@ -285,6 +302,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Time for WaterFlea
         /// </summary>
+        [FileServiceOrder]
         public TimeSpan WaterFleaTime
         {
             get => GetStartByStyle(SwimmingStyles.WaterFlea)?.Time ?? new TimeSpan();

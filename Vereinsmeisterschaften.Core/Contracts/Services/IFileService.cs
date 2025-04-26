@@ -1,4 +1,6 @@
-﻿namespace Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using System.Runtime.CompilerServices;
+
+namespace Vereinsmeisterschaften.Core.Contracts.Services;
 
 public interface IFileService
 {
@@ -61,3 +63,19 @@ public interface IFileService
 public class FileServiceIgnoreAttribute : Attribute
 {
 }
+
+/// <summary>
+/// Use this attribute to order some elements to their position in the file.
+/// </summary>
+/// <see href="https://stackoverflow.com/questions/9062235/get-properties-in-order-of-declaration-using-reflection"/>
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+public class FileServiceOrderAttribute : Attribute
+{
+    public int Order { get; }
+
+    public FileServiceOrderAttribute([CallerLineNumber] int order = 0)
+    {
+        Order = order;
+    }
+}
+

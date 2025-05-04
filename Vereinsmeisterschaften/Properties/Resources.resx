@@ -441,4 +441,10 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="CompetitionMissingAndSelectedString" xml:space="preserve">
     <value>Competition missing and start selected</value>
   </data>
+  <data name="SwimmingStyleString" xml:space="preserve">
+    <value>Swimming Style</value>
+  </data>
+  <data name="TimeString" xml:space="preserve">
+    <value>Time</value>
+  </data>
 </root>

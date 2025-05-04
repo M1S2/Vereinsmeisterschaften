@@ -441,4 +441,10 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="CompetitionMissingAndSelectedString" xml:space="preserve">
     <value>Wettkampf fehlt und Start ausgewählt</value>
   </data>
+  <data name="SwimmingStyleString" xml:space="preserve">
+    <value>Schwimmstil</value>
+  </data>
+  <data name="TimeString" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
 </root>

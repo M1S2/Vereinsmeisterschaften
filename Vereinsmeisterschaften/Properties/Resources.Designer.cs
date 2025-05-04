@@ -865,11 +865,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
+        /// </summary>
+        public static string SwimmingStyleString {
+            get {
+                return ResourceManager.GetString("SwimmingStyleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TimeInput ähnelt.
         /// </summary>
         public static string TimeInputPageTitle {
             get {
                 return ResourceManager.GetString("TimeInputPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time ähnelt.
+        /// </summary>
+        public static string TimeString {
+            get {
+                return ResourceManager.GetString("TimeString", resourceCulture);
             }
         }
         

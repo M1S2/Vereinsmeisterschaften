@@ -76,7 +76,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other PersonStart to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="PersonStart"/></returns>
         public override bool Equals(object obj)
-            => obj is PersonStart s && (s.PersonObj, s.Style, s.Time, s.Score).Equals((PersonObj, Style, Time, Score));
+            => obj is PersonStart s && (s.PersonObj, s.Style, s.Time).Equals((PersonObj, Style, Time));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -91,7 +91,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-            => (PersonObj, Style, Time, Score).GetHashCode();
+            => (PersonObj, Style, Time).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.

@@ -58,7 +58,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     start.Score = (2 - (start.Time.TotalMilliseconds / competition.BestTime.TotalMilliseconds)) * BEST_TIME_SCORE;
 
                     // Limit score to 0
-                    if(start.Score < 0) { start.Score = 0; }
+                    if (start.Score < 0) { start.Score = 0; }
                 }
             }
         }

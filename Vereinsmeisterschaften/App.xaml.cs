@@ -62,6 +62,11 @@ public partial class App : Application
 
         // Core Services
         services.AddSingleton<IFileService, FileService>();
+        services.AddSingleton<IPersonService, PersonService>();
+        services.AddSingleton<ICompetitionService, CompetitionService>();
+        services.AddSingleton<IWorkspaceService, WorkspaceService>();
+        services.AddSingleton<IScoreService, ScoreService>();
+        services.AddSingleton<IRaceService, RaceService>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -70,42 +75,35 @@ public partial class App : Application
         services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
         services.AddSingleton<IPageService, PageService>();
         services.AddSingleton<INavigationService, NavigationService>();
-
-        services.AddSingleton<IPersonService, PersonService>();
-        services.AddSingleton<ICompetitionService, CompetitionService>();
-        services.AddSingleton<IWorkspaceService, WorkspaceService>();
-        services.AddSingleton<IScoreService, ScoreService>();
-        services.AddSingleton<IRaceService, RaceService>();
-
         services.AddSingleton<IDialogCoordinator>(DialogCoordinator.Instance);
 
         // Views and ViewModels
-        services.AddTransient<IShellWindow, ShellWindow>();
-        services.AddTransient<ShellViewModel>();
+        services.AddSingleton<IShellWindow, ShellWindow>();
+        services.AddSingleton<ShellViewModel>();
 
-        services.AddTransient<MainViewModel>();
-        services.AddTransient<MainPage>();
+        services.AddSingleton<MainViewModel>();
+        services.AddSingleton<MainPage>();
 
-        services.AddTransient<WorkspaceViewModel>();
-        services.AddTransient<WorkspacePage>();
+        services.AddSingleton<WorkspaceViewModel>();
+        services.AddSingleton<WorkspacePage>();
 
-        services.AddTransient<PeopleViewModel>();
-        services.AddTransient<PeoplePage>();
+        services.AddSingleton<PeopleViewModel>();
+        services.AddSingleton<PeoplePage>();
 
-        services.AddTransient<PrepareRacesViewModel>();
-        services.AddTransient<PrepareRacesPage>();
+        services.AddSingleton<PrepareRacesViewModel>();
+        services.AddSingleton<PrepareRacesPage>();
 
-        services.AddTransient<PrepareDocumentsViewModel>();
-        services.AddTransient<PrepareDocumentsPage>();
+        services.AddSingleton<PrepareDocumentsViewModel>();
+        services.AddSingleton<PrepareDocumentsPage>();
 
-        services.AddTransient<TimeInputViewModel>();
-        services.AddTransient<TimeInputPage>();
+        services.AddSingleton<TimeInputViewModel>();
+        services.AddSingleton<TimeInputPage>();
 
-        services.AddTransient<ResultsViewModel>();
-        services.AddTransient<ResultsPage>();
+        services.AddSingleton<ResultsViewModel>();
+        services.AddSingleton<ResultsPage>();
 
-        services.AddTransient<SettingsViewModel>();
-        services.AddTransient<SettingsPage>();
+        services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<SettingsPage>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

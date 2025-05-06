@@ -447,4 +447,10 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="TimeString" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="FilterModeString" xml:space="preserve">
+    <value>Filter Mode</value>
+  </data>
+  <data name="NoPersistentRaceVariantString" xml:space="preserve">
+    <value>No persistent race variant available</value>
+  </data>
 </root>

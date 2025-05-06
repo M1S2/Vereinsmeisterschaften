@@ -61,6 +61,19 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        private int _raceID;
+        /// <summary>
+        /// Number for this <see cref="Race"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public int RaceID
+        {
+            get => _raceID;
+            set => SetProperty(ref _raceID, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();

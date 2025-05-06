@@ -18,12 +18,12 @@ namespace Vereinsmeisterschaften.ViewModels
         None,
 
         /// <summary>
-        /// Highlight all <see cref="PersonStart"/> objects that have the same <see cref="SwimmingStyles"/>/>
+        /// Highlight all <see cref="PersonStart"/> objects that have the same <see cref="SwimmingStyles"/>
         /// </summary>
         SwimmingStyle,
 
         /// <summary>
-        /// Highlight all <see cref="PersonStart"/> objects that have the same <see cref="Person"/> object/>
+        /// Highlight all <see cref="PersonStart"/> objects that have the same <see cref="Person"/> object
         /// </summary>
         Person,
 

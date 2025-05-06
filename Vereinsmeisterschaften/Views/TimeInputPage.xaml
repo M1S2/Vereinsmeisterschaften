@@ -6,7 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
@@ -14,11 +16,18 @@
         <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
+
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableFilterPersonStartModes">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="viewModels:FilterPersonStartModes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
     
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -27,13 +36,88 @@
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.TimeInputPageTitle}" />
         </StackPanel>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding AvailablePersonStarts}">
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <!-- Filter mode controls -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="{StaticResource MediumBottomMargin}">
+            <TextBlock Text="{x:Static properties:Resources.FilterModeString}" VerticalAlignment="Center"/>
+            <!-- Selection for filter mode -->
+            <ComboBox Margin="5,0,0,0" Width="150" ItemsSource="{Binding Source={StaticResource AvailableFilterPersonStartModes}}" SelectedValue="{Binding FilterPersonStartMode}" VerticalAlignment="Center">
+                <!-- https://www.codeproject.com/Articles/767834/WPF-Binding-to-an-enum-with-localization -->
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- Selection / Numeric input for race number. This is only visible if filter mode is RaceNumber. -->
+            <controls:NumericUpDown x:Name="num_filterRaceNumber" Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
+                                        Value="{Binding FilteredRaceID}" Minimum="1" Maximum="{Binding PersistedRacesVariant.Races.Count, FallbackValue=1}">
+                <controls:NumericUpDown.Style>
+                    <Style TargetType="{x:Type controls:NumericUpDown}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="RaceID">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding PersistedRacesVariant}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:NumericUpDown.Style>
+            </controls:NumericUpDown>
+            <TextBlock Text="{x:Static properties:Resources.NoPersistentRaceVariantString}" VerticalAlignment="Center" Margin="5,0,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=num_filterRaceNumber, Path=Visibility}" Value="Collapsed">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="Person">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="None">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <!-- Selection for filtered person. This is only visible if filter mode is Person. -->
+            <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
+              ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding FilteredPerson}">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="Person">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <ListView Grid.Row="2" ItemsSource="{Binding AvailablePersonStartsCollectionView}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="Height" Value="40"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <ListView.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>
+            </ListView.Resources>
 
             <ListView.View>
                 <GridView>
@@ -55,7 +139,7 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Style}" Width="90">
+                    <GridViewColumn DisplayMemberBinding="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" Width="90">
                         <GridViewColumn.Header>
                             <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </GridViewColumn.Header>
@@ -70,7 +154,29 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:hh}:{0:mm}:{0:ss}.{0:fff}}" FontSize="{StaticResource LargeFontSize}"/>
+                                <ContentControl Margin="5">
+                                    <ContentControl.Style>
+                                        <Style TargetType="{x:Type ContentControl}">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <TextBox Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:hh}:{0:mm}:{0:ss}.{0:fff}}" FontSize="{StaticResource LargeFontSize}" ToolTip="hh:mm:ss.fff"/>
+                                                </Setter.Value>                                                
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Border Background="{StaticResource BrushErrorWithTransparency}" Height="40" VerticalAlignment="Center">
+                                                                <!-- Show an error icon if no competition object is assigned -->
+                                                                <controls:FontIcon FontSize="20" Glyph="&#xF140;" ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                                            </Border>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

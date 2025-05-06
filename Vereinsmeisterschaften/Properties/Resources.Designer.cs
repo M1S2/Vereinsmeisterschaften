@@ -261,6 +261,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter Mode ähnelt.
+        /// </summary>
+        public static string FilterModeString {
+            get {
+                return ResourceManager.GetString("FilterModeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die First Name ähnelt.
         /// </summary>
         public static string FirstNameString {
@@ -374,6 +383,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NameString {
             get {
                 return ResourceManager.GetString("NameString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No persistent race variant available ähnelt.
+        /// </summary>
+        public static string NoPersistentRaceVariantString {
+            get {
+                return ResourceManager.GetString("NoPersistentRaceVariantString", resourceCulture);
             }
         }
         

@@ -180,4 +180,13 @@
   <data name="ResultTypes_WaterFlea" xml:space="preserve">
     <value>WaterFlea</value>
   </data>
+  <data name="FilterPersonStartModes_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="FilterPersonStartModes_Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="FilterPersonStartModes_RaceID" xml:space="preserve">
+    <value>Race ID</value>
+  </data>
 </root>

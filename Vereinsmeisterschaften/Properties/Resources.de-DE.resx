@@ -447,4 +447,10 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="TimeString" xml:space="preserve">
     <value>Zeit</value>
   </data>
+  <data name="FilterModeString" xml:space="preserve">
+    <value>Filtermodus</value>
+  </data>
+  <data name="NoPersistentRaceVariantString" xml:space="preserve">
+    <value>Keine Renn-Variante ist als persistent gekennzeichnet.</value>
+  </data>
 </root>

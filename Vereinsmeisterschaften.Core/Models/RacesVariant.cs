@@ -176,11 +176,22 @@ namespace Vereinsmeisterschaften.Core.Models
 
         private void Races_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            updateRaceIDs();
             CalculateScore();
             updateRaceStartsCollectionChangedEvent();
             OnPropertyChanged(nameof(IsValid_AllRacesValid));
             OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
             OnPropertyChanged(nameof(IsValid));
+        }
+
+        private void updateRaceIDs()
+        {
+            int id = 1;
+            foreach(Race race in Races)
+            {
+                race.RaceID = id;
+                id++;
+            }
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

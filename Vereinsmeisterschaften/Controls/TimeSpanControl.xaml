@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Vereinsmeisterschaften.Controls.TimeSpanControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="130"
+             Height="Auto" Width="Auto"
+             Focusable="True"
+             IsTabStop="True"
+             PreviewKeyDown="UserControl_PreviewKeyDown">
+    
+    <UserControl.Resources>
+        <Style x:Key="TimeSpanControlTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+        </Style>
+        
+        <SolidColorBrush x:Key="digitsHighlightBrush" Color="{DynamicResource MahApps.Colors.Accent}"/>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal">
+        <Border BorderBrush="{DynamicResource MahApps.Brushes.Text}" Background="{DynamicResource MahApps.Brushes.Control.Background}"
+            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Style.Triggers>
+                        <!-- Add highlighting if user control is focused -->
+                        <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <DockPanel Margin="5,0" LastChildFill="False">
+                <!-- Hours -->
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Visibility="{Binding HoursVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock x:Name="txt_hours" PreviewMouseDown="txt_hours_PreviewMouseDown"
+                           Text="{Binding Hours, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EditMode}" Value="EditHours">
+                                        <Setter Property="Background" Value="{StaticResource digitsHighlightBrush}"/>
+                                    </DataTrigger>
+                                    <!-- Remove highlighting if user control is not focused -->
+                                    <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text=":" Style="{StaticResource TimeSpanControlTextBlockStyle}"/>
+                </StackPanel>
+                <!-- Minutes -->
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <TextBlock x:Name="txt_minutes" PreviewMouseDown="txt_minutes_PreviewMouseDown"
+                           Text="{Binding Minutes, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EditMode}" Value="EditMinutes">
+                                        <Setter Property="Background" Value="{StaticResource digitsHighlightBrush}"/>
+                                    </DataTrigger>
+                                    <!-- Remove highlighting if user control is not focused -->
+                                    <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text=":" Style="{StaticResource TimeSpanControlTextBlockStyle}"/>
+                </StackPanel>
+                <!-- Seconds -->
+                <TextBlock x:Name="txt_seconds" DockPanel.Dock="Left" PreviewMouseDown="txt_seconds_PreviewMouseDown"
+                       Text="{Binding Seconds, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding EditMode}" Value="EditSeconds">
+                                    <Setter Property="Background" Value="{StaticResource digitsHighlightBrush}"/>
+                                </DataTrigger>
+                                <!-- Remove highlighting if user control is not focused -->
+                                <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <!-- Milliseconds -->
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Visibility="{Binding MillisecondsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Text="." Style="{StaticResource TimeSpanControlTextBlockStyle}"/>
+                    <TextBlock x:Name="txt_milliseconds" PreviewMouseDown="txt_milliseconds_PreviewMouseDown"
+                           Text="{Binding Milliseconds, StringFormat={}{0:000}, UpdateSourceTrigger=PropertyChanged, FallbackValue=000}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EditMode}" Value="EditMilliseconds">
+                                        <Setter Property="Background" Value="{StaticResource digitsHighlightBrush}"/>
+                                    </DataTrigger>
+                                    <!-- Remove highlighting if user control is not focused -->
+                                    <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        
+        <!-- Up/Down buttons -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <!-- Hide up/down buttons if user control is not focused -->
+                        <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            
+            <RepeatButton x:Name="btn_Increase" Grid.Row="0" Padding="2" MinHeight="0" Click="btn_Increase_Click" Delay="500" Interval="100">
+                <Path Data="M 1 4 L 5 0 L 9 4" StrokeThickness="2" Margin="0,2,0,0" Stroke="{DynamicResource MahApps.Brushes.Text}"/>
+            </RepeatButton>
+            <RepeatButton x:Name="btn_Decrease" Grid.Row="1" Padding="2" MinHeight="0" Click="btn_Decrease_Click" Delay="500" Interval="100">
+                <Path Data="M 1 0 L 5 4 L 9 0" StrokeThickness="2" Margin="0,2,0,0" Stroke="{DynamicResource MahApps.Brushes.Text}"/>
+            </RepeatButton>
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -8,6 +8,7 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -159,8 +160,10 @@
                                         <Style TargetType="{x:Type ContentControl}">
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <TextBox Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:hh}:{0:mm}:{0:ss}.{0:fff}}" FontSize="{StaticResource LargeFontSize}" ToolTip="hh:mm:ss.fff"/>
-                                                </Setter.Value>                                                
+                                                    <Border HorizontalAlignment="Center">
+                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff"/>
+                                                    </Border>
+                                                </Setter.Value>
                                             </Setter>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">

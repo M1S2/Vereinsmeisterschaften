@@ -10,11 +10,12 @@
     xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors" 
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1200">
     
     <Page.Resources>
-        <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
+        <Style x:Key="CenteredGridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
@@ -97,7 +98,7 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="120">
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="120" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -106,7 +107,7 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="120">
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="120" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -114,44 +115,122 @@
                             </StackPanel>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    
+
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score, StringFormat=N1}" Width="90">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.BreaststrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Breaststroke">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Freestyle].Score, StringFormat=N1}" Width="90">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.FreestyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Freestyle">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Backstroke].Score, StringFormat=N1}" Width="90">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.BackstrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Backstroke">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Butterfly].Score, StringFormat=N1}" Width="90">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.ButterflyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Butterfly">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[Medley].Score, StringFormat=N1}" Width="90">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.MedleyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Medley">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
                     <GridViewColumn DisplayMemberBinding="{Binding Starts[WaterFlea].Score, StringFormat=N1}" Width="110">
-                        <GridViewColumn.Header>
+                        <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <TextBlock Text="{x:Static properties:Resources.WaterFleaString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                        </GridViewColumn.Header>
+                            <GridViewColumnHeader.Style>
+                                <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="WaterFlea">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GridViewColumnHeader.Style>
+                        </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding HighestScore, StringFormat=N1}" Width="150">
+                    <GridViewColumn DisplayMemberBinding="{Binding HighestScore, StringFormat=N1}" Width="150" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>

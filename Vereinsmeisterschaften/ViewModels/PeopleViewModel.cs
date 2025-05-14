@@ -57,6 +57,16 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _peopleCollectionView, value);
     }
 
+    private Person _selectedPerson;
+    /// <summary>
+    /// Currently selected <see cref="Person"/>
+    /// </summary>
+    public Person SelectedPerson
+    {
+        get => _selectedPerson;
+        set => SetProperty(ref _selectedPerson, value);
+    }
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private Subject<bool> filterInputSubject = new Subject<bool>();         // Used to delay the filter while typing
@@ -128,6 +138,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         _personService.AddPerson(person);
         _competitionService.UpdateAllCompetitionsForPerson(person);
         person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
+        SelectedPerson = person;
     }));
 
     private ICommand _removePersonCommand;
@@ -152,6 +163,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         People = _personService?.GetPersons();
         PeopleCollectionView = CollectionViewSource.GetDefaultView(People);
         PeopleCollectionView.Filter += PersonFilterPredicate;
+        SelectedPerson = People?.FirstOrDefault();
         _competitionService.UpdateAllCompetitionsForPerson();
 
         foreach(Person person in People)

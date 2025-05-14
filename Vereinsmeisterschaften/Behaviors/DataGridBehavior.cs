@@ -7,11 +7,12 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using System.ComponentModel;
 
 namespace Vereinsmeisterschaften.Behaviors
 {
     /// <summary>
-    /// Behavior to display row numbers in the DataGrid row headers
+    /// Behavior to display row numbers in the DataGrid row headers and scroll to the selected item in the DataGrid.
     /// </summary>
     /// <see href="https://stackoverflow.com/questions/4663771/wpf-4-datagrid-getting-the-row-number-into-the-rowheader/4663799#4663799"/>
     public class DataGridBehavior
@@ -65,6 +66,46 @@ namespace Vereinsmeisterschaften.Behaviors
         }
 
         #endregion // DisplayRowNumber
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region ObserveSelectedItem
+
+        public static readonly DependencyProperty ObserveSelectedItemProperty =
+            DependencyProperty.RegisterAttached("ObserveSelectedItem",
+                                                typeof(object),
+                                                typeof(DataGridBehavior),
+                                                new PropertyMetadata(null, OnObserveSelectedItemChanged));
+
+        public static object GetObserveSelectedItem(DependencyObject obj)
+            => obj.GetValue(ObserveSelectedItemProperty);
+
+        public static void SetObserveSelectedItem(DependencyObject obj, object value)
+            => obj.SetValue(ObserveSelectedItemProperty, value);
+
+        private static void OnObserveSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DataGrid dataGrid && e.NewValue != null)
+            {
+                DependencyPropertyDescriptor descriptor = DependencyPropertyDescriptor.FromProperty(ObserveSelectedItemProperty, typeof(DataGrid));
+                descriptor?.AddValueChanged(d, (sender, args) =>
+                {
+                    DataGrid dg = (DataGrid)sender;
+                    object selectedItem = GetObserveSelectedItem(dg);
+                    if (selectedItem != null)
+                    {
+                        dg.Dispatcher.InvokeAsync(() =>
+                        {
+                            dg.ScrollIntoView(selectedItem);
+                        });
+                    }
+                });
+            }
+        }
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         #region Get Visuals
 

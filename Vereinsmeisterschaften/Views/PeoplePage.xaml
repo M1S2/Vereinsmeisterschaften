@@ -73,7 +73,8 @@
 
         <!-- DataGrid with all people -->
         <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
-                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
+                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
+                  SelectedItem="{Binding SelectedPerson}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedPerson}">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>

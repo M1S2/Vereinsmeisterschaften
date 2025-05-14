@@ -42,7 +42,7 @@
         <ComboBox Grid.Row="1" ItemsSource="{Binding Source={StaticResource AvailableResultTypes}}" SelectedValue="{Binding ResultType}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                    <ContentControl Content="{Binding}" Style="{StaticResource ResultTypeWithIconStyle}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -98,6 +98,7 @@
 
             <ListView.View>
                 <GridView>
+                    <!-- First Name -->
                     <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="120" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
@@ -107,6 +108,7 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
+                    <!-- Name -->
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="120" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
@@ -116,9 +118,10 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score, StringFormat=N1}" Width="90">
+                    <!-- Breaststroke -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score, StringFormat=N1}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.BreaststrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -135,9 +138,10 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Freestyle].Score, StringFormat=N1}" Width="90">
+                    <!-- Freestyle -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Freestyle].Score, StringFormat=N1}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.FreestyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -154,9 +158,10 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Backstroke].Score, StringFormat=N1}" Width="90">
+                    <!-- Backstroke -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Backstroke].Score, StringFormat=N1}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.BackstrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -173,9 +178,10 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Butterfly].Score, StringFormat=N1}" Width="90">
+                    <!-- Butterfly -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Butterfly].Score, StringFormat=N1}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.ButterflyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -192,9 +198,10 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Medley].Score, StringFormat=N1}" Width="90">
+                    <!-- Medley -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Medley].Score, StringFormat=N1}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.MedleyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -211,9 +218,10 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[WaterFlea].Score, StringFormat=N1}" Width="110">
+                    <!-- WaterFlea -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[WaterFlea].Score, StringFormat=N1}" Width="150">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
-                            <TextBlock Text="{x:Static properties:Resources.WaterFleaString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
                                 <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource CenteredGridViewColumnHeaderStyle}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -230,10 +238,11 @@
                         </GridViewColumnHeader>
                     </GridViewColumn>
 
+                    <!-- Highest Score -->
                     <GridViewColumn DisplayMemberBinding="{Binding HighestScore, StringFormat=N1}" Width="150" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                                <controls:FontIcon Glyph="&#xE734;" Margin="5"/>
                                 <TextBlock Text="{x:Static properties:Resources.HighestScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                             </StackPanel>
                         </GridViewColumn.Header>

@@ -44,7 +44,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     /// <summary>
     /// List with all available <see cref="Person"/> objects.
     /// </summary>
-    public ObservableCollection<Person> AvailablePersons => _personService?.GetPersons();
+    public List<Person> AvailablePersons => _personService?.GetPersons().OrderBy(p => p.Name).ToList();
 
     private Person _filteredPerson;
     /// <summary>
@@ -118,6 +118,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
         AvailablePersonStartsCollectionView.Filter += AvailablePersonStartsFilterPredicate;
 
         OnPropertyChanged(nameof(PersistedRacesVariant));
+        OnPropertyChanged(nameof(AvailablePersons));
     }
 
     public void OnNavigatedFrom()

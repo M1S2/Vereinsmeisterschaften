@@ -38,6 +38,7 @@ public class ResultsViewModel : ObservableObject, INavigationAware
     public ResultsViewModel(IScoreService scoreService)
     {
         _scoreService = scoreService;
+        ResultType = ResultTypes.Overall;
     }
 
     public void OnNavigatedFrom()
@@ -46,6 +47,5 @@ public class ResultsViewModel : ObservableObject, INavigationAware
 
     public void OnNavigatedTo(object parameter)
     {
-        ResultType = ResultTypes.Overall;
     }
 }

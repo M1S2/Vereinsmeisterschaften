@@ -2,6 +2,7 @@
     x:Class="Vereinsmeisterschaften.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
@@ -16,7 +17,11 @@
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
                 <ResourceDictionary Source="/Styles/MetroWindow.xaml" />
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
-                 <!--
+
+                <ResourceDictionary Source="/Styles/SwimmingStyleResources.xaml" />
+                <ResourceDictionary Source="/Styles/GenderStyleResources.xaml" />
+
+                <!--
                 MahApps.Metro resource dictionaries.
                 Learn more about using MahApps.Metro at https://mahapps.com/
                 -->

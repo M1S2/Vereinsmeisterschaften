@@ -140,10 +140,17 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
-                    <GridViewColumn DisplayMemberBinding="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" Width="90">
+                    <GridViewColumn Width="150">
                         <GridViewColumn.Header>
                             <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Center">
+                                    <ContentControl Content="{Binding Style}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Width="150">

@@ -134,7 +134,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <summary>
     /// List with all available <see cref="Person"/> objects.
     /// </summary>
-    public ObservableCollection<Person> AvailablePersons => _personService?.GetPersons();
+    public List<Person> AvailablePersons => _personService?.GetPersons().OrderBy(p => p.Name).ToList();
 
     private Person _highlightedPerson;
     /// <summary>
@@ -422,6 +422,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));
+        OnPropertyChanged(nameof(AvailablePersons));
         CurrentVariantID = 0;
     }
 

@@ -315,7 +315,7 @@
                                 <!-- Distance and style for the race -->
                                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                                     <TextBlock Width="40" Text="{Binding Distance, StringFormat={}{0}m}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}" FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center"/>
+                                    <ContentControl Content="{Binding Style}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                                 </StackPanel>
                                 <!-- Error icons for the race -->
                                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
@@ -494,20 +494,13 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!-- Selection for swimming style or gender. This combobox uses localization and changes the bound items depending on the highlight mode. This is only visible if highlight mode is SwimmingStyle or Gender. -->
-                <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center">
+                <!-- Selection for swimming style. This is only visible if highlight mode is SwimmingStyle. -->
+                <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedItem="{Binding HighlightedSwimmingStyle}">
                     <ComboBox.Style>
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
                             <Setter Property="Visibility" Value="Collapsed"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="SwimmingStyle">
-                                    <Setter Property="ItemsSource" Value="{Binding AvailableSwimmingStyles}"/>
-                                    <Setter Property="SelectedItem" Value="{Binding HighlightedSwimmingStyle}"/>
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Gender">
-                                    <Setter Property="ItemsSource" Value="{Binding Source={StaticResource AvailableGenders}}"/>
-                                    <Setter Property="SelectedItem" Value="{Binding HighlightedGender}"/>
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -515,7 +508,26 @@
                     </ComboBox.Style>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                            <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!-- Selection for gender. This combobox uses localization. This is only visible if highlight mode is Gender. -->
+                <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center" ItemsSource="{Binding Source={StaticResource AvailableGenders}}" SelectedItem="{Binding HighlightedGender}">
+                    <ComboBox.Style>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HighlightPersonStartMode}" Value="Gender">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding}" Style="{StaticResource GenderWithIconStyle}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

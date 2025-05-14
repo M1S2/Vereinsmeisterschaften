@@ -10,9 +10,10 @@
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
-    d:DesignHeight="450" d:DesignWidth="1200">
+    d:DesignHeight="450" d:DesignWidth="1400">
     
     <Page.Resources>
         <Style x:Key="DataGridHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
@@ -71,7 +72,7 @@
         </DockPanel>
 
         <!-- DataGrid with all people -->
-        <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
@@ -110,7 +111,7 @@
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock HorizontalAlignment="Center" Text="{Binding Gender, Converter={StaticResource enumLocalizedStringConverter}}"/>
+                            <ContentControl Content="{Binding Gender}" HorizontalAlignment="Center" Style="{StaticResource GenderWithIconStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -120,7 +121,7 @@
                                       SelectedValue="{Binding Gender}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                                        <ContentControl Content="{Binding}" Style="{StaticResource GenderWithIconStyle}"/>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -143,7 +144,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}" EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.BreaststrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -164,7 +165,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.FreestyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -185,7 +186,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.BackstrokeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -206,7 +207,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.ButterflyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -226,7 +227,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.MedleyString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -247,7 +248,7 @@
                                         ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{x:Static properties:Resources.WaterFleaString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridCheckBoxColumn.Header>
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">

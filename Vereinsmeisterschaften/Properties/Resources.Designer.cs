@@ -88,6 +88,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nothing left to do.All Starts are assigned. ähnelt.
+        /// </summary>
+        public static string AllStartsAssignedString {
+            get {
+                return ResourceManager.GetString("AllStartsAssignedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vereinsmeisterschaften ähnelt.
         /// </summary>
         public static string AppDisplayName {

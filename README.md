@@ -9,8 +9,8 @@ Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertisse
 ## Icons
 - SwimmingStyles.png: https://www.vecteezy.com/vector-art/349116-swimming-aqua-aquatic-sport-game-icon-symbol-sign-pictogram
 - icons8-child-64.png: https://icons8.com/icon/67246/babys-room
-- icons8-male-64.png: https://icons8.com/icon/7702/male
-- icons8-female-64.png: https://icons8.com/icon/7696/female
+- DrawingImage_Female: https://pictogrammers.com/library/mdi/icon/gender-female/
+- DrawingImage_Male: https://pictogrammers.com/library/mdi/icon/gender-male/
 
 https://retouchinglabs.com/inkscape-convert-png-to-svg/
 https://stackoverflow.com/questions/18624070/convert-svg-to-xaml

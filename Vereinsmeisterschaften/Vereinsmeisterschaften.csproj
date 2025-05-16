@@ -11,11 +11,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Remove="Resources\AppIcon.png" />
-    <None Remove="Resources\TSVLogo.png" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <Content Include="AppIcon.ico" />
   </ItemGroup>
   
@@ -29,11 +24,6 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Vereinsmeisterschaften.Core\Vereinsmeisterschaften.Core.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Resource Include="Resources\AppIcon.png" />
-    <Resource Include="Resources\TSVLogo.png" />
   </ItemGroup>
 
   <ItemGroup>

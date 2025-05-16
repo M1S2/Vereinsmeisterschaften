@@ -453,4 +453,8 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="NoPersistentRaceVariantString" xml:space="preserve">
     <value>Keine Renn-Variante ist als persistent gekennzeichnet.</value>
   </data>
+  <data name="AllStartsAssignedString" xml:space="preserve">
+    <value>Nichts mehr zu tun.
+Alle Starts sind zugewiesen.</value>
+  </data>
 </root>

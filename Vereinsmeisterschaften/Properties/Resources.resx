@@ -453,4 +453,7 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="NoPersistentRaceVariantString" xml:space="preserve">
     <value>No persistent race variant available</value>
   </data>
+  <data name="AllStartsAssignedString" xml:space="preserve">
+    <value>Nothing left to do.All Starts are assigned.</value>
+  </data>
 </root>

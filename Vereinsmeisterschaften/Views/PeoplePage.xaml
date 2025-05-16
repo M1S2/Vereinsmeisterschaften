@@ -103,7 +103,7 @@
                 </DataGridTextColumn>
 
                 <!-- Gender -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="Gender">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>

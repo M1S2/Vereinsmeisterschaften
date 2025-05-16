@@ -406,6 +406,22 @@
         </ListBox>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- List empty icon and warning for Parking lot -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CurrentRacesVariant.NotAssignedStarts.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <controls:FontIcon FontSize="40" Glyph="&#xE9D5;" Foreground="{StaticResource MahApps.Brushes.Gray3}"/>
+            <TextBlock Text="{x:Static properties:Resources.AllStartsAssignedString}" TextAlignment="Center" FontSize="{StaticResource MediumFontSize}" Foreground="{StaticResource MahApps.Brushes.Gray3}"/>
+        </StackPanel>
+        
         <!-- Parking lot for PersonStarts -->
         <ListBox Grid.Row="3" Grid.Column="1" Margin="10,10,0,10" ItemsSource="{Binding CurrentRacesVariant.NotAssignedStarts}"
                  dd:DragDrop.IsDragSource="True"
@@ -413,7 +429,7 @@
                  dd:DragDrop.UseDefaultDragAdorner="True"
                  dd:DragDrop.UseDropTargetHint="True"
                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerParkingLotObj}"
-                 BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
+                 BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1" Background="Transparent">
             <ListBox.ItemTemplate>
                 <!-- Item template for the parking lot elements -->
                 <DataTemplate>
@@ -441,12 +457,12 @@
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
-                            
+
                             <!-- Show an error icon if no competition object is assigned -->
                             <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
-                            
+
                             <!-- Show the name of the person -->
                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock.Text>

@@ -98,11 +98,24 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
-        public Race(Race other) : this()
+        /// <summary>
+        /// Create a new object that has the same property values than this one
+        /// </summary>
+        /// <param name="other"><see cref="Race"/> object to clone</param>
+        /// <param name="deepClone">If true, the <see cref="Starts"/> are also cloned. Otherwise the same <see cref="Starts"> references are used.</param>
+        public Race(Race other, bool deepClone = true) : this()
         {
             if (other == null) { return; }
-            // Create a deep copy of the list
-            Starts = new ObservableCollection<PersonStart>(other.Starts.Select(item => (PersonStart)item.Clone()));
+            if (deepClone)
+            {
+                // Create a deep copy of the list
+                Starts = new ObservableCollection<PersonStart>(other.Starts.Select(item => (PersonStart)item.Clone()));
+            }
+            else
+            {
+                // Create a new list but keep the references to the <see cref="PersonStart"/> objects
+                Starts = new ObservableCollection<PersonStart>(other.Starts);
+            }
             Starts.CollectionChanged += Starts_CollectionChanged;
         }
 
@@ -146,6 +159,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>Cloned object of type</returns>
         public object Clone()
-            => new Race(this);
+            => new Race(this, true);
     }
 }

@@ -225,6 +225,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy Variant ähnelt.
+        /// </summary>
+        public static string CopyRaceVariantString {
+            get {
+                return ResourceManager.GetString("CopyRaceVariantString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {

@@ -174,7 +174,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
 
                     if (PersistedRacesVariant == null) { _bestRacesVariantOnLoad = null; }
-                    else { _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant); }
+                    else { _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true); }
 
                     PersistentPath = path;
                     importingResult = true;
@@ -287,7 +287,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             }
                         });
 
-                        _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant);
+                        _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true);
                     }
                     saveResult = true;
                 }

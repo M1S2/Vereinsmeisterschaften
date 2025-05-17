@@ -143,11 +143,26 @@ namespace Vereinsmeisterschaften.Core.Models
             Races_CollectionChanged(Races, null);
         }
 
-        public RacesVariant(RacesVariant other) : this()
+        /// <summary>
+        /// Create a new object that has the same property values than this one
+        /// </summary>
+        /// <param name="other"><see cref="RacesVariant"/> object to clone</param>
+        /// <param name="deepClone">If true, the <see cref="Races"/> are also cloned. Otherwise the same <see cref="Races"/> references are used.</param>
+        /// <param name="deepCloneRaces">If true, the elements of the <see cref="Races"/> are also cloned. Otherwise the same race references are used.</param>
+        public RacesVariant(RacesVariant other, bool deepClone = true, bool deepCloneRaces = true) : this()
         {
             if(other == null) { return; }
-            // Create a deep copy of the list
-            Races = new ObservableCollection<Race>(other.Races.Select(item => (Race)item.Clone()));
+            if (deepClone)
+            {
+                // Create a deep copy of the list
+                Races = new ObservableCollection<Race>(other.Races.Select(item => new Race(item, deepCloneRaces)));
+            }
+            else
+            {
+                // Create a new list but keep the references to the <see cref="Race"/> objects
+                Races = new ObservableCollection<Race>(other.Races);
+            }
+
             Races.CollectionChanged += Races_CollectionChanged;
 
             Races_CollectionChanged(Races, null);
@@ -523,6 +538,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>Cloned object of type</returns>
         public object Clone()
-            => new RacesVariant(this);
+            => new RacesVariant(this, true, true);
     }
 }

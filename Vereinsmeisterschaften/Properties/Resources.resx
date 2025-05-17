@@ -456,4 +456,7 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="AllStartsAssignedString" xml:space="preserve">
     <value>Nothing left to do.All Starts are assigned.</value>
   </data>
+  <data name="CopyRaceVariantString" xml:space="preserve">
+    <value>Copy Variant</value>
+  </data>
 </root>

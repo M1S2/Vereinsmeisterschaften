@@ -457,4 +457,7 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
     <value>Nichts mehr zu tun.
 Alle Starts sind zugewiesen.</value>
   </data>
+  <data name="CopyRaceVariantString" xml:space="preserve">
+    <value>Variante kopieren</value>
+  </data>
 </root>

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.4</Version>
+    <Authors>Dr. Martin Weihrauch</Authors>
+    <Company>Smart In Media</Company>
+    <Copyright>(c) Smart In Media</Copyright>
+    <Description>Report-From-DocX-HTML-To-PDF-Converter - Create custom reports based on Word docx or HTML documents and convert to PDF with .NET CORE</Description>
+    <PackageProjectUrl>https://github.com/smartinmedia/Net-Core-DocX-HTML-To-PDF-Converter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/smartinmedia/Net-Core-DocX-HTML-To-PDF-Converter</RepositoryUrl>
+    <PackageTags>Docx, PDF, HTML, converter</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.10.0-beta0002" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.5" />
+  </ItemGroup>
+
+</Project>

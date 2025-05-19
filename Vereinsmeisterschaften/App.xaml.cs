@@ -62,6 +62,7 @@ public partial class App : Application
 
         // Core Services
         services.AddSingleton<IFileService, FileService>();
+        services.AddSingleton<IDocumentService, DocumentService>();
         services.AddSingleton<IPersonService, PersonService>();
         services.AddSingleton<ICompetitionService, CompetitionService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();

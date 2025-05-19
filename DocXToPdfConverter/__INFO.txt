@@ -1,0 +1,3 @@
+Downloaded as .zip from:
+https://github.com/smartinmedia/Net-Core-DocX-HTML-To-PDF-Converter
+Commit: 814a76ce8985d26d3d3d3acfef7d7b5d8628a1a6

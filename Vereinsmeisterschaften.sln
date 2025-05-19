@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vereinsmeisterschaften", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vereinsmeisterschaften.Core", "Vereinsmeisterschaften.Core\Vereinsmeisterschaften.Core.csproj", "{099993D5-6154-4840-8B62-AB268E29531F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocXToPdfConverter", "DocXToPdfConverter\DocXToPdfConverter.csproj", "{F9C06309-5B8C-126F-1B61-0FF93D5C56F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{099993D5-6154-4840-8B62-AB268E29531F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099993D5-6154-4840-8B62-AB268E29531F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099993D5-6154-4840-8B62-AB268E29531F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C06309-5B8C-126F-1B61-0FF93D5C56F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C06309-5B8C-126F-1B61-0FF93D5C56F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C06309-5B8C-126F-1B61-0FF93D5C56F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C06309-5B8C-126F-1B61-0FF93D5C56F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

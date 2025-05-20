@@ -10,7 +10,8 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// </summary>
     public interface IDocumentService
     {
-        void CreateCertificates();
-        void CreateOverviewlist();
+        Task<bool> CreateCertificates(bool createPdf = true);
+        Task<bool> CreateSingleCertificate(PersonStart personStart, bool createPdf = true, string outputFolder = "");
+        Task<bool> CreateOverviewList(bool createPdf = true);
     }
 }

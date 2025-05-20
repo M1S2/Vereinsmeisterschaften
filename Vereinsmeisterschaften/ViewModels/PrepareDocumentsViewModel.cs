@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
@@ -25,11 +26,13 @@ public class PrepareDocumentsViewModel : ObservableObject, INavigationAware
         _documentService = documentService;
     }
 
-    public void OnNavigatedTo(object parameter)
+    public async void OnNavigatedTo(object parameter)
     {
-        _documentService.CreateCertificates();
-        _documentService.CreateOverviewlist();
+        await _documentService.CreateCertificates();
+        await _documentService.CreateOverviewList();
+        MessageBox.Show("Fertig");
     }
+
     public void OnNavigatedFrom()
     {
     }

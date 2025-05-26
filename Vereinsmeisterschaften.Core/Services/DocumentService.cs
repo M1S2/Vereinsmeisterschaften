@@ -28,7 +28,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public string OverviewlistOutputFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
 
         private const string _tempFolderName = "temp";
-        private const string _certificateOutputFileNameDocx = "Urkunden.docx";
+        private const string _certificateOutputFileNameDocx = "Urkunden{0}.docx";
 
 #warning TODO: Replace by more dynamic path
         private string _libreOfficePath = @"C:\Program Files\LibreOffice\program\soffice.exe";
@@ -46,11 +46,11 @@ namespace Vereinsmeisterschaften.Core.Services
 
         #region Certificate Creation
 
-        public Task<bool> CreateCertificates(bool createPdf = true)
+        public Task<int> CreateCertificates(bool createPdf = true, PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
         {
             return Task.Run(async () =>
             {
-                bool result = true;
+                int numCreatedCertificates = 0;
 
                 string tempFolder = Path.Combine(CertificateOutputFolder, _tempFolderName);
 
@@ -61,47 +61,71 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
 
                 // Create all certificates in a temp folder as single docx files
-                List<PersonStart> personStarts = _personService.GetAllPersonStarts();
-                foreach (PersonStart personStart in personStarts)
+                List<PersonStart> personStarts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null).ToList();
+                if (personStarts.Count > 0)
                 {
-                    bool resultSingle = await CreateSingleCertificate(personStart, false, tempFolder);
-                    result &= resultSingle;
-                }
-
-                // Combine all docx files in the temp folder into one docx file
-                string outputFile = Path.Combine(CertificateOutputFolder, _certificateOutputFileNameDocx);
-                using (DocX document = DocX.Create(outputFile))
-                {
-                    bool firstDocument = true;
-                    foreach (string file in Directory.GetFiles(tempFolder))
+                    try
                     {
-                        using (DocX tempDocument = DocX.Load(file))
+                        foreach (PersonStart personStart in personStarts)
                         {
-                            document.InsertDocument(tempDocument, !firstDocument);
+                            int resultSingle = await createSingleCertificate(personStart, false, tempFolder);
+                            numCreatedCertificates += resultSingle;
                         }
-                        firstDocument = false;
+
+                        // Create the output file name based on the filter
+                        string outputFileNameDocx = string.Empty;
+                        switch (personStartFilter)
+                        {
+                            case PersonStartFilters.None: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, ""); break;
+                            case PersonStartFilters.Person: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_" + ((Person)personStartFilterParameter).FirstName + "_" + ((Person)personStartFilterParameter).Name); break;
+#warning Add localization for "Lage"
+                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_" + (SwimmingStyles)personStartFilterParameter); break;
+                            case PersonStartFilters.CompetitionID: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_WK" + (int)personStartFilterParameter); break;
+                            default: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, ""); break;
+                        }
+                        string outputFile = Path.Combine(CertificateOutputFolder, outputFileNameDocx);
+
+                        // Combine all docx files in the temp folder into one docx file
+                        using (DocX document = DocX.Create(outputFile))
+                        {
+                            bool firstDocument = true;
+                            foreach (string file in Directory.GetFiles(tempFolder))
+                            {
+                                using (DocX tempDocument = DocX.Load(file))
+                                {
+                                    document.InsertDocument(tempDocument, !firstDocument);
+                                }
+                                firstDocument = false;
+                            }
+                            document.Save();
+                        }                        
+
+                        if (createPdf)
+                        {
+                            // Convert the combined docx file to pdf
+                            string outputFilePdf = outputFile.Replace(".docx", ".pdf");
+                            File.Delete(outputFilePdf);
+                            LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                        }
                     }
-                    document.Save();
+                    catch(Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        // Delete temp folder and all files in it
+                        if (Directory.Exists(tempFolder))
+                        {
+                            Directory.Delete(tempFolder, true);
+                        }
+                    }
                 }
-
-                // Delete temp folder and all files in it
-                if (Directory.Exists(tempFolder))
-                {
-                    Directory.Delete(tempFolder, true);
-                }
-
-                if (createPdf)
-                {
-                    // Convert the combined docx file to pdf
-                    string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    result &= LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
-                }
-
-                return result;
+                return numCreatedCertificates;
             });
         }
 
-        public Task<bool> CreateSingleCertificate(PersonStart personStart, bool createPdf = true, string outputFolder = "")
+        private Task<int> createSingleCertificate(PersonStart personStart, bool createPdf = true, string outputFolder = "")
         {
             return Task.Run(() =>
             {
@@ -116,7 +140,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 if (personStart.CompetitionObj == null)
                 {
-                    return false;
+                    return 0;
                 }
 
                 // Collect all placeholder values
@@ -130,14 +154,14 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
                 DocXPlaceholderHelper.ReplaceTextPlaceholders(CertificateTemplatePath, outputFile, textPlaceholders);
-                
+
                 if (createPdf)
                 {
                     // Convert the docx file to pdf
                     string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    return LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
                 }
-                return true;
+                return 1;       // This method always creates one certificate, so we return 1 to indicate success
             });
         }
 
@@ -145,7 +169,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public Task<bool> CreateOverviewList(bool createPdf = true)
+        public Task CreateOverviewList(bool createPdf = true)
         {
             return Task.Run(() =>
             {
@@ -170,9 +194,9 @@ namespace Vereinsmeisterschaften.Core.Services
                 {
                     // Convert the docx file to pdf
                     string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    return LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                    File.Delete(outputFilePdf);
+                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
                 }
-                return true;
             });
         }
 

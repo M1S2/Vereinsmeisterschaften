@@ -234,6 +234,42 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} certificates were created. ähnelt.
+        /// </summary>
+        public static string CreateCertificatesResultString {
+            get {
+                return ResourceManager.GetString("CreateCertificatesResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Certificates ähnelt.
+        /// </summary>
+        public static string CreateCertificatesString {
+            get {
+                return ResourceManager.GetString("CreateCertificatesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overview List was created. ähnelt.
+        /// </summary>
+        public static string CreateOverviewListResultString {
+            get {
+                return ResourceManager.GetString("CreateOverviewListResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Overview List ähnelt.
+        /// </summary>
+        public static string CreateOverviewListString {
+            get {
+                return ResourceManager.GetString("CreateOverviewListString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {

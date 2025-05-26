@@ -262,24 +262,27 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Get all <see cref="PersonStart"/> objects for the given <see cref="Person"/> that are not <see langword="null"/>.
-        /// </summary>
-        /// <param name="person">Person for which the <see cref="PersonStart"/> objects are found</param>
-        /// <returns>List with <see cref="PersonStart"/> objects</returns>
-        public List<PersonStart> GetAllPersonStartsForPerson(Person person) => person.Starts.Values.Cast<PersonStart>().Where(s => s != null).ToList();
-
-        /// <summary>
         /// Get all <see cref="PersonStart"/> objects for all <see cref="Person"/> objects that are not <see langword="null"/>.
         /// </summary>
+        /// <param name="filter">Filter used to only return a subset of all <see cref="PersonStart"/> objects</param>
+        /// <param name="filterParameter">Parameter used depending on the selected filter</param>
         /// <returns>List with <see cref="PersonStart"/> objects</returns>
-        public List<PersonStart> GetAllPersonStarts()
+        public List<PersonStart> GetAllPersonStarts(PersonStartFilters filter = PersonStartFilters.None, object filterParameter = null)
         {
             List<PersonStart> allPersonStarts = new List<PersonStart>();
             foreach (Person person in _personList)
             {
-                allPersonStarts.AddRange(GetAllPersonStartsForPerson(person));
+                allPersonStarts.AddRange(person.Starts.Values.Cast<PersonStart>().Where(s => s != null));
             }
-            return allPersonStarts;
+
+            switch (filter)
+            {
+                case PersonStartFilters.None: return allPersonStarts;
+                case PersonStartFilters.Person: return allPersonStarts.Where(s => s.PersonObj == (Person)filterParameter).ToList();
+                case PersonStartFilters.SwimmingStyle: return allPersonStarts.Where(s => s.Style == (SwimmingStyles)filterParameter).ToList();
+                case PersonStartFilters.CompetitionID: return allPersonStarts.Where(s => s.CompetitionObj != null && s.CompetitionObj.ID == (int)filterParameter).ToList();
+                default: return allPersonStarts;
+            }
         }
     }
 }

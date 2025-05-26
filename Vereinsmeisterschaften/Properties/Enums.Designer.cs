@@ -151,6 +151,42 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
+        /// </summary>
+        public static string PersonStartFilters_CompetitionID {
+            get {
+                return ResourceManager.GetString("PersonStartFilters_CompetitionID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string PersonStartFilters_None {
+            get {
+                return ResourceManager.GetString("PersonStartFilters_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Person ähnelt.
+        /// </summary>
+        public static string PersonStartFilters_Person {
+            get {
+                return ResourceManager.GetString("PersonStartFilters_Person", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
+        /// </summary>
+        public static string PersonStartFilters_SwimmingStyle {
+            get {
+                return ResourceManager.GetString("PersonStartFilters_SwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
         /// </summary>
         public static string ResultTypes_Backstroke {

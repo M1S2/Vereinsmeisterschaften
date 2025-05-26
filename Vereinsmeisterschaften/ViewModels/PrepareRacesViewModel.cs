@@ -406,7 +406,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <summary>
     /// Copy the <see cref="CurrentRacesVariant"/> and add it as new variant to <see cref="RaceService.AllRacesVariants"/>
     /// </summary>
-    public ICommand CopyRaceVariantCommand => _copyRaceVariantCommand ?? (_copyRaceVariantCommand = new RelayCommand(async () =>
+    public ICommand CopyRaceVariantCommand => _copyRaceVariantCommand ?? (_copyRaceVariantCommand = new RelayCommand(() =>
     {
         RacesVariant copyVariant = new RacesVariant(CurrentRacesVariant, true, false);
         _raceService?.AddRacesVariant(copyVariant);

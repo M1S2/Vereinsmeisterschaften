@@ -75,19 +75,6 @@
 
         <Thickness x:Key="MarginNames" Left="10" Top="0" Right="10" Bottom="0"/>
         <Thickness x:Key="MarginIcons" Left="5" Top="5" Right="0" Bottom="5"/>
-
-        <ControlTemplate x:Key="ControlTemplateOkIndicator">
-            <Grid>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushOk}"/>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
-            </Grid>
-        </ControlTemplate>
-        <ControlTemplate x:Key="ControlTemplateErrorIndicator">
-            <Grid>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushError}"/>
-                <controls:FontIcon Margin="{StaticResource MarginIcons}" FontSize="20" Glyph="&#xF13D;" Foreground="White"/>
-            </Grid>
-        </ControlTemplate>
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">

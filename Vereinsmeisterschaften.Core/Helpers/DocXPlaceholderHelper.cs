@@ -140,7 +140,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                     Row rowPattern = null;
                     foreach (Row row in templateTable.Rows)
                     {
-                        foreach(string placeholder in placeholders.Placeholders.Keys)
+                        foreach (string placeholder in placeholders.Placeholders.Keys)
                         {
                             if (row.FindUniqueByPattern(PlaceholderMarker + placeholder + PlaceholderMarker, RegexOptions.IgnoreCase).Count > 0)
                             {
@@ -149,7 +149,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                                 break;
                             }
                         }
-                        if(rowPattern != null)
+                        if (rowPattern != null)
                         {
                             break;
                         }
@@ -178,7 +178,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                                     List<string> values = placeholders.Placeholders[placeholderWithoutMarkers];
                                     return (i < values.Count) ? values[i] : string.Empty;
                                 }
-                                else if(placeholderWithoutMarkers == TableRowIDPlaceholder)
+                                else if (placeholderWithoutMarkers == TableRowIDPlaceholder)
                                 {
                                     return (i + 1).ToString();
                                 }

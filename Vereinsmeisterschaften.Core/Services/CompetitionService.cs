@@ -245,7 +245,7 @@ namespace Vereinsmeisterschaften.Core.Services
             person.AvailableCompetitions = availableCompetitions;
 
             // Update the competitions for the person starts
-            foreach (PersonStart personStart in _personService.GetAllPersonStartsForPerson(person))
+            foreach (PersonStart personStart in _personService.GetAllPersonStarts(PersonStartFilters.Person, person))
             {
                 personStart.CompetitionObj = person.AvailableCompetitions[personStart.Style];
             }

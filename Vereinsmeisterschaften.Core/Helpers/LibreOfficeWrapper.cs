@@ -19,15 +19,15 @@ namespace Vereinsmeisterschaften.Core.Helpers
         /// <param name="inputFile">Input document to convert. This can be .html, .htm or .docx </param>
         /// <param name="outputFile">Output document. This can be .pdf, .docx, .html or .htm</param>
         /// <param name="libreOfficePath">Path to the soffice.exe of LibreOffice</param>
-        /// <returns>True on conversion success; otherwise false</returns>
-        public static bool Convert(string inputFile, string outputFile, string libreOfficePath)
+        /// <exception cref="Exception">Thrown when the LibreOffice application path is invalid or the conversion fails</exception>
+        public static void Convert(string inputFile, string outputFile, string libreOfficePath)
         {
             List<string> commandArgs = new List<string>();
             string convertedFile = "";
 
-            if (string.IsNullOrEmpty(libreOfficePath) || !File.Exists(libreOfficePath))
+            if(string.IsNullOrEmpty(libreOfficePath) || !File.Exists(libreOfficePath))
             {
-                return false;
+                throw new Exception(Properties.Resources.Error_LibreOffice_ApplicationPathError + (string.IsNullOrEmpty(libreOfficePath) ? "" : (Environment.NewLine + libreOfficePath)));
             }
 
             //Create tmp folder
@@ -79,7 +79,8 @@ namespace Vereinsmeisterschaften.Core.Helpers
             if (process.ExitCode != 0)
             {
                 Directory.Delete(tmpFolder, true);
-                return false;
+
+                throw new Exception(string.Format(Properties.Resources.Error_LibreOffice_ConversionFailed, process.ExitCode));
             }
             else
             {
@@ -93,7 +94,6 @@ namespace Vereinsmeisterschaften.Core.Helpers
                 }
                 Directory.Delete(tmpFolder, true);
             }
-            return true;
         }
     }
 }

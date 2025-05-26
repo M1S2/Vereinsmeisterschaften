@@ -53,16 +53,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         List<Person> CheckForDuplicatePerson();
 
         /// <summary>
-        /// Get all <see cref="PersonStart"/> objects for the given <see cref="Person"/> that are not <see langword="null"/>.
-        /// </summary>
-        /// <param name="person">Person for which the <see cref="PersonStart"/> objects are found</param>
-        /// <returns>List with <see cref="PersonStart"/> objects</returns>
-        List<PersonStart> GetAllPersonStartsForPerson(Person person);
-
-        /// <summary>
         /// Get all <see cref="PersonStart"/> objects for all <see cref="Person"/> objects that are not <see langword="null"/>.
         /// </summary>
+        /// <param name="filter">Filter used to only return a subset of all <see cref="PersonStart"/> objects</param>
+        /// <param name="filterParameter">Parameter used depending on the selected filter</param>
         /// <returns>List with <see cref="PersonStart"/> objects</returns>
-        List<PersonStart> GetAllPersonStarts();
+        List<PersonStart> GetAllPersonStarts(PersonStartFilters filter = PersonStartFilters.None, object filterParameter = null);
     }
 }

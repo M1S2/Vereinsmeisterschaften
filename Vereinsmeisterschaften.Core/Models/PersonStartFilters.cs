@@ -9,9 +9,24 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public enum PersonStartFilters
     {
+        /// <summary>
+        /// No filtering
+        /// </summary>
         None,
+
+        /// <summary>
+        /// Filter by <see cref="Person"/> object
+        /// </summary>
         Person,
+
+        /// <summary>
+        /// Filter by the <see cref="SwimmingStyles">
+        /// </summary>
         SwimmingStyle,
+
+        /// <summary>
+        /// Filter by the <see cref="Competition.ID">
+        /// </summary>
         CompetitionID
     }
 }

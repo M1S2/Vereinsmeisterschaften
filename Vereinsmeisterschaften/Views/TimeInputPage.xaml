@@ -20,7 +20,7 @@
 
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableFilterPersonStartModes">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="viewModels:FilterPersonStartModes"/>
+                <x:Type TypeName="viewModels:TimeInputPersonStartFilterModes"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </Page.Resources>

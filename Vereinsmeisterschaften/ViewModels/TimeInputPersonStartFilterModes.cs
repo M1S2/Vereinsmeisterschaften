@@ -10,7 +10,7 @@ namespace Vereinsmeisterschaften.ViewModels
     /// <summary>
     /// Enum to define the different modes to filter a <see cref="PersonStart"/>
     /// </summary>
-    public enum FilterPersonStartModes
+    public enum TimeInputPersonStartFilterModes
     {
         /// <summary>
         /// No filtering

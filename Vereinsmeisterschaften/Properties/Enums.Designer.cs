@@ -61,33 +61,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
-        /// </summary>
-        public static string FilterPersonStartModes_None {
-            get {
-                return ResourceManager.GetString("FilterPersonStartModes_None", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Person ähnelt.
-        /// </summary>
-        public static string FilterPersonStartModes_Person {
-            get {
-                return ResourceManager.GetString("FilterPersonStartModes_Person", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Race ID ähnelt.
-        /// </summary>
-        public static string FilterPersonStartModes_RaceID {
-            get {
-                return ResourceManager.GetString("FilterPersonStartModes_RaceID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
         /// </summary>
         public static string Genders_Female {
@@ -309,6 +282,33 @@ namespace Vereinsmeisterschaften.Properties {
         public static string SwimmingStyles_WaterFlea {
             get {
                 return ResourceManager.GetString("SwimmingStyles_WaterFlea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string TimeInputPersonStartFilterModes_None {
+            get {
+                return ResourceManager.GetString("TimeInputPersonStartFilterModes_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Person ähnelt.
+        /// </summary>
+        public static string TimeInputPersonStartFilterModes_Person {
+            get {
+                return ResourceManager.GetString("TimeInputPersonStartFilterModes_Person", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race ID ähnelt.
+        /// </summary>
+        public static string TimeInputPersonStartFilterModes_RaceID {
+            get {
+                return ResourceManager.GetString("TimeInputPersonStartFilterModes_RaceID", resourceCulture);
             }
         }
     }

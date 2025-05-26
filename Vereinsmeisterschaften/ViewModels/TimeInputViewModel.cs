@@ -29,11 +29,11 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
 
     #region Filter Feature
 
-    private FilterPersonStartModes _filterPersonStartMode = FilterPersonStartModes.None;
+    private TimeInputPersonStartFilterModes _filterPersonStartMode = TimeInputPersonStartFilterModes.None;
     /// <summary>
     /// Currently active filter mode.
     /// </summary>
-    public FilterPersonStartModes FilterPersonStartMode
+    public TimeInputPersonStartFilterModes FilterPersonStartMode
     {
         get => _filterPersonStartMode;
         set { SetProperty(ref _filterPersonStartMode, value); AvailablePersonStartsCollectionView.Refresh(); }
@@ -48,7 +48,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
 
     private Person _filteredPerson;
     /// <summary>
-    /// All <see cref="PersonStart"/> elements that match this <see cref="Person"/> will be filtered if the <see cref="FilterPersonStartMode"/> is <see cref="FilterPersonStartModes.Person"/>
+    /// All <see cref="PersonStart"/> elements that match this <see cref="Person"/> will be filtered if the <see cref="FilterPersonStartMode"/> is <see cref="TimeInputPersonStartFilterModes.Person"/>
     /// </summary>
     public Person FilteredPerson
     {
@@ -60,7 +60,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
 
     private int _filteredRaceID = 1;
     /// <summary>
-    /// All <see cref="PersonStart"/> elements that are part of the race with the <see cref="Race.RaceID"/> in the <see cref="PersistedRacesVariant"/> will be filtered if the <see cref="FilterPersonStartMode"/> is <see cref="FilterPersonStartModes.RaceNumber"/>
+    /// All <see cref="PersonStart"/> elements that are part of the race with the <see cref="Race.RaceID"/> in the <see cref="PersistedRacesVariant"/> will be filtered if the <see cref="FilterPersonStartMode"/> is <see cref="TimeInputPersonStartFilterModes.RaceNumber"/>
     /// </summary>
     public int FilteredRaceID
     {
@@ -84,12 +84,12 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
                 bool filterResult = true;
                 switch(FilterPersonStartMode)
                 {
-                    case FilterPersonStartModes.Person:
+                    case TimeInputPersonStartFilterModes.Person:
                         return personStart?.PersonObj == FilteredPerson;
-                    case FilterPersonStartModes.RaceID:
+                    case TimeInputPersonStartFilterModes.RaceID:
                         Race race = PersistedRacesVariant?.Races?.Where(r => r.Starts.Contains(personStart)).FirstOrDefault();
                         return race == null ? false : race.RaceID == FilteredRaceID;
-                    case FilterPersonStartModes.None:
+                    case TimeInputPersonStartFilterModes.None:
                     default:
                         break;
                 }

@@ -25,107 +25,111 @@
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE8A5;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareDocumentsPageTitle}" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}">
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Certificates -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <!-- Create Certificates Button -->
-            <Button Width="170" Command="{Binding CreateCertificatesCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+            <Button Command="{Binding CreateCertificatesCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
                 <StackPanel Orientation="Vertical">
                     <controls:FontIcon FontSize="50" Glyph="&#xE8A5;" Margin="10"/>
-                    <TextBlock Text="{x:Static properties:Resources.CreateCertificatesString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateCertificatesString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
-            <controls:ProgressRing Margin="10,0,0,0" Visibility="{Binding IsCertificateCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <DockPanel Margin="10,0,0,0" VerticalAlignment="Stretch" LastChildFill="False">
-                <TextBlock DockPanel.Dock="Top" Text="{x:Static properties:Resources.FilterModeString}" VerticalAlignment="Center"/>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <!-- Selection for filter mode -->
-                    <ComboBox Width="150" ItemsSource="{Binding Source={StaticResource AvailablePersonStartFilters}}" SelectedValue="{Binding PersonStartFilter}" VerticalAlignment="Center">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+            <!-- String with certificate creation success -->
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CertificateCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
+                <TextBlock Text="{Binding NumberCreatedCertificates, StringFormat={x:Static properties:Resources.CreateCertificatesResultString}}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </StackPanel>
 
-                    <!-- Selection for person. This is only visible if filter mode is Person. -->
-                    <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center" ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding FilteredPerson}">
-                        <ComboBox.Style>
-                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PersonStartFilter}" Value="Person">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ComboBox.Style>
-                    </ComboBox>
+            <TextBlock Margin="0,10,0,0" Text="{x:Static properties:Resources.FilterModeString}" VerticalAlignment="Center"/>
+            <!-- Selection for filter mode -->
+            <ComboBox ItemsSource="{Binding Source={StaticResource AvailablePersonStartFilters}}" SelectedValue="{Binding PersonStartFilter}" VerticalAlignment="Center">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-                    <!-- Selection for swimming style. This is only visible if filter mode is SwimmingStyle. -->
-                    <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedItem="{Binding FilteredSwimmingStyle}">
-                        <ComboBox.Style>
-                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PersonStartFilter}" Value="SwimmingStyle">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ComboBox.Style>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+            <!-- Selection for person. This is only visible if filter mode is Person. -->
+            <ComboBox Margin="0,5,0,0" VerticalAlignment="Center" ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding FilteredPerson}">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="Person">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <!-- Selection for swimming style. This is only visible if filter mode is SwimmingStyle. -->
+            <ComboBox Margin="0,5,0,0" VerticalAlignment="Center" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedItem="{Binding FilteredSwimmingStyle}">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="SwimmingStyle">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <!-- Selection / Numeric input for Competition ID. This is only visible if filter mode is CompetitionID. -->
+            <controls:NumericUpDown Margin="0,5,0,0" VerticalAlignment="Center" Value="{Binding FilteredCompetitionID}" Minimum="0">
+                <controls:NumericUpDown.Style>
+                    <Style TargetType="{x:Type controls:NumericUpDown}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="CompetitionID">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:NumericUpDown.Style>
+            </controls:NumericUpDown>
 
-                    <!-- Selection / Numeric input for Competition ID. This is only visible if filter mode is CompetitionID. -->
-                    <controls:NumericUpDown Margin="5,0,0,0" Width="250" VerticalAlignment="Center" Value="{Binding FilteredCompetitionID}" Minimum="0">
-                        <controls:NumericUpDown.Style>
-                            <Style TargetType="{x:Type controls:NumericUpDown}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PersonStartFilter}" Value="CompetitionID">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </controls:NumericUpDown.Style>
-                    </controls:NumericUpDown>
-                </StackPanel>
-                <!-- String with certificate creation success -->
-                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,10,0,0" Visibility="{Binding CertificateCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
-                    <TextBlock Text="{Binding NumberCreatedCertificates, StringFormat={x:Static properties:Resources.CreateCertificatesResultString}}" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                </StackPanel>
-            </DockPanel>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsCertificateCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}">
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Overview List -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <!-- Create Overview List Button -->
-            <Button Width="170" Command="{Binding CreateOverviewListCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+            <Button Command="{Binding CreateOverviewListCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
                 <StackPanel Orientation="Vertical">
-                    <controls:FontIcon FontSize="50" Glyph="&#xE8A5;" Margin="10"/>
-                    <TextBlock Text="{x:Static properties:Resources.CreateOverviewListString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <controls:FontIcon FontSize="50" Glyph="&#xE9D5;" Margin="10"/>
+                    <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateOverviewListString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
-            <controls:ProgressRing Margin="10,0,0,0" Visibility="{Binding IsOverviewListCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <!-- String with overview list creation success -->
-            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Bottom" Visibility="{Binding OverviewListCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding OverviewListCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
                 <TextBlock Text="{x:Static properties:Resources.CreateOverviewListResultString}" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </StackPanel>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsOverviewListCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
+
     </Grid>
 </Page>

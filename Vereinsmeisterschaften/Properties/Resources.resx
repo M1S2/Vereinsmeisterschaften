@@ -471,4 +471,31 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="CreateOverviewListResultString" xml:space="preserve">
     <value>Overview List was created.</value>
   </data>
+  <data name="SettingsDocumentCreation" xml:space="preserve">
+    <value>Document creation settings</value>
+  </data>
+  <data name="TooltipCertificateTemplatePath" xml:space="preserve">
+    <value>Path to the certificate template.</value>
+  </data>
+  <data name="CertificateTemplatePathString" xml:space="preserve">
+    <value>Certificate Template</value>
+  </data>
+  <data name="TooltipDocumentOutputFolder" xml:space="preserve">
+    <value>Output folder where the documents are created.</value>
+  </data>
+  <data name="DocumentOutputFolderString" xml:space="preserve">
+    <value>Document output folder</value>
+  </data>
+  <data name="TooltipOverviewlistTemplatePath" xml:space="preserve">
+    <value>Path to the overview list template.</value>
+  </data>
+  <data name="OverviewlistTemplatePathString" xml:space="preserve">
+    <value>Overview List Template</value>
+  </data>
+  <data name="TooltipLibreOfficePath" xml:space="preserve">
+    <value>Path to the LibreOffice soffice.exe used for PDF conversion.</value>
+  </data>
+  <data name="LibreOfficePathString" xml:space="preserve">
+    <value>LibreOffice Path</value>
+  </data>
 </root>

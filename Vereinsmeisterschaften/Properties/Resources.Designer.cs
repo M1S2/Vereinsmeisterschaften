@@ -180,6 +180,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Certificate Template ähnelt.
+        /// </summary>
+        public static string CertificateTemplatePathString {
+            get {
+                return ResourceManager.GetString("CertificateTemplatePathString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cleanup races ähnelt.
         /// </summary>
         public static string CleanupRacesString {
@@ -288,6 +297,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Document output folder ähnelt.
+        /// </summary>
+        public static string DocumentOutputFolderString {
+            get {
+                return ResourceManager.GetString("DocumentOutputFolderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Don&apos;t save ähnelt.
         /// </summary>
         public static string DontSaveString {
@@ -383,6 +401,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string InvalidRacesString {
             get {
                 return ResourceManager.GetString("InvalidRacesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die LibreOffice Path ähnelt.
+        /// </summary>
+        public static string LibreOfficePathString {
+            get {
+                return ResourceManager.GetString("LibreOfficePathString", resourceCulture);
             }
         }
         
@@ -509,6 +536,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string OpenString {
             get {
                 return ResourceManager.GetString("OpenString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overview List Template ähnelt.
+        /// </summary>
+        public static string OverviewlistTemplatePathString {
+            get {
+                return ResourceManager.GetString("OverviewlistTemplatePathString", resourceCulture);
             }
         }
         
@@ -739,6 +775,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Document creation settings ähnelt.
+        /// </summary>
+        public static string SettingsDocumentCreation {
+            get {
+                return ResourceManager.GetString("SettingsDocumentCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die General settings ähnelt.
         /// </summary>
         public static string SettingsGeneralString {
@@ -964,11 +1009,38 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the certificate template. ähnelt.
+        /// </summary>
+        public static string TooltipCertificateTemplatePath {
+            get {
+                return ResourceManager.GetString("TooltipCertificateTemplatePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place ähnelt.
         /// </summary>
         public static string TooltipCompetitionYear {
             get {
                 return ResourceManager.GetString("TooltipCompetitionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Output folder where the documents are created. ähnelt.
+        /// </summary>
+        public static string TooltipDocumentOutputFolder {
+            get {
+                return ResourceManager.GetString("TooltipDocumentOutputFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the LibreOffice soffice.exe used for PDF conversion. ähnelt.
+        /// </summary>
+        public static string TooltipLibreOfficePath {
+            get {
+                return ResourceManager.GetString("TooltipLibreOfficePath", resourceCulture);
             }
         }
         
@@ -1008,6 +1080,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipNumberRacesVariantsAfterCalculation {
             get {
                 return ResourceManager.GetString("TooltipNumberRacesVariantsAfterCalculation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the overview list template. ähnelt.
+        /// </summary>
+        public static string TooltipOverviewlistTemplatePath {
+            get {
+                return ResourceManager.GetString("TooltipOverviewlistTemplatePath", resourceCulture);
             }
         }
         

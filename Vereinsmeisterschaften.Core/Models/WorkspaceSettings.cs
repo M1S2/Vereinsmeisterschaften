@@ -78,7 +78,63 @@ namespace Vereinsmeisterschaften.Core.Models
             get => _minRacesVariantsScore;
             set => SetProperty(ref _minRacesVariantsScore, value);
         }
-        
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public const string DEFAULT_DOCUMENT_OUTPUT_FOLDER = @"Dokumente";
+
+        private string _documentOutputFolder;
+        /// <summary>
+        /// Path to the document output folder.
+        /// </summary>
+        public string DocumentOutputFolder
+        {
+            get => _documentOutputFolder;
+            set => SetProperty(ref _documentOutputFolder, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public const string DEFAULT_CERTIFICATE_TEMPLATE_PATH = @"Urkunde_Template.docx";
+
+        private string _certificateTemplatePath;
+        /// <summary>
+        /// Path to the certificate template file.
+        /// </summary>
+        public string CertificateTemplatePath
+        {
+            get => _certificateTemplatePath;
+            set => SetProperty(ref _certificateTemplatePath, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public const string DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH = @"Gesamtliste_Template.docx";
+
+        private string _overviewlistTemplatePath;
+        /// <summary>
+        /// Path to the overview list template file.
+        /// </summary>
+        public string OverviewlistTemplatePath
+        {
+            get => _overviewlistTemplatePath;
+            set => SetProperty(ref _overviewlistTemplatePath, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public const string DEFAULT_LIBRE_OFFICE_PATH = @"C:\Program Files\LibreOffice\program\soffice.exe";
+
+        private string _libreOfficePath;
+        /// <summary>
+        /// Path to the Libre Office executable used for PDF conversion.
+        /// </summary>
+        public string LibreOfficePath
+        {
+            get => _libreOfficePath;
+            set => SetProperty(ref _libreOfficePath, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public WorkspaceSettings()
@@ -88,6 +144,10 @@ namespace Vereinsmeisterschaften.Core.Models
             NumberRacesVariantsAfterCalculation = DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
             MaxRacesVariantCalculationLoops = DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS;
             MinRacesVariantsScore = DEFAULT_MIN_RACESVARIANTS_SCORE;
+            DocumentOutputFolder = DEFAULT_DOCUMENT_OUTPUT_FOLDER;
+            CertificateTemplatePath = DEFAULT_CERTIFICATE_TEMPLATE_PATH;
+            OverviewlistTemplatePath = DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH;
+            LibreOfficePath = DEFAULT_LIBRE_OFFICE_PATH;
         }
 
         public WorkspaceSettings(WorkspaceSettings other)
@@ -98,32 +158,23 @@ namespace Vereinsmeisterschaften.Core.Models
             NumberRacesVariantsAfterCalculation = other.NumberRacesVariantsAfterCalculation;
             MaxRacesVariantCalculationLoops = other.MaxRacesVariantCalculationLoops;
             MinRacesVariantsScore = other.MinRacesVariantsScore;
+            CertificateTemplatePath = other.CertificateTemplatePath;
+            DocumentOutputFolder = other.DocumentOutputFolder;
+            OverviewlistTemplatePath = other.OverviewlistTemplatePath;
+            LibreOfficePath = other.LibreOfficePath;
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public static void SetPropertyFromString(WorkspaceSettings dataObj, string propertyName, string value)
-        {
-            switch (propertyName)
-            {
-                case nameof(CompetitionYear): dataObj.CompetitionYear = ushort.Parse(value); break;
-                case nameof(NumberOfSwimLanes): dataObj.NumberOfSwimLanes = ushort.Parse(value); break;
-                case nameof(NumberRacesVariantsAfterCalculation): dataObj.NumberRacesVariantsAfterCalculation = ushort.Parse(value); break;
-                case nameof(MaxRacesVariantCalculationLoops): dataObj.MaxRacesVariantCalculationLoops = int.Parse(value); break;
-                case nameof(MinRacesVariantsScore): dataObj.MinRacesVariantsScore = double.Parse(value); break;
-                default: break;
-            }
-        }
-
         public override bool Equals(object obj)
-            => obj is WorkspaceSettings s && (s.CompetitionYear, s.NumberOfSwimLanes, s.NumberRacesVariantsAfterCalculation, s.MaxRacesVariantCalculationLoops, s.MinRacesVariantsScore)
-                                              .Equals((CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore));
+            => obj is WorkspaceSettings s && (s.CompetitionYear, s.NumberOfSwimLanes, s.NumberRacesVariantsAfterCalculation, s.MaxRacesVariantCalculationLoops, s.MinRacesVariantsScore, s.CertificateTemplatePath, s.DocumentOutputFolder, s.OverviewlistTemplatePath, s.LibreOfficePath)
+                                              .Equals((CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore, CertificateTemplatePath, DocumentOutputFolder, OverviewlistTemplatePath, LibreOfficePath));
 
         public bool Equals(WorkspaceSettings other)
             => Equals((object)other);
 
         public override int GetHashCode()
-            => (CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore).GetHashCode();
+            => (CompetitionYear, NumberOfSwimLanes, NumberRacesVariantsAfterCalculation, MaxRacesVariantCalculationLoops, MinRacesVariantsScore, CertificateTemplatePath, DocumentOutputFolder, OverviewlistTemplatePath, LibreOfficePath).GetHashCode();
 
         public object Clone()
             => new WorkspaceSettings(this);

@@ -302,6 +302,113 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    #region Document Creation Settings Changed Properties / Reset Commands
+
+    /// <summary>
+    /// Root path of the workspace, which is used to resolve relative paths in the <see cref="WorkspaceSettings"/>.
+    /// </summary>
+    public string WorkspaceRootPath => _workspaceService?.PersistentPath ?? string.Empty;
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if the <see cref="WorkspaceSettings.DocumentOutputFolder"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
+    /// </summary>
+    public bool SettingsChanged_DocumentOutputFolder => Settings?.DocumentOutputFolder != SettingsPersistedInFile?.DocumentOutputFolder;
+
+    private ICommand _settingResetDocumentOutputFolderCommand;
+    /// <summary>
+    /// Command to reset the <see cref="WorkspaceSettings.DocumentOutputFolder"/> property in <see cref="Settings"/> to the value loaded from the config file.
+    /// </summary>
+    public ICommand SettingResetDocumentOutputFolderCommand => _settingResetDocumentOutputFolderCommand ?? (_settingResetDocumentOutputFolderCommand = new RelayCommand(() => Settings.DocumentOutputFolder = SettingsPersistedInFile.DocumentOutputFolder));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if the <see cref="WorkspaceSettings.CertificateTemplatePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
+    /// </summary>
+    public bool SettingsChanged_CertificateTemplatePath => Settings?.CertificateTemplatePath != SettingsPersistedInFile?.CertificateTemplatePath;
+
+    private ICommand _settingResetCertificateTemplatePathCommand;
+    /// <summary>
+    /// Command to reset the <see cref="WorkspaceSettings.CertificateTemplatePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
+    /// </summary>
+    public ICommand SettingResetCertificateTemplatePathCommand => _settingResetCertificateTemplatePathCommand ?? (_settingResetCertificateTemplatePathCommand = new RelayCommand(() => Settings.CertificateTemplatePath = SettingsPersistedInFile.CertificateTemplatePath));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if the <see cref="WorkspaceSettings.OverviewlistTemplatePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
+    /// </summary>
+    public bool SettingsChanged_OverviewlistTemplatePath => Settings?.OverviewlistTemplatePath != SettingsPersistedInFile?.OverviewlistTemplatePath;
+
+    private ICommand _settingResetOverviewlistTemplatePathCommand;
+    /// <summary>
+    /// Command to reset the <see cref="WorkspaceSettings.OverviewlistTemplatePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
+    /// </summary>
+    public ICommand SettingResetOverviewlistTemplatePathCommand => _settingResetOverviewlistTemplatePathCommand ?? (_settingResetOverviewlistTemplatePathCommand = new RelayCommand(() => Settings.OverviewlistTemplatePath = SettingsPersistedInFile.OverviewlistTemplatePath));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if the <see cref="WorkspaceSettings.LibreOfficePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
+    /// </summary>
+    public bool SettingsChanged_LibreOfficePath => Settings?.LibreOfficePath != SettingsPersistedInFile?.LibreOfficePath;
+
+    private ICommand _settingResetLibreOfficePathCommand;
+    /// <summary>
+    /// Command to reset the <see cref="WorkspaceSettings.LibreOfficePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
+    /// </summary>
+    public ICommand SettingResetLibreOfficePathCommand => _settingResetLibreOfficePathCommand ?? (_settingResetLibreOfficePathCommand = new RelayCommand(() => Settings.LibreOfficePath = SettingsPersistedInFile.LibreOfficePath));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if one of the document creation settings changed against the persisted value.
+    /// </summary>
+    public bool SettingsChanged_GroupDocumentCreation => SettingsChanged_DocumentOutputFolder ||
+                                                         SettingsChanged_CertificateTemplatePath ||
+                                                         SettingsChanged_OverviewlistTemplatePath ||
+                                                         SettingsChanged_LibreOfficePath;
+
+    private ICommand _settingResetGroupDocumentCreationCommand;
+    /// <summary>
+    /// Command to reset all document creation settings to the value loaded from the config file.
+    /// </summary>
+    public ICommand SettingResetGroupDocumentCreationCommand => _settingResetGroupDocumentCreationCommand ?? (_settingResetGroupDocumentCreationCommand = new RelayCommand(() =>
+    {
+        SettingResetDocumentOutputFolderCommand.Execute(null);
+        SettingResetCertificateTemplatePathCommand.Execute(null);
+        SettingResetOverviewlistTemplatePathCommand.Execute(null);
+        SettingResetLibreOfficePathCommand.Execute(null);
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// True, if one of the document creation settings changed against the default value.
+    /// </summary>
+    public bool SettingsNonDefault_GroupDocumentCreation => (Settings?.DocumentOutputFolder != WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER) ||
+                                                            (Settings?.CertificateTemplatePath != WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH) ||
+                                                            (Settings?.OverviewlistTemplatePath != WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH) ||
+                                                            (Settings?.LibreOfficePath != WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH);
+
+    private ICommand _settingDefaultGroupDocumentCreationCommand;
+    /// <summary>
+    /// Command to set all document creation settings to the default values.
+    /// </summary>
+    public ICommand SettingDefaultGroupDocumentCreationCommand => _settingDefaultGroupDocumentCreationCommand ?? (_settingDefaultGroupDocumentCreationCommand = new RelayCommand(() =>
+    {
+        Settings.CertificateTemplatePath = WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH;
+        Settings.DocumentOutputFolder = WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER;
+        Settings.OverviewlistTemplatePath = WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH;
+        Settings.LibreOfficePath = WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH;
+    }));
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
@@ -334,6 +441,12 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
                     OnPropertyChanged(nameof(SettingsChanged_MinRacesVariantsScore));
                     OnPropertyChanged(nameof(SettingsChanged_GroupRaceCalculation));
                     OnPropertyChanged(nameof(SettingsNonDefault_GroupRaceCalculation));
+                    OnPropertyChanged(nameof(SettingsChanged_DocumentOutputFolder));
+                    OnPropertyChanged(nameof(SettingsChanged_CertificateTemplatePath));
+                    OnPropertyChanged(nameof(SettingsChanged_OverviewlistTemplatePath));
+                    OnPropertyChanged(nameof(SettingsChanged_LibreOfficePath));
+                    OnPropertyChanged(nameof(SettingsChanged_GroupDocumentCreation));
+                    OnPropertyChanged(nameof(SettingsNonDefault_GroupDocumentCreation));
                     break;
                 }
             case nameof(IWorkspaceService.PersistentPath): OnPropertyChanged(nameof(CurrentWorkspaceFolder)); break;

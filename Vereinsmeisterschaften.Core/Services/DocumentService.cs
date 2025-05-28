@@ -21,25 +21,32 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public class DocumentService : IDocumentService
     {
-#warning TODO: Replace by more dynamic path
-        public string CertificateTemplatePath = @"C:\Users\Markus\Desktop\VM_TestData\Data1\Urkunde_Template.docx";
-        public string CertificateOutputFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1\Urkunden";
-        public string OverviewlistTemplatePath = @"C:\Users\Markus\Desktop\VM_TestData\Data1\Gesamtliste_Template.docx";
-        public string OverviewlistOutputFolder = @"C:\Users\Markus\Desktop\VM_TestData\Data1";
-
         private const string _tempFolderName = "temp";
         private const string _certificateOutputFileNameDocx = "Urkunden{0}.docx";
-
-#warning TODO: Replace by more dynamic path
-        private string _libreOfficePath = @"C:\Program Files\LibreOffice\program\soffice.exe";
        
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IPersonService _personService;
+        private IWorkspaceService _workspaceService;
 
-        public DocumentService(IPersonService personService)
+        public DocumentService(IPersonService personService, IWorkspaceService workspaceService)
         {
             _personService = personService;
+            _workspaceService = workspaceService;
+        }
+
+        private string getDocumentOutputFolderAbsolute()
+        {
+            string certificateOutputFolder = _workspaceService?.Settings?.DocumentOutputFolder ?? WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER;
+            certificateOutputFolder = FilePathHelper.MakePathAbsolute(certificateOutputFolder, _workspaceService?.PersistentPath);
+            return certificateOutputFolder;
+        }
+
+        private string getLibreOfficePathAbsolute()
+        {
+            string libreOfficePath = _workspaceService?.Settings?.LibreOfficePath ?? WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH;
+            libreOfficePath = FilePathHelper.MakePathAbsolute(libreOfficePath, _workspaceService?.PersistentPath);
+            return libreOfficePath;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -52,7 +59,8 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 int numCreatedCertificates = 0;
 
-                string tempFolder = Path.Combine(CertificateOutputFolder, _tempFolderName);
+                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string tempFolder = Path.Combine(documentOutputFolder, _tempFolderName);
 
                 // Delete temp folder and all files in it
                 if (Directory.Exists(tempFolder))
@@ -83,7 +91,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             case PersonStartFilters.CompetitionID: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_WK" + (int)personStartFilterParameter); break;
                             default: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, ""); break;
                         }
-                        string outputFile = Path.Combine(CertificateOutputFolder, outputFileNameDocx);
+                        string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
 
                         // Combine all docx files in the temp folder into one docx file
                         using (DocX document = DocX.Create(outputFile))
@@ -105,7 +113,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             // Convert the combined docx file to pdf
                             string outputFilePdf = outputFile.Replace(".docx", ".pdf");
                             File.Delete(outputFilePdf);
-                            LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                            LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
                         }
                     }
                     catch(Exception)
@@ -131,7 +139,8 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 if (string.IsNullOrEmpty(outputFolder))
                 {
-                    outputFolder = CertificateOutputFolder;
+                    string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                    outputFolder = documentOutputFolder;
                 }
                 if (!Directory.Exists(outputFolder))
                 {
@@ -153,16 +162,24 @@ namespace Vereinsmeisterschaften.Core.Services
                 textPlaceholders.Add("WK", personStart.CompetitionObj.ID.ToString());
 
                 string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
-                DocXPlaceholderHelper.ReplaceTextPlaceholders(CertificateTemplatePath, outputFile, textPlaceholders);
+                string certificateTemplatePath = getCertificateTemplatePathAbsolute();
+                DocXPlaceholderHelper.ReplaceTextPlaceholders(certificateTemplatePath, outputFile, textPlaceholders);
 
                 if (createPdf)
                 {
                     // Convert the docx file to pdf
                     string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
                 }
                 return 1;       // This method always creates one certificate, so we return 1 to indicate success
             });
+        }
+
+        private string getCertificateTemplatePathAbsolute()
+        {
+            string certificateTemplatePath = _workspaceService?.Settings?.CertificateTemplatePath ?? WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH;
+            certificateTemplatePath = FilePathHelper.MakePathAbsolute(certificateTemplatePath, _workspaceService?.PersistentPath);
+            return certificateTemplatePath;
         }
 
         #endregion
@@ -187,17 +204,26 @@ namespace Vereinsmeisterschaften.Core.Services
 #warning Add localization for "Lage"
                 tablePlaceholders.Add("Lage", styles);
 
-                string outputFile = Path.Combine(OverviewlistOutputFolder, Path.GetFileNameWithoutExtension(OverviewlistTemplatePath).Replace("_Template", "") + ".docx");
-                DocXPlaceholderHelper.ReplaceTablePlaceholders(OverviewlistTemplatePath, outputFile, tablePlaceholders);
+                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string overviewListTemplatePath = getOverviewListTemplatePathAbsolute();
+                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(overviewListTemplatePath).Replace("_Template", "") + ".docx");
+                DocXPlaceholderHelper.ReplaceTablePlaceholders(overviewListTemplatePath, outputFile, tablePlaceholders);
 
                 if (createPdf)
                 {
                     // Convert the docx file to pdf
                     string outputFilePdf = outputFile.Replace(".docx", ".pdf");
                     File.Delete(outputFilePdf);
-                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, _libreOfficePath);
+                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
                 }
             });
+        }
+
+        private string getOverviewListTemplatePathAbsolute()
+        {
+            string overviewListTemplatePath = _workspaceService?.Settings?.OverviewlistTemplatePath ?? WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH;
+            overviewListTemplatePath = FilePathHelper.MakePathAbsolute(overviewListTemplatePath, _workspaceService?.PersistentPath);
+            return overviewListTemplatePath;
         }
 
     }

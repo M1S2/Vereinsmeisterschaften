@@ -6,11 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
-    d:DesignHeight="600" d:DesignWidth="1000">
+    d:DesignHeight="800" d:DesignWidth="1200">
 
     <Page.Resources>
         <Style x:Key="StyleShowWhenWorkspaceOpen" TargetType="{x:Type FrameworkElement}">
@@ -199,6 +200,47 @@
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.MinRacesVariantsScore, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_MinRacesVariantsScore, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetMinRacesVariantsScoreCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.MinimumRacesVariantsScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Expander>
+
+                <!-- Settings for document creation -->
+                <Expander IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Static properties:Resources.SettingsDocumentCreation}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
+                            <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsChanged_GroupDocumentCreation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetGroupDocumentCreationCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                            <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsNonDefault_GroupDocumentCreation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingDefaultGroupDocumentCreationCommand}" Style="{StaticResource StyleDefaultSettingsButton}"/>
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <!-- DocumentOutputFolder -->
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipDocumentOutputFolder}">
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xED25;"/>
+                            <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.DocumentOutputFolder, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Folders" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+                            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_DocumentOutputFolder, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetDocumentOutputFolderCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.DocumentOutputFolderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                        <!-- CertificateTemplatePath -->
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipCertificateTemplatePath}">
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE8A5;"/>
+                            <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.CertificateTemplatePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+                            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_CertificateTemplatePath, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetCertificateTemplatePathCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.CertificateTemplatePathString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                        <!-- OverviewlistTemplatePath -->
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipOverviewlistTemplatePath}">
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE9D5;"/>
+                            <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.OverviewlistTemplatePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+                            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_OverviewlistTemplatePath, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetOverviewlistTemplatePathCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.OverviewlistTemplatePathString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </DockPanel>
+                        <!-- LibreOfficePath -->
+                        <DockPanel ToolTip="{x:Static properties:Resources.TooltipLibreOfficePath}">
+                            <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE756;"/>
+                            <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" FileFolderPath="{Binding Settings.LibreOfficePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+                            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_LibreOfficePath, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetLibreOfficePathCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                            <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.LibreOfficePathString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
                     </StackPanel>
                 </Expander>

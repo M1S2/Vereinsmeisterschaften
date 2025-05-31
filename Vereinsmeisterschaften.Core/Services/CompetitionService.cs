@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 using static Vereinsmeisterschaften.Core.Services.CompetitionService;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -212,7 +213,7 @@ namespace Vereinsmeisterschaften.Core.Services
             // Find the competition with the maximum age that matches the swimming style and gender
             byte maxAge = _competitionList.Where(c => c.Gender == person.Gender && c.SwimmingStyle == swimmingStyle).OrderByDescending(c => c.Age).FirstOrDefault()?.Age ?? 0;
 
-            ushort competitionYear = _workspaceService?.Settings?.CompetitionYear ?? 0;
+            ushort competitionYear = _workspaceService?.SettingsNew?.GetSettingValue<ushort>(WorkspaceSettingsClass.GROUP_GENERAL, WorkspaceSettingsClass.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
             int personAge = competitionYear - person.BirthYear;
             return _competitionList.Where(c => c.Gender == person.Gender &&
                                                c.SwimmingStyle == swimmingStyle &&

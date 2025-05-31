@@ -777,9 +777,9 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Document creation settings ähnelt.
         /// </summary>
-        public static string SettingsDocumentCreation {
+        public static string SettingsDocumentCreationString {
             get {
-                return ResourceManager.GetString("SettingsDocumentCreation", resourceCulture);
+                return ResourceManager.GetString("SettingsDocumentCreationString", resourceCulture);
             }
         }
         
@@ -876,9 +876,9 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Races Variants calculation settings ähnelt.
         /// </summary>
-        public static string SettingsRacesVariantsCalculation {
+        public static string SettingsRacesVariantsCalculationString {
             get {
-                return ResourceManager.GetString("SettingsRacesVariantsCalculation", resourceCulture);
+                return ResourceManager.GetString("SettingsRacesVariantsCalculationString", resourceCulture);
             }
         }
         

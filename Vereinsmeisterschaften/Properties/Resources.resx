@@ -385,7 +385,7 @@
   <data name="SettingsGeneralString" xml:space="preserve">
     <value>General settings</value>
   </data>
-  <data name="SettingsRacesVariantsCalculation" xml:space="preserve">
+  <data name="SettingsRacesVariantsCalculationString" xml:space="preserve">
     <value>Races Variants calculation settings</value>
   </data>
   <data name="InfoString" xml:space="preserve">
@@ -471,7 +471,7 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="CreateOverviewListResultString" xml:space="preserve">
     <value>Overview List was created.</value>
   </data>
-  <data name="SettingsDocumentCreation" xml:space="preserve">
+  <data name="SettingsDocumentCreationString" xml:space="preserve">
     <value>Document creation settings</value>
   </data>
   <data name="TooltipCertificateTemplatePath" xml:space="preserve">

@@ -5,6 +5,7 @@ using System.Resources;
 using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -13,11 +14,13 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public class WorkspaceService : ObservableObject, IWorkspaceService
     {
+        public const string WorkspaceSettingsFileNameNew = "WorkspaceSettingsNew.json";
         public const string WorkspaceSettingsFileName = "WorkspaceSettings.json";
         public const string PersonFileName = "Person.csv";
         public const string CompetitionsFileName = "Competitions.csv";
         public const string BestRaceFileName = "BestRace.csv";
 
+        public string WorkspaceSettingsFilePathNew => Path.Combine(PersistentPath, WorkspaceSettingsFileNameNew);
         public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
         public string PersonFilePath => Path.Combine(PersistentPath, PersonFileName);
         public string CompetitionsFilePath => Path.Combine(PersistentPath, CompetitionsFileName);
@@ -73,7 +76,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Unsaved changes exist in the <see cref="Settings"/>. This is true if the <see cref="Settings"/> was changed since loading it from the file.
         /// </summary>
-        public bool HasUnsavedChanges_Settings => _settings != null && SettingsPersistedInFile != null && (!Settings?.Equals(SettingsPersistedInFile) ?? true);
+        public bool HasUnsavedChanges_Settings => _settingsNew != null && SettingsPersistedInFileNew != null && (!SettingsNew?.Equals(SettingsPersistedInFileNew) ?? true);
 
         /// <summary>
         /// Check if there are unsaved changes in the workspace.
@@ -92,6 +95,13 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        private WorkspaceSettingsClass _settingsNew;
+        public WorkspaceSettingsClass SettingsNew
+        {
+            get => _settingsNew;
+            set { SetProperty(ref _settingsNew, value); OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+        }
+
         private WorkspaceSettings _settings;
         public WorkspaceSettings Settings
         {
@@ -99,12 +109,12 @@ namespace Vereinsmeisterschaften.Core.Services
             set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); OnPropertyChanged(nameof(HasUnsavedChanges)); }
         }
 
-        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(Settings));
-            OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
-            OnPropertyChanged(nameof(HasUnsavedChanges));
-        }
+        //private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    OnPropertyChanged(nameof(Settings));
+        //    OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+        //    OnPropertyChanged(nameof(HasUnsavedChanges));
+        //}
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -113,6 +123,13 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             get => _settingsPersistedInFile;
             private set { SetProperty(ref _settingsPersistedInFile, value); }
+        }
+
+        private WorkspaceSettingsClass _settingsPersistedInFileNew;
+        public WorkspaceSettingsClass SettingsPersistedInFileNew
+        {
+            get => _settingsPersistedInFileNew;
+            private set { SetProperty(ref _settingsPersistedInFileNew, value); }
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -179,8 +196,11 @@ namespace Vereinsmeisterschaften.Core.Services
             try
             {
                 // Workspace settings
-                Settings = _fileService.Read<WorkspaceSettings>(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath)) ?? new WorkspaceSettings();
-                Settings.PropertyChanged += Settings_PropertyChanged;
+                //Settings = _fileService.Read<WorkspaceSettings>(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath)) ?? new WorkspaceSettings();
+                //Settings.PropertyChanged += Settings_PropertyChanged;
+
+                SettingsNew = new WorkspaceSettingsClass();
+                SettingsNew.Load(_fileService, WorkspaceSettingsFilePathNew);
 
                 // Persons
                 openResult = await _personService.Load(PersonFilePath, cancellationToken);
@@ -195,7 +215,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Best Race
                 openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);
 
-                SettingsPersistedInFile = new WorkspaceSettings(Settings);
+                //SettingsPersistedInFile = new WorkspaceSettings(Settings);
+                SettingsPersistedInFileNew = new WorkspaceSettingsClass(SettingsNew);
                 OnPropertyChangedAllHasUnsavedChanges();
                 IsWorkspaceOpen = openResult;
             }
@@ -228,7 +249,9 @@ namespace Vereinsmeisterschaften.Core.Services
             try
             {
                 // Workspace settings
-                _fileService.Save(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath), Settings);
+                //_fileService.Save(Path.GetDirectoryName(WorkspaceSettingsFilePath), Path.GetFileName(WorkspaceSettingsFilePath), Settings);
+                //_fileService.Save(Path.GetDirectoryName(WorkspaceSettingsFilePathNew), Path.GetFileName(WorkspaceSettingsFilePathNew), SettingsNew.ExportSettings());
+                SettingsNew?.Save(_fileService, WorkspaceSettingsFilePathNew);
 
                 // Persons
                 saveResult = await _personService.Save(cancellationToken, PersonFilePath);
@@ -240,7 +263,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Best Race
                 saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
 
-                SettingsPersistedInFile = new WorkspaceSettings(Settings);
+                //SettingsPersistedInFile = new WorkspaceSettings(Settings);
+                SettingsPersistedInFileNew = new WorkspaceSettingsClass(SettingsNew);
                 OnPropertyChangedAllHasUnsavedChanges();
             }
             catch (Exception ex)
@@ -269,8 +293,9 @@ namespace Vereinsmeisterschaften.Core.Services
                 saveResult = await Save(cancellationToken);
             }
 
-            Settings.PropertyChanged -= Settings_PropertyChanged;
-            Settings = null;
+            //Settings.PropertyChanged -= Settings_PropertyChanged;
+            //Settings = null;
+            SettingsNew = null;
             _personService.ClearAll();
             _competitionService.ClearAll();
             _raceService.AllRacesVariants.Clear();

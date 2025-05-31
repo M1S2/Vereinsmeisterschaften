@@ -1,13 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using System.Collections.ObjectModel;
+using System.Net.NetworkInformation;
 using System.Threading;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
@@ -409,6 +413,62 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    public ObservableCollection<WorkspaceSettingsGroupViewModel> SettingsGroups { get; private set; }
+
+    private Dictionary<string, string> groupKeyLabelsDict = new Dictionary<string, string>()
+    {
+        { WorkspaceSettingsClass.GROUP_GENERAL, Resources.SettingsGeneralString },
+        { WorkspaceSettingsClass.GROUP_RACE_CALCULATION, Resources.SettingsRacesVariantsCalculationString },
+        { WorkspaceSettingsClass.GROUP_DOCUMENT_CREATION, Resources.SettingsDocumentCreationString }
+    };
+
+    private Dictionary<string, WorkspaceSettingViewConfig> settingKeyConfigDict = new Dictionary<string, WorkspaceSettingViewConfig>()
+    {
+        { WorkspaceSettingsClass.SETTING_GENERAL_COMPETITIONYEAR, new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.OverviewlistTemplatePathString, Tooltip = Resources.TooltipOverviewlistTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.Path } }
+    };
+
+    private void initSettingsGroups(WorkspaceSettingsClass model)
+    {
+        if(model == null) { return; }
+        SettingsGroups = new ObservableCollection<WorkspaceSettingsGroupViewModel>();
+
+        ResourceDictionary settingEditorTemplatesResourceDictionary = new ResourceDictionary();
+        settingEditorTemplatesResourceDictionary.Source = new Uri("pack://application:,,,/Views/WorkspaceSettingEditorTemplates.xaml", UriKind.RelativeOrAbsolute);
+
+        foreach (WorkspaceSettingsGroup group in model.Groups)
+        {
+            WorkspaceSettingsGroupViewModel groupVm = new WorkspaceSettingsGroupViewModel(
+                group,
+                groupKeyLabelsDict[group.GroupKey],
+                group.Settings.Select(setting =>
+                {
+                    WorkspaceSettingEditorTypes editorType = settingKeyConfigDict[setting.Key].Editor;
+                    DataTemplate editorTemplate = settingEditorTemplatesResourceDictionary[editorType.ToString() + "EditorTemplate"] as DataTemplate;
+
+                    var valueType = setting.ValueType;
+                    var genericType = typeof(WorkspaceSettingViewModel<>).MakeGenericType(valueType);
+                    return (IWorkspaceSettingViewModel)Activator.CreateInstance(genericType, 
+                                                                                setting,
+                                                                                settingKeyConfigDict[setting.Key].Label,
+                                                                                settingKeyConfigDict[setting.Key].Tooltip,
+                                                                                settingKeyConfigDict[setting.Key].Icon,
+                                                                                editorTemplate)!;
+                }));
+
+            SettingsGroups.Add(groupVm);
+        }
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
@@ -473,6 +533,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(NumberPersons));
         OnPropertyChanged(nameof(NumberStarts));
         OnPropertyChanged(nameof(HasUnsavedChanges));
+
+        initSettingsGroups(_workspaceService.SettingsNew);
     }
 
     public void OnNavigatedFrom()

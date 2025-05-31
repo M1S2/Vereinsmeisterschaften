@@ -385,7 +385,7 @@
   <data name="SettingsGeneralString" xml:space="preserve">
     <value>Allgemeine Einstellungen</value>
   </data>
-  <data name="SettingsRacesVariantsCalculation" xml:space="preserve">
+  <data name="SettingsRacesVariantsCalculationString" xml:space="preserve">
     <value>Einstellungen für die Berechnung von Renn-Varianten</value>
   </data>
   <data name="InfoString" xml:space="preserve">
@@ -472,7 +472,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="CreateOverviewListResultString" xml:space="preserve">
     <value>Übersichtsliste wurde erstellt.</value>
   </data>
-  <data name="SettingsDocumentCreation" xml:space="preserve">
+  <data name="SettingsDocumentCreationString" xml:space="preserve">
     <value>Einstellung für die Dokument Erstellung</value>
   </data>
   <data name="TooltipCertificateTemplatePath" xml:space="preserve">

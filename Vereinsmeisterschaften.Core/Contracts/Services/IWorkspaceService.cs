@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
@@ -22,10 +23,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         WorkspaceSettings Settings { get; set; }
 
+        WorkspaceSettingsClass SettingsNew { get; set; }
+
         /// <summary>
         /// Settings loaded from the file for the current workspace. This can be used to compare for changes.
         /// </summary>
         WorkspaceSettings SettingsPersistedInFile { get; }
+
+        WorkspaceSettingsClass SettingsPersistedInFileNew { get; }
 
         /// <summary>
         /// Unsaved changes exist in the <see cref="PersonService"/>

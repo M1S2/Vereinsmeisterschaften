@@ -6,6 +6,7 @@
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -61,6 +62,50 @@
                     <controls:FontIcon FontSize="20" Glyph="&#xF13D;" Foreground="White"/>
                 </Grid>
             </ControlTemplate>
+
+            <!-- Style for reset settings button -->
+            <Style x:Key="StyleResetSettingsButton" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <controls:FontIcon x:Name="PART_ICON" Margin="0,0,3,0" FontSize="20" Glyph="&#xE777;" ToolTip="{x:Static properties:Resources.SettingsResetString}">
+                                <controls:FontIcon.Style>
+                                    <Style TargetType="{x:Type controls:FontIcon}">
+                                        <Setter Property="Foreground" Value="Orange"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:FontIcon.Style>
+                            </controls:FontIcon>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- Style for default settings button-->
+            <Style x:Key="StyleDefaultSettingsButton" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <controls:FontIcon Margin="0,0,3,0" FontSize="20" Glyph="&#xE845;" ToolTip="{x:Static properties:Resources.SettingsDefaultString}">
+                                <controls:FontIcon.Style>
+                                    <Style TargetType="{x:Type controls:FontIcon}">
+                                        <Setter Property="Foreground" Value="Orange"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:FontIcon.Style>
+                            </controls:FontIcon>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
             <!-- App Icon -->
             <DrawingImage x:Key="DrawingImage_AppIcon">

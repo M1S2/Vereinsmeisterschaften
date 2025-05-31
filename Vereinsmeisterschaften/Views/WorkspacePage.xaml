@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
@@ -22,57 +23,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <Style x:Key="StyleShowExpanderWhenWorkspaceOpen" TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
-            <Setter Property="Visibility" Value="Visible"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentWorkspaceFolder}" Value="">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="StyleResetSettingsButton" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <controls:FontIcon x:Name="PART_ICON" Margin="0,0,3,0" FontSize="20" Glyph="&#xE777;" ToolTip="{x:Static properties:Resources.SettingsResetString}">
-                            <controls:FontIcon.Style>
-                                <Style TargetType="{x:Type controls:FontIcon}">
-                                    <Setter Property="Foreground" Value="Orange"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </controls:FontIcon.Style>
-                        </controls:FontIcon>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="StyleDefaultSettingsButton" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <controls:FontIcon Margin="0,0,3,0" FontSize="20" Glyph="&#xE845;" ToolTip="{x:Static properties:Resources.SettingsDefaultString}">
-                            <controls:FontIcon.Style>
-                                <Style TargetType="{x:Type controls:FontIcon}">
-                                    <Setter Property="Foreground" Value="Orange"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </controls:FontIcon.Style>
-                        </controls:FontIcon>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
 
         <Thickness x:Key="MarginNames" Left="10" Top="0" Right="10" Bottom="0"/>
         <Thickness x:Key="MarginIcons" Left="5" Top="5" Right="0" Bottom="5"/>
@@ -138,8 +88,41 @@
             </TextBlock>
 
             <!-- Settings for workspace -->
-            <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Margin="{StaticResource MediumTopMargin}">
-                <!-- General settings -->
+            <ItemsControl Grid.Row="3" Grid.Column="0" ItemsSource="{Binding SettingsGroups}" HorizontalAlignment="Left" Margin="{StaticResource MediumTopMargin}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Expander IsExpanded="True" controls:ControlsHelper.ContentCharacterCasing="Normal">
+                            <Expander.Style>
+                                <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" Value="">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Expander.Style>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding GroupName}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
+                                    <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding HasChanged, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding ResetCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
+                                    <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding HasDefaultValue, Converter={StaticResource InvertedBoolVisibilityConverter}}" Command="{Binding SetToDefaultCommand}" Style="{StaticResource StyleDefaultSettingsButton}"/>
+                                </StackPanel>
+                            </Expander.Header>
+                            <ItemsControl ItemsSource="{Binding Settings}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:WorkspaceSettingUserControl />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+            <!--<StackPanel Grid.Row="3" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Margin="{StaticResource MediumTopMargin}">
+                --><!-- General settings --><!--
                 <Expander IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <Expander.Header>
                         <StackPanel Orientation="Horizontal">
@@ -148,7 +131,7 @@
                         </StackPanel>
                     </Expander.Header>
 
-                    <!-- Competition year -->
+                    --><!-- Competition year --><!--
                     <DockPanel ToolTip="{x:Static properties:Resources.TooltipCompetitionYear}">
                         <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE787;"/>
                         <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.CompetitionYear, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="3000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
@@ -157,38 +140,38 @@
                     </DockPanel>
                 </Expander>
 
-                <!-- Settings for race variant calculation -->
+                --><!-- Settings for race variant calculation --><!--
                 <Expander IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <Expander.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static properties:Resources.SettingsRacesVariantsCalculation}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock Text="{x:Static properties:Resources.SettingsRacesVariantsCalculationString}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
                             <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsChanged_GroupRaceCalculation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetGroupRaceCalculationCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsNonDefault_GroupRaceCalculation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingDefaultGroupRaceCalculationCommand}" Style="{StaticResource StyleDefaultSettingsButton}"/>
                         </StackPanel>
                     </Expander.Header>
                     <StackPanel>
-                        <!-- NumberOfSwimLanes -->
+                        --><!-- NumberOfSwimLanes --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipNumberOfSwimLanes}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE9E9;"/>
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberOfSwimLanes, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_NumberOfSwimLanes, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetNumberOfSwimLanesCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberOfSwimLanesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- NumberRacesVariantsAfterCalculation -->
+                        --><!-- NumberRacesVariantsAfterCalculation --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipNumberRacesVariantsAfterCalculation}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.NumberRacesVariantsAfterCalculation, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_NumberRacesVariantsAfterCalculation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetNumberRacesVariantsAfterCalculationCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberRacesVariantsAfterCalculationString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- MaxRacesVariantCalculationLoops -->
+                        --><!-- MaxRacesVariantCalculationLoops --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipMaxRacesVariantCalculationLoops}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE895;"/>
                             <controls:NumericUpDown DockPanel.Dock="Right" Width="150" Value="{Binding Settings.MaxRacesVariantCalculationLoops, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="10000000" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_MaxRacesVariantCalculationLoops, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetMaxRacesVariantCalculationLoopsCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.MaxRacesVariantCalculationLoopsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- MinRacesVariantsScore -->
+                        --><!-- MinRacesVariantsScore --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipMinRacesVariantsScore}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xEDE1;" RenderTransformOrigin="0.5,0.5">
                                 <controls:FontIcon.RenderTransform>
@@ -204,38 +187,38 @@
                     </StackPanel>
                 </Expander>
 
-                <!-- Settings for document creation -->
+                --><!-- Settings for document creation --><!--
                 <Expander IsExpanded="True" Style="{StaticResource StyleShowExpanderWhenWorkspaceOpen}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                     <Expander.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static properties:Resources.SettingsDocumentCreation}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
+                            <TextBlock Text="{x:Static properties:Resources.SettingsDocumentCreationString}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" FontSize="{StaticResource MediumFontSize}"/>
                             <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsChanged_GroupDocumentCreation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetGroupDocumentCreationCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <Button VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding SettingsNonDefault_GroupDocumentCreation, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingDefaultGroupDocumentCreationCommand}" Style="{StaticResource StyleDefaultSettingsButton}"/>
                         </StackPanel>
                     </Expander.Header>
                     <StackPanel>
-                        <!-- DocumentOutputFolder -->
+                        --><!-- DocumentOutputFolder --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipDocumentOutputFolder}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xED25;"/>
                             <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.DocumentOutputFolder, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Folders" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_DocumentOutputFolder, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetDocumentOutputFolderCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.DocumentOutputFolderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- CertificateTemplatePath -->
+                        --><!-- CertificateTemplatePath --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipCertificateTemplatePath}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE8A5;"/>
                             <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.CertificateTemplatePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_CertificateTemplatePath, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetCertificateTemplatePathCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.CertificateTemplatePathString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- OverviewlistTemplatePath -->
+                        --><!-- OverviewlistTemplatePath --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipOverviewlistTemplatePath}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE9D5;"/>
                             <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" RootFolderForRelativePaths="{Binding WorkspaceRootPath}" FileFolderPath="{Binding Settings.OverviewlistTemplatePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
                             <Button DockPanel.Dock="Right" VerticalAlignment="Center" Visibility="{Binding SettingsChanged_OverviewlistTemplatePath, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding SettingResetOverviewlistTemplatePathCommand}" Style="{StaticResource StyleResetSettingsButton}"/>
                             <TextBlock DockPanel.Dock="Left" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.OverviewlistTemplatePathString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </DockPanel>
-                        <!-- LibreOfficePath -->
+                        --><!-- LibreOfficePath --><!--
                         <DockPanel ToolTip="{x:Static properties:Resources.TooltipLibreOfficePath}">
                             <controls:FontIcon DockPanel.Dock="Left" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE756;"/>
                             <userControls:FileFolderPathControl DockPanel.Dock="Right" Width="650" FileFolderPath="{Binding Settings.LibreOfficePath, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
@@ -244,7 +227,7 @@
                         </DockPanel>
                     </StackPanel>
                 </Expander>
-            </StackPanel>
+            </StackPanel>-->
 
             <!-- Info section for workspace -->
             <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" VerticalAlignment="Top"

@@ -176,266 +176,29 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region General Settings Changed Properties / Reset Commands
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.CompetitionYear"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_CompetitionYear => Settings?.CompetitionYear != SettingsPersistedInFile?.CompetitionYear;
-
-    private ICommand _settingResetCompetitionYearCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.CompetitionYear"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetCompetitionYearCommand => _settingResetCompetitionYearCommand ?? (_settingResetCompetitionYearCommand = new RelayCommand(() => Settings.CompetitionYear = SettingsPersistedInFile.CompetitionYear));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if one of the general settings changed against the persisted value.
-    /// </summary>
-    public bool SettingsChanged_GroupGeneral => SettingsChanged_CompetitionYear;
-
-    private ICommand _settingResetGroupGeneralCommand;
-    /// <summary>
-    /// Command to reset all general settings to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetGroupGeneralCommand => _settingResetGroupGeneralCommand ?? (_settingResetGroupGeneralCommand = new RelayCommand(() =>
-    {
-        SettingResetCompetitionYearCommand.Execute(null);
-    }));
-
-    #endregion
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    #region Race Calculation Settings Changed Properties / Reset Commands
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.NumberOfSwimLanes"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_NumberOfSwimLanes => Settings?.NumberOfSwimLanes != SettingsPersistedInFile?.NumberOfSwimLanes;
-
-    private ICommand _settingResetNumberOfSwimLanesCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.NumberOfSwimLanes"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetNumberOfSwimLanesCommand => _settingResetNumberOfSwimLanesCommand ?? (_settingResetNumberOfSwimLanesCommand = new RelayCommand(() => Settings.NumberOfSwimLanes = SettingsPersistedInFile.NumberOfSwimLanes));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.NumberRacesVariantsAfterCalculation"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_NumberRacesVariantsAfterCalculation => Settings?.NumberRacesVariantsAfterCalculation != SettingsPersistedInFile?.NumberRacesVariantsAfterCalculation;
-
-    private ICommand _settingResetNumberRacesVariantsAfterCalculationCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.NumberRacesVariantsAfterCalculation"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetNumberRacesVariantsAfterCalculationCommand => _settingResetNumberRacesVariantsAfterCalculationCommand ?? (_settingResetNumberRacesVariantsAfterCalculationCommand = new RelayCommand(() => Settings.NumberRacesVariantsAfterCalculation = SettingsPersistedInFile.NumberRacesVariantsAfterCalculation));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.MaxRacesVariantCalculationLoops"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_MaxRacesVariantCalculationLoops => Settings?.MaxRacesVariantCalculationLoops != SettingsPersistedInFile?.MaxRacesVariantCalculationLoops;
-
-    private ICommand _settingResetMaxRacesVariantCalculationLoopsCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.MaxRacesVariantCalculationLoops"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetMaxRacesVariantCalculationLoopsCommand => _settingResetMaxRacesVariantCalculationLoopsCommand ?? (_settingResetMaxRacesVariantCalculationLoopsCommand = new RelayCommand(() => Settings.MaxRacesVariantCalculationLoops = SettingsPersistedInFile.MaxRacesVariantCalculationLoops));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.MinRacesVariantsScore"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_MinRacesVariantsScore => Settings?.MinRacesVariantsScore != SettingsPersistedInFile?.MinRacesVariantsScore;
-
-    private ICommand _settingResetMinRacesVariantsScoreCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.MinRacesVariantsScore"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetMinRacesVariantsScoreCommand => _settingResetMinRacesVariantsScoreCommand ?? (_settingResetMinRacesVariantsScoreCommand = new RelayCommand(() => Settings.MinRacesVariantsScore = SettingsPersistedInFile.MinRacesVariantsScore));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if one of the race calculation settings changed against the persisted value.
-    /// </summary>
-    public bool SettingsChanged_GroupRaceCalculation => SettingsChanged_NumberOfSwimLanes || SettingsChanged_NumberRacesVariantsAfterCalculation || SettingsChanged_MaxRacesVariantCalculationLoops || SettingsChanged_MinRacesVariantsScore;
-
-    private ICommand _settingResetGroupRaceCalculationCommand;
-    /// <summary>
-    /// Command to reset all race calculation settings to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetGroupRaceCalculationCommand => _settingResetGroupRaceCalculationCommand ?? (_settingResetGroupRaceCalculationCommand = new RelayCommand(() =>
-    {
-        SettingResetNumberOfSwimLanesCommand.Execute(null);
-        SettingResetNumberRacesVariantsAfterCalculationCommand.Execute(null);
-        SettingResetMaxRacesVariantCalculationLoopsCommand.Execute(null);
-        SettingResetMinRacesVariantsScoreCommand.Execute(null);
-    }));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if one of the race calculation settings changed against the default value.
-    /// </summary>
-    public bool SettingsNonDefault_GroupRaceCalculation => (Settings?.NumberOfSwimLanes != WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES) || 
-                                                           (Settings?.NumberRacesVariantsAfterCalculation != WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION) || 
-                                                           (Settings?.MaxRacesVariantCalculationLoops != WorkspaceSettings.DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS) ||
-                                                           (Settings?.MinRacesVariantsScore != WorkspaceSettings.DEFAULT_MIN_RACESVARIANTS_SCORE);
-
-    private ICommand _settingDefaultGroupRaceCalculationCommand;
-    /// <summary>
-    /// Command to set all race calculation settings to the default values.
-    /// </summary>
-    public ICommand SettingDefaultGroupRaceCalculationCommand => _settingDefaultGroupRaceCalculationCommand ?? (_settingDefaultGroupRaceCalculationCommand = new RelayCommand(() =>
-    {
-        Settings.NumberOfSwimLanes = WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES;
-        Settings.NumberRacesVariantsAfterCalculation = WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
-        Settings.MaxRacesVariantCalculationLoops = WorkspaceSettings.DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS;
-        Settings.MinRacesVariantsScore = WorkspaceSettings.DEFAULT_MIN_RACESVARIANTS_SCORE;
-    }));
-
-    #endregion
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    #region Document Creation Settings Changed Properties / Reset Commands
-
-    /// <summary>
-    /// Root path of the workspace, which is used to resolve relative paths in the <see cref="WorkspaceSettings"/>.
-    /// </summary>
-    public string WorkspaceRootPath => _workspaceService?.PersistentPath ?? string.Empty;
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.DocumentOutputFolder"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_DocumentOutputFolder => Settings?.DocumentOutputFolder != SettingsPersistedInFile?.DocumentOutputFolder;
-
-    private ICommand _settingResetDocumentOutputFolderCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.DocumentOutputFolder"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetDocumentOutputFolderCommand => _settingResetDocumentOutputFolderCommand ?? (_settingResetDocumentOutputFolderCommand = new RelayCommand(() => Settings.DocumentOutputFolder = SettingsPersistedInFile.DocumentOutputFolder));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.CertificateTemplatePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_CertificateTemplatePath => Settings?.CertificateTemplatePath != SettingsPersistedInFile?.CertificateTemplatePath;
-
-    private ICommand _settingResetCertificateTemplatePathCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.CertificateTemplatePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetCertificateTemplatePathCommand => _settingResetCertificateTemplatePathCommand ?? (_settingResetCertificateTemplatePathCommand = new RelayCommand(() => Settings.CertificateTemplatePath = SettingsPersistedInFile.CertificateTemplatePath));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.OverviewlistTemplatePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_OverviewlistTemplatePath => Settings?.OverviewlistTemplatePath != SettingsPersistedInFile?.OverviewlistTemplatePath;
-
-    private ICommand _settingResetOverviewlistTemplatePathCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.OverviewlistTemplatePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetOverviewlistTemplatePathCommand => _settingResetOverviewlistTemplatePathCommand ?? (_settingResetOverviewlistTemplatePathCommand = new RelayCommand(() => Settings.OverviewlistTemplatePath = SettingsPersistedInFile.OverviewlistTemplatePath));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if the <see cref="WorkspaceSettings.LibreOfficePath"/> property in the <see cref="Settings"/> and <see cref="SettingsPersistedInFile"/> differ.
-    /// </summary>
-    public bool SettingsChanged_LibreOfficePath => Settings?.LibreOfficePath != SettingsPersistedInFile?.LibreOfficePath;
-
-    private ICommand _settingResetLibreOfficePathCommand;
-    /// <summary>
-    /// Command to reset the <see cref="WorkspaceSettings.LibreOfficePath"/> property in <see cref="Settings"/> to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetLibreOfficePathCommand => _settingResetLibreOfficePathCommand ?? (_settingResetLibreOfficePathCommand = new RelayCommand(() => Settings.LibreOfficePath = SettingsPersistedInFile.LibreOfficePath));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if one of the document creation settings changed against the persisted value.
-    /// </summary>
-    public bool SettingsChanged_GroupDocumentCreation => SettingsChanged_DocumentOutputFolder ||
-                                                         SettingsChanged_CertificateTemplatePath ||
-                                                         SettingsChanged_OverviewlistTemplatePath ||
-                                                         SettingsChanged_LibreOfficePath;
-
-    private ICommand _settingResetGroupDocumentCreationCommand;
-    /// <summary>
-    /// Command to reset all document creation settings to the value loaded from the config file.
-    /// </summary>
-    public ICommand SettingResetGroupDocumentCreationCommand => _settingResetGroupDocumentCreationCommand ?? (_settingResetGroupDocumentCreationCommand = new RelayCommand(() =>
-    {
-        SettingResetDocumentOutputFolderCommand.Execute(null);
-        SettingResetCertificateTemplatePathCommand.Execute(null);
-        SettingResetOverviewlistTemplatePathCommand.Execute(null);
-        SettingResetLibreOfficePathCommand.Execute(null);
-    }));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// True, if one of the document creation settings changed against the default value.
-    /// </summary>
-    public bool SettingsNonDefault_GroupDocumentCreation => (Settings?.DocumentOutputFolder != WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER) ||
-                                                            (Settings?.CertificateTemplatePath != WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH) ||
-                                                            (Settings?.OverviewlistTemplatePath != WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH) ||
-                                                            (Settings?.LibreOfficePath != WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH);
-
-    private ICommand _settingDefaultGroupDocumentCreationCommand;
-    /// <summary>
-    /// Command to set all document creation settings to the default values.
-    /// </summary>
-    public ICommand SettingDefaultGroupDocumentCreationCommand => _settingDefaultGroupDocumentCreationCommand ?? (_settingDefaultGroupDocumentCreationCommand = new RelayCommand(() =>
-    {
-        Settings.CertificateTemplatePath = WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH;
-        Settings.DocumentOutputFolder = WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER;
-        Settings.OverviewlistTemplatePath = WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH;
-        Settings.LibreOfficePath = WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH;
-    }));
-
-    #endregion
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     public ObservableCollection<WorkspaceSettingsGroupViewModel> SettingsGroups { get; private set; }
 
     private Dictionary<string, string> groupKeyLabelsDict = new Dictionary<string, string>()
     {
-        { WorkspaceSettingsClass.GROUP_GENERAL, Resources.SettingsGeneralString },
-        { WorkspaceSettingsClass.GROUP_RACE_CALCULATION, Resources.SettingsRacesVariantsCalculationString },
-        { WorkspaceSettingsClass.GROUP_DOCUMENT_CREATION, Resources.SettingsDocumentCreationString }
+        { WorkspaceSettings.GROUP_GENERAL, Resources.SettingsGeneralString },
+        { WorkspaceSettings.GROUP_RACE_CALCULATION, Resources.SettingsRacesVariantsCalculationString },
+        { WorkspaceSettings.GROUP_DOCUMENT_CREATION, Resources.SettingsDocumentCreationString }
     };
 
     private Dictionary<string, WorkspaceSettingViewConfig> settingKeyConfigDict = new Dictionary<string, WorkspaceSettingViewConfig>()
     {
-        { WorkspaceSettingsClass.SETTING_GENERAL_COMPETITIONYEAR, new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettingsClass.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.OverviewlistTemplatePathString, Tooltip = Resources.TooltipOverviewlistTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettingsClass.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.Path } }
+        { WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR, new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } },
+        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.OverviewlistTemplatePathString, Tooltip = Resources.TooltipOverviewlistTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.Path } },
+        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.Path } }
     };
 
-    private void initSettingsGroups(WorkspaceSettingsClass model)
+    private void initSettingsGroups(WorkspaceSettings model)
     {
         if(model == null) { return; }
         SettingsGroups = new ObservableCollection<WorkspaceSettingsGroupViewModel>();
@@ -493,20 +256,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             case nameof(IWorkspaceService.HasUnsavedChanges_Settings):
                 {
                     OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
-                    OnPropertyChanged(nameof(SettingsChanged_CompetitionYear));
-                    OnPropertyChanged(nameof(SettingsChanged_GroupGeneral));
-                    OnPropertyChanged(nameof(SettingsChanged_NumberOfSwimLanes));
-                    OnPropertyChanged(nameof(SettingsChanged_NumberRacesVariantsAfterCalculation));
-                    OnPropertyChanged(nameof(SettingsChanged_MaxRacesVariantCalculationLoops));
-                    OnPropertyChanged(nameof(SettingsChanged_MinRacesVariantsScore));
-                    OnPropertyChanged(nameof(SettingsChanged_GroupRaceCalculation));
-                    OnPropertyChanged(nameof(SettingsNonDefault_GroupRaceCalculation));
-                    OnPropertyChanged(nameof(SettingsChanged_DocumentOutputFolder));
-                    OnPropertyChanged(nameof(SettingsChanged_CertificateTemplatePath));
-                    OnPropertyChanged(nameof(SettingsChanged_OverviewlistTemplatePath));
-                    OnPropertyChanged(nameof(SettingsChanged_LibreOfficePath));
-                    OnPropertyChanged(nameof(SettingsChanged_GroupDocumentCreation));
-                    OnPropertyChanged(nameof(SettingsNonDefault_GroupDocumentCreation));
+                    OnPropertyChanged(nameof(SettingsGroups));
                     break;
                 }
             case nameof(IWorkspaceService.PersistentPath): OnPropertyChanged(nameof(CurrentWorkspaceFolder)); break;
@@ -534,7 +284,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(NumberStarts));
         OnPropertyChanged(nameof(HasUnsavedChanges));
 
-        initSettingsGroups(_workspaceService.SettingsNew);
+        initSettingsGroups(_workspaceService.Settings);
     }
 
     public void OnNavigatedFrom()

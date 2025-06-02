@@ -13,6 +13,7 @@ using Xceed.Words.NET;
 using Xceed.Document.NET;
 using System.Text.RegularExpressions;
 using Vereinsmeisterschaften.Core.Helpers;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -37,14 +38,14 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private string getDocumentOutputFolderAbsolute()
         {
-            string certificateOutputFolder = _workspaceService?.Settings?.DocumentOutputFolder ?? WorkspaceSettings.DEFAULT_DOCUMENT_OUTPUT_FOLDER;
+            string certificateOutputFolder = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER) ?? string.Empty;
             certificateOutputFolder = FilePathHelper.MakePathAbsolute(certificateOutputFolder, _workspaceService?.PersistentPath);
             return certificateOutputFolder;
         }
 
         private string getLibreOfficePathAbsolute()
         {
-            string libreOfficePath = _workspaceService?.Settings?.LibreOfficePath ?? WorkspaceSettings.DEFAULT_LIBRE_OFFICE_PATH;
+            string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
             libreOfficePath = FilePathHelper.MakePathAbsolute(libreOfficePath, _workspaceService?.PersistentPath);
             return libreOfficePath;
         }
@@ -177,7 +178,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private string getCertificateTemplatePathAbsolute()
         {
-            string certificateTemplatePath = _workspaceService?.Settings?.CertificateTemplatePath ?? WorkspaceSettings.DEFAULT_CERTIFICATE_TEMPLATE_PATH;
+            string certificateTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH) ?? string.Empty;
             certificateTemplatePath = FilePathHelper.MakePathAbsolute(certificateTemplatePath, _workspaceService?.PersistentPath);
             return certificateTemplatePath;
         }
@@ -221,7 +222,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private string getOverviewListTemplatePathAbsolute()
         {
-            string overviewListTemplatePath = _workspaceService?.Settings?.OverviewlistTemplatePath ?? WorkspaceSettings.DEFAULT_OVERVIEW_LIST_TEMPLATE_PATH;
+            string overviewListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH) ?? string.Empty;
             overviewListTemplatePath = FilePathHelper.MakePathAbsolute(overviewListTemplatePath, _workspaceService?.PersistentPath);
             return overviewListTemplatePath;
         }

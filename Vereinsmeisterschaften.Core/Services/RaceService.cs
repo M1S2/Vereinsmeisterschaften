@@ -10,6 +10,7 @@ using System.Text;
 using System.Xml.Linq;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -114,14 +115,17 @@ namespace Vereinsmeisterschaften.Core.Services
                 groupedValuesStarts[key].Add(starts[i]);
             }
 
-            ushort numRequestedVariants = _workspaceService?.Settings?.NumberRacesVariantsAfterCalculation ?? WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
-            int numberOfResultsToGenerate = Math.Max(0, numRequestedVariants - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
+            ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;
+            ushort numberRequestedVariants = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION) ?? 0;
+            int maxRaceVariantCalculationLoops = _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS) ?? 0;
+            double minRacesVariantsScore = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE) ?? 0;
+            int numberOfResultsToGenerate = Math.Max(0, numberRequestedVariants - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
             
             RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")),
                                                                           numberOfResultsToGenerate,
-                                                                          _workspaceService?.Settings?.MaxRacesVariantCalculationLoops ?? WorkspaceSettings.DEFAULT_MAX_RACESVARIANTS_CALCULATION_LOOPS,
-                                                                          _workspaceService?.Settings?.MinRacesVariantsScore ?? WorkspaceSettings.DEFAULT_MIN_RACESVARIANTS_SCORE,
-                                                                          _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES);
+                                                                          maxRaceVariantCalculationLoops,
+                                                                          minRacesVariantsScore,
+                                                                          numSwimLanes);
             List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)

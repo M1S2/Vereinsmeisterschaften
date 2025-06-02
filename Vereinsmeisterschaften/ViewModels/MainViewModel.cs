@@ -5,12 +5,13 @@ using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
 public class MainViewModel : ObservableObject, INavigationAware
 {
-    public ushort CompetitionYear => _workspaceService?.Settings?.CompetitionYear ?? 0;
+    public ushort CompetitionYear => _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
 
     public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));

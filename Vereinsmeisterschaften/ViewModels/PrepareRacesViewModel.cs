@@ -13,6 +13,7 @@ using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -266,7 +267,8 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             ((RelayCommand)ReorderRaceVariantsCommand).NotifyCanExecuteChanged();
         };
 
-        DropAllowedHandlerObj.MaxItemsInTargetCollection = _workspaceService?.Settings?.NumberOfSwimLanes ?? WorkspaceSettings.DEFAULT_NUMBER_OF_SWIM_LANES;
+        ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;
+        DropAllowedHandlerObj.MaxItemsInTargetCollection = numSwimLanes;
         _navigationService = navigationService;
 
     }
@@ -305,7 +307,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             await _progressController?.CloseAsync();
 
             int numberVariants = AllRacesVariants.Count;
-            ushort numberRequestedVariants = _workspaceService?.Settings?.NumberRacesVariantsAfterCalculation ?? WorkspaceSettings.DEFAULT_NUMBER_RACESVARIANTS_AFTER_CALCULATION;
+            ushort numberRequestedVariants = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION) ?? 0;
             if (numberVariants < numberRequestedVariants)
             {
                 // Less variants than required are calculated    

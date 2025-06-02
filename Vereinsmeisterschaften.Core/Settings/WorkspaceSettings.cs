@@ -5,7 +5,7 @@ namespace Vereinsmeisterschaften.Core.Settings
     /// <summary>
     /// Class holding all workspace settings
     /// </summary>
-    public class WorkspaceSettingsClass : IEquatable<WorkspaceSettingsClass>, ICloneable
+    public class WorkspaceSettings : IEquatable<WorkspaceSettings>, ICloneable
     {
         #region Group / Setting keys
 
@@ -217,7 +217,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         /// Parameterless Constructor
         /// Initialize all settings
         /// </summary>
-        public WorkspaceSettingsClass()
+        public WorkspaceSettings()
         {
             initializeSettings();
         }
@@ -225,8 +225,8 @@ namespace Vereinsmeisterschaften.Core.Settings
         /// <summary>
         /// Copy Constructor
         /// </summary>
-        /// <param name="other"><see cref="WorkspaceSettingsClass"/> to copy</param>
-        public WorkspaceSettingsClass(WorkspaceSettingsClass other)
+        /// <param name="other"><see cref="WorkspaceSettings"/> to copy</param>
+        public WorkspaceSettings(WorkspaceSettings other)
         {
             Groups = new List<WorkspaceSettingsGroup>();
             foreach (WorkspaceSettingsGroup group in other.Groups)
@@ -303,16 +303,16 @@ namespace Vereinsmeisterschaften.Core.Settings
         #region IEquatable, ICloneable
 
         public override bool Equals(object obj)
-            => obj is WorkspaceSettingsClass s && s.Groups.SequenceEqual(Groups);
+            => obj is WorkspaceSettings s && s.Groups.SequenceEqual(Groups);
 
-        public bool Equals(WorkspaceSettingsClass other)
+        public bool Equals(WorkspaceSettings other)
             => Equals((object)other);
 
         public override int GetHashCode()
             => Groups.GetHashCode();
 
         public object Clone()
-            => new WorkspaceSettingsClass(this);
+            => new WorkspaceSettings(this);
 
         #endregion
     }

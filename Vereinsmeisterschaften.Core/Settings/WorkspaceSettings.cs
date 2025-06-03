@@ -1,11 +1,13 @@
-﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Settings
 {
     /// <summary>
     /// Class holding all workspace settings
     /// </summary>
-    public class WorkspaceSettings : IEquatable<WorkspaceSettings>, ICloneable
+    public class WorkspaceSettings : ObservableObject, IEquatable<WorkspaceSettings>, ICloneable
     {
         #region Group / Setting keys
 
@@ -41,14 +43,14 @@ namespace Vereinsmeisterschaften.Core.Settings
 
             // +++++ Group General +++++
             WorkspaceSettingsGroup groupGeneral = GetGroup(GROUP_GENERAL, true);
-            groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_COMPETITIONYEAR, 0);
+            groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_COMPETITIONYEAR, 0, 1900, 3000);
 
             // +++++ Group Race Calculation +++++
             WorkspaceSettingsGroup groupRaceCalculation = GetGroup(GROUP_RACE_CALCULATION, true);
-            groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 3);
-            groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, 100);
-            groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, 1000000);
-            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 90.0);
+            groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 3, 0, 10);
+            groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, 100, 1, 1000);
+            groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, 1000000, 1, int.MaxValue);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 90.0, 0.0, 100.0);
 
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);
@@ -99,6 +101,14 @@ namespace Vereinsmeisterschaften.Core.Settings
             else
             {
                 Groups.Add(group);
+                group.PropertyChanged += (sender, e) =>
+                {
+                    switch (e.PropertyName)
+                    {
+                        case nameof(WorkspaceSettingsGroup.HasChanged): OnPropertyChanged(nameof(HasChanged)); break;
+                        default: break;
+                    }
+                };
             }
         }
 
@@ -257,6 +267,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         /// <param name="filePath">Path where the file should be saved</param>
         public void Save(IFileService fileService, string filePath)
         {
+            CreateSnapshot();
             List<SerializableWorkspaceSettingsGroup> serializableGroups = Groups.Select(group => new SerializableWorkspaceSettingsGroup
             {
                 GroupKey = group.GroupKey,

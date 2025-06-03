@@ -1,9 +1,11 @@
-﻿namespace Vereinsmeisterschaften.Core.Settings
+﻿using System.ComponentModel;
+
+namespace Vereinsmeisterschaften.Core.Settings
 {
     /// <summary>
     /// Interface for a single workspace setting
     /// </summary>
-    public interface IWorkspaceSetting : ICloneable
+    public interface IWorkspaceSetting : ICloneable, INotifyPropertyChanged
     {
         /// <summary>
         /// Key for this setting. Should be unique.
@@ -27,6 +29,18 @@
         /// This is type independent by using the <see cref="object"/> type.
         /// </summary>
         object UntypedSnapshotValue { get; }
+
+        /// <summary>
+        /// Minimum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        object UntypedMinValue { get; }
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        object UntypedMaxValue { get; }
 
         /// <summary>
         /// Set the <see cref="UntypedValue"/> to the <see cref="UntypedSnapshotValue"/>

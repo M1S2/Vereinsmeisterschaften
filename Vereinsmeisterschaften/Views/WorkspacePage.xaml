@@ -88,7 +88,7 @@
             </TextBlock>
 
             <!-- Settings for workspace -->
-            <ItemsControl Grid.Row="3" Grid.Column="0" ItemsSource="{Binding SettingsGroups}" HorizontalAlignment="Left" Margin="{StaticResource MediumTopMargin}">
+            <ItemsControl Grid.Row="3" Grid.Column="0" ItemsSource="{Binding SettingsGroups}" HorizontalAlignment="Stretch" Margin="{StaticResource MediumTopRightBottomMargin}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Expander IsExpanded="True" controls:ControlsHelper.ContentCharacterCasing="Normal">

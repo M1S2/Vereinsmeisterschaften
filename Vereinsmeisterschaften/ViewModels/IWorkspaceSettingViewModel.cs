@@ -61,6 +61,18 @@ namespace Vereinsmeisterschaften.ViewModels
         object UntypedValue { get; set; }
 
         /// <summary>
+        /// Minimum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        object UntypedMinValue { get; }
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        object UntypedMaxValue { get; }
+
+        /// <summary>
         /// Data template to assign a setting dependent editor view.
         /// </summary>
         DataTemplate EditorTemplate { get; }

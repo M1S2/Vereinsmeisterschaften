@@ -4,17 +4,29 @@
                     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls">
     
     <DataTemplate x:Key="NumericEditorTemplate">
-        <controls:NumericUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="1000000"/>
+        <controls:NumericUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" MinWidth="200" Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="StringEditorTemplate">
         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="PathEditorTemplate">
-        <userControls:FileFolderPathControl RootFolderForRelativePaths="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+    <DataTemplate x:Key="FileRelativeEditorTemplate">
+        <userControls:FileFolderPathControl RootFolderForRelativePaths="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
     </DataTemplate>
-    
+
+    <DataTemplate x:Key="FileAbsoluteEditorTemplate">
+        <userControls:FileFolderPathControl FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FolderRelativeEditorTemplate">
+        <userControls:FileFolderPathControl RootFolderForRelativePaths="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Folders" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FolderAbsoluteEditorTemplate">
+        <userControls:FileFolderPathControl FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Folders" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
+    </DataTemplate>
+
     <DataTemplate x:Key="BooleanEditorTemplate">
         <CheckBox IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>

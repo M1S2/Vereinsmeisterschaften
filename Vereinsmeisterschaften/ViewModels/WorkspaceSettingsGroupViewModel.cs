@@ -86,13 +86,11 @@ namespace Vereinsmeisterschaften.ViewModels
             {
                 setting.PropertyChanged += (s, e) =>
                 {
-                    if (e.PropertyName == nameof(IWorkspaceSettingViewModel.HasChanged))
+                    switch (e.PropertyName)
                     {
-                        OnPropertyChanged(nameof(HasChanged));
-                    }
-                    else if (e.PropertyName == nameof(IWorkspaceSettingViewModel.HasDefaultValue))
-                    {
-                        OnPropertyChanged(nameof(HasDefaultValue));
+                        case nameof(IWorkspaceSettingViewModel.HasChanged): OnPropertyChanged(nameof(HasChanged)); break;
+                        case nameof(IWorkspaceSettingViewModel.HasDefaultValue): OnPropertyChanged(nameof(HasDefaultValue)); break;
+                        default: break;
                     }
                 };
             }

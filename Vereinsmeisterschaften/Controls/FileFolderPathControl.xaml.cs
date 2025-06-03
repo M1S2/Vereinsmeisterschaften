@@ -57,21 +57,7 @@ namespace Vereinsmeisterschaften.Controls
         private static void OnFileFolderPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FileFolderPathControl control = d as FileFolderPathControl;
-            if(!string.IsNullOrEmpty(control.RootFolderForRelativePaths) && !FilePathHelper.IsPathFullyQualified(e.NewValue as string))
-            {
-                // Construct absolute path
-                control.ResolvedFileFolderPath = Path.GetFullPath(Path.Combine(control.RootFolderForRelativePaths, e.NewValue as string));
-            }
-            else
-            {
-                // Use absolute path
-                control.ResolvedFileFolderPath = e.NewValue as string;
-            }
-
-            if(control.FileFolderSelectionMode == FileFolderSelectionModes.Folders && !FilePathHelper.IsPathDirectory(control.ResolvedFileFolderPath))
-            {
-                control.ResolvedFileFolderPath = Path.GetDirectoryName(control.ResolvedFileFolderPath);
-            }
+            control.calculateResolvedFileFolderPath();
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -95,6 +81,7 @@ namespace Vereinsmeisterschaften.Controls
             {
                 control.FileFolderPath = control.ResolvedFileFolderPath;
             }
+            control.calculateResolvedFileFolderPath();
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -106,6 +93,25 @@ namespace Vereinsmeisterschaften.Controls
         }
 
         public static readonly DependencyProperty ResolvedFileFolderPathProperty = DependencyProperty.Register(nameof(ResolvedFileFolderPath), typeof(string), typeof(FileFolderPathControl), new PropertyMetadata(""));
+
+        private void calculateResolvedFileFolderPath()
+        {
+            if (!string.IsNullOrEmpty(RootFolderForRelativePaths) && !FilePathHelper.IsPathFullyQualified(FileFolderPath))
+            {
+                // Construct absolute path
+                ResolvedFileFolderPath = Path.GetFullPath(Path.Combine(RootFolderForRelativePaths, FileFolderPath));
+            }
+            else
+            {
+                // Use absolute path
+                ResolvedFileFolderPath = FileFolderPath;
+            }
+
+            if (FileFolderSelectionMode == FileFolderSelectionModes.Folders && !FilePathHelper.IsPathDirectory(ResolvedFileFolderPath))
+            {
+                ResolvedFileFolderPath = Path.GetDirectoryName(ResolvedFileFolderPath);
+            }
+        }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

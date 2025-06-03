@@ -12,7 +12,8 @@ namespace Vereinsmeisterschaften.Core.Helpers
     public static class FilePathHelper
     {
         /// <summary>
-        /// Calculate a path that is relative to the given root folder
+        /// Calculate a path that is relative to the given root folder.
+        /// If the fullPath is already relative, the path isn't changed.
         /// </summary>
         /// <param name="fullPath">Full path to convert to a relative one</param>
         /// <param name="rootFolder">Root folder that is used as base for the relative path</param>
@@ -22,6 +23,10 @@ namespace Vereinsmeisterschaften.Core.Helpers
             if(string.IsNullOrEmpty(fullPath))
             {
                 return "."; // Return current directory if fullPath is empty
+            }
+            if(!IsPathFullyQualified(fullPath))
+            {
+                return fullPath;
             }
             // Remove any relative paths from these strings
             fullPath = Path.GetFullPath(fullPath);

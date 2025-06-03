@@ -10,7 +10,10 @@ namespace Vereinsmeisterschaften.ViewModels
     {
         Numeric,
         String,
-        Path,
+        FileRelative,
+        FileAbsolute,
+        FolderRelative,
+        FolderAbsolute,
         Boolean
     }
 }

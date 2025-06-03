@@ -1,16 +1,24 @@
-﻿namespace Vereinsmeisterschaften.Core.Settings
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
+
+namespace Vereinsmeisterschaften.Core.Settings
 {
     /// <summary>
     /// A group of <see cref="WorkspaceSetting{T}"/> objects
     /// </summary>
-    public class WorkspaceSettingsGroup : IEquatable<WorkspaceSettingsGroup>, ICloneable
+    public class WorkspaceSettingsGroup : ObservableObject, IEquatable<WorkspaceSettingsGroup>, ICloneable
     {
         #region Properties
 
+        private string _groupKey;
         /// <summary>
         /// Key for this group. Should be unique.
         /// </summary>
-        public string GroupKey { get; set; }
+        public string GroupKey
+        {
+            get => _groupKey;
+            set => SetProperty(ref _groupKey, value);
+        }
 
         /// <summary>
         /// List with <see cref="IWorkspaceSetting"/> instances belonging to this group.
@@ -50,6 +58,14 @@
             else
             {
                 Settings.Add(setting);
+                setting.PropertyChanged += (sender, e) =>
+                {
+                    switch (e.PropertyName)
+                    {
+                        case nameof(IWorkspaceSetting.HasChanged): OnPropertyChanged(nameof(HasChanged)); break;
+                        default: break;
+                    }
+                };
             }
         }
 
@@ -67,20 +83,22 @@
         /// <param name="settingKey">Key of the setting to get</param>
         /// <returns><see cref="IWorkspaceSetting"/></returns>
         public IWorkspaceSetting GetSetting(string settingKey) => Settings.FirstOrDefault(s => string.Compare(s.Key, settingKey, true) == 0);
-        
+
         /// <summary>
         /// Try to get the <see cref="WorkspaceSetting{T}"/> with the requested key and add a new setting with the default value if it wasn't found.
         /// </summary>
         /// <typeparam name="T">Type of the setting value</typeparam>
         /// <param name="settingKey">Key for the setting</param>
         /// <param name="defaultValue">Default value for the setting</param>
+        /// <param name="minValue">Minimum value for the setting</param>
+        /// <param name="maxValue">Maximum value for the setting</param>
         /// <returns><see cref="WorkspaceSetting{T}"/></returns>
-        public WorkspaceSetting<T> MakeSureSettingExists<T>(string settingKey, T defaultValue)
+        public WorkspaceSetting<T> MakeSureSettingExists<T>(string settingKey, T defaultValue, T minValue = default, T maxValue = default)
         {
             WorkspaceSetting<T> setting = GetSetting<T>(settingKey);
             if (setting == null)
             {
-                setting = new WorkspaceSetting<T>(settingKey, defaultValue);
+                setting = new WorkspaceSetting<T>(settingKey, defaultValue, minValue, maxValue);
                 AddSetting(setting);
             }
             else

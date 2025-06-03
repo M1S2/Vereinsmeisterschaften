@@ -69,6 +69,28 @@ namespace Vereinsmeisterschaften.ViewModels
         }
 
         /// <summary>
+        /// Minimum value for the setting.
+        /// </summary>
+        public T MinValue => Setting.MinValue;
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// </summary>
+        public T MaxValue => Setting.MaxValue;
+
+        /// <summary>
+        /// Minimum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        public object UntypedMinValue => Setting.UntypedMinValue!;
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        public object UntypedMaxValue => Setting.UntypedMaxValue!;
+
+        /// <summary>
         /// Type of the setting value
         /// </summary>
         public Type ValueType => typeof(T);
@@ -117,6 +139,20 @@ namespace Vereinsmeisterschaften.ViewModels
                 OnPropertyChanged(nameof(HasChanged)); 
             });
             EditorTemplate = editorTemplate;
+
+            if (setting != null)
+            {
+                setting.PropertyChanged += (sender, e) =>
+                {
+                    switch(e.PropertyName)
+                    {
+                        case nameof(WorkspaceSetting<T>.Value): OnPropertyChanged(nameof(Value)); break;
+                        case nameof(WorkspaceSetting<T>.HasChanged): OnPropertyChanged(nameof(HasChanged)); break;
+                        case nameof(WorkspaceSetting<T>.HasDefaultValue): OnPropertyChanged(nameof(HasDefaultValue)); break;
+                        default: break;
+                    }
+                };
+            }
         }
     }
 }

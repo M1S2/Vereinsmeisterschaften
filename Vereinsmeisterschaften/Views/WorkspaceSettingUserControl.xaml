@@ -8,24 +8,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="250">
 
-    <DockPanel ToolTip="{Binding Tooltip}">
+    <DockPanel ToolTip="{Binding Tooltip}" LastChildFill="True">
         <controls:FontIcon DockPanel.Dock="Left" Margin="5,5,0,5"
                            FontSize="30" Glyph="{Binding Icon}"/>
 
-        <ContentControl DockPanel.Dock="Right" Width="150" 
-                        Content="{Binding}" ContentTemplate="{Binding EditorTemplate}" />
+        <TextBlock DockPanel.Dock="Left" Margin="10,0,10,0" VerticalAlignment="Center" MinWidth="400"
+                   Text="{Binding Label}" FontSize="{StaticResource MediumFontSize}"/>
 
         <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0" 
                 Visibility="{Binding HasDefaultValue, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                 Command="{Binding SetToDefaultCommand}"
                 Style="{StaticResource StyleDefaultSettingsButton}"/>
-        
-        <Button DockPanel.Dock="Right" VerticalAlignment="Center"
+
+        <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0"
                 Visibility="{Binding HasChanged, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{Binding ResetCommand}" 
                 Style="{StaticResource StyleResetSettingsButton}"/>
 
-        <TextBlock DockPanel.Dock="Left" Margin="10,0,10,0" VerticalAlignment="Center"
-                   Text="{Binding Label}" FontSize="{StaticResource MediumFontSize}"/>
+        <ContentControl DockPanel.Dock="Right" 
+                        Content="{Binding}" ContentTemplate="{Binding EditorTemplate}" />
     </DockPanel>
 </UserControl>

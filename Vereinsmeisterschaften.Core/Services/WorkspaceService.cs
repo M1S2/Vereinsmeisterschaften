@@ -100,12 +100,12 @@ namespace Vereinsmeisterschaften.Core.Services
             set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); OnPropertyChanged(nameof(HasUnsavedChanges)); }
         }
 
-        //private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    OnPropertyChanged(nameof(Settings));
-        //    OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
-        //    OnPropertyChanged(nameof(HasUnsavedChanges));
-        //}
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -182,7 +182,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Workspace settings
                 Settings = new WorkspaceSettings();
                 Settings.Load(_fileService, WorkspaceSettingsFilePath);
-                //Settings.PropertyChanged += Settings_PropertyChanged;
+                Settings.PropertyChanged += Settings_PropertyChanged;
 
                 // Persons
                 openResult = await _personService.Load(PersonFilePath, cancellationToken);
@@ -271,7 +271,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 saveResult = await Save(cancellationToken);
             }
 
-            //Settings.PropertyChanged -= Settings_PropertyChanged;
+            Settings.PropertyChanged -= Settings_PropertyChanged;
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();

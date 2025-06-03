@@ -187,15 +187,42 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     private Dictionary<string, WorkspaceSettingViewConfig> settingKeyConfigDict = new Dictionary<string, WorkspaceSettingViewConfig>()
     {
-        { WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR, new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } },
-        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.OverviewlistTemplatePathString, Tooltip = Resources.TooltipOverviewlistTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.Path } },
-        { WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.Path } }
+        { 
+            WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR,
+            new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } 
+        },
+        { 
+            WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 
+            new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } 
+        },
+        { 
+            WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, 
+            new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } 
+        },
+        { 
+            WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, 
+            new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } 
+        },
+        { 
+            WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 
+            new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } 
+        },
+        { 
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, 
+            new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative } 
+        },
+        { 
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, 
+            new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.FileRelative } 
+        },
+        { 
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, 
+            new WorkspaceSettingViewConfig() { Label=Resources.OverviewlistTemplatePathString, Tooltip = Resources.TooltipOverviewlistTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.FileRelative } 
+        },
+        { 
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
+            new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 
+        }
     };
 
     private void initSettingsGroups(WorkspaceSettings model)

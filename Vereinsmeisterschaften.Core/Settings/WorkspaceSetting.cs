@@ -1,22 +1,34 @@
-﻿namespace Vereinsmeisterschaften.Core.Settings
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Vereinsmeisterschaften.Core.Settings
 {
     /// <summary>
     /// Implementation for a single workspace setting
     /// </summary>
     /// <typeparam name="T">Type of the setting</typeparam>
-    public class WorkspaceSetting<T> : IWorkspaceSetting, IEquatable<WorkspaceSetting<T>>
+    public class WorkspaceSetting<T> : ObservableObject, IWorkspaceSetting, IEquatable<WorkspaceSetting<T>>
     {
         #region Properties
 
+        private string _key;
         /// <summary>
         /// Key for this setting. Should be unique.
         /// </summary>
-        public string Key { get; set; }
+        public string Key 
+        {
+            get => _key;
+            set => SetProperty(ref _key, value);
+        }
 
+        private T _value;
         /// <summary>
         /// Value for the setting.
         /// </summary>
-        public T Value { get; set; }
+        public T Value
+        {
+            get => _value;
+            set { SetProperty(ref _value, value); OnPropertyChanged(nameof(UntypedValue)); OnPropertyChanged(nameof(HasChanged)); OnPropertyChanged(nameof(HasDefaultValue)); }
+        }
 
         /// <summary>
         /// Value for the setting. This reflects the value of <see cref="Value"/>.
@@ -28,10 +40,15 @@
             set => Value = (T)Convert.ChangeType(value, typeof(T));
         }
 
+        private T _defaultValue;
         /// <summary>
         /// Default value for the setting.
         /// </summary>
-        public T DefaultValue { get; set; }
+        public T DefaultValue
+        {
+            get => _defaultValue;
+            set { SetProperty(ref _defaultValue, value); OnPropertyChanged(nameof(HasDefaultValue)); }
+        }
 
         /// <summary>
         /// Default value for the setting. This reflects the value of <see cref="DefaultValue"/>
@@ -39,16 +56,43 @@
         /// </summary>
         public object UntypedDefaultValue => DefaultValue!;
 
+        private T _snapshotValue;
         /// <summary>
         /// Snapshot value for the setting. This is the value at the time the <see cref="CreateSnapshot"/> method was called.
         /// </summary>
-        public T SnapshotValue { get; private set; }
+        public T SnapshotValue
+        {
+            get => _snapshotValue;
+            private set { SetProperty(ref _snapshotValue, value); OnPropertyChanged(nameof(HasChanged)); }
+        }
 
         /// <summary>
         /// Snapshot value for the setting. This reflects the value of <see cref="SnapshotValue"/>
         /// This is type independent by using the <see cref="object"/> type.
         /// </summary>
         public object UntypedSnapshotValue => SnapshotValue!;
+
+        /// <summary>
+        /// Minimum value for the setting.
+        /// </summary>
+        public T MinValue { get; }
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// </summary>
+        public T MaxValue { get; }
+
+        /// <summary>
+        /// Minimum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        public object UntypedMinValue => MinValue!;
+
+        /// <summary>
+        /// Maximum value for the setting.
+        /// This is type independent by using the <see cref="object"/> type.
+        /// </summary>
+        public object UntypedMaxValue => MaxValue!;
 
         /// <summary>
         /// Type of this setting
@@ -83,12 +127,16 @@
         /// </summary>
         /// <param name="key">Key for this setting. This should be unique.</param>
         /// <param name="defaultValue">Default value</param>
-        public WorkspaceSetting(string key, T defaultValue)
+        /// <param name="minValue">Minimum value for the setting</param>
+        /// <param name="maxValue">Maximum value for the setting</param>
+        public WorkspaceSetting(string key, T defaultValue, T minValue = default, T maxValue = default)
         {
             Key = key;
             Value = defaultValue;
             SnapshotValue = defaultValue;
             DefaultValue = defaultValue;
+            MinValue = minValue;
+            MaxValue = maxValue;
         }
 
         /// <summary>
@@ -102,6 +150,8 @@
             Value = (other.Value is ICloneable cloneableValue) ? (T)cloneableValue.Clone() : other.Value;
             DefaultValue = (other.DefaultValue is ICloneable cloneableDefaultValue) ? (T)cloneableDefaultValue.Clone() : other.DefaultValue;
             SnapshotValue = (other.SnapshotValue is ICloneable cloneableSnapshotValue) ? (T)cloneableSnapshotValue.Clone() : other.SnapshotValue;
+            MinValue = (other.MinValue is ICloneable cloneableMinValue) ? (T)cloneableMinValue.Clone() : other.MinValue;
+            MaxValue = (other.MaxValue is ICloneable cloneableMaxValue) ? (T)cloneableMaxValue.Clone() : other.MaxValue;
         }
 
         #endregion

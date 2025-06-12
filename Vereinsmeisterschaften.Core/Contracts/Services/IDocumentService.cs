@@ -12,5 +12,6 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     {
         Task<int> CreateCertificates(bool createPdf = true, PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null);
         Task CreateOverviewList(bool createPdf = true);
+        Task CreateRaceStartList(bool createPdf = true);
     }
 }

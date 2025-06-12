@@ -44,6 +44,7 @@ public class PrepareDocumentsViewModel : ObservableObject
             OnPropertyChanged(nameof(IsDocumentCreationRunning));
             ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
             ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
         }
     }
 
@@ -70,6 +71,7 @@ public class PrepareDocumentsViewModel : ObservableObject
             OnPropertyChanged(nameof(IsDocumentCreationRunning));
             ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
             ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
         }
     }
 
@@ -83,10 +85,37 @@ public class PrepareDocumentsViewModel : ObservableObject
         set => SetProperty(ref _overviewListCreationSuccessful, value);
     }
 
+    private bool _isRaceStartListCreationRunning = false;
     /// <summary>
-    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list).
+    /// Indicates whether the race start list creation process is currently running.
     /// </summary>
-    public bool IsDocumentCreationRunning => IsCertificateCreationRunning || IsOverviewListCreationRunning;
+    public bool IsRaceStartListCreationRunning
+    {
+        get => _isRaceStartListCreationRunning;
+        set
+        {
+            SetProperty(ref _isRaceStartListCreationRunning, value);
+            OnPropertyChanged(nameof(IsDocumentCreationRunning));
+            ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
+        }
+    }
+
+    private bool _raceStartListCreationSuccessful = false;
+    /// <summary>
+    /// Indicates whether the last race start list creation process was successful.
+    /// </summary>
+    public bool RaceStartListCreationSuccessful
+    {
+        get => _raceStartListCreationSuccessful;
+        set => SetProperty(ref _raceStartListCreationSuccessful, value);
+    }
+
+    /// <summary>
+    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
+    /// </summary>
+    public bool IsDocumentCreationRunning => IsCertificateCreationRunning || IsOverviewListCreationRunning || IsRaceStartListCreationRunning;
     
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -213,6 +242,28 @@ public class PrepareDocumentsViewModel : ObservableObject
             await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
         IsOverviewListCreationRunning = false;
+    }, () => !IsDocumentCreationRunning));
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private ICommand _createRaceStartListCommand;
+    /// <summary>
+    /// Command to create an race start list.
+    /// </summary>
+    public ICommand CreateRaceStartListCommand => _createRaceStartListCommand ?? (_createRaceStartListCommand = new RelayCommand(async () =>
+    {
+        IsRaceStartListCreationRunning = true;
+        try
+        {
+            RaceStartListCreationSuccessful = false;
+            await _documentService.CreateRaceStartList();
+            RaceStartListCreationSuccessful = true;
+        }
+        catch (Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+        }
+        IsRaceStartListCreationRunning = false;
     }, () => !IsDocumentCreationRunning));
 
 }

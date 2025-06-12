@@ -59,8 +59,9 @@ namespace Vereinsmeisterschaften.Core.Helpers
         /// <param name="templateFile">Path to a template file containing placeholders</param>
         /// <param name="outputFile">Path where the file with replaced placeholders should be saved to</param>
         /// <param name="placeholders">Placeholder, value pairs</param>
+        /// <param name="keepUnknownPlaceholders">Don't change placeholders from unknown values; if false, placeholder is replaced by <see cref="string.Empty"/></param>
         /// <returns>True, if placeholders were replaced; otherwise false</returns>
-        public static bool ReplaceTextPlaceholders(string templateFile, string outputFile, TextPlaceholders placeholders)
+        public static bool ReplaceTextPlaceholders(string templateFile, string outputFile, TextPlaceholders placeholders, bool keepUnknownPlaceholders = true)
         {
             bool result;
             using (DocX templateDocument = DocX.Load(templateFile))
@@ -76,7 +77,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                         {
                             return placeholders.Placeholders[placeholderWithoutMarkers];
                         }
-                        return placeholderWithoutMarkers;
+                        return keepUnknownPlaceholders ? (PlaceholderMarker + placeholderWithoutMarkers + PlaceholderMarker) : string.Empty;
                     }
                 });
                 // Save the document with the replaced placeholders as new file

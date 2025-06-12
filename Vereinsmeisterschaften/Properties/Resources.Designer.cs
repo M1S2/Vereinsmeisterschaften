@@ -279,6 +279,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race Start List was created. ähnelt.
+        /// </summary>
+        public static string CreateRaceStartListResultString {
+            get {
+                return ResourceManager.GetString("CreateRaceStartListResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Race Start List ähnelt.
+        /// </summary>
+        public static string CreateRaceStartListString {
+            get {
+                return ResourceManager.GetString("CreateRaceStartListString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {
@@ -542,9 +560,9 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Overview List Template ähnelt.
         /// </summary>
-        public static string OverviewlistTemplatePathString {
+        public static string OverviewListTemplatePathString {
             get {
-                return ResourceManager.GetString("OverviewlistTemplatePathString", resourceCulture);
+                return ResourceManager.GetString("OverviewListTemplatePathString", resourceCulture);
             }
         }
         
@@ -618,6 +636,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string RaceEmptyString {
             get {
                 return ResourceManager.GetString("RaceEmptyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race Start List Template ähnelt.
+        /// </summary>
+        public static string RaceStartListTemplatePathString {
+            get {
+                return ResourceManager.GetString("RaceStartListTemplatePathString", resourceCulture);
             }
         }
         
@@ -1086,9 +1113,18 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Path to the overview list template. ähnelt.
         /// </summary>
-        public static string TooltipOverviewlistTemplatePath {
+        public static string TooltipOverviewListTemplatePath {
             get {
-                return ResourceManager.GetString("TooltipOverviewlistTemplatePath", resourceCulture);
+                return ResourceManager.GetString("TooltipOverviewListTemplatePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the race start list template. ähnelt.
+        /// </summary>
+        public static string TooltipRaceStartListTemplatePath {
+            get {
+                return ResourceManager.GetString("TooltipRaceStartListTemplatePath", resourceCulture);
             }
         }
         

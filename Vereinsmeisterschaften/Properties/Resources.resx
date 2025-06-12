@@ -486,10 +486,10 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="DocumentOutputFolderString" xml:space="preserve">
     <value>Document output folder</value>
   </data>
-  <data name="TooltipOverviewlistTemplatePath" xml:space="preserve">
+  <data name="TooltipOverviewListTemplatePath" xml:space="preserve">
     <value>Path to the overview list template.</value>
   </data>
-  <data name="OverviewlistTemplatePathString" xml:space="preserve">
+  <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Overview List Template</value>
   </data>
   <data name="TooltipLibreOfficePath" xml:space="preserve">
@@ -497,5 +497,17 @@ If the number of variants after calculation is reached earlier, the loop will br
   </data>
   <data name="LibreOfficePathString" xml:space="preserve">
     <value>LibreOffice Path</value>
+  </data>
+  <data name="CreateRaceStartListString" xml:space="preserve">
+    <value>Create Race Start List</value>
+  </data>
+  <data name="CreateRaceStartListResultString" xml:space="preserve">
+    <value>Race Start List was created.</value>
+  </data>
+  <data name="RaceStartListTemplatePathString" xml:space="preserve">
+    <value>Race Start List Template</value>
+  </data>
+  <data name="TooltipRaceStartListTemplatePath" xml:space="preserve">
+    <value>Path to the race start list template.</value>
   </data>
 </root>

@@ -487,10 +487,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="DocumentOutputFolderString" xml:space="preserve">
     <value>Dokumente Ausgabeordner</value>
   </data>
-  <data name="TooltipOverviewlistTemplatePath" xml:space="preserve">
+  <data name="TooltipOverviewListTemplatePath" xml:space="preserve">
     <value>Pfad zum Übersichtslisten Template.</value>
   </data>
-  <data name="OverviewlistTemplatePathString" xml:space="preserve">
+  <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Übersichtslisten Template</value>
   </data>
   <data name="TooltipLibreOfficePath" xml:space="preserve">
@@ -498,5 +498,17 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="LibreOfficePathString" xml:space="preserve">
     <value>LibreOffice Pfad</value>
+  </data>
+  <data name="CreateRaceStartListString" xml:space="preserve">
+    <value>Renn-Startliste erstellen</value>
+  </data>
+  <data name="CreateRaceStartListResultString" xml:space="preserve">
+    <value>Renn-Startliste wurde erstellt.</value>
+  </data>
+  <data name="RaceStartListTemplatePathString" xml:space="preserve">
+    <value>Renn-Startlisten Template</value>
+  </data>
+  <data name="TooltipRaceStartListTemplatePath" xml:space="preserve">
+    <value>Pfad zum Renn-Startlisten Template.</value>
   </data>
 </root>

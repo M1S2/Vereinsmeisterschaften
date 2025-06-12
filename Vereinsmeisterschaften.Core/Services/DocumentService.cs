@@ -29,11 +29,13 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IPersonService _personService;
         private IWorkspaceService _workspaceService;
+        private IRaceService _raceService;
 
-        public DocumentService(IPersonService personService, IWorkspaceService workspaceService)
+        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService)
         {
             _personService = personService;
             _workspaceService = workspaceService;
+            _raceService = raceService;
         }
 
         private string getDocumentOutputFolderAbsolute()
@@ -48,6 +50,22 @@ namespace Vereinsmeisterschaften.Core.Services
             string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
             libreOfficePath = FilePathHelper.MakePathAbsolute(libreOfficePath, _workspaceService?.PersistentPath);
             return libreOfficePath;
+        }
+
+        private void insertCompetitionYearPlaceholderValue(string templateFile, string outputFile)
+        {
+            ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
+            textPlaceholders.Add("Jahr", competitionYear.ToString());
+            DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders);
+        }
+
+        private void convertToPdf(string docxFile)
+        {
+            // Convert the docx file to pdf
+            string outputFilePdf = docxFile.Replace(".docx", ".pdf");
+            File.Delete(outputFilePdf);
+            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, getLibreOfficePathAbsolute());
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -111,10 +129,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
                         if (createPdf)
                         {
-                            // Convert the combined docx file to pdf
-                            string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                            File.Delete(outputFilePdf);
-                            LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
+                            convertToPdf(outputFile);
                         }
                     }
                     catch(Exception)
@@ -166,11 +181,11 @@ namespace Vereinsmeisterschaften.Core.Services
                 string certificateTemplatePath = getCertificateTemplatePathAbsolute();
                 DocXPlaceholderHelper.ReplaceTextPlaceholders(certificateTemplatePath, outputFile, textPlaceholders);
 
+                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+
                 if (createPdf)
                 {
-                    // Convert the docx file to pdf
-                    string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
+                    convertToPdf(outputFile);
                 }
                 return 1;       // This method always creates one certificate, so we return 1 to indicate success
             });
@@ -186,6 +201,8 @@ namespace Vereinsmeisterschaften.Core.Services
         #endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Overview List Creation
 
         public Task CreateOverviewList(bool createPdf = true)
         {
@@ -206,16 +223,20 @@ namespace Vereinsmeisterschaften.Core.Services
                 tablePlaceholders.Add("Lage", styles);
 
                 string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                if (!Directory.Exists(documentOutputFolder))
+                {
+                    Directory.CreateDirectory(documentOutputFolder);
+                }
+
                 string overviewListTemplatePath = getOverviewListTemplatePathAbsolute();
                 string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(overviewListTemplatePath).Replace("_Template", "") + ".docx");
                 DocXPlaceholderHelper.ReplaceTablePlaceholders(overviewListTemplatePath, outputFile, tablePlaceholders);
 
+                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+
                 if (createPdf)
                 {
-                    // Convert the docx file to pdf
-                    string outputFilePdf = outputFile.Replace(".docx", ".pdf");
-                    File.Delete(outputFilePdf);
-                    LibreOfficeDocumentConverter.Convert(outputFile, outputFilePdf, getLibreOfficePathAbsolute());
+                    convertToPdf(outputFile);
                 }
             });
         }
@@ -226,6 +247,75 @@ namespace Vereinsmeisterschaften.Core.Services
             overviewListTemplatePath = FilePathHelper.MakePathAbsolute(overviewListTemplatePath, _workspaceService?.PersistentPath);
             return overviewListTemplatePath;
         }
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Race Start List Creation
+
+        public Task CreateRaceStartList(bool createPdf = true)
+        {
+            return Task.Run(() =>
+            {
+                RacesVariant racesVariant = _raceService.PersistedRacesVariant;
+                if(racesVariant == null) { return; }
+
+                List<string> competitions = new List<string>();
+                List<string> styles = new List<string>();
+                List<string> distances = new List<string>();
+                List<List<string>> names = new List<List<string>>();
+                int maxNamesInRace = 0;
+                foreach (Race race in racesVariant.Races)
+                {
+                    competitions.Add(string.Join(", ", race.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?")).TrimEnd(','));
+                    styles.Add(race.Style.ToString());
+                    distances.Add(race.Distance.ToString());
+
+                    List<string> personNames = race.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
+                    maxNamesInRace = Math.Max(maxNamesInRace, personNames.Count);
+                    names.Add(personNames);
+                }
+
+                ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
+
+                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
+                tablePlaceholders.Add("WK", competitions);
+#warning Add localization for "Lage"
+                tablePlaceholders.Add("Lage", styles);
+                tablePlaceholders.Add("Strecke", distances);
+                for (int i = 0; i < Math.Max(numSwimLanes, maxNamesInRace); i++)
+                {
+                    tablePlaceholders.Add("Name" + (i + 1), names.Select(innerNames => innerNames.Count > i ? innerNames[i] : "").ToList());
+                }
+
+                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                if (!Directory.Exists(documentOutputFolder))
+                {
+                    Directory.CreateDirectory(documentOutputFolder);
+                }
+
+                string raceStartListTemplatePath = getRaceStartListTemplatePathAbsolute();
+                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(raceStartListTemplatePath).Replace("_Template", "") + ".docx");
+                DocXPlaceholderHelper.ReplaceTablePlaceholders(raceStartListTemplatePath, outputFile, tablePlaceholders);
+
+                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+
+                if (createPdf)
+                {
+                    convertToPdf(outputFile);
+                }
+            });
+        }
+
+        private string getRaceStartListTemplatePathAbsolute()
+        {
+            string raceStartListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH) ?? string.Empty;
+            raceStartListTemplatePath = FilePathHelper.MakePathAbsolute(raceStartListTemplatePath, _workspaceService?.PersistentPath);
+            return raceStartListTemplatePath;
+        }
+
+        #endregion
 
     }
 }

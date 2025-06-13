@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Available Placeholders ähnelt.
+        /// </summary>
+        public static string AvailablePlaceholdersString {
+            get {
+                return ResourceManager.GetString("AvailablePlaceholdersString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
         /// </summary>
         public static string BackstrokeString {
@@ -600,6 +609,115 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PersonStartDragDropErrorString {
             get {
                 return ResourceManager.GetString("PersonStartDragDropErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the birth year. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoBirthYear {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoBirthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the competition ID. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoCompetitionID {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoCompetitionID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the competition year.
+        ///This only works outside of tables. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoCompetitionYear {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoCompetitionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the distance in m. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoDistance {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the complete name (&lt;first name&gt; &lt;last name&gt;). ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoName {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the swimming style. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoSwimmingStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoSwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Birth Year ähnelt.
+        /// </summary>
+        public static string PlaceholderNameBirthYear {
+            get {
+                return ResourceManager.GetString("PlaceholderNameBirthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
+        /// </summary>
+        public static string PlaceholderNameCompetitionID {
+            get {
+                return ResourceManager.GetString("PlaceholderNameCompetitionID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Year ähnelt.
+        /// </summary>
+        public static string PlaceholderNameCompetitionYear {
+            get {
+                return ResourceManager.GetString("PlaceholderNameCompetitionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distance ähnelt.
+        /// </summary>
+        public static string PlaceholderNameDistance {
+            get {
+                return ResourceManager.GetString("PlaceholderNameDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string PlaceholderNameName {
+            get {
+                return ResourceManager.GetString("PlaceholderNameName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
+        /// </summary>
+        public static string PlaceholderNameSwimmingStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderNameSwimmingStyle", resourceCulture);
             }
         }
         

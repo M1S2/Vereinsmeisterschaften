@@ -511,4 +511,44 @@ Alle Starts sind zugewiesen.</value>
   <data name="TooltipRaceStartListTemplatePath" xml:space="preserve">
     <value>Pfad zum Renn-Startlisten Template.</value>
   </data>
+  <data name="PlaceholderNameCompetitionYear" xml:space="preserve">
+    <value>Wettkampfjahr</value>
+  </data>
+  <data name="PlaceholderInfoCompetitionYear" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um das Wettkampfjahr einzufügen.
+Kann nur außerhalb von Tabellen genutzt werden.</value>
+  </data>
+  <data name="PlaceholderInfoName" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Namen einzufügen (Format &lt;Vorname&gt; &lt;Nachname&gt;).</value>
+  </data>
+  <data name="PlaceholderNameName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AvailablePlaceholdersString" xml:space="preserve">
+    <value>Verfügbare Platzhalter</value>
+  </data>
+  <data name="PlaceholderInfoBirthYear" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um das Geburtsjahr einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameBirthYear" xml:space="preserve">
+    <value>Geburtsjahr</value>
+  </data>
+  <data name="PlaceholderInfoDistance" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Distanz in m einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameDistance" xml:space="preserve">
+    <value>Distanz</value>
+  </data>
+  <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Schwimmstil einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameSwimmingStyle" xml:space="preserve">
+    <value>Schwimmstil</value>
+  </data>
+  <data name="PlaceholderInfoCompetitionID" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Wettkampf ID einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameCompetitionID" xml:space="preserve">
+    <value>Wettkampf ID</value>
+  </data>
 </root>

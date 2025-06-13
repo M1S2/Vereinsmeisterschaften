@@ -13,6 +13,7 @@ using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Properties;
@@ -175,6 +176,19 @@ public class PrepareDocumentsViewModel : ObservableObject
         get => _filteredCompetitionID;
         set => SetProperty(ref _filteredCompetitionID, value);
     }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Placeholder Strings
+
+    public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, DocumentService.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Name => string.Join(Environment.NewLine, DocumentService.Placeholders_Name.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_BirthYear => string.Join(Environment.NewLine, DocumentService.Placeholders_BirthYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Distance => string.Join(Environment.NewLine, DocumentService.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, DocumentService.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, DocumentService.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+
+    #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

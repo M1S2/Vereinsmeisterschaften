@@ -27,6 +27,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -150,5 +151,61 @@
             <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsRaceStartListCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
 
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Placeholder Info-->
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+            <ScrollViewer>
+                <userControls:GridWithLines Margin="-1" GridLinesVisibility="Both" GridLineBrush="{StaticResource MahApps.Brushes.Accent}" GridLineThickness="2">
+                    <userControls:GridWithLines.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </userControls:GridWithLines.ColumnDefinitions>
+                    <userControls:GridWithLines.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </userControls:GridWithLines.RowDefinitions>
+                    <userControls:GridWithLines.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Padding" Value="7"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                            <Setter Property="IsReadOnly" Value="True"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </userControls:GridWithLines.Resources>
+
+                    <TextBox Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameCompetitionYear}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoCompetitionYear}"/>
+                    <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding PlaceholderString_CompetitionYear, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameName}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoName}"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding PlaceholderString_Name, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameBirthYear}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoBirthYear}"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding PlaceholderString_BirthYear, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="3" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameDistance}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoDistance}"/>
+                    <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding PlaceholderString_Distance, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameSwimmingStyle}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoSwimmingStyle}"/>
+                    <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding PlaceholderString_SwimmingStyle, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="5" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameCompetitionID}"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoCompetitionID}"/>
+                    <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding PlaceholderString_CompetitionID, Mode=OneWay}"/>
+                </userControls:GridWithLines>
+            </ScrollViewer>
+        </Expander>
+        
     </Grid>
 </Page>

@@ -56,7 +56,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, @"Dokumente");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Urkunde_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Urkunden_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Gesamtliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @"Startliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");

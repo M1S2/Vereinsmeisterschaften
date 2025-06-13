@@ -14,6 +14,7 @@ using Xceed.Document.NET;
 using System.Text.RegularExpressions;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Settings;
+using static Vereinsmeisterschaften.Core.Helpers.DocXPlaceholderHelper;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -23,8 +24,16 @@ namespace Vereinsmeisterschaften.Core.Services
     public class DocumentService : IDocumentService
     {
         private const string _tempFolderName = "temp";
-        private const string _certificateOutputFileNameDocx = "Urkunden{0}.docx";
-       
+        private const string _templatePostfix = "_Template";
+
+
+        public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
+        public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
+        public static List<string> Placeholders_BirthYear = new List<string>() { "Jahrgang", "JG", "BirthYear" };
+        public static List<string> Placeholders_Distance = new List<string>() { "Strecke", "S", "Distance", "D" };
+        public static List<string> Placeholders_SwimmingStyle = new List<string>() { "Lage", "L", "Style", "SwimmingStyle" };
+        public static List<string> Placeholders_CompetitionID = new List<string>() { "WK", "Wettkampf", "Competition", "C" };       
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IPersonService _personService;
@@ -56,7 +65,7 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
             DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
-            textPlaceholders.Add("Jahr", competitionYear.ToString());
+            foreach (string placeholder in Placeholders_CompetitionYear) { textPlaceholders.Add(placeholder, competitionYear.ToString()); }
             DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders);
         }
 
@@ -100,16 +109,19 @@ namespace Vereinsmeisterschaften.Core.Services
                         }
 
                         // Create the output file name based on the filter
-                        string outputFileNameDocx = string.Empty;
+                        string certificateTemplatePath = getCertificateTemplatePathAbsolute();
+                        string outputFileNameDocx = Path.GetFileNameWithoutExtension(certificateTemplatePath);
                         switch (personStartFilter)
                         {
-                            case PersonStartFilters.None: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, ""); break;
-                            case PersonStartFilters.Person: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_" + ((Person)personStartFilterParameter).FirstName + "_" + ((Person)personStartFilterParameter).Name); break;
+                            case PersonStartFilters.None: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
+                            case PersonStartFilters.Person: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + ((Person)personStartFilterParameter).FirstName + "_" + ((Person)personStartFilterParameter).Name); break;
 #warning Add localization for "Lage"
-                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_" + (SwimmingStyles)personStartFilterParameter); break;
-                            case PersonStartFilters.CompetitionID: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, "_WK" + (int)personStartFilterParameter); break;
-                            default: outputFileNameDocx = string.Format(_certificateOutputFileNameDocx, ""); break;
+                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + (SwimmingStyles)personStartFilterParameter); break;
+                            case PersonStartFilters.CompetitionID: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_WK" + (int)personStartFilterParameter); break;
+                            default: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
                         }
+                        outputFileNameDocx += ".docx";
+
                         string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
 
                         // Combine all docx files in the temp folder into one docx file
@@ -170,12 +182,12 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Collect all placeholder values
                 DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
-                textPlaceholders.Add("Name", personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name);
-                textPlaceholders.Add("JG", personStart.PersonObj?.BirthYear.ToString());
-                textPlaceholders.Add("Strecke", personStart.CompetitionObj.Distance.ToString() + "m");
+                foreach (string placeholder in Placeholders_Name) { textPlaceholders.Add(placeholder, personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name); }
+                foreach (string placeholder in Placeholders_BirthYear) { textPlaceholders.Add(placeholder, personStart.PersonObj?.BirthYear.ToString()); }
+                foreach (string placeholder in Placeholders_Distance) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.Distance.ToString() + "m"); }
 #warning Add localization for "Lage"
-                textPlaceholders.Add("Lage", personStart.Style.ToString());
-                textPlaceholders.Add("WK", personStart.CompetitionObj.ID.ToString());
+                foreach (string placeholder in Placeholders_SwimmingStyle) { textPlaceholders.Add(placeholder, personStart.Style.ToString()); }
+                foreach (string placeholder in Placeholders_CompetitionID) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.ID.ToString()); }
 
                 string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
                 string certificateTemplatePath = getCertificateTemplatePathAbsolute();
@@ -210,17 +222,26 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 List<PersonStart> personStarts = _personService.GetAllPersonStarts();
                 List<string> names = new List<string>();
+                List<string> birthYears = new List<string>();
                 List<string> styles = new List<string>();
+                List<string> distances = new List<string>();
+                List<string> competitions = new List<string>();
                 foreach (PersonStart personStart in personStarts)
                 {
                     names.Add(personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name);
+                    birthYears.Add(personStart.PersonObj?.BirthYear.ToString() ?? string.Empty);
                     styles.Add(personStart.Style.ToString());
+                    distances.Add(personStart.CompetitionObj?.Distance.ToString() + "m" ?? string.Empty);
+                    competitions.Add(personStart.CompetitionObj?.ID.ToString() ?? string.Empty);
                 }
 
                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
-                tablePlaceholders.Add("Name", names);
+                foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder, names); }
+                foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder, birthYears); }
 #warning Add localization for "Lage"
-                tablePlaceholders.Add("Lage", styles);
+                foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
+                foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
+                foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
 
                 string documentOutputFolder = getDocumentOutputFolderAbsolute();
                 if (!Directory.Exists(documentOutputFolder))
@@ -229,7 +250,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
 
                 string overviewListTemplatePath = getOverviewListTemplatePathAbsolute();
-                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(overviewListTemplatePath).Replace("_Template", "") + ".docx");
+                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(overviewListTemplatePath).Replace(_templatePostfix, "") + ".docx");
                 DocXPlaceholderHelper.ReplaceTablePlaceholders(overviewListTemplatePath, outputFile, tablePlaceholders);
 
                 insertCompetitionYearPlaceholderValue(outputFile, outputFile);
@@ -265,28 +286,33 @@ namespace Vereinsmeisterschaften.Core.Services
                 List<string> styles = new List<string>();
                 List<string> distances = new List<string>();
                 List<List<string>> names = new List<List<string>>();
-                int maxNamesInRace = 0;
+                List<List<string>> birthYears = new List<List<string>>();
+                int maxPersonsInRace = 0;
                 foreach (Race race in racesVariant.Races)
                 {
-                    competitions.Add(string.Join(", ", race.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?")).TrimEnd(','));
+                    competitions.Add(string.Join(", ", race.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?")).TrimEnd(',', ' '));
                     styles.Add(race.Style.ToString());
                     distances.Add(race.Distance.ToString());
 
                     List<string> personNames = race.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
-                    maxNamesInRace = Math.Max(maxNamesInRace, personNames.Count);
+                    maxPersonsInRace = Math.Max(maxPersonsInRace, personNames.Count);
                     names.Add(personNames);
+
+                    List<string> personBirthDates = race.Starts.Select(s => s.PersonObj?.BirthYear.ToString()).ToList();
+                    birthYears.Add(personBirthDates);
                 }
 
                 ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
 
                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
-                tablePlaceholders.Add("WK", competitions);
+                foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
 #warning Add localization for "Lage"
-                tablePlaceholders.Add("Lage", styles);
-                tablePlaceholders.Add("Strecke", distances);
-                for (int i = 0; i < Math.Max(numSwimLanes, maxNamesInRace); i++)
+                foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
+                foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
+                for (int i = 0; i < Math.Max(numSwimLanes, maxPersonsInRace); i++)
                 {
-                    tablePlaceholders.Add("Name" + (i + 1), names.Select(innerNames => innerNames.Count > i ? innerNames[i] : "").ToList());
+                    foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder + (i + 1), names.Select(innerNames => innerNames.Count > i ? innerNames[i] : "").ToList()); }
+                    foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder + (i + 1), birthYears.Select(innerBirthYear => innerBirthYear.Count > i ? innerBirthYear[i] : "").ToList()); }
                 }
 
                 string documentOutputFolder = getDocumentOutputFolderAbsolute();
@@ -296,7 +322,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
 
                 string raceStartListTemplatePath = getRaceStartListTemplatePathAbsolute();
-                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(raceStartListTemplatePath).Replace("_Template", "") + ".docx");
+                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(raceStartListTemplatePath).Replace(_templatePostfix, "") + ".docx");
                 DocXPlaceholderHelper.ReplaceTablePlaceholders(raceStartListTemplatePath, outputFile, tablePlaceholders);
 
                 insertCompetitionYearPlaceholderValue(outputFile, outputFile);

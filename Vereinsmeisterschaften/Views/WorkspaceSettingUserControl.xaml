@@ -16,14 +16,32 @@
                    Text="{Binding Label}" FontSize="{StaticResource MediumFontSize}"/>
 
         <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0" 
-                Visibility="{Binding HasDefaultValue, Converter={StaticResource InvertedBoolVisibilityConverter}}"
-                Command="{Binding SetToDefaultCommand}"
-                Style="{StaticResource StyleDefaultSettingsButton}"/>
+                Command="{Binding SetToDefaultCommand}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleDefaultSettingsButton}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasDefaultValue}" Value="False">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0"
-                Visibility="{Binding HasChanged, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Command="{Binding ResetCommand}" 
-                Style="{StaticResource StyleResetSettingsButton}"/>
+                Command="{Binding ResetCommand}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasChanged}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <ContentControl DockPanel.Dock="Right" 
                         Content="{Binding}" ContentTemplate="{Binding EditorTemplate}" />

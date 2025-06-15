@@ -117,28 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HighlightPersonStartModes_None" xml:space="preserve">
-    <value>None</value>
+  <data name="Genders_Male" xml:space="preserve">
+    <value>Männlich</value>
   </data>
-  <data name="HighlightPersonStartModes_SwimmingStyle" xml:space="preserve">
-    <value>Swimming Style</value>
+  <data name="Genders_Female" xml:space="preserve">
+    <value>Weiblich</value>
   </data>
-  <data name="HighlightPersonStartModes_Person" xml:space="preserve">
+  <data name="SwimmingStyles_Breaststroke" xml:space="preserve">
+    <value>Brust</value>
+  </data>
+  <data name="SwimmingStyles_Freestyle" xml:space="preserve">
+    <value>Freistil</value>
+  </data>
+  <data name="SwimmingStyles_Backstroke" xml:space="preserve">
+    <value>Rücken</value>
+  </data>
+  <data name="SwimmingStyles_Butterfly" xml:space="preserve">
+    <value>Delphin</value>
+  </data>
+  <data name="SwimmingStyles_Medley" xml:space="preserve">
+    <value>Lagen</value>
+  </data>
+  <data name="SwimmingStyles_WaterFlea" xml:space="preserve">
+    <value>Wasserfloh</value>
+  </data>
+  <data name="SwimmingStyles_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="ResultTypes_Overall" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="ResultTypes_Breaststroke" xml:space="preserve">
+    <value>Brust</value>
+  </data>
+  <data name="ResultTypes_Freestyle" xml:space="preserve">
+    <value>Freistil</value>
+  </data>
+  <data name="ResultTypes_Backstroke" xml:space="preserve">
+    <value>Rücken</value>
+  </data>
+  <data name="ResultTypes_Butterfly" xml:space="preserve">
+    <value>Delphin</value>
+  </data>
+  <data name="ResultTypes_Medley" xml:space="preserve">
+    <value>Lagen</value>
+  </data>
+  <data name="ResultTypes_WaterFlea" xml:space="preserve">
+    <value>Wasserfloh</value>
+  </data>
+  <data name="PersonStartFilters_None" xml:space="preserve">
+    <value>Kein Filter</value>
+  </data>
+  <data name="PersonStartFilters_Person" xml:space="preserve">
     <value>Person</value>
   </data>
-  <data name="HighlightPersonStartModes_Gender" xml:space="preserve">
-    <value>Gender</value>
+  <data name="PersonStartFilters_SwimmingStyle" xml:space="preserve">
+    <value>Schwimmstil</value>
   </data>
-  <data name="HighlightPersonStartModes_Distance" xml:space="preserve">
-    <value>Distance (m)</value>
-  </data>
-  <data name="TimeInputPersonStartFilterModes_None" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="TimeInputPersonStartFilterModes_Person" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="TimeInputPersonStartFilterModes_RaceID" xml:space="preserve">
-    <value>Race ID</value>
+  <data name="PersonStartFilters_CompetitionID" xml:space="preserve">
+    <value>Wettkampf-ID</value>
   </data>
 </root>

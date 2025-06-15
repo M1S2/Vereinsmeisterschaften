@@ -2,12 +2,13 @@
 using System.Globalization;
 using System.Resources;
 using System.Windows.Data;
+using Vereinsmeisterschaften.Core;
 
 namespace Vereinsmeisterschaften.Converters
 {
     /// <summary>
     /// Get a localized string based on the enum value to convert.
-    /// The entries in the separate Enums .resx file must have the format "{EnumType}_{EnumValue}"
+    /// The entries in the separate Enums or EnumsCore .resx file must have the format "{EnumType}_{EnumValue}"
     /// </summary>
     public class EnumToLocalizedStringConverter : IValueConverter
     {
@@ -24,6 +25,11 @@ namespace Vereinsmeisterschaften.Converters
                 // https://stackoverflow.com/questions/17380900/enum-localization
                 ResourceManager rm = new ResourceManager(typeof(Properties.Enums));
                 string resourceDisplayName = rm.GetString(enumValue.GetType().Name + "_" + enumValue);
+                if(string.IsNullOrWhiteSpace(resourceDisplayName))
+                {
+                    ResourceManager rmCore = new ResourceManager(typeof(Core.Properties.EnumsCore));
+                    resourceDisplayName = rmCore.GetString(enumValue.GetType().Name + "_" + enumValue);
+                }
                 return string.IsNullOrWhiteSpace(resourceDisplayName) ? string.Format("{0}", enumValue) : resourceDisplayName;
             }
         }

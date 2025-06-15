@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\EnumsCore.Designer.cs">
+      <DependentUpon>EnumsCore.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -22,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\EnumsCore.resx">
+      <LastGenOutput>EnumsCore.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.de-DE.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

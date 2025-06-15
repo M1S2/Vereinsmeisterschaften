@@ -26,13 +26,36 @@ namespace Vereinsmeisterschaften.Core.Services
         private const string _tempFolderName = "temp";
         private const string _templatePostfix = "_Template";
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Placeholders
+
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the competition year.
+        /// </summary>
         public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the name of a person.
+        /// </summary>
         public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the birth year of a person.
+        /// </summary>
         public static List<string> Placeholders_BirthYear = new List<string>() { "Jahrgang", "JG", "BirthYear" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the distance of a competition.
+        /// </summary>
         public static List<string> Placeholders_Distance = new List<string>() { "Strecke", "S", "Distance", "D" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the swimming style of a person.
+        /// </summary>
         public static List<string> Placeholders_SwimmingStyle = new List<string>() { "Lage", "L", "Style", "SwimmingStyle" };
-        public static List<string> Placeholders_CompetitionID = new List<string>() { "WK", "Wettkampf", "Competition", "C" };       
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the competition ID of a competition.
+        /// </summary>
+        public static List<string> Placeholders_CompetitionID = new List<string>() { "WK", "Wettkampf", "Competition", "C" };
+
+        #endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -47,6 +70,14 @@ namespace Vereinsmeisterschaften.Core.Services
             _raceService = raceService;
         }
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Helper methods
+
+        /// <summary>
+        /// Get the absolute path to the output folder for documents.
+        /// </summary>
+        /// <returns>Absolute path to the output folder for documents.</returns>
         private string getDocumentOutputFolderAbsolute()
         {
             string certificateOutputFolder = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER) ?? string.Empty;
@@ -54,6 +85,10 @@ namespace Vereinsmeisterschaften.Core.Services
             return certificateOutputFolder;
         }
 
+        /// <summary>
+        /// Get the absolute path to the LibreOffice executable.
+        /// </summary>
+        /// <returns>Absolute path to the LibreOffice executable.</returns>
         private string getLibreOfficePathAbsolute()
         {
             string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
@@ -61,6 +96,11 @@ namespace Vereinsmeisterschaften.Core.Services
             return libreOfficePath;
         }
 
+        /// <summary>
+        /// Insert the competition year placeholder value into the template file and save it to the output file.
+        /// </summary>
+        /// <param name="templateFile">File in which to insert the competition year to the corresponding placeholder.</param>
+        /// <param name="outputFile">Destination file location.</param>
         private void insertCompetitionYearPlaceholderValue(string templateFile, string outputFile)
         {
             ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
@@ -69,6 +109,10 @@ namespace Vereinsmeisterschaften.Core.Services
             DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders);
         }
 
+        /// <summary>
+        /// Convert a .docx file to a .pdf file using LibreOffice.
+        /// </summary>
+        /// <param name="docxFile">.docx file to convert. The same name with the extension .pdf instead of .docx is used.</param>
         private void convertToPdf(string docxFile)
         {
             // Convert the docx file to pdf
@@ -77,10 +121,19 @@ namespace Vereinsmeisterschaften.Core.Services
             LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, getLibreOfficePathAbsolute());
         }
 
+        #endregion
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         #region Certificate Creation
 
+        /// <summary>
+        /// Create certificates for all person starts in the database based on the given filter.
+        /// </summary>
+        /// <param name="createPdf">True to also create a .pdf file</param>
+        /// <param name="personStartFilter">Filter to select only some specific person starts</param>
+        /// <param name="personStartFilterParameter">Parameter for the personStartFilter</param>
+        /// <returns>Number of created certificates</returns>
         public Task<int> CreateCertificates(bool createPdf = true, PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
         {
             return Task.Run(async () =>
@@ -115,8 +168,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             case PersonStartFilters.None: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
                             case PersonStartFilters.Person: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + ((Person)personStartFilterParameter).FirstName + "_" + ((Person)personStartFilterParameter).Name); break;
-#warning Add localization for "Lage"
-                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + (SwimmingStyles)personStartFilterParameter); break;
+                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)personStartFilterParameter)); break;
                             case PersonStartFilters.CompetitionID: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_WK" + (int)personStartFilterParameter); break;
                             default: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
                         }
@@ -161,6 +213,13 @@ namespace Vereinsmeisterschaften.Core.Services
             });
         }
 
+        /// <summary>
+        /// Create a single certificate for a person start and save it to the output folder.
+        /// </summary>
+        /// <param name="personStart"><see cref="PersonStart"/> for which a certificate is created</param>
+        /// <param name="createPdf">True to also create a .pdf file</param>
+        /// <param name="outputFolder">Folder in which the certificate will be created</param>
+        /// <returns>1 if creation was successful; otherwise 0</returns>
         private Task<int> createSingleCertificate(PersonStart personStart, bool createPdf = true, string outputFolder = "")
         {
             return Task.Run(() =>
@@ -185,8 +244,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 foreach (string placeholder in Placeholders_Name) { textPlaceholders.Add(placeholder, personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name); }
                 foreach (string placeholder in Placeholders_BirthYear) { textPlaceholders.Add(placeholder, personStart.PersonObj?.BirthYear.ToString()); }
                 foreach (string placeholder in Placeholders_Distance) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.Distance.ToString() + "m"); }
-#warning Add localization for "Lage"
-                foreach (string placeholder in Placeholders_SwimmingStyle) { textPlaceholders.Add(placeholder, personStart.Style.ToString()); }
+                foreach (string placeholder in Placeholders_SwimmingStyle) { textPlaceholders.Add(placeholder, EnumCoreToLocalizedString.Convert(personStart.Style)); }
                 foreach (string placeholder in Placeholders_CompetitionID) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.ID.ToString()); }
 
                 string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
@@ -203,6 +261,10 @@ namespace Vereinsmeisterschaften.Core.Services
             });
         }
 
+        /// <summary>
+        /// Get the absolute path to the certificate template file.
+        /// </summary>
+        /// <returns>Absolute path to the certificate template file.</returns>
         private string getCertificateTemplatePathAbsolute()
         {
             string certificateTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH) ?? string.Empty;
@@ -216,6 +278,11 @@ namespace Vereinsmeisterschaften.Core.Services
 
         #region Overview List Creation
 
+        /// <summary>
+        /// Create an overview list of all person starts in the database and save it to the output folder.
+        /// </summary>
+        /// <param name="createPdf">True to also create a .pdf file</param>
+        /// <returns><see cref="Task"/> that can be used to run this async</returns>
         public Task CreateOverviewList(bool createPdf = true)
         {
             return Task.Run(() =>
@@ -230,7 +297,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 {
                     names.Add(personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name);
                     birthYears.Add(personStart.PersonObj?.BirthYear.ToString() ?? string.Empty);
-                    styles.Add(personStart.Style.ToString());
+                    styles.Add(EnumCoreToLocalizedString.Convert(personStart.Style));
                     distances.Add(personStart.CompetitionObj?.Distance.ToString() + "m" ?? string.Empty);
                     competitions.Add(personStart.CompetitionObj?.ID.ToString() ?? string.Empty);
                 }
@@ -238,7 +305,6 @@ namespace Vereinsmeisterschaften.Core.Services
                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
                 foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder, names); }
                 foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder, birthYears); }
-#warning Add localization for "Lage"
                 foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
                 foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
                 foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
@@ -262,6 +328,10 @@ namespace Vereinsmeisterschaften.Core.Services
             });
         }
 
+        /// <summary>
+        /// Get the absolute path to the overview list template file.
+        /// </summary>
+        /// <returns>Absolute path to the overview list template file.</returns>
         private string getOverviewListTemplatePathAbsolute()
         {
             string overviewListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH) ?? string.Empty;
@@ -275,6 +345,11 @@ namespace Vereinsmeisterschaften.Core.Services
 
         #region Race Start List Creation
 
+        /// <summary>
+        /// Create a list with all races and the planned order.
+        /// </summary>
+        /// <param name="createPdf">True to also create a .pdf file</param>
+        /// <returns><see cref="Task"/> that can be used to run this async</returns>
         public Task CreateRaceStartList(bool createPdf = true)
         {
             return Task.Run(() =>
@@ -291,7 +366,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 foreach (Race race in racesVariant.Races)
                 {
                     competitions.Add(string.Join(", ", race.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?")).TrimEnd(',', ' '));
-                    styles.Add(race.Style.ToString());
+                    styles.Add(EnumCoreToLocalizedString.Convert(race.Style));
                     distances.Add(race.Distance.ToString());
 
                     List<string> personNames = race.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
@@ -306,7 +381,6 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
                 foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
-#warning Add localization for "Lage"
                 foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
                 foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
                 for (int i = 0; i < Math.Max(numSwimLanes, maxPersonsInRace); i++)
@@ -334,6 +408,10 @@ namespace Vereinsmeisterschaften.Core.Services
             });
         }
 
+        /// <summary>
+        /// Get the absolute path to the race start list template file.
+        /// </summary>
+        /// <returns>Absolute path to the race start list template file.</returns>
         private string getRaceStartListTemplatePathAbsolute()
         {
             string raceStartListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH) ?? string.Empty;

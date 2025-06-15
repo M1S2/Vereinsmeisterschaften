@@ -108,7 +108,7 @@ namespace Vereinsmeisterschaften.Core.Services
             List<PersonStart> bestStarts = new List<PersonStart>();
             if (resultType == ResultTypes.Overall)
             {
-                bestStarts = sortedPersons.Where(p => p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
+                bestStarts = sortedPersons.Where(p => p.HighestScoreStyle != SwimmingStyles.Unknown && p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
             }
             else
             {

@@ -49,6 +49,16 @@ namespace Vereinsmeisterschaften.ViewModels
         /// </summary>
         public bool HasDefaultValue => Setting?.HasDefaultValue ?? true;
 
+        private bool _supportResetToDefault;
+        /// <summary>
+        /// Support for resetting the setting value to the default value.
+        /// </summary>
+        public bool SupportResetToDefault 
+        {
+            get => _supportResetToDefault;
+            set => SetProperty(ref _supportResetToDefault, value);
+        }
+
         /// <summary>
         /// Command to set the setting value back to the snapshot value
         /// </summary>
@@ -118,7 +128,8 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <param name="tooltip">Tooltip for this setting</param>
         /// <param name="icon">Icon for this setting. This should be e.g. "\uE787"</param>
         /// <param name="editorTemplate">Data template to assign a setting dependent editor view.</param>
-        public WorkspaceSettingViewModel(WorkspaceSetting<T> setting, string label, string tooltip, string icon, DataTemplate editorTemplate)
+        /// <param name="supportResetToDefault">Support for resetting the setting value to the default value.</param>
+        public WorkspaceSettingViewModel(WorkspaceSetting<T> setting, string label, string tooltip, string icon, DataTemplate editorTemplate, bool supportResetToDefault)
         {
             Setting = setting;
             Label = label;
@@ -132,13 +143,17 @@ namespace Vereinsmeisterschaften.ViewModels
                 OnPropertyChanged(nameof(HasDefaultValue)); 
             });
             SetToDefaultCommand = new RelayCommand(() => 
-            { 
-                setting?.SetToDefault(); 
+            {
+                if (SupportResetToDefault)
+                {
+                    setting?.SetToDefault();
+                }
                 OnPropertyChanged(nameof(Value)); 
                 OnPropertyChanged(nameof(HasDefaultValue)); 
                 OnPropertyChanged(nameof(HasChanged)); 
             });
             EditorTemplate = editorTemplate;
+            SupportResetToDefault = supportResetToDefault;
 
             if (setting != null)
             {

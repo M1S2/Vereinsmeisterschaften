@@ -40,6 +40,11 @@ namespace Vereinsmeisterschaften.ViewModels
         bool HasDefaultValue { get; }
 
         /// <summary>
+        /// Support for resetting the setting value to the default value.
+        /// </summary>
+        bool SupportResetToDefault { get; set; }
+
+        /// <summary>
         /// Command to set the setting value back to the snapshot value
         /// </summary>
         ICommand ResetCommand { get; }

@@ -19,10 +19,13 @@
                 Command="{Binding SetToDefaultCommand}">
             <Button.Style>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleDefaultSettingsButton}">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Visible"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding HasDefaultValue}" Value="False">
-                            <Setter Property="Visibility" Value="Visible"/>
+                        <DataTrigger Binding="{Binding HasDefaultValue}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SupportResetToDefault}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

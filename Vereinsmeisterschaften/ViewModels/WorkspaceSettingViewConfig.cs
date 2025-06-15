@@ -12,5 +12,6 @@ namespace Vereinsmeisterschaften.ViewModels
         public string Tooltip { get; set; }
         public string Icon { get; set; }
         public WorkspaceSettingEditorTypes Editor { get; set; }
+        public bool SupportResetToDefault { get; set; } = true;
     }
 }

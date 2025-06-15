@@ -189,7 +189,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     {
         { 
             WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR,
-            new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric } 
+            new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 
@@ -209,19 +209,19 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, 
-            new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative } 
+            new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, 
-            new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.FileRelative } 
+            new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, 
-            new WorkspaceSettingViewConfig() { Label=Resources.OverviewListTemplatePathString, Tooltip = Resources.TooltipOverviewListTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.FileRelative } 
+            new WorkspaceSettingViewConfig() { Label=Resources.OverviewListTemplatePathString, Tooltip = Resources.TooltipOverviewListTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false} 
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH,
-            new WorkspaceSettingViewConfig() { Label=Resources.RaceStartListTemplatePathString, Tooltip = Resources.TooltipRaceStartListTemplatePath, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.FileRelative }
+            new WorkspaceSettingViewConfig() { Label=Resources.RaceStartListTemplatePathString, Tooltip = Resources.TooltipRaceStartListTemplatePath, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
@@ -254,7 +254,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
                                                                                 settingKeyConfigDict[setting.Key].Label,
                                                                                 settingKeyConfigDict[setting.Key].Tooltip,
                                                                                 settingKeyConfigDict[setting.Key].Icon,
-                                                                                editorTemplate)!;
+                                                                                editorTemplate,
+                                                                                settingKeyConfigDict[setting.Key].SupportResetToDefault)!;
                 }));
 
             SettingsGroups.Add(groupVm);

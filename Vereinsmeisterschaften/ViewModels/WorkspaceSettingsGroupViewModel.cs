@@ -43,9 +43,9 @@ namespace Vereinsmeisterschaften.ViewModels
         public bool HasChanged => Settings?.Any(s => s.HasChanged) ?? false;
 
         /// <summary>
-        /// True if all setting values in this group are the default value
+        /// True if all setting values in this group are the default value. Settings that do not support resetting to default are regarded as default.
         /// </summary>
-        public bool HasDefaultValue => Settings?.All(s => s.HasDefaultValue) ?? true;
+        public bool HasDefaultValue => !Settings?.Any(s => s.SupportResetToDefault && !s.HasDefaultValue) ?? true;
 
         /// <summary>
         /// List with all <see cref="IWorkspaceSettingViewModel"/> instances belonging to this group

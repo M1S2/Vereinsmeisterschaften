@@ -550,4 +550,28 @@ This only works outside of tables.</value>
   <data name="PlaceholderNameCompetitionID" xml:space="preserve">
     <value>Competition ID</value>
   </data>
+  <data name="ResultListTemplatePathString" xml:space="preserve">
+    <value>Result List Template</value>
+  </data>
+  <data name="TooltipResultListTemplatePath" xml:space="preserve">
+    <value>Path to the result list template.</value>
+  </data>
+  <data name="CreateResultListString" xml:space="preserve">
+    <value>Create Result List</value>
+  </data>
+  <data name="CreateResultListResultString" xml:space="preserve">
+    <value>Result List was created.</value>
+  </data>
+  <data name="PlaceholderNameScore" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="PlaceholderInfoScore" xml:space="preserve">
+    <value>Use these placeholders to insert the highest score.</value>
+  </data>
+  <data name="PlaceholderNameResultListPlace" xml:space="preserve">
+    <value>Result List Place</value>
+  </data>
+  <data name="PlaceholderInfoResultListPlace" xml:space="preserve">
+    <value>Use these placeholders to insert the place in the overall result list.</value>
+  </data>
 </root>

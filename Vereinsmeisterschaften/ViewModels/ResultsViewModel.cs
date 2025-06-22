@@ -23,6 +23,7 @@ public class ResultsViewModel : ObservableObject, INavigationAware
         {
             SetProperty(ref _resultType, value);
             SortedPersons = _scoreService.GetPersonsSortedByScore(_resultType);
+            _scoreService.UpdateResultListPlacesForAllPersons();
             OnPropertyChanged(nameof(PodiumGoldStarts));
             OnPropertyChanged(nameof(PodiumSilverStarts));
             OnPropertyChanged(nameof(PodiumBronzeStarts));

@@ -306,6 +306,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result List was created. ähnelt.
+        /// </summary>
+        public static string CreateResultListResultString {
+            get {
+                return ResourceManager.GetString("CreateResultListResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Result List ähnelt.
+        /// </summary>
+        public static string CreateResultListString {
+            get {
+                return ResourceManager.GetString("CreateResultListString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {
@@ -659,6 +677,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the place in the overall result list. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoResultListPlace {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoResultListPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the highest score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScore {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the swimming style. ähnelt.
         /// </summary>
         public static string PlaceholderInfoSwimmingStyle {
@@ -709,6 +745,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameName {
             get {
                 return ResourceManager.GetString("PlaceholderNameName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result List Place ähnelt.
+        /// </summary>
+        public static string PlaceholderNameResultListPlace {
+            get {
+                return ResourceManager.GetString("PlaceholderNameResultListPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScore {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScore", resourceCulture);
             }
         }
         
@@ -808,6 +862,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ReorderRaceVariantsString {
             get {
                 return ResourceManager.GetString("ReorderRaceVariantsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result List Template ähnelt.
+        /// </summary>
+        public static string ResultListTemplatePathString {
+            get {
+                return ResourceManager.GetString("ResultListTemplatePathString", resourceCulture);
             }
         }
         
@@ -1288,6 +1351,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipRaceVariantKeepWhileCalculationToggleButton {
             get {
                 return ResourceManager.GetString("TooltipRaceVariantKeepWhileCalculationToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list template. ähnelt.
+        /// </summary>
+        public static string TooltipResultListTemplatePath {
+            get {
+                return ResourceManager.GetString("TooltipResultListTemplatePath", resourceCulture);
             }
         }
         

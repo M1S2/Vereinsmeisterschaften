@@ -10,6 +10,7 @@
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
@@ -33,6 +34,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
@@ -44,7 +46,7 @@
         <!-- Create Certificates -->
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <!-- Create Certificates Button -->
-            <Button Command="{Binding CreateCertificatesCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+            <Button Command="{Binding CreateDocumentCommand}" CommandParameter="{x:Static viewModels:DocumentCreationTypes.Certificates}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
                 <StackPanel Orientation="Vertical">
                     <controls:FontIcon FontSize="50" Glyph="&#xE8A5;" Margin="10"/>
                     <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateCertificatesString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
@@ -52,7 +54,7 @@
             </Button>
 
             <!-- String with certificate creation success -->
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CertificateCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding IsDocumentCreationSuccessful[Certificates], Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
                 <TextBlock Text="{Binding NumberCreatedCertificates, StringFormat={x:Static properties:Resources.CreateCertificatesResultString}}" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </StackPanel>
@@ -112,48 +114,66 @@
                 </controls:NumericUpDown.Style>
             </controls:NumericUpDown>
 
-            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsCertificateCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsDocumentCreationRunning[Certificates], Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Overview List -->
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <!-- Create Overview List Button -->
-            <Button Command="{Binding CreateOverviewListCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+            <Button Command="{Binding CreateDocumentCommand}" CommandParameter="{x:Static viewModels:DocumentCreationTypes.OverviewList}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
                 <StackPanel Orientation="Vertical">
                     <controls:FontIcon FontSize="50" Glyph="&#xE9D5;" Margin="10"/>
                     <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateOverviewListString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
             <!-- String with overview list creation success -->
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding OverviewListCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding IsDocumentCreationSuccessful[OverviewList], Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
                 <TextBlock Text="{x:Static properties:Resources.CreateOverviewListResultString}" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </StackPanel>
-            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsOverviewListCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsDocumentCreationRunning[OverviewList], Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Race Start List -->
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <!-- Create Race Start List Button -->
-            <Button Command="{Binding CreateRaceStartListCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+            <Button Command="{Binding CreateDocumentCommand}" CommandParameter="{x:Static viewModels:DocumentCreationTypes.RaceStartList}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
                 <StackPanel Orientation="Vertical">
                     <controls:FontIcon FontSize="50" Glyph="&#xE7C1;" Margin="10"/>
                     <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateRaceStartListString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
             <!-- String with race start list creation success -->
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding RaceStartListCreationSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding IsDocumentCreationSuccessful[RaceStartList], Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
                 <TextBlock Text="{x:Static properties:Resources.CreateRaceStartListResultString}" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </StackPanel>
-            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsRaceStartListCreationRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsDocumentCreationRunning[RaceStartList], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </StackPanel>
+
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Result List -->
+        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+            <!-- Create Result List Button -->
+            <Button Command="{Binding CreateDocumentCommand}" CommandParameter="{x:Static viewModels:DocumentCreationTypes.ResultList}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                <StackPanel Orientation="Vertical">
+                    <controls:FontIcon FontSize="50" Glyph="&#xE9F9;" Margin="10"/>
+                    <TextBlock Margin="10" Text="{x:Static properties:Resources.CreateResultListString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                </StackPanel>
+            </Button>
+            <!-- String with result list creation success -->
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding IsDocumentCreationSuccessful[ResultList], Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
+                <TextBlock Text="{x:Static properties:Resources.CreateResultListResultString}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </StackPanel>
+            <controls:ProgressRing Margin="0,10,0,0" Visibility="{Binding IsDocumentCreationRunning[ResultList], Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <ScrollViewer>
                 <userControls:GridWithLines Margin="-1" GridLinesVisibility="Both" GridLineBrush="{StaticResource MahApps.Brushes.Accent}" GridLineThickness="2">
                     <userControls:GridWithLines.ColumnDefinitions>
@@ -162,6 +182,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </userControls:GridWithLines.ColumnDefinitions>
                     <userControls:GridWithLines.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -203,6 +225,14 @@
                     <TextBox Grid.Row="5" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameCompetitionID}"/>
                     <TextBox Grid.Row="5" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoCompetitionID}"/>
                     <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding PlaceholderString_CompetitionID, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="6" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameScore}"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoScore}"/>
+                    <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding PlaceholderString_Score, Mode=OneWay}"/>
+
+                    <TextBox Grid.Row="7" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameResultListPlace}"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoResultListPlace}"/>
+                    <TextBox Grid.Row="7" Grid.Column="2" Text="{Binding PlaceholderString_ResultListPlace, Mode=OneWay}"/>
                 </userControls:GridWithLines>
             </ScrollViewer>
         </Expander>

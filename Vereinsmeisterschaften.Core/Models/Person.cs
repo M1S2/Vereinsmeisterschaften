@@ -136,6 +136,24 @@ namespace Vereinsmeisterschaften.Core.Models
         public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
 
         /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// </summary>
+        [FileServiceIgnore]
+        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
+
+        private int _resultListPlace = 0;
+        /// <summary>
+        /// This is the place in the overall result list of the person.
+        /// This is 1-based. 0 means not assigned yet or not available.
+        /// </summary>
+        [FileServiceIgnore]
+        public int ResultListPlace
+        {
+            get => _resultListPlace;
+            set => SetProperty(ref _resultListPlace, value);
+        }
+
+        /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
         /// </summary>
         /// <param name="style">Requested <see cref="SwimmingStyles"/></param>

@@ -22,6 +22,45 @@ namespace Vereinsmeisterschaften.ViewModels;
 
 public class PrepareDocumentsViewModel : ObservableObject
 {
+    /// <summary>
+    /// Dictionary to hold the state of whether a document creation process is currently running for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, bool> IsDocumentCreationRunning { get; } = new Dictionary<DocumentCreationTypes, bool>();
+
+    /// <summary>
+    /// Dictionary to hold the state of whether a document creation process was successful for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, bool> IsDocumentCreationSuccessful { get; } = new Dictionary<DocumentCreationTypes, bool>();
+
+    private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
+    {
+        if (IsDocumentCreationRunning.ContainsKey(documentType))
+        {
+            IsDocumentCreationRunning[documentType] = isRunning;
+            OnPropertyChanged(nameof(IsDocumentCreationRunning));
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+
+    private void changeDocumentCreationSuccessfulState(DocumentCreationTypes documentType, bool isSuccessful)
+    {
+        if (IsDocumentCreationSuccessful.ContainsKey(documentType))
+        {
+            IsDocumentCreationSuccessful[documentType] = isSuccessful;
+            OnPropertyChanged(nameof(IsDocumentCreationSuccessful));
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+    
+    /// <summary>
+    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
+    /// </summary>
+    public bool IsAnyDocumentCreationRunning => IsDocumentCreationRunning.Any(r => r.Value == true);
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Create Certificates Properties
+
     private int _numberCreatedCertificates = 0;
     /// <summary>
     /// Number of created certificates during the last creation process.
@@ -32,93 +71,7 @@ public class PrepareDocumentsViewModel : ObservableObject
         set => SetProperty(ref _numberCreatedCertificates, value);
     }
 
-    private bool _isCertificateCreationRunning = false;
-    /// <summary>
-    /// Indicates whether the certificate creation process is currently running.
-    /// </summary>
-    public bool IsCertificateCreationRunning
-    {
-        get => _isCertificateCreationRunning;
-        set
-        {
-            SetProperty(ref _isCertificateCreationRunning, value);
-            OnPropertyChanged(nameof(IsDocumentCreationRunning));
-            ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private bool _certificateCreationSuccessful = false;
-    /// <summary>
-    /// Indicates whether the last certificate creation process was successful.
-    /// </summary>
-    public bool CertificateCreationSuccessful
-    {
-        get => _certificateCreationSuccessful;
-        set => SetProperty(ref _certificateCreationSuccessful, value);
-    }
-
-    private bool _isOverviewListCreationRunning = false;
-    /// <summary>
-    /// Indicates whether the overview list creation process is currently running.
-    /// </summary>
-    public bool IsOverviewListCreationRunning
-    {
-        get => _isOverviewListCreationRunning;
-        set
-        {
-            SetProperty(ref _isOverviewListCreationRunning, value);
-            OnPropertyChanged(nameof(IsDocumentCreationRunning));
-            ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private bool _overviewListCreationSuccessful = false;
-    /// <summary>
-    /// Indicates whether the last overview list creation process was successful.
-    /// </summary>
-    public bool OverviewListCreationSuccessful
-    {
-        get => _overviewListCreationSuccessful;
-        set => SetProperty(ref _overviewListCreationSuccessful, value);
-    }
-
-    private bool _isRaceStartListCreationRunning = false;
-    /// <summary>
-    /// Indicates whether the race start list creation process is currently running.
-    /// </summary>
-    public bool IsRaceStartListCreationRunning
-    {
-        get => _isRaceStartListCreationRunning;
-        set
-        {
-            SetProperty(ref _isRaceStartListCreationRunning, value);
-            OnPropertyChanged(nameof(IsDocumentCreationRunning));
-            ((RelayCommand)CreateCertificatesCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateOverviewListCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)CreateRaceStartListCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private bool _raceStartListCreationSuccessful = false;
-    /// <summary>
-    /// Indicates whether the last race start list creation process was successful.
-    /// </summary>
-    public bool RaceStartListCreationSuccessful
-    {
-        get => _raceStartListCreationSuccessful;
-        set => SetProperty(ref _raceStartListCreationSuccessful, value);
-    }
-
-    /// <summary>
-    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
-    /// </summary>
-    public bool IsDocumentCreationRunning => IsCertificateCreationRunning || IsOverviewListCreationRunning || IsRaceStartListCreationRunning;
-    
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private PersonStartFilters _personStartFilter = PersonStartFilters.None;
     /// <summary>
@@ -177,6 +130,8 @@ public class PrepareDocumentsViewModel : ObservableObject
         set => SetProperty(ref _filteredCompetitionID, value);
     }
 
+    #endregion
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     #region Placeholder Strings
@@ -187,6 +142,8 @@ public class PrepareDocumentsViewModel : ObservableObject
     public string PlaceholderString_Distance => string.Join(Environment.NewLine, DocumentService.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
     public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, DocumentService.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
     public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, DocumentService.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Score => string.Join(Environment.NewLine, DocumentService.Placeholders_Score.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_ResultListPlace => string.Join(Environment.NewLine, DocumentService.Placeholders_ResultListPlace.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
 
     #endregion
 
@@ -201,83 +158,70 @@ public class PrepareDocumentsViewModel : ObservableObject
         _documentService = documentService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+
+        List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
+        IsDocumentCreationRunning.Clear();
+        IsDocumentCreationSuccessful.Clear();
+        foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
+        {
+            IsDocumentCreationRunning.Add(type, false);
+            IsDocumentCreationSuccessful.Add(type, false);
+        }
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    private ICommand _createCertificatesCommand;
+    private ICommand _createDocumentCommand;
     /// <summary>
-    /// Command to create certificates for all <see cref="PersonStart"/> objects that match the selected filter.
+    /// Command to create documents. The type of document to create is determined by the command parameter (must be of type <see cref="DocumentCreationTypes"/>).
     /// </summary>
-    public ICommand CreateCertificatesCommand => _createCertificatesCommand ?? (_createCertificatesCommand = new RelayCommand(async() =>
+    public ICommand CreateDocumentCommand => _createDocumentCommand ?? (_createDocumentCommand = new RelayCommand<DocumentCreationTypes>(async (documentType) =>
     {
-        IsCertificateCreationRunning = true;
-
-        object filterParam = null;
-        switch (PersonStartFilter)
-        {
-            case PersonStartFilters.None: filterParam = null; break;
-            case PersonStartFilters.Person: filterParam = FilteredPerson; break;
-            case PersonStartFilters.SwimmingStyle: filterParam = FilteredSwimmingStyle; break;
-            case PersonStartFilters.CompetitionID: filterParam = FilteredCompetitionID; break;
-            default: break;
-        }
-
+        changeDocumentCreationRunningState(documentType, true);
         try
         {
-            CertificateCreationSuccessful = false;
-            NumberCreatedCertificates = await _documentService.CreateCertificates(true, PersonStartFilter, filterParam);
-            CertificateCreationSuccessful = true;
-        }
-        catch(Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-        }
-        IsCertificateCreationRunning = false;
-    }, () => !IsDocumentCreationRunning));
+            changeDocumentCreationSuccessfulState(documentType, false);
+            switch (documentType)
+            {
+                case DocumentCreationTypes.Certificates:
+                    {
+                        object filterParam = null;
+                        switch (PersonStartFilter)
+                        {
+                            case PersonStartFilters.None: filterParam = null; break;
+                            case PersonStartFilters.Person: filterParam = FilteredPerson; break;
+                            case PersonStartFilters.SwimmingStyle: filterParam = FilteredSwimmingStyle; break;
+                            case PersonStartFilters.CompetitionID: filterParam = FilteredCompetitionID; break;
+                            default: break;
+                        }
 
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    private ICommand _createOverviewListCommand;
-    /// <summary>
-    /// Command to create an overview list of all <see cref="PersonStart"/> objects.
-    /// </summary>
-    public ICommand CreateOverviewListCommand => _createOverviewListCommand ?? (_createOverviewListCommand = new RelayCommand(async () =>
-    {
-        IsOverviewListCreationRunning = true;
-        try
-        {
-            OverviewListCreationSuccessful = false;
-            await _documentService.CreateOverviewList();
-            OverviewListCreationSuccessful = true;
+                        NumberCreatedCertificates = await _documentService.CreateCertificates(true, PersonStartFilter, filterParam);
+                        break;
+                    }
+                case DocumentCreationTypes.OverviewList:
+                    {
+                        await _documentService.CreateOverviewList();
+                        break;
+                    }
+                case DocumentCreationTypes.RaceStartList:
+                    {
+                        await _documentService.CreateRaceStartList();
+                        break;
+                    }
+                case DocumentCreationTypes.ResultList:
+                    {
+                        await _documentService.CreateResultList();
+                        break;
+                    }
+                default: throw new ArgumentOutOfRangeException(nameof(documentType), documentType, "Unknown document type for creation command.");
+            }
+            changeDocumentCreationSuccessfulState(documentType, true);
         }
         catch (Exception ex)
         {
             await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
         }
-        IsOverviewListCreationRunning = false;
-    }, () => !IsDocumentCreationRunning));
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    private ICommand _createRaceStartListCommand;
-    /// <summary>
-    /// Command to create an race start list.
-    /// </summary>
-    public ICommand CreateRaceStartListCommand => _createRaceStartListCommand ?? (_createRaceStartListCommand = new RelayCommand(async () =>
-    {
-        IsRaceStartListCreationRunning = true;
-        try
-        {
-            RaceStartListCreationSuccessful = false;
-            await _documentService.CreateRaceStartList();
-            RaceStartListCreationSuccessful = true;
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-        }
-        IsRaceStartListCreationRunning = false;
-    }, () => !IsDocumentCreationRunning));
+        changeDocumentCreationRunningState(documentType, false);
+    }, (documentType) => !IsAnyDocumentCreationRunning));
 
 }

@@ -53,6 +53,14 @@ namespace Vereinsmeisterschaften.Core.Services
         /// List with all placeholders that can be used in the template to insert the competition ID of a competition.
         /// </summary>
         public static List<string> Placeholders_CompetitionID = new List<string>() { "WK", "Wettkampf", "Competition", "C" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the highest score of a person.
+        /// </summary>
+        public static List<string> Placeholders_Score = new List<string>() { "Punkte", "Score", "Pkt" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the place in the overall result list of a person.
+        /// </summary>
+        public static List<string> Placeholders_ResultListPlace = new List<string>() { "Platzierung", "Platz", "Result", "Place", "P" };
 
         #endregion
 
@@ -61,12 +69,14 @@ namespace Vereinsmeisterschaften.Core.Services
         private IPersonService _personService;
         private IWorkspaceService _workspaceService;
         private IRaceService _raceService;
+        private IScoreService _scoreService;
 
-        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService)
+        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService, IScoreService scoreService)
         {
             _personService = personService;
             _workspaceService = workspaceService;
             _raceService = raceService;
+            _scoreService = scoreService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -265,6 +275,7 @@ namespace Vereinsmeisterschaften.Core.Services
             foreach (string placeholder in Placeholders_Distance) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.Distance.ToString() + "m"); }
             foreach (string placeholder in Placeholders_SwimmingStyle) { textPlaceholders.Add(placeholder, EnumCoreToLocalizedString.Convert(personStart.Style)); }
             foreach (string placeholder in Placeholders_CompetitionID) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.ID.ToString()); }
+            foreach (string placeholder in Placeholders_Score) { textPlaceholders.Add(placeholder, personStart.Score.ToString("F2")); }
             return textPlaceholders;
         }
 
@@ -327,6 +338,7 @@ namespace Vereinsmeisterschaften.Core.Services
             List<string> styles = new List<string>();
             List<string> distances = new List<string>();
             List<string> competitions = new List<string>();
+            List<string> scores = new List<string>();
             foreach (PersonStart personStart in personStarts)
             {
                 names.Add(personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name);
@@ -334,6 +346,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 styles.Add(EnumCoreToLocalizedString.Convert(personStart.Style));
                 distances.Add(personStart.CompetitionObj?.Distance.ToString() + "m" ?? "?");
                 competitions.Add(personStart.CompetitionObj?.ID.ToString() ?? "?");
+                scores.Add(personStart.Score.ToString("F2"));
             }
 
             DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
@@ -342,6 +355,7 @@ namespace Vereinsmeisterschaften.Core.Services
             foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
             foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
             foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
+            foreach (string placeholder in Placeholders_Score) { tablePlaceholders.Add(placeholder, scores); }
             return tablePlaceholders;
         }
 
@@ -447,5 +461,88 @@ namespace Vereinsmeisterschaften.Core.Services
 
         #endregion
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Result List Creation
+
+        /// <summary>
+        /// Create a list with the overall result.
+        /// </summary>
+        /// <param name="createPdf">True to also create a .pdf file</param>
+        /// <returns><see cref="Task"/> that can be used to run this async</returns>
+        public Task CreateResultList(bool createPdf = true)
+        {
+            return Task.Run(() =>
+            {
+                string resultTemplatePath = getResultListTemplatePathAbsolute();
+                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                if (!Directory.Exists(documentOutputFolder))
+                {
+                    Directory.CreateDirectory(documentOutputFolder);
+                }
+                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(resultTemplatePath).Replace(_templatePostfix, "") + ".docx");
+
+                List<Person> sortedPersons = _scoreService.GetPersonsSortedByScore(ResultTypes.Overall);
+                _scoreService.UpdateResultListPlacesForAllPersons();
+                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = createTablePlaceholdersFromPersons(sortedPersons);
+                DocXPlaceholderHelper.ReplaceTablePlaceholders(resultTemplatePath, outputFile, tablePlaceholders);
+
+                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+
+                if (createPdf)
+                {
+                    convertToPdf(outputFile);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Create table placeholders from a list of <see cref="Person"/> objects.
+        /// </summary>
+        /// <param name="persons"><see cref="Person"/> objects</param>
+        /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
+        private DocXPlaceholderHelper.TablePlaceholders createTablePlaceholdersFromPersons(List<Person> persons)
+        {
+            List<string> names = new List<string>();
+            List<string> birthYears = new List<string>();
+            List<string> styles = new List<string>();
+            List<string> distances = new List<string>();
+            List<string> competitions = new List<string>();
+            List<string> scores = new List<string>();
+            List<string> resultListPlaces = new List<string>();
+            foreach (Person person in persons)
+            {
+                names.Add(person.FirstName + " " + person.Name);
+                birthYears.Add(person.BirthYear.ToString() ?? "?");
+                styles.Add(EnumCoreToLocalizedString.Convert(person.HighestScoreStyle));
+                distances.Add(person.HighestScoreCompetition?.Distance.ToString() + "m" ?? "?");
+                competitions.Add(person.HighestScoreCompetition?.ID.ToString() ?? "?");
+                scores.Add(person.HighestScore.ToString("F2"));
+                resultListPlaces.Add(person?.ResultListPlace == 0 ? "-" : person.ResultListPlace.ToString() ?? "?");
+            }
+
+            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
+            foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder, names); }
+            foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder, birthYears); }
+            foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
+            foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
+            foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
+            foreach (string placeholder in Placeholders_Score) { tablePlaceholders.Add(placeholder, scores); } 
+            foreach (string placeholder in Placeholders_ResultListPlace) { tablePlaceholders.Add(placeholder, resultListPlaces); }
+            return tablePlaceholders;
+        }
+
+        /// <summary>
+        /// Get the absolute path to the result list template file.
+        /// </summary>
+        /// <returns>Absolute path to the result list template file.</returns>
+        private string getResultListTemplatePathAbsolute()
+        {
+            string resultListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH) ?? string.Empty;
+            resultListTemplatePath = FilePathHelper.MakePathAbsolute(resultListTemplatePath, _workspaceService?.PersistentPath);
+            return resultListTemplatePath;
+        }
+
+        #endregion
     }
 }

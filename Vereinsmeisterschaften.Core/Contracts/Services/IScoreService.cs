@@ -22,6 +22,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void UpdateScoresForAllPersons();
 
         /// <summary>
+        /// Update the result list places for all <see cref="Person"/>.
+        /// </summary>
+        void UpdateResultListPlacesForAllPersons();
+
+        /// <summary>
         /// Get all persons, sort them depending on the requested <see cref="ResultTypes"/> and return as new list
         /// </summary>
         /// <param name="resultType">The list with all persons is sorted depending on this parameter</param>

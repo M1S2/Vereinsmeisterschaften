@@ -75,6 +75,24 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
+        /// Update the result list places for all <see cref="Person"/>.
+        /// </summary>
+        public void UpdateResultListPlacesForAllPersons()
+        {
+            List<Person> sortedPersons = GetPersonsSortedByScore(ResultTypes.Overall);
+            List<PersonStart> bestStarts = new List<PersonStart>();
+            bestStarts = sortedPersons.Where(p => p.HighestScoreStyle != SwimmingStyles.Unknown && p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
+
+            // Group all starts by the score. It is possible to have more than one start with the same score leading to the same podium place
+            List<IGrouping<double, PersonStart>> groupedStarts = bestStarts.GroupBy(s => s.Score).ToList();
+            sortedPersons.ForEach(p => p.ResultListPlace = 0); // Reset all result list places
+            foreach (PersonStart personStart in bestStarts)
+            {
+                personStart.PersonObj.ResultListPlace = groupedStarts.IndexOf(groupedStarts.FirstOrDefault(g => g.Contains(personStart))) + 1;
+            }
+        }
+
+        /// <summary>
         /// Get all persons, sort them depending on the requested <see cref="ResultTypes"/> and return as new list
         /// </summary>
         /// <param name="resultType">The list with all persons is sorted depending on this parameter</param>
@@ -105,6 +123,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public List<PersonStart> GetWinnersPodiumStarts(ResultTypes resultType, ResultPodiumsPlaces podiumsPlace)
         {
             List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
+            UpdateResultListPlacesForAllPersons();
             List<PersonStart> bestStarts = new List<PersonStart>();
             if (resultType == ResultTypes.Overall)
             {

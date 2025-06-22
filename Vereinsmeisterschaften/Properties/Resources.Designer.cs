@@ -270,6 +270,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Documents ähnelt.
+        /// </summary>
+        public static string CreateDocumentsPageTitle {
+            get {
+                return ResourceManager.GetString("CreateDocumentsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Overview List was created. ähnelt.
         /// </summary>
         public static string CreateOverviewListResultString {
@@ -776,15 +785,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die PrepareDocuments ähnelt.
-        /// </summary>
-        public static string PrepareDocumentsPageTitle {
-            get {
-                return ResourceManager.GetString("PrepareDocumentsPageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die PrepareRaces ähnelt.
         /// </summary>
         public static string PrepareRacesPageTitle {
@@ -1100,6 +1100,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CreateDocuments ähnelt.
+        /// </summary>
+        public static string ShellCreateDocumentsPage {
+            get {
+                return ResourceManager.GetString("ShellCreateDocumentsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Go back ähnelt.
         /// </summary>
         public static string ShellGoBackButton {
@@ -1132,15 +1141,6 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ShellPeoplePage {
             get {
                 return ResourceManager.GetString("ShellPeoplePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die PrepareDocuments ähnelt.
-        /// </summary>
-        public static string ShellPrepareDocumentsPage {
-            get {
-                return ResourceManager.GetString("ShellPrepareDocumentsPage", resourceCulture);
             }
         }
         

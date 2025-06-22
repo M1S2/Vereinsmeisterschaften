@@ -20,7 +20,7 @@ public class PageService : IPageService
         Configure<WorkspaceViewModel, WorkspacePage>();
         Configure<PeopleViewModel, PeoplePage>();
         Configure<PrepareRacesViewModel, PrepareRacesPage>();
-        Configure<PrepareDocumentsViewModel, PrepareDocumentsPage>();
+        Configure<CreateDocumentsViewModel, CreateDocumentsPage>();
         Configure<TimeInputViewModel, TimeInputPage>();
         Configure<ResultsViewModel, ResultsPage>();
         Configure<SettingsViewModel, SettingsPage>();

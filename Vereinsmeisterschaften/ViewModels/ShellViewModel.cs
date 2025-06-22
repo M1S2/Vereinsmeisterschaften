@@ -53,9 +53,9 @@ public class ShellViewModel : ObservableObject
         new HamburgerMenuGlyphItem() { Label = Resources.ShellWorkspacePage, Glyph = "\uE821", TargetPageType = typeof(WorkspaceViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellPeoplePage, Glyph = "\uE77B", TargetPageType = typeof(PeopleViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellPrepareRacesPage, Glyph = "\uE7C1", TargetPageType = typeof(PrepareRacesViewModel) },
-        new HamburgerMenuGlyphItem() { Label = Resources.ShellPrepareDocumentsPage, Glyph = "\uE8A5", TargetPageType = typeof(PrepareDocumentsViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellTimeInputPage, Glyph = "\uE916", TargetPageType = typeof(TimeInputViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellResultsPage, Glyph = "\uE9F9", TargetPageType = typeof(ResultsViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.ShellCreateDocumentsPage, Glyph = "\uE8A5", TargetPageType = typeof(CreateDocumentsViewModel) },
     };
 
     public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()

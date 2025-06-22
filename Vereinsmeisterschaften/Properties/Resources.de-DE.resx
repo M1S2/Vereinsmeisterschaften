@@ -159,11 +159,11 @@
   <data name="TimeInputPageTitle" xml:space="preserve">
     <value>Zeiten eingeben</value>
   </data>
-  <data name="ShellPrepareDocumentsPage" xml:space="preserve">
-    <value>Unterlagen vorbereiten</value>
+  <data name="ShellCreateDocumentsPage" xml:space="preserve">
+    <value>Dokumente erstellen</value>
   </data>
-  <data name="PrepareDocumentsPageTitle" xml:space="preserve">
-    <value>Unterlagen vorbereiten</value>
+  <data name="CreateDocumentsPageTitle" xml:space="preserve">
+    <value>Dokumente erstellen</value>
   </data>
   <data name="ShellPeoplePage" xml:space="preserve">
     <value>Meldungen</value>

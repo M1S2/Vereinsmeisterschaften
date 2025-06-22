@@ -159,11 +159,11 @@
   <data name="TimeInputPageTitle" xml:space="preserve">
     <value>TimeInput</value>
   </data>
-  <data name="ShellPrepareDocumentsPage" xml:space="preserve">
-    <value>PrepareDocuments</value>
+  <data name="ShellCreateDocumentsPage" xml:space="preserve">
+    <value>CreateDocuments</value>
   </data>
-  <data name="PrepareDocumentsPageTitle" xml:space="preserve">
-    <value>PrepareDocuments</value>
+  <data name="CreateDocumentsPageTitle" xml:space="preserve">
+    <value>Create Documents</value>
   </data>
   <data name="ShellPeoplePage" xml:space="preserve">
     <value>People</value>

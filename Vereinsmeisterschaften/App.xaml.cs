@@ -94,8 +94,8 @@ public partial class App : Application
         services.AddSingleton<PrepareRacesViewModel>();
         services.AddSingleton<PrepareRacesPage>();
 
-        services.AddSingleton<PrepareDocumentsViewModel>();
-        services.AddSingleton<PrepareDocumentsPage>();
+        services.AddSingleton<CreateDocumentsViewModel>();
+        services.AddSingleton<CreateDocumentsPage>();
 
         services.AddSingleton<TimeInputViewModel>();
         services.AddSingleton<TimeInputPage>();

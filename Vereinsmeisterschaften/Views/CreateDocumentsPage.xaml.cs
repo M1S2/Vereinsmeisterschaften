@@ -4,9 +4,9 @@ using Vereinsmeisterschaften.ViewModels;
 
 namespace Vereinsmeisterschaften.Views;
 
-public partial class PrepareDocumentsPage : Page
+public partial class CreateDocumentsPage : Page
 {
-    public PrepareDocumentsPage(PrepareDocumentsViewModel viewModel)
+    public CreateDocumentsPage(CreateDocumentsViewModel viewModel)
     {
         InitializeComponent();
         DataContext = viewModel;

@@ -16,7 +16,7 @@ public class MainViewModel : ObservableObject, INavigationAware
     public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
     public ICommand PrepareRacesCommand => _prepareRacesCommand ?? (_prepareRacesCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareRacesViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
-    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareDocumentsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(CreateDocumentsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
     public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(TimeInputViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
     public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(ResultsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
     

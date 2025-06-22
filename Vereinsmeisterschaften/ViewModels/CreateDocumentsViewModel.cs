@@ -20,7 +20,7 @@ using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
-public class PrepareDocumentsViewModel : ObservableObject
+public class CreateDocumentsViewModel : ObservableObject
 {
     /// <summary>
     /// Dictionary to hold the state of whether a document creation process is currently running for each <see cref="DocumentCreationTypes"/> type.
@@ -153,7 +153,7 @@ public class PrepareDocumentsViewModel : ObservableObject
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
 
-    public PrepareDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
         _documentService = documentService;
         _personService = personService;

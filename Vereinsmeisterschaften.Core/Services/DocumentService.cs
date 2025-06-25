@@ -84,25 +84,16 @@ namespace Vereinsmeisterschaften.Core.Services
         #region Helper methods
 
         /// <summary>
-        /// Get the absolute path to the output folder for documents.
+        /// Get the absolute path for the requested document creation setting.
+        /// Caution: Only use keys here that refer to string parameters for paths!
         /// </summary>
-        /// <returns>Absolute path to the output folder for documents.</returns>
-        private string getDocumentOutputFolderAbsolute()
+        /// <param name="documentCreationSettingKey">Key for the setting inside the <see cref="WorkspaceSettings.GROUP_DOCUMENT_CREATION"/></param>
+        /// <returns>Absolute path</returns>
+        private string getDocumentPathAbsolute(string documentCreationSettingKey)
         {
-            string certificateOutputFolder = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER) ?? string.Empty;
-            certificateOutputFolder = FilePathHelper.MakePathAbsolute(certificateOutputFolder, _workspaceService?.PersistentPath);
-            return certificateOutputFolder;
-        }
-
-        /// <summary>
-        /// Get the absolute path to the LibreOffice executable.
-        /// </summary>
-        /// <returns>Absolute path to the LibreOffice executable.</returns>
-        private string getLibreOfficePathAbsolute()
-        {
-            string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
-            libreOfficePath = FilePathHelper.MakePathAbsolute(libreOfficePath, _workspaceService?.PersistentPath);
-            return libreOfficePath;
+            string path = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, documentCreationSettingKey) ?? string.Empty;
+            path = FilePathHelper.MakePathAbsolute(path, _workspaceService?.PersistentPath);
+            return path;
         }
 
         /// <summary>
@@ -127,10 +118,10 @@ namespace Vereinsmeisterschaften.Core.Services
             // Convert the docx file to pdf
             string outputFilePdf = docxFile.Replace(".docx", ".pdf");
             File.Delete(outputFilePdf);
-            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, getLibreOfficePathAbsolute());
+            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH));
         }
 
-        #endregion
+#endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -149,7 +140,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 int numCreatedCertificates = 0;
 
-                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
                 string tempFolder = Path.Combine(documentOutputFolder, _tempFolderName);
 
                 // Delete temp folder and all files in it
@@ -171,7 +162,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         }
 
                         // Create the output file name based on the filter
-                        string certificateTemplatePath = getCertificateTemplatePathAbsolute();
+                        string certificateTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH);
                         string outputFileNameDocx = Path.GetFileNameWithoutExtension(certificateTemplatePath);
                         switch (personStartFilter)
                         {
@@ -235,14 +226,14 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 if (string.IsNullOrEmpty(outputFolder))
                 {
-                    string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                    string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
                     outputFolder = documentOutputFolder;
                 }
                 if (!Directory.Exists(outputFolder))
                 {
                     Directory.CreateDirectory(outputFolder);
                 }
-                string certificateTemplatePath = getCertificateTemplatePathAbsolute();
+                string certificateTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH);
                 string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
 
                 if (personStart.CompetitionObj == null)
@@ -279,17 +270,6 @@ namespace Vereinsmeisterschaften.Core.Services
             return textPlaceholders;
         }
 
-        /// <summary>
-        /// Get the absolute path to the certificate template file.
-        /// </summary>
-        /// <returns>Absolute path to the certificate template file.</returns>
-        private string getCertificateTemplatePathAbsolute()
-        {
-            string certificateTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH) ?? string.Empty;
-            certificateTemplatePath = FilePathHelper.MakePathAbsolute(certificateTemplatePath, _workspaceService?.PersistentPath);
-            return certificateTemplatePath;
-        }
-
         #endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -305,8 +285,8 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             return Task.Run(() =>
             {
-                string overviewListTemplatePath = getOverviewListTemplatePathAbsolute();
-                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string overviewListTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH);
+                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
                 if (!Directory.Exists(documentOutputFolder))
                 {
                     Directory.CreateDirectory(documentOutputFolder);
@@ -359,17 +339,6 @@ namespace Vereinsmeisterschaften.Core.Services
             return tablePlaceholders;
         }
 
-        /// <summary>
-        /// Get the absolute path to the overview list template file.
-        /// </summary>
-        /// <returns>Absolute path to the overview list template file.</returns>
-        private string getOverviewListTemplatePathAbsolute()
-        {
-            string overviewListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH) ?? string.Empty;
-            overviewListTemplatePath = FilePathHelper.MakePathAbsolute(overviewListTemplatePath, _workspaceService?.PersistentPath);
-            return overviewListTemplatePath;
-        }
-
         #endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -388,8 +357,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 RacesVariant racesVariant = _raceService.PersistedRacesVariant;
                 if (racesVariant == null) { return; }
 
-                string raceStartListTemplatePath = getRaceStartListTemplatePathAbsolute();
-                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string raceStartListTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH);
+                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
                 if (!Directory.Exists(documentOutputFolder))
                 {
                     Directory.CreateDirectory(documentOutputFolder);
@@ -448,17 +417,6 @@ namespace Vereinsmeisterschaften.Core.Services
             return tablePlaceholders;
         }
 
-        /// <summary>
-        /// Get the absolute path to the race start list template file.
-        /// </summary>
-        /// <returns>Absolute path to the race start list template file.</returns>
-        private string getRaceStartListTemplatePathAbsolute()
-        {
-            string raceStartListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH) ?? string.Empty;
-            raceStartListTemplatePath = FilePathHelper.MakePathAbsolute(raceStartListTemplatePath, _workspaceService?.PersistentPath);
-            return raceStartListTemplatePath;
-        }
-
         #endregion
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -474,8 +432,8 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             return Task.Run(() =>
             {
-                string resultTemplatePath = getResultListTemplatePathAbsolute();
-                string documentOutputFolder = getDocumentOutputFolderAbsolute();
+                string resultTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH);
+                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
                 if (!Directory.Exists(documentOutputFolder))
                 {
                     Directory.CreateDirectory(documentOutputFolder);
@@ -530,17 +488,6 @@ namespace Vereinsmeisterschaften.Core.Services
             foreach (string placeholder in Placeholders_Score) { tablePlaceholders.Add(placeholder, scores); } 
             foreach (string placeholder in Placeholders_ResultListPlace) { tablePlaceholders.Add(placeholder, resultListPlaces); }
             return tablePlaceholders;
-        }
-
-        /// <summary>
-        /// Get the absolute path to the result list template file.
-        /// </summary>
-        /// <returns>Absolute path to the result list template file.</returns>
-        private string getResultListTemplatePathAbsolute()
-        {
-            string resultListTemplatePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH) ?? string.Empty;
-            resultListTemplatePath = FilePathHelper.MakePathAbsolute(resultListTemplatePath, _workspaceService?.PersistentPath);
-            return resultListTemplatePath;
         }
 
         #endregion

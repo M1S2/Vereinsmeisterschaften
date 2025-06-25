@@ -16,6 +16,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
@@ -136,14 +137,14 @@ public class CreateDocumentsViewModel : ObservableObject
 
     #region Placeholder Strings
 
-    public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, DocumentService.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Name => string.Join(Environment.NewLine, DocumentService.Placeholders_Name.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_BirthYear => string.Join(Environment.NewLine, DocumentService.Placeholders_BirthYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Distance => string.Join(Environment.NewLine, DocumentService.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, DocumentService.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, DocumentService.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Score => string.Join(Environment.NewLine, DocumentService.Placeholders_Score.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_ResultListPlace => string.Join(Environment.NewLine, DocumentService.Placeholders_ResultListPlace.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Name => string.Join(Environment.NewLine, Placeholders.Placeholders_Name.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_BirthYear => string.Join(Environment.NewLine, Placeholders.Placeholders_BirthYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Distance => string.Join(Environment.NewLine, Placeholders.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, Placeholders.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_Score => string.Join(Environment.NewLine, Placeholders.Placeholders_Score.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public string PlaceholderString_ResultListPlace => string.Join(Environment.NewLine, Placeholders.Placeholders_ResultListPlace.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
 
     #endregion
 
@@ -195,22 +196,23 @@ public class CreateDocumentsViewModel : ObservableObject
                             default: break;
                         }
 
-                        NumberCreatedCertificates = await _documentService.CreateCertificates(true, PersonStartFilter, filterParam);
+                        _documentService.SetCertificateCreationFilters(PersonStartFilter, filterParam);
+                        NumberCreatedCertificates = await _documentService.CreateDocument(DocumentCreationTypes.Certificates);
                         break;
                     }
                 case DocumentCreationTypes.OverviewList:
                     {
-                        await _documentService.CreateOverviewList();
+                        await _documentService.CreateDocument(DocumentCreationTypes.OverviewList);
                         break;
                     }
                 case DocumentCreationTypes.RaceStartList:
                     {
-                        await _documentService.CreateRaceStartList();
+                        await _documentService.CreateDocument(DocumentCreationTypes.RaceStartList);
                         break;
                     }
                 case DocumentCreationTypes.ResultList:
                     {
-                        await _documentService.CreateResultList();
+                        await _documentService.CreateDocument(DocumentCreationTypes.ResultList);
                         break;
                     }
                 default: throw new ArgumentOutOfRangeException(nameof(documentType), documentType, "Unknown document type for creation command.");

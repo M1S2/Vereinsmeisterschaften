@@ -14,6 +14,10 @@ using Xceed.Document.NET;
 using System.Text.RegularExpressions;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Settings;
+using System.Reflection.Emit;
+using Vereinsmeisterschaften.Core.Documents;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -27,176 +31,145 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        #region Placeholders
-
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the competition year.
-        /// </summary>
-        public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the name of a person.
-        /// </summary>
-        public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the birth year of a person.
-        /// </summary>
-        public static List<string> Placeholders_BirthYear = new List<string>() { "Jahrgang", "JG", "BirthYear" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the distance of a competition.
-        /// </summary>
-        public static List<string> Placeholders_Distance = new List<string>() { "Strecke", "S", "Distance", "D" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the swimming style of a person.
-        /// </summary>
-        public static List<string> Placeholders_SwimmingStyle = new List<string>() { "Lage", "L", "Style", "SwimmingStyle" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the competition ID of a competition.
-        /// </summary>
-        public static List<string> Placeholders_CompetitionID = new List<string>() { "WK", "Wettkampf", "Competition", "C" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the highest score of a person.
-        /// </summary>
-        public static List<string> Placeholders_Score = new List<string>() { "Punkte", "Score", "Pkt" };
-        /// <summary>
-        /// List with all placeholders that can be used in the template to insert the place in the overall result list of a person.
-        /// </summary>
-        public static List<string> Placeholders_ResultListPlace = new List<string>() { "Platzierung", "Platz", "Result", "Place", "P" };
-
-        #endregion
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         private IPersonService _personService;
         private IWorkspaceService _workspaceService;
         private IRaceService _raceService;
         private IScoreService _scoreService;
+        private IServiceProvider _serviceProvider;
+        
+        private readonly IEnumerable<IDocumentStrategy> _documentStrategies;
+        private PersonStartFilters _personStartFilter = PersonStartFilters.None;
+        private object _personStartFilterParameter = null;
 
-        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService, IScoreService scoreService)
+        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService, IScoreService scoreService, IServiceProvider serviceProvider, IEnumerable<IDocumentStrategy> documentStrategies)
         {
             _personService = personService;
             _workspaceService = workspaceService;
             _raceService = raceService;
             _scoreService = scoreService;
+            _serviceProvider = serviceProvider;
+            _documentStrategies = documentStrategies;
+        }
+
+        private IDocumentStrategy getDocumentStrategy(DocumentCreationTypes type)
+            => _documentStrategies.FirstOrDefault(s => s.DocumentType == type) ?? throw new InvalidOperationException($"No strategy found for {type}");
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Set the filters that are used for the certificate creation.
+        /// </summary>
+        /// <param name="personStartFilter">Filter to select only some specific <see cref="PersonStart"/> elements. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
+        /// <param name="personStartFilterParameter">Parameter for the personStartFilter. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
+        public void SetCertificateCreationFilters(PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
+        {
+            _personStartFilter = personStartFilter;
+            _personStartFilterParameter = personStartFilterParameter;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        #region Helper methods
-
         /// <summary>
-        /// Get the absolute path for the requested document creation setting.
-        /// Caution: Only use keys here that refer to string parameters for paths!
+        /// Create the document indicated by the document type.
+        /// For the <see cref="DocumentCreationTypes.Certificates"/> type, the <see cref="SetCertificateCreationFilters"/> method must be called before this method to set the filters for the certificate creation. Otherwise the old values are used.
         /// </summary>
-        /// <param name="documentCreationSettingKey">Key for the setting inside the <see cref="WorkspaceSettings.GROUP_DOCUMENT_CREATION"/></param>
-        /// <returns>Absolute path</returns>
-        private string getDocumentPathAbsolute(string documentCreationSettingKey)
-        {
-            string path = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, documentCreationSettingKey) ?? string.Empty;
-            path = FilePathHelper.MakePathAbsolute(path, _workspaceService?.PersistentPath);
-            return path;
-        }
-
-        /// <summary>
-        /// Insert the competition year placeholder value into the template file and save it to the output file.
-        /// </summary>
-        /// <param name="templateFile">File in which to insert the competition year to the corresponding placeholder.</param>
-        /// <param name="outputFile">Destination file location.</param>
-        private void insertCompetitionYearPlaceholderValue(string templateFile, string outputFile)
-        {
-            ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
-            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
-            foreach (string placeholder in Placeholders_CompetitionYear) { textPlaceholders.Add(placeholder, competitionYear.ToString()); }
-            DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders);
-        }
-
-        /// <summary>
-        /// Convert a .docx file to a .pdf file using LibreOffice.
-        /// </summary>
-        /// <param name="docxFile">.docx file to convert. The same name with the extension .pdf instead of .docx is used.</param>
-        private void convertToPdf(string docxFile)
-        {
-            // Convert the docx file to pdf
-            string outputFilePdf = docxFile.Replace(".docx", ".pdf");
-            File.Delete(outputFilePdf);
-            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH));
-        }
-
-#endregion
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        #region Certificate Creation
-
-        /// <summary>
-        /// Create certificates for all person starts in the database based on the given filter.
-        /// </summary>
+        /// <param name="documentType"><see cref="DocumentCreationTypes"/> used to decide which document type and <see cref="IDocumentStrategy"/> is used</param>
         /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <param name="personStartFilter">Filter to select only some specific person starts</param>
-        /// <param name="personStartFilterParameter">Parameter for the personStartFilter</param>
-        /// <returns>Number of created certificates</returns>
-        public Task<int> CreateCertificates(bool createPdf = true, PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
+        /// <returns><see cref="Task"/> that can be used to run this async</returns>
+        public Task<int> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true)
         {
-            return Task.Run(async () =>
+            return Task.Run(() =>
             {
-                int numCreatedCertificates = 0;
+                int numCreatedPages = 0;
 
-                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
-                string tempFolder = Path.Combine(documentOutputFolder, _tempFolderName);
-
-                // Delete temp folder and all files in it
-                if (Directory.Exists(tempFolder))
+                string documentOutputFolder = GetDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, _workspaceService);
+                if (!Directory.Exists(documentOutputFolder))
                 {
-                    Directory.Delete(tempFolder, true);
+                    Directory.CreateDirectory(documentOutputFolder);
                 }
 
-                // Create all certificates in a temp folder as single docx files
-                List<PersonStart> personStarts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null).ToList();
-                if (personStarts.Count > 0)
+                IDocumentStrategy documentStrategy = getDocumentStrategy(documentType);
+                string documentTemplate = documentStrategy.TemplatePath;
+
+                // For all other document types than certificates, we do not filter by person start
+                PersonStartFilters personStartFilter = _personStartFilter;
+                if (!(documentStrategy is DocumentStrategyCertificates))
                 {
+                    personStartFilter = PersonStartFilters.None;
+                }
+
+                // Create the output file name based on the filter
+                string outputFileNameDocx = Path.GetFileNameWithoutExtension(documentTemplate);
+                switch (personStartFilter)
+                {
+                    case PersonStartFilters.None: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
+                    case PersonStartFilters.Person: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + ((Person)_personStartFilterParameter).FirstName + "_" + ((Person)_personStartFilterParameter).Name); break;
+                    case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)_personStartFilterParameter)); break;
+                    case PersonStartFilters.CompetitionID: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_WK" + (int)_personStartFilterParameter); break;
+                    default: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
+                }
+                outputFileNameDocx += ".docx";
+                string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
+
+                // Collect all items used to create the document
+                object[] items = null;
+                if (documentStrategy is DocumentStrategyCertificates documentStrategyCertificates)
+                {
+                    items = documentStrategyCertificates.GetItemsFiltered(personStartFilter, _personStartFilterParameter);
+                }
+                else
+                {
+                    items = documentStrategy.GetItems();
+                }
+
+                // Decide whether to create multiple pages or not
+                if (documentStrategy.CreateMultiplePages)
+                {
+                    // Create a temp folder to store all pages as single documents
+                    string tempFolder = Path.Combine(documentOutputFolder, _tempFolderName);
                     try
                     {
-                        foreach (PersonStart personStart in personStarts)
+                        // Delete temp folder and all files in it
+                        if (Directory.Exists(tempFolder))
                         {
-                            int resultSingle = await createSingleCertificate(personStart, false, tempFolder);
-                            numCreatedCertificates += resultSingle;
+                            Directory.Delete(tempFolder, true);
                         }
-
-                        // Create the output file name based on the filter
-                        string certificateTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH);
-                        string outputFileNameDocx = Path.GetFileNameWithoutExtension(certificateTemplatePath);
-                        switch (personStartFilter)
+                        Directory.CreateDirectory(tempFolder);
+                                                
+                        if (items.Length > 0)
                         {
-                            case PersonStartFilters.None: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
-                            case PersonStartFilters.Person: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + ((Person)personStartFilterParameter).FirstName + "_" + ((Person)personStartFilterParameter).Name); break;
-                            case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)personStartFilterParameter)); break;
-                            case PersonStartFilters.CompetitionID: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_WK" + (int)personStartFilterParameter); break;
-                            default: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
-                        }
-                        outputFileNameDocx += ".docx";
-
-                        string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
-
-                        // Combine all docx files in the temp folder into one docx file
-                        using (DocX document = DocX.Create(outputFile))
-                        {
-                            bool firstDocument = true;
-                            foreach (string file in Directory.GetFiles(tempFolder))
+                            foreach (object multiplePagesObj in items)
                             {
-                                using (DocX tempDocument = DocX.Load(file))
-                                {
-                                    document.InsertDocument(tempDocument, !firstDocument);
-                                }
-                                firstDocument = false;
-                            }
-                            document.Save();
-                        }                        
+                                string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(_templatePostfix, "") + $"_{numCreatedPages}.docx");
 
-                        if (createPdf)
-                        {
-                            convertToPdf(outputFile);
+                                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = resolveTablePlaceholders(documentType, documentStrategy, items);
+                                if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFileMulti, tablePlaceholders); }
+
+                                DocXPlaceholderHelper.TextPlaceholders textPlaceholders = resolveTextPlaceholders(documentType, documentStrategy, multiplePagesObj);
+                                if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFileMulti, outputFileMulti, textPlaceholders); }
+
+                                insertCompetitionYearPlaceholderValue(outputFileMulti, outputFileMulti);
+
+                                numCreatedPages++;
+                            }
+
+                            // Combine all docx files in the temp folder into one docx file
+                            using (DocX document = DocX.Create(outputFile))
+                            {
+                                bool firstDocument = true;
+                                foreach (string file in Directory.GetFiles(tempFolder))
+                                {
+                                    using (DocX tempDocument = DocX.Load(file))
+                                    {
+                                        document.InsertDocument(tempDocument, !firstDocument);
+                                    }
+                                    firstDocument = false;
+                                }
+                                document.Save();
+                            }
                         }
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
                         throw;
                     }
@@ -209,287 +182,111 @@ namespace Vereinsmeisterschaften.Core.Services
                         }
                     }
                 }
-                return numCreatedCertificates;
-            });
-        }
-
-        /// <summary>
-        /// Create a single certificate for a person start and save it to the output folder.
-        /// </summary>
-        /// <param name="personStart"><see cref="PersonStart"/> for which a certificate is created</param>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <param name="outputFolder">Folder in which the certificate will be created</param>
-        /// <returns>1 if creation was successful; otherwise 0</returns>
-        private Task<int> createSingleCertificate(PersonStart personStart, bool createPdf = true, string outputFolder = "")
-        {
-            return Task.Run(() =>
-            {
-                if (string.IsNullOrEmpty(outputFolder))
+                else
                 {
-                    string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
-                    outputFolder = documentOutputFolder;
-                }
-                if (!Directory.Exists(outputFolder))
-                {
-                    Directory.CreateDirectory(outputFolder);
-                }
-                string certificateTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH);
-                string outputFile = Path.Combine(outputFolder, $"{personStart.PersonObj?.FirstName}_{personStart.PersonObj?.Name}_{personStart.Style}.docx");
+                    // Create a single page document
+                    DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = resolveTablePlaceholders(documentType, documentStrategy, items);
+                    if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFile, tablePlaceholders); }
 
-                if (personStart.CompetitionObj == null)
-                {
-                    return 0;
-                }
+                    DocXPlaceholderHelper.TextPlaceholders textPlaceholders = resolveTextPlaceholders(documentType, documentStrategy);
+                    if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFile, outputFile, textPlaceholders); }
 
-                DocXPlaceholderHelper.TextPlaceholders textPlaceholders = createTextPlaceholdersFromPersonStart(personStart);                
-                DocXPlaceholderHelper.ReplaceTextPlaceholders(certificateTemplatePath, outputFile, textPlaceholders);
-                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+                    insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+
+                    numCreatedPages = 1; // We created one page for the document
+                }
 
                 if (createPdf)
                 {
                     convertToPdf(outputFile);
                 }
-                return 1;       // This method always creates one certificate, so we return 1 to indicate success
+
+                return numCreatedPages;
             });
         }
 
-        /// <summary>
-        /// Create text placeholders from a <see cref="PersonStart"/> object.
-        /// </summary>
-        /// <param name="personStarts"><see cref="PersonStart"/> object</param>
-        /// <returns><see cref="DocXPlaceholderHelper.TextPlaceholders"/></returns>
-        private DocXPlaceholderHelper.TextPlaceholders createTextPlaceholdersFromPersonStart(PersonStart personStart)
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private DocXPlaceholderHelper.TextPlaceholders resolveTextPlaceholders(DocumentCreationTypes documentType, IDocumentStrategy documentStrategy, object multiplePagesObj = null)
         {
-            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
-            foreach (string placeholder in Placeholders_Name) { textPlaceholders.Add(placeholder, personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name); }
-            foreach (string placeholder in Placeholders_BirthYear) { textPlaceholders.Add(placeholder, personStart.PersonObj?.BirthYear.ToString()); }
-            foreach (string placeholder in Placeholders_Distance) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.Distance.ToString() + "m"); }
-            foreach (string placeholder in Placeholders_SwimmingStyle) { textPlaceholders.Add(placeholder, EnumCoreToLocalizedString.Convert(personStart.Style)); }
-            foreach (string placeholder in Placeholders_CompetitionID) { textPlaceholders.Add(placeholder, personStart.CompetitionObj.ID.ToString()); }
-            foreach (string placeholder in Placeholders_Score) { textPlaceholders.Add(placeholder, personStart.Score.ToString("F2")); }
+            Type dataType = documentStrategy.ItemType;
+            object item = multiplePagesObj;
+
+            // Text placeholders are not supported
+            if (!documentStrategy.SupportTextPlaceholders || item == null) { return null; }
+
+            Type resolverType = typeof(IDocumentPlaceholderResolver<>).MakeGenericType(dataType);
+            object resolver = _serviceProvider.GetService(resolverType);
+            if (resolver is null) throw new InvalidOperationException($"No Resolver found for type {dataType.Name}.");
+
+            MethodInfo method = resolverType.GetMethod(nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTextPlaceholders));
+            if (method == null) throw new InvalidOperationException($"Method {nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTextPlaceholders)} not found.");
+
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = method.Invoke(resolver, new object[] { item, _workspaceService }) as DocXPlaceholderHelper.TextPlaceholders;
             return textPlaceholders;
         }
 
-        #endregion
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        #region Overview List Creation
-
-        /// <summary>
-        /// Create an overview list of all person starts in the database and save it to the output folder.
-        /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        public Task CreateOverviewList(bool createPdf = true)
+        private DocXPlaceholderHelper.TablePlaceholders resolveTablePlaceholders(DocumentCreationTypes documentType, IDocumentStrategy documentStrategy, object[] items)
         {
-            return Task.Run(() =>
-            {
-                string overviewListTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH);
-                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
-                if (!Directory.Exists(documentOutputFolder))
-                {
-                    Directory.CreateDirectory(documentOutputFolder);
-                }
-                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(overviewListTemplatePath).Replace(_templatePostfix, "") + ".docx");
+            Type dataType = documentStrategy.ItemType;
+            
+            // Table placeholders are not supported
+            if(!documentStrategy.SupportTablePlaceholders || items == null) { return null; }
 
-                List<PersonStart> personStarts = _personService.GetAllPersonStarts();
-                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = createTablePlaceholdersFromPersonStarts(personStarts);                                
-                DocXPlaceholderHelper.ReplaceTablePlaceholders(overviewListTemplatePath, outputFile, tablePlaceholders);
+            Type resolverType = typeof(IDocumentPlaceholderResolver<>).MakeGenericType(dataType);
+            object resolver = _serviceProvider.GetService(resolverType);
+            if (resolver is null) throw new InvalidOperationException($"No Resolver found for type {dataType.Name}.");
 
-                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+            MethodInfo method = resolverType.GetMethod(nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTablePlaceholders));
+            if (method == null) throw new InvalidOperationException($"Method {nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTablePlaceholders)} not found.");
 
-                if (createPdf)
-                {
-                    convertToPdf(outputFile);
-                }
-            });
-        }
-
-        /// <summary>
-        /// Create table placeholders from a list of <see cref="PersonStart"/> objects.
-        /// </summary>
-        /// <param name="personStarts"><see cref="PersonStart"/> objects</param>
-        /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
-        private DocXPlaceholderHelper.TablePlaceholders createTablePlaceholdersFromPersonStarts(List<PersonStart> personStarts)
-        {
-            List<string> names = new List<string>();
-            List<string> birthYears = new List<string>();
-            List<string> styles = new List<string>();
-            List<string> distances = new List<string>();
-            List<string> competitions = new List<string>();
-            List<string> scores = new List<string>();
-            foreach (PersonStart personStart in personStarts)
-            {
-                names.Add(personStart.PersonObj?.FirstName + " " + personStart.PersonObj?.Name);
-                birthYears.Add(personStart.PersonObj?.BirthYear.ToString() ?? "?");
-                styles.Add(EnumCoreToLocalizedString.Convert(personStart.Style));
-                distances.Add(personStart.CompetitionObj?.Distance.ToString() + "m" ?? "?");
-                competitions.Add(personStart.CompetitionObj?.ID.ToString() ?? "?");
-                scores.Add(personStart.Score.ToString("F2"));
-            }
-
-            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
-            foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder, names); }
-            foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder, birthYears); }
-            foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
-            foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
-            foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
-            foreach (string placeholder in Placeholders_Score) { tablePlaceholders.Add(placeholder, scores); }
+            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = method.Invoke(resolver, new object[] { items, _workspaceService }) as DocXPlaceholderHelper.TablePlaceholders;
             return tablePlaceholders;
         }
 
-        #endregion
-
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        #region Race Start List Creation
+        #region Helper methods
 
         /// <summary>
-        /// Create a list with all races and the planned order.
+        /// Get the absolute path for the requested document creation setting.
+        /// Caution: Only use keys here that refer to string parameters for paths!
         /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        public Task CreateRaceStartList(bool createPdf = true)
+        /// <param name="documentCreationSettingKey">Key for the setting inside the <see cref="WorkspaceSettings.GROUP_DOCUMENT_CREATION"/></param>
+        /// <returns>Absolute path</returns>
+        public static string GetDocumentPathAbsolute(string documentCreationSettingKey, IWorkspaceService workspaceService)
         {
-            return Task.Run(() =>
-            {
-                RacesVariant racesVariant = _raceService.PersistedRacesVariant;
-                if (racesVariant == null) { return; }
-
-                string raceStartListTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH);
-                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
-                if (!Directory.Exists(documentOutputFolder))
-                {
-                    Directory.CreateDirectory(documentOutputFolder);
-                }
-                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(raceStartListTemplatePath).Replace(_templatePostfix, "") + ".docx");
-
-                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = createTablePlaceholdersFromRaceVariant(racesVariant);
-                DocXPlaceholderHelper.ReplaceTablePlaceholders(raceStartListTemplatePath, outputFile, tablePlaceholders);
-                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
-
-                if (createPdf)
-                {
-                    convertToPdf(outputFile);
-                }
-            });
+            string path = workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, documentCreationSettingKey) ?? string.Empty;
+            path = FilePathHelper.MakePathAbsolute(path, workspaceService?.PersistentPath);
+            return path;
         }
 
         /// <summary>
-        /// Create table placeholders from a <see cref="RacesVariant"/>.
+        /// Insert the competition year placeholder value into the template file and save it to the output file.
         /// </summary>
-        /// <param name="racesVariant"><see cref="RacesVariant"/> object</param>
-        /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
-        private DocXPlaceholderHelper.TablePlaceholders createTablePlaceholdersFromRaceVariant(RacesVariant racesVariant)
+        /// <param name="templateFile">File in which to insert the competition year to the corresponding placeholder.</param>
+        /// <param name="outputFile">Destination file location.</param>
+        private void insertCompetitionYearPlaceholderValue(string templateFile, string outputFile)
         {
-            List<string> competitions = new List<string>();
-            List<string> styles = new List<string>();
-            List<string> distances = new List<string>();
-            List<List<string>> names = new List<List<string>>();
-            List<List<string>> birthYears = new List<List<string>>();
-            int maxPersonsInRace = 0;
-            foreach (Race race in racesVariant.Races)
-            {
-                competitions.Add(string.Join(", ", race.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?")).TrimEnd(',', ' '));
-                styles.Add(EnumCoreToLocalizedString.Convert(race.Style));
-                distances.Add(race.Distance.ToString());
+            ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
+            foreach (string placeholder in Placeholders.Placeholders_CompetitionYear) { textPlaceholders.Add(placeholder, competitionYear.ToString()); }
+            DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders);
+        }
 
-                List<string> personNames = race.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
-                maxPersonsInRace = Math.Max(maxPersonsInRace, personNames.Count);
-                names.Add(personNames);
-
-                List<string> personBirthDates = race.Starts.Select(s => s.PersonObj?.BirthYear.ToString()).ToList();
-                birthYears.Add(personBirthDates);
-            }
-
-            ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
-
-            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
-            foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
-            foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
-            foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
-            for (int i = 0; i < Math.Max(numSwimLanes, maxPersonsInRace); i++)
-            {
-                foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder + (i + 1), names.Select(innerNames => innerNames.Count > i ? innerNames[i] : "").ToList()); }
-                foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder + (i + 1), birthYears.Select(innerBirthYear => innerBirthYear.Count > i ? innerBirthYear[i] : "").ToList()); }
-            }
-            return tablePlaceholders;
+        /// <summary>
+        /// Convert a .docx file to a .pdf file using LibreOffice.
+        /// </summary>
+        /// <param name="docxFile">.docx file to convert. The same name with the extension .pdf instead of .docx is used.</param>
+        private void convertToPdf(string docxFile)
+        {
+            // Convert the docx file to pdf
+            string outputFilePdf = docxFile.Replace(".docx", ".pdf");
+            File.Delete(outputFilePdf);
+            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, GetDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, _workspaceService));
         }
 
         #endregion
 
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        #region Result List Creation
-
-        /// <summary>
-        /// Create a list with the overall result.
-        /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        public Task CreateResultList(bool createPdf = true)
-        {
-            return Task.Run(() =>
-            {
-                string resultTemplatePath = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH);
-                string documentOutputFolder = getDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER);
-                if (!Directory.Exists(documentOutputFolder))
-                {
-                    Directory.CreateDirectory(documentOutputFolder);
-                }
-                string outputFile = Path.Combine(documentOutputFolder, Path.GetFileNameWithoutExtension(resultTemplatePath).Replace(_templatePostfix, "") + ".docx");
-
-                List<Person> sortedPersons = _scoreService.GetPersonsSortedByScore(ResultTypes.Overall);
-                _scoreService.UpdateResultListPlacesForAllPersons();
-                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = createTablePlaceholdersFromPersons(sortedPersons);
-                DocXPlaceholderHelper.ReplaceTablePlaceholders(resultTemplatePath, outputFile, tablePlaceholders);
-
-                insertCompetitionYearPlaceholderValue(outputFile, outputFile);
-
-                if (createPdf)
-                {
-                    convertToPdf(outputFile);
-                }
-            });
-        }
-
-        /// <summary>
-        /// Create table placeholders from a list of <see cref="Person"/> objects.
-        /// </summary>
-        /// <param name="persons"><see cref="Person"/> objects</param>
-        /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
-        private DocXPlaceholderHelper.TablePlaceholders createTablePlaceholdersFromPersons(List<Person> persons)
-        {
-            List<string> names = new List<string>();
-            List<string> birthYears = new List<string>();
-            List<string> styles = new List<string>();
-            List<string> distances = new List<string>();
-            List<string> competitions = new List<string>();
-            List<string> scores = new List<string>();
-            List<string> resultListPlaces = new List<string>();
-            foreach (Person person in persons)
-            {
-                names.Add(person.FirstName + " " + person.Name);
-                birthYears.Add(person.BirthYear.ToString() ?? "?");
-                styles.Add(EnumCoreToLocalizedString.Convert(person.HighestScoreStyle));
-                distances.Add(person.HighestScoreCompetition?.Distance.ToString() + "m" ?? "?");
-                competitions.Add(person.HighestScoreCompetition?.ID.ToString() ?? "?");
-                scores.Add(person.HighestScore.ToString("F2"));
-                resultListPlaces.Add(person?.ResultListPlace == 0 ? "-" : person.ResultListPlace.ToString() ?? "?");
-            }
-
-            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = new DocXPlaceholderHelper.TablePlaceholders();
-            foreach (string placeholder in Placeholders_Name) { tablePlaceholders.Add(placeholder, names); }
-            foreach (string placeholder in Placeholders_BirthYear) { tablePlaceholders.Add(placeholder, birthYears); }
-            foreach (string placeholder in Placeholders_SwimmingStyle) { tablePlaceholders.Add(placeholder, styles); }
-            foreach (string placeholder in Placeholders_Distance) { tablePlaceholders.Add(placeholder, distances); }
-            foreach (string placeholder in Placeholders_CompetitionID) { tablePlaceholders.Add(placeholder, competitions); }
-            foreach (string placeholder in Placeholders_Score) { tablePlaceholders.Add(placeholder, scores); } 
-            foreach (string placeholder in Placeholders_ResultListPlace) { tablePlaceholders.Add(placeholder, resultListPlaces); }
-            return tablePlaceholders;
-        }
-
-        #endregion
     }
 }

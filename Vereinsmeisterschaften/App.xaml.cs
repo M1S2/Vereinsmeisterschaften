@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.Views;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
+using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Models;
 using Vereinsmeisterschaften.Services;
@@ -68,6 +70,13 @@ public partial class App : Application
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
         services.AddSingleton<IRaceService, RaceService>();
+        services.AddSingleton<IDocumentPlaceholderResolver<PersonStart>, DocumentPlaceholderResolverPersonStart>();
+        services.AddSingleton<IDocumentPlaceholderResolver<Person>, DocumentPlaceholderResolverPerson>();
+        services.AddSingleton<IDocumentPlaceholderResolver<Race>, DocumentPlaceholderResolverRace>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyCertificates>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyOverviewList>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyRaceStartList>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyResultList>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();

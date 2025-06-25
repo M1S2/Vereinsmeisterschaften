@@ -201,5 +201,27 @@ namespace Vereinsmeisterschaften.Core.Helpers
 
         #endregion
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Conversion Methods
+
+        /// <summary>
+        /// Convert a list of <see cref="TextPlaceholders"/> to a <see cref="TablePlaceholders"/>
+        /// </summary>
+        /// <param name="textPlaceholderList">List of <see cref="TextPlaceholders"/></param>
+        /// <returns><see cref="TablePlaceholders"/></returns>
+        public static TablePlaceholders ConvertTextToTablePlaceholders(IEnumerable<TextPlaceholders> textPlaceholderList)
+        {
+            TablePlaceholders tablePlaceholders = new TablePlaceholders();
+
+            textPlaceholderList.SelectMany(dict => dict.Placeholders)
+                .GroupBy(kvp => kvp.Key)
+                .ToList()
+                .ForEach(group => tablePlaceholders.Add(group.Key, group.Select(kvp => kvp.Value).ToList()));
+
+            return tablePlaceholders;
+        }
+
+        #endregion
     }
 }

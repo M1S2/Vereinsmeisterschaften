@@ -11,33 +11,19 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public interface IDocumentService
     {
         /// <summary>
-        /// Create certificates for all person starts in the database based on the given filter.
+        /// Create the document indicated by the document type.
+        /// For the <see cref="DocumentCreationTypes.Certificates"/> type, the <see cref="SetCertificateCreationFilters"/> method must be called before this method to set the filters for the certificate creation. Otherwise the old values are used.
         /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <param name="personStartFilter">Filter to select only some specific person starts</param>
-        /// <param name="personStartFilterParameter">Parameter for the personStartFilter</param>
-        /// <returns>Number of created certificates</returns>
-        Task<int> CreateCertificates(bool createPdf = true, PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null);
-
-        /// <summary>
-        /// Create an overview list of all person starts in the database and save it to the output folder.
-        /// </summary>
+        /// <param name="documentType"><see cref="DocumentCreationTypes"/> used to decide which document type and <see cref="IDocumentStrategy"/> is used</param>
         /// <param name="createPdf">True to also create a .pdf file</param>
         /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        Task CreateOverviewList(bool createPdf = true);
+        Task<int> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true);
 
         /// <summary>
-        /// Create a list with all races and the planned order.
+        /// Set the filters that are used for the certificate creation.
         /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        Task CreateRaceStartList(bool createPdf = true);
-
-        /// <summary>
-        /// Create a list with the overall result.
-        /// </summary>
-        /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        Task CreateResultList(bool createPdf = true);
+        /// <param name="personStartFilter">Filter to select only some specific <see cref="PersonStart"/> elements. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
+        /// <param name="personStartFilterParameter">Parameter for the personStartFilter. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
+        void SetCertificateCreationFilters(PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vereinsmeisterschaften.ViewModels
+namespace Vereinsmeisterschaften.Core.Models
 {
     /// <summary>
     /// Different types of documents that can be created

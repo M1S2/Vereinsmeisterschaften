@@ -252,7 +252,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die {0} certificates were created. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Certificates were created. ähnelt.
         /// </summary>
         public static string CreateCertificatesResultString {
             get {
@@ -536,6 +536,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NotAssignedStartsString {
             get {
                 return ResourceManager.GetString("NotAssignedStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} document(s) ähnelt.
+        /// </summary>
+        public static string NumberCreatedDocumentsString {
+            get {
+                return ResourceManager.GetString("NumberCreatedDocumentsString", resourceCulture);
             }
         }
         

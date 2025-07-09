@@ -136,7 +136,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         }
                         Directory.CreateDirectory(tempFolder);
                                                 
-                        if (items.Length > 0)
+                        if (items != null && items.Length > 0)
                         {
                             foreach (object multiplePagesObj in items)
                             {

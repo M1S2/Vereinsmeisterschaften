@@ -578,4 +578,16 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="NumberCreatedDocumentsString" xml:space="preserve">
     <value>{0} Dokument(e)</value>
   </data>
+  <data name="TimeFormsTemplatePathString" xml:space="preserve">
+    <value>Zeitzettel Template</value>
+  </data>
+  <data name="TooltipTimeFormsTemplatePath" xml:space="preserve">
+    <value>Pfad zum Zeitzettel Template.</value>
+  </data>
+  <data name="CreateTimeFormsString" xml:space="preserve">
+    <value>Zeitzettel erstellen</value>
+  </data>
+  <data name="CreateTimeFormsResultString" xml:space="preserve">
+    <value>Zeitzettel wurden erstellt.</value>
+  </data>
 </root>

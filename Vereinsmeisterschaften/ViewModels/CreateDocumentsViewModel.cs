@@ -135,6 +135,22 @@ public class CreateDocumentsViewModel : ObservableObject
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    #region Create Time Forms Properties
+
+    private int _numberCreatedTimeForms = 0;
+    /// <summary>
+    /// Number of created time forms during the last creation process.
+    /// </summary>
+    public int NumberCreatedTimeForms
+    {
+        get => _numberCreatedTimeForms;
+        set => SetProperty(ref _numberCreatedTimeForms, value);
+    }
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     #region Placeholder Strings
 
     public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
@@ -208,6 +224,11 @@ public class CreateDocumentsViewModel : ObservableObject
                 case DocumentCreationTypes.RaceStartList:
                     {
                         await _documentService.CreateDocument(DocumentCreationTypes.RaceStartList);
+                        break;
+                    }
+                case DocumentCreationTypes.TimeForms:
+                    {
+                        NumberCreatedTimeForms = await _documentService.CreateDocument(DocumentCreationTypes.TimeForms);
                         break;
                     }
                 case DocumentCreationTypes.ResultList:

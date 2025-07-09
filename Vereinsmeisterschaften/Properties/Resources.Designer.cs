@@ -333,6 +333,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Forms were created. ähnelt.
+        /// </summary>
+        public static string CreateTimeFormsResultString {
+            get {
+                return ResourceManager.GetString("CreateTimeFormsResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Time Forms ähnelt.
+        /// </summary>
+        public static string CreateTimeFormsString {
+            get {
+                return ResourceManager.GetString("CreateTimeFormsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {
@@ -1208,6 +1226,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Forms Template ähnelt.
+        /// </summary>
+        public static string TimeFormsTemplatePathString {
+            get {
+                return ResourceManager.GetString("TimeFormsTemplatePathString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TimeInput ähnelt.
         /// </summary>
         public static string TimeInputPageTitle {
@@ -1369,6 +1396,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipResultListTemplatePath {
             get {
                 return ResourceManager.GetString("TooltipResultListTemplatePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the time forms template. ähnelt.
+        /// </summary>
+        public static string TooltipTimeFormsTemplatePath {
+            get {
+                return ResourceManager.GetString("TooltipTimeFormsTemplatePath", resourceCulture);
             }
         }
         

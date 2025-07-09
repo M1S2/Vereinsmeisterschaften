@@ -27,6 +27,11 @@ namespace Vereinsmeisterschaften.Core.Models
         RaceStartList,
 
         /// <summary>
+        /// Time input forms for all races
+        /// </summary>
+        TimeForms,
+
+        /// <summary>
         /// List with the overall result
         /// </summary>
         ResultList

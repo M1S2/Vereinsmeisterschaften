@@ -26,6 +26,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH = "OverviewlistTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH = "RaceStartListTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH = "ResultListTemplatePath";
+        public const string SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH = "TimeFormsTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH = "LibreOfficePath";
 
         //... Add new setting keys and group keys here ...
@@ -61,6 +62,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Gesamtliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @"Startliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Ergebnisliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @"Zeitzettel_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
 
             //... Add new settings and groups here ...

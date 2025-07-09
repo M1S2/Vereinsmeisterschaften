@@ -227,6 +227,10 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH,
             new WorkspaceSettingViewConfig() { Label=Resources.ResultListTemplatePathString, Tooltip = Resources.TooltipResultListTemplatePath, Icon = "\uE9F9", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
         },
+        {
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH,
+            new WorkspaceSettingViewConfig() { Label=Resources.TimeFormsTemplatePathString, Tooltip = Resources.TooltipTimeFormsTemplatePath, Icon = "\uE916", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
+        },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
             new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 

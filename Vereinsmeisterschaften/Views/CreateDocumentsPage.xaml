@@ -36,6 +36,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
@@ -139,8 +140,20 @@
                                          NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <!-- Create Result List -->
+        <!-- Create Time Forms -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="3"
+                                 DocumentType="{x:Static coreModels:DocumentCreationTypes.TimeForms}"
+                                 CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                 IsRunning="{Binding IsDocumentCreationRunning[TimeForms]}"
+                                 IsSuccessful="{Binding IsDocumentCreationSuccessful[TimeForms]}"
+                                 ButtonText="{x:Static properties:Resources.CreateTimeFormsString}"
+                                 SuccessText="{x:Static properties:Resources.CreateTimeFormsResultString}"
+                                 ButtonIconGlyph="&#xE916;"
+                                 NumberCreatedDocuments="{Binding NumberCreatedTimeForms}"/>
+        
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Result List -->
+        <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="4"
                                          DocumentType="{x:Static coreModels:DocumentCreationTypes.ResultList}"
                                          CreateDocumentCommand="{Binding CreateDocumentCommand}"
                                          IsRunning="{Binding IsDocumentCreationRunning[ResultList]}"

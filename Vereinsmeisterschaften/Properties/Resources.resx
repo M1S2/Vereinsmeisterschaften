@@ -577,4 +577,16 @@ This only works outside of tables.</value>
   <data name="NumberCreatedDocumentsString" xml:space="preserve">
     <value>{0} document(s)</value>
   </data>
+  <data name="TimeFormsTemplatePathString" xml:space="preserve">
+    <value>Time Forms Template</value>
+  </data>
+  <data name="TooltipTimeFormsTemplatePath" xml:space="preserve">
+    <value>Path to the time forms template.</value>
+  </data>
+  <data name="CreateTimeFormsString" xml:space="preserve">
+    <value>Create Time Forms</value>
+  </data>
+  <data name="CreateTimeFormsResultString" xml:space="preserve">
+    <value>Time Forms were created.</value>
+  </data>
 </root>

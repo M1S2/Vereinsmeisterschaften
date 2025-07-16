@@ -135,9 +135,6 @@
   <data name="SettingsPagePersonalizationTitle" xml:space="preserve">
     <value>Personalisierung</value>
   </data>
-  <data name="SettingsPagePrivacyStatementText" xml:space="preserve">
-    <value>Privacy Statement</value>
-  </data>
   <data name="SettingsPageRadioButtonDarkTheme" xml:space="preserve">
     <value>Dunkel</value>
   </data>

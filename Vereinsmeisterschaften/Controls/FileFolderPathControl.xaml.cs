@@ -79,7 +79,7 @@ namespace Vereinsmeisterschaften.Controls
             }
             else
             {
-                control.FileFolderPath = control.ResolvedFileFolderPath;
+                // If the root folder is empty, we just leave the FileFolderPath as is
             }
             control.calculateResolvedFileFolderPath();
         }
@@ -100,6 +100,11 @@ namespace Vereinsmeisterschaften.Controls
             {
                 // Construct absolute path
                 ResolvedFileFolderPath = Path.GetFullPath(Path.Combine(RootFolderForRelativePaths, FileFolderPath));
+            }
+            else if(string.IsNullOrEmpty(RootFolderForRelativePaths) && !FilePathHelper.IsPathFullyQualified(FileFolderPath))
+            {
+                // Use relative path as is
+                ResolvedFileFolderPath = FileFolderPath;
             }
             else
             {

@@ -540,6 +540,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No data is available ähnelt.
+        /// </summary>
+        public static string NoDataAvailableWarningString {
+            get {
+                return ResourceManager.GetString("NoDataAvailableWarningString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No persistent race variant available ähnelt.
         /// </summary>
         public static string NoPersistentRaceVariantString {

@@ -21,7 +21,7 @@ using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
-public class CreateDocumentsViewModel : ObservableObject
+public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
     /// Dictionary to hold the state of whether a document creation process is currently running for each <see cref="DocumentCreationTypes"/> type.
@@ -32,6 +32,11 @@ public class CreateDocumentsViewModel : ObservableObject
     /// Dictionary to hold the state of whether a document creation process was successful for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
     public Dictionary<DocumentCreationTypes, bool> IsDocumentCreationSuccessful { get; } = new Dictionary<DocumentCreationTypes, bool>();
+
+    /// <summary>
+    /// Dictionary to hold the state of whether data is available for document creation for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, bool> IsDocumentDataAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
 
     private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
     {
@@ -52,7 +57,17 @@ public class CreateDocumentsViewModel : ObservableObject
             ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
         }
     }
-    
+
+    private void changeDocumentDataAvailableState(DocumentCreationTypes documentType, bool isDataAvailable)
+    {
+        if (IsDocumentDataAvailable.ContainsKey(documentType))
+        {
+            IsDocumentDataAvailable[documentType] = isDataAvailable;
+            OnPropertyChanged(nameof(IsDocumentDataAvailable));
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+
     /// <summary>
     /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
     /// </summary>
@@ -169,20 +184,24 @@ public class CreateDocumentsViewModel : ObservableObject
     private IDocumentService _documentService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
+    private IEnumerable<IDocumentStrategy> _documentStrategies;
 
-    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator, IEnumerable<IDocumentStrategy> documentStrategies)
     {
         _documentService = documentService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+        _documentStrategies = documentStrategies;
 
         List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
         IsDocumentCreationRunning.Clear();
         IsDocumentCreationSuccessful.Clear();
+        IsDocumentDataAvailable.Clear();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IsDocumentCreationRunning.Add(type, false);
             IsDocumentCreationSuccessful.Add(type, false);
+            IsDocumentDataAvailable.Add(type, false);
         }
     }
 
@@ -247,4 +266,23 @@ public class CreateDocumentsViewModel : ObservableObject
         changeDocumentCreationRunningState(documentType, false);
     }, (documentType) => !IsAnyDocumentCreationRunning));
 
+
+    public void OnNavigatedTo(object parameter)
+    {
+        foreach(IDocumentStrategy strategy in _documentStrategies)
+        {
+            object[] items = strategy.GetItems();
+            bool isDataAvailable = items != null;
+            changeDocumentDataAvailableState(strategy.DocumentType, isDataAvailable);
+            if(!isDataAvailable)
+            {
+                changeDocumentCreationRunningState(strategy.DocumentType, false);
+                changeDocumentCreationSuccessfulState(strategy.DocumentType, false);
+            }
+        }
+    }
+
+    public void OnNavigatedFrom()
+    {
+    }
 }

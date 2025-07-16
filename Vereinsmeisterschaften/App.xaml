@@ -46,6 +46,8 @@
             <SolidColorBrush x:Key="BrushErrorWithTransparency">#B48B0000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushOk">#FF008000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushOkWithTransparency">#5B008000</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushWarning">#FFFF5733</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushWarningWithTransparency">#B4FF5733</SolidColorBrush>
 
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">
@@ -60,6 +62,14 @@
                 <Grid>
                     <controls:FontIcon FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushError}"/>
                     <controls:FontIcon FontSize="20" Glyph="&#xF13D;" Foreground="White"/>
+                </Grid>
+            </ControlTemplate>
+
+            <!-- Warning Indicator -->
+            <ControlTemplate x:Key="ControlTemplateWarningIndicator">
+                <Grid>
+                    <controls:FontIcon FontSize="20" Glyph="&#xF139;" Foreground="{StaticResource BrushWarning}"/>
+                    <controls:FontIcon FontSize="20" Glyph="&#xF13B;" Foreground="White"/>
                 </Grid>
             </ControlTemplate>
 

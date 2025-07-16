@@ -589,4 +589,7 @@ This only works outside of tables.</value>
   <data name="CreateTimeFormsResultString" xml:space="preserve">
     <value>Time Forms were created.</value>
   </data>
+  <data name="NoDataAvailableWarningString" xml:space="preserve">
+    <value>No data is available</value>
+  </data>
 </root>

@@ -590,4 +590,7 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="CreateTimeFormsResultString" xml:space="preserve">
     <value>Zeitzettel wurden erstellt.</value>
   </data>
+  <data name="NoDataAvailableWarningString" xml:space="preserve">
+    <value>Es sind keine Daten verfügbar</value>
+  </data>
 </root>

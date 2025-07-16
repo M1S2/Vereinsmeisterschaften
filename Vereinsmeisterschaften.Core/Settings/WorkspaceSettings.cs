@@ -58,11 +58,11 @@ namespace Vereinsmeisterschaften.Core.Settings
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, @"Dokumente");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Urkunden_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Gesamtliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @"Startliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Ergebnisliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @"Zeitzettel_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Templates\\Urkunden_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Templates\\Gesamtliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @"Templates\\Startliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Templates\\Ergebnisliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @"Templates\\Zeitzettel_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
 
             //... Add new settings and groups here ...

@@ -16,7 +16,8 @@
         <!-- Button to create document -->
         <Button Command="{Binding CreateDocumentCommand}"
                 CommandParameter="{Binding DocumentType}"
-                Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                IsEnabled="{Binding IsDataAvailable}">
             <StackPanel Orientation="Vertical">
                 <controls:FontIcon Margin="10"
                                    FontSize="50"
@@ -31,8 +32,20 @@
         <!-- Success Message -->
         <StackPanel Margin="0,10,0,0"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Visibility="{Binding IsSuccessful, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    HorizontalAlignment="Center">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
             <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
             <StackPanel Margin="5,0,0,0"
                         Orientation="Vertical">
@@ -56,7 +69,29 @@
         </StackPanel>
 
         <!-- Progress Ring -->
-        <controls:ProgressRing Margin="0,10,0,0"
-                               Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <controls:ProgressRing Margin="0,10,0,0">
+            <controls:ProgressRing.Style>
+                <Style TargetType="{x:Type controls:ProgressRing}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsRunning}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:ProgressRing.Style>
+        </controls:ProgressRing>
+
+        <StackPanel Margin="0,10,0,0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+            <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+            <TextBlock Margin="5,0,0,0"
+                       Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

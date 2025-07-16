@@ -44,6 +44,6 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         /// <returns>List of all <see cref="Race"/> items of the <see cref="RaceService.PersistedRacesVariant"/></returns>
         public override Race[] GetItems()
-            => _raceService.PersistedRacesVariant.Races.ToArray();
+            => _raceService.PersistedRacesVariant?.Races?.ToArray();
     }
 }

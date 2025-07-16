@@ -114,6 +114,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
                     await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
                     OnPropertyChanged(nameof(NumberPersons));
                     OnPropertyChanged(nameof(NumberStarts));
+                    initSettingsGroups(_workspaceService.Settings);
                 }
             }
             catch (Exception ex)
@@ -176,7 +177,12 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public ObservableCollection<WorkspaceSettingsGroupViewModel> SettingsGroups { get; private set; }
+    private ObservableCollection<WorkspaceSettingsGroupViewModel> _settingsGroups;
+    public ObservableCollection<WorkspaceSettingsGroupViewModel> SettingsGroups
+    {
+        get => _settingsGroups;
+        private set => SetProperty(ref _settingsGroups, value);
+    }
 
     private Dictionary<string, string> groupKeyLabelsDict = new Dictionary<string, string>()
     {

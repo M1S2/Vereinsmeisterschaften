@@ -358,21 +358,6 @@
   <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
     <value>Soll die ausgewählte Variante wirklich gelöscht werden. Das kann nicht rückgängig gemacht werden!</value>
   </data>
-  <data name="TooltipRaceVariantIsPersistentToggleButton" xml:space="preserve">
-    <value>Aktivieren, um diese Variante in eine Datei zu speichern. Nur eine Variante kann gleichzeitig als persistent markiert werden.</value>
-  </data>
-  <data name="TooltipRaceVariantKeepWhileCalculationToggleButton" xml:space="preserve">
-    <value>Aktivieren, um diese Variante während der Berechnung von neuen Varianten zu behalten.</value>
-  </data>
-  <data name="TooltipRaceVariantIsPersistentIcon" xml:space="preserve">
-    <value>Diese Variante in eine Datei speichern. Nur eine Variante kann gleichzeitig als persistent markiert werden.</value>
-  </data>
-  <data name="TooltipRaceVariantKeepWhileCalculation" xml:space="preserve">
-    <value>Diese Variante während der Berechnung von neuen Varianten behalten.</value>
-  </data>
-  <data name="TooltipRaceVariantContainsError" xml:space="preserve">
-    <value>Diese Variante enthält Fehler.</value>
-  </data>
   <data name="NumberOfSwimLanesString" xml:space="preserve">
     <value>Anzahl Bahnen</value>
   </data>
@@ -407,24 +392,6 @@
     <value>Es wurden weniger Varianten als gewünscht berechnet ({0} / {1}). Das kann daran liegen dass:
 - die minimale Bewertung für die Varianten zu hoch gesetzt ist
 - die maximale Anzahl an Schleifen für die Varianten Berechnung zu klein gesetzt ist</value>
-  </data>
-  <data name="TooltipNumberOfSwimLanes" xml:space="preserve">
-    <value>Anzahl an verfügbaren Bahnen.
-Wird verwendet während der Berechnung von neuen Renn-Varianten (um die maximale Anzahl an parallelen Starts zu ermitteln).</value>
-  </data>
-  <data name="TooltipNumberRacesVariantsAfterCalculation" xml:space="preserve">
-    <value>Anzahl an Varianten nach der Berechnung.
-Die Anzahl der Varianten, die behalten werden sollen (mit dem Pin Symbol markiert) werden vor der Berechnung abgezogen.</value>
-  </data>
-  <data name="TooltipMaxRacesVariantCalculationLoops" xml:space="preserve">
-    <value>Maximale Anzahl an Schleifen während der Varianten Berechnung.
-Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher abgebrochen.</value>
-  </data>
-  <data name="TooltipMinRacesVariantsScore" xml:space="preserve">
-    <value>Nur Varianten mit einer Bewertung höher oder gleich diesem Wert in Prozent werden während der Berechnung behalten.</value>
-  </data>
-  <data name="TooltipCompetitionYear" xml:space="preserve">
-    <value>Jahr in dem der Wettkampf stattfindet</value>
   </data>
   <data name="SettingsResetString" xml:space="preserve">
     <value>Einstellungen auf den letzten gespeicherten Zustand zurücksetzen.</value>
@@ -475,26 +442,14 @@ Alle Starts sind zugewiesen.</value>
   <data name="SettingsDocumentCreationString" xml:space="preserve">
     <value>Einstellung für die Dokument Erstellung</value>
   </data>
-  <data name="TooltipCertificateTemplatePath" xml:space="preserve">
-    <value>Pfad zum Urkunden Template.</value>
-  </data>
   <data name="CertificateTemplatePathString" xml:space="preserve">
     <value>Urkunden Template</value>
-  </data>
-  <data name="TooltipDocumentOutputFolder" xml:space="preserve">
-    <value>Ordner, in dem die Dokumente erstellt werden.</value>
   </data>
   <data name="DocumentOutputFolderString" xml:space="preserve">
     <value>Dokumente Ausgabeordner</value>
   </data>
-  <data name="TooltipOverviewListTemplatePath" xml:space="preserve">
-    <value>Pfad zum Übersichtslisten Template.</value>
-  </data>
   <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Übersichtslisten Template</value>
-  </data>
-  <data name="TooltipLibreOfficePath" xml:space="preserve">
-    <value>Pfad zur LibreOffice soffice.exe, die zur PDF Konvertierung verwendet wird.</value>
   </data>
   <data name="LibreOfficePathString" xml:space="preserve">
     <value>LibreOffice Pfad</value>
@@ -507,9 +462,6 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="RaceStartListTemplatePathString" xml:space="preserve">
     <value>Renn-Startlisten Template</value>
-  </data>
-  <data name="TooltipRaceStartListTemplatePath" xml:space="preserve">
-    <value>Pfad zum Renn-Startlisten Template.</value>
   </data>
   <data name="PlaceholderNameCompetitionYear" xml:space="preserve">
     <value>Wettkampfjahr</value>
@@ -554,9 +506,6 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="ResultListTemplatePathString" xml:space="preserve">
     <value>Ergebnislisten Template</value>
   </data>
-  <data name="TooltipResultListTemplatePath" xml:space="preserve">
-    <value>Pfad zum Ergebnislisten Template.</value>
-  </data>
   <data name="CreateResultListString" xml:space="preserve">
     <value>Ergebnisliste erstellen</value>
   </data>
@@ -580,9 +529,6 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   </data>
   <data name="TimeFormsTemplatePathString" xml:space="preserve">
     <value>Zeitzettel Template</value>
-  </data>
-  <data name="TooltipTimeFormsTemplatePath" xml:space="preserve">
-    <value>Pfad zum Zeitzettel Template.</value>
   </data>
   <data name="CreateTimeFormsString" xml:space="preserve">
     <value>Zeitzettel erstellen</value>

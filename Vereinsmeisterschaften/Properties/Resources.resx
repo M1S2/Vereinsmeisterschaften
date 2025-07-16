@@ -358,21 +358,6 @@
   <data name="DeleteRaceVariantConfirmationString" xml:space="preserve">
     <value>Really delete the selected variant? This can't be undone.</value>
   </data>
-  <data name="TooltipRaceVariantIsPersistentToggleButton" xml:space="preserve">
-    <value>Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
-  </data>
-  <data name="TooltipRaceVariantKeepWhileCalculationToggleButton" xml:space="preserve">
-    <value>Enable this to keep this variant while calculating new race variants.</value>
-  </data>
-  <data name="TooltipRaceVariantIsPersistentIcon" xml:space="preserve">
-    <value>Persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
-  </data>
-  <data name="TooltipRaceVariantKeepWhileCalculation" xml:space="preserve">
-    <value>Keep this variant while calculating new race variants.</value>
-  </data>
-  <data name="TooltipRaceVariantContainsError" xml:space="preserve">
-    <value>This variant contains errors.</value>
-  </data>
   <data name="NumberOfSwimLanesString" xml:space="preserve">
     <value>Number of lanes</value>
   </data>
@@ -407,24 +392,6 @@
     <value>Less variants than requested were calculated ({0} / {1}). This can be caused by:
 - too high minimum score for the variants
 - too less maximum calculation loops</value>
-  </data>
-  <data name="TooltipNumberOfSwimLanes" xml:space="preserve">
-    <value>Number of available swim lanes.
-This is used during calculation of the race variants (determines the maximum number of parallel starts).</value>
-  </data>
-  <data name="TooltipNumberRacesVariantsAfterCalculation" xml:space="preserve">
-    <value>Number of variants after calculation.
-The number of variants to keep (marked with the pin icon) is subtracted before calculating the remaining elements.</value>
-  </data>
-  <data name="TooltipMaxRacesVariantCalculationLoops" xml:space="preserve">
-    <value>Maximum number of iterations the race variant calculation loop will run in the worst case.
-If the number of variants after calculation is reached earlier, the loop will break.</value>
-  </data>
-  <data name="TooltipMinRacesVariantsScore" xml:space="preserve">
-    <value>Only variants with a score higher or equal this value (in percent) are kept during calculation.</value>
-  </data>
-  <data name="TooltipCompetitionYear" xml:space="preserve">
-    <value>Year in which the competition takes place</value>
   </data>
   <data name="SettingsResetString" xml:space="preserve">
     <value>Reset the settings to the last persisted state.</value>
@@ -474,26 +441,14 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="SettingsDocumentCreationString" xml:space="preserve">
     <value>Document creation settings</value>
   </data>
-  <data name="TooltipCertificateTemplatePath" xml:space="preserve">
-    <value>Path to the certificate template.</value>
-  </data>
   <data name="CertificateTemplatePathString" xml:space="preserve">
     <value>Certificate Template</value>
-  </data>
-  <data name="TooltipDocumentOutputFolder" xml:space="preserve">
-    <value>Output folder where the documents are created.</value>
   </data>
   <data name="DocumentOutputFolderString" xml:space="preserve">
     <value>Document output folder</value>
   </data>
-  <data name="TooltipOverviewListTemplatePath" xml:space="preserve">
-    <value>Path to the overview list template.</value>
-  </data>
   <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Overview List Template</value>
-  </data>
-  <data name="TooltipLibreOfficePath" xml:space="preserve">
-    <value>Path to the LibreOffice soffice.exe used for PDF conversion.</value>
   </data>
   <data name="LibreOfficePathString" xml:space="preserve">
     <value>LibreOffice Path</value>
@@ -506,9 +461,6 @@ If the number of variants after calculation is reached earlier, the loop will br
   </data>
   <data name="RaceStartListTemplatePathString" xml:space="preserve">
     <value>Race Start List Template</value>
-  </data>
-  <data name="TooltipRaceStartListTemplatePath" xml:space="preserve">
-    <value>Path to the race start list template.</value>
   </data>
   <data name="PlaceholderNameCompetitionYear" xml:space="preserve">
     <value>Competition Year</value>
@@ -553,9 +505,6 @@ This only works outside of tables.</value>
   <data name="ResultListTemplatePathString" xml:space="preserve">
     <value>Result List Template</value>
   </data>
-  <data name="TooltipResultListTemplatePath" xml:space="preserve">
-    <value>Path to the result list template.</value>
-  </data>
   <data name="CreateResultListString" xml:space="preserve">
     <value>Create Result List</value>
   </data>
@@ -579,9 +528,6 @@ This only works outside of tables.</value>
   </data>
   <data name="TimeFormsTemplatePathString" xml:space="preserve">
     <value>Time Forms Template</value>
-  </data>
-  <data name="TooltipTimeFormsTemplatePath" xml:space="preserve">
-    <value>Path to the time forms template.</value>
   </data>
   <data name="CreateTimeFormsString" xml:space="preserve">
     <value>Create Time Forms</value>

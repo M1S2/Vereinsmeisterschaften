@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TooltipRaceVariantIsPersistentToggleButton" xml:space="preserve">
+    <value>Enable this to persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
+  </data>
+  <data name="TooltipRaceVariantKeepWhileCalculationToggleButton" xml:space="preserve">
+    <value>Enable this to keep this variant while calculating new race variants.</value>
+  </data>
+  <data name="TooltipRaceVariantIsPersistentIcon" xml:space="preserve">
+    <value>Persist this variant to a file. Only one variant can be marked as persistent at a time.</value>
+  </data>
+  <data name="TooltipRaceVariantKeepWhileCalculation" xml:space="preserve">
+    <value>Keep this variant while calculating new race variants.</value>
+  </data>
+  <data name="TooltipRaceVariantContainsError" xml:space="preserve">
+    <value>This variant contains errors.</value>
+  </data>
+  <data name="TooltipNumberOfSwimLanes" xml:space="preserve">
+    <value>Number of available swim lanes.
+This is used during calculation of the race variants (determines the maximum number of parallel starts).</value>
+  </data>
+  <data name="TooltipNumberRacesVariantsAfterCalculation" xml:space="preserve">
+    <value>Number of variants after calculation.
+The number of variants to keep (marked with the pin icon) is subtracted before calculating the remaining elements.</value>
+  </data>
+  <data name="TooltipMaxRacesVariantCalculationLoops" xml:space="preserve">
+    <value>Maximum number of iterations the race variant calculation loop will run in the worst case.
+If the number of variants after calculation is reached earlier, the loop will break.</value>
+  </data>
+  <data name="TooltipMinRacesVariantsScore" xml:space="preserve">
+    <value>Only variants with a score higher or equal this value (in percent) are kept during calculation.</value>
+  </data>
+  <data name="TooltipCompetitionYear" xml:space="preserve">
+    <value>Year in which the competition takes place</value>
+  </data>
+  <data name="TooltipTemplatePathCertificate" xml:space="preserve">
+    <value>Path to the certificate template.</value>
+  </data>
+  <data name="TooltipDocumentOutputFolder" xml:space="preserve">
+    <value>Output folder where the documents are created.</value>
+  </data>
+  <data name="TooltipTemplatePathOverviewList" xml:space="preserve">
+    <value>Path to the overview list template.</value>
+  </data>
+  <data name="TooltipLibreOfficePath" xml:space="preserve">
+    <value>Path to the LibreOffice soffice.exe used for PDF conversion.</value>
+  </data>
+  <data name="TooltipTemplatePathRaceStartList" xml:space="preserve">
+    <value>Path to the race start list template.</value>
+  </data>
+  <data name="TooltipTemplatePathResultList" xml:space="preserve">
+    <value>Path to the result list template.</value>
+  </data>
+  <data name="TooltipTemplatePathTimeForms" xml:space="preserve">
+    <value>Path to the time forms template.</value>
+  </data>
+  <data name="TooltipWorkspaceOpen" xml:space="preserve">
+    <value>Open a workspace and load all settings, persons, competitions...</value>
+  </data>
+  <data name="TooltipWorkspaceOpenInExplorer" xml:space="preserve">
+    <value>Open the folder of the current workspace in the windows explorer.</value>
+  </data>
+  <data name="TooltipWorkspaceSave" xml:space="preserve">
+    <value>Save all workspace settings, persons, competitions, ... to a file.</value>
+  </data>
+  <data name="TooltipWorkspaceClose" xml:space="preserve">
+    <value>Close the current workspace. If there are unsaved changes, there will be a dialog before closing.</value>
+  </data>
+</root>

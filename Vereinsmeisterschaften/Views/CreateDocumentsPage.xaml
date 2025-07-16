@@ -170,7 +170,7 @@
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <ScrollViewer>
                 <userControls:GridWithLines Margin="-1" GridLinesVisibility="Both" GridLineBrush="{StaticResource MahApps.Brushes.Accent}" GridLineThickness="2">
                     <userControls:GridWithLines.ColumnDefinitions>

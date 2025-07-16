@@ -195,51 +195,51 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     {
         { 
             WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR,
-            new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Resources.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false } 
+            new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Tooltips.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 
-            new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Resources.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } 
+            new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Tooltips.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric } 
         },
         { 
             WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, 
-            new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Resources.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } 
+            new WorkspaceSettingViewConfig() { Label=Resources.NumberRacesVariantsAfterCalculationString, Tooltip = Tooltips.TooltipNumberRacesVariantsAfterCalculation, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.Numeric } 
         },
         { 
             WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, 
-            new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Resources.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } 
+            new WorkspaceSettingViewConfig() { Label=Resources.MaxRacesVariantCalculationLoopsString, Tooltip = Tooltips.TooltipMaxRacesVariantCalculationLoops, Icon = "\uE895", Editor = WorkspaceSettingEditorTypes.Numeric } 
         },
         { 
             WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 
-            new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Resources.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } 
+            new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Tooltips.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } 
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, 
-            new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Resources.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative, SupportResetToDefault = false } 
+            new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Tooltips.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, 
-            new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Resources.TooltipCertificateTemplatePath, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false } 
+            new WorkspaceSettingViewConfig() { Label=Resources.CertificateTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathCertificate, Icon = "\uE8A5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false } 
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, 
-            new WorkspaceSettingViewConfig() { Label=Resources.OverviewListTemplatePathString, Tooltip = Resources.TooltipOverviewListTemplatePath, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false} 
+            new WorkspaceSettingViewConfig() { Label=Resources.OverviewListTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathOverviewList, Icon = "\uE9D5", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false} 
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH,
-            new WorkspaceSettingViewConfig() { Label=Resources.RaceStartListTemplatePathString, Tooltip = Resources.TooltipRaceStartListTemplatePath, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
+            new WorkspaceSettingViewConfig() { Label=Resources.RaceStartListTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathRaceStartList, Icon = "\uE7C1", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH,
-            new WorkspaceSettingViewConfig() { Label=Resources.ResultListTemplatePathString, Tooltip = Resources.TooltipResultListTemplatePath, Icon = "\uE9F9", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
+            new WorkspaceSettingViewConfig() { Label=Resources.ResultListTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathResultList, Icon = "\uE9F9", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH,
-            new WorkspaceSettingViewConfig() { Label=Resources.TimeFormsTemplatePathString, Tooltip = Resources.TooltipTimeFormsTemplatePath, Icon = "\uE916", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
+            new WorkspaceSettingViewConfig() { Label=Resources.TimeFormsTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathTimeForms, Icon = "\uE916", Editor = WorkspaceSettingEditorTypes.FileRelative, SupportResetToDefault = false}
         },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
-            new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Resources.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 
+            new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Tooltips.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 
         }
     };
 

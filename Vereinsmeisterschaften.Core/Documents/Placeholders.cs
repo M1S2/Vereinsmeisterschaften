@@ -11,6 +11,8 @@ namespace Vereinsmeisterschaften.Core.Documents
     /// </summary>
     public static class Placeholders
     {
+        #region Placeholder Lists
+
         /// <summary>
         /// List with all placeholders that can be used in the template to insert the competition year.
         /// </summary>
@@ -43,5 +45,63 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// List with all placeholders that can be used in the template to insert the place in the overall result list of a person.
         /// </summary>
         public static List<string> Placeholders_ResultListPlace = new List<string>() { "Platzierung", "Platz", "Result", "Place", "P" };
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Placeholder Keys
+
+        /// <summary>
+        /// Key for the competition year placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
+        /// <summary>
+        /// Key for the name placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_NAME = "Name";
+        /// <summary>
+        /// Key for the birth year placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_BIRTH_YEAR = "BirthYear";
+        /// <summary>
+        /// Key for the distance placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_DISTANCE = "Distance";
+        /// <summary>
+        /// Key for the swimming style placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_SWIMMING_STYLE = "SwimmingStyle";
+        /// <summary>
+        /// Key for the competition ID placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_COMPETITION_ID = "CompetitionID";
+        /// <summary>
+        /// Key for the score placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_SCORE = "Score";
+        /// <summary>
+        /// Key for the result list place placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Dictionary that maps placeholder keys to their corresponding lists of placeholders.
+        /// </summary>
+        public static Dictionary<string, List<string>> PlaceholderDict = new Dictionary<string, List<string>>()
+        {
+            { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
+            { PLACEHOLDER_KEY_NAME, Placeholders_Name },
+            { PLACEHOLDER_KEY_BIRTH_YEAR, Placeholders_BirthYear },
+            { PLACEHOLDER_KEY_DISTANCE, Placeholders_Distance },
+            { PLACEHOLDER_KEY_SWIMMING_STYLE, Placeholders_SwimmingStyle },
+            { PLACEHOLDER_KEY_COMPETITION_ID, Placeholders_CompetitionID },
+            { PLACEHOLDER_KEY_SCORE, Placeholders_Score },
+            { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace }
+        };
     }
 }

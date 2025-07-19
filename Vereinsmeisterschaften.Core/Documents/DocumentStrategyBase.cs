@@ -64,7 +64,13 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <summary>
         /// Placeholder resolver used to resolve placeholders in the document.
         /// </summary>
-        public IDocumentPlaceholderResolver<TData> PlaceholderResolver { get; } 
+        public IDocumentPlaceholderResolver<TData> PlaceholderResolver { get; }
+
+        /// <summary>
+        /// List of all placeholder keys that are supported by the <see cref="PlaceholderResolver"/>.
+        /// The key for the competition year (<see cref="Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR"/>) is always supported.
+        /// </summary>
+        public List<string> SupportedPlaceholderKeys => new List<string>(PlaceholderResolver.SupportedPlaceholderKeys) { Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR };
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

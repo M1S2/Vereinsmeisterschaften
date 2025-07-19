@@ -53,6 +53,11 @@ namespace Vereinsmeisterschaften.Core.Documents
         bool SupportTablePlaceholders { get; }
 
         /// <summary>
+        /// List of placeholder keys that are supported by this strategy.
+        /// </summary>
+        List<string> SupportedPlaceholderKeys { get; }
+
+        /// <summary>
         /// Resolve text placeholders for the given item.
         /// </summary>
         /// <param name="item">Item to generate <see cref="DocXPlaceholderHelper.TextPlaceholders"/> from</param>

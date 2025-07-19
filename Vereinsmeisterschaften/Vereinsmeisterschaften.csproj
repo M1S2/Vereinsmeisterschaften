@@ -37,6 +37,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Enums.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\PlaceholderResources.Designer.cs">
+      <DependentUpon>PlaceholderResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Properties\Tooltips.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,6 +65,10 @@
     <EmbeddedResource Update="Properties\Enums.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Enums.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\PlaceholderResources.resx">
+      <LastGenOutput>PlaceholderResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 

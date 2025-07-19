@@ -40,5 +40,8 @@ namespace Vereinsmeisterschaften.Core.Documents
             }
             return DocXPlaceholderHelper.ConvertTextToTablePlaceholders(textPlaceholdersList);
         }
+
+        /// <inheritdoc/>
+        public abstract List<string> SupportedPlaceholderKeys { get; }
     }
 }

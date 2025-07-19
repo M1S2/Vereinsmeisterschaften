@@ -30,5 +30,10 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to access e.g. <see cref="Settings.WorkspaceSettings"/></param>
         /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
         DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(IEnumerable<T> items, IWorkspaceService workspaceService);
+
+        /// <summary>
+        /// List of all placeholder keys that are supported by this resolver.
+        /// </summary>
+        List<string> SupportedPlaceholderKeys { get; }
     }
 }

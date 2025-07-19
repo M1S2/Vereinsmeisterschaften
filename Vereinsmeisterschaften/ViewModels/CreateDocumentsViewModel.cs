@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents.Serialization;
 using System.Windows.Input;
+using System.Resources;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -18,6 +19,8 @@ using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
+using Vereinsmeisterschaften.Core.Settings;
+using Newtonsoft.Json.Linq;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -166,16 +169,58 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region Placeholder Strings
+    #region Placeholders
 
-    public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Name => string.Join(Environment.NewLine, Placeholders.Placeholders_Name.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_BirthYear => string.Join(Environment.NewLine, Placeholders.Placeholders_BirthYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Distance => string.Join(Environment.NewLine, Placeholders.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, Placeholders.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Score => string.Join(Environment.NewLine, Placeholders.Placeholders_Score.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_ResultListPlace => string.Join(Environment.NewLine, Placeholders.Placeholders_ResultListPlace.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    private ObservableCollection<DocumentPlaceholderViewConfig> _placeholderViewConfigs = new ObservableCollection<DocumentPlaceholderViewConfig>();
+    /// <summary>
+    /// Collection of <see cref="DocumentPlaceholderViewConfig"/> objects that define the available placeholders for documents.
+    /// </summary>
+    public ObservableCollection<DocumentPlaceholderViewConfig> PlaceholderViewConfigs
+    {
+        get => _placeholderViewConfigs;
+        private set => SetProperty(ref _placeholderViewConfigs, value);
+    }
+
+    /// <summary>
+    /// Initializes the <see cref="PlaceholderViewConfigs"/> collection with available placeholders.
+    /// </summary>
+    private void initPlaceholderViewConfigs()
+    {
+        PlaceholderViewConfigs.Clear();
+        foreach(KeyValuePair<string, List<string>> placeholders in Placeholders.PlaceholderDict)
+        {
+            string placeholderKey = placeholders.Key;
+            ResourceManager rm = new ResourceManager(typeof(Properties.PlaceholderResources));
+            string resourceStringName = rm.GetString($"PlaceholderName{placeholderKey}") ?? "?";
+            string resourceStringInfo = rm.GetString($"PlaceholderInfo{placeholderKey}") ?? "?";
+
+            Dictionary<DocumentCreationTypes, bool> isSupportedForDocumentType = new Dictionary<DocumentCreationTypes, bool>();
+            foreach (IDocumentStrategy strategy in _documentStrategies)
+            {
+                DocumentCreationTypes documentCreationType = strategy.DocumentType;
+                bool isCurrentPlaceholderSupportedForStrategy = strategy.SupportedPlaceholderKeys.Contains(placeholderKey);
+                if (!isSupportedForDocumentType.ContainsKey(documentCreationType))
+                {
+                    isSupportedForDocumentType.Add(documentCreationType, isCurrentPlaceholderSupportedForStrategy);
+                }
+                else
+                {
+                    isSupportedForDocumentType[documentCreationType] = isCurrentPlaceholderSupportedForStrategy;
+                }
+            }
+
+            DocumentPlaceholderViewConfig placeholderViewConfig = new DocumentPlaceholderViewConfig()
+            {
+                Key = placeholderKey,
+                Name = resourceStringName,
+                Info = resourceStringInfo,
+                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}")),
+                IsSupportedForDocumentType = isSupportedForDocumentType
+            };
+            PlaceholderViewConfigs.Add(placeholderViewConfig);
+        }
+        OnPropertyChanged(nameof(PlaceholderViewConfigs));
+    }
 
     #endregion
 
@@ -203,6 +248,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             IsDocumentCreationSuccessful.Add(type, false);
             IsDocumentDataAvailable.Add(type, false);
         }
+
+        initPlaceholderViewConfigs();
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -459,45 +459,8 @@
   <data name="RaceStartListTemplatePathString" xml:space="preserve">
     <value>Race Start List Template</value>
   </data>
-  <data name="PlaceholderNameCompetitionYear" xml:space="preserve">
-    <value>Competition Year</value>
-  </data>
-  <data name="PlaceholderInfoCompetitionYear" xml:space="preserve">
-    <value>Use these placeholders to insert the competition year.
-This only works outside of tables.</value>
-  </data>
-  <data name="PlaceholderInfoName" xml:space="preserve">
-    <value>Use these placeholders to insert the complete name (&lt;first name&gt; &lt;last name&gt;).</value>
-  </data>
-  <data name="PlaceholderNameName" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <data name="AvailablePlaceholdersString" xml:space="preserve">
     <value>Available Placeholders</value>
-  </data>
-  <data name="PlaceholderInfoBirthYear" xml:space="preserve">
-    <value>Use these placeholders to insert the birth year.</value>
-  </data>
-  <data name="PlaceholderNameBirthYear" xml:space="preserve">
-    <value>Birth Year</value>
-  </data>
-  <data name="PlaceholderInfoDistance" xml:space="preserve">
-    <value>Use these placeholders to insert the distance in m.</value>
-  </data>
-  <data name="PlaceholderNameDistance" xml:space="preserve">
-    <value>Distance</value>
-  </data>
-  <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
-    <value>Use these placeholders to insert the swimming style.</value>
-  </data>
-  <data name="PlaceholderNameSwimmingStyle" xml:space="preserve">
-    <value>Swimming Style</value>
-  </data>
-  <data name="PlaceholderInfoCompetitionID" xml:space="preserve">
-    <value>Use these placeholders to insert the competition ID.</value>
-  </data>
-  <data name="PlaceholderNameCompetitionID" xml:space="preserve">
-    <value>Competition ID</value>
   </data>
   <data name="ResultListTemplatePathString" xml:space="preserve">
     <value>Result List Template</value>
@@ -507,18 +470,6 @@ This only works outside of tables.</value>
   </data>
   <data name="CreateResultListResultString" xml:space="preserve">
     <value>Result List was created.</value>
-  </data>
-  <data name="PlaceholderNameScore" xml:space="preserve">
-    <value>Score</value>
-  </data>
-  <data name="PlaceholderInfoScore" xml:space="preserve">
-    <value>Use these placeholders to insert the highest score.</value>
-  </data>
-  <data name="PlaceholderNameResultListPlace" xml:space="preserve">
-    <value>Result List Place</value>
-  </data>
-  <data name="PlaceholderInfoResultListPlace" xml:space="preserve">
-    <value>Use these placeholders to insert the place in the overall result list.</value>
   </data>
   <data name="NumberCreatedDocumentsString" xml:space="preserve">
     <value>{0} document(s)</value>

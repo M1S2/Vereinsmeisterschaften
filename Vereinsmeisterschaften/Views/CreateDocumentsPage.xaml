@@ -171,67 +171,97 @@
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
         <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Right" MaxHeight="400" Header="{x:Static properties:Resources.AvailablePlaceholdersString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
-            <ScrollViewer>
-                <userControls:GridWithLines Margin="-1" GridLinesVisibility="Both" GridLineBrush="{StaticResource MahApps.Brushes.Accent}" GridLineThickness="2">
-                    <userControls:GridWithLines.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </userControls:GridWithLines.ColumnDefinitions>
-                    <userControls:GridWithLines.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </userControls:GridWithLines.RowDefinitions>
-                    <userControls:GridWithLines.Resources>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Padding" Value="7"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                        </Style>
-                    </userControls:GridWithLines.Resources>
+            <ListView ItemsSource="{Binding PlaceholderViewConfigs}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                        <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                <ListView.View>
+                    <GridView>
+                        <!-- Placeholder Name -->
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="{x:Static properties:Resources.NameString}"/>
 
-                    <TextBox Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameCompetitionYear}"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoCompetitionYear}"/>
-                    <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding PlaceholderString_CompetitionYear, Mode=OneWay}"/>
+                        <!-- Placeholder Info -->
+                        <GridViewColumn DisplayMemberBinding="{Binding Info}" Header="{x:Static properties:Resources.InfoString}"/>
 
-                    <TextBox Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameName}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoName}"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding PlaceholderString_Name, Mode=OneWay}"/>
+                        <!-- Placeholders -->
+                        <GridViewColumn DisplayMemberBinding="{Binding Placeholders}" Header="{x:Static properties:Resources.AvailablePlaceholdersString}"/>
 
-                    <TextBox Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameBirthYear}"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoBirthYear}"/>
-                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding PlaceholderString_BirthYear, Mode=OneWay}"/>
+                        <!-- Supported Placeholders for Certificates Document Type -->
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <controls:FontIcon Glyph="&#xE8A5;" ToolTip="{x:Static properties:Resources.CreateCertificatesString}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                             BoolValue="{Binding IsSupportedForDocumentType[Certificates]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <TextBox Grid.Row="3" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameDistance}"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoDistance}"/>
-                    <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding PlaceholderString_Distance, Mode=OneWay}"/>
+                        <!-- Supported Placeholders for OverviewList Document Type -->
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <controls:FontIcon Glyph="&#xE9D5;" ToolTip="{x:Static properties:Resources.CreateOverviewListString}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                             BoolValue="{Binding IsSupportedForDocumentType[OverviewList]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <TextBox Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameSwimmingStyle}"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoSwimmingStyle}"/>
-                    <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding PlaceholderString_SwimmingStyle, Mode=OneWay}"/>
+                        <!-- Supported Placeholders for RaceStartList Document Type -->
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <controls:FontIcon Glyph="&#xE7C1;" ToolTip="{x:Static properties:Resources.CreateRaceStartListString}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                             BoolValue="{Binding IsSupportedForDocumentType[RaceStartList]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <TextBox Grid.Row="5" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameCompetitionID}"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoCompetitionID}"/>
-                    <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding PlaceholderString_CompetitionID, Mode=OneWay}"/>
+                        <!-- Supported Placeholders for TimeForms Document Type -->
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <controls:FontIcon Glyph="&#xE916;" ToolTip="{x:Static properties:Resources.CreateTimeFormsString}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                             BoolValue="{Binding IsSupportedForDocumentType[TimeForms]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <TextBox Grid.Row="6" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameScore}"/>
-                    <TextBox Grid.Row="6" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoScore}"/>
-                    <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding PlaceholderString_Score, Mode=OneWay}"/>
-
-                    <TextBox Grid.Row="7" Grid.Column="0" Text="{x:Static properties:Resources.PlaceholderNameResultListPlace}"/>
-                    <TextBox Grid.Row="7" Grid.Column="1" Text="{x:Static properties:Resources.PlaceholderInfoResultListPlace}"/>
-                    <TextBox Grid.Row="7" Grid.Column="2" Text="{Binding PlaceholderString_ResultListPlace, Mode=OneWay}"/>
-                </userControls:GridWithLines>
-            </ScrollViewer>
+                        <!-- Supported Placeholders for ResultList Document Type -->
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <controls:FontIcon Glyph="&#xE9F9;" ToolTip="{x:Static properties:Resources.CreateResultListString}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                             BoolValue="{Binding IsSupportedForDocumentType[ResultList]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Expander>
         
     </Grid>

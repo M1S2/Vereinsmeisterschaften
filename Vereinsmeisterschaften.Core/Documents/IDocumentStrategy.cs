@@ -51,5 +51,19 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// If <see cref="CreateMultiplePages"/> is false, this will return true, because all element of the <see cref="GetItems"/> are used for one page.
         /// </summary>
         bool SupportTablePlaceholders { get; }
+
+        /// <summary>
+        /// Resolve text placeholders for the given item.
+        /// </summary>
+        /// <param name="item">Item to generate <see cref="DocXPlaceholderHelper.TextPlaceholders"/> from</param>
+        /// <returns><see cref="DocXPlaceholderHelper.TextPlaceholders"/></returns>
+        DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(object item = null);
+
+        /// <summary>
+        /// Resolve table placeholders for the given items.
+        /// </summary>
+        /// <param name="items">List of items to generate <see cref="DocXPlaceholderHelper.TablePlaceholders"/> from</param>
+        /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
+        DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(object[] items);
     }
 }

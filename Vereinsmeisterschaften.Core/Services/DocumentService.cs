@@ -142,10 +142,10 @@ namespace Vereinsmeisterschaften.Core.Services
                             {
                                 string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(_templatePostfix, "") + $"_{numCreatedPages}.docx");
 
-                                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = resolveTablePlaceholders(documentType, documentStrategy, items);
+                                DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = documentStrategy.ResolveTablePlaceholders(items);
                                 if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFileMulti, tablePlaceholders); }
 
-                                DocXPlaceholderHelper.TextPlaceholders textPlaceholders = resolveTextPlaceholders(documentType, documentStrategy, multiplePagesObj);
+                                DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders(multiplePagesObj);
                                 if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFileMulti, outputFileMulti, textPlaceholders); }
 
                                 insertCompetitionYearPlaceholderValue(outputFileMulti, outputFileMulti);
@@ -185,10 +185,10 @@ namespace Vereinsmeisterschaften.Core.Services
                 else
                 {
                     // Create a single page document
-                    DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = resolveTablePlaceholders(documentType, documentStrategy, items);
+                    DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = documentStrategy.ResolveTablePlaceholders(items);
                     if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFile, tablePlaceholders); }
 
-                    DocXPlaceholderHelper.TextPlaceholders textPlaceholders = resolveTextPlaceholders(documentType, documentStrategy);
+                    DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders();
                     if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFile, outputFile, textPlaceholders); }
 
                     insertCompetitionYearPlaceholderValue(outputFile, outputFile);
@@ -203,45 +203,6 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 return numCreatedPages;
             });
-        }
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private DocXPlaceholderHelper.TextPlaceholders resolveTextPlaceholders(DocumentCreationTypes documentType, IDocumentStrategy documentStrategy, object multiplePagesObj = null)
-        {
-            Type dataType = documentStrategy.ItemType;
-            object item = multiplePagesObj;
-
-            // Text placeholders are not supported
-            if (!documentStrategy.SupportTextPlaceholders || item == null) { return null; }
-
-            Type resolverType = typeof(IDocumentPlaceholderResolver<>).MakeGenericType(dataType);
-            object resolver = _serviceProvider.GetService(resolverType);
-            if (resolver is null) throw new InvalidOperationException($"No Resolver found for type {dataType.Name}.");
-
-            MethodInfo method = resolverType.GetMethod(nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTextPlaceholders));
-            if (method == null) throw new InvalidOperationException($"Method {nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTextPlaceholders)} not found.");
-
-            DocXPlaceholderHelper.TextPlaceholders textPlaceholders = method.Invoke(resolver, new object[] { item, _workspaceService }) as DocXPlaceholderHelper.TextPlaceholders;
-            return textPlaceholders;
-        }
-
-        private DocXPlaceholderHelper.TablePlaceholders resolveTablePlaceholders(DocumentCreationTypes documentType, IDocumentStrategy documentStrategy, object[] items)
-        {
-            Type dataType = documentStrategy.ItemType;
-            
-            // Table placeholders are not supported
-            if(!documentStrategy.SupportTablePlaceholders || items == null) { return null; }
-
-            Type resolverType = typeof(IDocumentPlaceholderResolver<>).MakeGenericType(dataType);
-            object resolver = _serviceProvider.GetService(resolverType);
-            if (resolver is null) throw new InvalidOperationException($"No Resolver found for type {dataType.Name}.");
-
-            MethodInfo method = resolverType.GetMethod(nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTablePlaceholders));
-            if (method == null) throw new InvalidOperationException($"Method {nameof(IDocumentPlaceholderResolver<PersonStart>.ResolveTablePlaceholders)} not found.");
-
-            DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = method.Invoke(resolver, new object[] { items, _workspaceService }) as DocXPlaceholderHelper.TablePlaceholders;
-            return tablePlaceholders;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

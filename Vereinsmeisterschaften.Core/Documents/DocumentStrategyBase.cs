@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -18,14 +20,21 @@ namespace Vereinsmeisterschaften.Core.Documents
     public abstract class DocumentStrategyBase<TData> : IDocumentStrategy
     {
         protected readonly IWorkspaceService _workspaceService;
+        protected readonly IServiceProvider _serviceProvider;
 
         /// <summary>
         /// Constructor for the document strategy base class.
         /// </summary>
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to e.g. get the workspace root path</param>
-        protected DocumentStrategyBase(IWorkspaceService workspaceService)
+        /// <param name="serviceProvider"><see cref="IServiceProvider"/> used to get the correct <see cref="IDocumentPlaceholderResolver{T}"/></param>
+        protected DocumentStrategyBase(IWorkspaceService workspaceService, IServiceProvider serviceProvider)
         {
             _workspaceService = workspaceService;
+            _serviceProvider = serviceProvider;
+
+            Type resolverType = typeof(IDocumentPlaceholderResolver<>).MakeGenericType(ItemType);
+            PlaceholderResolver = _serviceProvider.GetService(resolverType) as IDocumentPlaceholderResolver<TData>;
+            if (PlaceholderResolver is null) throw new InvalidOperationException($"No Resolver found for type {ItemType.Name}.");
         }
 
         /// <inheritdoc/>
@@ -51,5 +60,28 @@ namespace Vereinsmeisterschaften.Core.Documents
 
         /// <inheritdoc/>
         public virtual bool SupportTablePlaceholders => !CreateMultiplePages;
+
+        /// <summary>
+        /// Placeholder resolver used to resolve placeholders in the document.
+        /// </summary>
+        public IDocumentPlaceholderResolver<TData> PlaceholderResolver { get; } 
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(object item = null)
+        {
+            if (!SupportTextPlaceholders || item == null) { return null; }
+
+            return PlaceholderResolver.ResolveTextPlaceholders((TData)item, _workspaceService);
+        }
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(object[] items)
+        {
+            if (!SupportTablePlaceholders || items == null) { return null; }
+
+            return PlaceholderResolver.ResolveTablePlaceholders(items.Cast<TData>(), _workspaceService);
+        }
     }
 }

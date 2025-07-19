@@ -23,7 +23,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         /// <param name="personService"><see cref="IPersonService"/> that is used to get the <see cref="PersonStart"/> items</param>
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to e.g. get the workspace root path</param>
-        public DocumentStrategyOverviewList(IPersonService personService, IWorkspaceService workspaceService) : base(workspaceService)
+        /// <param name="serviceProvider"><see cref="IServiceProvider"/> used to get the correct <see cref="IDocumentPlaceholderResolver{T}"/></param>
+        public DocumentStrategyOverviewList(IPersonService personService, IWorkspaceService workspaceService, IServiceProvider serviceProvider) : base(workspaceService, serviceProvider)
         {
             _personService = personService;
         }

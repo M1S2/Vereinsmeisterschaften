@@ -34,5 +34,18 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_ResultListPlace) { textPlaceholder.Add(placeholder, item?.ResultListPlace == 0 ? "-" : item.ResultListPlace.ToString() ?? "?"); }
             return textPlaceholder;
         }
+
+        /// <inheritdoc/>
+        public override List<string> SupportedPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,
+            Placeholders.PLACEHOLDER_KEY_SWIMMING_STYLE,
+            Placeholders.PLACEHOLDER_KEY_DISTANCE,
+            Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
+            Placeholders.PLACEHOLDER_KEY_SCORE,
+            Placeholders.PLACEHOLDER_KEY_RESULT_LIST_PLACE
+        };
+
     }
 }

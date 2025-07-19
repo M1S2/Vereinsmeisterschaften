@@ -18,6 +18,7 @@ using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -166,16 +167,31 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region Placeholder Strings
+    #region Placeholders
 
-    public string PlaceholderString_CompetitionYear => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Name => string.Join(Environment.NewLine, Placeholders.Placeholders_Name.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_BirthYear => string.Join(Environment.NewLine, Placeholders.Placeholders_BirthYear.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Distance => string.Join(Environment.NewLine, Placeholders.Placeholders_Distance.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_SwimmingStyle => string.Join(Environment.NewLine, Placeholders.Placeholders_SwimmingStyle.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_CompetitionID => string.Join(Environment.NewLine, Placeholders.Placeholders_CompetitionID.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_Score => string.Join(Environment.NewLine, Placeholders.Placeholders_Score.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
-    public string PlaceholderString_ResultListPlace => string.Join(Environment.NewLine, Placeholders.Placeholders_ResultListPlace.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"));
+    public ObservableCollection<DocumentPlaceholderViewConfig> PlaceholderViewConfigs { get; } = new ObservableCollection<DocumentPlaceholderViewConfig>();
+    //{
+    //    new DocumentPlaceholderViewConfig() { Key = Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR, Name=Resources.PlaceholderNameCompetitionYear, Info = Resources.PlaceholderInfoCompetitionYear, Placeholders = PlaceholderString_CompetitionYear },
+    //    new DocumentPlaceholderViewConfig() { Key = Placeholders.PLACEHOLDER_KEY_NAME, Name=Resources.PlaceholderNameName, Info = Resources.PlaceholderInfoName, Placeholders = PlaceholderString_Name }
+    //};
+
+    private void initPlaceholderViewConfigs()
+    {
+        PlaceholderViewConfigs.Clear();
+        foreach(KeyValuePair<string, List<string>> placeholders in Placeholders.PlaceholderDict)
+        {
+            DocumentPlaceholderViewConfig placeholderViewConfig = new DocumentPlaceholderViewConfig()
+            {
+                Key = placeholders.Key,
+#warning TBD...
+                Name = "...",
+#warning TBD...
+                Info = "...",
+                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}"))
+            };
+            PlaceholderViewConfigs.Add(placeholderViewConfig);
+        }
+    }
 
     #endregion
 
@@ -203,6 +219,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             IsDocumentCreationSuccessful.Add(type, false);
             IsDocumentDataAvailable.Add(type, false);
         }
+
+        initPlaceholderViewConfigs();
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

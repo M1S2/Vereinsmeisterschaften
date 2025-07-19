@@ -25,11 +25,22 @@ namespace Vereinsmeisterschaften.Core.Documents
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.PersonObj?.FirstName + " " + item.PersonObj?.Name); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, item.PersonObj?.BirthYear.ToString()); }
-            foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.CompetitionObj?.Distance.ToString() + "m"); }
             foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.Style)); }
+            foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.CompetitionObj?.Distance.ToString() + "m"); }
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, item.CompetitionObj?.ID.ToString()); }
             foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.Score.ToString("F2")); }
             return textPlaceholder;
         }
+
+        /// <inheritdoc/>
+        public override List<string> SupportedPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,
+            Placeholders.PLACEHOLDER_KEY_SWIMMING_STYLE,
+            Placeholders.PLACEHOLDER_KEY_DISTANCE,
+            Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
+            Placeholders.PLACEHOLDER_KEY_SCORE
+        };
     }
 }

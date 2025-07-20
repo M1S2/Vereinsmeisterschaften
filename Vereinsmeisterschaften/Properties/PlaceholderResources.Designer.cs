@@ -134,6 +134,34 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available ähnelt.
+        /// </summary>
+        public static string PlaceholderLegendAvailable {
+            get {
+                return ResourceManager.GetString("PlaceholderLegendAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available (with postfix up to this number)
+        ///e.g. &quot;3&quot; -&gt; %Name1%, %Name2%, %Name3% available beside %Name% ähnelt.
+        /// </summary>
+        public static string PlaceholderLegendAvailableWithPostfix {
+            get {
+                return ResourceManager.GetString("PlaceholderLegendAvailableWithPostfix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Platzhalter nicht verfügbar ähnelt.
+        /// </summary>
+        public static string PlaceholderLegendNotAvailable {
+            get {
+                return ResourceManager.GetString("PlaceholderLegendNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Birth Year ähnelt.
         /// </summary>
         public static string PlaceholderNameBirthYear {

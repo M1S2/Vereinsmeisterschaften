@@ -142,6 +142,16 @@ This only works outside of tables.</value>
   <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
     <value>Use these placeholders to insert the swimming style.</value>
   </data>
+  <data name="PlaceholderLegendAvailable" xml:space="preserve">
+    <value>Placeholder available</value>
+  </data>
+  <data name="PlaceholderLegendAvailableWithPostfix" xml:space="preserve">
+    <value>Placeholder available (with postfix up to this number)
+e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
+  </data>
+  <data name="PlaceholderLegendNotAvailable" xml:space="preserve">
+    <value>Platzhalter nicht verfügbar</value>
+  </data>
   <data name="PlaceholderNameBirthYear" xml:space="preserve">
     <value>Birth Year</value>
   </data>

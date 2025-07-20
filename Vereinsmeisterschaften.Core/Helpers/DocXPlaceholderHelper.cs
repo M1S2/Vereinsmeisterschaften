@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Vereinsmeisterschaften.Core.Documents;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -11,12 +12,6 @@ namespace Vereinsmeisterschaften.Core.Helpers
 {
     public static class DocXPlaceholderHelper
     {
-        /// <summary>
-        /// String marker for placeholders in the template file. The placeholder must be enclosed by this marker.
-        /// e.g. PlaceholderMarker = "%" --> %PLACEHOLDER%
-        /// </summary>
-        public const string PlaceholderMarker = "%";
-
         /// <summary>
         /// Placeholder that can be used in a table to insert the row number.
         /// </summary>
@@ -69,7 +64,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                 // Replace all placeholders in the document
                 result = templateDocument.ReplaceText(new FunctionReplaceTextOptions()
                 {
-                    FindPattern = PlaceholderMarker + "(.*?)" + PlaceholderMarker,
+                    FindPattern = Placeholders.PlaceholderMarker + "(.*?)" + Placeholders.PlaceholderMarker,
                     RegExOptions = RegexOptions.IgnoreCase,
                     RegexMatchHandler = (placeholderWithoutMarkers) =>
                     {
@@ -77,7 +72,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                         {
                             return placeholders.Placeholders[placeholderWithoutMarkers];
                         }
-                        return keepUnknownPlaceholders ? (PlaceholderMarker + placeholderWithoutMarkers + PlaceholderMarker) : string.Empty;
+                        return keepUnknownPlaceholders ? (Placeholders.PlaceholderMarker + placeholderWithoutMarkers + Placeholders.PlaceholderMarker) : string.Empty;
                     }
                 });
                 // Save the document with the replaced placeholders as new file
@@ -143,7 +138,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                     {
                         foreach (string placeholder in placeholders.Placeholders.Keys)
                         {
-                            if (row.FindUniqueByPattern(PlaceholderMarker + placeholder + PlaceholderMarker, RegexOptions.IgnoreCase).Count > 0)
+                            if (row.FindUniqueByPattern(Placeholders.PlaceholderMarker + placeholder + Placeholders.PlaceholderMarker, RegexOptions.IgnoreCase).Count > 0)
                             {
                                 // Placeholder found in this table
                                 rowPattern = row;
@@ -170,7 +165,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                         // Replace all placeholders in the new row
                         result |= newRow.ReplaceText(new FunctionReplaceTextOptions()
                         {
-                            FindPattern = PlaceholderMarker + "(.*?)" + PlaceholderMarker,
+                            FindPattern = Placeholders.PlaceholderMarker + "(.*?)" + Placeholders.PlaceholderMarker,
                             RegExOptions = RegexOptions.IgnoreCase,
                             RegexMatchHandler = (placeholderWithoutMarkers) =>
                             {
@@ -183,7 +178,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                                 {
                                     return (i + 1).ToString();
                                 }
-                                return PlaceholderMarker + placeholderWithoutMarkers + PlaceholderMarker;
+                                return Placeholders.PlaceholderMarker + placeholderWithoutMarkers + Placeholders.PlaceholderMarker;
                             }
                         });
                     }

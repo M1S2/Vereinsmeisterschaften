@@ -58,6 +58,13 @@ namespace Vereinsmeisterschaften.Core.Documents
         List<string> SupportedPlaceholderKeys { get; }
 
         /// <summary>
+        /// Number of postfix numbers that are supported for the placeholders.
+        /// If this is e.g. 2, the placeholders %Name%, %Name1% and %Name2% will be allowed
+        /// If 0, only the placeholder without postfix will be allowed, e.g. %Name% only.
+        /// </summary>
+        List<int> PostfixNumbersSupported { get; }
+
+        /// <summary>
         /// Resolve text placeholders for the given item.
         /// </summary>
         /// <param name="item">Item to generate <see cref="DocXPlaceholderHelper.TextPlaceholders"/> from</param>

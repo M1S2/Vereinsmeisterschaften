@@ -195,17 +195,25 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             string resourceStringInfo = rm.GetString($"PlaceholderInfo{placeholderKey}") ?? "?";
 
             Dictionary<DocumentCreationTypes, bool> isSupportedForDocumentType = new Dictionary<DocumentCreationTypes, bool>();
+            Dictionary<DocumentCreationTypes, string> postfixNumbersSupportedForDocumentType = new Dictionary<DocumentCreationTypes, string>();
             foreach (IDocumentStrategy strategy in _documentStrategies)
             {
                 DocumentCreationTypes documentCreationType = strategy.DocumentType;
                 bool isCurrentPlaceholderSupportedForStrategy = strategy.SupportedPlaceholderKeys.Contains(placeholderKey);
+
+                int indexOfKey = strategy.SupportedPlaceholderKeys.IndexOf(placeholderKey);
+                int postfixNumbersSupported = (indexOfKey >= 0 && indexOfKey < strategy.PostfixNumbersSupported.Count) ? strategy.PostfixNumbersSupported[indexOfKey] : 0;
+                string postfixNumbersSupportedStr = postfixNumbersSupported > 0 ? postfixNumbersSupported.ToString() : string.Empty;
+
                 if (!isSupportedForDocumentType.ContainsKey(documentCreationType))
                 {
                     isSupportedForDocumentType.Add(documentCreationType, isCurrentPlaceholderSupportedForStrategy);
+                    postfixNumbersSupportedForDocumentType.Add(documentCreationType, postfixNumbersSupportedStr);
                 }
                 else
                 {
                     isSupportedForDocumentType[documentCreationType] = isCurrentPlaceholderSupportedForStrategy;
+                    postfixNumbersSupportedForDocumentType[documentCreationType] = postfixNumbersSupportedStr;
                 }
             }
 
@@ -214,8 +222,9 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
                 Key = placeholderKey,
                 Name = resourceStringName,
                 Info = resourceStringInfo,
-                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{DocXPlaceholderHelper.PlaceholderMarker}{p}{DocXPlaceholderHelper.PlaceholderMarker}")),
-                IsSupportedForDocumentType = isSupportedForDocumentType
+                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{Placeholders.PlaceholderMarker}{p}{Placeholders.PlaceholderMarker}")),
+                IsSupportedForDocumentType = isSupportedForDocumentType,
+                PostfixNumbersSupportedForDocumentType = postfixNumbersSupportedForDocumentType
             };
             PlaceholderViewConfigs.Add(placeholderViewConfig);
         }
@@ -248,8 +257,6 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             IsDocumentCreationSuccessful.Add(type, false);
             IsDocumentDataAvailable.Add(type, false);
         }
-
-        initPlaceholderViewConfigs();
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -327,6 +334,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
                 changeDocumentCreationSuccessfulState(strategy.DocumentType, false);
             }
         }
+
+        initPlaceholderViewConfigs();
     }
 
     public void OnNavigatedFrom()

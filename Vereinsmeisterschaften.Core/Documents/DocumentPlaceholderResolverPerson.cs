@@ -17,12 +17,19 @@ namespace Vereinsmeisterschaften.Core.Documents
     public class DocumentPlaceholderResolverPerson : DocumentPlaceholderResolverBase<Person>
     {
         /// <summary>
+        /// Constructor for a document placeholder resolver.
+        /// </summary>
+        /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to access e.g. <see cref="Settings.WorkspaceSettings"/></param>
+        public DocumentPlaceholderResolverPerson(IWorkspaceService workspaceService) : base(workspaceService)
+        {
+        }
+
+        /// <summary>
         /// Take the <see cref="Person"/> item and create <see cref="DocXPlaceholderHelper.TextPlaceholders"/>.
         /// </summary>
         /// <param name="item">Item to create placeholders from</param>
-        /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to access e.g. <see cref="Settings.WorkspaceSettings"/></param>
         /// <returns><see cref="DocXPlaceholderHelper.TextPlaceholders"/></returns>
-        public override DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(Person item, IWorkspaceService workspaceService)
+        public override DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(Person item)
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.FirstName + " " + item.Name); }

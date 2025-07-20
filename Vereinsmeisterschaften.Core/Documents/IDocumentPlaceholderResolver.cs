@@ -19,21 +19,21 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// Take the item and create <see cref="DocXPlaceholderHelper.TextPlaceholders"/>.
         /// </summary>
         /// <param name="item">Item to create placeholders from</param>
-        /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to access e.g. <see cref="Settings.WorkspaceSettings"/></param>
         /// <returns><see cref="DocXPlaceholderHelper.TextPlaceholders"/></returns>
-        DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(T item, IWorkspaceService workspaceService);
+        DocXPlaceholderHelper.TextPlaceholders ResolveTextPlaceholders(T item);
 
         /// <summary>
         /// Take the list of items and create <see cref="DocXPlaceholderHelper.TablePlaceholders"/>.
         /// </summary>
         /// <param name="items">List of items to create placeholders from</param>
-        /// <param name="workspaceService"><see cref="IWorkspaceService"/> that can be used to access e.g. <see cref="Settings.WorkspaceSettings"/></param>
         /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
-        DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(IEnumerable<T> items, IWorkspaceService workspaceService);
+        DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(IEnumerable<T> items);
 
         /// <summary>
         /// List of all placeholder keys that are supported by this resolver.
         /// </summary>
         List<string> SupportedPlaceholderKeys { get; }
+
+        List<int> PostfixNumbersSupported { get; }
     }
 }

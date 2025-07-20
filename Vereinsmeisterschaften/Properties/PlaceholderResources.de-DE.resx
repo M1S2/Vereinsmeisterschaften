@@ -142,6 +142,16 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um den Schwimmstil einzufügen.</value>
   </data>
+  <data name="PlaceholderLegendAvailable" xml:space="preserve">
+    <value>Platzhalter verfügbar</value>
+  </data>
+  <data name="PlaceholderLegendAvailableWithPostfix" xml:space="preserve">
+    <value>Platzhalter verfügbar (mit Postfix Nummern bis zu dieser Nummer)
+z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value>
+  </data>
+  <data name="PlaceholderLegendNotAvailable" xml:space="preserve">
+    <value>Platzhalter nicht verfügbar</value>
+  </data>
   <data name="PlaceholderNameBirthYear" xml:space="preserve">
     <value>Geburtsjahr</value>
   </data>

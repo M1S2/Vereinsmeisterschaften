@@ -72,6 +72,9 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public List<string> SupportedPlaceholderKeys => new List<string>(PlaceholderResolver.SupportedPlaceholderKeys) { Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR };
 
+        /// <inheritdoc/>
+        public List<int> PostfixNumbersSupported => PlaceholderResolver.PostfixNumbersSupported ?? Enumerable.Repeat(0, PlaceholderResolver?.SupportedPlaceholderKeys?.Count ?? 0).ToList();
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
@@ -79,7 +82,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             if (!SupportTextPlaceholders || item == null) { return null; }
 
-            return PlaceholderResolver.ResolveTextPlaceholders((TData)item, _workspaceService);
+            return PlaceholderResolver.ResolveTextPlaceholders((TData)item);
         }
 
         /// <inheritdoc/>
@@ -87,7 +90,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             if (!SupportTablePlaceholders || items == null) { return null; }
 
-            return PlaceholderResolver.ResolveTablePlaceholders(items.Cast<TData>(), _workspaceService);
+            return PlaceholderResolver.ResolveTablePlaceholders(items.Cast<TData>());
         }
     }
 }

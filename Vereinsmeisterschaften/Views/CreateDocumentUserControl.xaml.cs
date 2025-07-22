@@ -97,6 +97,16 @@ namespace Vereinsmeisterschaften.Views
         public static readonly DependencyProperty IsDataAvailableProperty = DependencyProperty.Register(nameof(IsDataAvailable), typeof(bool), typeof(CreateDocumentUserControl));
 
         /// <summary>
+        /// Indicates whether the template is available for the document creation.
+        /// </summary>
+        public bool IsTemplateAvailable
+        {
+            get => (bool)GetValue(IsTemplateAvailableProperty);
+            set => SetValue(IsTemplateAvailableProperty, value);
+        }
+        public static readonly DependencyProperty IsTemplateAvailableProperty = DependencyProperty.Register(nameof(IsTemplateAvailable), typeof(bool), typeof(CreateDocumentUserControl));
+
+        /// <summary>
         /// Text to display when the document creation is successful.
         /// </summary>
         public string SuccessText

@@ -41,6 +41,11 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     public Dictionary<DocumentCreationTypes, bool> IsDocumentDataAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
 
+    /// <summary>
+    /// Dictionary to hold the state of whether the template file is available for document creation for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, bool> IsDocumentTemplateAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
+
     private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
     {
         if (IsDocumentCreationRunning.ContainsKey(documentType))
@@ -67,6 +72,16 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         {
             IsDocumentDataAvailable[documentType] = isDataAvailable;
             OnPropertyChanged(nameof(IsDocumentDataAvailable));
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+
+    private void changeDocumentTemplateAvailableState(DocumentCreationTypes documentType, bool isTemplateAvailable)
+    {
+        if (IsDocumentTemplateAvailable.ContainsKey(documentType))
+        {
+            IsDocumentTemplateAvailable[documentType] = isTemplateAvailable;
+            OnPropertyChanged(nameof(IsDocumentTemplateAvailable));
             ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
         }
     }
@@ -251,11 +266,13 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         IsDocumentCreationRunning.Clear();
         IsDocumentCreationSuccessful.Clear();
         IsDocumentDataAvailable.Clear();
+        IsDocumentTemplateAvailable.Clear();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IsDocumentCreationRunning.Add(type, false);
             IsDocumentCreationSuccessful.Add(type, false);
             IsDocumentDataAvailable.Add(type, false);
+            IsDocumentTemplateAvailable.Add(type, false);
         }
     }
 
@@ -328,7 +345,11 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             object[] items = strategy.GetItems();
             bool isDataAvailable = items != null;
             changeDocumentDataAvailableState(strategy.DocumentType, isDataAvailable);
-            if(!isDataAvailable)
+
+            bool isTemplateAvailable = !string.IsNullOrEmpty(strategy.TemplatePath) && System.IO.File.Exists(strategy.TemplatePath);
+            changeDocumentTemplateAvailableState(strategy.DocumentType, isTemplateAvailable);
+
+            if (!isDataAvailable || !isTemplateAvailable)
             {
                 changeDocumentCreationRunningState(strategy.DocumentType, false);
                 changeDocumentCreationSuccessfulState(strategy.DocumentType, false);

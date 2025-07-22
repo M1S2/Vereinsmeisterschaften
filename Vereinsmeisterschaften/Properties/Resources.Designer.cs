@@ -567,6 +567,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The template can&apos;t be found ähnelt.
+        /// </summary>
+        public static string NoTemplateAvailableWarningString {
+            get {
+                return ResourceManager.GetString("NoTemplateAvailableWarningString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {0} document(s) ähnelt.
         /// </summary>
         public static string NumberCreatedDocumentsString {

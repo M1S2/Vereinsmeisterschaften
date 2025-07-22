@@ -487,4 +487,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="NoDataAvailableWarningString" xml:space="preserve">
     <value>Es sind keine Daten verfügbar</value>
   </data>
+  <data name="NoTemplateAvailableWarningString" xml:space="preserve">
+    <value>Das Template wurde nicht gefunden</value>
+  </data>
 </root>

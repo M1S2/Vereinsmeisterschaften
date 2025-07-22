@@ -15,9 +15,20 @@
 
         <!-- Button to create document -->
         <Button Command="{Binding CreateDocumentCommand}"
-                CommandParameter="{Binding DocumentType}"
-                Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                IsEnabled="{Binding IsDataAvailable}">
+                CommandParameter="{Binding DocumentType}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsTemplateAvailable}" Value="False">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
             <StackPanel Orientation="Vertical">
                 <controls:FontIcon Margin="10"
                                    FontSize="50"
@@ -85,6 +96,7 @@
             </controls:ProgressRing.Style>
         </controls:ProgressRing>
 
+        <!-- No data available warning -->
         <StackPanel Margin="0,10,0,0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
@@ -92,6 +104,16 @@
             <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
             <TextBlock Margin="5,0,0,0"
                        Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
+        </StackPanel>
+
+        <!-- No template available warning -->
+        <StackPanel Margin="0,10,0,0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Visibility="{Binding IsTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+            <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+            <TextBlock Margin="5,0,0,0"
+               Text="{x:Static properties:Resources.NoTemplateAvailableWarningString}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

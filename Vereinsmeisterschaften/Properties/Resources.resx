@@ -486,4 +486,7 @@
   <data name="NoDataAvailableWarningString" xml:space="preserve">
     <value>No data is available</value>
   </data>
+  <data name="NoTemplateAvailableWarningString" xml:space="preserve">
+    <value>The template can't be found</value>
+  </data>
 </root>

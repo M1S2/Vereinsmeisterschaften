@@ -326,6 +326,11 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
                         await _documentService.CreateDocument(DocumentCreationTypes.ResultList);
                         break;
                     }
+                case DocumentCreationTypes.ResultListDetail:
+                    {
+                        await _documentService.CreateDocument(DocumentCreationTypes.ResultListDetail);
+                        break;
+                    }
                 default: throw new ArgumentOutOfRangeException(nameof(documentType), documentType, "Unknown document type for creation command.");
             }
             changeDocumentCreationSuccessfulState(documentType, true);

@@ -34,6 +34,11 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// List with the overall result
         /// </summary>
-        ResultList
+        ResultList,
+
+        /// <summary>
+        /// List with the overall result and all details
+        /// </summary>
+        ResultListDetail
     }
 }

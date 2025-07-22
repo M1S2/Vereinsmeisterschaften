@@ -155,6 +155,9 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   <data name="PlaceholderNameBirthYear" xml:space="preserve">
     <value>Birth Year</value>
   </data>
+  <data name="PlaceholderNameGender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
   <data name="PlaceholderNameCompetitionID" xml:space="preserve">
     <value>Competition ID</value>
   </data>
@@ -164,9 +167,6 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   <data name="PlaceholderNameDistance" xml:space="preserve">
     <value>Distance</value>
   </data>
-  <data name="PlaceholderNameName" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <data name="PlaceholderNameResultListPlace" xml:space="preserve">
     <value>Result List Place</value>
   </data>
@@ -175,5 +175,17 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   </data>
   <data name="PlaceholderNameSwimmingStyle" xml:space="preserve">
     <value>Swimming Style</value>
+  </data>
+  <data name="PlaceholderInfoGender" xml:space="preserve">
+    <value>Use these placeholders to insert the gender.</value>
+  </data>
+  <data name="PlaceholderInfoGenderSymbol" xml:space="preserve">
+    <value>Use these placeholders to insert the gender as symbol.</value>
+  </data>
+  <data name="PlaceholderNameName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PlaceholderNameGenderSymbol" xml:space="preserve">
+    <value>Gender (Symbol)</value>
   </data>
 </root>

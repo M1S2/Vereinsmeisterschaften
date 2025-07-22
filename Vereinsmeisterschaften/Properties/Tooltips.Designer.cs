@@ -208,6 +208,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list detail template. ähnelt.
+        /// </summary>
+        public static string TooltipTemplatePathResultListDetail {
+            get {
+                return ResourceManager.GetString("TooltipTemplatePathResultListDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Path to the time forms template. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathTimeForms {

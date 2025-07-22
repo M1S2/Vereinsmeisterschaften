@@ -10,7 +10,7 @@
              d:DesignHeight="350" d:DesignWidth="400">
 
     <StackPanel Orientation="Vertical"
-                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                Margin="{StaticResource SmallLeftTopRightBottomMargin}"
                 DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
 
         <!-- Button to create document -->

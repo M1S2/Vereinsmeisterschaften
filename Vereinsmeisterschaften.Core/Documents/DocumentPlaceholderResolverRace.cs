@@ -38,17 +38,23 @@ namespace Vereinsmeisterschaften.Core.Documents
             List<string> personBirthYears = item.Starts.Select(s => s.PersonObj?.BirthYear.ToString()).ToList();
             List<string> personCompetitionIDs = item.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?").ToList();
             List<string> personNames = item.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
-            
+            List<string> personGenders = item.Starts.Select(s => EnumCoreToLocalizedString.Convert(s.PersonObj?.Gender)).ToList();
+            List<string> personGenderSymbols = item.Starts.Select(s => s.PersonObj?.Gender == Genders.Male ? "♂" : "♀").ToList();
+
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             for (int i = 0; i < numSwimLanes; i++)
             {
                 foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder + (i + 1), personNames.Count > i ? personNames[i] : ""); }
+                foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder + (i + 1), personGenders.Count > i ? personGenders[i] : ""); }
+                foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder + (i + 1), personGenderSymbols.Count > i ? personGenderSymbols[i] : ""); }
                 foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder + (i + 1), personBirthYears.Count > i ? personBirthYears[i] : ""); }
                 foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder + (i + 1), personCompetitionIDs.Count > i ? personCompetitionIDs[i] : ""); }
                 foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder + (i + 1), item.Distance.ToString() + "m"); }
                 foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder + (i + 1), EnumCoreToLocalizedString.Convert(item.Style)); }
             }
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, string.Join(", ", personNames)); }
+            foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, string.Join(", ", personGenders)); }
+            foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder, string.Join(", ", personGenderSymbols)); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, string.Join(", ", personBirthYears)); }
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, string.Join(", ", personCompetitionIDs)); }
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.Distance.ToString() + "m"); }
@@ -60,6 +66,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         public override List<string> SupportedPlaceholderKeys => new List<string>()
         {
             Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_GENDER,
+            Placeholders.PLACEHOLDER_KEY_GENDER_SYMBOL,
             Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,
             Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
             Placeholders.PLACEHOLDER_KEY_DISTANCE,
@@ -74,6 +82,7 @@ namespace Vereinsmeisterschaften.Core.Documents
                 ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
                 return new List<int>()
                 {
+                   numSwimLanes,
                    numSwimLanes,
                    numSwimLanes,
                    numSwimLanes,

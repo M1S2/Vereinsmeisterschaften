@@ -30,6 +30,14 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
         /// <summary>
+        /// List with all placeholders that can be used in the template to insert the gender of a person as string.
+        /// </summary>
+        public static List<string> Placeholders_Gender = new List<string>() { "Geschlecht", "Gender", "G" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the gender of a person as symbol.
+        /// </summary>
+        public static List<string> Placeholders_GenderSymbol = new List<string>() { "GeschlechtS", "GenderS", "GS" };
+        /// <summary>
         /// List with all placeholders that can be used in the template to insert the birth year of a person.
         /// </summary>
         public static List<string> Placeholders_BirthYear = new List<string>() { "Jahrgang", "JG", "BirthYear" };
@@ -69,6 +77,14 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public const string PLACEHOLDER_KEY_NAME = "Name";
         /// <summary>
+        /// Key for the gender placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_GENDER = "Gender";
+        /// <summary>
+        /// Key for the gender symbol placeholders
+        /// </summary>
+        public const string PLACEHOLDER_KEY_GENDER_SYMBOL = "GenderSymbol";
+        /// <summary>
         /// Key for the birth year placeholders
         /// </summary>
         public const string PLACEHOLDER_KEY_BIRTH_YEAR = "BirthYear";
@@ -104,6 +120,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
             { PLACEHOLDER_KEY_NAME, Placeholders_Name },
+            { PLACEHOLDER_KEY_GENDER, Placeholders_Gender },
+            { PLACEHOLDER_KEY_GENDER_SYMBOL, Placeholders_GenderSymbol },
             { PLACEHOLDER_KEY_BIRTH_YEAR, Placeholders_BirthYear },
             { PLACEHOLDER_KEY_DISTANCE, Placeholders_Distance },
             { PLACEHOLDER_KEY_SWIMMING_STYLE, Placeholders_SwimmingStyle },

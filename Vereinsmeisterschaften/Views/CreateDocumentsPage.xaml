@@ -37,9 +37,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE8A5;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CreateDocumentsPageTitle}" />
         </StackPanel>
@@ -174,8 +175,22 @@
                                          NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Result List Details -->
+        <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="5"
+                                        DocumentType="{x:Static coreModels:DocumentCreationTypes.ResultListDetail}"
+                                        CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                        IsRunning="{Binding IsDocumentCreationRunning[ResultListDetail]}"
+                                        IsSuccessful="{Binding IsDocumentCreationSuccessful[ResultListDetail]}"
+                                        IsDataAvailable="{Binding IsDocumentDataAvailable[ResultListDetail]}"
+                                        IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[ResultListDetail]}"
+                                        ButtonText="{x:Static properties:Resources.CreateResultListDetailString}"
+                                        SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"
+                                        ButtonIconGlyph="&#xE9F9;"
+                                        NumberCreatedDocuments="-1"/>
+        
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Left" MaxHeight="400" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" MaxHeight="400" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="25" Text="%...%"/>
@@ -298,7 +313,23 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                            </GridView>
+
+                            <!-- Supported Placeholders for ResultListDetail Document Type -->
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE9F9;" ToolTip="{x:Static properties:Resources.CreateResultListDetailString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultListDetail]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                              FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                              BoolValue="{Binding IsSupportedForDocumentType[ResultListDetail]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
                         </ListView.View>
                     </ListView>
             </DockPanel>

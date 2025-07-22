@@ -78,6 +78,7 @@ public partial class App : Application
         services.AddSingleton<IDocumentStrategy, DocumentStrategyRaceStartList>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyTimeForms>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultList>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyResultListDetail>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();

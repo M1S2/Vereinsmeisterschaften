@@ -183,4 +183,7 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="TooltipWorkspaceClose" xml:space="preserve">
     <value>Close the current workspace. If there are unsaved changes, there will be a dialog before closing.</value>
   </data>
+  <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
+    <value>Path to the result list detail template.</value>
+  </data>
 </root>

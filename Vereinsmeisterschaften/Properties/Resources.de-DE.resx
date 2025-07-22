@@ -470,7 +470,7 @@ Alle Starts sind zugewiesen.</value>
     <value>Ergebnisliste erstellen</value>
   </data>
   <data name="CreateResultListResultString" xml:space="preserve">
-    <value>Ergebnisliste wurde erstellt.</value>
+    <value>Ergebnisliste Detail wurde erstellt.</value>
   </data>
   <data name="NumberCreatedDocumentsString" xml:space="preserve">
     <value>{0} Dokument(e)</value>
@@ -489,5 +489,14 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="NoTemplateAvailableWarningString" xml:space="preserve">
     <value>Das Template wurde nicht gefunden</value>
+  </data>
+  <data name="ResultListDetailTemplatePathString" xml:space="preserve">
+    <value>Ergebnislisten Detail Template</value>
+  </data>
+  <data name="CreateResultListDetailResultString" xml:space="preserve">
+    <value>Ergebnisliste wurde erstellt.</value>
+  </data>
+  <data name="CreateResultListDetailString" xml:space="preserve">
+    <value>Ergebnisliste Detail erstellen</value>
   </data>
 </root>

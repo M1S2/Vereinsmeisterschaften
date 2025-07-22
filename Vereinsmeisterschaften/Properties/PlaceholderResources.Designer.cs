@@ -98,6 +98,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the gender. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoGender {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoGender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the gender as symbol. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoGenderSymbol {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoGenderSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the complete name (&lt;first name&gt; &lt;last name&gt;). ähnelt.
         /// </summary>
         public static string PlaceholderInfoName {
@@ -194,6 +212,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameDistance {
             get {
                 return ResourceManager.GetString("PlaceholderNameDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender ähnelt.
+        /// </summary>
+        public static string PlaceholderNameGender {
+            get {
+                return ResourceManager.GetString("PlaceholderNameGender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender (Symbol) ähnelt.
+        /// </summary>
+        public static string PlaceholderNameGenderSymbol {
+            get {
+                return ResourceManager.GetString("PlaceholderNameGenderSymbol", resourceCulture);
             }
         }
         

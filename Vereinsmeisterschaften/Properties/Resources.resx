@@ -469,7 +469,7 @@
     <value>Create Result List</value>
   </data>
   <data name="CreateResultListResultString" xml:space="preserve">
-    <value>Result List was created.</value>
+    <value>Result List Detail was created.</value>
   </data>
   <data name="NumberCreatedDocumentsString" xml:space="preserve">
     <value>{0} document(s)</value>
@@ -488,5 +488,14 @@
   </data>
   <data name="NoTemplateAvailableWarningString" xml:space="preserve">
     <value>The template can't be found</value>
+  </data>
+  <data name="ResultListDetailTemplatePathString" xml:space="preserve">
+    <value>Result List Detail Template</value>
+  </data>
+  <data name="CreateResultListDetailResultString" xml:space="preserve">
+    <value>Result List was created.</value>
+  </data>
+  <data name="CreateResultListDetailString" xml:space="preserve">
+    <value>Create Result List Detail</value>
   </data>
 </root>

@@ -317,6 +317,24 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Result List was created. ähnelt.
         /// </summary>
+        public static string CreateResultListDetailResultString {
+            get {
+                return ResourceManager.GetString("CreateResultListDetailResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Result List Detail ähnelt.
+        /// </summary>
+        public static string CreateResultListDetailString {
+            get {
+                return ResourceManager.GetString("CreateResultListDetailString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result List Detail was created. ähnelt.
+        /// </summary>
         public static string CreateResultListResultString {
             get {
                 return ResourceManager.GetString("CreateResultListResultString", resourceCulture);
@@ -762,6 +780,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ReorderRaceVariantsString {
             get {
                 return ResourceManager.GetString("ReorderRaceVariantsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result List Detail Template ähnelt.
+        /// </summary>
+        public static string ResultListDetailTemplatePathString {
+            get {
+                return ResourceManager.GetString("ResultListDetailTemplatePathString", resourceCulture);
             }
         }
         

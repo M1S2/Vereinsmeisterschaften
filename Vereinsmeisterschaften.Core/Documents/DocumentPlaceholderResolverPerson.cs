@@ -33,6 +33,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.FirstName + " " + item.Name); }
+            foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.Gender)); }
+            foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder, item.Gender == Genders.Male ? "♂" : "♀"); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, item.BirthYear.ToString() ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.HighestScoreStyle)); }
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.Distance.ToString() + "m" ?? "?"); }
@@ -46,6 +48,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         public override List<string> SupportedPlaceholderKeys => new List<string>()
         {
             Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_GENDER,
+            Placeholders.PLACEHOLDER_KEY_GENDER_SYMBOL,
             Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,
             Placeholders.PLACEHOLDER_KEY_SWIMMING_STYLE,
             Placeholders.PLACEHOLDER_KEY_DISTANCE,

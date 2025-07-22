@@ -183,4 +183,7 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="TooltipWorkspaceClose" xml:space="preserve">
     <value>Schließt den aktuellen Arbeitsplatz. Wenn es ungespeicherte Änderungen gibt, erscheint ein Dialog vor dem Schließen.</value>
   </data>
+  <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
+    <value>Pfad zum Ergebnislisten Detail Template.</value>
+  </data>
 </root>

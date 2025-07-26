@@ -143,11 +143,119 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the backstroke score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreBackstroke {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreBackstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the breaststroke score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreBreaststroke {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreBreaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the butterfly score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreButterfly {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreButterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the freestyle score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreFreestyle {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreFreestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the medley score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreMedley {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreMedley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the waterflea score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoScoreWaterflea {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoScoreWaterflea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the swimming style. ähnelt.
         /// </summary>
         public static string PlaceholderInfoSwimmingStyle {
             get {
                 return ResourceManager.GetString("PlaceholderInfoSwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the backstroke time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeBackstroke {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeBackstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the breaststroke time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeBreaststroke {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeBreaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the butterfly time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeButterfly {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeButterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the freestyle time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeFreestyle {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeFreestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the medley time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeMedley {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeMedley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the waterflea time. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoTimeWaterflea {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoTimeWaterflea", resourceCulture);
             }
         }
         
@@ -261,11 +369,119 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Backstroke ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreBackstroke {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreBackstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Breaststroke ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreBreaststroke {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreBreaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Butterfly ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreButterfly {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreButterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Freestyle ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreFreestyle {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreFreestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Medley ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreMedley {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreMedley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Waterflea ähnelt.
+        /// </summary>
+        public static string PlaceholderNameScoreWaterflea {
+            get {
+                return ResourceManager.GetString("PlaceholderNameScoreWaterflea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
         /// </summary>
         public static string PlaceholderNameSwimmingStyle {
             get {
                 return ResourceManager.GetString("PlaceholderNameSwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Backstroke ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeBackstroke {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeBackstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Breaststroke ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeBreaststroke {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeBreaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Butterfly ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeButterfly {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeButterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Freestyle ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeFreestyle {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeFreestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Medley ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeMedley {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeMedley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Waterflea ähnelt.
+        /// </summary>
+        public static string PlaceholderNameTimeWaterflea {
+            get {
+                return ResourceManager.GetString("PlaceholderNameTimeWaterflea", resourceCulture);
             }
         }
     }

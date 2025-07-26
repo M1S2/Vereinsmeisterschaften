@@ -38,6 +38,21 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.CompetitionObj?.Distance.ToString() + "m"); }
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, item.CompetitionObj?.ID.ToString()); }
             foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.Score.ToString("F2")); }
+
+            string cellEmptyString = "-";
+            foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Breaststroke ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreFreestyle) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Freestyle ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreBackstroke) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Backstroke ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreButterfly) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Butterfly ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreMedley) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Medley ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreWaterflea) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.WaterFlea ? item?.Score.ToString("N1") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeBreaststroke) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Breaststroke ? item?.Time.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeFreestyle) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Freestyle ? item?.Time.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeBackstroke) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Backstroke ? item?.Time.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeButterfly) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Butterfly ? item?.Score.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeMedley) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.Medley ? item?.Time.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeWaterflea) { textPlaceholder.Add(placeholder, item?.Style == SwimmingStyles.WaterFlea ? item?.Time.ToString(@"mm\:ss\.fff") : cellEmptyString); }
+
             return textPlaceholder;
         }
 
@@ -51,7 +66,19 @@ namespace Vereinsmeisterschaften.Core.Documents
             Placeholders.PLACEHOLDER_KEY_SWIMMING_STYLE,
             Placeholders.PLACEHOLDER_KEY_DISTANCE,
             Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
-            Placeholders.PLACEHOLDER_KEY_SCORE
+            Placeholders.PLACEHOLDER_KEY_SCORE,
+            Placeholders.PLACEHOLDER_KEY_SCOREBREASTSTROKE,
+            Placeholders.PLACEHOLDER_KEY_SCOREFREESTYLE,
+            Placeholders.PLACEHOLDER_KEY_SCOREBACKSTROKE,
+            Placeholders.PLACEHOLDER_KEY_SCOREBUTTERFLY,
+            Placeholders.PLACEHOLDER_KEY_SCOREMEDLEY,
+            Placeholders.PLACEHOLDER_KEY_SCOREWATERFLEA,
+            Placeholders.PLACEHOLDER_KEY_TIMEBREASTSTROKE,
+            Placeholders.PLACEHOLDER_KEY_TIMEFREESTYLE,
+            Placeholders.PLACEHOLDER_KEY_TIMEBACKSTROKE,
+            Placeholders.PLACEHOLDER_KEY_TIMEBUTTERFLY,
+            Placeholders.PLACEHOLDER_KEY_TIMEMEDLEY,
+            Placeholders.PLACEHOLDER_KEY_TIMEWATERFLEA
         };
     }
 }

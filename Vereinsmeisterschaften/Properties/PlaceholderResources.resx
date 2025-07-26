@@ -188,4 +188,76 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   <data name="PlaceholderNameGenderSymbol" xml:space="preserve">
     <value>Gender (Symbol)</value>
   </data>
+  <data name="PlaceholderNameScoreBreaststroke" xml:space="preserve">
+    <value>Score Breaststroke</value>
+  </data>
+  <data name="PlaceholderNameScoreFreestyle" xml:space="preserve">
+    <value>Score Freestyle</value>
+  </data>
+  <data name="PlaceholderNameScoreBackstroke" xml:space="preserve">
+    <value>Score Backstroke</value>
+  </data>
+  <data name="PlaceholderNameScoreButterfly" xml:space="preserve">
+    <value>Score Butterfly</value>
+  </data>
+  <data name="PlaceholderNameScoreMedley" xml:space="preserve">
+    <value>Score Medley</value>
+  </data>
+  <data name="PlaceholderNameTimeBackstroke" xml:space="preserve">
+    <value>Time Backstroke</value>
+  </data>
+  <data name="PlaceholderNameTimeBreaststroke" xml:space="preserve">
+    <value>Time Breaststroke</value>
+  </data>
+  <data name="PlaceholderNameTimeButterfly" xml:space="preserve">
+    <value>Time Butterfly</value>
+  </data>
+  <data name="PlaceholderNameTimeFreestyle" xml:space="preserve">
+    <value>Time Freestyle</value>
+  </data>
+  <data name="PlaceholderNameTimeMedley" xml:space="preserve">
+    <value>Time Medley</value>
+  </data>
+  <data name="PlaceholderInfoScoreBackstroke" xml:space="preserve">
+    <value>Use these placeholders to insert the backstroke score.</value>
+  </data>
+  <data name="PlaceholderInfoScoreBreaststroke" xml:space="preserve">
+    <value>Use these placeholders to insert the breaststroke score.</value>
+  </data>
+  <data name="PlaceholderInfoScoreButterfly" xml:space="preserve">
+    <value>Use these placeholders to insert the butterfly score.</value>
+  </data>
+  <data name="PlaceholderInfoScoreFreestyle" xml:space="preserve">
+    <value>Use these placeholders to insert the freestyle score.</value>
+  </data>
+  <data name="PlaceholderInfoScoreMedley" xml:space="preserve">
+    <value>Use these placeholders to insert the medley score.</value>
+  </data>
+  <data name="PlaceholderInfoTimeBackstroke" xml:space="preserve">
+    <value>Use these placeholders to insert the backstroke time.</value>
+  </data>
+  <data name="PlaceholderInfoTimeBreaststroke" xml:space="preserve">
+    <value>Use these placeholders to insert the breaststroke time.</value>
+  </data>
+  <data name="PlaceholderInfoTimeButterfly" xml:space="preserve">
+    <value>Use these placeholders to insert the butterfly time.</value>
+  </data>
+  <data name="PlaceholderInfoTimeFreestyle" xml:space="preserve">
+    <value>Use these placeholders to insert the freestyle time.</value>
+  </data>
+  <data name="PlaceholderInfoTimeMedley" xml:space="preserve">
+    <value>Use these placeholders to insert the medley time.</value>
+  </data>
+  <data name="PlaceholderInfoScoreWaterflea" xml:space="preserve">
+    <value>Use these placeholders to insert the waterflea score.</value>
+  </data>
+  <data name="PlaceholderNameScoreWaterflea" xml:space="preserve">
+    <value>Score Waterflea</value>
+  </data>
+  <data name="PlaceholderInfoTimeWaterflea" xml:space="preserve">
+    <value>Use these placeholders to insert the waterflea time.</value>
+  </data>
+  <data name="PlaceholderNameTimeWaterflea" xml:space="preserve">
+    <value>Time Waterflea</value>
+  </data>
 </root>

@@ -62,52 +62,84 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public static List<string> Placeholders_ResultListPlace = new List<string>() { "Platzierung", "Platz", "Result", "Place", "P" };
 
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the breaststroke score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreBreaststroke = new List<string>() { "PunkteBrust", "ScoreBreaststroke", "PB", "SBr" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the freestyle score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreFreestyle = new List<string>() { "PunkteKraul", "ScoreFreestyle", "PK", "SF" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the backstroke score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreBackstroke = new List<string>() { "PunkteRücken", "ScoreBackstroke", "PR", "SBa" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the butterfly score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreButterfly = new List<string>() { "PunkteDelphin", "ScoreButterfly", "PD", "SBu" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the medley score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreMedley = new List<string>() { "PunkteLagen", "ScoreMedley", "PL", "SM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the waterflea score of a person.
+        /// </summary>
+        public static List<string> Placeholders_ScoreWaterflea = new List<string>() { "PunkteWasserfloh", "ScoreWaterflea", "PW", "SW" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the breaststroke time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeBreaststroke = new List<string>() { "ZeitBrust", "TimeBreaststroke", "ZB", "TBr" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the freestyle time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeFreestyle = new List<string>() { "ZeitKraul", "TimeFreestyle", "ZK", "TF" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the backstroke time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeBackstroke = new List<string>() { "ZeitRücken", "TimeBackstroke", "ZR", "TBa" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the butterfly time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeButterfly = new List<string>() { "ZeitDelphin", "TimeButterfly", "ZD", "TBu" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the medley time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeMedley = new List<string>() { "ZeitLagen", "TimeMedley", "ZL", "TM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the waterflea time of a person.
+        /// </summary>
+        public static List<string> Placeholders_TimeWaterflea = new List<string>() { "ZeitWasserfloh", "TimeWaterflea", "ZW", "TW" };
+
         #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         #region Placeholder Keys
 
-        /// <summary>
-        /// Key for the competition year placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
-        /// <summary>
-        /// Key for the name placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_NAME = "Name";
-        /// <summary>
-        /// Key for the gender placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_GENDER = "Gender";
-        /// <summary>
-        /// Key for the gender symbol placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_GENDER_SYMBOL = "GenderSymbol";
-        /// <summary>
-        /// Key for the birth year placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_BIRTH_YEAR = "BirthYear";
-        /// <summary>
-        /// Key for the distance placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_DISTANCE = "Distance";
-        /// <summary>
-        /// Key for the swimming style placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_SWIMMING_STYLE = "SwimmingStyle";
-        /// <summary>
-        /// Key for the competition ID placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_COMPETITION_ID = "CompetitionID";
-        /// <summary>
-        /// Key for the score placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_SCORE = "Score";
-        /// <summary>
-        /// Key for the result list place placeholders
-        /// </summary>
         public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
+
+        public const string PLACEHOLDER_KEY_SCOREBREASTSTROKE = "ScoreBreaststroke";
+        public const string PLACEHOLDER_KEY_SCOREFREESTYLE = "ScoreFreestyle";
+        public const string PLACEHOLDER_KEY_SCOREBACKSTROKE = "ScoreBackstroke";
+        public const string PLACEHOLDER_KEY_SCOREBUTTERFLY = "ScoreButterfly";
+        public const string PLACEHOLDER_KEY_SCOREMEDLEY = "ScoreMedley";
+        public const string PLACEHOLDER_KEY_SCOREWATERFLEA = "ScoreWaterflea";
+        public const string PLACEHOLDER_KEY_TIMEBREASTSTROKE = "TimeBreaststroke";
+        public const string PLACEHOLDER_KEY_TIMEFREESTYLE = "TimeFreestyle";
+        public const string PLACEHOLDER_KEY_TIMEBACKSTROKE = "TimeBackstroke";
+        public const string PLACEHOLDER_KEY_TIMEBUTTERFLY = "TimeButterfly";
+        public const string PLACEHOLDER_KEY_TIMEMEDLEY = "TimeMedley";
+        public const string PLACEHOLDER_KEY_TIMEWATERFLEA = "TimeWaterflea";
 
         #endregion
 
@@ -127,7 +159,19 @@ namespace Vereinsmeisterschaften.Core.Documents
             { PLACEHOLDER_KEY_SWIMMING_STYLE, Placeholders_SwimmingStyle },
             { PLACEHOLDER_KEY_COMPETITION_ID, Placeholders_CompetitionID },
             { PLACEHOLDER_KEY_SCORE, Placeholders_Score },
-            { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace }
+            { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace },
+            { PLACEHOLDER_KEY_SCOREBREASTSTROKE, Placeholders_ScoreBreaststroke },
+            { PLACEHOLDER_KEY_SCOREFREESTYLE, Placeholders_ScoreFreestyle },
+            { PLACEHOLDER_KEY_SCOREBACKSTROKE, Placeholders_ScoreBackstroke },
+            { PLACEHOLDER_KEY_SCOREBUTTERFLY, Placeholders_ScoreButterfly },
+            { PLACEHOLDER_KEY_SCOREMEDLEY, Placeholders_ScoreMedley },
+            { PLACEHOLDER_KEY_SCOREWATERFLEA, Placeholders_ScoreWaterflea },
+            { PLACEHOLDER_KEY_TIMEBREASTSTROKE, Placeholders_TimeBreaststroke },
+            { PLACEHOLDER_KEY_TIMEFREESTYLE, Placeholders_TimeFreestyle },
+            { PLACEHOLDER_KEY_TIMEBACKSTROKE, Placeholders_TimeBackstroke },
+            { PLACEHOLDER_KEY_TIMEBUTTERFLY, Placeholders_TimeButterfly },
+            { PLACEHOLDER_KEY_TIMEMEDLEY, Placeholders_TimeMedley },
+            { PLACEHOLDER_KEY_TIMEWATERFLEA, Placeholders_TimeWaterflea }
         };
     }
 }

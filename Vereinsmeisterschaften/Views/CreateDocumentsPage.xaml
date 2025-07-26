@@ -185,7 +185,7 @@
                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[ResultListDetail]}"
                                         ButtonText="{x:Static properties:Resources.CreateResultListDetailString}"
                                         SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"
-                                        ButtonIconGlyph="&#xE9F9;"
+                                        ButtonIconGlyph="&#xE7B3;"
                                         NumberCreatedDocuments="-1"/>
         
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -317,7 +317,7 @@
                             <!-- Supported Placeholders for ResultListDetail Document Type -->
                             <GridViewColumn>
                                 <GridViewColumn.Header>
-                                    <controls:FontIcon Glyph="&#xE9F9;" ToolTip="{x:Static properties:Resources.CreateResultListDetailString}"/>
+                                    <controls:FontIcon Glyph="&#xE7B3;" ToolTip="{x:Static properties:Resources.CreateResultListDetailString}"/>
                                 </GridViewColumn.Header>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>

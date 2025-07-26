@@ -188,4 +188,76 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
   <data name="PlaceholderNameGenderSymbol" xml:space="preserve">
     <value>Geschlecht (Symbol)</value>
   </data>
+  <data name="PlaceholderNameScoreBreaststroke" xml:space="preserve">
+    <value>Punkte Brust</value>
+  </data>
+  <data name="PlaceholderNameScoreFreestyle" xml:space="preserve">
+    <value>Punkte Kraul</value>
+  </data>
+  <data name="PlaceholderNameScoreBackstroke" xml:space="preserve">
+    <value>Punkte Rücken</value>
+  </data>
+  <data name="PlaceholderNameScoreButterfly" xml:space="preserve">
+    <value>Punkte Delphin</value>
+  </data>
+  <data name="PlaceholderNameScoreMedley" xml:space="preserve">
+    <value>Punkte Lagen</value>
+  </data>
+  <data name="PlaceholderNameTimeBackstroke" xml:space="preserve">
+    <value>Zeit Rücken</value>
+  </data>
+  <data name="PlaceholderNameTimeBreaststroke" xml:space="preserve">
+    <value>Zeit Brust</value>
+  </data>
+  <data name="PlaceholderNameTimeButterfly" xml:space="preserve">
+    <value>Zeit Delphin</value>
+  </data>
+  <data name="PlaceholderNameTimeFreestyle" xml:space="preserve">
+    <value>Zeit Kraul</value>
+  </data>
+  <data name="PlaceholderNameTimeMedley" xml:space="preserve">
+    <value>Zeit Lagen</value>
+  </data>
+  <data name="PlaceholderInfoScoreBackstroke" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Rücken Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoScoreBreaststroke" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Brust Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoScoreButterfly" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Delphin Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoScoreFreestyle" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Kraul Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoScoreMedley" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Lagen Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoTimeBackstroke" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Rücken Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoTimeBreaststroke" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Brust Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoTimeButterfly" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Delphin Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoTimeFreestyle" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Kraul Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoTimeMedley" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Lagen Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoScoreWaterflea" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Wasserfloh Punkte einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameScoreWaterflea" xml:space="preserve">
+    <value>Punkte Wasserfloh</value>
+  </data>
+  <data name="PlaceholderInfoTimeWaterflea" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Wasserfloh Zeit einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameTimeWaterflea" xml:space="preserve">
+    <value>Zeit Wasserfloh</value>
+  </data>
 </root>

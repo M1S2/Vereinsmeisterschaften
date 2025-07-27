@@ -237,7 +237,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
                 Key = placeholderKey,
                 Name = resourceStringName,
                 Info = resourceStringInfo,
-                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{Placeholders.PlaceholderMarker}{p}{Placeholders.PlaceholderMarker}")),
+                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{_documentService.PlaceholderMarker}{p}{_documentService.PlaceholderMarker}")),
                 IsSupportedForDocumentType = isSupportedForDocumentType,
                 PostfixNumbersSupportedForDocumentType = postfixNumbersSupportedForDocumentType
             };

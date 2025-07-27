@@ -127,6 +127,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
+        ///e.g. PlaceholderMarker = &quot;%&quot; --&gt; %PLACEHOLDER% ähnelt.
+        /// </summary>
+        public static string TooltipPlaceholderMarker {
+            get {
+                return ResourceManager.GetString("TooltipPlaceholderMarker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
         /// </summary>
         public static string TooltipRaceVariantContainsError {

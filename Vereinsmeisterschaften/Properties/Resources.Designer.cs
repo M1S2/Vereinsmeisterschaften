@@ -703,6 +703,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder Marker ähnelt.
+        /// </summary>
+        public static string PlaceholderMarkerString {
+            get {
+                return ResourceManager.GetString("PlaceholderMarkerString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die PrepareRaces ähnelt.
         /// </summary>
         public static string PrepareRacesPageTitle {

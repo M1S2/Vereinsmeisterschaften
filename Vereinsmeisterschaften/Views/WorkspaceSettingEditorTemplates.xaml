@@ -8,7 +8,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="StringEditorTemplate">
-        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,3"/>
     </DataTemplate>
 
     <DataTemplate x:Key="FileRelativeEditorTemplate">

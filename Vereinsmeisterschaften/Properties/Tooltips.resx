@@ -186,4 +186,8 @@ If the number of variants after calculation is reached earlier, the loop will br
   <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
     <value>Path to the result list detail template.</value>
   </data>
+  <data name="TooltipPlaceholderMarker" xml:space="preserve">
+    <value>String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
+e.g. PlaceholderMarker = "%" --&gt; %PLACEHOLDER%</value>
+  </data>
 </root>

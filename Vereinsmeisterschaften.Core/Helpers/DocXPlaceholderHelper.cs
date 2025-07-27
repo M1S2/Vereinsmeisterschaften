@@ -54,9 +54,10 @@ namespace Vereinsmeisterschaften.Core.Helpers
         /// <param name="templateFile">Path to a template file containing placeholders</param>
         /// <param name="outputFile">Path where the file with replaced placeholders should be saved to</param>
         /// <param name="placeholders">Placeholder, value pairs</param>
+        /// <param name="placeholderMarker">String marker for placeholders in the template files. The placeholder must be enclosed by this marker.</param>
         /// <param name="keepUnknownPlaceholders">Don't change placeholders from unknown values; if false, placeholder is replaced by <see cref="string.Empty"/></param>
         /// <returns>True, if placeholders were replaced; otherwise false</returns>
-        public static bool ReplaceTextPlaceholders(string templateFile, string outputFile, TextPlaceholders placeholders, bool keepUnknownPlaceholders = true)
+        public static bool ReplaceTextPlaceholders(string templateFile, string outputFile, TextPlaceholders placeholders, string placeholderMarker, bool keepUnknownPlaceholders = true)
         {
             bool result;
             using (DocX templateDocument = DocX.Load(templateFile))
@@ -64,7 +65,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                 // Replace all placeholders in the document
                 result = templateDocument.ReplaceText(new FunctionReplaceTextOptions()
                 {
-                    FindPattern = Placeholders.PlaceholderMarker + "(.*?)" + Placeholders.PlaceholderMarker,
+                    FindPattern = placeholderMarker + "(.*?)" + placeholderMarker,
                     RegExOptions = RegexOptions.IgnoreCase,
                     RegexMatchHandler = (placeholderWithoutMarkers) =>
                     {
@@ -72,7 +73,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                         {
                             return placeholders.Placeholders[placeholderWithoutMarkers];
                         }
-                        return keepUnknownPlaceholders ? (Placeholders.PlaceholderMarker + placeholderWithoutMarkers + Placeholders.PlaceholderMarker) : string.Empty;
+                        return keepUnknownPlaceholders ? (placeholderMarker + placeholderWithoutMarkers + placeholderMarker) : string.Empty;
                     }
                 });
                 // Save the document with the replaced placeholders as new file
@@ -122,8 +123,9 @@ namespace Vereinsmeisterschaften.Core.Helpers
         /// <param name="templateFile">Path to a template file containing placeholders</param>
         /// <param name="outputFile">Path where the file with replaced placeholders should be saved to</param>
         /// <param name="placeholders">Placeholder, value pairs</param>
+        /// <param name="placeholderMarker">String marker for placeholders in the template files. The placeholder must be enclosed by this marker.</param>
         /// <returns>True, if placeholders were replaced; otherwise false</returns>
-        public static bool ReplaceTablePlaceholders(string templateFile, string outputFile, TablePlaceholders placeholders)
+        public static bool ReplaceTablePlaceholders(string templateFile, string outputFile, TablePlaceholders placeholders, string placeholderMarker)
         {
             bool result = false;
             using (DocX templateDocument = DocX.Load(templateFile))
@@ -138,7 +140,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                     {
                         foreach (string placeholder in placeholders.Placeholders.Keys)
                         {
-                            if (row.FindUniqueByPattern(Placeholders.PlaceholderMarker + placeholder + Placeholders.PlaceholderMarker, RegexOptions.IgnoreCase).Count > 0)
+                            if (row.FindUniqueByPattern(placeholderMarker + placeholder + placeholderMarker, RegexOptions.IgnoreCase).Count > 0)
                             {
                                 // Placeholder found in this table
                                 rowPattern = row;
@@ -165,7 +167,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                         // Replace all placeholders in the new row
                         result |= newRow.ReplaceText(new FunctionReplaceTextOptions()
                         {
-                            FindPattern = Placeholders.PlaceholderMarker + "(.*?)" + Placeholders.PlaceholderMarker,
+                            FindPattern = placeholderMarker + "(.*?)" + placeholderMarker,
                             RegExOptions = RegexOptions.IgnoreCase,
                             RegexMatchHandler = (placeholderWithoutMarkers) =>
                             {
@@ -178,7 +180,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
                                 {
                                     return (i + 1).ToString();
                                 }
-                                return Placeholders.PlaceholderMarker + placeholderWithoutMarkers + Placeholders.PlaceholderMarker;
+                                return placeholderMarker + placeholderWithoutMarkers + placeholderMarker;
                             }
                         });
                     }

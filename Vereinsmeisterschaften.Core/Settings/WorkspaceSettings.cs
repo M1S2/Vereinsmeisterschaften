@@ -21,6 +21,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE = "MinRacesVariantsScore";
 
         public const string GROUP_DOCUMENT_CREATION = "DocumentCreation";
+        public const string SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER = "PlaceholderMarker";
         public const string SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER = "DocumentOutputFolder";
         public const string SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH = "CertificateTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH = "OverviewlistTemplatePath";
@@ -58,6 +59,7 @@ namespace Vereinsmeisterschaften.Core.Settings
 
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER, "%");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, @"Dokumente");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Templates\\Urkunden_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Templates\\Gesamtliste_Template.docx");

@@ -12,7 +12,7 @@
     Dialog:DialogParticipation.Register="{Binding}"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
-    Width="1500"
+    Width="1600"
     Height="900"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>

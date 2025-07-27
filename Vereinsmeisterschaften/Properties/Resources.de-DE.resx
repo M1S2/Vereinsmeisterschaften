@@ -499,4 +499,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="CreateResultListDetailString" xml:space="preserve">
     <value>Ergebnisliste Detail erstellen</value>
   </data>
+  <data name="PlaceholderMarkerString" xml:space="preserve">
+    <value>Platzhalter Marker</value>
+  </data>
 </root>

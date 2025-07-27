@@ -213,6 +213,10 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 
             new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Tooltips.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric } 
         },
+        {
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER,
+            new WorkspaceSettingViewConfig() { Label=Resources.PlaceholderMarkerString, Tooltip = Tooltips.TooltipPlaceholderMarker, Icon = "\uE94C", Editor = WorkspaceSettingEditorTypes.String }
+        },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, 
             new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Tooltips.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative, SupportResetToDefault = false } 

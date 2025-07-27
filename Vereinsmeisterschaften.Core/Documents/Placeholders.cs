@@ -11,14 +11,6 @@ namespace Vereinsmeisterschaften.Core.Documents
     /// </summary>
     public static class Placeholders
     {
-        /// <summary>
-        /// String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
-        /// e.g. PlaceholderMarker = "%" --> %PLACEHOLDER%
-        /// </summary>
-        public const string PlaceholderMarker = "%";
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         #region Placeholder Lists
 
         /// <summary>

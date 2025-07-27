@@ -498,4 +498,7 @@
   <data name="CreateResultListDetailString" xml:space="preserve">
     <value>Create Result List Detail</value>
   </data>
+  <data name="PlaceholderMarkerString" xml:space="preserve">
+    <value>Placeholder Marker</value>
+  </data>
 </root>

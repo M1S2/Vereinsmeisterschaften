@@ -186,4 +186,8 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
   <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
     <value>Pfad zum Ergebnislisten Detail Template.</value>
   </data>
+  <data name="TooltipPlaceholderMarker" xml:space="preserve">
+    <value>Marker text für Platzhalter in der Template Datei. Die Platzhalter müssen von diesem Zeichen eingeschlossen sein.
+z.B. Platzhalter Marker = "%" --&gt; %PLATZHALTER%</value>
+  </data>
 </root>

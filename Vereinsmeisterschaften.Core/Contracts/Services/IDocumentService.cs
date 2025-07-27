@@ -11,6 +11,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public interface IDocumentService
     {
         /// <summary>
+        /// String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
+        /// e.g. PlaceholderMarker = "%" --> %PLACEHOLDER%
+        /// </summary>
+        string PlaceholderMarker { get; }
+
+        /// <summary>
         /// Create the document indicated by the document type.
         /// For the <see cref="DocumentCreationTypes.Certificates"/> type, the <see cref="SetCertificateCreationFilters"/> method must be called before this method to set the filters for the certificate creation. Otherwise the old values are used.
         /// </summary>

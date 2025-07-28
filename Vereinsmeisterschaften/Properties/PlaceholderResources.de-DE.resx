@@ -260,4 +260,22 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
   <data name="PlaceholderNameTimeWaterflea" xml:space="preserve">
     <value>Zeit Wasserfloh</value>
   </data>
+  <data name="PlaceholderNameBestStyle" xml:space="preserve">
+    <value>Bester Stil</value>
+  </data>
+  <data name="PlaceholderInfoBestStyle" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Lage des Starts mit der höchsten Punktzahl einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameFirstName" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="PlaceholderNameLastName" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="PlaceholderInfoFirstName" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Vornamen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoLastName" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Vornamen einzufügen.</value>
+  </data>
 </root>

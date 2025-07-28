@@ -47,7 +47,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <returns>List of all <see cref="Person"/> items</returns>
         public override Person[] GetItems()
         {
-            return _personService.GetPersons().ToArray();
+            return _personService.GetPersons().OrderBy(p => p.Name).ThenBy(p => p.FirstName).ToArray();
         }
     }
 }

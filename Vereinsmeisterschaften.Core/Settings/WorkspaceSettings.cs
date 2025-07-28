@@ -310,7 +310,10 @@ namespace Vereinsmeisterschaften.Core.Settings
                     foreach (SerializableWorkspaceSetting serializableSetting in serializableGroup.Settings)
                     {
                         IWorkspaceSetting setting = GetSetting(serializableGroup.GroupKey, serializableSetting.Key);
-                        setting.UntypedValue = serializableSetting.Value;
+                        if (setting != null)
+                        {
+                            setting.UntypedValue = serializableSetting.Value;
+                        }
                     }
                 }
             }

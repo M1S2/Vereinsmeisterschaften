@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the style of the start with the highest score. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoBestStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoBestStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the birth year. ähnelt.
         /// </summary>
         public static string PlaceholderInfoBirthYear {
@@ -98,6 +107,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the first name. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoFirstName {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the gender. ähnelt.
         /// </summary>
         public static string PlaceholderInfoGender {
@@ -112,6 +130,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderInfoGenderSymbol {
             get {
                 return ResourceManager.GetString("PlaceholderInfoGenderSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the last name. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoLastName {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoLastName", resourceCulture);
             }
         }
         
@@ -288,6 +315,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Best Style ähnelt.
+        /// </summary>
+        public static string PlaceholderNameBestStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderNameBestStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Birth Year ähnelt.
         /// </summary>
         public static string PlaceholderNameBirthYear {
@@ -324,6 +360,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name ähnelt.
+        /// </summary>
+        public static string PlaceholderNameFirstName {
+            get {
+                return ResourceManager.GetString("PlaceholderNameFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gender ähnelt.
         /// </summary>
         public static string PlaceholderNameGender {
@@ -338,6 +383,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameGenderSymbol {
             get {
                 return ResourceManager.GetString("PlaceholderNameGenderSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last Name ähnelt.
+        /// </summary>
+        public static string PlaceholderNameLastName {
+            get {
+                return ResourceManager.GetString("PlaceholderNameLastName", resourceCulture);
             }
         }
         

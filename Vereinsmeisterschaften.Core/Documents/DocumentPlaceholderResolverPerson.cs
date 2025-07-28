@@ -33,6 +33,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.FirstName + " " + item.Name); }
+            foreach (string placeholder in Placeholders.Placeholders_FirstName) { textPlaceholder.Add(placeholder, item.FirstName); }
+            foreach (string placeholder in Placeholders.Placeholders_LastName) { textPlaceholder.Add(placeholder, item.Name); }
             foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.Gender)); }
             foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder, item.Gender == Genders.Male ? "♂" : "♀"); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, item.BirthYear.ToString() ?? "?"); }
@@ -41,6 +43,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.ID.ToString() ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.HighestScore.ToString("F2")); }
             foreach (string placeholder in Placeholders.Placeholders_ResultListPlace) { textPlaceholder.Add(placeholder, item?.ResultListPlace == 0 ? "-" : item.ResultListPlace.ToString() ?? "?"); }
+            foreach (string placeholder in Placeholders.Placeholders_BestStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item?.HighestScoreStyle)); }
 
             string cellEmptyString = "-";
             foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Score.ToString("N1") ?? cellEmptyString); }
@@ -63,6 +66,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         public override List<string> SupportedPlaceholderKeys => new List<string>()
         {
             Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_FIRSTNAME,
+            Placeholders.PLACEHOLDER_KEY_LASTNAME,
             Placeholders.PLACEHOLDER_KEY_GENDER,
             Placeholders.PLACEHOLDER_KEY_GENDER_SYMBOL,
             Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,
@@ -71,6 +76,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
             Placeholders.PLACEHOLDER_KEY_SCORE,
             Placeholders.PLACEHOLDER_KEY_RESULT_LIST_PLACE,
+            Placeholders.PLACEHOLDER_KEY_BEST_STYLE,
             Placeholders.PLACEHOLDER_KEY_SCOREBREASTSTROKE,
             Placeholders.PLACEHOLDER_KEY_SCOREFREESTYLE,
             Placeholders.PLACEHOLDER_KEY_SCOREBACKSTROKE,

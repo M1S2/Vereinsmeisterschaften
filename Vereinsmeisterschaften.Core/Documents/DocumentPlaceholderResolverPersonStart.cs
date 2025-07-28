@@ -31,6 +31,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.PersonObj?.FirstName + " " + item.PersonObj?.Name); }
+            foreach (string placeholder in Placeholders.Placeholders_FirstName) { textPlaceholder.Add(placeholder, item.PersonObj?.FirstName); }
+            foreach (string placeholder in Placeholders.Placeholders_LastName) { textPlaceholder.Add(placeholder, item.PersonObj?.Name); }
             foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.PersonObj?.Gender)); }
             foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder, item.PersonObj?.Gender == Genders.Male ? "♂" : "♀"); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, item.PersonObj?.BirthYear.ToString()); }
@@ -60,6 +62,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         public override List<string> SupportedPlaceholderKeys => new List<string>()
         {
             Placeholders.PLACEHOLDER_KEY_NAME,
+            Placeholders.PLACEHOLDER_KEY_FIRSTNAME,
+            Placeholders.PLACEHOLDER_KEY_LASTNAME,
             Placeholders.PLACEHOLDER_KEY_GENDER,
             Placeholders.PLACEHOLDER_KEY_GENDER_SYMBOL,
             Placeholders.PLACEHOLDER_KEY_BIRTH_YEAR,

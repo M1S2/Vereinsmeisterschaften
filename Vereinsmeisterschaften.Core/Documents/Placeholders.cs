@@ -18,9 +18,17 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
         /// <summary>
-        /// List with all placeholders that can be used in the template to insert the name of a person.
+        /// List with all placeholders that can be used in the template to insert the complete name of a person.
         /// </summary>
         public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the first name of a person.
+        /// </summary>
+        public static List<string> Placeholders_FirstName = new List<string>() { "Vorname", "FirstName", "VN", "FN" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the last name of a person.
+        /// </summary>
+        public static List<string> Placeholders_LastName = new List<string>() { "Nachname", "LastName", "NN", "LN" };
         /// <summary>
         /// List with all placeholders that can be used in the template to insert the gender of a person as string.
         /// </summary>
@@ -53,6 +61,10 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// List with all placeholders that can be used in the template to insert the place in the overall result list of a person.
         /// </summary>
         public static List<string> Placeholders_ResultListPlace = new List<string>() { "Platzierung", "Platz", "Result", "Place", "P" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the style of the start with the highest score of a person.
+        /// </summary>
+        public static List<string> Placeholders_BestStyle = new List<string>() { "BesterStil", "BestStyle", "BS" };
 
         /// <summary>
         /// List with all placeholders that can be used in the template to insert the breaststroke score of a person.
@@ -111,6 +123,8 @@ namespace Vereinsmeisterschaften.Core.Documents
 
         public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
         public const string PLACEHOLDER_KEY_NAME = "Name";
+        public const string PLACEHOLDER_KEY_FIRSTNAME = "FirstName";
+        public const string PLACEHOLDER_KEY_LASTNAME = "LastName";
         public const string PLACEHOLDER_KEY_GENDER = "Gender";
         public const string PLACEHOLDER_KEY_GENDER_SYMBOL = "GenderSymbol";
         public const string PLACEHOLDER_KEY_BIRTH_YEAR = "BirthYear";
@@ -119,6 +133,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         public const string PLACEHOLDER_KEY_COMPETITION_ID = "CompetitionID";
         public const string PLACEHOLDER_KEY_SCORE = "Score";
         public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
+        public const string PLACEHOLDER_KEY_BEST_STYLE = "BestStyle";
 
         public const string PLACEHOLDER_KEY_SCOREBREASTSTROKE = "ScoreBreaststroke";
         public const string PLACEHOLDER_KEY_SCOREFREESTYLE = "ScoreFreestyle";
@@ -144,6 +159,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         {
             { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
             { PLACEHOLDER_KEY_NAME, Placeholders_Name },
+            { PLACEHOLDER_KEY_FIRSTNAME, Placeholders_FirstName },
+            { PLACEHOLDER_KEY_LASTNAME, Placeholders_LastName },
             { PLACEHOLDER_KEY_GENDER, Placeholders_Gender },
             { PLACEHOLDER_KEY_GENDER_SYMBOL, Placeholders_GenderSymbol },
             { PLACEHOLDER_KEY_BIRTH_YEAR, Placeholders_BirthYear },
@@ -151,6 +168,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             { PLACEHOLDER_KEY_SWIMMING_STYLE, Placeholders_SwimmingStyle },
             { PLACEHOLDER_KEY_COMPETITION_ID, Placeholders_CompetitionID },
             { PLACEHOLDER_KEY_SCORE, Placeholders_Score },
+            { PLACEHOLDER_KEY_BEST_STYLE, Placeholders_BestStyle },
             { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace },
             { PLACEHOLDER_KEY_SCOREBREASTSTROKE, Placeholders_ScoreBreaststroke },
             { PLACEHOLDER_KEY_SCOREFREESTYLE, Placeholders_ScoreFreestyle },

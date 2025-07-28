@@ -14,7 +14,7 @@ namespace Vereinsmeisterschaften.Core.Helpers
         {
             if (value == null)
             {
-                return null;
+                return string.Empty;
             }
             else
             {

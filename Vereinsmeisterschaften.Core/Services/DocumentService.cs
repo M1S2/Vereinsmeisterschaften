@@ -27,7 +27,6 @@ namespace Vereinsmeisterschaften.Core.Services
     public class DocumentService : IDocumentService
     {
         private const string _tempFolderName = "temp";
-        private const string _templatePostfix = "_Template";
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -106,14 +105,28 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
 
                 // Create the output file name based on the filter
+                // Replace the template file name postfix with the filter parameter
+                // e.g. "Certificate_Template.docx" becomes "Certificate_WK1.docx"
+                // If the template file name does not contain the postfix, we just append the filter parameter
+                // e.g. "Certificate.docx" becomes "Certificate_WK1.docx" (it is possible that the filename remains the same if the filter parameter is empty)
                 string outputFileNameDocx = Path.GetFileNameWithoutExtension(documentTemplate);
+                string templateFileNamePostfix = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX) ?? string.Empty;
+                string templateFileNamePostfixReplaceStr = string.Empty;
                 switch (personStartFilter)
                 {
-                    case PersonStartFilters.None: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
-                    case PersonStartFilters.Person: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + ((Person)_personStartFilterParameter).FirstName + "_" + ((Person)_personStartFilterParameter).Name); break;
-                    case PersonStartFilters.SwimmingStyle: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)_personStartFilterParameter)); break;
-                    case PersonStartFilters.CompetitionID: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, "_WK" + (int)_personStartFilterParameter); break;
-                    default: outputFileNameDocx = outputFileNameDocx.Replace(_templatePostfix, ""); break;
+                    case PersonStartFilters.None: break;
+                    case PersonStartFilters.Person: templateFileNamePostfixReplaceStr = "_" + ((Person)_personStartFilterParameter).FirstName + "_" + ((Person)_personStartFilterParameter).Name; break;
+                    case PersonStartFilters.SwimmingStyle: templateFileNamePostfixReplaceStr = "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)_personStartFilterParameter); break;
+                    case PersonStartFilters.CompetitionID: templateFileNamePostfixReplaceStr = "_WK" + (int)_personStartFilterParameter; break;
+                    default: break;
+                }
+                if (outputFileNameDocx.Contains(templateFileNamePostfix))
+                {
+                    outputFileNameDocx = outputFileNameDocx.Replace(templateFileNamePostfix, templateFileNamePostfixReplaceStr);
+                }
+                else
+                {
+                    outputFileNameDocx += templateFileNamePostfixReplaceStr;
                 }
                 outputFileNameDocx += ".docx";
                 string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
@@ -149,7 +162,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             foreach (object multiplePagesObj in items)
                             {
-                                string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(_templatePostfix, "") + $"_{numCreatedPages}.docx");
+                                string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(templateFileNamePostfix, "") + $"_{numCreatedPages}.docx");
 
                                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = documentStrategy.ResolveTablePlaceholders(items);
                                 if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFileMulti, tablePlaceholders, placeholderMarker); }

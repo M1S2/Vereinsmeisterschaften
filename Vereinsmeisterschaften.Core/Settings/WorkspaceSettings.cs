@@ -23,6 +23,7 @@ namespace Vereinsmeisterschaften.Core.Settings
 
         public const string GROUP_DOCUMENT_CREATION = "DocumentCreation";
         public const string SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER = "PlaceholderMarker";
+        public const string SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX = "TemplateFilenamePostfix";
         public const string SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER = "DocumentOutputFolder";
         public const string SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH = "CertificateTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH = "OverviewlistTemplatePath";
@@ -62,6 +63,8 @@ namespace Vereinsmeisterschaften.Core.Settings
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER, "%");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX, "_Template");
+            groupDocumentCreation.MakeSureSettingExists<DocumentCreationFileTypes>(SETTING_DOCUMENT_CREATION_FILE_TYPES, DocumentCreationFileTypes.DOCX_AND_PDF);
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, @"Dokumente");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Templates\\Urkunden_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Templates\\Gesamtliste_Template.docx");
@@ -70,8 +73,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Templates\\Ergebnisliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH, @"Templates\\ErgebnislisteDetail_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
-            groupDocumentCreation.MakeSureSettingExists<DocumentCreationFileTypes>(SETTING_DOCUMENT_CREATION_FILE_TYPES, DocumentCreationFileTypes.DOCX_AND_PDF);
-
+            
             //... Add new settings and groups here ...
 
             CreateSnapshot();

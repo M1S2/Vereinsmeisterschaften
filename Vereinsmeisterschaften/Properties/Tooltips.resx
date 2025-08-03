@@ -193,4 +193,13 @@ e.g. PlaceholderMarker = "%" --&gt; %PLACEHOLDER%</value>
   <data name="TooltipDocumentFileTypes" xml:space="preserve">
     <value>File types of documents that will be created.</value>
   </data>
+  <data name="TooltipTemplateFilenamePostfix" xml:space="preserve">
+    <value>This string is removed from the template file name to get the final output file name.
+If filters are used during document creation, this string defines the place where the filter criteria are inserted in the output file name.
+
+e.g. Template File: "Certificates_Template.docx",
+Template Postfix: "_Template"
+-&gt; Output file (without filters): "Certificates.docx"
+-&gt; Output file (with filters by style): "Certificates_Breaststroke.docx"</value>
+  </data>
 </root>

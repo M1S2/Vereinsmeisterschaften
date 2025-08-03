@@ -506,4 +506,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="DocumentFileTypesString" xml:space="preserve">
     <value>Dokument Datei Typen</value>
   </data>
+  <data name="TemplateFilenamePostfixString" xml:space="preserve">
+    <value>Template Dateinamen Postfix</value>
+  </data>
 </root>

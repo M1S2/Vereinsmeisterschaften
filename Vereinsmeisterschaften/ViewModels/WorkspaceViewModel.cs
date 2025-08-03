@@ -217,6 +217,14 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER,
             new WorkspaceSettingViewConfig() { Label=Resources.PlaceholderMarkerString, Tooltip = Tooltips.TooltipPlaceholderMarker, Icon = "\uE94C", Editor = WorkspaceSettingEditorTypes.String }
         },
+        {
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX,
+            new WorkspaceSettingViewConfig() { Label=Resources.TemplateFilenamePostfixString, Tooltip = Tooltips.TooltipTemplateFilenamePostfix, Icon = "\uE75D", Editor = WorkspaceSettingEditorTypes.String }
+        },
+        {
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES,
+            new WorkspaceSettingViewConfig() { Label=Resources.DocumentFileTypesString, Tooltip = Tooltips.TooltipDocumentFileTypes, Icon = "\uEA90", Editor = WorkspaceSettingEditorTypes.Enum }
+        },
         { 
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, 
             new WorkspaceSettingViewConfig() { Label=Resources.DocumentOutputFolderString, Tooltip = Tooltips.TooltipDocumentOutputFolder, Icon = "\uED25", Editor = WorkspaceSettingEditorTypes.FolderRelative, SupportResetToDefault = false } 
@@ -243,15 +251,11 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH,
-            new WorkspaceSettingViewConfig() { Label=Resources.ResultListDetailTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathResultListDetail, Icon = "\uE9F9", Editor = WorkspaceSettingEditorTypes.FileDocxRelative, SupportResetToDefault = false}
+            new WorkspaceSettingViewConfig() { Label=Resources.ResultListDetailTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathResultListDetail, Icon = "\uE7B3", Editor = WorkspaceSettingEditorTypes.FileDocxRelative, SupportResetToDefault = false}
         },
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
             new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Tooltips.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 
-        },
-        {
-            WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES,
-            new WorkspaceSettingViewConfig() { Label=Resources.DocumentFileTypesString, Tooltip = Tooltips.TooltipDocumentFileTypes, Icon = "\uEA90", Editor = WorkspaceSettingEditorTypes.Enum }
         }
     };
 

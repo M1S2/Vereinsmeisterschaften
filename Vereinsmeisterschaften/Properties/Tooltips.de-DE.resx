@@ -193,4 +193,13 @@ z.B. Platzhalter Marker = "%" --&gt; %PLATZHALTER%</value>
   <data name="TooltipDocumentFileTypes" xml:space="preserve">
     <value>Dokument Datei Typen, die erzeugt werden.</value>
   </data>
+  <data name="TooltipTemplateFilenamePostfix" xml:space="preserve">
+    <value>Dieser Text wird aus dem Template Dateinamen entfernt, um den Dateinamen der Ausgabedatei zu bekommen.
+Wenn Filter während der Dokumentenerstellung verwendet werden, wird über diesen Text bestimmt, wo die Filter Informationen in den Dateinamen der Ausgabedatei eingebaut werden.
+
+z.B. Template Datei: "Urkunden_Template.docx",
+Template Postfix: "_Template"
+-&gt; Ausgabedatei (ohne Filterung): "Urkunden.docx"
+-&gt; Ausgabedatei (mit Filterung nach dem Stil): "Urkunden_Brust.docx"</value>
+  </data>
 </root>

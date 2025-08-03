@@ -505,4 +505,7 @@
   <data name="DocumentFileTypesString" xml:space="preserve">
     <value>Document File Types</value>
   </data>
+  <data name="TemplateFilenamePostfixString" xml:space="preserve">
+    <value>Template Filename Postfix</value>
+  </data>
 </root>

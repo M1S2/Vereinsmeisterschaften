@@ -191,6 +191,21 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This string is removed from the template file name to get the final output file name.
+        ///If filters are used during document creation, this string defines the place where the filter criteria are inserted in the output file name.
+        ///
+        ///e.g. Template File: &quot;Certificates_Template.docx&quot;,
+        ///Template Postfix: &quot;_Template&quot;
+        ///-&gt; Output file (without filters): &quot;Certificates.docx&quot;
+        ///-&gt; Output file (with filters by style): &quot;Certificates_Breaststroke.docx&quot; ähnelt.
+        /// </summary>
+        public static string TooltipTemplateFilenamePostfix {
+            get {
+                return ResourceManager.GetString("TooltipTemplateFilenamePostfix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Path to the certificate template. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathCertificate {

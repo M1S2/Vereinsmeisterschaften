@@ -1136,6 +1136,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Template Filename Postfix ähnelt.
+        /// </summary>
+        public static string TemplateFilenamePostfixString {
+            get {
+                return ResourceManager.GetString("TemplateFilenamePostfixString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Time Forms Template ähnelt.
         /// </summary>
         public static string TimeFormsTemplatePathString {

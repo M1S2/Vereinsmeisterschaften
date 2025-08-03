@@ -23,6 +23,10 @@
                 <x:Type TypeName="coreModels:PersonStartFilters"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <Style x:Key="StyleCenteredGridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -197,7 +201,7 @@
                     <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:Resources.AvailablePlaceholdersString}"/>
                 </StackPanel>
             </Expander.Header>
-            
+
             <DockPanel LastChildFill="True">
                 <!-- Legend -->
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,20,0,10">
@@ -216,122 +220,122 @@
                 <Separator Margin="0,10,0,0" DockPanel.Dock="Bottom" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="4"/>
 
                 <ListView ItemsSource="{Binding PlaceholderViewConfigs}">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
-                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
+                            <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                            <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
-                        <ListView.View>
-                            <GridView>
-                                <!-- Placeholder Name -->
-                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="{x:Static properties:Resources.NameString}"/>
+                    <ListView.View>
+                        <GridView>
+                            <!-- Placeholder Name -->
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="{x:Static properties:Resources.NameString}"/>
 
-                                <!-- Placeholder Info -->
-                                <GridViewColumn DisplayMemberBinding="{Binding Info}" Header="{x:Static properties:Resources.InfoString}"/>
+                            <!-- Placeholder Info -->
+                            <GridViewColumn DisplayMemberBinding="{Binding Info}" Header="{x:Static properties:Resources.InfoString}"/>
 
-                                <!-- Placeholders -->
-                                <GridViewColumn DisplayMemberBinding="{Binding Placeholders}" Header="{x:Static properties:Resources.AvailablePlaceholdersString}"/>
+                            <!-- Placeholders -->
+                            <GridViewColumn DisplayMemberBinding="{Binding Placeholders}" Header="{x:Static properties:Resources.AvailablePlaceholdersString}"/>
 
-                                <!-- Supported Placeholders for Certificates Document Type -->
-                                <GridViewColumn>
-                                    <GridViewColumn.Header>
-                                        <controls:FontIcon Glyph="&#xE8A5;" ToolTip="{x:Static properties:Resources.CreateCertificatesString}"/>
-                                    </GridViewColumn.Header>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[Certificates]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                                <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                             BoolValue="{Binding IsSupportedForDocumentType[Certificates]}"/>
-                                            </controls:Badged>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!-- Supported Placeholders for Certificates Document Type -->
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE8A5;" ToolTip="{x:Static properties:Resources.CreateCertificatesString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[Certificates]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[Certificates]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                                <!-- Supported Placeholders for OverviewList Document Type -->
-                                <GridViewColumn>
-                                    <GridViewColumn.Header>
-                                        <controls:FontIcon Glyph="&#xE9D5;" ToolTip="{x:Static properties:Resources.CreateOverviewListString}"/>
-                                    </GridViewColumn.Header>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[OverviewList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                                <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                             BoolValue="{Binding IsSupportedForDocumentType[OverviewList]}"/>
-                                            </controls:Badged>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!-- Supported Placeholders for OverviewList Document Type -->
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE9D5;" ToolTip="{x:Static properties:Resources.CreateOverviewListString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[OverviewList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[OverviewList]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                                <!-- Supported Placeholders for RaceStartList Document Type -->
-                                <GridViewColumn>
-                                    <GridViewColumn.Header>
-                                        <controls:FontIcon Glyph="&#xE7C1;" ToolTip="{x:Static properties:Resources.CreateRaceStartListString}"/>
-                                    </GridViewColumn.Header>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[RaceStartList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                                <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                             BoolValue="{Binding IsSupportedForDocumentType[RaceStartList]}"/>
-                                            </controls:Badged>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!-- Supported Placeholders for RaceStartList Document Type -->
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE7C1;" ToolTip="{x:Static properties:Resources.CreateRaceStartListString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[RaceStartList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[RaceStartList]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                                <!-- Supported Placeholders for TimeForms Document Type -->
-                                <GridViewColumn>
-                                    <GridViewColumn.Header>
-                                        <controls:FontIcon Glyph="&#xE916;" ToolTip="{x:Static properties:Resources.CreateTimeFormsString}"/>
-                                    </GridViewColumn.Header>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[TimeForms]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                                <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                             BoolValue="{Binding IsSupportedForDocumentType[TimeForms]}"/>
-                                            </controls:Badged>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!-- Supported Placeholders for TimeForms Document Type -->
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE916;" ToolTip="{x:Static properties:Resources.CreateTimeFormsString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[TimeForms]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[TimeForms]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                                <!-- Supported Placeholders for ResultList Document Type -->
-                                <GridViewColumn>
-                                    <GridViewColumn.Header>
-                                        <controls:FontIcon Glyph="&#xE9F9;" ToolTip="{x:Static properties:Resources.CreateResultListString}"/>
-                                    </GridViewColumn.Header>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                                <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                             BoolValue="{Binding IsSupportedForDocumentType[ResultList]}"/>
-                                            </controls:Badged>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!-- Supported Placeholders for ResultList Document Type -->
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
+                                <GridViewColumn.Header>
+                                    <controls:FontIcon Glyph="&#xE9F9;" ToolTip="{x:Static properties:Resources.CreateResultListString}"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                            <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[ResultList]}"/>
+                                        </controls:Badged>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
                             <!-- Supported Placeholders for ResultListDetail Document Type -->
-                            <GridViewColumn>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource StyleCenteredGridViewColumnHeader}">
                                 <GridViewColumn.Header>
                                     <controls:FontIcon Glyph="&#xE7B3;" ToolTip="{x:Static properties:Resources.CreateResultListDetailString}"/>
                                 </GridViewColumn.Header>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <controls:Badged Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultListDetail]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                        <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultListDetail]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
                                             <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                              FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                              BoolValue="{Binding IsSupportedForDocumentType[ResultListDetail]}"/>
+                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                     BoolValue="{Binding IsSupportedForDocumentType[ResultListDetail]}"/>
                                         </controls:Badged>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                         </GridView>
-                        </ListView.View>
-                    </ListView>
+                    </ListView.View>
+                </ListView>
             </DockPanel>
         </Expander>
         

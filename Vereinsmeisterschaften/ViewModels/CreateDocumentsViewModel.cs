@@ -351,7 +351,9 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             bool isDataAvailable = items != null;
             changeDocumentDataAvailableState(strategy.DocumentType, isDataAvailable);
 
-            bool isTemplateAvailable = !string.IsNullOrEmpty(strategy.TemplatePath) && System.IO.File.Exists(strategy.TemplatePath);
+            bool isTemplateAvailable = !string.IsNullOrEmpty(strategy.TemplatePath) && 
+                                       System.IO.File.Exists(strategy.TemplatePath) &&
+                                       System.IO.Path.GetExtension(strategy.TemplatePath) == ".docx";
             changeDocumentTemplateAvailableState(strategy.DocumentType, isTemplateAvailable);
 
             if (!isDataAvailable || !isTemplateAvailable)

@@ -120,6 +120,15 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        public string OpenFileDialogFilter
+        {
+            get { return (string)GetValue(OpenFileDialogFilterProperty); }
+            set { SetValue(OpenFileDialogFilterProperty, value); }
+        }
+        public static readonly DependencyProperty OpenFileDialogFilterProperty = DependencyProperty.Register(nameof(OpenFileDialogFilter), typeof(string), typeof(FileFolderPathControl), new PropertyMetadata("All files (*.*)|*.*"));
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private void btn_browse_Click(object sender, RoutedEventArgs e)
         {
             string tmpFileFolderPath = string.Empty;
@@ -130,6 +139,7 @@ namespace Vereinsmeisterschaften.Controls
                         System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
                         openFileDialog.InitialDirectory = Path.GetDirectoryName(ResolvedFileFolderPath);
                         openFileDialog.FileName = FileFolderPath;
+                        openFileDialog.Filter = OpenFileDialogFilter;
                         if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
                             tmpFileFolderPath = openFileDialog.FileName;

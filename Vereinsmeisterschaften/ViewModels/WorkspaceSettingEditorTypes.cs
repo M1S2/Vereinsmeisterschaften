@@ -12,6 +12,8 @@ namespace Vereinsmeisterschaften.ViewModels
         String,
         FileRelative,
         FileAbsolute,
+        FileDocxRelative,
+        FileDocxAbsolute,
         FolderRelative,
         FolderAbsolute,
         Boolean,

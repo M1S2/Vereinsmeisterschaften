@@ -594,7 +594,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The template can&apos;t be found ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The template can&apos;t be found
+        ///(or is not of type .docx). ähnelt.
         /// </summary>
         public static string NoTemplateAvailableWarningString {
             get {

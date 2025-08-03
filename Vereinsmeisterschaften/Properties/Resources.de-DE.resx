@@ -488,7 +488,8 @@ Alle Starts sind zugewiesen.</value>
     <value>Es sind keine Daten verfügbar</value>
   </data>
   <data name="NoTemplateAvailableWarningString" xml:space="preserve">
-    <value>Das Template wurde nicht gefunden</value>
+    <value>Das Template wurde nicht gefunden
+(oder ist keine .docx Datei).</value>
   </data>
   <data name="ResultListDetailTemplatePathString" xml:space="preserve">
     <value>Ergebnislisten Detail Template</value>

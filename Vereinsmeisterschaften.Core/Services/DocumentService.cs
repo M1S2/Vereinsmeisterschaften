@@ -93,6 +93,10 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 IDocumentStrategy documentStrategy = getDocumentStrategy(documentType);
                 string documentTemplate = documentStrategy.TemplatePath;
+                if (Path.GetExtension(documentTemplate) != ".docx")
+                {
+                    throw new InvalidOperationException($"Document template \"{documentTemplate}\" is not a .docx file.");
+                }
 
                 // For all other document types than certificates, we do not filter by person start
                 PersonStartFilters personStartFilter = _personStartFilter;

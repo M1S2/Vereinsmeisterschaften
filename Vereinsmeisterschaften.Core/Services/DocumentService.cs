@@ -201,9 +201,21 @@ namespace Vereinsmeisterschaften.Core.Services
                     numCreatedPages = 1; // We created one page for the document
                 }
 
-                if (createPdf)
+                DocumentCreationFileTypes fileTypes = _workspaceService?.Settings?.GetSettingValue<DocumentCreationFileTypes>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES) ?? DocumentCreationFileTypes.DOCX_AND_PDF;
+
+                // Create PDF if requested and file type is PDF or DOCX_AND_PDF
+                if (createPdf && (fileTypes == DocumentCreationFileTypes.PDF || fileTypes == DocumentCreationFileTypes.DOCX_AND_PDF))
                 {
                     convertToPdf(outputFile);
+                }
+
+                // Delete the .docx file if file type is PDF
+                if (fileTypes == DocumentCreationFileTypes.PDF)
+                {
+                    if (File.Exists(outputFile))
+                    {
+                        File.Delete(outputFile);
+                    }
                 }
 
                 return numCreatedPages;

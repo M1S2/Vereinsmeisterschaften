@@ -11,6 +11,17 @@
         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,3"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="EnumEditorTemplate">
+        <ComboBox ItemsSource="{Binding ValueType, Converter={StaticResource enumValuesConverter}}" SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center">
+            <!--https://www.codeproject.com/Articles/767834/WPF-Binding-to-an-enum-with-localization-->
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </DataTemplate>
+
     <DataTemplate x:Key="FileRelativeEditorTemplate">
         <userControls:FileFolderPathControl RootFolderForRelativePaths="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" FileFolderPath="{Binding Value, UpdateSourceTrigger=PropertyChanged}" FileFolderSelectionMode="Files" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="{StaticResource MediumFontSize}" Margin="0,3"/>
     </DataTemplate>

@@ -387,6 +387,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Document File Types ähnelt.
+        /// </summary>
+        public static string DocumentFileTypesString {
+            get {
+                return ResourceManager.GetString("DocumentFileTypesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Document output folder ähnelt.
         /// </summary>
         public static string DocumentOutputFolderString {

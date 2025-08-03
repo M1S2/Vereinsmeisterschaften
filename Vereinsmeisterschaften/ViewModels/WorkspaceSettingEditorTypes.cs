@@ -14,6 +14,7 @@ namespace Vereinsmeisterschaften.ViewModels
         FileAbsolute,
         FolderRelative,
         FolderAbsolute,
-        Boolean
+        Boolean,
+        Enum
     }
 }

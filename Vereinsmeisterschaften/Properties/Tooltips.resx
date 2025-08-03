@@ -190,4 +190,7 @@ If the number of variants after calculation is reached earlier, the loop will br
     <value>String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
 e.g. PlaceholderMarker = "%" --&gt; %PLACEHOLDER%</value>
   </data>
+  <data name="TooltipDocumentFileTypes" xml:space="preserve">
+    <value>File types of documents that will be created.</value>
+  </data>
 </root>

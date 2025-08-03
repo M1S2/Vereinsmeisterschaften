@@ -501,4 +501,7 @@
   <data name="PlaceholderMarkerString" xml:space="preserve">
     <value>Placeholder Marker</value>
   </data>
+  <data name="DocumentFileTypesString" xml:space="preserve">
+    <value>Document File Types</value>
+  </data>
 </root>

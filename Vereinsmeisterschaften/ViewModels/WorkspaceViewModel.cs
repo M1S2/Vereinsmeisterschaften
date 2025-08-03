@@ -248,6 +248,10 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, 
             new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Tooltips.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute } 
+        },
+        {
+            WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES,
+            new WorkspaceSettingViewConfig() { Label=Resources.DocumentFileTypesString, Tooltip = Tooltips.TooltipDocumentFileTypes, Icon = "\uEA90", Editor = WorkspaceSettingEditorTypes.Enum }
         }
     };
 

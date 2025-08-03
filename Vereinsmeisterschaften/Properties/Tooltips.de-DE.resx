@@ -190,4 +190,7 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
     <value>Marker text für Platzhalter in der Template Datei. Die Platzhalter müssen von diesem Zeichen eingeschlossen sein.
 z.B. Platzhalter Marker = "%" --&gt; %PLATZHALTER%</value>
   </data>
+  <data name="TooltipDocumentFileTypes" xml:space="preserve">
+    <value>Dokument Datei Typen, die erzeugt werden.</value>
+  </data>
 </root>

@@ -61,6 +61,33 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die DOCX ähnelt.
+        /// </summary>
+        public static string DocumentCreationFileTypes_DOCX {
+            get {
+                return ResourceManager.GetString("DocumentCreationFileTypes_DOCX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die DOCX &amp; PDF ähnelt.
+        /// </summary>
+        public static string DocumentCreationFileTypes_DOCX_AND_PDF {
+            get {
+                return ResourceManager.GetString("DocumentCreationFileTypes_DOCX_AND_PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PDF ähnelt.
+        /// </summary>
+        public static string DocumentCreationFileTypes_PDF {
+            get {
+                return ResourceManager.GetString("DocumentCreationFileTypes_PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
         /// </summary>
         public static string Genders_Female {

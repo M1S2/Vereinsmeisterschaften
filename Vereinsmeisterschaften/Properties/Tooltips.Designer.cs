@@ -70,6 +70,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File types of documents that will be created. ähnelt.
+        /// </summary>
+        public static string TooltipDocumentFileTypes {
+            get {
+                return ResourceManager.GetString("TooltipDocumentFileTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Output folder where the documents are created. ähnelt.
         /// </summary>
         public static string TooltipDocumentOutputFolder {

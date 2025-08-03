@@ -177,4 +177,13 @@
   <data name="PersonStartFilters_CompetitionID" xml:space="preserve">
     <value>Wettkampf-ID</value>
   </data>
+  <data name="DocumentCreationFileTypes_DOCX" xml:space="preserve">
+    <value>DOCX</value>
+  </data>
+  <data name="DocumentCreationFileTypes_PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="DocumentCreationFileTypes_DOCX_AND_PDF" xml:space="preserve">
+    <value>DOCX &amp; PDF</value>
+  </data>
 </root>

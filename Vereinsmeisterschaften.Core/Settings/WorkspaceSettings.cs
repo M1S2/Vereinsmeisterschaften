@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Settings
 {
@@ -30,6 +31,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH = "ResultListTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH = "ResultListDetailTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH = "LibreOfficePath";
+        public const string SETTING_DOCUMENT_CREATION_FILE_TYPES = "DocumentFileTypes";
 
         //... Add new setting keys and group keys here ...
 
@@ -68,6 +70,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Templates\\Ergebnisliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH, @"Templates\\ErgebnislisteDetail_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
+            groupDocumentCreation.MakeSureSettingExists<DocumentCreationFileTypes>(SETTING_DOCUMENT_CREATION_FILE_TYPES, DocumentCreationFileTypes.DOCX_AND_PDF);
 
             //... Add new settings and groups here ...
 
@@ -312,7 +315,12 @@ namespace Vereinsmeisterschaften.Core.Settings
                         IWorkspaceSetting setting = GetSetting(serializableGroup.GroupKey, serializableSetting.Key);
                         if (setting != null)
                         {
-                            setting.UntypedValue = serializableSetting.Value;
+                            object serializableValue = serializableSetting.Value;
+                            if(serializableValue is string strValue && setting.ValueType.IsEnum)
+                            {
+                                serializableValue = Enum.Parse(setting.ValueType, strValue);
+                            }
+                            setting.UntypedValue = serializableValue;
                         }
                     }
                 }

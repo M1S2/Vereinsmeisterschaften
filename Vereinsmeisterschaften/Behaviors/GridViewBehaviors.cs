@@ -19,28 +19,41 @@ namespace Vereinsmeisterschaften.Behaviors
     {
         private static Dictionary<GridViewColumn, double> _lastGridViewColumnWidths = new Dictionary<GridViewColumn, double>();
 
+        /// <summary>
+        /// Attached DependencyProperty to indicate whether the GridViewColumnHeader is collapseable.
+        /// </summary>
         public static readonly DependencyProperty CollapseableColumnProperty = DependencyProperty.RegisterAttached("CollapseableColumn", typeof(bool), typeof(GridViewBehaviors), new UIPropertyMetadata(false, OnCollapseableColumnChanged));
 
-        public static bool GetCollapseableColumn(DependencyObject d)
+        /// <summary>
+        /// Get the value of the CollapseableColumn attached property from a DependencyObject.
+        /// </summary>
+        /// <param name="obj"><see cref="DependencyObject"/></param>
+        /// <returns>Value of the CollapseableColumn attached property</returns>
+        public static bool GetCollapseableColumn(DependencyObject obj)
         {
-            return (bool)d.GetValue(CollapseableColumnProperty);
+            return (bool)obj.GetValue(CollapseableColumnProperty);
         }
 
-        public static void SetCollapseableColumn(DependencyObject d, bool value)
+        /// <summary>
+        /// Sets the value of the CollapseableColumn attached property on a DependencyObject.
+        /// </summary>
+        /// <param name="obj"><see cref="DependencyObject"/></param>
+        /// <param name="value">Value for the CollapseableColumn attached property</param>
+        public static void SetCollapseableColumn(DependencyObject obj, bool value)
         {
-            d.SetValue(CollapseableColumnProperty, value);
+            obj.SetValue(CollapseableColumnProperty, value);
         }
 
-        private static void OnCollapseableColumnChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        private static void OnCollapseableColumnChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            GridViewColumnHeader header = sender as GridViewColumnHeader;
+            GridViewColumnHeader header = obj as GridViewColumnHeader;
             if (header == null)
                 return;
 
             header.IsVisibleChanged += new DependencyPropertyChangedEventHandler(AdjustWidth);
         }
 
-        static void AdjustWidth(object sender, DependencyPropertyChangedEventArgs e)
+        private static void AdjustWidth(object sender, DependencyPropertyChangedEventArgs e)
         {
             GridViewColumnHeader header = sender as GridViewColumnHeader;
             if (header == null)

@@ -1,8 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
@@ -12,10 +8,17 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Competition : ObservableObject, IEquatable<Competition>, ICloneable
     {
+        /// <summary>
+        /// Constructor for a new Competition object.
+        /// </summary>
         public Competition()
         {
         }
 
+        /// <summary>
+        /// Clone constructor for a Competition object.
+        /// </summary>
+        /// <param name="other">Object to clone</param>
         public Competition(Competition other) : this()
         {
             if (other == null) { return; }
@@ -97,6 +100,12 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Set the requested property in the <see cref="Competition"/> object by parsing the given string value
+        /// </summary>
+        /// <param name="dataObj"><see cref="Competition"/> in which to set the property</param>
+        /// <param name="propertyName">Name of the property to set</param>
+        /// <param name="value">String value that will be parsed and set to the property</param>
         public static void SetPropertyFromString(Competition dataObj, string propertyName, string value)
         {
             switch (propertyName)

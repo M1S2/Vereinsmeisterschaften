@@ -1,23 +1,51 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// View model for the main view of the application.
+/// </summary>
 public class MainViewModel : ObservableObject, INavigationAware
 {
+    /// <summary>
+    /// Competition year setting value get from the workspace settings.
+    /// </summary>
     public ushort CompetitionYear => _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
 
+    /// <summary>
+    /// Command to navigate to the workspace view.
+    /// </summary>
     public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
+
+    /// <summary>
+    /// Command to navigate to the people view.
+    /// </summary>
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
+    /// Command to navigate to the prepare races view.
+    /// </summary>
     public ICommand PrepareRacesCommand => _prepareRacesCommand ?? (_prepareRacesCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareRacesViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
+    /// Command to navigate to the prepare documents view.
+    /// </summary>
     public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(CreateDocumentsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
+    /// Command to navigate to the time input view.
+    /// </summary>
     public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(TimeInputViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
+    /// Command to navigate to the results view.
+    /// </summary>
     public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(ResultsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
     
     private readonly INavigationService _navigationService;
@@ -28,8 +56,13 @@ public class MainViewModel : ObservableObject, INavigationAware
     private ICommand _timeInputCommand;
     private ICommand _resultsCommand;
     
-    IWorkspaceService _workspaceService;
+    private IWorkspaceService _workspaceService;
 
+    /// <summary>
+    /// Constructor for the MainViewModel.
+    /// </summary>
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     public MainViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
@@ -54,11 +87,13 @@ public class MainViewModel : ObservableObject, INavigationAware
         }
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
         _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;

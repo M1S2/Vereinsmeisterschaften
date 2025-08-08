@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Vereinsmeisterschaften.Core.Documents;
+﻿using System.Text.RegularExpressions;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
 namespace Vereinsmeisterschaften.Core.Helpers
 {
+    /// <summary>
+    /// Helper class to replace placeholders in DocX files.
+    /// </summary>
     public static class DocXPlaceholderHelper
     {
         /// <summary>

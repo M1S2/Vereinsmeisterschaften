@@ -1,20 +1,22 @@
-﻿using GongSolutions.Wpf.DragDrop;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using System.Windows;
-using System.Windows.Controls;
 using Vereinsmeisterschaften.Core.Models;
+using GongSolutions.Wpf.DragDrop;
 
 namespace Vereinsmeisterschaften.ViewModels
 {
+    /// <summary>
+    /// Drop handler for the race page.
+    /// </summary>
     public class DropAllowedHandler : DefaultDropHandler
     {
+        /// <summary>
+        /// Maximum items that are allowed in the target collection.
+        /// If this number of items is reached, no dropping will be allowed anymore.
+        /// </summary>
         public int MaxItemsInTargetCollection { get; set; } = 3;
 
+        /// <inheritdoc/>
         public override void DragOver(IDropInfo dropInfo)
         {
             dropInfo.DropTargetHintAdorner = DropTargetAdorners.Hint;
@@ -33,6 +35,7 @@ namespace Vereinsmeisterschaften.ViewModels
             }
         }
 
+        /// <inheritdoc/>
         public override void Drop(IDropInfo dropInfo)
         {
             if (dropAllowed(dropInfo))

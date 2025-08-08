@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
-using static System.Formats.Asn1.AsnWriter;
-using static Vereinsmeisterschaften.Core.Helpers.DocXPlaceholderHelper;
 
 namespace Vereinsmeisterschaften.Core.Documents
 {

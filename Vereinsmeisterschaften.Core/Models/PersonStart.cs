@@ -1,17 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
+    /// <summary>
+    /// Class describing a start of a person
+    /// </summary>
     public class PersonStart : ObservableObject, IEquatable<PersonStart>, ICloneable
     {
+        /// <summary>
+        /// Constructor for a new PersonStart object
+        /// </summary>
         public PersonStart()
         {
         }
 
+        /// <summary>
+        /// Clone constructor for a new PersonStart object
+        /// </summary>
+        /// <param name="other">Object to clone</param>
         public PersonStart(PersonStart other) : this()
         {
             if (other == null) { return; }
@@ -25,6 +31,9 @@ namespace Vereinsmeisterschaften.Core.Models
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private Person _personObj;
+        /// <summary>
+        /// Reference to the person object to which the start belongs
+        /// </summary>
         public Person PersonObj
         {
             get => _personObj;
@@ -32,6 +41,9 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         private SwimmingStyles _style;
+        /// <summary>
+        /// <see cref="SwimmingStyles"/> of the start
+        /// </summary>
         public SwimmingStyles Style
         {
             get => _style;
@@ -39,6 +51,9 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         private TimeSpan _time;
+        /// <summary>
+        /// Time the person needed during the race of this start
+        /// </summary>
         public TimeSpan Time
         {
             get => _time;
@@ -46,6 +61,9 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         private double _score;
+        /// <summary>
+        /// Score of the person for this start
+        /// </summary>
         public double Score
         {
             get => _score;
@@ -53,6 +71,9 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         private bool _isHighlighted;
+        /// <summary>
+        /// Flag indicating if this start should be highlighted in the UI
+        /// </summary>
         public bool IsHighlighted
         {
             get => _isHighlighted;
@@ -60,12 +81,18 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         private Competition _competitionObj;
+        /// <summary>
+        /// Reference to the competition object to which the start belongs
+        /// </summary>
         public Competition CompetitionObj
         {
             get => _competitionObj;
             set { SetProperty(ref _competitionObj, value); OnPropertyChanged(nameof(IsCompetitionObjAssigned)); }
         }
 
+        /// <summary>
+        /// Flag indicating if the <see cref="CompetitionObj"/> is assigned (<see cref="CompetitionObj"/> != null).
+        /// </summary>
         public bool IsCompetitionObjAssigned => CompetitionObj != null;
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

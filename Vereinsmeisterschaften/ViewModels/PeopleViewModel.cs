@@ -1,23 +1,22 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls.Dialogs;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls.Dialogs;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
-using System.Reactive.Subjects;
-using System.Xml.Linq;
-using System;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for the person overview page
+/// </summary>
 public class PeopleViewModel : ObservableObject, INavigationAware
 {
     private ObservableCollection<Person> _people;
@@ -118,6 +117,13 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     private IPersonService _personService;
     private ICompetitionService _competitionService;
     private IDialogCoordinator _dialogCoordinator;
+
+    /// <summary>
+    /// Constructor of the people view model
+    /// </summary>
+    /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
     public PeopleViewModel(IPersonService personService, ICompetitionService competitionService, IDialogCoordinator dialogCoordinator)
     {
         _personService = personService;
@@ -154,10 +160,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public void OnNavigatedFrom()
-    {
-    }
-
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         People = _personService?.GetPersons();
@@ -171,6 +174,11 @@ public class PeopleViewModel : ObservableObject, INavigationAware
             person.PropertyChanged -= Person_PropertyChanged; // Unsubscribe from the event to avoid multiple subscriptions
             person.PropertyChanged += Person_PropertyChanged;
         }
+    }
+
+    /// <inheritdoc/>
+    public void OnNavigatedFrom()
+    {
     }
 
     private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -1,5 +1,8 @@
 ﻿namespace Vereinsmeisterschaften.Core.Contracts.Services;
 
+/// <summary>
+/// Interface for saveable objects
+/// </summary>
 public interface ISaveable
 {
     /// <summary>

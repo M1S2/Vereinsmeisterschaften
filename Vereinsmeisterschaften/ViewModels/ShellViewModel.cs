@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Extensions.Logging;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Properties;
-using Windows.UI.WindowManagement;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for the main shell of the application.
+/// </summary>
 public class ShellViewModel : ObservableObject
 {
+    /// <summary>
+    /// Path to the current workspace folder.
+    /// </summary>
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
+
+    /// <summary>
+    /// True if the workspace has unsaved changes; otherwise false.
+    /// </summary>
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -34,6 +38,9 @@ public class ShellViewModel : ObservableObject
     #region Hamburger menu items
 
     private HamburgerMenuItem _selectedMenuItem;
+    /// <summary>
+    /// Menu item that is currently selected in the hamburger menu.
+    /// </summary>
     public HamburgerMenuItem SelectedMenuItem
     {
         get { return _selectedMenuItem; }
@@ -41,12 +48,18 @@ public class ShellViewModel : ObservableObject
     }
 
     private HamburgerMenuItem _selectedOptionsMenuItem;
+    /// <summary>
+    /// Menu item that is currently selected in the hamburger menu options section.
+    /// </summary>
     public HamburgerMenuItem SelectedOptionsMenuItem
     {
         get { return _selectedOptionsMenuItem; }
         set { SetProperty(ref _selectedOptionsMenuItem, value); }
     }
 
+    /// <summary>
+    /// Available menu items in the hamburger menu.
+    /// </summary>
     public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE80F", TargetPageType = typeof(MainViewModel) },
@@ -58,6 +71,9 @@ public class ShellViewModel : ObservableObject
         new HamburgerMenuGlyphItem() { Label = Resources.ShellCreateDocumentsPage, Glyph = "\uE8A5", TargetPageType = typeof(CreateDocumentsViewModel) },
     };
 
+    /// <summary>
+    /// Available menu items in the hamburger menu options section.
+    /// </summary>
     public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) }
@@ -70,30 +86,58 @@ public class ShellViewModel : ObservableObject
     #region Commands
 
     private RelayCommand _goBackCommand;
+    private ICommand _menuItemInvokedCommand;
+    private ICommand _optionsMenuItemInvokedCommand;
+    private ICommand _loadedCommand;
+    private ICommand _unloadedCommand;
+    private ICommand _closingCommand;
+    private ICommand _saveWorkspaceCommand;
+
+    /// <summary>
+    /// Command to navigate back in the navigation stack.
+    /// </summary>
     public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => _navigationService.GoBack(), () => _navigationService.CanGoBack));
 
-    private ICommand _menuItemInvokedCommand;
+    /// <summary>
+    /// Command that is invoked when a menu item in the hamburger menu is clicked.
+    /// </summary>
     public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new RelayCommand(() => NavigateTo(SelectedMenuItem.TargetPageType)));
 
-    private ICommand _optionsMenuItemInvokedCommand;
+    /// <summary>
+    /// Command that is invoked when an options menu item in the hamburger menu is clicked.
+    /// </summary>
     public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new RelayCommand(() => NavigateTo(SelectedOptionsMenuItem.TargetPageType)));
 
-    private ICommand _loadedCommand;
+    /// <summary>
+    /// Command that is invoked when the shell is loaded.
+    /// </summary>
     public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
 
-    private ICommand _unloadedCommand;
+    /// <summary>
+    /// Command that is invoked when the shell is unloaded.
+    /// </summary>
     public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
 
-    private ICommand _closingCommand;
+    /// <summary>
+    /// Command that is invoked when the shell is closing.
+    /// </summary>
     public ICommand ClosingCommand => _closingCommand ?? (_closingCommand = new RelayCommand<CancelEventArgs>(OnClosing));
 
-    private ICommand _saveWorkspaceCommand;
+    /// <summary>
+    /// Command to save the current workspace.
+    /// </summary>
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async () => await _workspaceService?.Save(CancellationToken.None)));
 
     #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    /// <summary>
+    /// Constructor of the view model of the main shell of the application
+    /// </summary>
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     public ShellViewModel(INavigationService navigationService, IDialogCoordinator dialogCoordinator, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;
@@ -155,14 +199,18 @@ public class ShellViewModel : ObservableObject
     #region Closing
 
     // Close behaviour: https://github.com/MahApps/MahApps.Metro/issues/3535
-    bool ForceClose = false;
+    private bool _forceClose = false;
+
+    /// <summary>
+    /// Event that is raised when the window close is requested.
+    /// </summary>
     public event EventHandler WindowCloseRequested;
     protected void OnClosing(CancelEventArgs e)
     {
         // force method to abort - we'll force a close explicitly
         e.Cancel = true;
 
-        if (ForceClose)
+        if (_forceClose)
         {
             // cleanup code already ran
             e.Cancel = false;
@@ -185,7 +233,7 @@ public class ShellViewModel : ObservableObject
                 }
             }
             App.Current.Properties["LastWorkspaceFolder"] = CurrentWorkspaceFolder;
-            ForceClose = true;
+            _forceClose = true;
             WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
         }, DispatcherPriority.Normal);
     }

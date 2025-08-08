@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -13,6 +8,9 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Person : ObservableObject, IEquatable<Person>, ICloneable
     {
+        /// <summary>
+        /// Constructor for a new Person object.
+        /// </summary>
         public Person()
         {
             Starts = new Dictionary<SwimmingStyles, PersonStart>();
@@ -24,6 +22,10 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        /// <summary>
+        /// Clone constructor for a Person object.
+        /// </summary>
+        /// <param name="other">Object to clone</param>
         public Person(Person other) : this()
         {
             if (other == null) { return; }

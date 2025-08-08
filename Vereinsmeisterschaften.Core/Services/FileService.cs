@@ -1,14 +1,13 @@
-﻿using System.ComponentModel;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
-
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Services;
 
+/// <summary>
+/// Service that handles file operations.
+/// </summary>
 public class FileService : IFileService
 {
     /// <summary>

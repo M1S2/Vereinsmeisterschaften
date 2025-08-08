@@ -1,12 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
-using System.Runtime;
-using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -53,6 +47,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="fileService"><see cref="IFileService"/> object</param>
         public PersonService(IFileService fileService)
         {
             _personList = new ObservableCollection<Person>();

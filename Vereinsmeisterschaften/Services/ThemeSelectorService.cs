@@ -9,15 +9,22 @@ using Vereinsmeisterschaften.Models;
 
 namespace Vereinsmeisterschaften.Services;
 
+/// <summary>
+/// Service to manage the application theme selection.
+/// </summary>
 public class ThemeSelectorService : IThemeSelectorService
 {
     private const string HcDarkTheme = "pack://application:,,,/Styles/Themes/HC.Dark.Blue.xaml";
     private const string HcLightTheme = "pack://application:,,,/Styles/Themes/HC.Light.Blue.xaml";
 
+    /// <summary>
+    /// Constructor for the ThemeSelectorService.
+    /// </summary>
     public ThemeSelectorService()
     {
     }
 
+    /// <inheritdoc/>
     public void InitializeTheme()
     {
         // TODO: Mahapps.Metro supports syncronization with high contrast but you have to provide custom high contrast themes
@@ -30,6 +37,7 @@ public class ThemeSelectorService : IThemeSelectorService
         SetTheme(theme);
     }
 
+    /// <inheritdoc/>
     public void SetTheme(AppTheme theme)
     {
         if (theme == AppTheme.Default)
@@ -47,6 +55,7 @@ public class ThemeSelectorService : IThemeSelectorService
         App.Current.Properties["Theme"] = theme.ToString();
     }
 
+    /// <inheritdoc/>
     public AppTheme GetCurrentTheme()
     {
         if (App.Current.Properties.Contains("Theme"))

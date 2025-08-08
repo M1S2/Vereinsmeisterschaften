@@ -1,29 +1,20 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows.Input;
+using System.Resources;
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents.Serialization;
-using System.Windows.Input;
-using System.Resources;
-using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
-using Vereinsmeisterschaften.Core.Settings;
-using Newtonsoft.Json.Linq;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for creating various types of documents such as certificates, overview
+/// </summary>
 public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
@@ -255,6 +246,13 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     private IDialogCoordinator _dialogCoordinator;
     private IEnumerable<IDocumentStrategy> _documentStrategies;
 
+    /// <summary>
+    /// Constructor for the <see cref="CreateDocumentsViewModel"/> class.
+    /// </summary>
+    /// <param name="documentService"><see cref="IDocumentService"/> object</param>
+    /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
+    /// <param name="documentStrategies">List with <see cref="IDocumentStrategy"/> objects</param>
     public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator, IEnumerable<IDocumentStrategy> documentStrategies)
     {
         _documentService = documentService;
@@ -343,6 +341,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     }, (documentType) => !IsAnyDocumentCreationRunning));
 
 
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         foreach(IDocumentStrategy strategy in _documentStrategies)
@@ -366,6 +365,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         initPlaceholderViewConfigs();
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
     }

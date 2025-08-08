@@ -9,18 +9,27 @@ using Vereinsmeisterschaften.Models;
 
 namespace Vereinsmeisterschaften.Services;
 
+/// <summary>
+/// Service to persist and restore application data.
+/// </summary>
 public class PersistAndRestoreService : IPersistAndRestoreService
 {
     private readonly IFileService _fileService;
     private readonly AppConfig _appConfig;
     private readonly string _localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
+    /// <summary>
+    /// Constructor for the PersistAndRestoreService.
+    /// </summary>
+    /// <param name="fileService"><see cref="IFileService"/> object</param>
+    /// <param name="appConfig"><see cref="AppConfig"/></param>
     public PersistAndRestoreService(IFileService fileService, IOptions<AppConfig> appConfig)
     {
         _fileService = fileService;
         _appConfig = appConfig.Value;
     }
 
+    /// <inheritdoc/>
     public void PersistData()
     {
         if (App.Current.Properties != null)
@@ -31,6 +40,7 @@ public class PersistAndRestoreService : IPersistAndRestoreService
         }
     }
 
+    /// <inheritdoc/>
     public void RestoreData()
     {
         var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);

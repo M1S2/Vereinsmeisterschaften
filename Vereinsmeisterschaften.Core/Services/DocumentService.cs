@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime;
-using System.Security.Cryptography;
-using System.Text;
+﻿using Xceed.Words.NET;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
-using Xceed.Words.NET;
-using Xceed.Document.NET;
-using System.Text.RegularExpressions;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Settings;
-using System.Reflection.Emit;
 using Vereinsmeisterschaften.Core.Documents;
-using System.Reflection;
-using System.Xml.Linq;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -40,6 +26,15 @@ namespace Vereinsmeisterschaften.Core.Services
         private PersonStartFilters _personStartFilter = PersonStartFilters.None;
         private object _personStartFilterParameter = null;
 
+        /// <summary>
+        /// Constructor for the DocumentService.
+        /// </summary>
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
+        /// <param name="raceService"><see cref="IRaceService"/> object</param>
+        /// <param name="scoreService"><see cref="IScoreService"/> object</param>
+        /// <param name="serviceProvider"><see cref="IServiceProvider"/> object</param>
+        /// <param name="documentStrategies">List of <see cref="IDocumentStrategy"/> objects</param>
         public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService, IScoreService scoreService, IServiceProvider serviceProvider, IEnumerable<IDocumentStrategy> documentStrategies)
         {
             _personService = personService;
@@ -53,6 +48,9 @@ namespace Vereinsmeisterschaften.Core.Services
         private IDocumentStrategy getDocumentStrategy(DocumentCreationTypes type)
             => _documentStrategies.FirstOrDefault(s => s.DocumentType == type) ?? throw new InvalidOperationException($"No strategy found for {type}");
 
+        /// <summary>
+        /// Get the placeholder marker string used in the document templates.
+        /// </summary>
         public string PlaceholderMarker
             => _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER) ?? string.Empty;
 

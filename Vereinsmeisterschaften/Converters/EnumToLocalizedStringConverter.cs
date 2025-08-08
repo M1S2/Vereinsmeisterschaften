@@ -10,8 +10,17 @@ namespace Vereinsmeisterschaften.Converters
     /// Get a localized string based on the enum value to convert.
     /// The entries in the separate Enums or EnumsCore .resx file must have the format "{EnumType}_{EnumValue}"
     /// </summary>
+    [ValueConversion(typeof(Enum), typeof(string))]
     public class EnumToLocalizedStringConverter : IValueConverter
     {
+        /// <summary>
+        /// Conversion method.
+        /// </summary>
+        /// <param name="value">Value used for conversion</param>
+        /// <param name="targetType">Target <see cref="Type"/></param>
+        /// <param name="parameter">ConverterParameter</param>
+        /// <param name="culture"><see cref="CultureInfo"/></param>
+        /// <returns>Converted object</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || !value.GetType().IsEnum)
@@ -34,6 +43,15 @@ namespace Vereinsmeisterschaften.Converters
             }
         }
 
+        /// <summary>
+        /// Back conversion method. Not implemented for this converter.
+        /// </summary>
+        /// <param name="value">Value used for conversion</param>
+        /// <param name="targetType">Target <see cref="Type"/></param>
+        /// <param name="parameter">ConverterParameter</param>
+        /// <param name="culture"><see cref="CultureInfo"/></param>
+        /// <returns>Back conversion result</returns>
+        /// <exception cref="NotImplementedException"></exception>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

@@ -6,21 +6,31 @@ using Vereinsmeisterschaften.Contracts.ViewModels;
 
 namespace Vereinsmeisterschaften.Services;
 
+/// <summary>
+/// Service for handling navigation within the application.
+/// </summary>
 public class NavigationService : INavigationService
 {
     private readonly IPageService _pageService;
     private Frame _frame;
     private object _lastParameterUsed;
 
+    /// <inheritdoc/>
     public event EventHandler<string> Navigated;
 
+    /// <inheritdoc/>
     public bool CanGoBack => _frame.CanGoBack;
 
+    /// <summary>
+    /// Constructor for the NavigationService.
+    /// </summary>
+    /// <param name="pageService"><see cref="IPageService"/> object</param>
     public NavigationService(IPageService pageService)
     {
         _pageService = pageService;
     }
 
+    /// <inheritdoc/>
     public void Initialize(Frame shellFrame)
     {
         if (_frame == null)
@@ -30,12 +40,14 @@ public class NavigationService : INavigationService
         }
     }
 
+    /// <inheritdoc/>
     public void UnsubscribeNavigation()
     {
         _frame.Navigated -= OnNavigated;
         _frame = null;
     }
 
+    /// <inheritdoc/>
     public void GoBack()
     {
         if (_frame.CanGoBack)
@@ -49,6 +61,7 @@ public class NavigationService : INavigationService
         }
     }
 
+    /// <inheritdoc/>
     public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
     {
         var pageType = _pageService.GetPageType(pageKey);
@@ -74,6 +87,7 @@ public class NavigationService : INavigationService
         return false;
     }
 
+    /// <inheritdoc/>
     public void CleanNavigation()
         => _frame.CleanNavigation();
 

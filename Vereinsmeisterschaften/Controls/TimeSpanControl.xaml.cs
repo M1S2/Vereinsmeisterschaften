@@ -1,21 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Vereinsmeisterschaften.Controls
 {
@@ -39,6 +24,9 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Constructor of the TimeSpanControl
+        /// </summary>
         public TimeSpanControl()
         {
             InitializeComponent();
@@ -62,6 +50,9 @@ namespace Vereinsmeisterschaften.Controls
             set { SetValue(EditModeProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="EditMode"/> property.
+        /// </summary>
         public static readonly DependencyProperty EditModeProperty = DependencyProperty.Register(nameof(EditMode), typeof(TimeSpanControlEditModes), typeof(TimeSpanControl), new UIPropertyMetadata(TimeSpanControlEditModes.EditMinutes, new PropertyChangedCallback(OnEditModeChanged)));
 
         private static void OnEditModeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -81,6 +72,10 @@ namespace Vereinsmeisterschaften.Controls
             get { return (TimeSpan)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="Value"/> property.
+        /// </summary>
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(TimeSpan), typeof(TimeSpanControl), new FrameworkPropertyMetadata(TimeSpan.Zero, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnValueChanged)));
 
         private static void OnValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -102,6 +97,10 @@ namespace Vereinsmeisterschaften.Controls
             get { return (int)GetValue(HoursProperty); }
             set { SetValue(HoursProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="Hours"/> property.
+        /// </summary>
         public static readonly DependencyProperty HoursProperty = DependencyProperty.Register(nameof(Hours), typeof(int), typeof(TimeSpanControl), new UIPropertyMetadata(0, new PropertyChangedCallback(OnTimeChanged)));
 
         /// <summary>
@@ -112,6 +111,10 @@ namespace Vereinsmeisterschaften.Controls
             get { return (int)GetValue(MinutesProperty); }
             set { SetValue(MinutesProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="Minutes"/> property.
+        /// </summary>
         public static readonly DependencyProperty MinutesProperty = DependencyProperty.Register(nameof(Minutes), typeof(int), typeof(TimeSpanControl), new UIPropertyMetadata(0, new PropertyChangedCallback(OnTimeChanged)));
 
         /// <summary>
@@ -122,6 +125,10 @@ namespace Vereinsmeisterschaften.Controls
             get { return (int)GetValue(SecondsProperty); }
             set { SetValue(SecondsProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="Seconds"/> property.
+        /// </summary>
         public static readonly DependencyProperty SecondsProperty = DependencyProperty.Register(nameof(Seconds), typeof(int), typeof(TimeSpanControl), new UIPropertyMetadata(0, new PropertyChangedCallback(OnTimeChanged)));
 
         /// <summary>
@@ -132,6 +139,10 @@ namespace Vereinsmeisterschaften.Controls
             get { return (int)GetValue(MillisecondsProperty); }
             set { SetValue(MillisecondsProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="Milliseconds"/> property.
+        /// </summary>
         public static readonly DependencyProperty MillisecondsProperty = DependencyProperty.Register(nameof(Milliseconds), typeof(int), typeof(TimeSpanControl), new UIPropertyMetadata(0, new PropertyChangedCallback(OnTimeChanged)));
 
         private static void OnTimeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -143,7 +154,7 @@ namespace Vereinsmeisterschaften.Controls
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// If true, the controls show the <see cref="Hours"> field.
+        /// If true, the controls show the <see cref="Hours"/> field.
         /// </summary>
         public bool HoursVisible
         {
@@ -151,10 +162,13 @@ namespace Vereinsmeisterschaften.Controls
             set { SetValue(HoursVisibleProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="HoursVisible"/> property.
+        /// </summary>
         public static readonly DependencyProperty HoursVisibleProperty = DependencyProperty.Register(nameof(HoursVisible), typeof(bool), typeof(TimeSpanControl), new UIPropertyMetadata(true, new PropertyChangedCallback(OnVisiblePartsChanged)));
 
         /// <summary>
-        /// If true, the controls show the <see cref="Milliseconds"> field.
+        /// If true, the controls show the <see cref="Milliseconds"/> field.
         /// </summary>
         public bool MillisecondsVisible
         {
@@ -162,6 +176,9 @@ namespace Vereinsmeisterschaften.Controls
             set { SetValue(MillisecondsVisibleProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="MillisecondsVisible"/> property.
+        /// </summary>
         public static readonly DependencyProperty MillisecondsVisibleProperty = DependencyProperty.Register(nameof(MillisecondsVisible), typeof(bool), typeof(TimeSpanControl), new UIPropertyMetadata(true, new PropertyChangedCallback(OnVisiblePartsChanged)));
 
         private static void OnVisiblePartsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)

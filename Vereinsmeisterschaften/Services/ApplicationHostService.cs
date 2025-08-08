@@ -7,6 +7,7 @@ using Vereinsmeisterschaften.ViewModels;
 
 namespace Vereinsmeisterschaften.Services;
 
+/// </inheritdoc>
 public class ApplicationHostService : IHostedService
 {
     private readonly IServiceProvider _serviceProvider;
@@ -17,6 +18,14 @@ public class ApplicationHostService : IHostedService
     private IShellWindow _shellWindow;
     private bool _isInitialized;
 
+    /// <summary>
+    /// Constructor for the <see cref="ApplicationHostService"/>.
+    /// </summary>
+    /// <param name="serviceProvider"><see cref="IServiceProvider"/> object</param>
+    /// <param name="activationHandlers">List of <see cref="IActivationHandler"/> objects</param>
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
+    /// <param name="themeSelectorService"><see cref="IThemeSelectorService"/> object</param>
+    /// <param name="persistAndRestoreService"><see cref="IPersistAndRestoreService"/> object</param>
     public ApplicationHostService(IServiceProvider serviceProvider, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService, IPersistAndRestoreService persistAndRestoreService)
     {
         _serviceProvider = serviceProvider;
@@ -26,6 +35,11 @@ public class ApplicationHostService : IHostedService
         _persistAndRestoreService = persistAndRestoreService;
     }
 
+    /// <summary>
+    /// Triggered when the application host is ready to start the service.
+    /// </summary>
+    /// <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+    /// <returns><see cref="Task"/></returns>
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         // Initialize services that you need before app activation
@@ -38,6 +52,11 @@ public class ApplicationHostService : IHostedService
         _isInitialized = true;
     }
 
+    /// <summary>
+    /// Triggered when the application host is performing a graceful shutdown.
+    /// </summary>
+    /// <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+    /// <returns><see cref="Task"/></returns>
     public async Task StopAsync(CancellationToken cancellationToken)
     {
         _persistAndRestoreService.PersistData();

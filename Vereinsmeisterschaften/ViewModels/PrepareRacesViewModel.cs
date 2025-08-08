@@ -1,13 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -17,6 +12,9 @@ using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// View model for the race preparation page.
+/// </summary>
 public class PrepareRacesViewModel : ObservableObject, INavigationAware
 {
     #region Calculated Races
@@ -238,6 +236,14 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private INavigationService _navigationService;
     private ProgressDialogController _progressController;
 
+    /// <summary>
+    /// Constructor of the prepare races view model
+    /// </summary>
+    /// <param name="raceService"><see cref="IRaceService"/> object</param>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
+    /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
     public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, INavigationService navigationService)
     {
         _raceService = raceService;
@@ -435,6 +441,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         _raceService.CleanupRacesVariants();
@@ -445,6 +452,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         CurrentVariantID = 0;
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
     }

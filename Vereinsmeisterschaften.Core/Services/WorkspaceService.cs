@@ -1,10 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Resources;
-using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -14,14 +9,44 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public class WorkspaceService : ObservableObject, IWorkspaceService
     {
+        /// <summary>
+        /// Name of the workspace settings file
+        /// </summary>
         public const string WorkspaceSettingsFileName = "WorkspaceSettings.json";
+
+        /// <summary>
+        /// Name of the person file
+        /// </summary>
         public const string PersonFileName = "Person.csv";
+
+        /// <summary>
+        /// Name of the competitions file
+        /// </summary>
         public const string CompetitionsFileName = "Competitions.csv";
+
+        /// <summary>
+        /// Name of the best race file
+        /// </summary>
         public const string BestRaceFileName = "BestRace.csv";
 
+        /// <summary>
+        /// Combined path to the workspace settings file
+        /// </summary>
         public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
+
+        /// <summary>
+        /// Combined path to the person file
+        /// </summary>
         public string PersonFilePath => Path.Combine(PersistentPath, PersonFileName);
+
+        /// <summary>
+        /// Combined path to the competitions file
+        /// </summary>
         public string CompetitionsFilePath => Path.Combine(PersistentPath, CompetitionsFileName);
+
+        /// <summary>
+        /// Combined path to the best race file
+        /// </summary>
         public string BestRaceFilePath => Path.Combine(PersistentPath, BestRaceFileName);
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -38,6 +63,9 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Path of the current workspace. This is the path where the workspace files are stored.
+        /// </summary>
         public string PersistentPath { get; private set; } = string.Empty;
 
         private bool _isWorkspaceOpen;
@@ -94,6 +122,9 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private WorkspaceSettings _settings;
+        /// <summary>
+        /// Workspace settings for the current workspace.
+        /// </summary>
         public WorkspaceSettings Settings
         {
             get => _settings;
@@ -110,6 +141,9 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private WorkspaceSettings _settingsPersistedInFile;
+        /// <summary>
+        /// Last workspace settings that were loaded from the file.
+        /// </summary>
         public WorkspaceSettings SettingsPersistedInFile
         {
             get => _settingsPersistedInFile;
@@ -123,6 +157,13 @@ namespace Vereinsmeisterschaften.Core.Services
         private IRaceService _raceService;
         private IFileService _fileService;
 
+        /// <summary>
+        /// Constructor for the <see cref="WorkspaceService"/>.
+        /// </summary>
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+        /// <param name="raceService"><see cref="IRaceService"/> object</param>
+        /// <param name="fileService"><see cref="IFileService"/> object</param>
         public WorkspaceService(IPersonService personService, ICompetitionService competitionService, IRaceService raceService, IFileService fileService)
         {
             _personService = personService;

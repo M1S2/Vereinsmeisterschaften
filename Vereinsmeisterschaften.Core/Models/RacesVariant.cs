@@ -1,13 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
-using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -49,7 +43,7 @@ namespace Vereinsmeisterschaften.Core.Models
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Update the list of not assigned <see cref="PersonStart"> objects
+        /// Update the list of not assigned <see cref="PersonStart"/> objects
         /// </summary>
         /// <param name="allStarts">Complete list with all <see cref="PersonStart"/> objects</param>
         public void UpdateNotAssignedStarts(List<PersonStart> allStarts)
@@ -121,12 +115,19 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Constructor for a new <see cref="RacesVariant"/> (create an empty <see cref="Race"/> collection).
+        /// </summary>
         public RacesVariant()
         {
             Races = new ObservableCollection<Race>();
             Races.CollectionChanged += Races_CollectionChanged;
         }
 
+        /// <summary>
+        /// Constructor for a new <see cref="RacesVariant"/> (copy an <see cref="Race"/> collection).
+        /// </summary>
+        /// <param name="races">List of <see cref="Race"/> to copy</param>
         public RacesVariant(List<Race> races)
         {
             Races = new ObservableCollection<Race>(races);
@@ -135,6 +136,10 @@ namespace Vereinsmeisterschaften.Core.Models
             Races_CollectionChanged(Races, null);
         }
 
+        /// <summary>
+        /// Constructor for a new <see cref="RacesVariant"/> (copy an <see cref="Race"/> collection).
+        /// </summary>
+        /// <param name="races">Observable collection of <see cref="Race"/> to copy</param>
         public RacesVariant(ObservableCollection<Race> races)
         {
             Races = races;

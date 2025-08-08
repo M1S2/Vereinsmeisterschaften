@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vereinsmeisterschaften.Core.Documents
+﻿namespace Vereinsmeisterschaften.Core.Documents
 {
     /// <summary>
     /// Static class that contains lists of placeholders that can be used in templates for documents.

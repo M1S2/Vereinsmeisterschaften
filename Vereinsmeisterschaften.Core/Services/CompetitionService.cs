@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime;
-using System.Security.Cryptography;
-using System.Text;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
-using static Vereinsmeisterschaften.Core.Services.CompetitionService;
 
 namespace Vereinsmeisterschaften.Core.Services
 {

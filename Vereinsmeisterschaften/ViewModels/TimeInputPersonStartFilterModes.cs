@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vereinsmeisterschaften.Core.Models;
+﻿using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.ViewModels
 {
@@ -23,7 +18,7 @@ namespace Vereinsmeisterschaften.ViewModels
         Person,
 
         /// <summary>
-        /// Filter by the <see cref="Race.RaceID">
+        /// Filter by the <see cref="Race.RaceID"/>
         /// </summary>
         RaceID
     }

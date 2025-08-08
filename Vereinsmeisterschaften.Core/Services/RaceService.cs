@@ -1,22 +1,13 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Net.NetworkInformation;
-using System.Reflection;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
     /// <summary>
-    /// Service used to manage <see cref="Race"> and <see cref="RacesVariant"/> objects
+    /// Service used to manage <see cref="Race"/> and <see cref="RacesVariant"/> objects
     /// </summary>
     public class RaceService : ObservableObject, IRaceService
     {
@@ -42,6 +33,9 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="fileService"><see cref="IFileService"/> object</param>
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
         public RaceService(IFileService fileService, IPersonService personService, ICompetitionService competitionService)
         {
             _fileService = fileService;
@@ -419,7 +413,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Check if the <see cref="PersistedRacesVariant"> has not saved changed.
+        /// Check if the <see cref="PersistedRacesVariant"/> has not saved changed.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
         public bool HasUnsavedChanges

@@ -8,11 +8,18 @@ using Vereinsmeisterschaften.Views;
 
 namespace Vereinsmeisterschaften.Services;
 
+/// <summary>
+/// Service to manage pages in the application.
+/// </summary>
 public class PageService : IPageService
 {
     private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
     private readonly IServiceProvider _serviceProvider;
 
+    /// <summary>
+    /// Constructor for the PageService.
+    /// </summary>
+    /// <param name="serviceProvider"><see cref="IServiceProvider"/> object</param>
     public PageService(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
@@ -26,6 +33,7 @@ public class PageService : IPageService
         Configure<SettingsViewModel, SettingsPage>();
     }
 
+    /// <inheritdoc/>
     public Type GetPageType(string key)
     {
         Type pageType;
@@ -40,6 +48,7 @@ public class PageService : IPageService
         return pageType;
     }
 
+    /// <inheritdoc/>
     public Page GetPage(string key)
     {
         var pageType = GetPageType(key);

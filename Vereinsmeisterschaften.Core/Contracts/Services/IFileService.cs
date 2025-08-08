@@ -2,6 +2,9 @@
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services;
 
+/// <summary>
+/// Interface for a service that handles file operations.
+/// </summary>
 public interface IFileService
 {
     /// <summary>
@@ -71,8 +74,15 @@ public class FileServiceIgnoreAttribute : Attribute
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class FileServiceOrderAttribute : Attribute
 {
+    /// <summary>
+    /// Order of the property in the file.
+    /// </summary>
     public int Order { get; }
 
+    /// <summary>
+    /// Constructor of the <see cref="FileServiceOrderAttribute"/>.
+    /// </summary>
+    /// <param name="order">Order of the property in the file.</param>
     public FileServiceOrderAttribute([CallerLineNumber] int order = 0)
     {
         Order = order;

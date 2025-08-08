@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vereinsmeisterschaften.Core.Models;
+﻿using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {

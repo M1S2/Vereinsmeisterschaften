@@ -1,8 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
@@ -74,12 +71,19 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Constructor for the Race class (create an empty <see cref="Starts"/> collection).
+        /// </summary>
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();
             Starts.CollectionChanged += Starts_CollectionChanged;
         }
 
+        /// <summary>
+        /// Constructor for the Race class (copy an <see cref="Starts"/> collection).
+        /// </summary>
+        /// <param name="starts">List of <see cref="PersonStart"/> to copy</param>
         public Race(List<PersonStart> starts)
         {
             Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
@@ -89,6 +93,10 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        /// <summary>
+        /// Constructor for the Race class (copy an <see cref="Starts"/> collection).
+        /// </summary>
+        /// <param name="starts">Observable collection of <see cref="PersonStart"/> to copy</param>
         public Race(ObservableCollection<PersonStart> starts)
         {
             Starts = starts;

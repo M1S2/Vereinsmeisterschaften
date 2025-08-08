@@ -6,7 +6,6 @@ using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.Views;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -29,10 +28,18 @@ public partial class App : Application
 {
     private IHost _host;
 
+    /// <summary>
+    /// Get a specific service from the host.
+    /// </summary>
+    /// <typeparam name="T">Type of the service to get</typeparam>
+    /// <returns>Found service</returns>
     public T GetService<T>()
         where T : class
         => _host.Services.GetService(typeof(T)) as T;
 
+    /// <summary>
+    /// Constructor for the application.
+    /// </summary>
     public App()
     {
     }
@@ -82,7 +89,6 @@ public partial class App : Application
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
-        services.AddSingleton<ISystemService, SystemService>();
         services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
         services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
         services.AddSingleton<IPageService, PageService>();

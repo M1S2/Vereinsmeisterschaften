@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime;
-using System.Text;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -21,6 +17,12 @@ namespace Vereinsmeisterschaften.Core.Services
         private ICompetitionService _competitionService;
         private IWorkspaceService _workspaceService;
 
+        /// <summary>
+        /// Constructor for the <see cref="ScoreService"/>
+        /// </summary>
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+        /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
         public ScoreService(IPersonService personService, ICompetitionService competitionService, IWorkspaceService workspaceService)
         {
             _personService = personService;

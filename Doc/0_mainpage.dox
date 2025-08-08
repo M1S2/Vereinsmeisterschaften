@@ -1,0 +1,15 @@
+/*! @mainpage Vereinsmeisterschaften Developer Documentation
+@section intro_sec Introduction
+
+This is a software that can be used to manage the internal competition of the swimming club Illertissen called "Vereinsmeisterschaften". It takes place once a year.
+
+The intention of this doxygen documentation is to help anyone who develops, maintains or bugfixes this software.
+
+For the source code visit the repository at https://github.com/M1S2/Vereinsmeisterschaften.
+
+@section content_sec Content
+
+See the following pages for more informations.
+- @ref page_1_workspace_settings
+- @ref page_2_document_creation
+*/

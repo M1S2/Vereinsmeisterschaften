@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
-using static Vereinsmeisterschaften.Core.Helpers.DocXPlaceholderHelper;
 
 namespace Vereinsmeisterschaften.Core.Documents
 {

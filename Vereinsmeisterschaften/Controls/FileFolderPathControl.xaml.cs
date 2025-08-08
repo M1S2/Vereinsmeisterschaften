@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Controls
@@ -21,6 +10,9 @@ namespace Vereinsmeisterschaften.Controls
     /// </summary>
     public partial class FileFolderPathControl : UserControl
     {
+        /// <summary>
+        /// Available selection modes for the file/folder path control.
+        /// </summary>
         public enum FileFolderSelectionModes
         {
             Files,
@@ -29,6 +21,9 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Constructor of the <see cref="FileFolderPathControl"/>
+        /// </summary>
         public FileFolderPathControl()
         {
             InitializeComponent();
@@ -36,22 +31,34 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Current selection mode for the file/folder path control.
+        /// </summary>
         public FileFolderSelectionModes FileFolderSelectionMode
         {
             get { return (FileFolderSelectionModes)GetValue(FileFolderSelectionModeProperty); }
             set { SetValue(FileFolderSelectionModeProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="FileFolderSelectionMode"/>.
+        /// </summary>
         public static readonly DependencyProperty FileFolderSelectionModeProperty = DependencyProperty.Register(nameof(FileFolderSelectionMode), typeof(FileFolderSelectionModes), typeof(FileFolderPathControl), new PropertyMetadata(FileFolderSelectionModes.Files));
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Current file or folder path (can be relative or absolute).
+        /// </summary>
         public string FileFolderPath
         {
             get { return (string)GetValue(FileFolderPathProperty); }
             set { SetValue(FileFolderPathProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="FileFolderPath"/>.
+        /// </summary>
         public static readonly DependencyProperty FileFolderPathProperty = DependencyProperty.Register(nameof(FileFolderPath), typeof(string), typeof(FileFolderPathControl), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnFileFolderPathChanged));
 
         private static void OnFileFolderPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -62,12 +69,18 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Root folder used for relative paths.
+        /// </summary>
         public string RootFolderForRelativePaths
         {
             get { return (string)GetValue(RootFolderForRelativePathsProperty); }
             set { SetValue(RootFolderForRelativePathsProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="RootFolderForRelativePaths"/>.
+        /// </summary>
         public static readonly DependencyProperty RootFolderForRelativePathsProperty = DependencyProperty.Register(nameof(RootFolderForRelativePaths), typeof(string), typeof(FileFolderPathControl), new PropertyMetadata("", OnRootFolderForRelativePathsChanged));
 
         private static void OnRootFolderForRelativePathsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -86,12 +99,19 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Resolved file or folder path (absolute path).
+        /// This property is automatically calculated based on the <see cref="FileFolderPath"/> and <see cref="RootFolderForRelativePaths"/>.
+        /// </summary>
         public string ResolvedFileFolderPath
         {
             get { return (string)GetValue(ResolvedFileFolderPathProperty); }
             set { SetValue(ResolvedFileFolderPathProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for the <see cref="ResolvedFileFolderPath"/>.
+        /// </summary>
         public static readonly DependencyProperty ResolvedFileFolderPathProperty = DependencyProperty.Register(nameof(ResolvedFileFolderPath), typeof(string), typeof(FileFolderPathControl), new PropertyMetadata(""));
 
         private void calculateResolvedFileFolderPath()
@@ -120,11 +140,18 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Filter for the OpenFileDialog.
+        /// </summary>
         public string OpenFileDialogFilter
         {
             get { return (string)GetValue(OpenFileDialogFilterProperty); }
             set { SetValue(OpenFileDialogFilterProperty, value); }
         }
+
+        /// <summary>
+        /// Dependency property for the <see cref="OpenFileDialogFilter"/>.
+        /// </summary>
         public static readonly DependencyProperty OpenFileDialogFilterProperty = DependencyProperty.Register(nameof(OpenFileDialogFilter), typeof(string), typeof(FileFolderPathControl), new PropertyMetadata("All files (*.*)|*.*"));
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

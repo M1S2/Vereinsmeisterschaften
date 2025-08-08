@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vereinsmeisterschaften.Core.Helpers
+﻿namespace Vereinsmeisterschaften.Core.Helpers
 {
     /// <summary>
     /// Class containing helper methods for file and folder paths.
@@ -53,14 +47,25 @@ namespace Vereinsmeisterschaften.Core.Helpers
             }
         }
 
-        // https://stackoverflow.com/questions/5565029/check-if-full-path-given
+        /// <summary>
+        /// Checks if the given path is fully qualified.
+        /// </summary>
+        /// <param name="path">Path to check</param>
+        /// <returns>True if fully qualified; otherwise false</returns>
+        /// <see href="https://stackoverflow.com/questions/5565029/check-if-full-path-given"/>
         public static bool IsPathFullyQualified(string path)
         {
             var root = Path.GetPathRoot(path);
             return root != null && (root.StartsWith(@"\\") || root.EndsWith(@"\") && root != @"\");
         }
 
-        // https://stackoverflow.com/questions/1395205/better-way-to-check-if-a-path-is-a-file-or-a-directory
+        /// <summary>
+        /// Checks if the given path is a directory.
+        /// </summary>
+        /// <param name="path">Path to check</param>
+        /// <returns>True if the path is a directory; otherwise false</returns>
+        /// <exception cref="ArgumentNullException">When path is <see langword="null"/></exception>
+        /// <see href="https://stackoverflow.com/questions/1395205/better-way-to-check-if-a-path-is-a-file-or-a-directory"/>
         public static bool IsPathDirectory(string path)
         {
             if (path == null) throw new ArgumentNullException("path");

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Resources;
+﻿using System.Resources;
 
 namespace Vereinsmeisterschaften.Core.Helpers
 {
@@ -10,6 +8,11 @@ namespace Vereinsmeisterschaften.Core.Helpers
     /// </summary>
     public static class EnumCoreToLocalizedString
     {
+        /// <summary>
+        /// Convert an enum value to a localized string.
+        /// </summary>
+        /// <param name="value"><see cref="Enum"/> value</param>
+        /// <returns>Localized <see cref="string"/></returns>
         public static string Convert(Enum value)
         {
             if (value == null)

@@ -23,7 +23,7 @@ namespace Vereinsmeisterschaften.ViewModels
         Person,
 
         /// <summary>
-        /// Filter by the <see cref="Race.RaceID">
+        /// Filter by the <see cref="Race.RaceID"/>
         /// </summary>
         RaceID
     }

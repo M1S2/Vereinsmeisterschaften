@@ -16,6 +16,9 @@ using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for the workspace, managing the current workspace folder, settings, and commands to load, save, and close the workspace.
+/// </summary>
 public class WorkspaceViewModel : ObservableObject, INavigationAware
 {
     #region Properties
@@ -298,6 +301,12 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
 
+    /// <summary>
+    /// Constructor of the workspace view model
+    /// </summary>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
+    /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
     public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
         _workspaceService = workspaceService;
@@ -336,6 +345,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         }
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
@@ -349,6 +359,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         initSettingsGroups(_workspaceService.Settings);
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
         _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;

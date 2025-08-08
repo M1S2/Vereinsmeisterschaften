@@ -1,20 +1,17 @@
-﻿using GongSolutions.Wpf.DragDrop;
-using GongSolutions.Wpf.DragDrop.Utilities;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using System.Windows;
-using System.Windows.Controls;
 using Vereinsmeisterschaften.Core.Models;
-using Windows.Devices.PointOfService;
+using GongSolutions.Wpf.DragDrop;
+using GongSolutions.Wpf.DragDrop.Utilities;
 
 namespace Vereinsmeisterschaften.ViewModels
 {
+    /// <summary>
+    /// Drop handler for the parking lot of the race page.
+    /// </summary>
     public class DropAllowedHandlerParkingLot : DefaultDropHandler
     {
+        /// <inheritdoc/>
         public override void DragOver(IDropInfo dropInfo)
         {
             dropInfo.DropTargetHintAdorner = DropTargetAdorners.Hint;
@@ -33,6 +30,7 @@ namespace Vereinsmeisterschaften.ViewModels
             }
         }
 
+        /// <inheritdoc/>
         public override void Drop(IDropInfo dropInfo)
         {
             if (dropAllowed(dropInfo))
@@ -139,6 +137,11 @@ namespace Vereinsmeisterschaften.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determine if dropping is allowed
+        /// </summary>
+        /// <param name="dropInfo"><see cref="IDropInfo"/></param>
+        /// <returns>true, if dropping is allowed; otherwise false</returns>
         private bool dropAllowed(IDropInfo dropInfo)
         {
             Type dragItemType = dropInfo.DragInfo.SourceItem.GetType();

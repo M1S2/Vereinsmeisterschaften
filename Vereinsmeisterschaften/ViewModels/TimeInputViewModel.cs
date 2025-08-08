@@ -9,8 +9,14 @@ using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for the Time Input page.
+/// </summary>
 public class TimeInputViewModel : ObservableObject, INavigationAware
 {
+    /// <summary>
+    /// List of all available <see cref="PersonStart"/> objects.
+    /// </summary>
     public List<PersonStart> AvailablePersonStarts { get; set; }
 
     private ICollectionView _availablePersonStartsCollectionView;
@@ -23,6 +29,9 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _availablePersonStartsCollectionView, value);
     }
 
+    /// <summary>
+    /// Gets the persisted variant of races as managed by the race service.
+    /// </summary>
     public RacesVariant PersistedRacesVariant => _raceService?.PersistedRacesVariant;
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -71,7 +80,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     // ----------------------------------------------------------------------------------------------------------------------------------------------
     
     /// <summary>
-    /// Function used when filtering the <see cref="PersonStart"> list
+    /// Function used when filtering the <see cref="PersonStart"/> list
     /// </summary>
     public Predicate<object> AvailablePersonStartsFilterPredicate
     {
@@ -105,12 +114,18 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     private readonly IPersonService _personService;
     private readonly IRaceService _raceService;
 
+    /// <summary>
+    /// Constructor of the time input view model
+    /// </summary>
+    /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="raceService"><see cref="IRaceService"/> object</param>
     public TimeInputViewModel(IPersonService personService, IRaceService raceService)
     {
         _personService = personService;
         _raceService = raceService;
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
         AvailablePersonStarts = _personService.GetAllPersonStarts();
@@ -121,6 +136,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(AvailablePersons));
     }
 
+    /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
     }

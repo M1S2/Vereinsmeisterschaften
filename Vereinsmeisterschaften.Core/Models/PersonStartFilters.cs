@@ -20,12 +20,12 @@ namespace Vereinsmeisterschaften.Core.Models
         Person,
 
         /// <summary>
-        /// Filter by the <see cref="SwimmingStyles">
+        /// Filter by the <see cref="SwimmingStyles"/>
         /// </summary>
         SwimmingStyle,
 
         /// <summary>
-        /// Filter by the <see cref="Competition.ID">
+        /// Filter by the <see cref="Competition.ID"/>
         /// </summary>
         CompetitionID
     }

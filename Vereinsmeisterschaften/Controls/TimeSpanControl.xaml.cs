@@ -143,7 +143,7 @@ namespace Vereinsmeisterschaften.Controls
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// If true, the controls show the <see cref="Hours"> field.
+        /// If true, the controls show the <see cref="Hours"/> field.
         /// </summary>
         public bool HoursVisible
         {
@@ -154,7 +154,7 @@ namespace Vereinsmeisterschaften.Controls
         public static readonly DependencyProperty HoursVisibleProperty = DependencyProperty.Register(nameof(HoursVisible), typeof(bool), typeof(TimeSpanControl), new UIPropertyMetadata(true, new PropertyChangedCallback(OnVisiblePartsChanged)));
 
         /// <summary>
-        /// If true, the controls show the <see cref="Milliseconds"> field.
+        /// If true, the controls show the <see cref="Milliseconds"/> field.
         /// </summary>
         public bool MillisecondsVisible
         {

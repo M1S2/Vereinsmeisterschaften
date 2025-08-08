@@ -49,7 +49,7 @@ namespace Vereinsmeisterschaften.Core.Models
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Update the list of not assigned <see cref="PersonStart"> objects
+        /// Update the list of not assigned <see cref="PersonStart"/> objects
         /// </summary>
         /// <param name="allStarts">Complete list with all <see cref="PersonStart"/> objects</param>
         public void UpdateNotAssignedStarts(List<PersonStart> allStarts)

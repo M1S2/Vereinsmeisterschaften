@@ -16,7 +16,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Vereinsmeisterschaften.Core.Services
 {
     /// <summary>
-    /// Service used to manage <see cref="Race"> and <see cref="RacesVariant"/> objects
+    /// Service used to manage <see cref="Race"/> and <see cref="RacesVariant"/> objects
     /// </summary>
     public class RaceService : ObservableObject, IRaceService
     {
@@ -419,7 +419,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Check if the <see cref="PersistedRacesVariant"> has not saved changed.
+        /// Check if the <see cref="PersistedRacesVariant"/> has not saved changed.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
         public bool HasUnsavedChanges

@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Extensions.Logging;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Properties;
-using Windows.UI.WindowManagement;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
+/// <summary>
+/// ViewModel for the main shell of the application.
+/// </summary>
 public class ShellViewModel : ObservableObject
 {
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
@@ -94,6 +91,12 @@ public class ShellViewModel : ObservableObject
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    /// <summary>
+    /// Constructor of the view model of the main shell of the application
+    /// </summary>
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
+    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     public ShellViewModel(INavigationService navigationService, IDialogCoordinator dialogCoordinator, IWorkspaceService workspaceService)
     {
         _navigationService = navigationService;

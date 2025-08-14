@@ -136,6 +136,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -162,22 +163,29 @@
 
                     <!-- Save states -->
                     <controls:FontIcon Grid.Row="5" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusCompetitionsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                     <userControls:BoolTemplateContentControl Grid.Row="5" Grid.Column="2"
+                                                             TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                             FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                             BoolValue="{Binding HasUnsavedChanges_Competitions}"/>
+
+                    <controls:FontIcon Grid.Row="6" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="6" Grid.Column="2"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Persons}"/>
 
-                    <controls:FontIcon Grid.Row="6" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusRacesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="6" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="7" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusRacesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="7" Grid.Column="2"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Races}"/>
 
-                    <controls:FontIcon Grid.Row="7" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusSettingsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="7" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="8" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="8" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusSettingsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="8" Grid.Column="2"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Settings}"/>

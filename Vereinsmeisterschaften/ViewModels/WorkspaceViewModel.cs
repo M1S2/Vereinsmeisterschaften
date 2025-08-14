@@ -319,6 +319,10 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(NumberPersons));
         OnPropertyChanged(nameof(NumberStarts));
         OnPropertyChanged(nameof(HasUnsavedChanges));
+        OnPropertyChanged(nameof(HasUnsavedChanges_Competitions));
+        OnPropertyChanged(nameof(HasUnsavedChanges_Persons));
+        OnPropertyChanged(nameof(HasUnsavedChanges_Races));
+        OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
 
         initSettingsGroups(_workspaceService.Settings);
     }

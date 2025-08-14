@@ -185,6 +185,14 @@ namespace Vereinsmeisterschaften.Core.Services
                     default: break;
                 }
             };
+            _competitionService.PropertyChanged += (sender, e) =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(CompetitionService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    default: break;
+                }
+            };
             _raceService.PropertyChanged += (sender, e) =>
             {
                 switch (e.PropertyName)

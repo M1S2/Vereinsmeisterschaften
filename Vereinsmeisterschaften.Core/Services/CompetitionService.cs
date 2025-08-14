@@ -1,4 +1,8 @@
-﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
@@ -7,7 +11,7 @@ namespace Vereinsmeisterschaften.Core.Services
     /// <summary>
     /// Service used to get and store a list of Competition objects
     /// </summary>
-    public class CompetitionService : ICompetitionService
+    public class CompetitionService : ObservableObject, ICompetitionService
     {
         /// <summary>
         /// Event that is raised when the file operation progress changes
@@ -31,7 +35,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// List with all competitions
         /// </summary>
-        private List<Competition> _competitionList { get; set; }
+        private ObservableCollection<Competition> _competitionList { get; set; }
 
         /// <summary>
         /// List with all competitions at the time the <see cref="Load(string, CancellationToken)"/> method was called.
@@ -49,7 +53,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public CompetitionService(IFileService fileService, IPersonService personService)
         {
-            _competitionList = new List<Competition>();
+            _competitionList = new ObservableCollection<Competition>();
             _fileService = fileService;
             _personService = personService;
         }
@@ -90,10 +94,15 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        _competitionList = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
+                        List<Competition> list = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
+                        _competitionList = new ObservableCollection<Competition>();
+                        foreach (Competition competition in list)
+                        {
+                            AddCompetition(competition);
+                        }
                     }
 
-                    _competitionListOnLoad = _competitionList.ConvertAll(c => new Competition(c));
+                    _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
 
                     PersistentPath = path;
                     importingResult = true;
@@ -130,9 +139,9 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _competitionList, cancellationToken, OnFileProgress);
+                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress);
 
-                    _competitionListOnLoad = _competitionList.ConvertAll(c => new Competition(c));
+                    _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
                     saveResult = true;
                 }
                 catch (OperationCanceledException)
@@ -155,15 +164,21 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Return all available Competitions
         /// </summary>
         /// <returns>List of <see cref="Competition"/> objects</returns>
-        public List<Competition> GetCompetitions() => _competitionList;
+        public ObservableCollection<Competition> GetCompetitions() => _competitionList;
 
         /// <summary>
         /// Clear all Competitions
         /// </summary>
         public void ClearAll()
         {
-            if (_competitionList == null) { _competitionList = new List<Competition>(); }
+            if (_competitionList == null) { _competitionList = new ObservableCollection<Competition>(); }
+            foreach (Competition competition in _competitionList)
+            {
+                competition.PropertyChanged -= Competition_PropertyChanged;
+            }
             _competitionList.Clear();
+
+            OnPropertyChanged(nameof(CompetitionCount));
         }
 
         /// <summary>
@@ -172,8 +187,30 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Competition"/> to add</param>
         public void AddCompetition(Competition competition)
         {
-            if (_competitionList == null) { _competitionList = new List<Competition>(); }
+            if (_competitionList == null) { _competitionList = new ObservableCollection<Competition>(); }
             _competitionList.Add(competition);
+
+            competition.PropertyChanged += Competition_PropertyChanged;
+
+            OnPropertyChanged(nameof(CompetitionCount));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        /// <summary>
+        /// Remove the given <see cref="Competition"/> from the list of Competitions
+        /// </summary>
+        /// <param name="competition">Competition to remove</param>
+        public void RemoveCompetition(Competition competition)
+        {
+            competition.PropertyChanged -= Competition_PropertyChanged;
+            _competitionList?.Remove(competition);
+            OnPropertyChanged(nameof(CompetitionCount));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private void Competition_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         /// <summary>

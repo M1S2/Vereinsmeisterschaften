@@ -70,6 +70,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new competition ähnelt.
+        /// </summary>
+        public static string AddNewCompetition {
+            get {
+                return ResourceManager.GetString("AddNewCompetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new person ähnelt.
         /// </summary>
         public static string AddNewPerson {
@@ -84,6 +93,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string AddRaceVariantString {
             get {
                 return ResourceManager.GetString("AddRaceVariantString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Age ähnelt.
+        /// </summary>
+        public static string AgeString {
+            get {
+                return ResourceManager.GetString("AgeString", resourceCulture);
             }
         }
         
@@ -230,6 +248,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CompetitionMissingString {
             get {
                 return ResourceManager.GetString("CompetitionMissingString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competitions ähnelt.
+        /// </summary>
+        public static string CompetitionPageTitle {
+            get {
+                return ResourceManager.GetString("CompetitionPageTitle", resourceCulture);
             }
         }
         
@@ -387,6 +414,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distance ähnelt.
+        /// </summary>
+        public static string DistanceString {
+            get {
+                return ResourceManager.GetString("DistanceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Document File Types ähnelt.
         /// </summary>
         public static string DocumentFileTypesString {
@@ -482,6 +518,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string HighlightModeString {
             get {
                 return ResourceManager.GetString("HighlightModeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ID ähnelt.
+        /// </summary>
+        public static string IDString {
+            get {
+                return ResourceManager.GetString("IDString", resourceCulture);
             }
         }
         
@@ -685,15 +730,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die ID ähnelt.
-        /// </summary>
-        public static string PersonIDString {
-            get {
-                return ResourceManager.GetString("PersonIDString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There is no assigned competition object. ähnelt.
         /// </summary>
         public static string PersonStartCompetitionObjMissingString {
@@ -767,6 +803,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really remove this competition? This can&apos;t be undone! ähnelt.
+        /// </summary>
+        public static string RemoveCompetitionConfirmationString {
+            get {
+                return ResourceManager.GetString("RemoveCompetitionConfirmationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Competition ähnelt.
+        /// </summary>
+        public static string RemoveCompetitionString {
+            get {
+                return ResourceManager.GetString("RemoveCompetitionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really remove this person? This can&apos;t be undone! ähnelt.
         /// </summary>
         public static string RemovePersonConfirmationString {
@@ -826,6 +880,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ResultsPageTitle {
             get {
                 return ResourceManager.GetString("ResultsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competitions saved ähnelt.
+        /// </summary>
+        public static string SavedStatusCompetitionsString {
+            get {
+                return ResourceManager.GetString("SavedStatusCompetitionsString", resourceCulture);
             }
         }
         
@@ -1033,6 +1096,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string SettingsResetString {
             get {
                 return ResourceManager.GetString("SettingsResetString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competitions ähnelt.
+        /// </summary>
+        public static string ShellCompetitionPage {
+            get {
+                return ResourceManager.GetString("ShellCompetitionPage", resourceCulture);
             }
         }
         

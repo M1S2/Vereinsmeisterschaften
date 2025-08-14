@@ -1,0 +1,193 @@
+﻿<Page
+    x:Class="Vereinsmeisterschaften.Views.CompetitionPage"
+    Style="{DynamicResource MahApps.Styles.Page}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
+    xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
+    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
+    Dialog:DialogParticipation.Register="{Binding}"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="1400">
+
+    <Page.Resources>
+        <Style x:Key="DataGridHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataGridTextCellCenteringStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <controls:FontIcon FontSize="40" Glyph="&#xF0E3;"/>
+            <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CompetitionPageTitle}" />
+        </StackPanel>
+
+        <!-- DataGrid with all competitions -->
+        <DataGrid Grid.Row="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                  ItemsSource="{Binding CompetitionsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
+                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
+                  SelectedItem="{Binding SelectedCompetition}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedCompetition}">
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+
+            <DataGrid.Columns>
+                <!-- ID -->
+                <DataGridTextColumn Binding="{Binding ID}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="#" FontSize="20" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.IDString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <!-- Gender -->
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="Gender">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.GenderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Gender}" HorizontalAlignment="Center" Style="{StaticResource GenderWithIconStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox HorizontalAlignment="Center"
+                                      ItemsSource="{Binding Source={StaticResource AvailableGenders}}"
+                                      SelectedValue="{Binding Gender}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding}" Style="{StaticResource GenderWithIconStyle}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Swimming Style -->
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{StaticResource DrawingImage_Breaststroke}"/>
+                            <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding SwimmingStyle}" HorizontalAlignment="Center" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox HorizontalAlignment="Center"
+                                      ItemsSource="{Binding DataContext.AvailableSwimmingStyles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                      SelectedValue="{Binding SwimmingStyle}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Age -->
+                <DataGridTextColumn Binding="{Binding Age}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.AgeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <!-- Distance -->
+                <DataGridTextColumn Binding="{Binding Distance, StringFormat={}{0}m}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <!-- Best Time -->
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="BestTime">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE916;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.TimeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BestTime, StringFormat='mm\\:ss\\.fff'}" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <userControls:TimeSpanControl Value="{Binding BestTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" HoursVisible="False" EditMode="EditSeconds" ToolTip="mm:ss.fff"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Remove Competition Button -->
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveCompetitionButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
+                                    Visibility="Hidden" Width="30" Height="30"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemoveCompetitionCommand}" CommandParameter="{Binding}"
+                                    ToolTip="{x:Static properties:Resources.RemoveCompetitionString}">
+                                <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
+                            </Button>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsMouseOver}" Value="True">
+                                    <Setter TargetName="RemoveCompetitionButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsSelected}" Value="True">
+                                    <Setter TargetName="RemoveCompetitionButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add Competition Button -->
+        <Button Grid.Row="2" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddCompetitionCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
+                <TextBlock Text="{x:Static properties:Resources.AddNewCompetition}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Page>

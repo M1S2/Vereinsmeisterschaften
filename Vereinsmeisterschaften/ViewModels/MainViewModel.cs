@@ -24,6 +24,11 @@ public class MainViewModel : ObservableObject, INavigationAware
     public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
 
     /// <summary>
+    /// Command to navigate to the competition view.
+    /// </summary>
+    public ICommand CompetitionCommand => _competitionCommand ?? (_competitionCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(CompetitionViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
     /// Command to navigate to the people view.
     /// </summary>
     public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
@@ -50,6 +55,7 @@ public class MainViewModel : ObservableObject, INavigationAware
     
     private readonly INavigationService _navigationService;
     private ICommand _workspaceCommand;
+    private ICommand _competitionCommand;
     private ICommand _peopleCommand;
     private ICommand _prepareRacesCommand;
     private ICommand _prepareDocumentsCommand;
@@ -76,6 +82,7 @@ public class MainViewModel : ObservableObject, INavigationAware
             case nameof(IWorkspaceService.Settings): OnPropertyChanged(nameof(CompetitionYear)); break;
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
+                    ((RelayCommand)CompetitionCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)PeopleCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)PrepareRacesCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();

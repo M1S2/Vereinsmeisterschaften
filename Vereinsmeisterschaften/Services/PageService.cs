@@ -25,6 +25,7 @@ public class PageService : IPageService
         _serviceProvider = serviceProvider;
         Configure<MainViewModel, MainPage>();
         Configure<WorkspaceViewModel, WorkspacePage>();
+        Configure<CompetitionViewModel, CompetitionPage>();
         Configure<PeopleViewModel, PeoplePage>();
         Configure<PrepareRacesViewModel, PrepareRacesPage>();
         Configure<CreateDocumentsViewModel, CreateDocumentsPage>();

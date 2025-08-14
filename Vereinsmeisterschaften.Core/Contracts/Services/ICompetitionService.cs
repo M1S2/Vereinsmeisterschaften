@@ -1,11 +1,13 @@
-﻿using Vereinsmeisterschaften.Core.Models;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
     /// <summary>
     /// Interface for a service used to get and store a list of Competition objects
     /// </summary>
-    public interface ICompetitionService : ISaveable
+    public interface ICompetitionService : INotifyPropertyChanged, ISaveable
     {
         /// <summary>
         /// Save the reference to the <see cref="IWorkspaceService"/> object.
@@ -18,7 +20,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Return all available Competitions
         /// </summary>
         /// <returns>List of <see cref="Competition"/> objects</returns>
-        List<Competition> GetCompetitions();
+        ObservableCollection<Competition> GetCompetitions();
 
         /// <summary>
         /// Clear all Competitions
@@ -30,6 +32,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <param name="person"><see cref="Competition"/> to add</param>
         void AddCompetition(Competition competition);
+
+        /// <summary>
+        /// Remove the given <see cref="Competition"/> from the list of Competitions
+        /// </summary>
+        /// <param name="competition">Competition to remove</param>
+        void RemoveCompetition(Competition competition);
 
         /// <summary>
         /// Return the number of <see cref="Competition"/>

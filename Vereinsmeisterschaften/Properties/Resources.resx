@@ -210,7 +210,7 @@
   <data name="MedleyString" xml:space="preserve">
     <value>Medley</value>
   </data>
-  <data name="PersonIDString" xml:space="preserve">
+  <data name="IDString" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="WaterFleaString" xml:space="preserve">
@@ -507,5 +507,29 @@
   </data>
   <data name="TemplateFilenamePostfixString" xml:space="preserve">
     <value>Template Filename Postfix</value>
+  </data>
+  <data name="CompetitionPageTitle" xml:space="preserve">
+    <value>Competitions</value>
+  </data>
+  <data name="ShellCompetitionPage" xml:space="preserve">
+    <value>Competitions</value>
+  </data>
+  <data name="AgeString" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="DistanceString" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="SavedStatusCompetitionsString" xml:space="preserve">
+    <value>Competitions saved</value>
+  </data>
+  <data name="RemoveCompetitionString" xml:space="preserve">
+    <value>Remove Competition</value>
+  </data>
+  <data name="RemoveCompetitionConfirmationString" xml:space="preserve">
+    <value>Really remove this competition? This can't be undone!</value>
+  </data>
+  <data name="AddNewCompetition" xml:space="preserve">
+    <value>Add new competition</value>
   </data>
 </root>

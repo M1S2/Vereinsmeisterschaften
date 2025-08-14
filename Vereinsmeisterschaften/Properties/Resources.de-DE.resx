@@ -210,7 +210,7 @@
   <data name="MedleyString" xml:space="preserve">
     <value>Lagen</value>
   </data>
-  <data name="PersonIDString" xml:space="preserve">
+  <data name="IDString" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="WaterFleaString" xml:space="preserve">
@@ -508,5 +508,29 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="TemplateFilenamePostfixString" xml:space="preserve">
     <value>Template Dateinamen Postfix</value>
+  </data>
+  <data name="CompetitionPageTitle" xml:space="preserve">
+    <value>Wettkämpfe</value>
+  </data>
+  <data name="ShellCompetitionPage" xml:space="preserve">
+    <value>Wettkämpfe</value>
+  </data>
+  <data name="AgeString" xml:space="preserve">
+    <value>Alter</value>
+  </data>
+  <data name="DistanceString" xml:space="preserve">
+    <value>Strecke</value>
+  </data>
+  <data name="SavedStatusCompetitionsString" xml:space="preserve">
+    <value>Wettkämpfe gespeichert</value>
+  </data>
+  <data name="RemoveCompetitionString" xml:space="preserve">
+    <value>Wettkampf löschen</value>
+  </data>
+  <data name="RemoveCompetitionConfirmationString" xml:space="preserve">
+    <value>Soll dieser Wettkampf wirklich gelöscht werden? Das kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="AddNewCompetition" xml:space="preserve">
+    <value>Neuen Wettkampf hinzufügen</value>
   </data>
 </root>

@@ -137,6 +137,9 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private ICommand _addPersonCommand;
+    /// <summary>
+    /// Command to add a new person
+    /// </summary>
     public ICommand AddPersonCommand => _addPersonCommand ?? (_addPersonCommand = new RelayCommand(() =>
     {
         Person person = new Person();
@@ -148,6 +151,9 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     }));
 
     private ICommand _removePersonCommand;
+    /// <summary>
+    /// Command to remove a person from the list
+    /// </summary>
     public ICommand RemovePersonCommand => _removePersonCommand ?? (_removePersonCommand = new RelayCommand<Person>(async (person) =>
     {
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });

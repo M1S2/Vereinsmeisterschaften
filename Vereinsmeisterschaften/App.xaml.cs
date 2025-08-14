@@ -105,6 +105,9 @@ public partial class App : Application
         services.AddSingleton<WorkspaceViewModel>();
         services.AddSingleton<WorkspacePage>();
 
+        services.AddSingleton<CompetitionViewModel>();
+        services.AddSingleton<CompetitionPage>();
+
         services.AddSingleton<PeopleViewModel>();
         services.AddSingleton<PeoplePage>();
 

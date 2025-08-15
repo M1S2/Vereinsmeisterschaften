@@ -180,6 +180,8 @@ public class PeopleViewModel : ObservableObject, INavigationAware
             person.PropertyChanged -= Person_PropertyChanged; // Unsubscribe from the event to avoid multiple subscriptions
             person.PropertyChanged += Person_PropertyChanged;
         }
+
+        OnPropertyChanged(nameof(DuplicatePersonString));
     }
 
     /// <inheritdoc/>

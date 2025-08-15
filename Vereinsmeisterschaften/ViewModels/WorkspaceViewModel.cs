@@ -212,6 +212,59 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    #region Reset Commands
+
+    private ICommand _resetCompetitionsCommand;
+    /// <summary>
+    /// Command to reset the competitions.
+    /// </summary>
+    public ICommand ResetCompetitionsCommand => _resetCompetitionsCommand ?? (_resetCompetitionsCommand = new RelayCommand(() =>
+    {
+        _workspaceService.ResetCompetitionsToLoadedState();
+        OnPropertyChanged(nameof(HasUnsavedChanges_Competitions));
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _resetPersonsCommand;
+    /// <summary>
+    /// Command to reset the persons.
+    /// </summary>
+    public ICommand ResetPersonsCommand => _resetPersonsCommand ?? (_resetPersonsCommand = new RelayCommand(() =>
+    {
+        _workspaceService.ResetPersonsToLoadedState();
+        OnPropertyChanged(nameof(HasUnsavedChanges_Persons));
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _resetRacesCommand;
+    /// <summary>
+    /// Command to reset the races.
+    /// </summary>
+    public ICommand ResetRacesCommand => _resetRacesCommand ?? (_resetRacesCommand = new RelayCommand(() =>
+    {
+        _workspaceService.ResetRacesToLoadedState();
+        OnPropertyChanged(nameof(HasUnsavedChanges_Races));
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _resetSettingsCommand;
+    /// <summary>
+    /// Command to reset the settings.
+    /// </summary>
+    public ICommand ResetSettingsCommand => _resetSettingsCommand ?? (_resetSettingsCommand = new RelayCommand(() =>
+    {
+        _workspaceService.ResetSettingsToLoadedState();
+        OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+        initSettingsGroups(_workspaceService.Settings);
+    }));
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     #region Settings Groups Handling
 
     private ObservableCollection<WorkspaceSettingsGroupViewModel> _settingsGroups;

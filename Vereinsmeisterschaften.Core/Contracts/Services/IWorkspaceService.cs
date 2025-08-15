@@ -45,6 +45,26 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         bool HasUnsavedChanges_Settings { get; }
 
         /// <summary>
+        /// Call the <see cref="ICompetitionService.ResetToLoadedState"/>
+        /// </summary>
+        void ResetCompetitionsToLoadedState();
+
+        /// <summary>
+        /// Call the <see cref="IPersonService.ResetToLoadedState"/>
+        /// </summary>
+        void ResetPersonsToLoadedState();
+
+        /// <summary>
+        /// Call the <see cref="IRaceService.ResetToLoadedState"/>
+        /// </summary>
+        void ResetRacesToLoadedState();
+
+        /// <summary>
+        /// Reset the <see cref="Settings"> to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        void ResetSettingsToLoadedState();
+
+        /// <summary>
         /// Close the current workspace (set the current path to <see cref="string.Empty"/> and the <see cref="Settings"/> to <see langword="null"/>)
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>

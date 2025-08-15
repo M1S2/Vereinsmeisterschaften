@@ -52,6 +52,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void ClearAllRacesVariants();
 
         /// <summary>
+        /// Reset the <see cref="PersistedRacesVariant"> to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        void ResetToLoadedState();
+
+        /// <summary>
         /// Sort the complete list <see cref="AllRacesVariants"/> descending by the <see cref="RacesVariant.Score"/>
         /// </summary>
         void SortVariantsByScore();

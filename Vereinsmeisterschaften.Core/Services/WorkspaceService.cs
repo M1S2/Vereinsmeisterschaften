@@ -121,6 +121,42 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Reset methods of services
+
+        /// <summary>
+        /// Call the <see cref="ICompetitionService.ResetToLoadedState"/>
+        /// </summary>
+        public void ResetCompetitionsToLoadedState() => _competitionService.ResetToLoadedState();
+
+        /// <summary>
+        /// Call the <see cref="IPersonService.ResetToLoadedState"/>
+        /// </summary>
+        public void ResetPersonsToLoadedState() => _personService.ResetToLoadedState();
+
+        /// <summary>
+        /// Call the <see cref="IRaceService.ResetToLoadedState"/>
+        /// </summary>
+        public void ResetRacesToLoadedState() => _raceService.ResetToLoadedState();
+
+        /// <summary>
+        /// Reset the <see cref="Settings"> to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        public void ResetSettingsToLoadedState()
+        {
+            if (SettingsPersistedInFile != null)
+            {
+                // Unsubscribe from the old settings PropertyChanged event
+                if (Settings != null) { Settings.PropertyChanged -= Settings_PropertyChanged; }
+
+                Settings = new WorkspaceSettings(SettingsPersistedInFile);
+                Settings.PropertyChanged += Settings_PropertyChanged;
+            }
+        }
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private WorkspaceSettings _settings;
         /// <summary>
         /// Workspace settings for the current workspace.

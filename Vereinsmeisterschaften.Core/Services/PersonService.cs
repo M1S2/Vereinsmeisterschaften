@@ -181,6 +181,20 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
+        /// Reset the list of Persons to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// This will clear all Persons and add the Persons that were loaded at that time.
+        /// </summary>
+        public void ResetToLoadedState()
+        {
+            if (_personListOnLoad == null) { return; }
+            ClearAll();
+            foreach (Person person in _personListOnLoad)
+            {
+                AddPerson(new Person(person));
+            }
+        }
+
+        /// <summary>
         /// Add a new <see cref="Person"/> to the list of Persons
         /// </summary>
         /// <param name="person"><see cref="Person"/> to add</param>

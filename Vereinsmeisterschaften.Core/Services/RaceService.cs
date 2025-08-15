@@ -70,7 +70,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// <see cref="RacesVariant"/> object that is marked as best result at the time the <see cref="Load(string, CancellationToken)"/> method was called.
         /// </summary>
-        private RacesVariant _bestRacesVariantOnLoad { get; set; }
+        private RacesVariant _persistedRacesVariantOnLoad { get; set; }
 
         /// <summary>
         /// Path to the race file
@@ -171,8 +171,8 @@ namespace Vereinsmeisterschaften.Core.Services
                         }, null);
                     }
 
-                    if (PersistedRacesVariant == null) { _bestRacesVariantOnLoad = null; }
-                    else { _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true); }
+                    if (PersistedRacesVariant == null) { _persistedRacesVariantOnLoad = null; }
+                    else { _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true); }
 
                     PersistentPath = path;
                     importingResult = true;
@@ -250,7 +250,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (PersistedRacesVariant == null)
                     {
                         if (File.Exists(path)) { File.Delete(path); }
-                        _bestRacesVariantOnLoad = null;
+                        _persistedRacesVariantOnLoad = null;
                     }
                     else
                     {
@@ -285,7 +285,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             }
                         });
 
-                        _bestRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true);
+                        _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true);
                     }
                     saveResult = true;
                 }
@@ -342,6 +342,20 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             OnPropertyChanged(nameof(HasUnsavedChanges));
             _nextVariantID = 1;
+        }
+
+        /// <summary>
+        /// Reset the <see cref="PersistedRacesVariant"> to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        public void ResetToLoadedState()
+        {
+            RacesVariantFullEqualityComparer fullEqualityComparer = new RacesVariantFullEqualityComparer();
+            foreach (RacesVariant racesVariant in AllRacesVariants)
+            {
+                racesVariant.IsPersistent = fullEqualityComparer.Equals(racesVariant, _persistedRacesVariantOnLoad);
+            }
+            OnPropertyChanged(nameof(AllRacesVariants));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         /// <summary>
@@ -420,12 +434,12 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             get
             {
-                if(PersistedRacesVariant != null && _bestRacesVariantOnLoad != null)
+                if(PersistedRacesVariant != null && _persistedRacesVariantOnLoad != null)
                 {
                     RacesVariantFullEqualityComparer fullEqualityComparer = new RacesVariantFullEqualityComparer();
-                    return !fullEqualityComparer.Equals(PersistedRacesVariant, _bestRacesVariantOnLoad);
+                    return !fullEqualityComparer.Equals(PersistedRacesVariant, _persistedRacesVariantOnLoad);
                 }
-                else if(PersistedRacesVariant == null && _bestRacesVariantOnLoad == null)
+                else if(PersistedRacesVariant == null && _persistedRacesVariantOnLoad == null)
                 {
                     return false;
                 }

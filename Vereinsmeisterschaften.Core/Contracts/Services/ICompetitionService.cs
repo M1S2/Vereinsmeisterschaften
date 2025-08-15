@@ -28,6 +28,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void ClearAll();
 
         /// <summary>
+        /// Reset the list of Competitions to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// This will clear all Competitions and add the Competitions that were loaded at that time.
+        /// </summary>
+        void ResetToLoadedState();
+
+        /// <summary>
         /// Add a new <see cref="Competition"/> to the list of Competitions.
         /// </summary>
         /// <param name="person"><see cref="Competition"/> to add</param>

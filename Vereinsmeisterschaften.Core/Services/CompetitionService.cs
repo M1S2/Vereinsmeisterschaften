@@ -179,6 +179,21 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionList.Clear();
 
             OnPropertyChanged(nameof(CompetitionCount));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        /// <summary>
+        /// Reset the list of Competitions to the state when the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// This will clear all Competitions and add the Competitions that were loaded at that time.
+        /// </summary>
+        public void ResetToLoadedState()
+        {
+            if (_competitionListOnLoad == null) { return; }
+            ClearAll();
+            foreach (Competition competition in _competitionListOnLoad)
+            {
+                AddCompetition(new Competition(competition));
+            }
         }
 
         /// <summary>

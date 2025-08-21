@@ -1,5 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+  <PropertyGroup>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Title>Vereinsmeisterschaften</Title>
+	  <Description>Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertissen.</Description>
+    <Company>Markus Scheich</Company>
+    <Product>Vereinsmeisterschaften</Product>
+    <Copyright>Copyright © 2025</Copyright>
+  </PropertyGroup>
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -8,6 +16,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/M1S2/Vereinsmeisterschaften</RepositoryUrl>
   </PropertyGroup>
   
   <ItemGroup>
@@ -15,7 +25,19 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="AssemblyInfoHelper" Version="5.4.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
@@ -88,4 +110,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+
+  <PropertyGroup>
+    <PostBuildEvent>
+      copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
+      copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

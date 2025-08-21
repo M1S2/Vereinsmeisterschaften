@@ -123,12 +123,6 @@
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="SettingsPageAboutText" xml:space="preserve">
-    <value>Anwendung für die Vereinsmeisterschaften der Schwimmabteilung.</value>
-  </data>
-  <data name="SettingsPageAboutTitle" xml:space="preserve">
-    <value>Über</value>
-  </data>
   <data name="SettingsPageChooseThemeText" xml:space="preserve">
     <value>Design wählen</value>
   </data>

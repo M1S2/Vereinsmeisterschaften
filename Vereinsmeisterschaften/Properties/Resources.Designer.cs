@@ -1010,24 +1010,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Application for the club championships of the swimming department. ähnelt.
-        /// </summary>
-        public static string SettingsPageAboutText {
-            get {
-                return ResourceManager.GetString("SettingsPageAboutText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die About this application ähnelt.
-        /// </summary>
-        public static string SettingsPageAboutTitle {
-            get {
-                return ResourceManager.GetString("SettingsPageAboutTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Choose Theme ähnelt.
         /// </summary>
         public static string SettingsPageChooseThemeText {

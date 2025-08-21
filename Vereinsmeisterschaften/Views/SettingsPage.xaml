@@ -78,19 +78,6 @@
                         </RadioButton>
                     </StackPanel>
                 </StackPanel>
-
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource SubtitleTextStyle}"
-                    Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
-                <TextBlock
-                    Text="{Binding VersionDescription, Mode=OneWay}"
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{StaticResource BodyTextStyle}" />
-                <TextBlock
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{StaticResource BodyTextStyle}"
-                    Text="{x:Static properties:Resources.SettingsPageAboutText}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

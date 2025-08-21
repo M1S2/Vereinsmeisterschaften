@@ -123,12 +123,6 @@
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SettingsPageAboutText" xml:space="preserve">
-    <value>Application for the club championships of the swimming department.</value>
-  </data>
-  <data name="SettingsPageAboutTitle" xml:space="preserve">
-    <value>About this application</value>
-  </data>
   <data name="SettingsPageChooseThemeText" xml:space="preserve">
     <value>Choose Theme</value>
   </data>

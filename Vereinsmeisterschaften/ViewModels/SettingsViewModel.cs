@@ -12,12 +12,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// </summary>
 public class SettingsViewModel : ObservableObject, INavigationAware
 {
-    private readonly IThemeSelectorService _themeSelectorService;
-    private readonly IApplicationInfoService _applicationInfoService;
     private AppTheme _theme;
-    private string _versionDescription;
-    private ICommand _setThemeCommand;
-
     /// <summary>
     /// App Theme (dark, light)
     /// </summary>
@@ -27,35 +22,26 @@ public class SettingsViewModel : ObservableObject, INavigationAware
         set { SetProperty(ref _theme, value); }
     }
 
-    /// <summary>
-    /// Version string for the application
-    /// </summary>
-    public string VersionDescription
-    {
-        get { return _versionDescription; }
-        set { SetProperty(ref _versionDescription, value); }
-    }
-
+    private ICommand _setThemeCommand;
     /// <summary>
     /// Command to change the app theme
     /// </summary>
     public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new RelayCommand<string>(OnSetTheme));
 
+    private readonly IThemeSelectorService _themeSelectorService;
+
     /// <summary>
     /// Constructor of the settings view model
     /// </summary>
     /// <param name="themeSelectorService"><see cref="IThemeSelectorService"/> object</param>
-    /// <param name="applicationInfoService"><see cref="IApplicationInfoService"/> object</param>
-    public SettingsViewModel(IThemeSelectorService themeSelectorService, IApplicationInfoService applicationInfoService)
+    public SettingsViewModel(IThemeSelectorService themeSelectorService)
     {
         _themeSelectorService = themeSelectorService;
-        _applicationInfoService = applicationInfoService;
     }
 
     /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
-        VersionDescription = $"{Properties.Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
         Theme = _themeSelectorService.GetCurrentTheme();
     }
 

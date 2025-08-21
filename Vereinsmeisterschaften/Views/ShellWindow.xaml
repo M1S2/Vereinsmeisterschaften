@@ -9,6 +9,7 @@
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:templateSelectors="clr-namespace:Vereinsmeisterschaften.TemplateSelectors"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
     Dialog:DialogParticipation.Register="{Binding}"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
@@ -41,6 +42,11 @@
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
     <controls:MetroWindow.Resources>
         <templateSelectors:MenuItemTemplateSelector
             x:Key="MenuItemTemplateSelector">

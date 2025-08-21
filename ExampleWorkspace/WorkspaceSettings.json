@@ -1,0 +1,81 @@
+﻿[
+  {
+    "GroupKey": "General",
+    "Settings": [
+      {
+        "Key": "CompetitionYear",
+        "Value": 2025
+      }
+    ]
+  },
+  {
+    "GroupKey": "RaceCalculation",
+    "Settings": [
+      {
+        "Key": "NumberOfSwimLanes",
+        "Value": 3
+      },
+      {
+        "Key": "NumberRacesVariantsAfterCalculation",
+        "Value": 100
+      },
+      {
+        "Key": "MaxRacesVariantCalculationLoops",
+        "Value": 1000000
+      },
+      {
+        "Key": "MinRacesVariantsScore",
+        "Value": 20.0
+      }
+    ]
+  },
+  {
+    "GroupKey": "DocumentCreation",
+    "Settings": [
+      {
+        "Key": "PlaceholderMarker",
+        "Value": "%"
+      },
+      {
+        "Key": "TemplateFilenamePostfix",
+        "Value": "_Template"
+      },
+      {
+        "Key": "DocumentFileTypes",
+        "Value": "DOCX_AND_PDF"
+      },
+      {
+        "Key": "DocumentOutputFolder",
+        "Value": "Dokumente"
+      },
+      {
+        "Key": "CertificateTemplatePath",
+        "Value": "Templates\\Urkunden_Template.docx"
+      },
+      {
+        "Key": "OverviewlistTemplatePath",
+        "Value": "Templates\\Gesamtliste_Template.docx"
+      },
+      {
+        "Key": "RaceStartListTemplatePath",
+        "Value": "Templates\\Startliste_Template.docx"
+      },
+      {
+        "Key": "TimeFormsTemplatePath",
+        "Value": "Templates\\Zeitzettel_Template.docx"
+      },
+      {
+        "Key": "ResultListTemplatePath",
+        "Value": "Templates\\Ergebnisliste_Template.docx"
+      },
+      {
+        "Key": "ResultListDetailTemplatePath",
+        "Value": "Templates\\ErgebnislisteDetail_Template.docx"
+      },
+      {
+        "Key": "LibreOfficePath",
+        "Value": "C:\\\\Program Files\\\\LibreOffice\\\\program\\\\soffice.exe"
+      }
+    ]
+  }
+]

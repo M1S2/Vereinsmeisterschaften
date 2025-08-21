@@ -122,6 +122,7 @@
 
             <ListView.View>
                 <GridView>
+                    <!-- First Name -->
                     <GridViewColumn DisplayMemberBinding="{Binding PersonObj.FirstName}" Width="120">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
@@ -131,6 +132,7 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
+                    <!-- Name -->
                     <GridViewColumn DisplayMemberBinding="{Binding PersonObj.Name}" Width="120">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
@@ -140,9 +142,30 @@
                         </GridViewColumn.Header>
                     </GridViewColumn>
 
+                    <!-- Gender -->
+                    <GridViewColumn Width="120">
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                                <TextBlock Text="{x:Static properties:Resources.GenderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Center">
+                                    <ContentControl Content="{Binding PersonObj.Gender}" Style="{StaticResource GenderWithIconStyle}"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!-- Swimming Style -->
                     <GridViewColumn Width="150">
                         <GridViewColumn.Header>
-                            <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource DrawingImage_Breaststroke}"/>
+                                <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -153,6 +176,17 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
+                    <!-- Distance -->
+                    <GridViewColumn DisplayMemberBinding="{Binding CompetitionObj.Distance, StringFormat={}{0}m, FallbackValue=/}">
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
+                                <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    
+                    <!-- Time -->
                     <GridViewColumn Width="150">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">

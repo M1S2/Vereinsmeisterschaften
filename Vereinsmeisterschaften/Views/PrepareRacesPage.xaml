@@ -469,8 +469,18 @@
 
                             <!-- Show an error icon if no competition object is assigned -->
                             <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
-                                               Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
-                                               ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                               Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                                <controls:FontIcon.ToolTip>
+                                    <ToolTip>
+                                        <ToolTip.Content>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                                <TextBlock Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}"/>
+                                            </StackPanel>
+                                        </ToolTip.Content>
+                                    </ToolTip>
+                                </controls:FontIcon.ToolTip>
+                            </controls:FontIcon>
 
                             <!-- Show the name of the person -->
                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -20,6 +20,11 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <summary>
         /// Filter by the <see cref="Race.RaceID"/>
         /// </summary>
-        RaceID
+        RaceID,
+
+        /// <summary>
+        /// Filter by the <see cref="Competition.CompetitionID"/>
+        /// </summary>
+        CompetitionID
     }
 }

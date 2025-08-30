@@ -36,6 +36,8 @@
         <converters:PersonCompetitionStatusToBrushConverter x:Key="PersonCompetitionStatusBrushConverter"
                                                             BrushCompetitionMissingAndSelected="{StaticResource BrushCompetitionMissingAndSelected}"
                                                             BrushCompetitionMissing="{StaticResource BrushCompetitionMissing}"/>
+
+        <converters:PersonStartToCompetitionIDStringConverter x:Key="PersonStartCompetitionIDStringConverter"/>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -157,13 +159,14 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.Breaststroke}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
 
                 <!-- Freestyle -->
                 <DataGridCheckBoxColumn Binding="{Binding Freestyle}"
-                                        ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"  EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
+                                        ElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}" EditingElementStyle="{StaticResource DataGridCheckboxCellCenteringStyle}"
                                         HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridCheckBoxColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -178,6 +181,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.Freestyle}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
@@ -199,6 +203,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.Backstroke}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
@@ -220,6 +225,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.Butterfly}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
@@ -240,6 +246,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.Medley}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>
@@ -261,6 +268,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="ToolTip" Value="{Binding ., Converter={StaticResource PersonStartCompetitionIDStringConverter}, ConverterParameter={x:Static coreModels:SwimmingStyles.WaterFlea}}"/>
                         </Style>
                     </DataGridCheckBoxColumn.CellStyle>
                 </DataGridCheckBoxColumn>

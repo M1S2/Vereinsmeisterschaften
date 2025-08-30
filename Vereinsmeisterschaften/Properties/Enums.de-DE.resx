@@ -139,6 +139,9 @@
     <value>Person</value>
   </data>
   <data name="TimeInputPersonStartFilterModes_RaceID" xml:space="preserve">
-    <value>Renn-ID</value>
+    <value>Renn ID</value>
+  </data>
+  <data name="TimeInputPersonStartFilterModes_CompetitionID" xml:space="preserve">
+    <value>Wettkampf ID</value>
   </data>
 </root>

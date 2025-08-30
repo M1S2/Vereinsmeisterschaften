@@ -52,7 +52,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <!-- Selection / Numeric input for race number. This is only visible if filter mode is RaceNumber. -->
+            <!-- Selection / Numeric input for race number. This is only visible if filter mode is RaceID. -->
             <controls:NumericUpDown x:Name="num_filterRaceNumber" Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
                                         Value="{Binding FilteredRaceID}" Minimum="1" Maximum="{Binding PersistedRacesVariant.Races.Count, FallbackValue=1}">
                 <controls:NumericUpDown.Style>
@@ -80,6 +80,9 @@
                             <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="Person">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="CompetitionID">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="None">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
@@ -102,6 +105,21 @@
                     </Style>
                 </ComboBox.Style>
             </ComboBox>
+
+            <!-- Selection / Numeric input for competition number. This is only visible if filter mode is CompetitionID. -->
+            <controls:NumericUpDown Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
+                             Value="{Binding FilteredCompetitionID}" Minimum="1">
+                <controls:NumericUpDown.Style>
+                    <Style TargetType="{x:Type controls:NumericUpDown}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilterPersonStartMode}" Value="CompetitionID">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:NumericUpDown.Style>
+            </controls:NumericUpDown>
         </StackPanel>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -185,7 +203,17 @@
                             </StackPanel>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    
+
+                    <!-- Competition ID -->
+                    <GridViewColumn DisplayMemberBinding="{Binding CompetitionObj.ID, FallbackValue=/}">
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="#" FontSize="20" Margin="5"/>
+                                <TextBlock Text="{x:Static properties:Resources.CompetitionIDString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+
                     <!-- Time -->
                     <GridViewColumn Width="150">
                         <GridViewColumn.Header>

@@ -527,4 +527,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="AddNewCompetition" xml:space="preserve">
     <value>Neuen Wettkampf hinzufügen</value>
   </data>
+  <data name="CompetitionIDString" xml:space="preserve">
+    <value>Wettkampf ID</value>
+  </data>
 </root>

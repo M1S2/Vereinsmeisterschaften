@@ -526,4 +526,7 @@
   <data name="AddNewCompetition" xml:space="preserve">
     <value>Add new competition</value>
   </data>
+  <data name="CompetitionIDString" xml:space="preserve">
+    <value>Competition ID</value>
+  </data>
 </root>

@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
+        /// </summary>
+        public static string TimeInputPersonStartFilterModes_CompetitionID {
+            get {
+                return ResourceManager.GetString("TimeInputPersonStartFilterModes_CompetitionID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
         /// </summary>
         public static string TimeInputPersonStartFilterModes_None {

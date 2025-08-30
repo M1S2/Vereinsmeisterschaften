@@ -141,4 +141,7 @@
   <data name="TimeInputPersonStartFilterModes_RaceID" xml:space="preserve">
     <value>Race ID</value>
   </data>
+  <data name="TimeInputPersonStartFilterModes_CompetitionID" xml:space="preserve">
+    <value>Competition ID</value>
+  </data>
 </root>

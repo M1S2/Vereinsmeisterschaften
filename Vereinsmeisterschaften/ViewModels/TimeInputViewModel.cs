@@ -76,7 +76,19 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
-    
+
+    private int _filteredCompetitionID = 1;
+    /// <summary>
+    /// All <see cref="PersonStart"/> elements that match this competition ID will be filtered if the <see cref="FilterPersonStartMode"/> is <see cref="TimeInputPersonStartFilterModes.CompetitionID"/>
+    /// </summary>
+    public int FilteredCompetitionID
+    {
+        get => _filteredCompetitionID;
+        set { SetProperty(ref _filteredCompetitionID, value); AvailablePersonStartsCollectionView.Refresh(); }
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
     /// <summary>
     /// Function used when filtering the <see cref="PersonStart"/> list
     /// </summary>
@@ -96,6 +108,8 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
                     case TimeInputPersonStartFilterModes.RaceID:
                         Race race = PersistedRacesVariant?.Races?.Where(r => r.Starts.Contains(personStart)).FirstOrDefault();
                         return race == null ? false : race.RaceID == FilteredRaceID;
+                    case TimeInputPersonStartFilterModes.CompetitionID:
+                        return (personStart?.CompetitionObj?.ID ?? -1) == FilteredCompetitionID;
                     case TimeInputPersonStartFilterModes.None:
                     default:
                         break;

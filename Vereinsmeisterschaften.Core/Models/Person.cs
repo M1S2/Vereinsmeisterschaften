@@ -112,6 +112,23 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        /// <summary>
+        /// Get the competition IDs for the <see cref="AvailableCompetitions"/> (-1 = when Competition is null)
+        /// </summary>
+        [FileServiceIgnore]
+        public Dictionary<SwimmingStyles, int> AvailableCompetitionsIDs
+        {
+            get
+            {
+                Dictionary<SwimmingStyles, int> availableCompetitionsIDs = new Dictionary<SwimmingStyles, int>();
+                foreach (KeyValuePair<SwimmingStyles, Competition> kvp in AvailableCompetitions)
+                {
+                    availableCompetitionsIDs.Add(kvp.Key, kvp.Value?.ID ?? -1);
+                }
+                return availableCompetitionsIDs;
+            }
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();

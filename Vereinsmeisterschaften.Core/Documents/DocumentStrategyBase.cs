@@ -58,11 +58,28 @@ namespace Vereinsmeisterschaften.Core.Documents
         public IDocumentPlaceholderResolver<TData> PlaceholderResolver { get; }
 
         /// <summary>
-        /// List of all placeholder keys that are supported by the <see cref="PlaceholderResolver"/>.
-        /// The key for the competition year (<see cref="Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR"/>) is always supported.
+        /// List with placeholder keys that are always supported, no matter what the <see cref="PlaceholderResolver"/> supports.
         /// </summary>
-        public List<string> SupportedPlaceholderKeys => new List<string>(PlaceholderResolver.SupportedPlaceholderKeys) { Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR };
+        public List<string> AlwaysSupportedPlaceholderKeys => new List<string>
+        {
+            Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR,
+            Placeholders.PLACEHOLDER_KEY_APP_VERSION,
+            Placeholders.PLACEHOLDER_KEY_WORKSPACE_PATH
+        };
 
+        /// <summary>
+        /// List of all placeholder keys that are supported by the <see cref="PlaceholderResolver"/>.
+        /// Also the <see cref="AlwaysSupportedPlaceholderKeys"/> are returned.
+        /// </summary>
+        public List<string> SupportedPlaceholderKeys
+        {
+            get
+            {
+                List<string> supportedPlaceholderKeys = new List<string>(AlwaysSupportedPlaceholderKeys);
+                supportedPlaceholderKeys.AddRange(PlaceholderResolver.SupportedPlaceholderKeys);
+                return supportedPlaceholderKeys;
+            }
+        }
         /// <inheritdoc/>
         public List<int> PostfixNumbersSupported => PlaceholderResolver.PostfixNumbersSupported ?? Enumerable.Repeat(0, PlaceholderResolver?.SupportedPlaceholderKeys?.Count ?? 0).ToList();
 

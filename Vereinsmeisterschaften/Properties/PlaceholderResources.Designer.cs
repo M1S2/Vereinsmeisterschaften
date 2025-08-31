@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the application version. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAppVersion {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAppVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the style of the start with the highest score. ähnelt.
         /// </summary>
         public static string PlaceholderInfoBestStyle {
@@ -287,6 +296,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the path to the workspace. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoWorkspacePath {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoWorkspacePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available ähnelt.
         /// </summary>
         public static string PlaceholderLegendAvailable {
@@ -311,6 +329,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderLegendNotAvailable {
             get {
                 return ResourceManager.GetString("PlaceholderLegendNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die App Version ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAppVersion {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAppVersion", resourceCulture);
             }
         }
         
@@ -536,6 +563,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameTimeWaterflea {
             get {
                 return ResourceManager.GetString("PlaceholderNameTimeWaterflea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Workspace Path ähnelt.
+        /// </summary>
+        public static string PlaceholderNameWorkspacePath {
+            get {
+                return ResourceManager.GetString("PlaceholderNameWorkspacePath", resourceCulture);
             }
         }
     }

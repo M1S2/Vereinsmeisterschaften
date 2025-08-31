@@ -278,4 +278,16 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
   <data name="PlaceholderInfoLastName" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um den Vornamen einzufügen.</value>
   </data>
+  <data name="PlaceholderNameAppVersion" xml:space="preserve">
+    <value>App Version</value>
+  </data>
+  <data name="PlaceholderInfoAppVersion" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anwendungs-Version einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameWorkspacePath" xml:space="preserve">
+    <value>Arbeitsbereich Pfad</value>
+  </data>
+  <data name="PlaceholderInfoWorkspacePath" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Pfad zum Arbeitsbereich einzufügen.</value>
+  </data>
 </root>

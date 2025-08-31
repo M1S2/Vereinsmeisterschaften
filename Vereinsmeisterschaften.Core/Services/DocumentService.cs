@@ -168,24 +168,29 @@ namespace Vereinsmeisterschaften.Core.Services
                                 DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders(multiplePagesObj);
                                 if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFileMulti, outputFileMulti, textPlaceholders, placeholderMarker); }
 
-                                insertCompetitionYearPlaceholderValue(outputFileMulti, outputFileMulti);
+                                insertAlwaysSupportedPlaceholderValues(outputFileMulti, outputFileMulti);
 
                                 numCreatedPages++;
                             }
 
                             // Combine all docx files in the temp folder into one docx file
-                            using (DocX document = DocX.Create(outputFile))
+                            string[] files = Directory.GetFiles(tempFolder);
+                            if (files.Length > 0)
                             {
-                                bool firstDocument = true;
-                                foreach (string file in Directory.GetFiles(tempFolder))
+                                // Copy the first document as the base for the output file
+                                File.Copy(files[0], outputFile, true);
+                                using (DocX document = DocX.Load(outputFile))
                                 {
-                                    using (DocX tempDocument = DocX.Load(file))
+                                    // Append all other documents to the first one
+                                    for (int i = 1; i < files.Length; i++)
                                     {
-                                        document.InsertDocument(tempDocument, !firstDocument);
+                                        using (DocX tempDocument = DocX.Load(files[i]))
+                                        {
+                                            document.InsertDocument(tempDocument, true);
+                                        }
                                     }
-                                    firstDocument = false;
+                                    document.Save();
                                 }
-                                document.Save();
                             }
                         }
                     }
@@ -211,7 +216,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders();
                     if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFile, outputFile, textPlaceholders, placeholderMarker); }
 
-                    insertCompetitionYearPlaceholderValue(outputFile, outputFile);
+                    insertAlwaysSupportedPlaceholderValues(outputFile, outputFile);
 
                     numCreatedPages = 1; // We created one page for the document
                 }
@@ -255,15 +260,23 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
-        /// Insert the competition year placeholder value into the template file and save it to the output file.
+        /// Insert the values for the <see cref="DocumentStrategyBase{TData}.AlwaysSupportedPlaceholderKeys"/> into the template file and save it to the output file.
         /// </summary>
-        /// <param name="templateFile">File in which to insert the competition year to the corresponding placeholder.</param>
+        /// <param name="templateFile">File in which to insert the always supported placeholder values to the corresponding placeholders.</param>
         /// <param name="outputFile">Destination file location.</param>
-        private void insertCompetitionYearPlaceholderValue(string templateFile, string outputFile)
+        private void insertAlwaysSupportedPlaceholderValues(string templateFile, string outputFile)
         {
+            // Make sure to have logic here for all values in DocumentStrategyBase<TData>.AlwaysSupportedPlaceholderKeys
+
             ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
+            string appVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version?.ToString() ?? "?";
+            string workspacePath = _workspaceService?.PersistentPath ?? string.Empty;
+            
             DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_CompetitionYear) { textPlaceholders.Add(placeholder, competitionYear.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AppVersion) { textPlaceholders.Add(placeholder, appVersion); }
+            foreach (string placeholder in Placeholders.Placeholders_WorkspacePath) { textPlaceholders.Add(placeholder, workspacePath); }
+
             DocXPlaceholderHelper.ReplaceTextPlaceholders(templateFile, outputFile, textPlaceholders, PlaceholderMarker);
         }
 

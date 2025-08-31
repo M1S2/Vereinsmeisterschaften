@@ -12,6 +12,14 @@
         /// </summary>
         public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
         /// <summary>
+        /// List with all placeholders that can be used in the template to insert the application version.
+        /// </summary>
+        public static List<string> Placeholders_AppVersion = new List<string>() { "AppVersion", "Version", "V" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the path of the workspace.
+        /// </summary>
+        public static List<string> Placeholders_WorkspacePath = new List<string>() { "Arbeitsbereich", "WorkspacePath", "Workspace", "A", "WP" };
+        /// <summary>
         /// List with all placeholders that can be used in the template to insert the complete name of a person.
         /// </summary>
         public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };
@@ -116,6 +124,8 @@
         #region Placeholder Keys
 
         public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
+        public const string PLACEHOLDER_KEY_APP_VERSION = "AppVersion";
+        public const string PLACEHOLDER_KEY_WORKSPACE_PATH = "WorkspacePath";
         public const string PLACEHOLDER_KEY_NAME = "Name";
         public const string PLACEHOLDER_KEY_FIRSTNAME = "FirstName";
         public const string PLACEHOLDER_KEY_LASTNAME = "LastName";
@@ -152,6 +162,8 @@
         public static Dictionary<string, List<string>> PlaceholderDict = new Dictionary<string, List<string>>()
         {
             { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
+            { PLACEHOLDER_KEY_APP_VERSION, Placeholders_AppVersion },
+            { PLACEHOLDER_KEY_WORKSPACE_PATH, Placeholders_WorkspacePath },
             { PLACEHOLDER_KEY_NAME, Placeholders_Name },
             { PLACEHOLDER_KEY_FIRSTNAME, Placeholders_FirstName },
             { PLACEHOLDER_KEY_LASTNAME, Placeholders_LastName },

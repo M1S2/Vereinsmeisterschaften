@@ -1,5 +1,20 @@
 /*! @page page_2_document_creation 2 - Document Creation
 
-TBD...
+TBC...
 
+@section newPlaceholders_sec Add new Placeholders
+- Adapt Placeholders.cs (Vereinsmeisterschaften.Core > Documents):
+  - Add new list with placeholders: e.g. <code>public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };</code>
+  - Add new placeholder key: e.g. <code>public const string PLACEHOLDER_KEY_NAME = "Name";</code>
+  - Add the new placeholder combination in the PlaceholderDict: e.g. <code>{ PLACEHOLDER_KEY_NAME, Placeholders_Name }</code>
+- Add following resources to the PlaceholderResources.resx (Vereinsmeisterschaften > Properties):
+  - PlaceholderName<PlaceholderKey> (e.g. PlaceholderNameName): Name for the placeholder that is shown in the UI
+  - PlaceholderInfo<PlaceholderKey> (e.g. PlaceholderInfoName): Description for the placeholder that is shown in the UI
+- If the placeholder should be always supported:
+  - Add the placeholder key to the AlwaysSupportedPlaceholderKeys in DocumentStrategyBase.cs (Vereinsmeisterschaften.Core > Documents)
+  - Add logic in the DocumentService.cs (Vereinsmeisterschaften.Core > Services) insertAlwaysSupportedPlaceholderValues method
+- If the placeholder usage depends on the type of data:
+  - Adapt corresponding DocumentPlaceholderResolvers (Vereinsmeisterschaften.Core > Documents):
+    - Add the placeholder key to the SupportedPlaceholderKeys list
+    - Implement the logic in the ResolveTextPlaceholders method
  */

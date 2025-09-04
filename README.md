@@ -6,6 +6,14 @@
 
 Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertissen.
 
+## Seiten Beschreibung
+Nachfolgend werden kurz die Funktionen der jeweiligen Seite der Anwendung beschrieben:
+
+TBD............
+
+## Entwickler Dokumentation
+Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeisterschaften
+
 ## Icons
 - SwimmingStyles.png: https://www.vecteezy.com/vector-art/349116-swimming-aqua-aquatic-sport-game-icon-symbol-sign-pictogram
 - icons8-child-64.png: https://icons8.com/icon/67246/babys-room

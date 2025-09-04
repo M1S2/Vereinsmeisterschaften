@@ -34,7 +34,18 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Orientation="Horizontal">
             <Image Height="60" HorizontalAlignment="Left" Source="{StaticResource DrawingImage_TSVLogo}"/>
             <TextBlock Text="{x:Static properties:Resources.AppDisplayName}" VerticalAlignment="Center" FontSize="{StaticResource XLargeFontSize}" Margin="20,0"/>
-            <TextBlock Text="{Binding CompetitionYear}" VerticalAlignment="Center" FontSize="{StaticResource XXLargeFontSize}"/>
+            <TextBlock Text="{Binding CompetitionYear}" VerticalAlignment="Center" FontSize="{StaticResource XXLargeFontSize}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CompetitionYear}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <Image Height="60" HorizontalAlignment="Left" Margin="20,0" Source="{StaticResource DrawingImage_AppIcon}"/>
         </StackPanel>
 

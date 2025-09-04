@@ -194,7 +194,7 @@
         
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" MaxHeight="400" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" IsExpanded="True" MaxHeight="400" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="25" Text="%...%"/>

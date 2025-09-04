@@ -16,11 +16,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private IPersonService _personService;
         private IWorkspaceService _workspaceService;
-        private IRaceService _raceService;
-        private IScoreService _scoreService;
-        private IServiceProvider _serviceProvider;
         
         private readonly IEnumerable<IDocumentStrategy> _documentStrategies;
         private PersonStartFilters _personStartFilter = PersonStartFilters.None;
@@ -29,19 +25,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <summary>
         /// Constructor for the DocumentService.
         /// </summary>
-        /// <param name="personService"><see cref="IPersonService"/> object</param>
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
-        /// <param name="raceService"><see cref="IRaceService"/> object</param>
-        /// <param name="scoreService"><see cref="IScoreService"/> object</param>
-        /// <param name="serviceProvider"><see cref="IServiceProvider"/> object</param>
         /// <param name="documentStrategies">List of <see cref="IDocumentStrategy"/> objects</param>
-        public DocumentService(IPersonService personService, IWorkspaceService workspaceService, IRaceService raceService, IScoreService scoreService, IServiceProvider serviceProvider, IEnumerable<IDocumentStrategy> documentStrategies)
+        public DocumentService(IWorkspaceService workspaceService, IEnumerable<IDocumentStrategy> documentStrategies)
         {
-            _personService = personService;
             _workspaceService = workspaceService;
-            _raceService = raceService;
-            _scoreService = scoreService;
-            _serviceProvider = serviceProvider;
             _documentStrategies = documentStrategies;
         }
 

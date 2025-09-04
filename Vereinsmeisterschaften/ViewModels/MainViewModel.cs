@@ -11,7 +11,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// View model for the main view of the application.
 /// </summary>
-public class MainViewModel : ObservableObject, INavigationAware
+public class MainViewModel : ObservableObject
 {
     /// <summary>
     /// Competition year setting value get from the workspace settings.
@@ -73,6 +73,7 @@ public class MainViewModel : ObservableObject, INavigationAware
     {
         _navigationService = navigationService;
         _workspaceService = workspaceService;
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
     }
 
     private void _workspaceService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -92,17 +93,5 @@ public class MainViewModel : ObservableObject, INavigationAware
                 }
             default: break;
         }
-    }
-
-    /// <inheritdoc/>
-    public void OnNavigatedTo(object parameter)
-    {
-        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
-    }
-
-    /// <inheritdoc/>
-    public void OnNavigatedFrom()
-    {
-        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 }

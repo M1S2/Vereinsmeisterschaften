@@ -1,6 +1,6 @@
 /*! @page page_2_document_creation 2 - Document Creation
 
-TBC...
+This page describes how to add new placeholders and document types.
 
 @section newPlaceholders_sec Add new Placeholders
 - Adapt Placeholders.cs (Vereinsmeisterschaften.Core > Documents):
@@ -17,4 +17,18 @@ TBC...
   - Adapt corresponding DocumentPlaceholderResolvers (Vereinsmeisterschaften.Core > Documents):
     - Add the placeholder key to the SupportedPlaceholderKeys list
     - Implement the logic in the ResolveTextPlaceholders method
+
+@section newDocumentTypes_sec Add new document type
+- Add a new enum value to <code>DocumentCreationTypes</code> in DocumentCreationTypes.cs (Vereinsmeisterschaften.Core > Models)
+- Add a new class inheriting from DocumentStrategyBase in the Documents folder (Vereinsmeisterschaften.Core > Documents)
+- Add the new strategy to the <code>ConfigureServices()</code> method in App (Vereinsmeisterschaften > App.xaml.cs):<br>e.g. <code>services.AddSingleton&lt;IDocumentStrategy, YourNewDocumentStrategy&gt;</code>)
+- Add a new case to the <code>CreateDocumentCommand</code> in CreateDocumentViewModel.cs (Vereinsmeisterschaften > ViewModels):<br>e.g. <code>await _documentService.CreateDocument(DocumentCreationTypes.NewDocument);</code>
+- Add following resources to the Resources.resx (Vereinsmeisterschaften > Properties):
+  - Create<DocumentType>String (e.g. CreateCertificatesString): Button text for creating the document
+  - Create<DocumentType>ResultString (e.g. CreateCertificatesResultString): Result message after creating the document
+- Extend the CreateDocumentsPage.xaml (Vereinsmeisterschaften > Views)
+  - Add a new column to the Grid
+  - Add a new CreateDocumentUserControl
+  - Extend the Placeholder Info and add a new <code>GridViewColumn</code> for the new document type
+
  */

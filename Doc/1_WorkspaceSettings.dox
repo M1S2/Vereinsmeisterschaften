@@ -1,5 +1,28 @@
 /*! @page page_1_workspace_settings 1 - Workspace Settings
 
-TBD...
+This page describes how to add new workspace settings and groups.
+
+@section newWorkspaceSettingsGroup_sec Add new Workspace Settings Group
+- Add a new key for the group to WorkspaceSettings.cs (Vereinsmeisterschaften.Core > Settings):<br>e.g. <code>public const string GROUP_NEWGROUP = "NewGroup";</code>
+- Init the group in <code>initializeSettings()</code> in WorkspaceSettings.cs:<br>e.g. <code>WorkspaceSettingsGroup groupNewGroup = GetGroup(GROUP_NEWGROUP, true);</code>
+- Add a new resource to the Resources.resx (Vereinsmeisterschaften > Properties):
+  - Settings<GroupName>String (e.g. SettingsNewGroupString): Group Name that is shown in the UI
+- Add the group to the <code>GroupKeyLabelsDict</code> in WorkspaceSettingViewConfigs.cs (Vereinsmeisterschaften > ViewModels):<br>e.g. <code>{ WorkspaceSettings.GROUP_NEWGROUP, Resources.SettingsNewGroupString }</code>
+
+@section newWorkspaceSettings_sec Add new Workspace Settings
+- Add a new key for the setting to WorkspaceSettings.cs (Vereinsmeisterschaften.Core > Settings):<br>e.g. <code>public const string SETTING_GENERAL_NEWSETTING = "NewSetting";</code>
+- Init the setting in <code>initializeSettings()</code> in WorkspaceSettings.cs:<br>e.g. <code>groupNewGroup.MakeSureSettingExists<ushort>(SETTING_GENERAL_NEWSETTING, defaultValue, minValue, maxValue);</code>
+- Add a resource to the Resources.resx (Vereinsmeisterschaften > Properties):
+  - <SettingName>String (e.g. NewSettingString): Setting Name that is shown in the UI
+- Add a resource to the Tooltips.resx (Vereinsmeisterschaften > Properties):
+  - Tooltip<SettingName> (e.g. TooltipNewSetting): Tooltip for the setting that is shown in the UI
+- Add the setting to the <code>SettingKeyConfigDict</code> in WorkspaceSettingViewConfigs.cs (Vereinsmeisterschaften > ViewModels):<br>
+  e.g.<br>
+  <code>
+  {<br>
+    WorkspaceSettings.SETTING_GENERAL_NEWSETTING,<br>
+    new WorkspaceSettingViewConfig() { Label=Resources.NewSettingString, Tooltip = Tooltips.TooltipNewSetting, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }<br>
+  },
+  </code>
 
  */

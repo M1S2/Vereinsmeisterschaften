@@ -544,4 +544,22 @@
   <data name="WeightStyleOrderString" xml:space="preserve">
     <value>Weight Style Order (%)</value>
   </data>
+  <data name="PriorityStyleBreaststrokeString" xml:space="preserve">
+    <value>Priority for style breaststroke</value>
+  </data>
+  <data name="PriorityStyleFreestyleString" xml:space="preserve">
+    <value>Priority for style freestyle</value>
+  </data>
+  <data name="PriorityStyleBackstrokeString" xml:space="preserve">
+    <value>Priority for style backstroke</value>
+  </data>
+  <data name="PriorityStyleButterflyString" xml:space="preserve">
+    <value>Priority for style butterfly</value>
+  </data>
+  <data name="PriorityStyleMedleyString" xml:space="preserve">
+    <value>Priority for style medley</value>
+  </data>
+  <data name="PriorityStyleWaterfleaString" xml:space="preserve">
+    <value>Priority for style waterflea</value>
+  </data>
 </root>

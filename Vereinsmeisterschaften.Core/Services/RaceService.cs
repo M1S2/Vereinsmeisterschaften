@@ -383,6 +383,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 _nextVariantID++;
 
                 racesVariant.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+                racesVariant.CalculateScore();
             }
             OnPropertyChanged(nameof(AllRacesVariants));
             return newVariantID;

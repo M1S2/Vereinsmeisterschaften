@@ -146,6 +146,60 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style backstroke during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleBackstroke {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleBackstroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleBreaststroke {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleBreaststroke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style butterfly during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleButterfly {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleButterfly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleFreestyle {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleFreestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style medley during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleMedley {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleMedley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style waterflea during score calculation (step style order). ähnelt.
+        /// </summary>
+        public static string TooltipPriorityStyleWaterflea {
+            get {
+                return ResourceManager.GetString("TooltipPriorityStyleWaterflea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
         /// </summary>
         public static string TooltipRaceVariantContainsError {

@@ -217,4 +217,22 @@ Template Postfix: "_Template"
   <data name="TooltipWeightStartGenders" xml:space="preserve">
     <value>Gewichtung für die Punkte für Start Geschlechter (Einheitliche Geschlechter innerhalb eines Rennens sind besser als gemischte Rennen).</value>
   </data>
+  <data name="TooltipPriorityStyleBreaststroke" xml:space="preserve">
+    <value>Priorität for den Stil Brust während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
+  <data name="TooltipPriorityStyleFreestyle" xml:space="preserve">
+    <value>Priorität for den Stil Kraul während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
+  <data name="TooltipPriorityStyleBackstroke" xml:space="preserve">
+    <value>Priorität for den Stil Rücken während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
+  <data name="TooltipPriorityStyleButterfly" xml:space="preserve">
+    <value>Priorität for den Stil Delphin während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
+  <data name="TooltipPriorityStyleMedley" xml:space="preserve">
+    <value>Priorität for den Stil Lagen während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
+  <data name="TooltipPriorityStyleWaterflea" xml:space="preserve">
+    <value>Priorität for den Stil Wasserfloh während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
+  </data>
 </root>

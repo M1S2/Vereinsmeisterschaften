@@ -545,4 +545,22 @@ Alle Starts sind zugewiesen.</value>
   <data name="WeightStyleOrderString" xml:space="preserve">
     <value>Gewichtung Lagenreihenfolge (%)</value>
   </data>
+  <data name="PriorityStyleBreaststrokeString" xml:space="preserve">
+    <value>Priorität für Stil Brust</value>
+  </data>
+  <data name="PriorityStyleFreestyleString" xml:space="preserve">
+    <value>Priorität für Stil Kraul</value>
+  </data>
+  <data name="PriorityStyleBackstrokeString" xml:space="preserve">
+    <value>Priorität für Stil Rücken</value>
+  </data>
+  <data name="PriorityStyleButterflyString" xml:space="preserve">
+    <value>Priorität für Stil Delphin</value>
+  </data>
+  <data name="PriorityStyleMedleyString" xml:space="preserve">
+    <value>Priorität für Stil Lagen</value>
+  </data>
+  <data name="PriorityStyleWaterfleaString" xml:space="preserve">
+    <value>Priorität für Stil Wasserfloh</value>
+  </data>
 </root>

@@ -530,4 +530,19 @@ Alle Starts sind zugewiesen.</value>
   <data name="CompetitionIDString" xml:space="preserve">
     <value>Wettkampf ID</value>
   </data>
+  <data name="WeightSingleStartsString" xml:space="preserve">
+    <value>Gewichtung für Einzelstarts (%)</value>
+  </data>
+  <data name="WeightSameStyleSequenceString" xml:space="preserve">
+    <value>Gewichtung für gleiche Lage in Reihe (%)</value>
+  </data>
+  <data name="WeightPersonStartPausesString" xml:space="preserve">
+    <value>Gewichtung Pausen für Personen (%)</value>
+  </data>
+  <data name="WeightStartGendersString" xml:space="preserve">
+    <value>Gewichtung gleiche Geschlechter (%)</value>
+  </data>
+  <data name="WeightStyleOrderString" xml:space="preserve">
+    <value>Gewichtung Lagenreihenfolge (%)</value>
+  </data>
 </root>

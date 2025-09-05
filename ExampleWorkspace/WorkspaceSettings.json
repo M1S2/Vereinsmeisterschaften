@@ -26,6 +26,26 @@
       {
         "Key": "MinRacesVariantsScore",
         "Value": 20.0
+      },
+      {
+        "Key": "WeightSingleStarts",
+        "Value": 15.0
+      },
+      {
+        "Key": "WeightSameStyleSequence",
+        "Value": 5.0
+      },
+      {
+        "Key": "WeightPersonStartPauses",
+        "Value": 65.0
+      },
+      {
+        "Key": "WeightStyleOrder",
+        "Value": 10.0
+      },
+      {
+        "Key": "WeightStartGenders",
+        "Value": 5.0
       }
     ]
   },

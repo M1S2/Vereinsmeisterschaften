@@ -202,4 +202,19 @@ Template Postfix: "_Template"
 -&gt; Ausgabedatei (ohne Filterung): "Urkunden.docx"
 -&gt; Ausgabedatei (mit Filterung nach dem Stil): "Urkunden_Brust.docx"</value>
   </data>
+  <data name="TooltipWeightSingleStarts" xml:space="preserve">
+    <value>Gewichtung für die Punkte für Einzelstarts (Je weniger Rennen mit nur einem Start, desto besser).</value>
+  </data>
+  <data name="TooltipWeightSameStyleSequence" xml:space="preserve">
+    <value>Gewichtung für die Punkte für die gleichen Stile in Reihe (Je mehr aufeinanderfolgende Rennen den gleichen Stil haben, desto besser).</value>
+  </data>
+  <data name="TooltipWeightPersonStartPauses" xml:space="preserve">
+    <value>Gewichtung für die Punkte für die Pausen einer Person (Je mehr Pausen zwischen den Starts einer Person, desto besser).</value>
+  </data>
+  <data name="TooltipWeightStyleOrder" xml:space="preserve">
+    <value>Gewichtung für die Punkte für die Lagen Reihenfolge (Es gibt eine gewünschte Reihenfolge der Lagen. Je mehr Rennen sich an diese Reihenfolge halten, desto besser).</value>
+  </data>
+  <data name="TooltipWeightStartGenders" xml:space="preserve">
+    <value>Gewichtung für die Punkte für Start Geschlechter (Einheitliche Geschlechter innerhalb eines Rennens sind besser als gemischte Rennen).</value>
+  </data>
 </root>

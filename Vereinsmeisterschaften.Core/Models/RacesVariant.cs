@@ -2,6 +2,9 @@
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
+using Windows.Networking.NetworkOperators;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -118,20 +121,24 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Constructor for a new <see cref="RacesVariant"/> (create an empty <see cref="Race"/> collection).
         /// </summary>
-        public RacesVariant()
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> used to get the weights used to calculate the scores.</param>
+        public RacesVariant(IWorkspaceService workspaceService = null)
         {
             Races = new ObservableCollection<Race>();
             Races.CollectionChanged += Races_CollectionChanged;
+            _workspaceService = workspaceService;
         }
 
         /// <summary>
         /// Constructor for a new <see cref="RacesVariant"/> (copy an <see cref="Race"/> collection).
         /// </summary>
         /// <param name="races">List of <see cref="Race"/> to copy</param>
-        public RacesVariant(List<Race> races)
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> used to get the weights used to calculate the scores.</param>
+        public RacesVariant(List<Race> races, IWorkspaceService workspaceService = null)
         {
             Races = new ObservableCollection<Race>(races);
             Races.CollectionChanged += Races_CollectionChanged;
+            _workspaceService = workspaceService;
 
             Races_CollectionChanged(Races, null);
         }
@@ -140,10 +147,12 @@ namespace Vereinsmeisterschaften.Core.Models
         /// Constructor for a new <see cref="RacesVariant"/> (copy an <see cref="Race"/> collection).
         /// </summary>
         /// <param name="races">Observable collection of <see cref="Race"/> to copy</param>
-        public RacesVariant(ObservableCollection<Race> races)
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> used to get the weights used to calculate the scores.</param>
+        public RacesVariant(ObservableCollection<Race> races, IWorkspaceService workspaceService = null)
         {
             Races = races;
             Races.CollectionChanged += Races_CollectionChanged;
+            _workspaceService = workspaceService;
 
             Races_CollectionChanged(Races, null);
         }
@@ -154,7 +163,8 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="other"><see cref="RacesVariant"/> object to clone</param>
         /// <param name="deepClone">If true, the <see cref="Races"/> are also cloned. Otherwise the same <see cref="Races"/> references are used.</param>
         /// <param name="deepCloneRaces">If true, the elements of the <see cref="Races"/> are also cloned. Otherwise the same race references are used.</param>
-        public RacesVariant(RacesVariant other, bool deepClone = true, bool deepCloneRaces = true) : this()
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> used to get the weights used to calculate the scores. If this is <see langword="null"/> the value from the cloned object is taken</param>
+        public RacesVariant(RacesVariant other, bool deepClone = true, bool deepCloneRaces = true, IWorkspaceService workspaceService = null) : this()
         {
             if(other == null) { return; }
             if (deepClone)
@@ -169,9 +179,14 @@ namespace Vereinsmeisterschaften.Core.Models
             }
 
             Races.CollectionChanged += Races_CollectionChanged;
+            _workspaceService = workspaceService ?? other._workspaceService;
 
             Races_CollectionChanged(Races, null);
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+        private IWorkspaceService _workspaceService;
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -234,12 +249,19 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             get
             {
+                double weightSingleStarts = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS) ?? 5;
+                double weightSameStyleSequence = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE) ?? 5;
+                double weightPersonStartPauses = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES) ?? 65;
+                double weightStyleOrder = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER) ?? 10;
+                double weightStartGenders = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS) ?? 5;
+                double sumWeights = weightSingleStarts + weightSameStyleSequence + weightPersonStartPauses + weightStyleOrder + weightStartGenders;
+
                 double score = 0;
-                score += ScoreSingleStarts * 0.15;          // 15% Weight
-                score += ScoreSameStyleSequence * 0.05;     //  5% Weight
-                score += ScorePersonStartPauses * 0.65;     // 65% Weight
-                score += ScoreStyleOrder * 0.10;            // 10% Weight
-                score += ScoreStartGenders * 0.05;          //  5% Weight
+                score += ScoreSingleStarts * (weightSingleStarts / sumWeights);
+                score += ScoreSameStyleSequence * (weightSameStyleSequence / sumWeights);
+                score += ScorePersonStartPauses * (weightPersonStartPauses / sumWeights);
+                score += ScoreStyleOrder * (weightStyleOrder / sumWeights);
+                score += ScoreStartGenders * (weightStartGenders / sumWeights);
 
                 return LimitValue(score, 0, 100);
             }

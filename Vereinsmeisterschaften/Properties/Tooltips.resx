@@ -202,4 +202,19 @@ Template Postfix: "_Template"
 -&gt; Output file (without filters): "Certificates.docx"
 -&gt; Output file (with filters by style): "Certificates_Breaststroke.docx"</value>
   </data>
+  <data name="TooltipWeightSingleStarts" xml:space="preserve">
+    <value>Weight for the score for single starts (The less races with only one start the better).</value>
+  </data>
+  <data name="TooltipWeightSameStyleSequence" xml:space="preserve">
+    <value>Weight for the score for same styles in sequence (The more consecutive races with the same style the better).</value>
+  </data>
+  <data name="TooltipWeightPersonStartPauses" xml:space="preserve">
+    <value>Weight for the score for person pauses (The more pause between the starts of a person the better).</value>
+  </data>
+  <data name="TooltipWeightStyleOrder" xml:space="preserve">
+    <value>Weight for the score for style order (There is a preferred order for the styles. The more the races follow this order, the better.).</value>
+  </data>
+  <data name="TooltipWeightStartGenders" xml:space="preserve">
+    <value>Weight for the score for start genders (Homogenous genders in starts are better than heterogeneous ones).</value>
+  </data>
 </root>

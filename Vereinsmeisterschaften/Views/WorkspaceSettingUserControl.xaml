@@ -8,45 +8,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="250">
 
-    <DockPanel ToolTip="{Binding Tooltip}" LastChildFill="True">
-        <controls:FontIcon DockPanel.Dock="Left" Margin="5,5,0,5"
+    <Border BorderBrush="{DynamicResource MahApps.Brushes.Gray4}" BorderThickness="0,0.2">
+        <DockPanel ToolTip="{Binding Tooltip}" LastChildFill="True">
+            <controls:FontIcon DockPanel.Dock="Left" Margin="5,5,0,5"
                            FontSize="30" Glyph="{Binding Icon}"/>
 
-        <TextBlock DockPanel.Dock="Left" Margin="10,0,10,0" VerticalAlignment="Center" MinWidth="400"
+            <TextBlock DockPanel.Dock="Left" Margin="10,0,10,0" VerticalAlignment="Center" MinWidth="400"
                    Text="{Binding Label}" FontSize="{StaticResource MediumFontSize}"/>
 
-        <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0" 
+            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0" 
                 Command="{Binding SetToDefaultCommand}">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleDefaultSettingsButton}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding HasDefaultValue}" Value="True">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding SupportResetToDefault}" Value="False">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleDefaultSettingsButton}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasDefaultValue}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SupportResetToDefault}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-        <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0"
+            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,0,0,0"
                 Command="{Binding ResetCommand}">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
-                    <Setter Property="Visibility" Value="Hidden"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding HasChanged}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasChanged}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-        <ContentControl DockPanel.Dock="Right" 
+            <ContentControl DockPanel.Dock="Right" 
                         Content="{Binding}" ContentTemplate="{Binding EditorTemplate}" />
-    </DockPanel>
+        </DockPanel>
+    </Border>
 </UserControl>

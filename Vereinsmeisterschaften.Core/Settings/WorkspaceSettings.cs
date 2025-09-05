@@ -19,6 +19,11 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION = "NumberRacesVariantsAfterCalculation";
         public const string SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS = "MaxRacesVariantCalculationLoops";
         public const string SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE = "MinRacesVariantsScore";
+        public const string SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS = "WeightSingleStarts";
+        public const string SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE = "WeightSameStyleSequence";
+        public const string SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES = "WeightPersonStartPauses";
+        public const string SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER = "WeightStyleOrder";
+        public const string SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS = "WeightStartGenders";
 
         public const string GROUP_DOCUMENT_CREATION = "DocumentCreation";
         public const string SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER = "PlaceholderMarker";
@@ -58,6 +63,11 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION, 100, 1, 1000);
             groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS, 1000000, 1, int.MaxValue);
             groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE, 90.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS, 15.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE, 5.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES, 65.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER, 10.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS, 5.0, 0.0, 100.0);
 
             // +++++ Group Document Creation +++++
             WorkspaceSettingsGroup groupDocumentCreation = GetGroup(GROUP_DOCUMENT_CREATION, true);

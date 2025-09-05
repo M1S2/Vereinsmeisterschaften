@@ -162,7 +162,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     else
                     {
                         List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress);
-                        RacesVariant bestRacesVariant = new RacesVariant(raceList);
+                        RacesVariant bestRacesVariant = new RacesVariant(raceList, _workspaceService);
                         bestRacesVariant.IsPersistent = true;
                         uiContext.Send((d) =>
                         {
@@ -172,7 +172,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
 
                     if (PersistedRacesVariant == null) { _persistedRacesVariantOnLoad = null; }
-                    else { _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true); }
+                    else { _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true, _workspaceService); }
 
                     PersistentPath = path;
                     importingResult = true;
@@ -285,7 +285,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             }
                         });
 
-                        _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true);
+                        _persistedRacesVariantOnLoad = new RacesVariant(PersistedRacesVariant, true, true, _workspaceService);
                     }
                     saveResult = true;
                 }

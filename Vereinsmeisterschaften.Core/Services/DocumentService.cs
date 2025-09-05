@@ -277,7 +277,9 @@ namespace Vereinsmeisterschaften.Core.Services
             // Convert the docx file to pdf
             string outputFilePdf = docxFile.Replace(".docx", ".pdf");
             File.Delete(outputFilePdf);
-            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, GetDocumentPathAbsolute(WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, _workspaceService));
+
+            string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
+            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, libreOfficePath);
         }
 
         #endregion

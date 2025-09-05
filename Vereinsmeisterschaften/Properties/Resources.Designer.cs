@@ -1271,6 +1271,51 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Person Pauses (%) ähnelt.
+        /// </summary>
+        public static string WeightPersonStartPausesString {
+            get {
+                return ResourceManager.GetString("WeightPersonStartPausesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Same Style Sequence (%) ähnelt.
+        /// </summary>
+        public static string WeightSameStyleSequenceString {
+            get {
+                return ResourceManager.GetString("WeightSameStyleSequenceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Single Starts (%) ähnelt.
+        /// </summary>
+        public static string WeightSingleStartsString {
+            get {
+                return ResourceManager.GetString("WeightSingleStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Start Genders (%) ähnelt.
+        /// </summary>
+        public static string WeightStartGendersString {
+            get {
+                return ResourceManager.GetString("WeightStartGendersString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Style Order (%) ähnelt.
+        /// </summary>
+        public static string WeightStyleOrderString {
+            get {
+                return ResourceManager.GetString("WeightStyleOrderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
         /// </summary>
         public static string WorkspacePageTitle {

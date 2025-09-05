@@ -27,6 +27,7 @@ namespace Vereinsmeisterschaften.ViewModels
                 WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR,
                 new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Tooltips.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }
             },
+            // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES,
                 new WorkspaceSettingViewConfig() { Label=Resources.NumberOfSwimLanesString, Tooltip = Tooltips.TooltipNumberOfSwimLanes, Icon = "\uE9E9", Editor = WorkspaceSettingEditorTypes.Numeric }
@@ -43,6 +44,27 @@ namespace Vereinsmeisterschaften.ViewModels
                 WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE,
                 new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Tooltips.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric }
             },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS,
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightSingleStartsString, Tooltip = Tooltips.TooltipWeightSingleStarts, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE,
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightSameStyleSequenceString, Tooltip = Tooltips.TooltipWeightSameStyleSequence, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES,
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightPersonStartPausesString, Tooltip = Tooltips.TooltipWeightPersonStartPauses, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER,
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightStyleOrderString, Tooltip = Tooltips.TooltipWeightStyleOrder, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS,
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightStartGendersString, Tooltip = Tooltips.TooltipWeightStartGenders, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER,
                 new WorkspaceSettingViewConfig() { Label=Resources.PlaceholderMarkerString, Tooltip = Tooltips.TooltipPlaceholderMarker, Icon = "\uE94C", Editor = WorkspaceSettingEditorTypes.String }

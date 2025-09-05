@@ -529,4 +529,19 @@
   <data name="CompetitionIDString" xml:space="preserve">
     <value>Competition ID</value>
   </data>
+  <data name="WeightSingleStartsString" xml:space="preserve">
+    <value>Weight Single Starts (%)</value>
+  </data>
+  <data name="WeightSameStyleSequenceString" xml:space="preserve">
+    <value>Weight Same Style Sequence (%)</value>
+  </data>
+  <data name="WeightPersonStartPausesString" xml:space="preserve">
+    <value>Weight Person Pauses (%)</value>
+  </data>
+  <data name="WeightStartGendersString" xml:space="preserve">
+    <value>Weight Start Genders (%)</value>
+  </data>
+  <data name="WeightStyleOrderString" xml:space="preserve">
+    <value>Weight Style Order (%)</value>
+  </data>
 </root>

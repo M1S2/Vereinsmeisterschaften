@@ -260,6 +260,51 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for person pauses (The more pause between the starts of a person the better). ähnelt.
+        /// </summary>
+        public static string TooltipWeightPersonStartPauses {
+            get {
+                return ResourceManager.GetString("TooltipWeightPersonStartPauses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for same styles in sequence (The more consecutive races with the same style the better). ähnelt.
+        /// </summary>
+        public static string TooltipWeightSameStyleSequence {
+            get {
+                return ResourceManager.GetString("TooltipWeightSameStyleSequence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for single starts (The less races with only one start the better). ähnelt.
+        /// </summary>
+        public static string TooltipWeightSingleStarts {
+            get {
+                return ResourceManager.GetString("TooltipWeightSingleStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for start genders (Homogenous genders in starts are better than heterogeneous ones). ähnelt.
+        /// </summary>
+        public static string TooltipWeightStartGenders {
+            get {
+                return ResourceManager.GetString("TooltipWeightStartGenders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for style order (There is a preferred order for the styles. The more the races follow this order, the better.). ähnelt.
+        /// </summary>
+        public static string TooltipWeightStyleOrder {
+            get {
+                return ResourceManager.GetString("TooltipWeightStyleOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close the current workspace. If there are unsaved changes, there will be a dialog before closing. ähnelt.
         /// </summary>
         public static string TooltipWorkspaceClose {

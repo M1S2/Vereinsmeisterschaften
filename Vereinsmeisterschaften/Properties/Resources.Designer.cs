@@ -776,6 +776,60 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style backstroke ähnelt.
+        /// </summary>
+        public static string PriorityStyleBackstrokeString {
+            get {
+                return ResourceManager.GetString("PriorityStyleBackstrokeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style breaststroke ähnelt.
+        /// </summary>
+        public static string PriorityStyleBreaststrokeString {
+            get {
+                return ResourceManager.GetString("PriorityStyleBreaststrokeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style butterfly ähnelt.
+        /// </summary>
+        public static string PriorityStyleButterflyString {
+            get {
+                return ResourceManager.GetString("PriorityStyleButterflyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style freestyle ähnelt.
+        /// </summary>
+        public static string PriorityStyleFreestyleString {
+            get {
+                return ResourceManager.GetString("PriorityStyleFreestyleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style medley ähnelt.
+        /// </summary>
+        public static string PriorityStyleMedleyString {
+            get {
+                return ResourceManager.GetString("PriorityStyleMedleyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority for style waterflea ähnelt.
+        /// </summary>
+        public static string PriorityStyleWaterfleaString {
+            get {
+                return ResourceManager.GetString("PriorityStyleWaterfleaString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The distances in this race don&apos;t match. ähnelt.
         /// </summary>
         public static string RaceDistancesMismatchString {

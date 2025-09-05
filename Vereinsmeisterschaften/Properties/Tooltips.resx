@@ -217,4 +217,22 @@ Template Postfix: "_Template"
   <data name="TooltipWeightStartGenders" xml:space="preserve">
     <value>Weight for the score for start genders (Homogenous genders in starts are better than heterogeneous ones).</value>
   </data>
+  <data name="TooltipPriorityStyleBreaststroke" xml:space="preserve">
+    <value>Priority used for style breaststroke during score calculation (step style order).</value>
+  </data>
+  <data name="TooltipPriorityStyleFreestyle" xml:space="preserve">
+    <value>Priority used for style breaststroke during score calculation (step style order).</value>
+  </data>
+  <data name="TooltipPriorityStyleBackstroke" xml:space="preserve">
+    <value>Priority used for style backstroke during score calculation (step style order).</value>
+  </data>
+  <data name="TooltipPriorityStyleButterfly" xml:space="preserve">
+    <value>Priority used for style butterfly during score calculation (step style order).</value>
+  </data>
+  <data name="TooltipPriorityStyleMedley" xml:space="preserve">
+    <value>Priority used for style medley during score calculation (step style order).</value>
+  </data>
+  <data name="TooltipPriorityStyleWaterflea" xml:space="preserve">
+    <value>Priority used for style waterflea during score calculation (step style order).</value>
+  </data>
 </root>

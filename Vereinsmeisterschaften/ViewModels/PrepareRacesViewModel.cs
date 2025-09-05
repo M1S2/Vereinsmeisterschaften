@@ -445,6 +445,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public void OnNavigatedTo(object parameter)
     {
         _raceService.CleanupRacesVariants();
+        _raceService.RecalculateVariantIDs();
 
         OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));

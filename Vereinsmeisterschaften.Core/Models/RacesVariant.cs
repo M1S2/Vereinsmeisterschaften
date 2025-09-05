@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
-using Windows.Networking.NetworkOperators;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -127,6 +126,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Races = new ObservableCollection<Race>();
             Races.CollectionChanged += Races_CollectionChanged;
             _workspaceService = workspaceService;
+            if (_workspaceService != null) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }
         }
 
         /// <summary>
@@ -139,6 +139,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Races = new ObservableCollection<Race>(races);
             Races.CollectionChanged += Races_CollectionChanged;
             _workspaceService = workspaceService;
+            if (_workspaceService != null) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }
 
             Races_CollectionChanged(Races, null);
         }
@@ -153,6 +154,7 @@ namespace Vereinsmeisterschaften.Core.Models
             Races = races;
             Races.CollectionChanged += Races_CollectionChanged;
             _workspaceService = workspaceService;
+            if (_workspaceService != null) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }
 
             Races_CollectionChanged(Races, null);
         }
@@ -180,8 +182,17 @@ namespace Vereinsmeisterschaften.Core.Models
 
             Races.CollectionChanged += Races_CollectionChanged;
             _workspaceService = workspaceService ?? other._workspaceService;
+            if (_workspaceService != null) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }
 
             Races_CollectionChanged(Races, null);
+        }
+
+        /// <summary>
+        /// Destructor of the <see cref="RacesVariant"/> class. Unsubscribe from events.
+        /// </summary>
+        ~RacesVariant()
+        {
+            if (_workspaceService != null) { _workspaceService.PropertyChanged -= workspaceServicePropertyChangedEvent; }
         }
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -189,6 +200,14 @@ namespace Vereinsmeisterschaften.Core.Models
         private IWorkspaceService _workspaceService;
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+        private void workspaceServicePropertyChangedEvent(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IWorkspaceService.Settings))
+            {
+                CalculateScore();
+            }
+        }
 
         private void updateRaceStartsCollectionChangedEvent()
         {
@@ -458,31 +477,32 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-        private readonly Dictionary<SwimmingStyles, int> STYLE_PRIORITY = new()
-        {
-            { SwimmingStyles.Breaststroke, 1 },     // lower numbers should start earlier
-            { SwimmingStyles.Freestyle, 2 },
-            { SwimmingStyles.Backstroke, 3 },
-            { SwimmingStyles.Butterfly, 4 },
-            { SwimmingStyles.Medley, 5 },
-            { SwimmingStyles.WaterFlea, 6 }
-        };
-
         /// <summary>
         /// Score for style order:
-        /// There is a preferred order for the styles (<see cref="STYLE_PRIORITY"/>). The more the races follow this order, the better.
+        /// There is a preferred order for the styles (can be defined via the workspace settings). The more the races follow this order, the better.
         /// </summary>
         /// <returns>Score for style order</returns>
         private double EvaluateStyleOrder()
         {
             if (Races.Count == 0) return 100;
 
-            double penalty = 0;
+            // lower numbers should start earlier
+            Dictionary<SwimmingStyles, int> StylePriorities = new()
+            {
+                { SwimmingStyles.Breaststroke, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE) ?? 1 },
+                { SwimmingStyles.Freestyle, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE) ?? 2 },
+                { SwimmingStyles.Backstroke, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE) ?? 3 },
+                { SwimmingStyles.Butterfly, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY) ?? 4 },
+                { SwimmingStyles.Medley, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY) ?? 5 },
+                { SwimmingStyles.WaterFlea, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA) ?? 6 }
+            };
+
+        double penalty = 0;
             foreach (var (race, index) in Races.Select((r, i) => (r, i)))
             {
-                if (STYLE_PRIORITY.TryGetValue(race.Style, out int priority))
+                if (StylePriorities.TryGetValue(race.Style, out int priority))
                 {
-                    int expectedMinIndex = Races.Count * priority / STYLE_PRIORITY.Count;
+                    int expectedMinIndex = Races.Count * priority / StylePriorities.Count;
                     if (index < expectedMinIndex)
                     {
                         penalty += (expectedMinIndex - index);
@@ -490,7 +510,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 }
             }
 
-            double maxPenalty = Races.Count * STYLE_PRIORITY.Count;
+            double maxPenalty = Races.Count * StylePriorities.Count;
             return 100 - LimitValue(100 * (penalty / maxPenalty), 0, 100);
         }
 

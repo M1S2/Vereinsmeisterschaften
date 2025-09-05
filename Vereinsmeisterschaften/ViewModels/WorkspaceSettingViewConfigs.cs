@@ -64,6 +64,30 @@ namespace Vereinsmeisterschaften.ViewModels
                 WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS,
                 new WorkspaceSettingViewConfig() { Label=Resources.WeightStartGendersString, Tooltip = Tooltips.TooltipWeightStartGenders, Icon = "\uE8CB", Editor = WorkspaceSettingEditorTypes.Numeric }
             },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBreaststrokeString, Tooltip = Tooltips.TooltipPriorityStyleBreaststroke, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleFreestyleString, Tooltip = Tooltips.TooltipPriorityStyleFreestyle, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBackstrokeString, Tooltip = Tooltips.TooltipPriorityStyleBackstroke, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleButterflyString, Tooltip = Tooltips.TooltipPriorityStyleButterfly, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleMedleyString, Tooltip = Tooltips.TooltipPriorityStyleMedley, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
+                WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA,
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleWaterfleaString, Tooltip = Tooltips.TooltipPriorityStyleWaterflea, Icon = "\uE8FD", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
             // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER,

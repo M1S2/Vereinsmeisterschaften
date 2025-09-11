@@ -285,27 +285,42 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         ResourceDictionary settingEditorTemplatesResourceDictionary = new ResourceDictionary();
         settingEditorTemplatesResourceDictionary.Source = new Uri("pack://application:,,,/Views/WorkspaceSettingEditorTemplates.xaml", UriKind.RelativeOrAbsolute);
 
-        foreach (WorkspaceSettingsGroup group in model.Groups)
+        foreach (KeyValuePair<string, string> groupViewConfig in WorkspaceSettingViewConfigs.GroupKeyLabelsDict)
         {
-            WorkspaceSettingsGroupViewModel groupVm = new WorkspaceSettingsGroupViewModel(
-                group,
-                WorkspaceSettingViewConfigs.GroupKeyLabelsDict[group.GroupKey],
-                group.Settings.Select(setting =>
-                {
-                    WorkspaceSettingEditorTypes editorType = WorkspaceSettingViewConfigs.SettingKeyConfigDict[setting.Key].Editor;
-                    DataTemplate editorTemplate = settingEditorTemplatesResourceDictionary[editorType.ToString() + "EditorTemplate"] as DataTemplate;
+            // Get the group from the model. If no group with this key exists, skip it.
+            WorkspaceSettingsGroup groupModel = model?.Groups?.FirstOrDefault(g => g.GroupKey == groupViewConfig.Key);
+            if (groupModel == null) { continue; }
 
-                    var valueType = setting.ValueType;
-                    var genericType = typeof(WorkspaceSettingViewModel<>).MakeGenericType(valueType);
-                    return (IWorkspaceSettingViewModel)Activator.CreateInstance(genericType, 
-                                                                                setting,
-                                                                                WorkspaceSettingViewConfigs.SettingKeyConfigDict[setting.Key].Label,
-                                                                                WorkspaceSettingViewConfigs.SettingKeyConfigDict[setting.Key].Tooltip,
-                                                                                WorkspaceSettingViewConfigs.SettingKeyConfigDict[setting.Key].Icon,
-                                                                                editorTemplate,
-                                                                                WorkspaceSettingViewConfigs.SettingKeyConfigDict[setting.Key].SupportResetToDefault)!;
-                }));
+            List<IWorkspaceSettingViewModel> settingsVms = new List<IWorkspaceSettingViewModel>();
 
+            // Iterate over the setting view configs
+            foreach (KeyValuePair<(string, string), WorkspaceSettingViewConfig> settingViewConfig in WorkspaceSettingViewConfigs.SettingKeyConfigDict)
+            {
+                (string groupKey, string settingKey) = settingViewConfig.Key;
+
+                // Only consider settings that belong to the current group
+                if (groupKey != groupViewConfig.Key) { continue; }
+
+                // Get the setting from the model. If no setting with this key exists, skip it.
+                IWorkspaceSetting settingModel = groupModel?.Settings?.FirstOrDefault(s => s.Key == settingKey);
+                if (settingModel == null) { continue; }
+
+                WorkspaceSettingEditorTypes editorType = settingViewConfig.Value?.Editor ?? WorkspaceSettingEditorTypes.String;
+                DataTemplate editorTemplate = settingEditorTemplatesResourceDictionary[editorType.ToString() + "EditorTemplate"] as DataTemplate;
+
+                // Create the view model for this setting
+                Type genericType = typeof(WorkspaceSettingViewModel<>).MakeGenericType(settingModel.ValueType);
+                IWorkspaceSettingViewModel settingVm = (IWorkspaceSettingViewModel)Activator.CreateInstance(genericType,
+                                                                                                            settingModel,
+                                                                                                            settingViewConfig.Value.Label,
+                                                                                                            settingViewConfig.Value.Tooltip,
+                                                                                                            settingViewConfig.Value.Icon,
+                                                                                                            editorTemplate,
+                                                                                                            settingViewConfig.Value.SupportResetToDefault)!;
+                settingsVms.Add(settingVm);
+            }
+
+            WorkspaceSettingsGroupViewModel groupVm = new WorkspaceSettingsGroupViewModel(groupModel, groupViewConfig.Value, settingsVms);
             SettingsGroups.Add(groupVm);
         }
     }

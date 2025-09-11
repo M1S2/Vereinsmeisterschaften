@@ -20,9 +20,14 @@ This page describes how to add new workspace settings and groups.
   e.g.<br>
   <code>
   {<br>
-    WorkspaceSettings.SETTING_GENERAL_NEWSETTING,<br>
+    (WorkspaceSettings.GROUP_NEWGROUP, WorkspaceSettings.SETTING_GENERAL_NEWSETTING),<br>
     new WorkspaceSettingViewConfig() { Label=Resources.NewSettingString, Tooltip = Tooltips.TooltipNewSetting, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }<br>
   },
   </code>
+
+@section workspaceSettingsOrder_sec Order of Workspace Settings
+The order of the workspace settings in the .json file is determined by the order of the settings in WorkspaceSettings.cs (Vereinsmeisterschaften.Core > Settings).
+
+The order of the workspace settings in the UI is determined by the order of the settings in the <code>SettingKeyConfigDict</code> and <code>GroupKeyLabelsDict</code> in WorkspaceSettingViewConfigs.cs (Vereinsmeisterschaften > ViewModels).
 
  */

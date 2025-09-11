@@ -146,7 +146,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style backstroke during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style backstroke during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleBackstroke {
             get {
@@ -155,7 +156,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleBreaststroke {
             get {
@@ -164,7 +166,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style butterfly during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style butterfly during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleButterfly {
             get {
@@ -173,7 +176,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style breaststroke during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleFreestyle {
             get {
@@ -182,7 +186,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style medley during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style medley during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleMedley {
             get {
@@ -191,7 +196,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style waterflea during score calculation (step style order). ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority used for style waterflea during score calculation (step style order).
+        ///Lower numbers should start earlier. ähnelt.
         /// </summary>
         public static string TooltipPriorityStyleWaterflea {
             get {

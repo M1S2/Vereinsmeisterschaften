@@ -233,7 +233,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
-    private INavigationService _navigationService;
     private ProgressDialogController _progressController;
 
     /// <summary>
@@ -243,14 +242,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
-    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, INavigationService navigationService)
+    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
     {
         _raceService = raceService;
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
-        _navigationService = navigationService;
 
         _raceService.PropertyChanged += (sender, e) =>
         {
@@ -272,10 +269,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             ((RelayCommand)RemoveRaceVariantCommand).NotifyCanExecuteChanged();
             ((RelayCommand)ReorderRaceVariantsCommand).NotifyCanExecuteChanged();
         };
-
-        ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;
-        DropAllowedHandlerObj.MaxItemsInTargetCollection = numSwimLanes;
-        _navigationService = navigationService;
 
     }
 
@@ -446,6 +439,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     {
         _raceService.CleanupRacesVariants();
         _raceService.RecalculateVariantIDs();
+
+        ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;
+        DropAllowedHandlerObj.MaxItemsInTargetCollection = numSwimLanes;
 
         OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));

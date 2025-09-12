@@ -46,6 +46,30 @@
       {
         "Key": "WeightStartGenders",
         "Value": 5.0
+      },
+      {
+        "Key": "PriorityStyleBreaststroke",
+        "Value": 1
+      },
+      {
+        "Key": "PriorityStyleFreestyle",
+        "Value": 2
+      },
+      {
+        "Key": "PriorityStyleBackstroke",
+        "Value": 3
+      },
+      {
+        "Key": "PriorityStyleButterfly",
+        "Value": 4
+      },
+      {
+        "Key": "PriorityStyleMedley",
+        "Value": 5
+      },
+      {
+        "Key": "PriorityStyleWaterflea",
+        "Value": 6
       }
     ]
   },

@@ -241,4 +241,13 @@ Lower numbers should start earlier.</value>
     <value>Priority used for style waterflea during score calculation (step style order).
 Lower numbers should start earlier.</value>
   </data>
+  <data name="TooltipBrowse" xml:space="preserve">
+    <value>Browse for file or folder.</value>
+  </data>
+  <data name="TooltipShowResolvedPath" xml:space="preserve">
+    <value>Show resolved path</value>
+  </data>
+  <data name="TooltipHideResolvedPath" xml:space="preserve">
+    <value>Hide resolved path</value>
+  </data>
 </root>

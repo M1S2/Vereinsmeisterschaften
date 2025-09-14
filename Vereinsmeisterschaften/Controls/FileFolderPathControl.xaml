@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Vereinsmeisterschaften.Controls"
+             xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="35" d:DesignWidth="800">
 
@@ -19,13 +20,43 @@
 
     <StackPanel Orientation="Vertical" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}">
         <DockPanel>
-            <Button x:Name="btn_browse" DockPanel.Dock="Right" Content="..." FontSize="12" Width="40" Style="{StaticResource MahApps.Styles.Button.Square}" Click="btn_browse_Click"/>
+             <Button x:Name="btn_showFullPath" DockPanel.Dock="Right" Margin="5,0,0,0" Click="btn_showFullPath_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <!-- Icon: FullScreen -->
+                                <controls:FontIcon FontSize="16" Glyph="&#xE740;"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="ToolTip" Value="{x:Static properties:Tooltips.TooltipShowResolvedPath}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RootFolderForRelativePaths}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ShouldShowFullPath}" Value="True">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <!-- Icon: BackToWindow -->
+                                        <controls:FontIcon FontSize="16" Glyph="&#xE73F;"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="ToolTip" Value="{x:Static properties:Tooltips.TooltipHideResolvedPath}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>                
+            </Button>
+            <Button x:Name="btn_browse" DockPanel.Dock="Right" Content="..." FontSize="12" Width="40" Style="{StaticResource MahApps.Styles.Button.Square}" Click="btn_browse_Click" ToolTip="{x:Static properties:Tooltips.TooltipBrowse}"/>
             <TextBox Text="{Binding FileFolderPath, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
         </DockPanel>
         <DockPanel LastChildFill="True">
             <DockPanel.Style>
                 <Style TargetType="{x:Type DockPanel}">
                     <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShouldShowFullPath}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding RootFolderForRelativePaths}" Value="">
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>

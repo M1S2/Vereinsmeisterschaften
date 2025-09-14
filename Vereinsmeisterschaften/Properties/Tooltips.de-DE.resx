@@ -240,4 +240,13 @@ Kleinere Nummern sollen früher starten.</value>
   <data name="TooltipPriorityStyleWaterflea" xml:space="preserve">
     <value>Priorität for den Stil Wasserfloh während der Berechnung der Punkte (Schritt Reihenfolge der Stile).</value>
   </data>
+  <data name="TooltipBrowse" xml:space="preserve">
+    <value>Datei oder Ordner öffnen.</value>
+  </data>
+  <data name="TooltipShowResolvedPath" xml:space="preserve">
+    <value>Kompletten Pfad anzeigen</value>
+  </data>
+  <data name="TooltipHideResolvedPath" xml:space="preserve">
+    <value>Kompletten Pfad ausblenden</value>
+  </data>
 </root>

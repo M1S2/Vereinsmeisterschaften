@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Controls
@@ -156,6 +157,23 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <summary>
+        /// Indicating whether the <see cref="ResolvedFileFolderPath"/> should be shown.
+        /// Only available when the <see cref="RootFolderForRelativePaths"/> is set.
+        /// </summary>
+        public bool ShouldShowFullPath
+        {
+            get { return (bool)GetValue(ShouldShowFullPathProperty); }
+            set { SetValue(ShouldShowFullPathProperty, value); }
+        }
+
+        /// <summary>
+        /// Dependency property for the <see cref="ShouldShowFullPath"/>.
+        /// </summary>
+        public static readonly DependencyProperty ShouldShowFullPathProperty = DependencyProperty.Register(nameof(ShouldShowFullPath), typeof(bool), typeof(FileFolderPathControl), new PropertyMetadata(false));
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private void btn_browse_Click(object sender, RoutedEventArgs e)
         {
             string tmpFileFolderPath = string.Empty;
@@ -200,5 +218,9 @@ namespace Vereinsmeisterschaften.Controls
             }
         }
 
+        private void btn_showFullPath_Click(object sender, RoutedEventArgs e)
+        {
+            ShouldShowFullPath = !ShouldShowFullPath;
+        }
     }
 }

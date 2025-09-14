@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Browse for file or folder. ähnelt.
+        /// </summary>
+        public static string TooltipBrowse {
+            get {
+                return ResourceManager.GetString("TooltipBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place ähnelt.
         /// </summary>
         public static string TooltipCompetitionYear {
@@ -84,6 +93,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipDocumentOutputFolder {
             get {
                 return ResourceManager.GetString("TooltipDocumentOutputFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hide resolved path ähnelt.
+        /// </summary>
+        public static string TooltipHideResolvedPath {
+            get {
+                return ResourceManager.GetString("TooltipHideResolvedPath", resourceCulture);
             }
         }
         
@@ -247,6 +265,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipRaceVariantKeepWhileCalculationToggleButton {
             get {
                 return ResourceManager.GetString("TooltipRaceVariantKeepWhileCalculationToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show resolved path ähnelt.
+        /// </summary>
+        public static string TooltipShowResolvedPath {
+            get {
+                return ResourceManager.GetString("TooltipShowResolvedPath", resourceCulture);
             }
         }
         

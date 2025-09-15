@@ -16,7 +16,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
         </Style>
-        
+
         <SolidColorBrush x:Key="digitsHighlightBrush" Color="{DynamicResource MahApps.Colors.Accent}"/>
     </UserControl.Resources>
 
@@ -96,7 +96,7 @@
                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Visibility="{Binding MillisecondsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Text="." Style="{StaticResource TimeSpanControlTextBlockStyle}"/>
                     <TextBlock x:Name="txt_milliseconds" PreviewMouseDown="txt_milliseconds_PreviewMouseDown"
-                           Text="{Binding Milliseconds, StringFormat={}{0:000}, UpdateSourceTrigger=PropertyChanged, FallbackValue=000}">
+                               Text="{Binding MillisecondsDisplayed, UpdateSourceTrigger=PropertyChanged, FallbackValue=0}">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
                                 <Style.Triggers>

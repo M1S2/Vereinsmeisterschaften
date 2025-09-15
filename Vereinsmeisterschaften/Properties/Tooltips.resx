@@ -250,4 +250,7 @@ Lower numbers should start earlier.</value>
   <data name="TooltipHideResolvedPath" xml:space="preserve">
     <value>Hide resolved path</value>
   </data>
+  <data name="TooltipTimeInputMillisecondDigits" xml:space="preserve">
+    <value>Number of digits for the time input Millisecond.</value>
+  </data>
 </root>

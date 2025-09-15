@@ -27,6 +27,10 @@ namespace Vereinsmeisterschaften.ViewModels
                 (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR),
                 new WorkspaceSettingViewConfig() { Label=Resources.CompetitionYearString, Tooltip = Tooltips.TooltipCompetitionYear, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }
             },
+            {
+                (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS),
+                new WorkspaceSettingViewConfig() { Label=Resources.TimeInputMillisecondDigitsString, Tooltip = Tooltips.TooltipTimeInputMillisecondDigits, Icon = "\uE916", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
             // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER),

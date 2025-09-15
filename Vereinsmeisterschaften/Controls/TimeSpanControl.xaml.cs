@@ -22,6 +22,11 @@ namespace Vereinsmeisterschaften.Controls
             EditMilliseconds
         }
 
+        /// <summary>
+        /// Maximum number of digits for the milliseconds
+        /// </summary>
+        public const ushort MAX_NUMBER_MILLISECOND_DIGITS = 3;
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
@@ -147,8 +152,62 @@ namespace Vereinsmeisterschaften.Controls
 
         private static void OnTimeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            TimeSpanControl control = obj as TimeSpanControl;
-            control.Value = new TimeSpan(0, control.Hours, control.Minutes, control.Seconds, control.Milliseconds);
+            if (obj is TimeSpanControl control)
+            {
+                control.Value = new TimeSpan(0, control.Hours, control.Minutes, control.Seconds, control.Milliseconds);
+                control.updateMillisecondsDisplayed();
+            }
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Number of digits to display for the milliseconds.
+        /// </summary>
+        public ushort MillisecondDigits
+        {
+            get => (ushort)GetValue(MillisecondDigitsProperty);
+            set => SetValue(MillisecondDigitsProperty, value);
+        }
+
+        /// <summary>
+        /// Dependency property for the <see cref="MillisecondDigits"/> property.
+        /// </summary>
+        public static readonly DependencyProperty MillisecondDigitsProperty = DependencyProperty.Register(nameof(MillisecondDigits), typeof(ushort), typeof(TimeSpanControl), new PropertyMetadata(MAX_NUMBER_MILLISECOND_DIGITS, OnMillisecondDigitsChanged));
+
+        private static void OnMillisecondDigitsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TimeSpanControl control)
+            {
+                if(control.MillisecondDigits < 1) { control.MillisecondDigits = 1; }
+                if (control.MillisecondDigits > MAX_NUMBER_MILLISECOND_DIGITS) { control.MillisecondDigits = MAX_NUMBER_MILLISECOND_DIGITS; }
+                control.updateMillisecondsDisplayed();
+            }
+        }
+
+        /// <summary>
+        /// Read-only property that contains the formatted milliseconds depending on the <see cref="MillisecondDigits"/> property.
+        /// </summary>
+        public string MillisecondsDisplayed
+        {
+            get { return (string)GetValue(MillisecondsDisplayedProperty); }
+            private set { SetValue(MillisecondsDisplayedProperty, value); }
+        }
+
+        private static readonly DependencyPropertyKey MillisecondsDisplayedPropertyKey = DependencyProperty.RegisterReadOnly(nameof(MillisecondsDisplayed), typeof(string), typeof(TimeSpanControl), new PropertyMetadata("000"));
+
+        /// <summary>
+        /// Read-only dependency property for the <see cref="MillisecondsDisplayed"/> property.
+        /// </summary>
+        public static readonly DependencyProperty MillisecondsDisplayedProperty = MillisecondsDisplayedPropertyKey.DependencyProperty;
+
+        private void updateMillisecondsDisplayed()
+        {
+            int factor = (int)Math.Pow(10, MAX_NUMBER_MILLISECOND_DIGITS - MillisecondDigits);
+            int displayedMilliseconds = Milliseconds / factor;
+            string format = new string('0', Math.Max((ushort)1, MillisecondDigits));
+            string formattedMilliseconds = displayedMilliseconds.ToString(format);
+            SetValue(MillisecondsDisplayedPropertyKey, formattedMilliseconds);
         }
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -237,8 +296,17 @@ namespace Vereinsmeisterschaften.Controls
                     }
                     break;
                 case TimeSpanControlEditModes.EditMilliseconds:
-                    Milliseconds = (Milliseconds * oldValueMultiplier) + digit;
-                    if (Milliseconds * 10 >= 999 || _digitEntry_CountEnteredZeroes >= 3) { _digitEntry_StartWithFirstDigit = true; _digitEntry_CountEnteredZeroes = 0; }
+                    int factor = (int)Math.Pow(10, MAX_NUMBER_MILLISECOND_DIGITS - MillisecondDigits); // 1, 10, 100
+                    int maxValue = 1000 - factor; // 900, 990, 999
+
+                    int tmpMilliseconds = (((Milliseconds / factor) * oldValueMultiplier) + digit) * factor;
+                    Milliseconds = Math.Min(maxValue, tmpMilliseconds);
+
+                    if (Milliseconds >= maxValue || Milliseconds * 10 >= maxValue || _digitEntry_CountEnteredZeroes >= MAX_NUMBER_MILLISECOND_DIGITS)
+                    {
+                        _digitEntry_StartWithFirstDigit = true;
+                        _digitEntry_CountEnteredZeroes = 0;
+                    }
                     break;
             }
         }
@@ -260,7 +328,16 @@ namespace Vereinsmeisterschaften.Controls
                     if(Seconds < 59) { Seconds++; }
                     break;
                 case TimeSpanControlEditModes.EditMilliseconds:
-                    if(Milliseconds < 999) { Milliseconds++; }
+                    int step = (int)Math.Pow(10, MAX_NUMBER_MILLISECOND_DIGITS - MillisecondDigits);
+                    int max = 1000 - step; // e.g. 900, 990 oder 999
+                    if (Milliseconds + step <= max)
+                    {
+                        Milliseconds += step;
+                    }
+                    else
+                    {
+                        Milliseconds = max;
+                    }
                     break;
             }
         }
@@ -282,7 +359,15 @@ namespace Vereinsmeisterschaften.Controls
                     if (Seconds > 0) { Seconds--; }
                     break;
                 case TimeSpanControlEditModes.EditMilliseconds:
-                    if (Milliseconds > 0) { Milliseconds--; }
+                    int step = (int)Math.Pow(10, MAX_NUMBER_MILLISECOND_DIGITS - MillisecondDigits);
+                    if (Milliseconds - step >= 0)
+                    {
+                        Milliseconds -= step;
+                    }
+                    else
+                    {
+                        Milliseconds = 0;
+                    }
                     break;
             }
         }

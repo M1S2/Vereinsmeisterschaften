@@ -347,6 +347,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of digits for the time input Millisecond. ähnelt.
+        /// </summary>
+        public static string TooltipTimeInputMillisecondDigits {
+            get {
+                return ResourceManager.GetString("TooltipTimeInputMillisecondDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for person pauses (The more pause between the starts of a person the better). ähnelt.
         /// </summary>
         public static string TooltipWeightPersonStartPauses {

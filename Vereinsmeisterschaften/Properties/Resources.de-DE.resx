@@ -563,4 +563,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="PriorityStyleWaterfleaString" xml:space="preserve">
     <value>Priorität für Stil Wasserfloh</value>
   </data>
+  <data name="TimeInputMillisecondDigitsString" xml:space="preserve">
+    <value>Zeiteingabe Millisekunden Stellen</value>
+  </data>
 </root>

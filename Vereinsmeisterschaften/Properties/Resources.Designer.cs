@@ -1271,6 +1271,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time Input Millisecond Digits ähnelt.
+        /// </summary>
+        public static string TimeInputMillisecondDigitsString {
+            get {
+                return ResourceManager.GetString("TimeInputMillisecondDigitsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TimeInput ähnelt.
         /// </summary>
         public static string TimeInputPageTitle {

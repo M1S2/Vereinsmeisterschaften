@@ -230,7 +230,7 @@
                                             <Setter Property="Content">
                                                 <Setter.Value>
                                                     <Border HorizontalAlignment="Center">
-                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff"/>
+                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
                                                     </Border>
                                                 </Setter.Value>
                                             </Setter>

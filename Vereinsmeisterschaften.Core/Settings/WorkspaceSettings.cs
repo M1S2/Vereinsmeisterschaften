@@ -13,6 +13,7 @@ namespace Vereinsmeisterschaften.Core.Settings
 
         public const string GROUP_GENERAL = "General";
         public const string SETTING_GENERAL_COMPETITIONYEAR = "CompetitionYear";
+        public const string SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS = "TimeInputMillisecondDigits";
 
         public const string GROUP_RACE_CALCULATION = "RaceCalculation";
         public const string SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES = "NumberOfSwimLanes";
@@ -62,7 +63,8 @@ namespace Vereinsmeisterschaften.Core.Settings
             // +++++ Group General +++++
             WorkspaceSettingsGroup groupGeneral = GetGroup(GROUP_GENERAL, true);
             groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_COMPETITIONYEAR, 0, 1900, 3000);
-
+            groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS, 2, 1, 3);
+            
             // +++++ Group Race Calculation +++++
             WorkspaceSettingsGroup groupRaceCalculation = GetGroup(GROUP_RACE_CALCULATION, true);
             groupRaceCalculation.MakeSureSettingExists<ushort>(SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES, 3, 0, 10);

@@ -249,4 +249,7 @@ Kleinere Nummern sollen früher starten.</value>
   <data name="TooltipHideResolvedPath" xml:space="preserve">
     <value>Kompletten Pfad ausblenden</value>
   </data>
+  <data name="TooltipTimeInputMillisecondDigits" xml:space="preserve">
+    <value>Anzahl an Stellen für die Zeiteingabe der Millisekunden.</value>
+  </data>
 </root>

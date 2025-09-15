@@ -5,6 +5,10 @@
       {
         "Key": "CompetitionYear",
         "Value": 2025
+      },
+      {
+        "Key": "TimeInputMillisecondDigits",
+        "Value": 2
       }
     ]
   },

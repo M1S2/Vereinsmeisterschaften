@@ -562,4 +562,7 @@
   <data name="PriorityStyleWaterfleaString" xml:space="preserve">
     <value>Priority for style waterflea</value>
   </data>
+  <data name="TimeInputMillisecondDigitsString" xml:space="preserve">
+    <value>Time Input Millisecond Digits</value>
+  </data>
 </root>

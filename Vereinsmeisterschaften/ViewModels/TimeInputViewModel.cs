@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 using System.Windows.Data;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -31,6 +32,16 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     /// Gets the persisted variant of races as managed by the race service.
     /// </summary>
     public RacesVariant PersistedRacesVariant => _raceService?.PersistedRacesVariant;
+
+    private int _timeInputMillisecondDigits;
+    /// <summary>
+    /// Number of digits used to display milliseconds in the time input control.
+    /// </summary>
+    public int TimeInputMillisecondDigits
+    {
+        get => _timeInputMillisecondDigits;
+        set => SetProperty(ref _timeInputMillisecondDigits, value);
+    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -125,16 +136,19 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
 
     private readonly IPersonService _personService;
     private readonly IRaceService _raceService;
+    private readonly IWorkspaceService _workspaceService;
 
     /// <summary>
     /// Constructor of the time input view model
     /// </summary>
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="raceService"><see cref="IRaceService"/> object</param>
-    public TimeInputViewModel(IPersonService personService, IRaceService raceService)
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
+    public TimeInputViewModel(IPersonService personService, IRaceService raceService, IWorkspaceService workspaceService)
     {
         _personService = personService;
         _raceService = raceService;
+        _workspaceService = workspaceService;
     }
 
     /// <inheritdoc/>
@@ -143,6 +157,8 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
         AvailablePersonStarts = _personService.GetAllPersonStarts();
         AvailablePersonStartsCollectionView = CollectionViewSource.GetDefaultView(AvailablePersonStarts);
         AvailablePersonStartsCollectionView.Filter += AvailablePersonStartsFilterPredicate;
+
+        TimeInputMillisecondDigits = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS) ?? 2;
 
         OnPropertyChanged(nameof(PersistedRacesVariant));
         OnPropertyChanged(nameof(AvailablePersons));

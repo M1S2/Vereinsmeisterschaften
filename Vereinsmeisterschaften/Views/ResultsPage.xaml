@@ -119,7 +119,7 @@
                     </GridViewColumn>
 
                     <!-- Breaststroke -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score, StringFormat=N1}" Width="130">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Breaststroke].Score}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -139,7 +139,7 @@
                     </GridViewColumn>
 
                     <!-- Freestyle -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Freestyle].Score, StringFormat=N1}" Width="130">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Freestyle].Score}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -159,7 +159,7 @@
                     </GridViewColumn>
 
                     <!-- Backstroke -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Backstroke].Score, StringFormat=N1}" Width="130">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Backstroke].Score}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -179,7 +179,7 @@
                     </GridViewColumn>
 
                     <!-- Butterfly -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Butterfly].Score, StringFormat=N1}" Width="130">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Butterfly].Score}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -199,7 +199,7 @@
                     </GridViewColumn>
 
                     <!-- Medley -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Medley].Score, StringFormat=N1}" Width="130">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[Medley].Score}" Width="130">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -219,7 +219,7 @@
                     </GridViewColumn>
 
                     <!-- WaterFlea -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Starts[WaterFlea].Score, StringFormat=N1}" Width="150">
+                    <GridViewColumn DisplayMemberBinding="{Binding Starts[WaterFlea].Score}" Width="150">
                         <GridViewColumnHeader behaviors:GridViewBehaviors.CollapseableColumn="True">
                             <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                             <GridViewColumnHeader.Style>
@@ -239,7 +239,7 @@
                     </GridViewColumn>
 
                     <!-- Highest Score -->
-                    <GridViewColumn DisplayMemberBinding="{Binding HighestScore, StringFormat=N1}" Width="150" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
+                    <GridViewColumn DisplayMemberBinding="{Binding HighestScore}" Width="150" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <controls:FontIcon Glyph="&#xE734;" Margin="5"/>

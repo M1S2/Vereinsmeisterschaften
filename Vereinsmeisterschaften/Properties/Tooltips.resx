@@ -253,4 +253,8 @@ Lower numbers should start earlier.</value>
   <data name="TooltipTimeInputMillisecondDigits" xml:space="preserve">
     <value>Number of digits for the time input Millisecond.</value>
   </data>
+  <data name="TooltipScoreFractionalDigits" xml:space="preserve">
+    <value>Number of fractional digits to use for the score.
+The score is directly rounded while calculation, so that all occurences use the same number of digits.</value>
+  </data>
 </root>

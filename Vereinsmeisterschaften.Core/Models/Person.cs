@@ -207,6 +207,9 @@ namespace Vereinsmeisterschaften.Core.Models
         private void PersonStart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Starts));
+            OnPropertyChanged(nameof(HighestScore));
+            OnPropertyChanged(nameof(HighestScoreStyle));
+            OnPropertyChanged(nameof(HighestScoreCompetition));
         }
 
         /// <summary>

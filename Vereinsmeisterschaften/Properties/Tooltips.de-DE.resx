@@ -252,4 +252,8 @@ Kleinere Nummern sollen früher starten.</value>
   <data name="TooltipTimeInputMillisecondDigits" xml:space="preserve">
     <value>Anzahl an Stellen für die Zeiteingabe der Millisekunden.</value>
   </data>
+  <data name="TooltipScoreFractionalDigits" xml:space="preserve">
+    <value>Anzahl an Nachkommastellen für die Punkte.
+Die Punkte werden direkt bei der Berechnung gerundet, damit überall die gleiche Anzahl an Nachkommastellen verwendet wird.</value>
+  </data>
 </root>

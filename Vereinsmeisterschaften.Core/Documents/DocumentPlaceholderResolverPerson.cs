@@ -34,17 +34,17 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.HighestScoreStyle)); }
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.Distance.ToString() + "m" ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.ID.ToString() ?? "?"); }
-            foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.HighestScore.ToString("F2")); }
+            foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.HighestScore.ToString()); }
             foreach (string placeholder in Placeholders.Placeholders_ResultListPlace) { textPlaceholder.Add(placeholder, item?.ResultListPlace == 0 ? "-" : item.ResultListPlace.ToString() ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_BestStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item?.HighestScoreStyle)); }
 
             string cellEmptyString = "-";
-            foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Score.ToString("N1") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_ScoreFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Score.ToString("N1") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_ScoreBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Score.ToString("N1") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_ScoreButterfly) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Butterfly)?.Score.ToString("N1") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_ScoreMedley) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Medley)?.Score.ToString("N1") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_ScoreWaterflea) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.WaterFlea)?.Score.ToString("N1") ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Score.ToString() ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Score.ToString() ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Score.ToString() ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreButterfly) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Butterfly)?.Score.ToString() ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreMedley) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Medley)?.Score.ToString() ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_ScoreWaterflea) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.WaterFlea)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_TimeBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_TimeFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_TimeBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }

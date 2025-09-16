@@ -31,6 +31,10 @@ namespace Vereinsmeisterschaften.ViewModels
                 (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS),
                 new WorkspaceSettingViewConfig() { Label=Resources.TimeInputMillisecondDigitsString, Tooltip = Tooltips.TooltipTimeInputMillisecondDigits, Icon = "\uE916", Editor = WorkspaceSettingEditorTypes.Numeric }
             },
+            {
+                (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS),
+                new WorkspaceSettingViewConfig() { Label=Resources.ScoreFractionalDigitsString, Tooltip = Tooltips.TooltipScoreFractionalDigits, Icon = "\uE75D", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
             // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER),

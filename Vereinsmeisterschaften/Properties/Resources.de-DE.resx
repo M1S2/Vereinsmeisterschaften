@@ -566,4 +566,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="TimeInputMillisecondDigitsString" xml:space="preserve">
     <value>Zeiteingabe Millisekunden Stellen</value>
   </data>
+  <data name="ScoreFractionalDigitsString" xml:space="preserve">
+    <value>Anzahl Nachkommastellen für Punkte</value>
+  </data>
 </root>

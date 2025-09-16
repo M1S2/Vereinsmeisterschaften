@@ -95,6 +95,6 @@
 
         <TextBlock Grid.Row="1" Text="{Binding Start.Style, Converter={StaticResource enumLocalizedStringConverter}}" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="2" Text="{Binding Start.Time}" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Text="{Binding Start.Score, StringFormat=N1}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="{Binding Start.Score}" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

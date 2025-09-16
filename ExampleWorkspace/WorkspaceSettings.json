@@ -9,6 +9,10 @@
       {
         "Key": "TimeInputMillisecondDigits",
         "Value": 2
+      },
+      {
+        "Key": "ScoreFractionalDigits",
+        "Value": 1
       }
     ]
   },

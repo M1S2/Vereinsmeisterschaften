@@ -1001,6 +1001,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Fractional Digits ähnelt.
+        /// </summary>
+        public static string ScoreFractionalDigitsString {
+            get {
+                return ResourceManager.GetString("ScoreFractionalDigitsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Score Person Pauses ähnelt.
         /// </summary>
         public static string ScorePersonStartPausesString {

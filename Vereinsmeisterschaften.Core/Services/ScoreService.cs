@@ -1,5 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -28,6 +29,14 @@ namespace Vereinsmeisterschaften.Core.Services
             _personService = personService;
             _competitionService = competitionService;
             _workspaceService = workspaceService;
+
+            _workspaceService.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(IWorkspaceService.Settings))
+                {
+                    UpdateScoresForAllPersons();
+                }
+            };
         }
 
         /// <summary>
@@ -58,6 +67,9 @@ namespace Vereinsmeisterschaften.Core.Services
                     // linear equation around this point
                     // zero points if startTime >= 2* bestTime
                     start.Score = (2 - (start.Time.TotalMilliseconds / competition.BestTime.TotalMilliseconds)) * BEST_TIME_SCORE;
+
+                    ushort scoreFractionalDigits = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS) ?? 1;
+                    start.Score = Math.Round(start.Score, scoreFractionalDigits);
 
                     // Limit score to 0
                     if (start.Score < 0) { start.Score = 0; }

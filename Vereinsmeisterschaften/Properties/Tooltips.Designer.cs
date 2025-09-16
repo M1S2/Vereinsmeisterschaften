@@ -269,6 +269,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of fractional digits to use for the score.
+        ///The score is directly rounded while calculation, so that all occurences use the same number of digits. ähnelt.
+        /// </summary>
+        public static string TooltipScoreFractionalDigits {
+            get {
+                return ResourceManager.GetString("TooltipScoreFractionalDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show resolved path ähnelt.
         /// </summary>
         public static string TooltipShowResolvedPath {

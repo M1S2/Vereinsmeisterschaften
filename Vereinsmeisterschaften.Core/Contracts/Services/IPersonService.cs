@@ -10,6 +10,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public interface IPersonService : INotifyPropertyChanged, ISaveable
     {
         /// <summary>
+        /// Save the reference to the <see cref="IScoreService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="scoreService">Reference to the <see cref="IScoreService"/> implementation</param>
+        void SetScoreServiceObj(IScoreService scoreService);
+
+        /// <summary>
         /// Return all available Persons
         /// </summary>
         /// <returns>List of <see cref="Person"/> objects</returns>

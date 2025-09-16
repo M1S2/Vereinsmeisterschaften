@@ -43,6 +43,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IFileService _fileService;
+        private IScoreService _scoreService;
 
         /// <summary>
         /// Constructor
@@ -52,6 +53,16 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             _personList = new ObservableCollection<Person>();
             _fileService = fileService;
+        }
+
+        /// <summary>
+        /// Save the reference to the <see cref="IScoreService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="scoreService">Reference to the <see cref="IScoreService"/> implementation</param>
+        public void SetScoreServiceObj(IScoreService scoreService)
+        {
+            _scoreService = scoreService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -223,8 +234,15 @@ namespace Vereinsmeisterschaften.Core.Services
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
+        private bool _isupdatingScores = false;         // Flag to avoid recursive calls of the Person_PropertyChanged event
         private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == nameof(Person.Starts) && sender is Person senderPerson && _scoreService != null && !_isupdatingScores)
+            {
+                _isupdatingScores = true;
+                _scoreService.UpdateScoresForPerson(senderPerson);
+                _isupdatingScores = false;
+            }
             OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }

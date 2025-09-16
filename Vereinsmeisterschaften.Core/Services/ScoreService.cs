@@ -27,6 +27,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public ScoreService(IPersonService personService, ICompetitionService competitionService, IWorkspaceService workspaceService)
         {
             _personService = personService;
+            _personService.SetScoreServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
             _competitionService = competitionService;
             _workspaceService = workspaceService;
 

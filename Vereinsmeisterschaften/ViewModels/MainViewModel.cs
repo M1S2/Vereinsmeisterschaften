@@ -69,7 +69,8 @@ public class MainViewModel : ObservableObject
     /// </summary>
     /// <param name="navigationService"><see cref="INavigationService"/> object</param>
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
-    public MainViewModel(INavigationService navigationService, IWorkspaceService workspaceService)
+    /// <param name="scoreService">Get the <see cref="IScoreService"/> here to initialize it directly</param>
+    public MainViewModel(INavigationService navigationService, IWorkspaceService workspaceService, IScoreService scoreService)
     {
         _navigationService = navigationService;
         _workspaceService = workspaceService;

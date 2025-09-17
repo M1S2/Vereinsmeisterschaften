@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Media;
+
 namespace Vereinsmeisterschaften.ViewModels
 {
     /// <summary>
@@ -17,9 +19,14 @@ namespace Vereinsmeisterschaften.ViewModels
         public string Tooltip { get; set; }
 
         /// <summary>
-        /// Icon for this setting. This should be e.g. "\uE787"
+        /// Icon for this setting. This should be e.g. "\uE787". If this is <see langword="null"/>, <see cref="IconDrawingImage"/> is used.
         /// </summary>
         public string Icon { get; set; }
+
+        /// <summary>
+        /// Icon drawing for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
+        /// </summary>
+        public DrawingImage IconDrawingImage { get; set; }
 
         /// <summary>
         /// Type of editor to use for this setting

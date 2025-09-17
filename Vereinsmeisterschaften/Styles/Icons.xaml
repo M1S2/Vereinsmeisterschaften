@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core">
+
+    <!-- Image Decimal Comma -->
+    <!-- https://pictogrammers.com/library/mdi/icon/decimal-comma/ -->
+    <DrawingImage x:Key="DrawingImage_DecimalComma">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource MahApps.Brushes.Text}" Geometry="M10 7A3 3 0 0 1 13 10V13A3 3 0 0 1 7 13V10A3 3 0 0 1 10 7M10 9A1 1 0 0 0 9 10V13A1 1 0 0 0 11 13V10A1 1 0 0 0 10 9M17 7A3 3 0 0 1 20 10V13A3 3 0 0 1 14 13V10A3 3 0 0 1 17 7M17 9A1 1 0 0 0 16 10V13A1 1 0 0 0 18 13V10A1 1 0 0 0 17 9M5 14A1 1 0 0 0 4 15L5 18H6V15A1 1 0 0 0 5 14Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Image Counter -->
+    <!-- https://pictogrammers.com/library/mdi/icon/counter/ -->
+    <DrawingImage x:Key="DrawingImage_Counter">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource MahApps.Brushes.Text}" Geometry="M4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M4,6V18H11V6H4M20,18V6H18.76C19,6.54 18.95,7.07 18.95,7.13C18.88,7.8 18.41,8.5 18.24,8.75L15.91,11.3L19.23,11.28L19.24,12.5L14.04,12.47L14,11.47C14,11.47 17.05,8.24 17.2,7.95C17.34,7.67 17.91,6 16.5,6C15.27,6.05 15.41,7.3 15.41,7.3L13.87,7.31C13.87,7.31 13.88,6.65 14.25,6H13V18H15.58L15.57,17.14L16.54,17.13C16.54,17.13 17.45,16.97 17.46,16.08C17.5,15.08 16.65,15.08 16.5,15.08C16.37,15.08 15.43,15.13 15.43,15.95H13.91C13.91,15.95 13.95,13.89 16.5,13.89C19.1,13.89 18.96,15.91 18.96,15.91C18.96,15.91 19,17.16 17.85,17.63L18.37,18H20M8.92,16H7.42V10.2L5.62,10.76V9.53L8.76,8.41H8.92V16Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <!-- Image Weight -->
+    <!-- https://pictogrammers.com/library/mdi/icon/weight/ -->
+    <DrawingImage x:Key="DrawingImage_Weight">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource MahApps.Brushes.Text}" Geometry="M12,3A4,4 0 0,1 16,7C16,7.73 15.81,8.41 15.46,9H18C18.95,9 19.75,9.67 19.95,10.56C21.96,18.57 22,18.78 22,19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19C2,18.78 2.04,18.57 4.05,10.56C4.25,9.67 5.05,9 6,9H8.54C8.19,8.41 8,7.73 8,7A4,4 0 0,1 12,3M12,5A2,2 0 0,0 10,7A2,2 0 0,0 12,9A2,2 0 0,0 14,7A2,2 0 0,0 12,5Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Image Priority -->
+    <!-- https://pictogrammers.com/library/mdi/icon/priority-high/ -->
+    <DrawingImage x:Key="DrawingImage_Priority">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource MahApps.Brushes.Text}" Geometry="M14,19H22V17H14V19M14,13.5H22V11.5H14V13.5M14,8H22V6H14V8M2,12.5C2,8.92 4.92,6 8.5,6H9V4L12,7L9,10V8H8.5C6,8 4,10 4,12.5C4,15 6,17 8.5,17H12V19H8.5C4.92,19 2,16.08 2,12.5Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

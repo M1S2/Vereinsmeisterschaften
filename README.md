@@ -92,6 +92,10 @@ Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeistersc
 - icons8-child-64.png: https://icons8.com/icon/67246/babys-room
 - DrawingImage_Female: https://pictogrammers.com/library/mdi/icon/gender-female/
 - DrawingImage_Male: https://pictogrammers.com/library/mdi/icon/gender-male/
+- DrawingImage_DecimalComma: https://pictogrammers.com/library/mdi/icon/decimal-comma/
+- DrawingImage_Counter: https://pictogrammers.com/library/mdi/icon/counter/
+- DrawingImage_Weight: https://pictogrammers.com/library/mdi/icon/weight/
+- DrawingImage_Priority: https://pictogrammers.com/library/mdi/icon/priority-high/
 
 https://retouchinglabs.com/inkscape-convert-png-to-svg/
 https://stackoverflow.com/questions/18624070/convert-svg-to-xaml

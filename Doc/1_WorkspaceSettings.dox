@@ -16,12 +16,24 @@ This page describes how to add new workspace settings and groups.
   - <SettingName>String (e.g. NewSettingString): Setting Name that is shown in the UI
 - Add a resource to the Tooltips.resx (Vereinsmeisterschaften > Properties):
   - Tooltip<SettingName> (e.g. TooltipNewSetting): Tooltip for the setting that is shown in the UI
+- If necessary, add an icon to the Icons.xaml (Vereinsmeisterschaften > Styles):
+  - Add the icon to the <code>ResourceDictionary</code> with a unique key (e.g. <code>DrawingImage_NewSetting</code>)
+  - If you want to use a Segoe MDL2 Assets icon, you can use the Unicode value directly in <code>Icon</code> (e.g. <code>"\uE787"</code>)
 - Add the setting to the <code>SettingKeyConfigDict</code> in WorkspaceSettingViewConfigs.cs (Vereinsmeisterschaften > ViewModels):<br>
   e.g.<br>
   <code>
   {<br>
     (WorkspaceSettings.GROUP_NEWGROUP, WorkspaceSettings.SETTING_GENERAL_NEWSETTING),<br>
     new WorkspaceSettingViewConfig() { Label=Resources.NewSettingString, Tooltip = Tooltips.TooltipNewSetting, Icon = "\uE787", Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }<br>
+  },
+  </code>
+  <br>
+  or
+  <br>
+  <code>
+  {<br>
+    (WorkspaceSettings.GROUP_NEWGROUP, WorkspaceSettings.SETTING_GENERAL_NEWSETTING),<br>
+    new WorkspaceSettingViewConfig() { Label=Resources.NewSettingString, Tooltip = Tooltips.TooltipNewSetting, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_NewSetting"], Editor = WorkspaceSettingEditorTypes.Numeric, SupportResetToDefault = false }<br>
   },
   </code>
 

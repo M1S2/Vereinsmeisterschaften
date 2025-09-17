@@ -10,8 +10,31 @@
 
     <Border BorderBrush="{DynamicResource MahApps.Brushes.Gray4}" BorderThickness="0,0.2">
         <DockPanel ToolTip="{Binding Tooltip}" LastChildFill="True">
-            <controls:FontIcon DockPanel.Dock="Left" Margin="5,5,0,5"
-                           FontSize="30" Glyph="{Binding Icon}"/>
+            <!-- Icon for the setting. Icon is used if it isn't null, otherwise IconDrawingImage is used -->
+            <ContentControl DockPanel.Dock="Left" Margin="5,5,0,5">
+                <ContentControl.Style>
+                    <Style TargetType="{x:Type ContentControl}">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <controls:FontIcon FontSize="30" Glyph="{Binding DataContext.Icon, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Icon}" Value="{x:Null}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Image Width="30" Height="30" Source="{Binding DataContext.IconDrawingImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
 
             <TextBlock DockPanel.Dock="Left" Margin="10,0,10,0" VerticalAlignment="Center" MinWidth="400"
                    Text="{Binding Label}" FontSize="{StaticResource MediumFontSize}"/>

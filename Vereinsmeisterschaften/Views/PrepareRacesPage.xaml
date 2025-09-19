@@ -395,6 +395,11 @@
                                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
 
+                                            <!-- Icon that is shown for all starts that use the max age competitions -->
+                                            <Image DockPanel.Dock="Right" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                                                   Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                            
                                             <!-- Show the name of the person -->
                                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <TextBlock.Text>
@@ -455,43 +460,50 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Show the distance and style if a competition object is assigned -->
-                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        <DockPanel LastChildFill="True">
+                            <!-- Icon that is shown for all starts that use the max age competitions -->
+                            <Image DockPanel.Dock="Right" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                                   Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+
+                            <StackPanel Orientation="Vertical">
+                                <!-- Show the distance and style if a competition object is assigned -->
+                                <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}m {1}">
-                                        <Binding Path="CompetitionObj.Distance" />
-                                        <Binding Path="Style" Converter="{StaticResource enumLocalizedStringConverter}"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}m {1}">
+                                            <Binding Path="CompetitionObj.Distance" />
+                                            <Binding Path="Style" Converter="{StaticResource enumLocalizedStringConverter}"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
 
-                            <!-- Show an error icon if no competition object is assigned -->
-                            <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
+                                <!-- Show an error icon if no competition object is assigned -->
+                                <controls:FontIcon FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-                                <controls:FontIcon.ToolTip>
-                                    <ToolTip>
-                                        <ToolTip.Content>
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock Text="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
-                                                <TextBlock Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}"/>
-                                            </StackPanel>
-                                        </ToolTip.Content>
-                                    </ToolTip>
-                                </controls:FontIcon.ToolTip>
-                            </controls:FontIcon>
+                                    <controls:FontIcon.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Content>
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Text="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                                    <TextBlock Text="{Binding Style, Converter={StaticResource enumLocalizedStringConverter}}"/>
+                                                </StackPanel>
+                                            </ToolTip.Content>
+                                        </ToolTip>
+                                    </controls:FontIcon.ToolTip>
+                                </controls:FontIcon>
 
-                            <!-- Show the name of the person -->
-                            <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="PersonObj.FirstName" />
-                                        <Binding Path="PersonObj.Name" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
+                                <!-- Show the name of the person -->
+                                <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="PersonObj.FirstName" />
+                                            <Binding Path="PersonObj.Name" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DockPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>

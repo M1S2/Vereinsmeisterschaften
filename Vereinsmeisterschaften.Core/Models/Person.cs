@@ -129,6 +129,17 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        private Dictionary<SwimmingStyles, bool> _isUsingMaxAgeCompetitionDict = new Dictionary<SwimmingStyles, bool>();
+        /// <summary>
+        /// Dictionary with flags if the max age competition will be used for the person and the style
+        /// </summary>
+        [FileServiceIgnore]
+        public Dictionary<SwimmingStyles, bool> IsUsingMaxAgeCompetitionDict
+        {
+            get => _isUsingMaxAgeCompetitionDict;
+            set => SetProperty(ref _isUsingMaxAgeCompetitionDict, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();

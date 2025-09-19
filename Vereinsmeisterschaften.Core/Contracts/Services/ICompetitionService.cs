@@ -56,8 +56,9 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
         /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
+        /// <param name="isUsingMaxAgeCompetition">Flag indicating if this start is using a competition that was found by the max available age.</param>
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
-        Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle);
+        Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, out bool isUsingMaxAgeCompetition);
 
         /// <summary>
         /// Update all <see cref="PersonStart"/> objects and the <see cref="Person.AvailableCompetitions"/> for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects

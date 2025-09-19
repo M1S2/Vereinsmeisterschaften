@@ -115,6 +115,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This start is using a competition that was selected, because the person is older than all available competitions for this style and gender.
+        ///The competition with the highest age is used then. ähnelt.
+        /// </summary>
+        public static string TooltipMaxAgeCompetition {
+            get {
+                return ResourceManager.GetString("TooltipMaxAgeCompetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Maximum number of iterations the race variant calculation loop will run in the worst case.
         ///If the number of variants after calculation is reached earlier, the loop will break. ähnelt.
         /// </summary>

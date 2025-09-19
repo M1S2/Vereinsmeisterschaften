@@ -163,6 +163,10 @@
                             <Image.Style>
                                 <Style TargetType="{x:Type Image}">
                                     <Style.Triggers>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static coreModels:ResultTypes.MaxAgeCompetitions}">
+                                            <Setter Property="Source" Value="{StaticResource DrawingImage_AccountTie}"/>
+                                            <Setter Property="Height" Value="20"/>
+                                        </DataTrigger>
                                         <DataTrigger Binding="{Binding}" Value="{x:Static coreModels:ResultTypes.Breaststroke}">
                                             <Setter Property="Source" Value="{StaticResource DrawingImage_Breaststroke}"/>
                                         </DataTrigger>

@@ -121,6 +121,10 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 return persons.OrderByDescending(p => p.HighestScore).ToList();
             }
+            else if(resultType == ResultTypes.MaxAgeCompetitions)
+            {
+                return persons.Where(p => p.Starts[p.HighestScoreStyle].IsUsingMaxAgeCompetition).OrderByDescending(p => p.HighestScore).ToList();
+            }
             else
             {
                 SwimmingStyles style = getStyleFromResultType(resultType);
@@ -140,7 +144,7 @@ namespace Vereinsmeisterschaften.Core.Services
             List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
             UpdateResultListPlacesForAllPersons();
             List<PersonStart> bestStarts = new List<PersonStart>();
-            if (resultType == ResultTypes.Overall)
+            if (resultType == ResultTypes.Overall || resultType == ResultTypes.MaxAgeCompetitions)
             {
                 bestStarts = sortedPersons.Where(p => p.HighestScoreStyle != SwimmingStyles.Unknown && p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
             }
@@ -172,6 +176,7 @@ namespace Vereinsmeisterschaften.Core.Services
             switch (resultType)
             {
                 case ResultTypes.Overall: return SwimmingStyles.Unknown;
+                case ResultTypes.MaxAgeCompetitions: return SwimmingStyles.Unknown;
                 case ResultTypes.Breaststroke: return SwimmingStyles.Breaststroke;
                 case ResultTypes.Freestyle: return SwimmingStyles.Freestyle;
                 case ResultTypes.Backstroke: return SwimmingStyles.Backstroke;

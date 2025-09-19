@@ -259,4 +259,8 @@ Die Punkte werden direkt bei der Berechnung gerundet, damit überall die gleiche
   <data name="TooltipOpenDocument" xml:space="preserve">
     <value>Dokument in Standardanwendung öffnen. Wenn möglich wird das .pdf angezeigt, sonst das .docx.</value>
   </data>
+  <data name="TooltipMaxAgeCompetition" xml:space="preserve">
+    <value>Dieser Start verwendet einen Wettkampf der ausgewählt wurde, weil die Person älter ist als alle verfügbaren Wettkämpfe für diese Lage und dieses Geschlecht.
+Der Wettkampf mit dem höchsten Alter wird stattdessen verwendet.</value>
+  </data>
 </root>

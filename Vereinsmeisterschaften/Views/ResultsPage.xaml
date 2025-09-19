@@ -132,6 +132,9 @@
                                         <DataTrigger Binding="{Binding ResultType}" Value="Overall">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="MaxAgeCompetitions">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </GridViewColumnHeader.Style>
@@ -150,6 +153,9 @@
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="MaxAgeCompetitions">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -172,6 +178,9 @@
                                         <DataTrigger Binding="{Binding ResultType}" Value="Overall">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="MaxAgeCompetitions">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </GridViewColumnHeader.Style>
@@ -192,6 +201,9 @@
                                         <DataTrigger Binding="{Binding ResultType}" Value="Overall">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="MaxAgeCompetitions">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </GridViewColumnHeader.Style>
@@ -210,6 +222,9 @@
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding ResultType}" Value="Overall">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ResultType}" Value="MaxAgeCompetitions">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>

@@ -205,13 +205,23 @@
                     </GridViewColumn>
 
                     <!-- Competition ID -->
-                    <GridViewColumn DisplayMemberBinding="{Binding CompetitionObj.ID, FallbackValue=/}">
+                    <GridViewColumn>
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="#" FontSize="20" Margin="5"/>
                                 <TextBlock Text="{x:Static properties:Resources.CompetitionIDString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                             </StackPanel>
                         </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding CompetitionObj.ID, FallbackValue=/}"/>
+                                    <Image Margin="15,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                                           Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                           ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <!-- Time -->

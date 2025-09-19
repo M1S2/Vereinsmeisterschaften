@@ -192,7 +192,13 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         OnPropertyChanged(nameof(DuplicatePersonString));
-        if (e.PropertyName != nameof(Person.Starts) && e.PropertyName != nameof(Person.AvailableCompetitions) && e.PropertyName != nameof(Person.AvailableCompetitionsFlags))
+        if (e.PropertyName != nameof(Person.Starts) && 
+            e.PropertyName != nameof(Person.AvailableCompetitions) && 
+            e.PropertyName != nameof(Person.AvailableCompetitionsFlags) && 
+            e.PropertyName != nameof(Person.IsUsingMaxAgeCompetitionDict) &&
+            e.PropertyName != nameof(Person.HighestScore) &&
+            e.PropertyName != nameof(Person.HighestScoreStyle) &&
+            e.PropertyName != nameof(Person.HighestScoreCompetition))
         {
             _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
         }

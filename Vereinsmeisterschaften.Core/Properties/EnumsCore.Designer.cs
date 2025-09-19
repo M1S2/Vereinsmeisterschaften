@@ -178,6 +178,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max. Age Competitions ähnelt.
+        /// </summary>
+        public static string ResultTypes_MaxAgeCompetitions {
+            get {
+                return ResourceManager.GetString("ResultTypes_MaxAgeCompetitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Medley ähnelt.
         /// </summary>
         public static string ResultTypes_Medley {

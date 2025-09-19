@@ -95,6 +95,17 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         public bool IsCompetitionObjAssigned => CompetitionObj != null;
 
+        private bool _isUsingMaxAgeCompetition;
+        /// <summary>
+        /// Flag indicating if this start is using a competition that was found by the max available age.
+        /// E.g. if competitions up to an age of 18 are defined, but the person is 20 years old, the competition for 18 years is used.
+        /// </summary>
+        public bool IsUsingMaxAgeCompetition
+        {
+            get => _isUsingMaxAgeCompetition;
+            set => SetProperty(ref _isUsingMaxAgeCompetition, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>

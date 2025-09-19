@@ -38,6 +38,11 @@
         /// <summary>
         /// Water flea result type
         /// </summary>
-        WaterFlea
+        WaterFlea,
+
+        /// <summary>
+        /// Maximum age competitions result type
+        /// </summary>
+        MaxAgeCompetitions
     }
 }

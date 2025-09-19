@@ -19,9 +19,9 @@
                 <ResourceDictionary Source="/Styles/MetroWindow.xaml" />
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
 
+                <ResourceDictionary Source="/Styles/Icons.xaml" />
                 <ResourceDictionary Source="/Styles/SwimmingStyleResources.xaml" />
                 <ResourceDictionary Source="/Styles/GenderStyleResources.xaml" />
-                <ResourceDictionary Source="/Styles/Icons.xaml" />
 
                 <!--
                 MahApps.Metro resource dictionaries.

@@ -260,4 +260,8 @@ The score is directly rounded while calculation, so that all occurences use the 
   <data name="TooltipOpenDocument" xml:space="preserve">
     <value>Open document in default application. Open .pdf if available, otherwise use .docx.</value>
   </data>
+  <data name="TooltipMaxAgeCompetition" xml:space="preserve">
+    <value>This start is using a competition that was selected, because the person is older than all available competitions for this style and gender.
+The competition with the highest age is used then.</value>
+  </data>
 </root>

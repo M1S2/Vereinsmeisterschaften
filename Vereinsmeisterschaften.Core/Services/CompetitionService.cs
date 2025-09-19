@@ -249,17 +249,21 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
         /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
+        /// <param name="isUsingMaxAgeCompetition">Flag indicating if this start is using a competition that was found by the max available age.</param>
         /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
-        public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle)
+        public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, out bool isUsingMaxAgeCompetition)
         {
             // Find the competition with the maximum age that matches the swimming style and gender
             byte maxAge = _competitionList.Where(c => c.Gender == person.Gender && c.SwimmingStyle == swimmingStyle).OrderByDescending(c => c.Age).FirstOrDefault()?.Age ?? 0;
 
             ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
             int personAge = competitionYear - person.BirthYear;
-            return _competitionList.Where(c => c.Gender == person.Gender &&
-                                               c.SwimmingStyle == swimmingStyle &&
-                                               (c.SwimmingStyle == SwimmingStyles.WaterFlea ? personAge <= c.Age : c.Age == (personAge <= maxAge ? personAge : maxAge))).FirstOrDefault();
+            Competition foundCompetition = _competitionList.Where(c => c.Gender == person.Gender &&
+                                                                       c.SwimmingStyle == swimmingStyle &&
+                                                                       (c.SwimmingStyle == SwimmingStyles.WaterFlea ? personAge <= c.Age : c.Age == (personAge <= maxAge ? personAge : maxAge))).FirstOrDefault();
+
+            isUsingMaxAgeCompetition = foundCompetition != null && foundCompetition.Age == maxAge && personAge > maxAge && foundCompetition.SwimmingStyle != SwimmingStyles.WaterFlea;
+            return foundCompetition;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -273,9 +277,11 @@ namespace Vereinsmeisterschaften.Core.Services
             // Update the available competitions for the person
             List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
             Dictionary<SwimmingStyles, Competition> availableCompetitions = new Dictionary<SwimmingStyles, Competition>();
+            Dictionary<SwimmingStyles, bool> isUsingMaxAgeCompetitionDict = new Dictionary<SwimmingStyles, bool>();
             foreach (SwimmingStyles swimmingStyle in _availableSwimmingStyles)
             {
-                Competition competition = GetCompetitionForPerson(person, swimmingStyle);
+                bool isUsingMaxAgeCompetition;
+                Competition competition = GetCompetitionForPerson(person, swimmingStyle, out isUsingMaxAgeCompetition);
                 if (availableCompetitions.ContainsKey(swimmingStyle))
                 {
                     availableCompetitions[swimmingStyle] = competition;
@@ -284,13 +290,24 @@ namespace Vereinsmeisterschaften.Core.Services
                 {
                     availableCompetitions.Add(swimmingStyle, competition);
                 }
+
+                if (isUsingMaxAgeCompetitionDict.ContainsKey(swimmingStyle))
+                {
+                    isUsingMaxAgeCompetitionDict[swimmingStyle] = isUsingMaxAgeCompetition;
+                }
+                else
+                {
+                    isUsingMaxAgeCompetitionDict.Add(swimmingStyle, isUsingMaxAgeCompetition);
+                }
             }
             person.AvailableCompetitions = availableCompetitions;
+            person.IsUsingMaxAgeCompetitionDict = isUsingMaxAgeCompetitionDict;
 
             // Update the competitions for the person starts
             foreach (PersonStart personStart in _personService.GetAllPersonStarts(PersonStartFilters.Person, person))
             {
                 personStart.CompetitionObj = person.AvailableCompetitions[personStart.Style];
+                personStart.IsUsingMaxAgeCompetition = person.IsUsingMaxAgeCompetitionDict[personStart.Style];
             }
         }
 

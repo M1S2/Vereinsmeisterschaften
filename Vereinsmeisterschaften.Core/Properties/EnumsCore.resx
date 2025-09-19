@@ -186,4 +186,7 @@
   <data name="DocumentCreationFileTypes_DOCX_AND_PDF" xml:space="preserve">
     <value>DOCX &amp; PDF</value>
   </data>
+  <data name="ResultTypes_MaxAgeCompetitions" xml:space="preserve">
+    <value>Max. Age Competitions</value>
+  </data>
 </root>

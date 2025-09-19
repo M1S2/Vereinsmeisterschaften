@@ -257,4 +257,7 @@ Lower numbers should start earlier.</value>
     <value>Number of fractional digits to use for the score.
 The score is directly rounded while calculation, so that all occurences use the same number of digits.</value>
   </data>
+  <data name="TooltipOpenDocument" xml:space="preserve">
+    <value>Open document in default application. Open .pdf if available, otherwise use .docx.</value>
+  </data>
 </root>

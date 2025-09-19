@@ -9,6 +9,10 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
+using Vereinsmeisterschaften.Core.Settings;
+using System.IO;
+using Vereinsmeisterschaften.Core.Helpers;
+using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -36,6 +40,11 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// Dictionary to hold the state of whether the template file is available for document creation for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
     public Dictionary<DocumentCreationTypes, bool> IsDocumentTemplateAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
+
+    /// <summary>
+    /// Dictionary to hold the file paths of the last created documents for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, string> LastDocumentFilePaths { get; } = new Dictionary<DocumentCreationTypes, string>();
 
     private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
     {
@@ -77,6 +86,16 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         }
     }
 
+    private void changeLastDocumentFilePath(DocumentCreationTypes documentType, string lastDocumentFilePaths)
+    {
+        if (LastDocumentFilePaths.ContainsKey(documentType))
+        {
+            LastDocumentFilePaths[documentType] = lastDocumentFilePaths;
+            OnPropertyChanged(nameof(LastDocumentFilePaths));
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+
     /// <summary>
     /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
     /// </summary>
@@ -86,7 +105,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     #region Create Certificates Properties
 
-    private int _numberCreatedCertificates = 0;
+    private int _numberCreatedCertificates = -1;
     /// <summary>
     /// Number of created certificates during the last creation process.
     /// </summary>
@@ -161,7 +180,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     #region Create Time Forms Properties
 
-    private int _numberCreatedTimeForms = 0;
+    private int _numberCreatedTimeForms = -1;
     /// <summary>
     /// Number of created time forms during the last creation process.
     /// </summary>
@@ -243,6 +262,7 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     private IDocumentService _documentService;
     private IPersonService _personService;
+    private IWorkspaceService _workspaceService;
     private IDialogCoordinator _dialogCoordinator;
     private IEnumerable<IDocumentStrategy> _documentStrategies;
 
@@ -251,12 +271,14 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     /// <param name="documentService"><see cref="IDocumentService"/> object</param>
     /// <param name="personService"><see cref="IPersonService"/> object</param>
+    /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
     /// <param name="documentStrategies">List with <see cref="IDocumentStrategy"/> objects</param>
-    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IDialogCoordinator dialogCoordinator, IEnumerable<IDocumentStrategy> documentStrategies)
+    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, IEnumerable<IDocumentStrategy> documentStrategies)
     {
         _documentService = documentService;
         _personService = personService;
+        _workspaceService = workspaceService;
         _dialogCoordinator = dialogCoordinator;
         _documentStrategies = documentStrategies;
 
@@ -265,12 +287,14 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         IsDocumentCreationSuccessful.Clear();
         IsDocumentDataAvailable.Clear();
         IsDocumentTemplateAvailable.Clear();
+        LastDocumentFilePaths.Clear();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IsDocumentCreationRunning.Add(type, false);
             IsDocumentCreationSuccessful.Add(type, false);
             IsDocumentDataAvailable.Add(type, false);
             IsDocumentTemplateAvailable.Add(type, false);
+            LastDocumentFilePaths.Add(type, string.Empty);
         }
     }
 
@@ -282,6 +306,9 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CreateDocumentCommand => _createDocumentCommand ?? (_createDocumentCommand = new RelayCommand<DocumentCreationTypes>(async (documentType) =>
     {
+        int numCreatedPages = 0;
+        string returnFilePath = string.Empty;
+
         changeDocumentCreationRunningState(documentType, true);
         try
         {
@@ -301,36 +328,39 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
                         }
 
                         _documentService.SetCertificateCreationFilters(PersonStartFilter, filterParam);
-                        NumberCreatedCertificates = await _documentService.CreateDocument(DocumentCreationTypes.Certificates);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.Certificates);
+                        NumberCreatedCertificates = numCreatedPages;
                         break;
                     }
                 case DocumentCreationTypes.OverviewList:
                     {
-                        await _documentService.CreateDocument(DocumentCreationTypes.OverviewList);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.OverviewList);
                         break;
                     }
                 case DocumentCreationTypes.RaceStartList:
                     {
-                        await _documentService.CreateDocument(DocumentCreationTypes.RaceStartList);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.RaceStartList);
                         break;
                     }
                 case DocumentCreationTypes.TimeForms:
                     {
-                        NumberCreatedTimeForms = await _documentService.CreateDocument(DocumentCreationTypes.TimeForms);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.TimeForms);
+                        NumberCreatedTimeForms = numCreatedPages;
                         break;
                     }
                 case DocumentCreationTypes.ResultList:
                     {
-                        await _documentService.CreateDocument(DocumentCreationTypes.ResultList);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.ResultList);
                         break;
                     }
                 case DocumentCreationTypes.ResultListDetail:
                     {
-                        await _documentService.CreateDocument(DocumentCreationTypes.ResultListDetail);
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.ResultListDetail);
                         break;
                     }
                 default: throw new ArgumentOutOfRangeException(nameof(documentType), documentType, "Unknown document type for creation command.");
             }
+            changeLastDocumentFilePath(documentType, returnFilePath);
             changeDocumentCreationSuccessfulState(documentType, true);
         }
         catch (Exception ex)
@@ -359,6 +389,26 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             {
                 changeDocumentCreationRunningState(strategy.DocumentType, false);
                 changeDocumentCreationSuccessfulState(strategy.DocumentType, false);
+            }
+
+            // Find existing documents
+            string templateFileNamePostfix = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX) ?? string.Empty;
+            string documentOutputFolder = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER) ?? string.Empty;
+            documentOutputFolder = FilePathHelper.MakePathAbsolute(documentOutputFolder, _workspaceService?.PersistentPath);
+
+            string outputFileNameDocx = Path.GetFileNameWithoutExtension(strategy.TemplatePath);
+            outputFileNameDocx = outputFileNameDocx.Replace(templateFileNamePostfix, "") + ".docx";
+            string outputFilePathDocx = Path.Combine(documentOutputFolder, outputFileNameDocx);
+            string outputFilePathPdf = outputFilePathDocx.Replace(".docx", ".pdf", StringComparison.InvariantCultureIgnoreCase);
+            if(File.Exists(outputFilePathPdf))
+            {
+                changeLastDocumentFilePath(strategy.DocumentType, outputFilePathPdf);
+                changeDocumentCreationSuccessfulState(strategy.DocumentType, true);     // necessary to show the path
+            }
+            else if(File.Exists(outputFilePathDocx))
+            {
+                changeLastDocumentFilePath(strategy.DocumentType, outputFilePathDocx);
+                changeDocumentCreationSuccessfulState(strategy.DocumentType, true);     // necessary to show the path
             }
         }
 

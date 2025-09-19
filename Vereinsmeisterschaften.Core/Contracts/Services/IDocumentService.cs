@@ -22,8 +22,8 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <param name="documentType"><see cref="DocumentCreationTypes"/> used to decide which document type and <see cref="IDocumentStrategy"/> is used</param>
         /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        Task<int> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true);
+        /// <returns><see cref="Task"/> that can be used to run this async. The return parameter is a tuple of (number of created pages in the document, filepath to the last created document (PDF if possible))</returns>
+        Task<(int, string)> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true);
 
         /// <summary>
         /// Set the filters that are used for the certificate creation.

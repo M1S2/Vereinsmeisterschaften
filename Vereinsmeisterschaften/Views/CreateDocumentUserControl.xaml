@@ -57,7 +57,7 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
+            <ContentControl Template="{StaticResource ControlTemplateOkIndicator}" VerticalAlignment="Top"/>
             <StackPanel Margin="5,0,0,0"
                         Orientation="Vertical">
                 <TextBlock VerticalAlignment="Center"
@@ -76,6 +76,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+                <Button x:Name="btn_openDocument" Margin="0,5" Content="{x:Static properties:Resources.OpenString}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="btn_openDocument_Click" ToolTip="{x:Static properties:Tooltips.TooltipOpenDocument}"/>
             </StackPanel>
         </StackPanel>
 

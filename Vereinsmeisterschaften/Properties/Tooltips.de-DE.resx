@@ -256,4 +256,7 @@ Kleinere Nummern sollen früher starten.</value>
     <value>Anzahl an Nachkommastellen für die Punkte.
 Die Punkte werden direkt bei der Berechnung gerundet, damit überall die gleiche Anzahl an Nachkommastellen verwendet wird.</value>
   </data>
+  <data name="TooltipOpenDocument" xml:space="preserve">
+    <value>Dokument in Standardanwendung öffnen. Wenn möglich wird das .pdf angezeigt, sonst das .docx.</value>
+  </data>
 </root>

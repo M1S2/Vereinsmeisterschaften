@@ -126,5 +126,24 @@ namespace Vereinsmeisterschaften.Views
             set => SetValue(NumberCreatedDocumentsProperty, value);
         }
         public static readonly DependencyProperty NumberCreatedDocumentsProperty = DependencyProperty.Register(nameof(NumberCreatedDocuments), typeof(int), typeof(CreateDocumentUserControl));
+
+        /// <summary>
+        /// Path to the last created document. If <see cref="string.Empty"/>, no document was created.
+        /// Only shown when <see cref="IsSuccessful"/> is <see langword="true"/>
+        /// </summary>
+        public string LastCreatedDocumentPath
+        {
+            get => (string)GetValue(LastCreatedDocumentPathProperty);
+            set => SetValue(LastCreatedDocumentPathProperty, value);
+        }
+        public static readonly DependencyProperty LastCreatedDocumentPathProperty = DependencyProperty.Register(nameof(LastCreatedDocumentPath), typeof(string), typeof(CreateDocumentUserControl));
+
+        private void btn_openDocument_Click(object sender, RoutedEventArgs e)
+        {
+            if(System.IO.File.Exists(LastCreatedDocumentPath))
+            {
+                Core.Helpers.FilePathHelper.OpenWithDefaultProgram(LastCreatedDocumentPath);
+            }
+        }
     }
 }

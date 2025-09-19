@@ -154,6 +154,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open document in default application. Open .pdf if available, otherwise use .docx. ähnelt.
+        /// </summary>
+        public static string TooltipOpenDocument {
+            get {
+                return ResourceManager.GetString("TooltipOpenDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
         ///e.g. PlaceholderMarker = &quot;%&quot; --&gt; %PLACEHOLDER% ähnelt.
         /// </summary>

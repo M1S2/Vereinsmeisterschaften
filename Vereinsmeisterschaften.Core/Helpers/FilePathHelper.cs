@@ -1,4 +1,6 @@
-﻿namespace Vereinsmeisterschaften.Core.Helpers
+﻿using System.Diagnostics;
+
+namespace Vereinsmeisterschaften.Core.Helpers
 {
     /// <summary>
     /// Class containing helper methods for file and folder paths.
@@ -85,6 +87,21 @@
 
             // if has extension then its a file; directory otherwise
             return string.IsNullOrWhiteSpace(Path.GetExtension(path));
+        }
+
+        /// <summary>
+        /// Open the file with the default application.
+        /// </summary>
+        /// <param name="path">Path to the file to open</param>
+        /// <see cref="https://stackoverflow.com/questions/11365984/c-sharp-open-file-with-default-application-and-parameters"/>
+        public static void OpenWithDefaultProgram(string path)
+        {
+            using (Process fileopener = new Process())
+            {
+                fileopener.StartInfo.FileName = "explorer";
+                fileopener.StartInfo.Arguments = "\"" + path + "\"";
+                fileopener.Start();
+            }
         }
     }
 }

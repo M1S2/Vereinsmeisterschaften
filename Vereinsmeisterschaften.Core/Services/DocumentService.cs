@@ -63,8 +63,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="documentType"><see cref="DocumentCreationTypes"/> used to decide which document type and <see cref="IDocumentStrategy"/> is used</param>
         /// <param name="createPdf">True to also create a .pdf file</param>
-        /// <returns><see cref="Task"/> that can be used to run this async</returns>
-        public Task<int> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true)
+        /// <returns><see cref="Task"/> that can be used to run this async. The return parameter is a tuple of (number of created pages in the document, filepath to the last created document (PDF if possible))</returns>
+        public Task<(int, string)> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true)
         {
             return Task.Run(() =>
             {
@@ -211,10 +211,12 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 DocumentCreationFileTypes fileTypes = _workspaceService?.Settings?.GetSettingValue<DocumentCreationFileTypes>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES) ?? DocumentCreationFileTypes.DOCX_AND_PDF;
 
+                string returnFilePath = outputFile;
+
                 // Create PDF if requested and file type is PDF or DOCX_AND_PDF
                 if (createPdf && (fileTypes == DocumentCreationFileTypes.PDF || fileTypes == DocumentCreationFileTypes.DOCX_AND_PDF))
                 {
-                    convertToPdf(outputFile);
+                    returnFilePath = convertToPdf(outputFile);
                 }
 
                 // Delete the .docx file if file type is PDF
@@ -226,7 +228,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                 }
 
-                return numCreatedPages;
+                return (numCreatedPages, returnFilePath);
             });
         }
 
@@ -272,7 +274,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Convert a .docx file to a .pdf file using LibreOffice.
         /// </summary>
         /// <param name="docxFile">.docx file to convert. The same name with the extension .pdf instead of .docx is used.</param>
-        private void convertToPdf(string docxFile)
+        /// <returns>.pdf file path</returns>
+        private string convertToPdf(string docxFile)
         {
             // Convert the docx file to pdf
             string outputFilePdf = docxFile.Replace(".docx", ".pdf");
@@ -280,6 +283,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
             string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
             LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, libreOfficePath);
+            return outputFilePdf;
         }
 
         #endregion

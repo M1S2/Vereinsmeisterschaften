@@ -242,7 +242,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding HighestScore}" Width="150" HeaderContainerStyle="{StaticResource CenteredGridViewColumnHeaderStyle}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE734;" Margin="5"/>
+                                <Image Width="20" Height="20" Margin="5" Source="{StaticResource DrawingImage_Trophy}"/>
                                 <TextBlock Text="{x:Static properties:Resources.HighestScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                             </StackPanel>
                         </GridViewColumn.Header>

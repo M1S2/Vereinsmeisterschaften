@@ -252,6 +252,16 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <!-- Score -->
+                    <GridViewColumn DisplayMemberBinding="{Binding Score, FallbackValue=?}">
+                        <GridViewColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="20" Height="20" Margin="5" Source="{StaticResource DrawingImage_Trophy}"/>
+                                <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

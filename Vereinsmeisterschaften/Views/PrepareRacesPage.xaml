@@ -136,7 +136,7 @@
             <Expander.Header>
                 <DockPanel VerticalAlignment="Center" LastChildFill="False">
                     <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                        <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static properties:Resources.CalculatedRaceVariantScoreString}" VerticalAlignment="Center"/>
                         <TextBlock Margin="5,0,0,0" Text="{Binding CurrentRacesVariant.Score, StringFormat={}{0:N2}%}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">

@@ -277,7 +277,7 @@
     <value>Hervorhebungsmodus</value>
   </data>
   <data name="CalculatedScoreString" xml:space="preserve">
-    <value>Berechnete Bewertung</value>
+    <value>Berechnete Punkte</value>
   </data>
   <data name="ScoreSingleStartsString" xml:space="preserve">
     <value>Bewertung Einzelstarts</value>
@@ -568,5 +568,8 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="ScoreFractionalDigitsString" xml:space="preserve">
     <value>Anzahl Nachkommastellen für Punkte</value>
+  </data>
+  <data name="CalculatedRaceVariantScoreString" xml:space="preserve">
+    <value>Berechnete Bewertung</value>
   </data>
 </root>

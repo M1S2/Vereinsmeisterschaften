@@ -171,6 +171,15 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Calculated Score ähnelt.
         /// </summary>
+        public static string CalculatedRaceVariantScoreString {
+            get {
+                return ResourceManager.GetString("CalculatedRaceVariantScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calculated Score ähnelt.
+        /// </summary>
         public static string CalculatedScoreString {
             get {
                 return ResourceManager.GetString("CalculatedScoreString", resourceCulture);

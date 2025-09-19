@@ -96,6 +96,7 @@ Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeistersc
 - DrawingImage_Counter: https://pictogrammers.com/library/mdi/icon/counter/
 - DrawingImage_Weight: https://pictogrammers.com/library/mdi/icon/weight/
 - DrawingImage_Priority: https://pictogrammers.com/library/mdi/icon/priority-high/
+- DrawingImage_Trophy: https://pictogrammers.com/library/mdi/icon/trophy-outline/_
 
 https://retouchinglabs.com/inkscape-convert-png-to-svg/
 https://stackoverflow.com/questions/18624070/convert-svg-to-xaml

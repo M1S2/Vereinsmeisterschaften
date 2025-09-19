@@ -568,4 +568,7 @@
   <data name="ScoreFractionalDigitsString" xml:space="preserve">
     <value>Score Fractional Digits</value>
   </data>
+  <data name="CalculatedRaceVariantScoreString" xml:space="preserve">
+    <value>Calculated Score</value>
+  </data>
 </root>

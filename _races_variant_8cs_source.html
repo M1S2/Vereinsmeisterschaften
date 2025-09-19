@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: /github/workspace/Vereinsmeisterschaften.Core/Models/RacesVariant.cs Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">cc3b070cbdd0477308225d05f05d52ba7ccd6535</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;. It takes place once a year.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_races_variant_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">RacesVariant.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections.ObjectModel;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Specialized;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System.ComponentModel;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>CommunityToolkit.Mvvm.ComponentModel;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a>;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Vereinsmeisterschaften.Core.Settings</a>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html">   13</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a> : ObservableObject, IEquatable&lt;RacesVariant&gt;, ICloneable</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">   18</a></span>        <span class="keyword">public</span> ObservableCollection&lt;Race&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">private</span> <span class="keywordtype">int</span> _variantID;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        [FileServiceIgnore]</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad72cd3a4b49a20b5fbe8889b29db687a">   27</a></span>        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad72cd3a4b49a20b5fbe8889b29db687a">VariantID</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">get</span> =&gt; _variantID;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _variantID, value);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        }</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">private</span> List&lt;PersonStart&gt; _notAssignedStarts;</div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">   39</a></span>        <span class="keyword">public</span> List&lt;PersonStart&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">NotAssignedStarts</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keyword">get</span> =&gt; _notAssignedStarts;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _notAssignedStarts, value);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2c85fd2c4b1edc916ff419359ba54723">   51</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2c85fd2c4b1edc916ff419359ba54723">UpdateNotAssignedStarts</a>(List&lt;PersonStart&gt; allStarts)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            List&lt;PersonStart&gt; raceStarts = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#af7df69f78dd4b5e66d94a94b130bec3a">GetAllStarts</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">if</span> (allStarts == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">NotAssignedStarts</a> = <span class="keyword">new</span> List&lt;PersonStart&gt;();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (raceStarts == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">NotAssignedStarts</a> = allStarts;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">NotAssignedStarts</a> = allStarts?.Except(raceStarts)?.ToList();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">IsValid_AllRacesValid</a>));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">IsValid_AllStartsAssigned</a>));</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">IsValid</a>));</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        [FileServiceIgnore]</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">   77</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">IsValid_AllRacesValid</a> =&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>?.All(r =&gt; r.IsValid) ?? <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        [FileServiceIgnore]</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">   83</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">IsValid_AllStartsAssigned</a> =&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">NotAssignedStarts</a>?.Count == 0;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">   90</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">IsValid</a> =&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">IsValid_AllRacesValid</a> &amp;&amp; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">IsValid_AllStartsAssigned</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keyword">private</span> <span class="keywordtype">bool</span> _isPersistent;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        [FileServiceIgnore]</div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="};">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a1bdbd74894b0b43d2b7e1d35bcac3cbe">   99</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a1bdbd74894b0b43d2b7e1d35bcac3cbe">IsPersistent</a></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            <span class="keyword">get</span> =&gt; _isPersistent;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keyword">set</span> { SetProperty(ref _isPersistent, value); OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab4161201b7960de03fa7187159a202ba">KeepWhileRacesCalculation</a>)); }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        }</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">private</span> <span class="keywordtype">bool</span> _keepWhileRacesCalculation;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        [FileServiceIgnore]</div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="};">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab4161201b7960de03fa7187159a202ba">  112</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab4161201b7960de03fa7187159a202ba">KeepWhileRacesCalculation</a></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keyword">get</span> =&gt; _keepWhileRacesCalculation || <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a1bdbd74894b0b43d2b7e1d35bcac3cbe">IsPersistent</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _keepWhileRacesCalculation, value);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">  124</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a>(<a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> = <span class="keyword">new</span> ObservableCollection&lt;Race&gt;();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            Races.CollectionChanged += Races_CollectionChanged;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            _workspaceService = workspaceService;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            <span class="keywordflow">if</span> (_workspaceService != <span class="keyword">null</span>) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
+</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0941c8d57220a0ff378265676a2d9d31">  137</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0941c8d57220a0ff378265676a2d9d31">RacesVariant</a>(List&lt;Race&gt; races, <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> = <span class="keyword">new</span> ObservableCollection&lt;Race&gt;(races);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            Races.CollectionChanged += Races_CollectionChanged;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            _workspaceService = workspaceService;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            <span class="keywordflow">if</span> (_workspaceService != <span class="keyword">null</span>) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            Races_CollectionChanged(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>, <span class="keyword">null</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        }</div>
+</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a423691798f3366f4e546729db811fe1b">  152</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a423691798f3366f4e546729db811fe1b">RacesVariant</a>(ObservableCollection&lt;Race&gt; races, <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> = races;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            Races.CollectionChanged += Races_CollectionChanged;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            _workspaceService = workspaceService;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="keywordflow">if</span> (_workspaceService != <span class="keyword">null</span>) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            Races_CollectionChanged(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>, <span class="keyword">null</span>);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        }</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span></div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#acbf66d1de17ce7b3e9f49561e7a2cace">  169</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#acbf66d1de17ce7b3e9f49561e7a2cace">RacesVariant</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a> other, <span class="keywordtype">bool</span> deepClone = <span class="keyword">true</span>, <span class="keywordtype">bool</span> deepCloneRaces = <span class="keyword">true</span>, <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService = <span class="keyword">null</span>) : this()</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            <span class="keywordflow">if</span>(other == <span class="keyword">null</span>) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>            <span class="keywordflow">if</span> (deepClone)</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                <span class="comment">// Create a deep copy of the list</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> = <span class="keyword">new</span> ObservableCollection&lt;Race&gt;(other.<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Select(item =&gt; <span class="keyword">new</span> <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a>(item, deepCloneRaces)));</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                <span class="comment">// Create a new list but keep the references to the &lt;see cref=&quot;Race&quot;/&gt; objects</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a> = <span class="keyword">new</span> ObservableCollection&lt;Race&gt;(other.<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            Races.CollectionChanged += Races_CollectionChanged;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            _workspaceService = workspaceService ?? other._workspaceService;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            <span class="keywordflow">if</span> (_workspaceService != <span class="keyword">null</span>) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            Races_CollectionChanged(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>, <span class="keyword">null</span>);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        }</div>
+</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span></div>
+<div class="foldopen" id="foldopen00193" data-start="{" data-end="}">
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab3cc0300e113a2fa005c48079207c801">  193</a></span>        <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab3cc0300e113a2fa005c48079207c801">~RacesVariant</a>()</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            <span class="keywordflow">if</span> (_workspaceService != <span class="keyword">null</span>) { _workspaceService.PropertyChanged -= workspaceServicePropertyChangedEvent; }</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        }</div>
+</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keyword">private</span> <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> _workspaceService;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> workspaceServicePropertyChangedEvent(<span class="keywordtype">object</span> sender, PropertyChangedEventArgs e)</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <span class="keywordflow">if</span> (e.PropertyName == nameof(<a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a>.<a class="code hl_property" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html#a1057097851e6a710c4e3acbea0075e28">Settings</a>))</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">CalculateScore</a>();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> updateRaceStartsCollectionChangedEvent()</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>));</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            <span class="keywordflow">foreach</span> (Race race <span class="keywordflow">in</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>            {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                race.Starts.CollectionChanged -= raceStartsCollectionChangedEventHandler;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                race.Starts.CollectionChanged += raceStartsCollectionChangedEventHandler;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> raceStartsCollectionChangedEventHandler(<span class="keywordtype">object</span> sender, NotifyCollectionChangedEventArgs e)</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">CalculateScore</a>();</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>));</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">IsValid_AllRacesValid</a>));</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">IsValid_AllStartsAssigned</a>));</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">IsValid</a>));</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        }</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> Races_CollectionChanged(<span class="keywordtype">object</span> sender, NotifyCollectionChangedEventArgs e)</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            updateRaceIDs();</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">CalculateScore</a>();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            updateRaceStartsCollectionChangedEvent();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">IsValid_AllRacesValid</a>));</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">IsValid_AllStartsAssigned</a>));</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">IsValid</a>));</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> updateRaceIDs()</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 1;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>            <span class="keywordflow">foreach</span>(Race race <span class="keywordflow">in</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>)</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                race.RaceID = id;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                <span class="keywordtype">id</span>++;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span></div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="}">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#af7df69f78dd4b5e66d94a94b130bec3a">  257</a></span>        <span class="keyword">public</span> List&lt;PersonStart&gt; <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#af7df69f78dd4b5e66d94a94b130bec3a">GetAllStarts</a>()</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">return</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.SelectMany(r =&gt; r.Starts).ToList();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        }</div>
+</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span></div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="};">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#abde07e6ff99faff6d3db91da1f2399a7">  267</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#abde07e6ff99faff6d3db91da1f2399a7">Score</a></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            <span class="keyword">get</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                <span class="keywordtype">double</span> weightSingleStarts = _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">double</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS) ?? 5;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                <span class="keywordtype">double</span> weightSameStyleSequence = _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">double</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE) ?? 5;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                <span class="keywordtype">double</span> weightPersonStartPauses = _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">double</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES) ?? 65;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                <span class="keywordtype">double</span> weightStyleOrder = _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">double</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER) ?? 10;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                <span class="keywordtype">double</span> weightStartGenders = _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">double</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS) ?? 5;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                <span class="keywordtype">double</span> sumWeights = weightSingleStarts + weightSameStyleSequence + weightPersonStartPauses + weightStyleOrder + weightStartGenders;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                <span class="keywordtype">double</span> score = 0;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                score += <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">ScoreSingleStarts</a> * (weightSingleStarts / sumWeights);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                score += <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">ScoreSameStyleSequence</a> * (weightSameStyleSequence / sumWeights);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                score += <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">ScorePersonStartPauses</a> * (weightPersonStartPauses / sumWeights);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                score += <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">ScoreStyleOrder</a> * (weightStyleOrder / sumWeights);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                score += <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">ScoreStartGenders</a> * (weightStartGenders / sumWeights);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">LimitValue</a>(score, 0, 100);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            }</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        }</div>
+</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <span class="keyword">private</span> <span class="keywordtype">double</span> _scoreSingleStarts;</div>
+<div class="foldopen" id="foldopen00295" data-start="{" data-end="};">
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">  295</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">ScoreSingleStarts</a></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <span class="keyword">get</span> =&gt; _scoreSingleStarts;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _scoreSingleStarts, value);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        }</div>
+</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <span class="keyword">private</span> <span class="keywordtype">double</span> _scoreSameStyleSequence;</div>
+<div class="foldopen" id="foldopen00305" data-start="{" data-end="};">
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">  305</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">ScoreSameStyleSequence</a></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keyword">get</span> =&gt; _scoreSameStyleSequence;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _scoreSameStyleSequence, value);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        }</div>
+</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        <span class="keyword">private</span> <span class="keywordtype">double</span> _scorePersonStartPauses;</div>
+<div class="foldopen" id="foldopen00315" data-start="{" data-end="};">
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">  315</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">ScorePersonStartPauses</a></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>            <span class="keyword">get</span> =&gt; _scorePersonStartPauses;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _scorePersonStartPauses, value);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        }</div>
+</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keyword">private</span> <span class="keywordtype">double</span> _scoreStyleOrder;</div>
+<div class="foldopen" id="foldopen00325" data-start="{" data-end="};">
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">  325</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">ScoreStyleOrder</a></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            <span class="keyword">get</span> =&gt; _scoreStyleOrder;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _scoreStyleOrder, value);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        }</div>
+</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keyword">private</span> <span class="keywordtype">double</span> _scoreStartGenders;</div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="};">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">  335</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">ScoreStartGenders</a></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        {</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>            <span class="keyword">get</span> =&gt; _scoreStartGenders;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _scoreStartGenders, value);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        }</div>
+</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span></div>
+<div class="foldopen" id="foldopen00347" data-start="{" data-end="}">
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">  347</a></span>        <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">CalculateScore</a>()</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        {</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>            <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count == 0)</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>            {</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">ScoreSingleStarts</a> = 0;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">ScoreSameStyleSequence</a> = 0;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">ScorePersonStartPauses</a> = 0;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">ScoreStyleOrder</a> = 0;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">ScoreStartGenders</a> = 0;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>            }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>            {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">ScoreSingleStarts</a> = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#adc070cb45583b6e9d8afaea57dc83f20">EvaluateSingleStarts</a>();</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">ScoreSameStyleSequence</a> = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a8152ef1487ee2326579fc29540723368">EvaluateSameStyleSequence</a>();</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">ScorePersonStartPauses</a> = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a90e04d529942e4d793a8be83ec634865">EvaluatePersonStartPauses</a>();</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">ScoreStyleOrder</a> = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa5074c6be96b226d80447213f6995c28">EvaluateStyleOrder</a>();</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>                <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">ScoreStartGenders</a> = <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a9ab1fa86a71e3adf9aa300a3b5d6b04b">EvaluateStartGenders</a>();</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>            }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>            OnPropertyChanged(nameof(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#abde07e6ff99faff6d3db91da1f2399a7">Score</a>));</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>            <span class="keywordflow">return</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#abde07e6ff99faff6d3db91da1f2399a7">Score</a>;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        }</div>
+</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span></div>
+<div class="foldopen" id="foldopen00376" data-start="{" data-end="}">
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#adc070cb45583b6e9d8afaea57dc83f20">  376</a></span>        <span class="keyword">private</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#adc070cb45583b6e9d8afaea57dc83f20">EvaluateSingleStarts</a>()</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        {</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>            <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count == 0) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>            <span class="keywordtype">int</span> singleStarts = <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count(r =&gt; r.Starts.Count == 1);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>            <span class="keywordtype">double</span> ratio = (double)singleStarts / <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>            <span class="comment">// The less single starts, the better</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <span class="keywordflow">return</span> 100 * (1 - ratio);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        }</div>
+</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span></div>
+<div class="foldopen" id="foldopen00394" data-start="{" data-end="}">
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a8152ef1487ee2326579fc29540723368">  394</a></span>        <span class="keyword">private</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a8152ef1487ee2326579fc29540723368">EvaluateSameStyleSequence</a>()</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        {</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>            <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count &lt;= 1) <span class="keywordflow">return</span> 100;   <span class="comment">// Only one race = no evaluation needed</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>            <span class="keywordtype">int</span> matchingPairs = 0;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count; i++)</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>            {</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>                <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>[i].Style == <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>[i - 1].Style)</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>                    matchingPairs++;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>            }</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>            <span class="keywordflow">return</span> 100 * ((double)matchingPairs / (Races.Count - 1));</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        }</div>
+</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span></div>
+<div class="foldopen" id="foldopen00416" data-start="{" data-end="}">
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a90e04d529942e4d793a8be83ec634865">  416</a></span>        <span class="keyword">private</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a90e04d529942e4d793a8be83ec634865">EvaluatePersonStartPauses</a>()</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>        {</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>            <span class="keywordtype">double</span> penalty = 0;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>            <span class="keywordtype">double</span> maxPenalty = 0;  <span class="comment">// This is calculated dynamically</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>            Dictionary&lt;Person, int&gt; lastRaceIndex = <span class="keyword">new</span>();</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>            Dictionary&lt;Person, double&gt; individualPenalties = <span class="keyword">new</span>();</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>            <span class="keywordtype">int</span> severelyAffectedPersons = 0;    <span class="comment">// Number of persons with hard penalty</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count; i++)</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>            {</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>                <span class="keywordflow">foreach</span> (var personStart <span class="keywordflow">in</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>[i].Starts)</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>                {</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                    <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> person = personStart.PersonObj;</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>                    <span class="keywordflow">if</span> (lastRaceIndex.TryGetValue(person, out <span class="keywordtype">int</span> lastIndex))</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>                    {</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>                        <span class="keywordtype">int</span> distance = i - lastIndex;</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>                        <span class="keywordtype">double</span> personPenalty = distance <span class="keywordflow">switch</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>                        {</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>                            1 =&gt; 100,   <span class="comment">// Extremly high penalty for directly consecutive starts</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>                            2 =&gt; 100,   <span class="comment">// Extremly high penalty for only one race pause</span></div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>                            3 =&gt; 50,    <span class="comment">// Noticeable penalty for two races pause</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>                            4 =&gt; 30,   <span class="comment">// Noticeable penalty for three races pause</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>                            _ =&gt; Math.Max(0, 10 - distance) <span class="comment">// Minimal penalty for 3+ races pause</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>                        };</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>                        <span class="comment">// if the distance is below 3 races, this is regarded as severly affected</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>                        <span class="keywordflow">if</span> (distance &lt; 3)</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>                        {</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>                            severelyAffectedPersons++;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                        }</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>                        <span class="comment">// Save the highest penalty for a person</span></div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>                        <span class="keywordflow">if</span> (!individualPenalties.ContainsKey(person) || individualPenalties[person] &lt; personPenalty)</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>                        {</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>                            individualPenalties[person] = personPenalty;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>                            maxPenalty += 100;  <span class="comment">// Add the highest possible penalty</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>                        }</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>                    }</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>                    lastRaceIndex[person] = i;</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>                }</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>            }</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span> </div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <span class="comment">// Return the worst score if there are severely affected persons</span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>            <span class="keywordflow">if</span> (severelyAffectedPersons &gt; 0)</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>            {</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>            }</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>            {</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>                <span class="comment">// Sum up the hardest penalties per person</span></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>                penalty = individualPenalties.Values.Sum();</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>                <span class="keywordtype">double</span> score = 100 - (penalty / maxPenalty * 100);</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">LimitValue</a>(score, 0, 100);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>            }</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>        }</div>
+</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span></div>
+<div class="foldopen" id="foldopen00485" data-start="{" data-end="}">
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa5074c6be96b226d80447213f6995c28">  485</a></span>        <span class="keyword">private</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa5074c6be96b226d80447213f6995c28">EvaluateStyleOrder</a>()</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>        {</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>            <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count == 0) <span class="keywordflow">return</span> 100;</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span> </div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>            <span class="comment">// lower numbers should start earlier</span></div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>            Dictionary&lt;SwimmingStyles, int&gt; StylePriorities = <span class="keyword">new</span>()</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>            {</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.Breaststroke, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE) ?? 1 },</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.Freestyle, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE) ?? 2 },</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.Backstroke, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE) ?? 3 },</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.Butterfly, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY) ?? 4 },</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.Medley, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY) ?? 5 },</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>                { <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>.WaterFlea, _workspaceService?.Settings?.GetSettingValue&lt;<span class="keywordtype">int</span>&gt;(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.GROUP_RACE_CALCULATION, <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA) ?? 6 }</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>            };</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>        <span class="keywordtype">double</span> penalty = 0;</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>            <span class="keywordflow">foreach</span> (var (race, index) in <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Select((r, i) =&gt; (r, i)))</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>            {</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>                <span class="keywordflow">if</span> (StylePriorities.TryGetValue(race.Style, out <span class="keywordtype">int</span> priority))</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>                {</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>                    <span class="keywordtype">int</span> expectedMinIndex = Races.Count * priority / StylePriorities.Count;</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>                    <span class="keywordflow">if</span> (index &lt; expectedMinIndex)</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>                    {</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>                        penalty += (expectedMinIndex - index);</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>                    }</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                }</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>            }</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span> </div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>            <span class="keywordtype">double</span> maxPenalty = Races.Count * StylePriorities.Count;</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            <span class="keywordflow">return</span> 100 - <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">LimitValue</a>(100 * (penalty / maxPenalty), 0, 100);</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>        }</div>
+</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span></div>
+<div class="foldopen" id="foldopen00524" data-start="{" data-end="}">
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a9ab1fa86a71e3adf9aa300a3b5d6b04b">  524</a></span>        <span class="keyword">private</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a9ab1fa86a71e3adf9aa300a3b5d6b04b">EvaluateStartGenders</a>()</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>        {</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>            <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count == 0) <span class="keywordflow">return</span> 100.0;</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span> </div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>            <span class="keywordtype">int</span> totalRaces = <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>.Count;</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>            <span class="keywordtype">int</span> homogeneousCount = 0;</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>            <span class="keywordflow">foreach</span> (<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a> race <span class="keywordflow">in</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Races</a>)</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>            {</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                List&lt;Genders&gt; genders = race.Starts.Select(s =&gt; s.PersonObj.Gender).Distinct().ToList();</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                <span class="keywordflow">if</span> (genders.Count == 1)</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>                {</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>                    homogeneousCount++;</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>                }</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>            }</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>            <span class="keywordtype">double</span> score = 100.0 * homogeneousCount / totalRaces;</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">LimitValue</a>(score, 0, 100);</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>        }</div>
+</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>        <span class="comment">// ----------------------------------------------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span></div>
+<div class="foldopen" id="foldopen00553" data-start="{" data-end="}">
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">  553</a></span>        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">LimitValue</a>(<span class="keywordtype">double</span> value, <span class="keywordtype">double</span> min, <span class="keywordtype">double</span> max)</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>        {</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>            <span class="keywordflow">return</span> Math.Max(min, Math.Min(max, value));</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>        }</div>
+</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span></div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a18f100794dec533c9043ac6c7a08eb43">  565</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a18f100794dec533c9043ac6c7a08eb43">Equals</a>(<span class="keywordtype">object</span> obj)</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>            =&gt; obj is <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a> r &amp;&amp; r.VariantID == <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad72cd3a4b49a20b5fbe8889b29db687a">VariantID</a>;</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad2731e2cabd424fe323559b9adf2c9ec">  573</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad2731e2cabd424fe323559b9adf2c9ec">Equals</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a> other)</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>            =&gt; <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a18f100794dec533c9043ac6c7a08eb43">Equals</a>((<span class="keywordtype">object</span>)other);</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span></div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0096da021a9ed1f7da2a78245ccc82cd">  580</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0096da021a9ed1f7da2a78245ccc82cd">GetHashCode</a>()</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>            =&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad72cd3a4b49a20b5fbe8889b29db687a">VariantID</a>.GetHashCode();</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span></div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a3a6c63fb5d1545ed84957128b1780b53">  587</a></span>        <span class="keyword">public</span> <span class="keywordtype">object</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a3a6c63fb5d1545ed84957128b1780b53">Clone</a>()</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>            =&gt; <span class="keyword">new</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">RacesVariant</a>(<span class="keyword">this</span>, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    }</div>
+</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>}</div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Vereinsmeisterschaften.Core.Models.Person</a></div><div class="ttdoc">Class describing a person.</div><div class="ttdef"><b>Definition</b> <a href="_person_8cs_source.html#l00009">Person.cs:10</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Vereinsmeisterschaften.Core.Models.Race</a></div><div class="ttdoc">Class that represents a single race.</div><div class="ttdef"><b>Definition</b> <a href="_race_8cs_source.html#l00010">Race.cs:11</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a0096da021a9ed1f7da2a78245ccc82cd"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0096da021a9ed1f7da2a78245ccc82cd">Vereinsmeisterschaften.Core.Models.RacesVariant.GetHashCode</a></div><div class="ttdeci">override int GetHashCode()</div><div class="ttdoc">Serves as the default hash function.</div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a039eb39317c66324e084c86126edf172"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a039eb39317c66324e084c86126edf172">Vereinsmeisterschaften.Core.Models.RacesVariant.LimitValue</a></div><div class="ttdeci">static double LimitValue(double value, double min, double max)</div><div class="ttdoc">Limit the value to [min, max] (both inclusive)</div><div class="ttdef"><b>Definition</b> <a href="#l00553">RacesVariant.cs:553</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a0941c8d57220a0ff378265676a2d9d31"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a0941c8d57220a0ff378265676a2d9d31">Vereinsmeisterschaften.Core.Models.RacesVariant.RacesVariant</a></div><div class="ttdeci">RacesVariant(List&lt; Race &gt; races, IWorkspaceService workspaceService=null)</div><div class="ttdoc">Constructor for a new RacesVariant (copy an Race collection).</div><div class="ttdef"><b>Definition</b> <a href="#l00137">RacesVariant.cs:137</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a18f100794dec533c9043ac6c7a08eb43"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a18f100794dec533c9043ac6c7a08eb43">Vereinsmeisterschaften.Core.Models.RacesVariant.Equals</a></div><div class="ttdeci">override bool Equals(object obj)</div><div class="ttdoc">Compare if two RacesVariant are equal.</div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a1bdbd74894b0b43d2b7e1d35bcac3cbe"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a1bdbd74894b0b43d2b7e1d35bcac3cbe">Vereinsmeisterschaften.Core.Models.RacesVariant.IsPersistent</a></div><div class="ttdeci">bool IsPersistent</div><div class="ttdoc">If true, this RacesVariant should be persisted (to a file).</div><div class="ttdef"><b>Definition</b> <a href="#l00099">RacesVariant.cs:100</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a2ac62d3d76c3973d2e7d01471ad83a6c"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2ac62d3d76c3973d2e7d01471ad83a6c">Vereinsmeisterschaften.Core.Models.RacesVariant.ScoreStyleOrder</a></div><div class="ttdeci">double ScoreStyleOrder</div><div class="ttdoc">Score regarding the preferred order of the styles.</div><div class="ttdef"><b>Definition</b> <a href="#l00325">RacesVariant.cs:326</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a2c85fd2c4b1edc916ff419359ba54723"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a2c85fd2c4b1edc916ff419359ba54723">Vereinsmeisterschaften.Core.Models.RacesVariant.UpdateNotAssignedStarts</a></div><div class="ttdeci">void UpdateNotAssignedStarts(List&lt; PersonStart &gt; allStarts)</div><div class="ttdoc">Update the list of not assigned PersonStart objects.</div><div class="ttdef"><b>Definition</b> <a href="#l00051">RacesVariant.cs:51</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a3a6c63fb5d1545ed84957128b1780b53"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a3a6c63fb5d1545ed84957128b1780b53">Vereinsmeisterschaften.Core.Models.RacesVariant.Clone</a></div><div class="ttdeci">object Clone()</div><div class="ttdoc">Create a new object that has the same property values than this one.</div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a423691798f3366f4e546729db811fe1b"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a423691798f3366f4e546729db811fe1b">Vereinsmeisterschaften.Core.Models.RacesVariant.RacesVariant</a></div><div class="ttdeci">RacesVariant(ObservableCollection&lt; Race &gt; races, IWorkspaceService workspaceService=null)</div><div class="ttdoc">Constructor for a new RacesVariant (copy an Race collection).</div><div class="ttdef"><b>Definition</b> <a href="#l00152">RacesVariant.cs:152</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a53ced67c3e699edd34826de4032e318e"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a53ced67c3e699edd34826de4032e318e">Vereinsmeisterschaften.Core.Models.RacesVariant.ScoreSingleStarts</a></div><div class="ttdeci">double ScoreSingleStarts</div><div class="ttdoc">Score regarding single starts.</div><div class="ttdef"><b>Definition</b> <a href="#l00295">RacesVariant.cs:296</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a67d0e557cf04771257c22c2ec8851333"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a67d0e557cf04771257c22c2ec8851333">Vereinsmeisterschaften.Core.Models.RacesVariant.ScoreStartGenders</a></div><div class="ttdeci">double ScoreStartGenders</div><div class="ttdoc">Score regarding the homogenity of genders in the starts.</div><div class="ttdef"><b>Definition</b> <a href="#l00335">RacesVariant.cs:336</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a71f8d3c9edd18fbe453fd40da7355eae"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a71f8d3c9edd18fbe453fd40da7355eae">Vereinsmeisterschaften.Core.Models.RacesVariant.CalculateScore</a></div><div class="ttdeci">double CalculateScore()</div><div class="ttdoc">Recalculate all scores.</div><div class="ttdef"><b>Definition</b> <a href="#l00347">RacesVariant.cs:347</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a7c393989b4ca24cf4d2ec8b84f3c2355"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7c393989b4ca24cf4d2ec8b84f3c2355">Vereinsmeisterschaften.Core.Models.RacesVariant.ScorePersonStartPauses</a></div><div class="ttdeci">double ScorePersonStartPauses</div><div class="ttdoc">Score regarding pauses between person starts.</div><div class="ttdef"><b>Definition</b> <a href="#l00315">RacesVariant.cs:316</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a7faf573bda7415388aebaf3ec10fcaa4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a7faf573bda7415388aebaf3ec10fcaa4">Vereinsmeisterschaften.Core.Models.RacesVariant.RacesVariant</a></div><div class="ttdeci">RacesVariant(IWorkspaceService workspaceService=null)</div><div class="ttdoc">Constructor for a new RacesVariant (create an empty Race collection).</div><div class="ttdef"><b>Definition</b> <a href="#l00124">RacesVariant.cs:124</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a8152ef1487ee2326579fc29540723368"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a8152ef1487ee2326579fc29540723368">Vereinsmeisterschaften.Core.Models.RacesVariant.EvaluateSameStyleSequence</a></div><div class="ttdeci">double EvaluateSameStyleSequence()</div><div class="ttdoc">Score for same styles in sequence: The more consecutive races with the same style the better.</div><div class="ttdef"><b>Definition</b> <a href="#l00394">RacesVariant.cs:394</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a90e04d529942e4d793a8be83ec634865"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a90e04d529942e4d793a8be83ec634865">Vereinsmeisterschaften.Core.Models.RacesVariant.EvaluatePersonStartPauses</a></div><div class="ttdeci">double EvaluatePersonStartPauses()</div><div class="ttdoc">Score for person pauses: The more pause between the starts of a person the better This returns 0 if t...</div><div class="ttdef"><b>Definition</b> <a href="#l00416">RacesVariant.cs:416</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_a9ab1fa86a71e3adf9aa300a3b5d6b04b"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#a9ab1fa86a71e3adf9aa300a3b5d6b04b">Vereinsmeisterschaften.Core.Models.RacesVariant.EvaluateStartGenders</a></div><div class="ttdeci">double EvaluateStartGenders()</div><div class="ttdoc">Score for start genders: Homogenous genders in starts are better than heterogeneous ones.</div><div class="ttdef"><b>Definition</b> <a href="#l00524">RacesVariant.cs:524</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_aa5074c6be96b226d80447213f6995c28"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa5074c6be96b226d80447213f6995c28">Vereinsmeisterschaften.Core.Models.RacesVariant.EvaluateStyleOrder</a></div><div class="ttdeci">double EvaluateStyleOrder()</div><div class="ttdoc">Score for style order: There is a preferred order for the styles (can be defined via the workspace se...</div><div class="ttdef"><b>Definition</b> <a href="#l00485">RacesVariant.cs:485</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_aa860b6dc95c89f8fc40d50ec58808ce4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aa860b6dc95c89f8fc40d50ec58808ce4">Vereinsmeisterschaften.Core.Models.RacesVariant.Races</a></div><div class="ttdeci">ObservableCollection&lt; Race &gt; Races</div><div class="ttdoc">List with races.</div><div class="ttdef"><b>Definition</b> <a href="#l00018">RacesVariant.cs:18</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_aac8b3217938013b66495a106feb5f19a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#aac8b3217938013b66495a106feb5f19a">Vereinsmeisterschaften.Core.Models.RacesVariant.ScoreSameStyleSequence</a></div><div class="ttdeci">double ScoreSameStyleSequence</div><div class="ttdoc">Score regarding same styles in sequence.</div><div class="ttdef"><b>Definition</b> <a href="#l00305">RacesVariant.cs:306</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ab109febce5ae3c32836515504c1b9e65"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab109febce5ae3c32836515504c1b9e65">Vereinsmeisterschaften.Core.Models.RacesVariant.IsValid_AllStartsAssigned</a></div><div class="ttdeci">bool IsValid_AllStartsAssigned</div><div class="ttdoc">True when there are no empty unassigned races.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">RacesVariant.cs:83</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ab3cc0300e113a2fa005c48079207c801"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab3cc0300e113a2fa005c48079207c801">Vereinsmeisterschaften.Core.Models.RacesVariant.~RacesVariant</a></div><div class="ttdeci">~RacesVariant()</div><div class="ttdoc">Destructor of the RacesVariant class.</div><div class="ttdef"><b>Definition</b> <a href="#l00193">RacesVariant.cs:193</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ab4161201b7960de03fa7187159a202ba"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab4161201b7960de03fa7187159a202ba">Vereinsmeisterschaften.Core.Models.RacesVariant.KeepWhileRacesCalculation</a></div><div class="ttdeci">bool KeepWhileRacesCalculation</div><div class="ttdoc">Keep this RacesVariant while calculating new variants.</div><div class="ttdef"><b>Definition</b> <a href="#l00112">RacesVariant.cs:113</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ab5827e4ba7d1345efcabe680f6e5807c"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab5827e4ba7d1345efcabe680f6e5807c">Vereinsmeisterschaften.Core.Models.RacesVariant.NotAssignedStarts</a></div><div class="ttdeci">List&lt; PersonStart &gt; NotAssignedStarts</div><div class="ttdoc">List with not assigned objects (not part of any  in Races)</div><div class="ttdef"><b>Definition</b> <a href="#l00039">RacesVariant.cs:40</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_abde07e6ff99faff6d3db91da1f2399a7"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#abde07e6ff99faff6d3db91da1f2399a7">Vereinsmeisterschaften.Core.Models.RacesVariant.Score</a></div><div class="ttdeci">double Score</div><div class="ttdoc">Overall score.</div><div class="ttdef"><b>Definition</b> <a href="#l00267">RacesVariant.cs:268</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_acbf66d1de17ce7b3e9f49561e7a2cace"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#acbf66d1de17ce7b3e9f49561e7a2cace">Vereinsmeisterschaften.Core.Models.RacesVariant.RacesVariant</a></div><div class="ttdeci">RacesVariant(RacesVariant other, bool deepClone=true, bool deepCloneRaces=true, IWorkspaceService workspaceService=null)</div><div class="ttdoc">Create a new object that has the same property values than this one.</div><div class="ttdef"><b>Definition</b> <a href="#l00169">RacesVariant.cs:169</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ad2731e2cabd424fe323559b9adf2c9ec"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad2731e2cabd424fe323559b9adf2c9ec">Vereinsmeisterschaften.Core.Models.RacesVariant.Equals</a></div><div class="ttdeci">bool Equals(RacesVariant other)</div><div class="ttdoc">Indicates wheather the current object is equal to another object of the same type.</div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ad72cd3a4b49a20b5fbe8889b29db687a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ad72cd3a4b49a20b5fbe8889b29db687a">Vereinsmeisterschaften.Core.Models.RacesVariant.VariantID</a></div><div class="ttdeci">int VariantID</div><div class="ttdoc">Number for this RacesVariant</div><div class="ttdef"><b>Definition</b> <a href="#l00027">RacesVariant.cs:28</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_adc070cb45583b6e9d8afaea57dc83f20"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#adc070cb45583b6e9d8afaea57dc83f20">Vereinsmeisterschaften.Core.Models.RacesVariant.EvaluateSingleStarts</a></div><div class="ttdeci">double EvaluateSingleStarts()</div><div class="ttdoc">Score for single starts: The less races with only one start the better.</div><div class="ttdef"><b>Definition</b> <a href="#l00376">RacesVariant.cs:376</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_add681cf623d022f56df609f6dc020257"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#add681cf623d022f56df609f6dc020257">Vereinsmeisterschaften.Core.Models.RacesVariant.IsValid_AllRacesValid</a></div><div class="ttdeci">bool IsValid_AllRacesValid</div><div class="ttdoc">True when all Races are valid.</div><div class="ttdef"><b>Definition</b> <a href="#l00077">RacesVariant.cs:77</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_ae89d4a00dd2181bd860dfc0c9e797bf1"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ae89d4a00dd2181bd860dfc0c9e797bf1">Vereinsmeisterschaften.Core.Models.RacesVariant.IsValid</a></div><div class="ttdeci">bool IsValid</div><div class="ttdoc">This RacesVariant is consideres valid when:</div><div class="ttdef"><b>Definition</b> <a href="#l00090">RacesVariant.cs:90</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant_html_af7df69f78dd4b5e66d94a94b130bec3a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#af7df69f78dd4b5e66d94a94b130bec3a">Vereinsmeisterschaften.Core.Models.RacesVariant.GetAllStarts</a></div><div class="ttdeci">List&lt; PersonStart &gt; GetAllStarts()</div><div class="ttdoc">Get a list with all objects of this</div><div class="ttdef"><b>Definition</b> <a href="#l00257">RacesVariant.cs:257</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings</a></div><div class="ttdoc">Class holding all workspace settings.</div><div class="ttdef"><b>Definition</b> <a href="_workspace_settings_8cs_source.html#l00010">WorkspaceSettings.cs:11</a></div></div>
+<div class="ttc" id="ainterface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service_html"><div class="ttname"><a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService</a></div><div class="ttdoc">Interface for a service used to manage a workspace.</div><div class="ttdef"><b>Definition</b> <a href="_i_workspace_service_8cs_source.html#l00010">IWorkspaceService.cs:11</a></div></div>
+<div class="ttc" id="ainterface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service_html_a1057097851e6a710c4e3acbea0075e28"><div class="ttname"><a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html#a1057097851e6a710c4e3acbea0075e28">Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.Settings</a></div><div class="ttdeci">WorkspaceSettings Settings</div><div class="ttdoc">Settings for the current workspace.</div><div class="ttdef"><b>Definition</b> <a href="_i_workspace_service_8cs_source.html#l00020">IWorkspaceService.cs:20</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a></div><div class="ttdef"><b>Definition</b> <a href="_delegates_8cs_source.html#l00002">Delegates.cs:3</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a></div><div class="ttdef"><b>Definition</b> <a href="_competition_8cs_source.html#l00004">Competition.cs:5</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html_a2c1a30a544e19fbe07754b882f19a950"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">Vereinsmeisterschaften.Core.Models.SwimmingStyles</a></div><div class="ttdeci">SwimmingStyles</div><div class="ttdoc">Available swimming styles.</div><div class="ttdef"><b>Definition</b> <a href="_swimming_styles_8cs_source.html#l00006">SwimmingStyles.cs:7</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_settings_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Vereinsmeisterschaften.Core.Settings</a></div><div class="ttdef"><b>Definition</b> <a href="_i_workspace_setting_8cs_source.html#l00003">IWorkspaceSetting.cs:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d79f3fde44629127f89592e101ede6a6.html">Vereinsmeisterschaften.Core</a></li><li class="navelem"><a class="el" href="dir_9ab6e3d1ea76f0763b5bdf8eff2d2b83.html">Models</a></li><li class="navelem"><b>RacesVariant.cs</b></li>
+    <li class="footer">Generated on Fri Sep 19 2025 21:14:42 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

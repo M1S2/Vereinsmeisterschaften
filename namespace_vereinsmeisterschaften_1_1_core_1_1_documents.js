@@ -1,0 +1,16 @@
+var namespace_vereinsmeisterschaften_1_1_core_1_1_documents =
+[
+    [ "DocumentPlaceholderResolverBase< T >", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_base-1-g.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_base-1-g" ],
+    [ "DocumentPlaceholderResolverPerson", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_person.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_person" ],
+    [ "DocumentPlaceholderResolverPersonStart", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_person_start.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_person_start" ],
+    [ "DocumentPlaceholderResolverRace", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_race.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolver_race" ],
+    [ "DocumentStrategyBase< TData >", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g" ],
+    [ "DocumentStrategyCertificates", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates" ],
+    [ "DocumentStrategyOverviewList", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list" ],
+    [ "DocumentStrategyRaceStartList", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list" ],
+    [ "DocumentStrategyResultList", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list" ],
+    [ "DocumentStrategyResultListDetail", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail" ],
+    [ "DocumentStrategyTimeForms", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms" ],
+    [ "IDocumentPlaceholderResolver< T >", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_placeholder_resolver-1-g.html", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_placeholder_resolver-1-g" ],
+    [ "IDocumentStrategy", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy.html", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy" ]
+];

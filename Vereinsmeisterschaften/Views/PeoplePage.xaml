@@ -164,9 +164,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Breaststroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Breaststroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Breaststroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -194,9 +194,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Freestyle}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Freestyle], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Freestyle], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -224,9 +224,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Backstroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Backstroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Backstroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -254,9 +254,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Butterfly}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Butterfly], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Butterfly], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -284,9 +284,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Medley}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Medley], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Medley], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -314,9 +314,9 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding WaterFlea}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Image Margin="2,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
-                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[WaterFlea], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[WaterFlea], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -24,9 +24,9 @@ namespace Vereinsmeisterschaften.ViewModels
         public string Icon { get; set; }
 
         /// <summary>
-        /// Icon drawing for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
+        /// Icon Geometry for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
         /// </summary>
-        public DrawingImage IconDrawingImage { get; set; }
+        public Geometry IconGeometry { get; set; }
 
         /// <summary>
         /// Type of editor to use for this setting

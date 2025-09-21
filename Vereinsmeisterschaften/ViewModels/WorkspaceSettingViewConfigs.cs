@@ -39,11 +39,11 @@ namespace Vereinsmeisterschaften.ViewModels
             },
             {
                 (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS),
-                new WorkspaceSettingViewConfig() { Label=Resources.TimeInputMillisecondDigitsString, Tooltip = Tooltips.TooltipTimeInputMillisecondDigits, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Counter"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.TimeInputMillisecondDigitsString, Tooltip = Tooltips.TooltipTimeInputMillisecondDigits, IconGeometry = (Geometry)iconResourceDict["Geometry_Counter"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS),
-                new WorkspaceSettingViewConfig() { Label=Resources.ScoreFractionalDigitsString, Tooltip = Tooltips.TooltipScoreFractionalDigits, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_DecimalComma"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.ScoreFractionalDigitsString, Tooltip = Tooltips.TooltipScoreFractionalDigits, IconGeometry = (Geometry)iconResourceDict["Geometry_DecimalComma"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
@@ -109,47 +109,47 @@ namespace Vereinsmeisterschaften.ViewModels
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS),
-                new WorkspaceSettingViewConfig() { Label=Resources.WeightSingleStartsString, Tooltip = Tooltips.TooltipWeightSingleStarts, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightSingleStartsString, Tooltip = Tooltips.TooltipWeightSingleStarts, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE),
-                new WorkspaceSettingViewConfig() { Label=Resources.WeightSameStyleSequenceString, Tooltip = Tooltips.TooltipWeightSameStyleSequence, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightSameStyleSequenceString, Tooltip = Tooltips.TooltipWeightSameStyleSequence, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES),
-                new WorkspaceSettingViewConfig() { Label=Resources.WeightPersonStartPausesString, Tooltip = Tooltips.TooltipWeightPersonStartPauses, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightPersonStartPausesString, Tooltip = Tooltips.TooltipWeightPersonStartPauses, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER),
-                new WorkspaceSettingViewConfig() { Label=Resources.WeightStyleOrderString, Tooltip = Tooltips.TooltipWeightStyleOrder, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightStyleOrderString, Tooltip = Tooltips.TooltipWeightStyleOrder, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS),
-                new WorkspaceSettingViewConfig() { Label=Resources.WeightStartGendersString, Tooltip = Tooltips.TooltipWeightStartGenders, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightStartGendersString, Tooltip = Tooltips.TooltipWeightStartGenders, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBreaststrokeString, Tooltip = Tooltips.TooltipPriorityStyleBreaststroke, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBreaststrokeString, Tooltip = Tooltips.TooltipPriorityStyleBreaststroke, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleFreestyleString, Tooltip = Tooltips.TooltipPriorityStyleFreestyle, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleFreestyleString, Tooltip = Tooltips.TooltipPriorityStyleFreestyle, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBackstrokeString, Tooltip = Tooltips.TooltipPriorityStyleBackstroke, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBackstrokeString, Tooltip = Tooltips.TooltipPriorityStyleBackstroke, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleButterflyString, Tooltip = Tooltips.TooltipPriorityStyleButterfly, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleButterflyString, Tooltip = Tooltips.TooltipPriorityStyleButterfly, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleMedleyString, Tooltip = Tooltips.TooltipPriorityStyleMedley, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleMedleyString, Tooltip = Tooltips.TooltipPriorityStyleMedley, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA),
-                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleWaterfleaString, Tooltip = Tooltips.TooltipPriorityStyleWaterflea, IconDrawingImage = (DrawingImage)iconResourceDict["DrawingImage_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
+                new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleWaterfleaString, Tooltip = Tooltips.TooltipPriorityStyleWaterflea, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             }
         };
 

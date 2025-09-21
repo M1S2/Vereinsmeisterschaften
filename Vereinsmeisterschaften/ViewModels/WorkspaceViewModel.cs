@@ -315,7 +315,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
                                                                                                             settingViewConfig.Value.Label,
                                                                                                             settingViewConfig.Value.Tooltip,
                                                                                                             settingViewConfig.Value.Icon,
-                                                                                                            settingViewConfig.Value.IconDrawingImage,
+                                                                                                            settingViewConfig.Value.IconGeometry,
                                                                                                             editorTemplate,
                                                                                                             settingViewConfig.Value.SupportResetToDefault)!;
                 settingsVms.Add(settingVm);

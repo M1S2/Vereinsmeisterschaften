@@ -102,7 +102,7 @@
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{StaticResource DrawingImage_Breaststroke}"/>
+                            <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
                             <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                         </StackPanel>
                     </DataGridTemplateColumn.Header>

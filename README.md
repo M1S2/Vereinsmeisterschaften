@@ -90,14 +90,14 @@ Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeistersc
 ## Icons
 - SwimmingStyles.png: https://www.vecteezy.com/vector-art/349116-swimming-aqua-aquatic-sport-game-icon-symbol-sign-pictogram
 - icons8-child-64.png: https://icons8.com/icon/67246/babys-room
-- DrawingImage_Female: https://pictogrammers.com/library/mdi/icon/gender-female/
-- DrawingImage_Male: https://pictogrammers.com/library/mdi/icon/gender-male/
-- DrawingImage_DecimalComma: https://pictogrammers.com/library/mdi/icon/decimal-comma/
-- DrawingImage_Counter: https://pictogrammers.com/library/mdi/icon/counter/
-- DrawingImage_Weight: https://pictogrammers.com/library/mdi/icon/weight/
-- DrawingImage_Priority: https://pictogrammers.com/library/mdi/icon/priority-high/
-- DrawingImage_Trophy: https://pictogrammers.com/library/mdi/icon/trophy-outline/_
-- DrawingImage_AccountTie: https://pictogrammers.com/library/mdi/icon/account-tie/
+- Geometry_Female: https://pictogrammers.com/library/mdi/icon/gender-female/
+- Geometry_Male: https://pictogrammers.com/library/mdi/icon/gender-male/
+- Geometry_DecimalComma: https://pictogrammers.com/library/mdi/icon/decimal-comma/
+- Geometry_Counter: https://pictogrammers.com/library/mdi/icon/counter/
+- Geometry_Weight: https://pictogrammers.com/library/mdi/icon/weight/
+- Geometry_Priority: https://pictogrammers.com/library/mdi/icon/priority-high/
+- Geometry_Trophy: https://pictogrammers.com/library/mdi/icon/trophy-outline/_
+- Geometry_AccountTie: https://pictogrammers.com/library/mdi/icon/account-tie/
 
 https://retouchinglabs.com/inkscape-convert-png-to-svg/
 https://stackoverflow.com/questions/18624070/convert-svg-to-xaml

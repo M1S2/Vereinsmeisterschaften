@@ -34,9 +34,9 @@ namespace Vereinsmeisterschaften.ViewModels
         public string Icon { get; }
 
         /// <summary>
-        /// Icon drawing for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
+        /// Icon Geometry for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
         /// </summary>
-        public DrawingImage IconDrawingImage { get; }
+        public Geometry IconGeometry { get; }
 
         /// <summary>
         /// True, if the setting value is not the snapshot value
@@ -126,16 +126,16 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <param name="label">Label describing the setting</param>
         /// <param name="tooltip">Tooltip for this setting</param>
         /// <param name="icon">Icon for this setting. This should be e.g. "\uE787". If this is <see langword="null"/>, <see cref="IconDrawingImage"/> is used.</param>
-        /// <param name="iconDrawingImage">Icon drawing for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.</param>
+        /// <param name="iconGeometry">Icon Geometry for this setting. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.</param>
         /// <param name="editorTemplate">Data template to assign a setting dependent editor view.</param>
         /// <param name="supportResetToDefault">Support for resetting the setting value to the default value.</param>
-        public WorkspaceSettingViewModel(WorkspaceSetting<T> setting, string label, string tooltip, string icon, DrawingImage iconDrawingImage, DataTemplate editorTemplate, bool supportResetToDefault)
+        public WorkspaceSettingViewModel(WorkspaceSetting<T> setting, string label, string tooltip, string icon, Geometry iconGeometry, DataTemplate editorTemplate, bool supportResetToDefault)
         {
             Setting = setting;
             Label = label;
             Tooltip = tooltip;
             Icon = icon;
-            IconDrawingImage = iconDrawingImage;
+            IconGeometry = iconGeometry;
             ResetCommand = new RelayCommand(() =>
             {
                 setting?.Reset();

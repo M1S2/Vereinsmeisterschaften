@@ -22,7 +22,8 @@
                 <ResourceDictionary Source="/Styles/Icons.xaml" />
                 <ResourceDictionary Source="/Styles/SwimmingStyleResources.xaml" />
                 <ResourceDictionary Source="/Styles/GenderStyleResources.xaml" />
-
+                <ResourceDictionary Source="/Styles/ResultTypeWithIconStyleResources.xaml" />
+                
                 <!--
                 MahApps.Metro resource dictionaries.
                 Learn more about using MahApps.Metro at https://mahapps.com/

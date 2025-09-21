@@ -26,7 +26,7 @@
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
                                         <DataTemplate>
-                                            <Image Width="30" Height="30" Source="{Binding DataContext.IconDrawingImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                            <Path Width="30" Height="30" Data="{Binding DataContext.IconGeometry, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource IconStyle}"/>
                                         </DataTemplate>
                                     </Setter.Value>
                                 </Setter>

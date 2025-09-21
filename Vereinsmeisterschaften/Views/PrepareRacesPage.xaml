@@ -396,10 +396,10 @@
                                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
 
                                             <!-- Icon that is shown for all starts that use the max age competitions -->
-                                            <Image DockPanel.Dock="Right" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                                            <Path DockPanel.Dock="Right" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                                    Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                    ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                            
+
                                             <!-- Show the name of the person -->
                                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <TextBlock.Text>
@@ -462,7 +462,7 @@
                         </Border.Style>
                         <DockPanel LastChildFill="True">
                             <!-- Icon that is shown for all starts that use the max age competitions -->
-                            <Image DockPanel.Dock="Right" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                            <Path DockPanel.Dock="Right" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                    Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
 

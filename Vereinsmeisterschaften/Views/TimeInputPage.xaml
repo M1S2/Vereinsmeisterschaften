@@ -181,7 +181,7 @@
                     <GridViewColumn Width="150">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{StaticResource DrawingImage_Breaststroke}"/>
+                                <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
                                 <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                             </StackPanel>
                         </GridViewColumn.Header>
@@ -216,7 +216,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding CompetitionObj.ID, FallbackValue=/}"/>
-                                    <Image Margin="15,0,0,0" Height="16" Width="16" Source="{StaticResource DrawingImage_AccountTie}"
+                                    <Path Margin="15,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                            Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
                                            ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                                 </StackPanel>
@@ -267,7 +267,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Score, FallbackValue=?}">
                         <GridViewColumn.Header>
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="20" Height="20" Margin="5" Source="{StaticResource DrawingImage_Trophy}"/>
+                                <Path Width="20" Height="20" Margin="5" Data="{StaticResource Geometry_Trophy}" Style="{StaticResource IconStyle}"/>
                                 <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                             </StackPanel>
                         </GridViewColumn.Header>

@@ -173,6 +173,86 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All available competitions are defined on this page.
+        ///A competition is described by the style, the distance, the age, and a corresponding time. The time is then used to calculate points.
+        ///If the swimmer achieves exactly the time entered here, they receive 100 points.
+        ///If they swim slower, they receive fewer points; if they swim faster, they receive more.
+        ///A corresponding competition must be available for each start. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoCompetitionPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoCompetitionPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create various documents that are required before, during, or after the competition. The filter only applies to certificate creation.
+        ///It also provides an overview of all available placeholders that can be used in the documents. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoCreateDocumentsPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoCreateDocumentsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All entries can be entered on this page.
+        ///The registration requires the name, year of birth, and the desired style.
+        ///A corresponding competition must also be entered for each style! Otherwise, the start will be ignored (also highlighted here). ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoPeoplePage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoPeoplePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create a order for the starts. This can be done either manually (by adding a variant and manually dragging the starts from the right area to the middle) or automatically (variants are randomly created and evaluated according to various criteria).
+        ///Each race variant is scored from 0% (poor) to 100% (perfect). In the workspace, you can set the weighting or various parameters for the automatic calculation.
+        ///You can also highlight specific starts. For example, all of a person&apos;s starts to c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoPrepareRacesPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoPrepareRacesPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This page displays the results from all starts (the number of points awarded for each swim time).
+        ///It is also possible to determine the best swimmers in a particular style. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoResultsPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoResultsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die For each start, you can enter the swim time here (in minutes, seconds, and tenths of a second).
+        ///Various filter options are available. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoTimeInputPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoTimeInputPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The workspace is a folder where all settings, competitions, and people are saved. It&apos;s a good idea to create a new folder for each competition (e.g. each year). It doesn&apos;t matter where the folder is located on the hard drive.
+        ///
+        ///The following files are created:
+        ///- WorkspaceSettings.json: JSON file with all settings for the workspace.
+        ///- Person.csv: List of all people and swim times.
+        ///- Competitions.csv: List of all available competitions.
+        ///- BestRace.csv: The race marked as a good option is saved here. If n [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoWorkspacePage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoWorkspacePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
         ///e.g. PlaceholderMarker = &quot;%&quot; --&gt; %PLACEHOLDER% ähnelt.
         /// </summary>

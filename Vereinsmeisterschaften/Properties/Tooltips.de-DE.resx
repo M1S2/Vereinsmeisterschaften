@@ -263,4 +263,45 @@ Die Punkte werden direkt bei der Berechnung gerundet, damit überall die gleiche
     <value>Dieser Start verwendet einen Wettkampf der ausgewählt wurde, weil die Person älter ist als alle verfügbaren Wettkämpfe für diese Lage und dieses Geschlecht.
 Der Wettkampf mit dem höchsten Alter wird stattdessen verwendet.</value>
   </data>
+  <data name="TooltipPageInfoWorkspacePage" xml:space="preserve">
+    <value>Der Arbeitsbereich ist ein Ordner, in dem alle Einstellungen, Wettkämpfe und Meldungen gespeichert werden. Hier bietet es sich an, für jeden Wettkampf (z.B. jedes Jahr) einen neuen Ordner anzulegen. Es ist egal, wo sich der Ordner auf der Festplatte befindet.
+
+Folgende Dateien werden erzeugt:
+- WorkspaceSettings.json: JSON Datei mit allen Einstellungen für den Arbeitsbereich.
+- Person.csv: Liste mit allen Meldungen und den erschwommenen Zeiten.
+- Competitions.csv: Liste mit allen verfügbaren Wettkämpfen.
+- BestRace.csv: Das Rennen, das als gute Variante markiert wurde, wird hier gespeichert. Wenn kein Rennen markiert wurde, existiert diese Datei nicht.
+Es können hier natürlich weitere Dateien abgelegt werden (z.B. Templates).
+
+Auf dieser Seite kann der aktuelle Ordner des Arbeitsbereichs ausgewählt und alle Änderungen gespeichert werden. Außerdem können alle Einstellungen für verschiedene Aspekte der Software hier getroffen und auch wieder zurückgesetzt werden.</value>
+  </data>
+  <data name="TooltipPageInfoCompetitionPage" xml:space="preserve">
+    <value>Auf dieser Seite werden alle verfügbaren Wettkämpfe definiert.
+Ein Wettkampf wird beschrieben über die Lage, die Strecke, das Alter und eine entsprechende Zeit. Die Zeit wird dann für die Berechnung der Punkte her genommen.
+Wird exakt die hier eingetragene Zeit erschwommen, gibt es 100 Punkte.
+Wenn langsamer gibt es weniger Punkte, wenn schneller dann mehr.
+Für jeden Start einer Person muss auch ein entsprechender Wettkampf verfügbar sein.</value>
+  </data>
+  <data name="TooltipPageInfoPeoplePage" xml:space="preserve">
+    <value>Auf dieser Seite können alle Meldungen eingetragen werden.
+Für die Meldung ist der Name, der Jahrgang und die gewünschten Lagen nötig.
+Für jede Lage muss auch ein entsprechender Wettkampf hinterlegt sein! Sonst wird der Start ignoriert (wird hier auch farblich markiert).</value>
+  </data>
+  <data name="TooltipPageInfoPrepareRacesPage" xml:space="preserve">
+    <value>Auf dieser Seite kann eine Reihenfolge für die Starts erstellt werden. Entweder manuell per Hand (Variante hinzufügen und die Starts per Hand vom rechten Bereich in die Mitte ziehen) oder automatisch (es werden zufällig Varianten erstellt und nach verschiedenen Kriterien bewertet).
+Jede Variante eines Rennens wird von 0% (schlecht) bis 100% (perfekt) bewertet. Im Arbeitsbereich kann die Gewichtung oder verschiedene Parameter für die automatische Berechnung eingestellt werden.
+Es gibt auch die Möglichkeit, bestimmte Starts hervorzuheben. Z.B. alle Starts einer Person um zu schauen, ob genügend Pausen vorhanden sind.</value>
+  </data>
+  <data name="TooltipPageInfoTimeInputPage" xml:space="preserve">
+    <value>Für jeden Start kann hier die erschwommene Zeit eingetragen werden (in Minute, Sekunden und Zehntelsekunden).
+Es stehen verschiedene Filtermöglichkeiten zur Verfügung.</value>
+  </data>
+  <data name="TooltipPageInfoResultsPage" xml:space="preserve">
+    <value>Auf dieser Seite wird die Auswertung aus allen Starts angezeigt (wie viele Punkte die jeweils erschwommenen Zeiten ergeben).
+Es ist möglich, auch die besten Schwimmer in einer bestimmten Lage zu ermitteln.</value>
+  </data>
+  <data name="TooltipPageInfoCreateDocumentsPage" xml:space="preserve">
+    <value>Auf dieser Seite können verschiedene Dokumente erstellt werden, die vor, während oder nach dem Wettkampf nötig sind. Der Filter gilt nur für die Urkunden-Erstellung.
+Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die in den Dokumenten verwendet werden können.</value>
+  </data>
 </root>

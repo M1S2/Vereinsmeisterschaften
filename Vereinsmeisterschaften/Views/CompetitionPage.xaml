@@ -36,6 +36,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xF0E3;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CompetitionPageTitle}" />
+            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoCompetitionPage}"/>
         </StackPanel>
 
         <!-- DataGrid with all competitions -->

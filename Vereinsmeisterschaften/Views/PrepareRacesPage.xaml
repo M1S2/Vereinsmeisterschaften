@@ -69,10 +69,11 @@
         </Grid.ColumnDefinitions>
 
         <!-- Page title -->
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE7C1;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.PrepareRacesPageTitle}" />
-        </DockPanel>
+            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoPrepareRacesPage}"/>
+        </StackPanel>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 

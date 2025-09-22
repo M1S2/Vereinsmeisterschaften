@@ -67,6 +67,10 @@
         /// List with all placeholders that can be used in the template to insert the style of the start with the highest score of a person.
         /// </summary>
         public static List<string> Placeholders_BestStyle = new List<string>() { "BesterStil", "BestStyle", "BS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the race number.
+        /// </summary>
+        public static List<string> Placeholders_RaceNumber = new List<string>() { "Rennen", "Renn Nr.", "Race", "Race Number", "RNo.", "R" };
 
         /// <summary>
         /// List with all placeholders that can be used in the template to insert the breaststroke score of a person.
@@ -138,6 +142,7 @@
         public const string PLACEHOLDER_KEY_SCORE = "Score";
         public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
         public const string PLACEHOLDER_KEY_BEST_STYLE = "BestStyle";
+        public const string PLACEHOLDER_KEY_RACE_NUMBER = "RaceNumber";
 
         public const string PLACEHOLDER_KEY_SCOREBREASTSTROKE = "ScoreBreaststroke";
         public const string PLACEHOLDER_KEY_SCOREFREESTYLE = "ScoreFreestyle";
@@ -176,6 +181,7 @@
             { PLACEHOLDER_KEY_SCORE, Placeholders_Score },
             { PLACEHOLDER_KEY_BEST_STYLE, Placeholders_BestStyle },
             { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace },
+            { PLACEHOLDER_KEY_RACE_NUMBER, Placeholders_RaceNumber },
             { PLACEHOLDER_KEY_SCOREBREASTSTROKE, Placeholders_ScoreBreaststroke },
             { PLACEHOLDER_KEY_SCOREFREESTYLE, Placeholders_ScoreFreestyle },
             { PLACEHOLDER_KEY_SCOREBACKSTROKE, Placeholders_ScoreBackstroke },

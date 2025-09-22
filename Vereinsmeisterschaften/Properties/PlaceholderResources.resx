@@ -290,4 +290,10 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   <data name="PlaceholderInfoWorkspacePath" xml:space="preserve">
     <value>Use these placeholders to insert the path to the workspace.</value>
   </data>
+  <data name="PlaceholderInfoRaceNumber" xml:space="preserve">
+    <value>Use these placeholders to insert the number of the race beginning with 1.</value>
+  </data>
+  <data name="PlaceholderNameRaceNumber" xml:space="preserve">
+    <value>Race Number</value>
+  </data>
 </root>

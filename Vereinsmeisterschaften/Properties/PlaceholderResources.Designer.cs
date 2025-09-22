@@ -161,6 +161,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of the race beginning with 1. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoRaceNumber {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoRaceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the place in the overall result list. ähnelt.
         /// </summary>
         public static string PlaceholderInfoResultListPlace {
@@ -428,6 +437,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameName {
             get {
                 return ResourceManager.GetString("PlaceholderNameName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race Number ähnelt.
+        /// </summary>
+        public static string PlaceholderNameRaceNumber {
+            get {
+                return ResourceManager.GetString("PlaceholderNameRaceNumber", resourceCulture);
             }
         }
         

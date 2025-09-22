@@ -290,4 +290,10 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
   <data name="PlaceholderInfoWorkspacePath" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um den Pfad zum Arbeitsbereich einzufügen.</value>
   </data>
+  <data name="PlaceholderInfoRaceNumber" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Nummer des Rennens beginnend mit 1 einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameRaceNumber" xml:space="preserve">
+    <value>Renn-Nummer</value>
+  </data>
 </root>

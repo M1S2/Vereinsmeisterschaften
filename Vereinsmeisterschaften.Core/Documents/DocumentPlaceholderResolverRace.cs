@@ -57,6 +57,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, string.Join(", ", personCompetitionIDs)); }
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.Distance.ToString() + "m"); }
             foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.Style)); }
+            foreach (string placeholder in Placeholders.Placeholders_RaceNumber) { textPlaceholder.Add(placeholder, item.RaceID.ToString()); }
             return textPlaceholder;
         }
 
@@ -72,6 +73,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             Placeholders.PLACEHOLDER_KEY_COMPETITION_ID,
             Placeholders.PLACEHOLDER_KEY_DISTANCE,
             Placeholders.PLACEHOLDER_KEY_SWIMMING_STYLE,
+            Placeholders.PLACEHOLDER_KEY_RACE_NUMBER
         };
 
         /// <inheritdoc/>
@@ -80,7 +82,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             get
             {
                 ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
-                return Enumerable.Repeat((int)numSwimLanes, SupportedPlaceholderKeys.Count).ToList();
+                return Enumerable.Repeat((int)numSwimLanes, SupportedPlaceholderKeys.Count - 1).ToList(); // -1 because PLACEHOLDER_KEY_RACE_NUMBER doesn't support postfix numbers
             }
         }
 

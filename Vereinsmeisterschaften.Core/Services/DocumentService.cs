@@ -148,7 +148,8 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             foreach (object multiplePagesObj in items)
                             {
-                                string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(templateFileNamePostfix, "") + $"_{numCreatedPages}.docx");
+                                // Create the filename for the temporary file containing one page of the final multi pages document. Make sure the postfix number always contain an equal number of digits (prefixed by 0). This is important later for Directory.GetFiles() ordering.
+                                string outputFileMulti = Path.Combine(tempFolder, Path.GetFileNameWithoutExtension(documentTemplate).Replace(templateFileNamePostfix, "") + $"_{numCreatedPages:0000}.docx");
 
                                 DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = documentStrategy.ResolveTablePlaceholders(items);
                                 if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFileMulti, tablePlaceholders, placeholderMarker); }

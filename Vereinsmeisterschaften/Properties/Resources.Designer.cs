@@ -1262,6 +1262,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sorting ähnelt.
+        /// </summary>
+        public static string SortString {
+            get {
+                return ResourceManager.GetString("SortString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
         /// </summary>
         public static string SwimmingStyleString {

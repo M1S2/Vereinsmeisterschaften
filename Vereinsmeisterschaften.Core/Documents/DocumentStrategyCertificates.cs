@@ -34,12 +34,31 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public override bool CreateMultiplePages => true;
 
+        /// <inheritdoc/>
+        public override Enum ItemOrdering { get; set; } = ItemOrderingsCertificate.None;
+
+        /// <inheritdoc/>
+        public override IEnumerable<Enum> AvailableItemOrderings => Enum.GetValues(typeof(ItemOrderingsCertificate)).Cast<Enum>();
+
         /// <summary>
         /// Return a list of all <see cref="PersonStart"/> items which have <see cref="PersonStart.CompetitionObj"/> assigned.
         /// </summary>
         /// <returns>List of all <see cref="PersonStart"/> items which have <see cref="PersonStart.CompetitionObj"/> assigned</returns>
         public override PersonStart[] GetItems()
-            => _personService.GetAllPersonStarts().Where(s => s.CompetitionObj != null).ToArray();
+        {
+            List<PersonStart> starts = _personService.GetAllPersonStarts().Where(s => s.CompetitionObj != null).ToList();
+            switch (ItemOrdering)
+            {
+                case ItemOrderingsCertificate.ByNameAscending: starts = starts.OrderBy(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsCertificate.ByNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsCertificate.ByFirstNameAscending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
+                case ItemOrderingsCertificate.ByFirstNameDescending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionAscending: starts = starts.OrderBy(s => s.CompetitionObj?.ID).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionDescending: starts = starts.OrderBy(s => s.CompetitionObj?.ID).ToList(); break;
+                default: break;
+            }
+            return starts.ToArray();
+        }
 
         /// <summary>
         /// Return a list of all <see cref="PersonStart"/> items which have <see cref="PersonStart.CompetitionObj"/> assigned and that match the filter criteria.
@@ -48,6 +67,36 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <param name="personStartFilterParameter">Parameter for the personStartFilter</param>
         /// <returns>List of all <see cref="PersonStart"/> items which have <see cref="PersonStart.CompetitionObj"/> assigned</returns>
         public PersonStart[] GetItemsFiltered(PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
-            => _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null).ToArray();
+        {
+            List<PersonStart> starts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null).ToList();
+            switch (ItemOrdering)
+            {
+                case ItemOrderingsCertificate.ByNameAscending: starts = starts.OrderBy(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsCertificate.ByNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsCertificate.ByFirstNameAscending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
+                case ItemOrderingsCertificate.ByFirstNameDescending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionAscending: starts = starts.OrderBy(s => s.CompetitionObj?.ID).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionDescending: starts = starts.OrderBy(s => s.CompetitionObj?.ID).ToList(); break;
+                default: break;
+            }
+            return starts.ToArray();
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Enum with all available orderings for certificates.
+        /// </summary>
+        public enum ItemOrderingsCertificate
+        {
+            None,
+            ByNameAscending,
+            ByNameDescending,
+            ByFirstNameAscending,
+            ByFirstNameDescending,
+            ByCompetitionAscending,
+            ByCompetitionDescending
+        }
     }
+
 }

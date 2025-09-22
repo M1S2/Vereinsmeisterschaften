@@ -34,13 +34,47 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public override bool CreateMultiplePages => false;
 
+        /// <inheritdoc/>
+        public override Enum ItemOrdering { get; set; } = ItemOrderingsResultListDetail.None;
+
+        /// <inheritdoc/>
+        public override IEnumerable<Enum> AvailableItemOrderings => Enum.GetValues(typeof(ItemOrderingsResultListDetail)).Cast<Enum>();
+
         /// <summary>
         /// Return a list of all <see cref="Person"/> items.
         /// </summary>
         /// <returns>List of all <see cref="Person"/> items</returns>
         public override Person[] GetItems()
         {
-            return _personService.GetPersons().OrderBy(p => p.Name).ThenBy(p => p.FirstName).ToArray();
+            List<Person> persons = _personService.GetPersons().ToList();
+            switch (ItemOrdering)
+            {
+                case ItemOrderingsResultListDetail.ByNameAscending: persons = persons.OrderBy(p => p?.Name).ToList(); break;
+                case ItemOrderingsResultListDetail.ByNameDescending: persons = persons.OrderByDescending(p => p?.Name).ToList(); break;
+                case ItemOrderingsResultListDetail.ByFirstNameAscending: persons = persons.OrderBy(p => p?.FirstName).ToList(); break;
+                case ItemOrderingsResultListDetail.ByFirstNameDescending: persons = persons.OrderByDescending(p => p?.FirstName).ToList(); break;
+                case ItemOrderingsResultListDetail.ByBestPlaceAscending: persons = persons.OrderBy(p => p?.ResultListPlace).ToList(); break;
+                case ItemOrderingsResultListDetail.ByBestPlaceDescending: persons = persons.OrderByDescending(p => p?.ResultListPlace).ToList(); break;
+                default: break;
+            }
+            return persons.ToArray();
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Enum with all available orderings for result lists with details.
+        /// </summary>
+        public enum ItemOrderingsResultListDetail
+        {
+            None,
+            ByNameAscending,
+            ByNameDescending,
+            ByFirstNameAscending,
+            ByFirstNameDescending,
+            ByBestPlaceAscending,
+            ByBestPlaceDescending
         }
     }
+    
 }

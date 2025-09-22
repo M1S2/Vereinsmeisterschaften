@@ -1,6 +1,7 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
+using static Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates;
 
 namespace Vereinsmeisterschaften.Core.Documents
 {
@@ -36,6 +37,12 @@ namespace Vereinsmeisterschaften.Core.Documents
 
         /// <inheritdoc/>
         public abstract bool CreateMultiplePages { get; }
+
+        /// <inheritdoc/>
+        public virtual Enum ItemOrdering { get; set; } = null;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Enum> AvailableItemOrderings { get; } = null;
 
         /// <inheritdoc/>
         public abstract object[] GetItems();

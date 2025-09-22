@@ -34,11 +34,43 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         public override bool CreateMultiplePages => false;
 
+        /// <inheritdoc/>
+        public override Enum ItemOrdering { get; set; } = ItemOrderingsOverviewList.None;
+
+        /// <inheritdoc/>
+        public override IEnumerable<Enum> AvailableItemOrderings => Enum.GetValues(typeof(ItemOrderingsOverviewList)).Cast<Enum>();
+
         /// <summary>
         /// Return a list of all <see cref="PersonStart"/> items.
         /// </summary>
         /// <returns>List of all <see cref="PersonStart"/> items.</returns>
         public override PersonStart[] GetItems()
-            => _personService.GetAllPersonStarts().ToArray();
+        {
+            List<PersonStart> starts = _personService.GetAllPersonStarts();
+            switch (ItemOrdering)
+            {
+                case ItemOrderingsOverviewList.ByNameAscending: starts = starts.OrderBy(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsOverviewList.ByNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.Name).ToList(); break;
+                case ItemOrderingsOverviewList.ByFirstNameAscending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
+                case ItemOrderingsOverviewList.ByFirstNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.FirstName).ToList(); break;
+                default: break;
+            }
+            return starts.ToArray();
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// Enum with all available orderings for overview lists.
+        /// </summary>
+        public enum ItemOrderingsOverviewList
+        {
+            None,
+            ByNameAscending,
+            ByNameDescending,
+            ByFirstNameAscending,
+            ByFirstNameDescending
+        }
     }
+    
 }

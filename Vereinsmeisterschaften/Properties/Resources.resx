@@ -571,4 +571,7 @@
   <data name="CalculatedRaceVariantScoreString" xml:space="preserve">
     <value>Calculated Score</value>
   </data>
+  <data name="SortString" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
 </root>

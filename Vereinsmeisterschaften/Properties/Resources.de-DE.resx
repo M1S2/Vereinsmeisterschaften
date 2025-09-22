@@ -572,4 +572,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="CalculatedRaceVariantScoreString" xml:space="preserve">
     <value>Berechnete Bewertung</value>
   </data>
+  <data name="SortString" xml:space="preserve">
+    <value>Sortierung</value>
+  </data>
 </root>

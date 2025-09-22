@@ -138,6 +138,27 @@ namespace Vereinsmeisterschaften.Views
         }
         public static readonly DependencyProperty LastCreatedDocumentPathProperty = DependencyProperty.Register(nameof(LastCreatedDocumentPath), typeof(string), typeof(CreateDocumentUserControl));
 
+        /// <summary>
+        /// Array with all available orderings for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        public IEnumerable<Enum> AvailableItemOrderings
+        {
+            get { return (IEnumerable<Enum>)GetValue(AvailableItemOrderingsProperty); }
+            set { SetValue(AvailableItemOrderingsProperty, value); }
+        }
+        public static readonly DependencyProperty AvailableItemOrderingsProperty = DependencyProperty.Register(nameof(AvailableItemOrderings), typeof(IEnumerable<Enum>), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Current ordering for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        public Enum ItemOrdering
+        {
+            get { return (Enum)GetValue(ItemOrderingProperty); }
+            set { SetValue(ItemOrderingProperty, value); }
+        }
+        public static readonly DependencyProperty ItemOrderingProperty = DependencyProperty.Register(nameof(ItemOrdering), typeof(Enum), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
+
         private void btn_openDocument_Click(object sender, RoutedEventArgs e)
         {
             if(System.IO.File.Exists(LastCreatedDocumentPath))

@@ -48,6 +48,16 @@ namespace Vereinsmeisterschaften.Core.Documents
         bool SupportTablePlaceholders { get; }
 
         /// <summary>
+        /// Current ordering for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        Enum ItemOrdering { get; set; }
+
+        /// <summary>
+        /// Array with all available orderings for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        IEnumerable<Enum> AvailableItemOrderings { get; }
+
+        /// <summary>
         /// List of placeholder keys that are supported by this strategy.
         /// </summary>
         List<string> SupportedPlaceholderKeys { get; }

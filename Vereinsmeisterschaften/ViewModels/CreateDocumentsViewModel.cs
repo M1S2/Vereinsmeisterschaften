@@ -46,6 +46,17 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     public Dictionary<DocumentCreationTypes, string> LastDocumentFilePaths { get; } = new Dictionary<DocumentCreationTypes, string>();
 
+    /// <summary>
+    /// Dictionary to hold the available item orderings for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, IEnumerable<Enum>> AvailableItemOrderings { get; } = new Dictionary<DocumentCreationTypes, IEnumerable<Enum>>();
+
+    /// <summary>
+    /// Dictionary to hold the current item ordering for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, Enum> CurrentItemOrderings { get; } = new Dictionary<DocumentCreationTypes, Enum>();
+
+
     private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
     {
         if (IsDocumentCreationRunning.ContainsKey(documentType))
@@ -288,6 +299,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         IsDocumentDataAvailable.Clear();
         IsDocumentTemplateAvailable.Clear();
         LastDocumentFilePaths.Clear();
+        AvailableItemOrderings.Clear();
+        CurrentItemOrderings.Clear();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IsDocumentCreationRunning.Add(type, false);
@@ -295,6 +308,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             IsDocumentDataAvailable.Add(type, false);
             IsDocumentTemplateAvailable.Add(type, false);
             LastDocumentFilePaths.Add(type, string.Empty);
+            AvailableItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.AvailableItemOrderings);
+            CurrentItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemOrdering);
         }
     }
 
@@ -308,6 +323,14 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     {
         int numCreatedPages = 0;
         string returnFilePath = string.Empty;
+
+        // Update the item ordering for all document strategies before creating the document
+        List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
+        foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
+        {
+            IDocumentStrategy strategy = _documentStrategies.FirstOrDefault(s => s.DocumentType == type);
+            if (strategy != null) { strategy.ItemOrdering = CurrentItemOrderings[type]; }
+        }
 
         changeDocumentCreationRunningState(documentType, true);
         try

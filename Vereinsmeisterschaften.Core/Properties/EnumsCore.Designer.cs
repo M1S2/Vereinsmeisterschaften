@@ -106,6 +106,177 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID (1 - 9) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByCompetitionAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByCompetitionAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID (9 - 1) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByCompetitionDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByCompetitionDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByFirstNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByFirstNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByFirstNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByFirstNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_ByNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_ByNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string ItemOrderingsCertificate_None {
+            get {
+                return ResourceManager.GetString("ItemOrderingsCertificate_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsOverviewList_ByFirstNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsOverviewList_ByFirstNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsOverviewList_ByFirstNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsOverviewList_ByFirstNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsOverviewList_ByNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsOverviewList_ByNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsOverviewList_ByNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsOverviewList_ByNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string ItemOrderingsOverviewList_None {
+            get {
+                return ResourceManager.GetString("ItemOrderingsOverviewList_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Best Place (1 - 9) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByBestPlaceAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByBestPlaceAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Best Place (9 - 1) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByBestPlaceDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByBestPlaceDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByFirstNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByFirstNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByFirstNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByFirstNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (A - Z) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByNameAscending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByNameAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name (Z - A) ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_ByNameDescending {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_ByNameDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
+        /// </summary>
+        public static string ItemOrderingsResultListDetail_None {
+            get {
+                return ResourceManager.GetString("ItemOrderingsResultListDetail_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
         /// </summary>
         public static string PersonStartFilters_CompetitionID {

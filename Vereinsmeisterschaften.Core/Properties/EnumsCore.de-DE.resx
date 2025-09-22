@@ -189,4 +189,61 @@
   <data name="ResultTypes_MaxAgeCompetitions" xml:space="preserve">
     <value>Max. Alter Wettkämpfe</value>
   </data>
+  <data name="ItemOrderingsCertificate_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByNameDescending" xml:space="preserve">
+    <value>Name (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByFirstNameDescending" xml:space="preserve">
+    <value>Vorname (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByCompetitionDescending" xml:space="preserve">
+    <value>Wettkampf-ID (9 - 1)</value>
+  </data>
+  <data name="ItemOrderingsOverviewList_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="ItemOrderingsOverviewList_ByNameDescending" xml:space="preserve">
+    <value>Name (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsOverviewList_ByFirstNameDescending" xml:space="preserve">
+    <value>Vorname (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByNameDescending" xml:space="preserve">
+    <value>Name (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByFirstNameDescending" xml:space="preserve">
+    <value>Vorname (Z - A)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByBestPlaceDescending" xml:space="preserve">
+    <value>Bester Platz (9 - 1)</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByCompetitionAscending" xml:space="preserve">
+    <value>Wettkampf-ID (1 - 9)</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByFirstNameAscending" xml:space="preserve">
+    <value>Vorname (A - Z)</value>
+  </data>
+  <data name="ItemOrderingsCertificate_ByNameAscending" xml:space="preserve">
+    <value>Name (A - Z)</value>
+  </data>
+  <data name="ItemOrderingsOverviewList_ByFirstNameAscending" xml:space="preserve">
+    <value>Vorname (A - Z)</value>
+  </data>
+  <data name="ItemOrderingsOverviewList_ByNameAscending" xml:space="preserve">
+    <value>Name (A - Z)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByBestPlaceAscending" xml:space="preserve">
+    <value>Bester Platz (1 - 9)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByFirstNameAscending" xml:space="preserve">
+    <value>Vorname (A - Z)</value>
+  </data>
+  <data name="ItemOrderingsResultListDetail_ByNameAscending" xml:space="preserve">
+    <value>Name (A - Z)</value>
+  </data>
 </root>

@@ -7,114 +7,150 @@
              xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="400">
+             d:DesignHeight="450" d:DesignWidth="400">
 
-    <StackPanel Orientation="Vertical"
+    <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="0.5,0">
+        <StackPanel Orientation="Vertical"
                 Margin="{StaticResource SmallLeftTopRightBottomMargin}"
                 DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
 
-        <!-- Button to create document -->
-        <Button Command="{Binding CreateDocumentCommand}"
+            <!-- Button to create document -->
+            <Button Command="{Binding CreateDocumentCommand}"
                 CommandParameter="{Binding DocumentType}">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
-                    <Setter Property="IsEnabled" Value="True"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsTemplateAvailable}" Value="False">
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <StackPanel Orientation="Vertical">
-                <controls:FontIcon Margin="10"
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsTemplateAvailable}" Value="False">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Vertical">
+                    <controls:FontIcon Margin="10"
                                    FontSize="50"
                                    Glyph="{Binding ButtonIconGlyph}"/>
-                <TextBlock Margin="10"
+                    <TextBlock Margin="10"
                            HorizontalAlignment="Center"
                            Text="{Binding ButtonText}"
                            FontSize="{StaticResource MediumFontSize}"/>
-            </StackPanel>
-        </Button>
+                </StackPanel>
+            </Button>
 
-        <!-- Success Message -->
-        <StackPanel Margin="0,10,0,0"
+            <Grid MinHeight="90">
+                <!-- Success Message -->
+                <StackPanel Margin="0,10,0,0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <StackPanel.Style>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-            <ContentControl Template="{StaticResource ControlTemplateOkIndicator}" VerticalAlignment="Top"/>
-            <StackPanel Margin="5,0,0,0"
-                        Orientation="Vertical">
-                <TextBlock VerticalAlignment="Center"
-                           Text="{Binding SuccessText}"/>
-                <TextBlock Margin="0,5,0,0"
-                           VerticalAlignment="Center"
-                           Text="{Binding NumberCreatedDocuments, StringFormat={x:Static properties:Resources.NumberCreatedDocumentsString}}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
+                    <StackPanel.Style>
+                        <Style TargetType="{x:Type StackPanel}">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding NumberCreatedDocuments}" Value="-1">
+                                <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <Button x:Name="btn_openDocument" Margin="0,5" Content="{x:Static properties:Resources.OpenString}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="btn_openDocument_Click" ToolTip="{x:Static properties:Tooltips.TooltipOpenDocument}"/>
-            </StackPanel>
-        </StackPanel>
+                    </StackPanel.Style>
+                    <ContentControl Template="{StaticResource ControlTemplateOkIndicator}" VerticalAlignment="Top"/>
+                    <StackPanel Margin="5,0,0,0"
+                        Orientation="Vertical">
+                        <TextBlock VerticalAlignment="Center"
+                           Text="{Binding SuccessText}"/>
+                        <TextBlock Margin="0,5,0,0"
+                           VerticalAlignment="Center"
+                           Text="{Binding NumberCreatedDocuments, StringFormat={x:Static properties:Resources.NumberCreatedDocumentsString}}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding NumberCreatedDocuments}" Value="-1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <Button x:Name="btn_openDocument" Margin="0,5" Content="{x:Static properties:Resources.OpenString}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="btn_openDocument_Click" ToolTip="{x:Static properties:Tooltips.TooltipOpenDocument}"/>
+                    </StackPanel>
+                </StackPanel>
 
-        <!-- Progress Ring -->
-        <controls:ProgressRing Margin="0,10,0,0">
-            <controls:ProgressRing.Style>
-                <Style TargetType="{x:Type controls:ProgressRing}">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsRunning}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </controls:ProgressRing.Style>
-        </controls:ProgressRing>
+                <!-- Progress Ring -->
+                <controls:ProgressRing Margin="0,10,0,0">
+                    <controls:ProgressRing.Style>
+                        <Style TargetType="{x:Type controls:ProgressRing}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRunning}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:ProgressRing.Style>
+                </controls:ProgressRing>
+            </Grid>
 
-        <!-- No data available warning -->
-        <StackPanel Margin="0,10,0,0"
+            <!-- No data available warning -->
+            <StackPanel Margin="0,10,0,0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Visibility="{Binding IsDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-            <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
-            <TextBlock Margin="5,0,0,0"
+                <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+                <TextBlock Margin="5,0,0,0"
                        Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
-        </StackPanel>
+            </StackPanel>
 
-        <!-- No template available warning -->
-        <StackPanel Margin="0,10,0,0"
+            <!-- No template available warning -->
+            <StackPanel Margin="0,10,0,0"
             Orientation="Horizontal"
             HorizontalAlignment="Center"
             Visibility="{Binding IsTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-            <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
-            <TextBlock Margin="5,0,0,0"
+                <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+                <TextBlock Margin="5,0,0,0"
                Text="{x:Static properties:Resources.NoTemplateAvailableWarningString}"/>
+            </StackPanel>
+
+            <!-- Combobox for available item orderings -->
+            <TextBlock Margin="10,10,10,0"
+                   Text="{x:Static properties:Resources.SortString}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AvailableItemOrderings}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <ComboBox Margin="10,0,10,0"
+                  ItemsSource="{Binding AvailableItemOrderings}"
+                  SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AvailableItemOrderings}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
-    </StackPanel>
+    </Border>
 </UserControl>

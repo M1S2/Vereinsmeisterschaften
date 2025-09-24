@@ -19,6 +19,15 @@ namespace Vereinsmeisterschaften.Core.Documents
         string TemplatePath { get; }
 
         /// <summary>
+        /// Use this string instead of the template file name postfix during document creation.
+        /// e.g. Template = "Certificate_Template.docx" and TemplateFileNamePostfix = "_Template"
+        /// - with this Property = "" the output file becomes "Certificate.docx"
+        /// - with this Property = "_WK1" the output file becomes "Certificate_WK1.docx"
+        /// - with this Property = "_Name" the output file becomes "Certificate_Name.docx"
+        /// </summary>
+        string TemplateFileNamePostfixReplaceStr { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this strategy supports creating multiple pages in the document.
         /// Each element returned by <see cref="GetItems"/> will be used for a separate page if this is true.
         /// </summary>
@@ -48,16 +57,6 @@ namespace Vereinsmeisterschaften.Core.Documents
         bool SupportTablePlaceholders { get; }
 
         /// <summary>
-        /// Current ordering for the items. If no ordering is supported, this will be <see langword="null"/>.
-        /// </summary>
-        Enum ItemOrdering { get; set; }
-
-        /// <summary>
-        /// Array with all available orderings for the items. If no ordering is supported, this will be <see langword="null"/>.
-        /// </summary>
-        IEnumerable<Enum> AvailableItemOrderings { get; }
-
-        /// <summary>
         /// List of placeholder keys that are supported by this strategy.
         /// </summary>
         List<string> SupportedPlaceholderKeys { get; }
@@ -82,5 +81,30 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <param name="items">List of items to generate <see cref="DocXPlaceholderHelper.TablePlaceholders"/> from</param>
         /// <returns><see cref="DocXPlaceholderHelper.TablePlaceholders"/></returns>
         DocXPlaceholderHelper.TablePlaceholders ResolveTablePlaceholders(object[] items);
+
+        /// <summary>
+        /// Current ordering for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        Enum ItemOrdering { get; set; }
+
+        /// <summary>
+        /// Array with all available orderings for the items. If no ordering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        IEnumerable<Enum> AvailableItemOrderings { get; }
+
+        /// <summary>
+        /// Array with all available filters for the items. If no filtering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        IEnumerable<Enum> AvailableItemFilters { get; }
+
+        /// <summary>
+        /// Current filter for the items. If no filtering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        Enum ItemFilter { get; set; }
+
+        /// <summary>
+        /// Filter parameter that can be used together with <see cref="ItemFiltering"/>. The type and usage of this parameter depends on the selected <see cref="ItemFilter"/>.
+        /// </summary>
+        object ItemFilterParameter { get; set; }
     }
 }

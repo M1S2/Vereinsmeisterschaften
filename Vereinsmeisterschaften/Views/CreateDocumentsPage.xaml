@@ -12,18 +12,13 @@
     xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
+    xmlns:templateSelectors="clr-namespace:Vereinsmeisterschaften.TemplateSelectors"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
     <Page.Resources>
-        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailablePersonStartFilters">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="coreModels:PersonStartFilters"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
         <Style x:Key="StyleCenteredGridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
@@ -32,7 +27,6 @@
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -54,76 +48,52 @@
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Certificates -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="0"
-                                        DocumentType="{x:Static coreModels:DocumentCreationTypes.Certificates}"
-                                        CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                        IsRunning="{Binding IsDocumentCreationRunning[Certificates]}"
-                                        IsSuccessful="{Binding IsDocumentCreationSuccessful[Certificates]}"
-                                        IsDataAvailable="{Binding IsDocumentDataAvailable[Certificates]}"
-                                        IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[Certificates]}"
-                                        LastCreatedDocumentPath="{Binding LastDocumentFilePaths[Certificates]}"
-                                        AvailableItemOrderings="{Binding AvailableItemOrderings[Certificates]}"
-                                        ItemOrdering="{Binding CurrentItemOrderings[Certificates], Mode=TwoWay}"
-                                        ButtonText="{x:Static properties:Resources.CreateCertificatesString}"
-                                        SuccessText="{x:Static properties:Resources.CreateCertificatesResultString}"
-                                        ButtonIconGlyph="&#xE8A5;"
-                                        NumberCreatedDocuments="{Binding NumberCreatedCertificates}"/>
-
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="24,0">
-            <TextBlock Text="{x:Static properties:Resources.FilterModeString}" VerticalAlignment="Center"/>
-            <!-- Selection for filter mode -->
-            <ComboBox ItemsSource="{Binding Source={StaticResource AvailablePersonStartFilters}}" SelectedValue="{Binding PersonStartFilter}" VerticalAlignment="Center">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <!-- Selection for person. This is only visible if filter mode is Person. -->
-            <ComboBox Margin="0,5,0,0" VerticalAlignment="Center" ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding FilteredPerson}">
-                <ComboBox.Style>
-                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="Person">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.Style>
-            </ComboBox>
-            <!-- Selection for swimming style. This is only visible if filter mode is SwimmingStyle. -->
-            <ComboBox Margin="0,5,0,0" VerticalAlignment="Center" ItemsSource="{Binding AvailableSwimmingStyles}" SelectedItem="{Binding FilteredSwimmingStyle}">
-                <ComboBox.Style>
-                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="SwimmingStyle">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.Style>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <!-- Selection / Numeric input for Competition ID. This is only visible if filter mode is CompetitionID. -->
-            <controls:NumericUpDown Margin="0,5,0,0" VerticalAlignment="Center" Value="{Binding FilteredCompetitionID}" Minimum="0">
-                <controls:NumericUpDown.Style>
-                    <Style TargetType="{x:Type controls:NumericUpDown}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PersonStartFilter}" Value="CompetitionID">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </controls:NumericUpDown.Style>
-            </controls:NumericUpDown>
-        </StackPanel>
+                                         DocumentType="{x:Static coreModels:DocumentCreationTypes.Certificates}"
+                                         CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                         IsRunning="{Binding IsDocumentCreationRunning[Certificates]}"
+                                         IsSuccessful="{Binding IsDocumentCreationSuccessful[Certificates]}"
+                                         IsDataAvailable="{Binding IsDocumentDataAvailable[Certificates]}"
+                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[Certificates]}"
+                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[Certificates]}"
+                                         AvailableItemOrderings="{Binding AvailableItemOrderings[Certificates]}"
+                                         ItemOrdering="{Binding CurrentItemOrderings[Certificates], Mode=TwoWay}"
+                                         AvailableItemFilters="{Binding AvailableItemFilters[Certificates]}"
+                                         ItemFilter="{Binding CurrentItemFilters[Certificates], Mode=TwoWay}"
+                                         ItemFilterParameter="{Binding CurrentItemFilterParameters[Certificates], Mode=TwoWay}"
+                                         ButtonText="{x:Static properties:Resources.CreateCertificatesString}"
+                                         SuccessText="{x:Static properties:Resources.CreateCertificatesResultString}"
+                                         ButtonIconGlyph="&#xE8A5;"
+                                         NumberCreatedDocuments="{Binding NumberCreatedCertificates}">
+            <local:CreateDocumentUserControl.FilterParameterEditorTemplateSelector>
+                <templateSelectors:EnumTemplateSelector>
+                    <templateSelectors:EnumTemplateSelector.Templates>
+                        <!-- DataTemplate for person. This is only visible if filter is Person. -->
+                        <DataTemplate x:Key="{x:Static coreModels:PersonStartFilters.Person}">
+                            <ComboBox VerticalAlignment="Center" Style="{StaticResource MahApps.Styles.ComboBox}"
+                                      ItemsSource="{Binding DataContext.AvailablePersons, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                      SelectedItem="{Binding DataContext.CurrentItemFilterParameters[Certificates], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}"/>
+                        </DataTemplate>
+                        <!-- DataTemplate for swimming style. This is only visible if filter is SwimmingStyle. -->
+                        <DataTemplate x:Key="{x:Static coreModels:PersonStartFilters.SwimmingStyle}">
+                            <ComboBox VerticalAlignment="Center" Style="{StaticResource MahApps.Styles.ComboBox}"
+                                      ItemsSource="{Binding DataContext.AvailableSwimmingStyles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                      SelectedItem="{Binding DataContext.CurrentItemFilterParameters[Certificates], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                        <!-- DataTemplate / Numeric input for Competition ID. This is only visible if filter is CompetitionID. -->
+                        <DataTemplate x:Key="{x:Static coreModels:PersonStartFilters.CompetitionID}">
+                            <controls:NumericUpDown VerticalAlignment="Center" Minimum="0"
+                                    Value="{Binding DataContext.CurrentItemFilterParameters[Certificates], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </templateSelectors:EnumTemplateSelector.Templates>
+                </templateSelectors:EnumTemplateSelector>
+            </local:CreateDocumentUserControl.FilterParameterEditorTemplateSelector>
+        </local:CreateDocumentUserControl>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Overview List -->
@@ -137,6 +107,8 @@
                                          LastCreatedDocumentPath="{Binding LastDocumentFilePaths[OverviewList]}"
                                          AvailableItemOrderings="{Binding AvailableItemOrderings[OverviewList]}"
                                          ItemOrdering="{Binding CurrentItemOrderings[OverviewList], Mode=TwoWay}"
+                                         AvailableItemFilters="{Binding AvailableItemFilters[OverviewList]}"
+                                         ItemFilter="{Binding CurrentItemFilters[OverviewList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateOverviewListString}"
                                          SuccessText="{x:Static properties:Resources.CreateOverviewListResultString}"
                                          ButtonIconGlyph="&#xE9D5;"
@@ -154,6 +126,8 @@
                                          LastCreatedDocumentPath="{Binding LastDocumentFilePaths[RaceStartList]}"
                                          AvailableItemOrderings="{Binding AvailableItemOrderings[RaceStartList]}"
                                          ItemOrdering="{Binding CurrentItemOrderings[RaceStartList], Mode=TwoWay}"
+                                         AvailableItemFilters="{Binding AvailableItemFilters[RaceStartList]}"
+                                         ItemFilter="{Binding CurrentItemFilters[RaceStartList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateRaceStartListString}"
                                          SuccessText="{x:Static properties:Resources.CreateRaceStartListResultString}"
                                          ButtonIconGlyph="&#xE7C1;"
@@ -171,6 +145,8 @@
                                  LastCreatedDocumentPath="{Binding LastDocumentFilePaths[TimeForms]}"
                                  AvailableItemOrderings="{Binding AvailableItemOrderings[TimeForms]}"
                                  ItemOrdering="{Binding CurrentItemOrderings[TimeForms], Mode=TwoWay}"
+                                 AvailableItemFilters="{Binding AvailableItemFilters[TimeForms]}"
+                                 ItemFilter="{Binding CurrentItemFilters[TimeForms], Mode=TwoWay}"
                                  ButtonText="{x:Static properties:Resources.CreateTimeFormsString}"
                                  SuccessText="{x:Static properties:Resources.CreateTimeFormsResultString}"
                                  ButtonIconGlyph="&#xE916;"
@@ -188,6 +164,8 @@
                                          LastCreatedDocumentPath="{Binding LastDocumentFilePaths[ResultList]}"
                                          AvailableItemOrderings="{Binding AvailableItemOrderings[ResultList]}"
                                          ItemOrdering="{Binding CurrentItemOrderings[ResultList], Mode=TwoWay}"
+                                         AvailableItemFilters="{Binding AvailableItemFilters[ResultList]}"
+                                         ItemFilter="{Binding CurrentItemFilters[ResultList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateResultListString}"
                                          SuccessText="{x:Static properties:Resources.CreateResultListResultString}"
                                          ButtonIconGlyph="&#xE9F9;"
@@ -205,6 +183,8 @@
                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[ResultListDetail]}"
                                         AvailableItemOrderings="{Binding AvailableItemOrderings[ResultListDetail]}"
                                         ItemOrdering="{Binding CurrentItemOrderings[ResultListDetail], Mode=TwoWay}"
+                                        AvailableItemFilters="{Binding AvailableItemFilters[ResultListDetail]}"
+                                        ItemFilter="{Binding CurrentItemFilters[ResultListDetail], Mode=TwoWay}"
                                         ButtonText="{x:Static properties:Resources.CreateResultListDetailString}"
                                         SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"
                                         ButtonIconGlyph="&#xE7B3;"
@@ -212,7 +192,7 @@
         
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" Grid.ColumnSpan="6" HorizontalAlignment="Left" IsExpanded="True" MaxHeight="350" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" Grid.ColumnSpan="6" HorizontalAlignment="Left" IsExpanded="True" MaxHeight="350" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="25" Text="%...%"/>

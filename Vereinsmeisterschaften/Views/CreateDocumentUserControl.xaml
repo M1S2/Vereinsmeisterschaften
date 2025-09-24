@@ -11,12 +11,12 @@
 
     <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="0.5,0">
         <StackPanel Orientation="Vertical"
-                Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                    Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
 
             <!-- Button to create document -->
             <Button Command="{Binding CreateDocumentCommand}"
-                CommandParameter="{Binding DocumentType}">
+                    CommandParameter="{Binding DocumentType}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
                         <Setter Property="IsEnabled" Value="True"/>
@@ -32,53 +32,82 @@
                 </Button.Style>
                 <StackPanel Orientation="Vertical">
                     <controls:FontIcon Margin="10"
-                                   FontSize="50"
-                                   Glyph="{Binding ButtonIconGlyph}"/>
+                                       FontSize="50"
+                                       Glyph="{Binding ButtonIconGlyph}"/>
                     <TextBlock Margin="10"
-                           HorizontalAlignment="Center"
-                           Text="{Binding ButtonText}"
-                           FontSize="{StaticResource MediumFontSize}"/>
+                               HorizontalAlignment="Center"
+                               Text="{Binding ButtonText}"
+                               FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
 
+            <!-- Grid to overlay the success or warning messages (stacked) with the progress ring (only once is visible at the same time) -->
             <Grid MinHeight="90">
-                <!-- Success Message -->
-                <StackPanel Margin="0,10,0,0"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center">
-                    <StackPanel.Style>
-                        <Style TargetType="{x:Type StackPanel}">
-                            <Setter Property="Visibility" Value="Visible"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Style>
-                    <ContentControl Template="{StaticResource ControlTemplateOkIndicator}" VerticalAlignment="Top"/>
-                    <StackPanel Margin="5,0,0,0"
-                        Orientation="Vertical">
-                        <TextBlock VerticalAlignment="Center"
-                           Text="{Binding SuccessText}"/>
-                        <TextBlock Margin="0,5,0,0"
-                           VerticalAlignment="Center"
-                           Text="{Binding NumberCreatedDocuments, StringFormat={x:Static properties:Resources.NumberCreatedDocumentsString}}">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding NumberCreatedDocuments}" Value="-1">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <Button x:Name="btn_openDocument" Margin="0,5" Content="{x:Static properties:Resources.OpenString}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="btn_openDocument_Click" ToolTip="{x:Static properties:Tooltips.TooltipOpenDocument}"/>
+                <StackPanel Orientation="Vertical">
+                    <!-- Success Message -->
+                    <StackPanel Margin="0,10,0,0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type StackPanel}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"
+                                        VerticalAlignment="Top"/>
+                        <StackPanel Margin="5,0,0,0"
+                                    Orientation="Vertical">
+                            <TextBlock VerticalAlignment="Center"
+                                       Text="{Binding SuccessText}"/>
+                            <TextBlock Margin="0,5,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding NumberCreatedDocuments, StringFormat={x:Static properties:Resources.NumberCreatedDocumentsString}}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding NumberCreatedDocuments}" Value="-1">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <Button x:Name="btn_openDocument"
+                                    Margin="0,5"
+                                    Content="{x:Static properties:Resources.OpenString}"
+                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                                    Click="btn_openDocument_Click"
+                                    ToolTip="{x:Static properties:Tooltips.TooltipOpenDocument}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- No data available warning -->
+                    <StackPanel Margin="0,10,0,0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Visibility="{Binding IsDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                        <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+                        <TextBlock Margin="5,0,0,0"
+                                   Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
+                    </StackPanel>
+
+                    <!-- No template available warning -->
+                    <StackPanel Margin="0,10,0,0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Visibility="{Binding IsTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                        <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
+                        <TextBlock Margin="5,0,0,0"
+                                   Text="{x:Static properties:Resources.NoTemplateAvailableWarningString}"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -100,29 +129,9 @@
                 </controls:ProgressRing>
             </Grid>
 
-            <!-- No data available warning -->
-            <StackPanel Margin="0,10,0,0"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Visibility="{Binding IsDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-                <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
-                <TextBlock Margin="5,0,0,0"
-                       Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
-            </StackPanel>
-
-            <!-- No template available warning -->
-            <StackPanel Margin="0,10,0,0"
-            Orientation="Horizontal"
-            HorizontalAlignment="Center"
-            Visibility="{Binding IsTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-                <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
-                <TextBlock Margin="5,0,0,0"
-               Text="{x:Static properties:Resources.NoTemplateAvailableWarningString}"/>
-            </StackPanel>
-
-            <!-- Combobox for available item orderings -->
+            <!-- Combobox and label for available item orderings -->
             <TextBlock Margin="10,10,10,0"
-                   Text="{x:Static properties:Resources.SortString}">
+                       Text="{x:Static properties:Resources.SortString}">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Style.Triggers>
@@ -134,8 +143,8 @@
                 </TextBlock.Style>
             </TextBlock>
             <ComboBox Margin="10,0,10,0"
-                  ItemsSource="{Binding AvailableItemOrderings}"
-                  SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
+                      ItemsSource="{Binding AvailableItemOrderings}"
+                      SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
                 <ComboBox.Style>
                     <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
                         <Style.Triggers>
@@ -151,6 +160,52 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+
+            <!-- Combobox and label for available item filters -->
+            <TextBlock Margin="10,10,10,0"
+                       Text="{x:Static properties:Resources.FilterModeString}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <ComboBox Margin="10,0,10,0"
+                      ItemsSource="{Binding AvailableItemFilters}"
+                      SelectedItem="{Binding ItemFilter, Mode=TwoWay}">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <!-- Dynamic control to edit the filter parameter -->
+            <ContentControl Margin="10,5,10,0"
+                            Content="{Binding ItemFilter}"
+                            ContentTemplateSelector="{Binding FilterParameterEditorTemplateSelector}">
+                <ContentControl.Style>
+                    <Style TargetType="{x:Type ContentControl}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
         </StackPanel>
     </Border>
 </UserControl>

@@ -158,6 +158,46 @@ namespace Vereinsmeisterschaften.Views
         }
         public static readonly DependencyProperty ItemOrderingProperty = DependencyProperty.Register(nameof(ItemOrdering), typeof(Enum), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
 
+        /// <summary>
+        /// Array with all available filters for the items. If no filtering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        public IEnumerable<Enum> AvailableItemFilters
+        {
+            get { return (IEnumerable<Enum>)GetValue(AvailableItemFiltersProperty); }
+            set { SetValue(AvailableItemFiltersProperty, value); }
+        }
+        public static readonly DependencyProperty AvailableItemFiltersProperty = DependencyProperty.Register(nameof(AvailableItemFilters), typeof(IEnumerable<Enum>), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Current filter for the items. If no filtering is supported, this will be <see langword="null"/>.
+        /// </summary>
+        public Enum ItemFilter
+        {
+            get { return (Enum)GetValue(ItemFilterProperty); }
+            set { SetValue(ItemFilterProperty, value); }
+        }
+        public static readonly DependencyProperty ItemFilterProperty = DependencyProperty.Register(nameof(ItemFilter), typeof(Enum), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Filter parameter that can be used together with <see cref="ItemFiltering"/>. The type and usage of this parameter depends on the selected <see cref="ItemFilter"/>.
+        /// </summary>
+        public object ItemFilterParameter
+        {
+            get { return (object)GetValue(ItemFilterParameterProperty); }
+            set { SetValue(ItemFilterParameterProperty, value); }
+        }
+        public static readonly DependencyProperty ItemFilterParameterProperty = DependencyProperty.Register(nameof(ItemFilterParameter), typeof(object), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
+        /// <summary>
+        /// <see cref="DataTemplateSelector"/> used to decide which <see cref="DataTemplate"/> is used to edit the <see cref="ItemFilterParameter"/>
+        /// </summary>
+        public DataTemplateSelector FilterParameterEditorTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(FilterParameterEditorTemplateSelectorProperty); }
+            set { SetValue(FilterParameterEditorTemplateSelectorProperty, value); }
+        }
+        public static readonly DependencyProperty FilterParameterEditorTemplateSelectorProperty = DependencyProperty.Register(nameof(FilterParameterEditorTemplateSelector), typeof(DataTemplateSelector), typeof(CreateDocumentUserControl), new PropertyMetadata(null));
+
 
         private void btn_openDocument_Click(object sender, RoutedEventArgs e)
         {

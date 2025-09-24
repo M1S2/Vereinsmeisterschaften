@@ -14,7 +14,7 @@
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     Width="1800"
-    Height="900"
+    Height="920"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

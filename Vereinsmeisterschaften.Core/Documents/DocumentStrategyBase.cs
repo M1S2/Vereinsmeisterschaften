@@ -1,6 +1,7 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 using static Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates;
 
 namespace Vereinsmeisterschaften.Core.Documents
@@ -36,13 +37,10 @@ namespace Vereinsmeisterschaften.Core.Documents
         public abstract string TemplatePath { get; }
 
         /// <inheritdoc/>
+        public virtual string TemplateFileNamePostfixReplaceStr => string.Empty;
+
+        /// <inheritdoc/>
         public abstract bool CreateMultiplePages { get; }
-
-        /// <inheritdoc/>
-        public virtual Enum ItemOrdering { get; set; } = null;
-
-        /// <inheritdoc/>
-        public virtual IEnumerable<Enum> AvailableItemOrderings { get; } = null;
 
         /// <inheritdoc/>
         public abstract object[] GetItems();
@@ -107,5 +105,22 @@ namespace Vereinsmeisterschaften.Core.Documents
 
             return PlaceholderResolver.ResolveTablePlaceholders(items.Cast<TData>());
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
+        public virtual Enum ItemOrdering { get; set; } = null;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Enum> AvailableItemOrderings { get; } = null;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Enum> AvailableItemFilters { get; } = null;
+
+        /// <inheritdoc/>
+        public virtual Enum ItemFilter { get; set; } = null;
+
+        /// <inheritdoc/>
+        public virtual object ItemFilterParameter { get; set; } = null;
     }
 }

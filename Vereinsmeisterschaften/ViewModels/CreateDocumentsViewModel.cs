@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using System.Resources;
 using System.Collections.ObjectModel;
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -10,9 +11,7 @@ using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Properties;
 using Vereinsmeisterschaften.Core.Settings;
-using System.IO;
 using Vereinsmeisterschaften.Core.Helpers;
-using Vereinsmeisterschaften.Core.Services;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -46,6 +45,42 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     public Dictionary<DocumentCreationTypes, string> LastDocumentFilePaths { get; } = new Dictionary<DocumentCreationTypes, string>();
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
+        => setDictionaryValue(IsDocumentCreationRunning, documentType, isRunning, nameof(IsDocumentCreationRunning));
+    
+    private void changeDocumentCreationSuccessfulState(DocumentCreationTypes documentType, bool isSuccessful)
+        => setDictionaryValue(IsDocumentCreationSuccessful, documentType, isSuccessful, nameof(IsDocumentCreationSuccessful));
+    
+    private void changeDocumentDataAvailableState(DocumentCreationTypes documentType, bool isDataAvailable)
+        => setDictionaryValue(IsDocumentDataAvailable, documentType, isDataAvailable, nameof(IsDocumentDataAvailable));
+    
+    private void changeDocumentTemplateAvailableState(DocumentCreationTypes documentType, bool isTemplateAvailable)
+        => setDictionaryValue(IsDocumentTemplateAvailable, documentType, isTemplateAvailable, nameof(IsDocumentTemplateAvailable));
+    
+    private void changeLastDocumentFilePath(DocumentCreationTypes documentType, string lastDocumentFilePaths)
+        => setDictionaryValue(LastDocumentFilePaths, documentType, lastDocumentFilePaths, nameof(LastDocumentFilePaths));
+
+    private void setDictionaryValue<T>(Dictionary<DocumentCreationTypes, T> dictionary, DocumentCreationTypes documentType, T value, string propertyName)
+    {
+        if (dictionary.ContainsKey(documentType))
+        {
+            dictionary[documentType] = value;
+            OnPropertyChanged(propertyName);
+            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
+        }
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Document Ordering and Filters Dictionaries
+
+    /// <summary>
+    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
+    /// </summary>
+    public bool IsAnyDocumentCreationRunning => IsDocumentCreationRunning.Any(r => r.Value == true);
+
     /// <summary>
     /// Dictionary to hold the available item orderings for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
@@ -56,61 +91,22 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// </summary>
     public Dictionary<DocumentCreationTypes, Enum> CurrentItemOrderings { get; } = new Dictionary<DocumentCreationTypes, Enum>();
 
-
-    private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
-    {
-        if (IsDocumentCreationRunning.ContainsKey(documentType))
-        {
-            IsDocumentCreationRunning[documentType] = isRunning;
-            OnPropertyChanged(nameof(IsDocumentCreationRunning));
-            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private void changeDocumentCreationSuccessfulState(DocumentCreationTypes documentType, bool isSuccessful)
-    {
-        if (IsDocumentCreationSuccessful.ContainsKey(documentType))
-        {
-            IsDocumentCreationSuccessful[documentType] = isSuccessful;
-            OnPropertyChanged(nameof(IsDocumentCreationSuccessful));
-            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private void changeDocumentDataAvailableState(DocumentCreationTypes documentType, bool isDataAvailable)
-    {
-        if (IsDocumentDataAvailable.ContainsKey(documentType))
-        {
-            IsDocumentDataAvailable[documentType] = isDataAvailable;
-            OnPropertyChanged(nameof(IsDocumentDataAvailable));
-            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private void changeDocumentTemplateAvailableState(DocumentCreationTypes documentType, bool isTemplateAvailable)
-    {
-        if (IsDocumentTemplateAvailable.ContainsKey(documentType))
-        {
-            IsDocumentTemplateAvailable[documentType] = isTemplateAvailable;
-            OnPropertyChanged(nameof(IsDocumentTemplateAvailable));
-            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
-        }
-    }
-
-    private void changeLastDocumentFilePath(DocumentCreationTypes documentType, string lastDocumentFilePaths)
-    {
-        if (LastDocumentFilePaths.ContainsKey(documentType))
-        {
-            LastDocumentFilePaths[documentType] = lastDocumentFilePaths;
-            OnPropertyChanged(nameof(LastDocumentFilePaths));
-            ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
-        }
-    }
+    /// <summary>
+    /// Dictionary to hold the available item filters for each <see cref="DocumentCreationTypes"/> type.
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, IEnumerable<Enum>> AvailableItemFilters { get; } = new Dictionary<DocumentCreationTypes, IEnumerable<Enum>>();
 
     /// <summary>
-    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
+    /// Dictionary to hold the current item filter for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
-    public bool IsAnyDocumentCreationRunning => IsDocumentCreationRunning.Any(r => r.Value == true);
+    public Dictionary<DocumentCreationTypes, Enum> CurrentItemFilters { get; } = new Dictionary<DocumentCreationTypes, Enum>();
+
+    /// <summary>
+    /// Dictionary to hold the current item filter parameter for each <see cref="DocumentCreationTypes"/>
+    /// </summary>
+    public Dictionary<DocumentCreationTypes, object> CurrentItemFilterParameters { get; } = new Dictionary<DocumentCreationTypes, object>();
+
+    #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -128,32 +124,10 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    private PersonStartFilters _personStartFilter = PersonStartFilters.None;
-    /// <summary>
-    /// Filter used to select which <see cref="PersonStart"/> objects should be printed.
-    /// </summary>
-    public PersonStartFilters PersonStartFilter
-    {
-        get => _personStartFilter;
-        set => SetProperty(ref _personStartFilter, value);
-    }
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
     /// <summary>
     /// List with all available <see cref="Person"/> objects.
     /// </summary>
     public List<Person> AvailablePersons => _personService?.GetPersons().OrderBy(p => p.Name).ToList();
-
-    private Person _filteredPerson;
-    /// <summary>
-    /// Only the <see cref="PersonStart"/> elements that match this <see cref="Person"/> will be printed if the <see cref="PersonStartFilter"/> is <see cref="PersonStartFilters.Person"/>
-    /// </summary>
-    public Person FilteredPerson
-    {
-        get => _filteredPerson;
-        set => SetProperty(ref _filteredPerson, value);
-    }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -162,28 +136,6 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
     /// List with all available <see cref="SwimmingStyles"/>
     /// </summary>
     public List<SwimmingStyles> AvailableSwimmingStyles => _availableSwimmingStyles;
-
-    private SwimmingStyles _filteredSwimmingStyle;
-    /// <summary>
-    /// Only the <see cref="PersonStart"/> elements that match this <see cref="SwimmingStyles"/> will be printed if the <see cref="PersonStartFilter"/> is <see cref="PersonStartFilters.SwimmingStyle"/>
-    /// </summary>
-    public SwimmingStyles FilteredSwimmingStyle
-    {
-        get => _filteredSwimmingStyle;
-        set => SetProperty(ref _filteredSwimmingStyle, value);
-    }
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    private int _filteredCompetitionID;
-    /// <summary>
-    /// Only the <see cref="PersonStart"/> elements that match this competition ID will be filtered if the <see cref="PersonStartFilter"/> is <see cref="PersonStartFilters.CompetitionID"/>
-    /// </summary>
-    public int FilteredCompetitionID
-    {
-        get => _filteredCompetitionID;
-        set => SetProperty(ref _filteredCompetitionID, value);
-    }
 
     #endregion
 
@@ -301,6 +253,9 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         LastDocumentFilePaths.Clear();
         AvailableItemOrderings.Clear();
         CurrentItemOrderings.Clear();
+        AvailableItemFilters.Clear();
+        CurrentItemFilters.Clear();
+        CurrentItemFilterParameters.Clear();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IsDocumentCreationRunning.Add(type, false);
@@ -310,6 +265,9 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             LastDocumentFilePaths.Add(type, string.Empty);
             AvailableItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.AvailableItemOrderings);
             CurrentItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemOrdering);
+            AvailableItemFilters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.AvailableItemFilters);
+            CurrentItemFilters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilter);
+            CurrentItemFilterParameters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilterParameter);
         }
     }
 
@@ -324,12 +282,17 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
         int numCreatedPages = 0;
         string returnFilePath = string.Empty;
 
-        // Update the item ordering for all document strategies before creating the document
+        // Update the item ordering and filter for all document strategies before creating the document
         List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
             IDocumentStrategy strategy = _documentStrategies.FirstOrDefault(s => s.DocumentType == type);
-            if (strategy != null) { strategy.ItemOrdering = CurrentItemOrderings[type]; }
+            if (strategy != null)
+            {
+                strategy.ItemOrdering = CurrentItemOrderings[type];
+                strategy.ItemFilter = CurrentItemFilters[type];
+                strategy.ItemFilterParameter = CurrentItemFilterParameters[type];
+            }
         }
 
         changeDocumentCreationRunningState(documentType, true);
@@ -340,17 +303,6 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             {
                 case DocumentCreationTypes.Certificates:
                     {
-                        object filterParam = null;
-                        switch (PersonStartFilter)
-                        {
-                            case PersonStartFilters.None: filterParam = null; break;
-                            case PersonStartFilters.Person: filterParam = FilteredPerson; break;
-                            case PersonStartFilters.SwimmingStyle: filterParam = FilteredSwimmingStyle; break;
-                            case PersonStartFilters.CompetitionID: filterParam = FilteredCompetitionID; break;
-                            default: break;
-                        }
-
-                        _documentService.SetCertificateCreationFilters(PersonStartFilter, filterParam);
                         (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.Certificates);
                         NumberCreatedCertificates = numCreatedPages;
                         break;
@@ -404,8 +356,8 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
             changeDocumentDataAvailableState(strategy.DocumentType, isDataAvailable);
 
             bool isTemplateAvailable = !string.IsNullOrEmpty(strategy.TemplatePath) && 
-                                       System.IO.File.Exists(strategy.TemplatePath) &&
-                                       System.IO.Path.GetExtension(strategy.TemplatePath) == ".docx";
+                                       File.Exists(strategy.TemplatePath) &&
+                                       Path.GetExtension(strategy.TemplatePath) == ".docx";
             changeDocumentTemplateAvailableState(strategy.DocumentType, isTemplateAvailable);
 
             if (!isDataAvailable || !isTemplateAvailable)

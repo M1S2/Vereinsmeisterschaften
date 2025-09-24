@@ -16,11 +16,8 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private IWorkspaceService _workspaceService;
-        
+        private IWorkspaceService _workspaceService;        
         private readonly IEnumerable<IDocumentStrategy> _documentStrategies;
-        private PersonStartFilters _personStartFilter = PersonStartFilters.None;
-        private object _personStartFilterParameter = null;
 
         /// <summary>
         /// Constructor for the DocumentService.
@@ -45,21 +42,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Set the filters that are used for the certificate creation.
-        /// </summary>
-        /// <param name="personStartFilter">Filter to select only some specific <see cref="PersonStart"/> elements. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
-        /// <param name="personStartFilterParameter">Parameter for the personStartFilter. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
-        public void SetCertificateCreationFilters(PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null)
-        {
-            _personStartFilter = personStartFilter;
-            _personStartFilterParameter = personStartFilterParameter;
-        }
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <summary>
         /// Create the document indicated by the document type.
-        /// For the <see cref="DocumentCreationTypes.Certificates"/> type, the <see cref="SetCertificateCreationFilters"/> method must be called before this method to set the filters for the certificate creation. Otherwise the old values are used.
         /// </summary>
         /// <param name="documentType"><see cref="DocumentCreationTypes"/> used to decide which document type and <see cref="IDocumentStrategy"/> is used</param>
         /// <param name="createPdf">True to also create a .pdf file</param>
@@ -83,29 +66,10 @@ namespace Vereinsmeisterschaften.Core.Services
                     throw new InvalidOperationException($"Document template \"{documentTemplate}\" is not a .docx file.");
                 }
 
-                // For all other document types than certificates, we do not filter by person start
-                PersonStartFilters personStartFilter = _personStartFilter;
-                if (!(documentStrategy is DocumentStrategyCertificates))
-                {
-                    personStartFilter = PersonStartFilters.None;
-                }
-
-                // Create the output file name based on the filter
-                // Replace the template file name postfix with the filter parameter
-                // e.g. "Certificate_Template.docx" becomes "Certificate_WK1.docx"
-                // If the template file name does not contain the postfix, we just append the filter parameter
-                // e.g. "Certificate.docx" becomes "Certificate_WK1.docx" (it is possible that the filename remains the same if the filter parameter is empty)
+                // Create the output file name. The TemplateFileNamePostfixReplaceStr is created based on the filter.
                 string outputFileNameDocx = Path.GetFileNameWithoutExtension(documentTemplate);
                 string templateFileNamePostfix = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX) ?? string.Empty;
-                string templateFileNamePostfixReplaceStr = string.Empty;
-                switch (personStartFilter)
-                {
-                    case PersonStartFilters.None: break;
-                    case PersonStartFilters.Person: templateFileNamePostfixReplaceStr = "_" + ((Person)_personStartFilterParameter).FirstName + "_" + ((Person)_personStartFilterParameter).Name; break;
-                    case PersonStartFilters.SwimmingStyle: templateFileNamePostfixReplaceStr = "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)_personStartFilterParameter); break;
-                    case PersonStartFilters.CompetitionID: templateFileNamePostfixReplaceStr = "_WK" + (int)_personStartFilterParameter; break;
-                    default: break;
-                }
+                string templateFileNamePostfixReplaceStr = documentStrategy.TemplateFileNamePostfixReplaceStr;
                 if (outputFileNameDocx.Contains(templateFileNamePostfix))
                 {
                     outputFileNameDocx = outputFileNameDocx.Replace(templateFileNamePostfix, templateFileNamePostfixReplaceStr);
@@ -118,15 +82,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 string outputFile = Path.Combine(documentOutputFolder, outputFileNameDocx);
 
                 // Collect all items used to create the document
-                object[] items = null;
-                if (documentStrategy is DocumentStrategyCertificates documentStrategyCertificates)
-                {
-                    items = documentStrategyCertificates.GetItemsFiltered(personStartFilter, _personStartFilterParameter);
-                }
-                else
-                {
-                    items = documentStrategy.GetItems();
-                }
+                object[] items = documentStrategy.GetItems();
 
                 string placeholderMarker = PlaceholderMarker;
 

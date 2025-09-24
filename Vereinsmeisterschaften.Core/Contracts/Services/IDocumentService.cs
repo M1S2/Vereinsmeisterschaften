@@ -24,12 +24,5 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="createPdf">True to also create a .pdf file</param>
         /// <returns><see cref="Task"/> that can be used to run this async. The return parameter is a tuple of (number of created pages in the document, filepath to the last created document (PDF if possible))</returns>
         Task<(int, string)> CreateDocument(DocumentCreationTypes documentType, bool createPdf = true);
-
-        /// <summary>
-        /// Set the filters that are used for the certificate creation.
-        /// </summary>
-        /// <param name="personStartFilter">Filter to select only some specific <see cref="PersonStart"/> elements. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
-        /// <param name="personStartFilterParameter">Parameter for the personStartFilter. Only valid for <see cref="DocumentCreationTypes.Certificates"/></param>
-        void SetCertificateCreationFilters(PersonStartFilters personStartFilter = PersonStartFilters.None, object personStartFilterParameter = null);
     }
 }

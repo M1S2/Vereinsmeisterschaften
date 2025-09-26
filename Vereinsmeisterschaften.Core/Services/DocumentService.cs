@@ -216,11 +216,13 @@ namespace Vereinsmeisterschaften.Core.Services
             // Make sure to have logic here for all values in DocumentStrategyBase<TData>.AlwaysSupportedPlaceholderKeys
 
             ushort competitionYear = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR) ?? 0;
+            DateTime competitionDate = _workspaceService?.Settings?.GetSettingValue<DateTime>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_COMPETITIONDATE) ?? DateTime.Today;
             string appVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version?.ToString() ?? "?";
             string workspacePath = _workspaceService?.PersistentPath ?? string.Empty;
             
             DocXPlaceholderHelper.TextPlaceholders textPlaceholders = new DocXPlaceholderHelper.TextPlaceholders();
             foreach (string placeholder in Placeholders.Placeholders_CompetitionYear) { textPlaceholders.Add(placeholder, competitionYear.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_CompetitionDate) { textPlaceholders.Add(placeholder, competitionDate.ToShortDateString()); }
             foreach (string placeholder in Placeholders.Placeholders_AppVersion) { textPlaceholders.Add(placeholder, appVersion); }
             foreach (string placeholder in Placeholders.Placeholders_WorkspacePath) { textPlaceholders.Add(placeholder, workspacePath); }
 

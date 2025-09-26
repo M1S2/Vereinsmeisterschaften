@@ -70,7 +70,18 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Complete date on which the competition takes place.
+        ///This is only used during document creation as info text. ähnelt.
+        /// </summary>
+        public static string TooltipCompetitionDate {
+            get {
+                return ResourceManager.GetString("TooltipCompetitionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place.
+        ///This year is used to find the correct competition for each start. ähnelt.
         /// </summary>
         public static string TooltipCompetitionYear {
             get {

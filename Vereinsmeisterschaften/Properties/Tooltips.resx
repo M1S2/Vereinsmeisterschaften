@@ -148,7 +148,8 @@ If the number of variants after calculation is reached earlier, the loop will br
     <value>Only variants with a score higher or equal this value (in percent) are kept during calculation.</value>
   </data>
   <data name="TooltipCompetitionYear" xml:space="preserve">
-    <value>Year in which the competition takes place</value>
+    <value>Year in which the competition takes place.
+This year is used to find the correct competition for each start.</value>
   </data>
   <data name="TooltipTemplatePathCertificate" xml:space="preserve">
     <value>Path to the certificate template.</value>
@@ -304,5 +305,9 @@ It is also possible to determine the best swimmers in a particular style.</value
   <data name="TooltipPageInfoCreateDocumentsPage" xml:space="preserve">
     <value>On this page, you can create various documents that are required before, during, or after the competition. The filter only applies to certificate creation.
 It also provides an overview of all available placeholders that can be used in the documents.</value>
+  </data>
+  <data name="TooltipCompetitionDate" xml:space="preserve">
+    <value>Complete date on which the competition takes place.
+This is only used during document creation as info text.</value>
   </data>
 </root>

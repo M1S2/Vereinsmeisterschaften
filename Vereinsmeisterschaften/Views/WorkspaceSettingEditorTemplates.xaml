@@ -71,4 +71,11 @@
     <DataTemplate x:Key="BooleanEditorTemplate">
         <CheckBox IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
+
+    <DataTemplate x:Key="DateEditorTemplate">
+        <DatePicker HorizontalAlignment="Right" MinWidth="200"
+                    HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                    SelectedDate="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayDateStart="{Binding MinValue, Mode=OneWay}" DisplayDateEnd="{Binding MaxValue, Mode=OneWay}"/>
+    </DataTemplate>
 </ResourceDictionary>

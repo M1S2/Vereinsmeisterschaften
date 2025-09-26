@@ -88,6 +88,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the competition date.
+        ///This only works outside of tables. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoCompetitionDate {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoCompetitionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the competition ID. ähnelt.
         /// </summary>
         public static string PlaceholderInfoCompetitionID {
@@ -365,6 +375,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameBirthYear {
             get {
                 return ResourceManager.GetString("PlaceholderNameBirthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Date ähnelt.
+        /// </summary>
+        public static string PlaceholderNameCompetitionDate {
+            get {
+                return ResourceManager.GetString("PlaceholderNameCompetitionDate", resourceCulture);
             }
         }
         

@@ -575,4 +575,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="SortString" xml:space="preserve">
     <value>Sortierung</value>
   </data>
+  <data name="CompetitionDateString" xml:space="preserve">
+    <value>Wettkampfdatum</value>
+  </data>
 </root>

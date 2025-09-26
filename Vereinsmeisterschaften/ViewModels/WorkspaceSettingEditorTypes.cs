@@ -54,6 +54,11 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <summary>
         /// Display an editor for an enumeration value.
         /// </summary>
-        Enum
+        Enum,
+
+        /// <summary>
+        /// Display a date picker for date values.
+        /// </summary>
+        Date
     }
 }

@@ -243,6 +243,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Date ähnelt.
+        /// </summary>
+        public static string CompetitionDateString {
+            get {
+                return ResourceManager.GetString("CompetitionDateString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
         /// </summary>
         public static string CompetitionIDString {

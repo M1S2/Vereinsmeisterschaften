@@ -12,6 +12,10 @@
         /// </summary>
         public static List<string> Placeholders_CompetitionYear = new List<string>() { "Jahr", "J", "CompetitionYear", "Year", "Y" };
         /// <summary>
+        /// List with all placeholders that can be used in the template to insert the competition date.
+        /// </summary>
+        public static List<string> Placeholders_CompetitionDate = new List<string>() { "Datum", "WK-Datum", "WKD", "CompetitionDate", "Date" };
+        /// <summary>
         /// List with all placeholders that can be used in the template to insert the application version.
         /// </summary>
         public static List<string> Placeholders_AppVersion = new List<string>() { "AppVersion", "Version", "V" };
@@ -128,6 +132,7 @@
         #region Placeholder Keys
 
         public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
+        public const string PLACEHOLDER_KEY_COMPETITION_DATE = "CompetitionDate";
         public const string PLACEHOLDER_KEY_APP_VERSION = "AppVersion";
         public const string PLACEHOLDER_KEY_WORKSPACE_PATH = "WorkspacePath";
         public const string PLACEHOLDER_KEY_NAME = "Name";
@@ -167,6 +172,7 @@
         public static Dictionary<string, List<string>> PlaceholderDict = new Dictionary<string, List<string>>()
         {
             { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
+            { PLACEHOLDER_KEY_COMPETITION_DATE, Placeholders_CompetitionDate },
             { PLACEHOLDER_KEY_APP_VERSION, Placeholders_AppVersion },
             { PLACEHOLDER_KEY_WORKSPACE_PATH, Placeholders_WorkspacePath },
             { PLACEHOLDER_KEY_NAME, Placeholders_Name },

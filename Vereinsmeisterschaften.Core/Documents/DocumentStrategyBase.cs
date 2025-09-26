@@ -68,6 +68,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         public List<string> AlwaysSupportedPlaceholderKeys => new List<string>
         {
             Placeholders.PLACEHOLDER_KEY_COMPETITION_YEAR,
+            Placeholders.PLACEHOLDER_KEY_COMPETITION_DATE,
             Placeholders.PLACEHOLDER_KEY_APP_VERSION,
             Placeholders.PLACEHOLDER_KEY_WORKSPACE_PATH
         };

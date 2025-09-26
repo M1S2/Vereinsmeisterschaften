@@ -574,4 +574,7 @@
   <data name="SortString" xml:space="preserve">
     <value>Sorting</value>
   </data>
+  <data name="CompetitionDateString" xml:space="preserve">
+    <value>Competition Date</value>
+  </data>
 </root>

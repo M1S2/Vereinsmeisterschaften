@@ -7,6 +7,10 @@
         "Value": 2025
       },
       {
+        "Key": "CompetitionDate",
+        "Value": "2025-11-22T00:00:00"
+      },
+      {
         "Key": "TimeInputMillisecondDigits",
         "Value": 2
       },

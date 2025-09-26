@@ -296,4 +296,11 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
   <data name="PlaceholderNameRaceNumber" xml:space="preserve">
     <value>Race Number</value>
   </data>
+  <data name="PlaceholderNameCompetitionDate" xml:space="preserve">
+    <value>Competition Date</value>
+  </data>
+  <data name="PlaceholderInfoCompetitionDate" xml:space="preserve">
+    <value>Use these placeholders to insert the competition date.
+This only works outside of tables.</value>
+  </data>
 </root>

@@ -296,4 +296,11 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
   <data name="PlaceholderNameRaceNumber" xml:space="preserve">
     <value>Renn-Nummer</value>
   </data>
+  <data name="PlaceholderNameCompetitionDate" xml:space="preserve">
+    <value>Wettkampfdatum</value>
+  </data>
+  <data name="PlaceholderInfoCompetitionDate" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um das Wettkampfdatum einzufügen.
+Kann nur außerhalb von Tabellen genutzt werden.</value>
+  </data>
 </root>

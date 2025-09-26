@@ -148,7 +148,8 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
     <value>Nur Varianten mit einer Bewertung höher oder gleich diesem Wert in Prozent werden während der Berechnung behalten.</value>
   </data>
   <data name="TooltipCompetitionYear" xml:space="preserve">
-    <value>Jahr in dem der Wettkampf stattfindet</value>
+    <value>Jahr in dem der Wettkampf stattfindet.
+Dieses Jahr wird verwendet, um den richtigen Wettkampf für die jeweiligen Starts zu finden.</value>
   </data>
   <data name="TooltipTemplatePathCertificate" xml:space="preserve">
     <value>Pfad zum Urkunden Template.</value>
@@ -303,5 +304,9 @@ Es ist möglich, auch die besten Schwimmer in einer bestimmten Lage zu ermitteln
   <data name="TooltipPageInfoCreateDocumentsPage" xml:space="preserve">
     <value>Auf dieser Seite können verschiedene Dokumente erstellt werden, die vor, während oder nach dem Wettkampf nötig sind. Der Filter gilt nur für die Urkunden-Erstellung.
 Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die in den Dokumenten verwendet werden können.</value>
+  </data>
+  <data name="TooltipCompetitionDate" xml:space="preserve">
+    <value>Exaktes Datum, an dem der Wettkampf stattfindet.
+Dieses Datum wird nur für die Erstellung von Dokumenten verwendet (nur als Information).</value>
   </data>
 </root>

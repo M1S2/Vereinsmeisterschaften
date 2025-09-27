@@ -140,6 +140,17 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _isUsingMaxAgeCompetitionDict, value);
         }
 
+        private Dictionary<SwimmingStyles, bool> _isUsingExactAgeCompetitionDict = new Dictionary<SwimmingStyles, bool>();
+        /// <summary>
+        /// Dictionary with flags if the exact age competition will be used for the person and the style
+        /// </summary>
+        [FileServiceIgnore]
+        public Dictionary<SwimmingStyles, bool> IsUsingExactAgeCompetitionDict
+        {
+            get => _isUsingExactAgeCompetitionDict;
+            set => SetProperty(ref _isUsingExactAgeCompetitionDict, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();

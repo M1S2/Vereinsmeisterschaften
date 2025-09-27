@@ -4,7 +4,7 @@
                     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls">
     
     <DataTemplate x:Key="NumericEditorTemplate">
-        <controls:NumericUpDown HorizontalAlignment="Right" MinWidth="200"
+        <controls:NumericUpDown HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="200"
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}"/>
     </DataTemplate>
@@ -15,7 +15,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="EnumEditorTemplate">
-        <ComboBox VerticalAlignment="Center"
+        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Right"
                   ItemsSource="{Binding ValueType, Converter={StaticResource enumValuesConverter}}"
                   SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <!--https://www.codeproject.com/Articles/767834/WPF-Binding-to-an-enum-with-localization-->
@@ -73,7 +73,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="DateEditorTemplate">
-        <DatePicker HorizontalAlignment="Right" MinWidth="200"
+        <DatePicker HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="200"
                     HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                     SelectedDate="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     DisplayDateStart="{Binding MinValue, Mode=OneWay}" DisplayDateEnd="{Binding MaxValue, Mode=OneWay}"/>

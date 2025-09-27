@@ -84,6 +84,64 @@ Die Punkte eines Starts werden folgendermaßen berechnet:
 
 Der Start mit der höchsten Punktezahl wird als "Bestes Rennen" gewertet und für die Gesamtwertung herangezogen. Es wird kein Durchschnitt gebildet.
 
+## Wettkampf Zuordnung
+Jeder Start einer Person muss einem Wettkampf zugeordnet werden. Dies geschieht abhängig vom gewählten Modus. Folgendes Diagramm zeigt exemplarisch die Zuordnung für Brust Starts (Wasserflöhe werden immer dem ersten gefundenen Wasserfloh-Wettkampf zugeordnet):
+
+```mermaid
+flowchart LR
+    subgraph Wettkämpfe
+        C18f["♀ Brust 18J."]
+        C18m["♂ Brust 18J."]
+        C17f["♀ Brust 17J."]
+        C17m["♂ Brust 17J."]
+        C16f["♀ Brust 16J."]
+        C16m["♂ Brust 16J."]
+        C15f["♀ Brust 15J."]
+        C15m["♂ Brust 15J."]
+        C14f["♀ Brust 14J."]
+        C14m["♂ Brust 14J."]
+        C13f["♀ Brust 13J."]
+        C13m["♂ Brust 13J."]
+        Gap["Fehlende Wettkämpfe"]
+        C9f["♀ Brust 9J."]
+        C9m["♂ Brust 9J."]
+        C8f["♀ Brust 8J."]
+        C8m["♂ Brust 8J."]
+        C7f["♀ Brust 7J."]
+        C7m["♂ Brust 7J."]
+        C6f["♀ Wasserfloh 6J."]
+        C6m["♂ Wasserfloh 6J."]
+    end
+
+    subgraph Legende
+        direction TB
+        L1["🟡① Nur genaues Alter"]
+        L2["🔴② Genaues oder nächst niedrigeres Alter"]
+        L3["🟢③ Genaues oder nächst höheres Alter"]
+        L4["🔵④ Genaues Alter oder max. Alter wenn die Person älter ist"]
+        L5["⚫⑤ Genaues Alter oder nächstgelegenes Alter (niedrigeres Alter bevorzugen bei gleichem Abstand, Alter unter min. Alter werden ignoriert)"]
+        L6["⚪⑥ Genaues Alter oder nächstgelegenes Alter (höheres Alter bevorzugen bei gleichem Abstand, Alter unter min. Alter werden ignoriert)"]
+    end
+
+    P19f["👤 ♀ 19J."]
+    P18m["👤 ♂ 18J."]
+    P15f["👤 ♀ 15J."]
+    P12m["👤 ♂ 12J."]
+    P11m["👤 ♂ 11J."]
+    P8f["👤 ♀ 8J."]
+    P5m["👤 ♂ 5J."]
+    
+    P19f -- "🔴② 🔵④ ⚫⑤ ⚪⑥" --> C18f
+    P18m -- "🟡① 🔴② 🟢③ 🔵④ ⚫⑤ ⚪⑥" --> C18m
+    P15f -- "🟡① 🔴② 🟢③ 🔵④ ⚫⑤ ⚪⑥" --> C15f
+    P12m -- "🟢③ ⚫⑤ ⚪⑥" --> C13f
+    P12m -- "🔴②" --> C9f    
+    P11m -- "🟢③ ⚪⑥" --> C13f
+    P11m -- "🔴② ⚫⑤" --> C9f
+    P8f  -- "🟡① 🔴② 🟢③ 🔵④ ⚫⑤ ⚪⑥" --> C8m
+    P5m  -- "🟡① 🔴② 🟢③ 🔵④" --> C6m
+```
+
 ## Entwickler Dokumentation
 Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeisterschaften
 

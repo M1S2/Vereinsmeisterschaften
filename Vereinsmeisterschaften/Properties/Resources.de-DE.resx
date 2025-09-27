@@ -578,4 +578,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="CompetitionDateString" xml:space="preserve">
     <value>Wettkampfdatum</value>
   </data>
+  <data name="CompetitionSearchModeString" xml:space="preserve">
+    <value>Wettkampf Suchmodus</value>
+  </data>
 </root>

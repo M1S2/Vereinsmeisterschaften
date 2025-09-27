@@ -106,6 +106,17 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _isUsingMaxAgeCompetition, value);
         }
 
+        private bool _isUsingExactAgeCompetition;
+        /// <summary>
+        /// Flag indicating if this start is using a competition for which the age of the person matches the competition age.
+        /// E.g. if a competition for age 18 is defined, and the person is 18 years old, this is an exact age competition.
+        /// </summary>
+        public bool IsUsingExactAgeCompetition
+        {
+            get => _isUsingExactAgeCompetition;
+            set => SetProperty(ref _isUsingExactAgeCompetition, value);
+        }
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>

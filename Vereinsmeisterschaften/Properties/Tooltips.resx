@@ -310,4 +310,10 @@ It also provides an overview of all available placeholders that can be used in t
     <value>Complete date on which the competition takes place.
 This is only used during document creation as info text.</value>
   </data>
+  <data name="TooltipNotExactAgeCompetition" xml:space="preserve">
+    <value>This start is using a competition that was selected, because there was no available competition for this style and gender with the exact age of the person.</value>
+  </data>
+  <data name="TooltipCompetitionSearchMode" xml:space="preserve">
+    <value>Search mode that defines how the correct competition for a start is found.</value>
+  </data>
 </root>

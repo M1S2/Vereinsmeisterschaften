@@ -61,6 +61,60 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer higher age when distance is equal, ages below min. age ignored) ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNearestPreferHigher {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNearestPreferHigher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer lower age when distance is equal, ages below min. age ignored) ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNearestPreferLower {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNearestPreferLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or next higher age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextHigherAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextHigherAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or next lower age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextLowerAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextLowerAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or max. age when person is older ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextLowerOnlyMaxAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextLowerOnlyMaxAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only Exact Age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_OnlyExactAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_OnlyExactAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die DOCX ähnelt.
         /// </summary>
         public static string DocumentCreationFileTypes_DOCX {

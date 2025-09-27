@@ -246,4 +246,22 @@
   <data name="ItemOrderingsResultListDetail_ByNameAscending" xml:space="preserve">
     <value>Name (A - Z)</value>
   </data>
+  <data name="CompetitionSearchModes_OnlyExactAge" xml:space="preserve">
+    <value>Only Exact Age</value>
+  </data>
+  <data name="CompetitionSearchModes_ExactOrNextLowerAge" xml:space="preserve">
+    <value>Exact or next lower age</value>
+  </data>
+  <data name="CompetitionSearchModes_ExactOrNextHigherAge" xml:space="preserve">
+    <value>Exact or next higher age</value>
+  </data>
+  <data name="CompetitionSearchModes_ExactOrNextLowerOnlyMaxAge" xml:space="preserve">
+    <value>Exact or max. age when person is older</value>
+  </data>
+  <data name="CompetitionSearchModes_ExactOrNearestPreferLower" xml:space="preserve">
+    <value>Exact or nearest age (prefer lower age when distance is equal, ages below min. age ignored)</value>
+  </data>
+  <data name="CompetitionSearchModes_ExactOrNearestPreferHigher" xml:space="preserve">
+    <value>Exact or nearest age (prefer higher age when distance is equal, ages below min. age ignored)</value>
+  </data>
 </root>

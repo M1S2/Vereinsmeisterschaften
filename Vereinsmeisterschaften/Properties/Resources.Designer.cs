@@ -288,6 +288,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Search Mode ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModeString {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competition Year ähnelt.
         /// </summary>
         public static string CompetitionYearString {

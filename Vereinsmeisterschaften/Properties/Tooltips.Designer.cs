@@ -80,6 +80,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Search mode that defines how the correct competition for a start is found. ähnelt.
+        /// </summary>
+        public static string TooltipCompetitionSearchMode {
+            get {
+                return ResourceManager.GetString("TooltipCompetitionSearchMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Year in which the competition takes place.
         ///This year is used to find the correct competition for each start. ähnelt.
         /// </summary>
@@ -151,6 +160,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipMinRacesVariantsScore {
             get {
                 return ResourceManager.GetString("TooltipMinRacesVariantsScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This start is using a competition that was selected, because there was no available competition for this style and gender with the exact age of the person. ähnelt.
+        /// </summary>
+        public static string TooltipNotExactAgeCompetition {
+            get {
+                return ResourceManager.GetString("TooltipNotExactAgeCompetition", resourceCulture);
             }
         }
         

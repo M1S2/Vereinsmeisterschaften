@@ -130,82 +130,70 @@
             </Grid>
 
             <!-- Combobox and label for available item orderings -->
-            <TextBlock Margin="10,10,10,0"
-                       Text="{x:Static properties:Resources.SortString}">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
+            <DockPanel LastChildFill="True">
+                <DockPanel.Style>
+                    <Style TargetType="{x:Type DockPanel}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AvailableItemOrderings}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <ComboBox Margin="10,0,10,0"
-                      ItemsSource="{Binding AvailableItemOrderings}"
-                      SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
-                <ComboBox.Style>
-                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding AvailableItemOrderings}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.Style>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </DockPanel.Style>
+
+                <controls:FontIcon DockPanel.Dock="Left"
+                                   VerticalAlignment="Top"
+                                   Margin="0,15,0,0"
+                                   Glyph="&#xE8CB;"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="10,10,10,0"
+                               Text="{x:Static properties:Resources.SortString}"/>
+                    <ComboBox Margin="10,0,10,0"
+                              ItemsSource="{Binding AvailableItemOrderings}"
+                              SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </DockPanel>            
 
             <!-- Combobox and label for available item filters -->
-            <TextBlock Margin="10,10,10,0"
-                       Text="{x:Static properties:Resources.FilterModeString}">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
+            <DockPanel LastChildFill="True">
+                <DockPanel.Style>
+                    <Style TargetType="{x:Type DockPanel}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <ComboBox Margin="10,0,10,0"
-                      ItemsSource="{Binding AvailableItemFilters}"
-                      SelectedItem="{Binding ItemFilter, Mode=TwoWay}">
-                <ComboBox.Style>
-                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.Style>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <!-- Dynamic control to edit the filter parameter -->
-            <ContentControl Margin="10,5,10,0"
-                            Content="{Binding ItemFilter}"
-                            ContentTemplateSelector="{Binding FilterParameterEditorTemplateSelector}">
-                <ContentControl.Style>
-                    <Style TargetType="{x:Type ContentControl}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Style>
-            </ContentControl>
+                </DockPanel.Style>
+
+                <controls:FontIcon DockPanel.Dock="Left"
+                                   VerticalAlignment="Top"
+                                   Margin="0,15,0,0"
+                                   Glyph="&#xE71C;"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="10,10,10,0"
+                               Text="{x:Static properties:Resources.FilterModeString}"/>
+                    <ComboBox Margin="10,0,10,0"
+                              ItemsSource="{Binding AvailableItemFilters}"
+                              SelectedItem="{Binding ItemFilter, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <!-- Dynamic control to edit the filter parameter -->
+                    <ContentControl Margin="10,5,10,0"
+                                    Content="{Binding ItemFilter}"
+                                    ContentTemplateSelector="{Binding FilterParameterEditorTemplateSelector}"/>
+                </StackPanel>
+            </DockPanel>
         </StackPanel>
     </Border>
 </UserControl>

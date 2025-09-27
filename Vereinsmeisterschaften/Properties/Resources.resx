@@ -577,4 +577,7 @@
   <data name="CompetitionDateString" xml:space="preserve">
     <value>Competition Date</value>
   </data>
+  <data name="CompetitionSearchModeString" xml:space="preserve">
+    <value>Competition Search Mode</value>
+  </data>
 </root>

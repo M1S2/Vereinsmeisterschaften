@@ -146,7 +146,6 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         person.PropertyChanged += Person_PropertyChanged;
         _personService.AddPerson(person);
         _competitionService.UpdateAllCompetitionsForPerson(person);
-        person.PropertyChanged += (sender, e) => OnPropertyChanged(nameof(DuplicatePersonString));
         SelectedPerson = person;
     }));
 
@@ -159,6 +158,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
+            person.PropertyChanged -= Person_PropertyChanged;
             _personService.RemovePerson(person);
             OnPropertyChanged(nameof(DuplicatePersonString));
         }
@@ -173,7 +173,6 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         PeopleCollectionView = CollectionViewSource.GetDefaultView(People);
         PeopleCollectionView.Filter += PersonFilterPredicate;
         SelectedPerson = People?.FirstOrDefault();
-        _competitionService.UpdateAllCompetitionsForPerson();
 
         foreach(Person person in People)
         {
@@ -196,6 +195,7 @@ public class PeopleViewModel : ObservableObject, INavigationAware
             e.PropertyName != nameof(Person.AvailableCompetitions) && 
             e.PropertyName != nameof(Person.AvailableCompetitionsFlags) && 
             e.PropertyName != nameof(Person.IsUsingMaxAgeCompetitionDict) &&
+            e.PropertyName != nameof(Person.IsUsingExactAgeCompetitionDict) &&
             e.PropertyName != nameof(Person.HighestScore) &&
             e.PropertyName != nameof(Person.HighestScoreStyle) &&
             e.PropertyName != nameof(Person.HighestScoreCompetition))

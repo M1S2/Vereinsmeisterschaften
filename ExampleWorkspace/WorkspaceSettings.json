@@ -11,6 +11,10 @@
         "Value": "2025-11-22T00:00:00"
       },
       {
+        "Key": "CompetitionSearchMode",
+        "Value": "ExactOrNextLowerOnlyMaxAge"
+      },
+      {
         "Key": "TimeInputMillisecondDigits",
         "Value": 2
       },

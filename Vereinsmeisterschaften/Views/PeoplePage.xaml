@@ -168,6 +168,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Breaststroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Breaststroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -198,6 +201,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Freestyle], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Freestyle], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -228,6 +234,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Backstroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Backstroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -258,6 +267,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Butterfly], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Butterfly], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -288,6 +300,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[Medley], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Medley], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -318,6 +333,9 @@
                                 <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                       Visibility="{Binding IsUsingMaxAgeCompetitionDict[WaterFlea], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                                       ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[WaterFlea], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

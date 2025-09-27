@@ -61,6 +61,42 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or Next Higher Age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextHigherAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextHigherAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or Next Lower Age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextLowerAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextLowerAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or Max Age when person is older ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_ExactOrNextLowerOnlyMaxAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_ExactOrNextLowerOnlyMaxAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only Exact Age ähnelt.
+        /// </summary>
+        public static string CompetitionSearchModes_OnlyExactAge {
+            get {
+                return ResourceManager.GetString("CompetitionSearchModes_OnlyExactAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die DOCX ähnelt.
         /// </summary>
         public static string DocumentCreationFileTypes_DOCX {

@@ -14,6 +14,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string GROUP_GENERAL = "General";
         public const string SETTING_GENERAL_COMPETITIONYEAR = "CompetitionYear";
         public const string SETTING_GENERAL_COMPETITIONDATE = "CompetitionDate";
+        public const string SETTING_GENERAL_COMPETITIONSEARCHMODE = "CompetitionSearchMode";
         public const string SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS = "TimeInputMillisecondDigits";
         public const string SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS = "ScoreFractionalDigits";
 
@@ -66,6 +67,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             WorkspaceSettingsGroup groupGeneral = GetGroup(GROUP_GENERAL, true);
             groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_COMPETITIONYEAR, 0, 1900, 3000);
             groupGeneral.MakeSureSettingExists<DateTime>(SETTING_GENERAL_COMPETITIONDATE, new DateTime(1900, 01, 01), new DateTime(1900, 01, 01), new DateTime(3000, 12, 31));
+            groupGeneral.MakeSureSettingExists<CompetitionSearchModes>(SETTING_GENERAL_COMPETITIONSEARCHMODE, CompetitionSearchModes.ExactOrNextLowerOnlyMaxAge);
             groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS, 2, 1, 3);
             groupGeneral.MakeSureSettingExists<ushort>(SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS, 1, 0, 5);
 

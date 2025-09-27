@@ -1,7 +1,7 @@
 ﻿Name;FirstName;Gender;BirthYear;Breaststroke;Freestyle;Backstroke;Butterfly;Medley;WaterFlea;BreaststrokeTime;FreestyleTime;BackstrokeTime;ButterflyTime;MedleyTime;WaterFleaTime
 Mustermann;Maxxe;Male;2015;X;X;;;;;00:01:00;00:02:00;00:00:00;00:00:00;00:00:00;00:00:00
 Musterfrau;Eva;Female;2016;X;;X;X;X;;00:00:30;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
-Mustersohn;Tim;Male;2012;;;;;X;X;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
+Mustersohn;Tim;Male;2020;;;;;X;X;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
 xyz;abc;Male;2018;X;X;;;;;00:00:20;00:00:10;00:00:00;00:00:00;00:00:00;00:00:00
 Test;Test;Male;2017;X;X;;;;;00:00:15;00:00:50;00:00:00;00:00:00;00:00:00;00:00:00
 Test2;Test2;Female;2017;X;;;;;;00:00:15;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00

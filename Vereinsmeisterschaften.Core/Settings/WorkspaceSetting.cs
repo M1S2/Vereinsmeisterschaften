@@ -27,7 +27,15 @@ namespace Vereinsmeisterschaften.Core.Settings
         public T Value
         {
             get => _value;
-            set { SetProperty(ref _value, value); OnPropertyChanged(nameof(UntypedValue)); OnPropertyChanged(nameof(HasChanged)); OnPropertyChanged(nameof(HasDefaultValue)); }
+            set
+            {
+                if (SetProperty(ref _value, value))     // returns true, if the value has changed
+                {
+                    OnPropertyChanged(nameof(UntypedValue));
+                    OnPropertyChanged(nameof(HasChanged));
+                    OnPropertyChanged(nameof(HasDefaultValue));
+                }
+            }
         }
 
         /// <summary>
@@ -47,7 +55,13 @@ namespace Vereinsmeisterschaften.Core.Settings
         public T DefaultValue
         {
             get => _defaultValue;
-            set { SetProperty(ref _defaultValue, value); OnPropertyChanged(nameof(HasDefaultValue)); }
+            set
+            {
+                if (SetProperty(ref _defaultValue, value))      // returns true, if the value has changed
+                {
+                    OnPropertyChanged(nameof(HasDefaultValue));
+                }
+            }
         }
 
         /// <summary>
@@ -63,7 +77,13 @@ namespace Vereinsmeisterschaften.Core.Settings
         public T SnapshotValue
         {
             get => _snapshotValue;
-            private set { SetProperty(ref _snapshotValue, value); OnPropertyChanged(nameof(HasChanged)); }
+            private set
+            {
+                if (SetProperty(ref _snapshotValue, value))     // returns true, if the value has changed
+                {
+                    OnPropertyChanged(nameof(HasChanged));
+                }
+            }
         }
 
         /// <summary>

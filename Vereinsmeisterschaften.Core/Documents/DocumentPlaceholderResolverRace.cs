@@ -28,7 +28,7 @@ namespace Vereinsmeisterschaften.Core.Documents
             ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 3;
 
             List<string> personBirthYears = item.Starts.Select(s => s.PersonObj?.BirthYear.ToString()).ToList();
-            List<string> personCompetitionIDs = item.Starts.Select(s => s.CompetitionObj?.ID.ToString() ?? "?").ToList();
+            List<string> personCompetitionIDs = item.Starts.Select(s => s.CompetitionObj?.Id.ToString() ?? "?").ToList();
             List<string> personCompleteNames = item.Starts.Select(s => s.PersonObj?.FirstName + " " + s.PersonObj?.Name).ToList();
             List<string> personFirstNames = item.Starts.Select(s => s.PersonObj?.FirstName).ToList();
             List<string> personLastNames = item.Starts.Select(s => s.PersonObj?.Name).ToList();

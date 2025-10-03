@@ -7,17 +7,13 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the results page, showing the sorted persons based on their scores.
 /// </summary>
-public class ResultsViewModel : ObservableObject
+public partial class ResultsViewModel : ObservableObject
 {
-    private List<Person> _sortedPersons;
     /// <summary>
     /// List with all persons sorted by score
     /// </summary>
-    public List<Person> SortedPersons
-    {
-        get => _sortedPersons;
-        set => SetProperty(ref _sortedPersons, value);
-    }
+    [ObservableProperty]
+    private List<Person> _sortedPersons;
 
     private ResultTypes _resultType = ResultTypes.Overall;
     /// <summary>
@@ -28,12 +24,10 @@ public class ResultsViewModel : ObservableObject
         get => _resultType;
         set
         {
-            SetProperty(ref _resultType, value);
-            SortedPersons = _scoreService.GetPersonsSortedByScore(_resultType);
-            _scoreService.UpdateResultListPlacesForAllPersons();
-            OnPropertyChanged(nameof(PodiumGoldStarts));
-            OnPropertyChanged(nameof(PodiumSilverStarts));
-            OnPropertyChanged(nameof(PodiumBronzeStarts));
+            if (SetProperty(ref _resultType, value))
+            {
+                updatePersonsAndPlaces();
+            }
         }
     }
 
@@ -62,5 +56,15 @@ public class ResultsViewModel : ObservableObject
     {
         _scoreService = scoreService;
         ResultType = ResultTypes.Overall;
+        updatePersonsAndPlaces();
+    }
+
+    private void updatePersonsAndPlaces()
+    {
+        SortedPersons = _scoreService.GetPersonsSortedByScore(ResultType);
+        _scoreService.UpdateResultListPlacesForAllPersons();
+        OnPropertyChanged(nameof(PodiumGoldStarts));
+        OnPropertyChanged(nameof(PodiumSilverStarts));
+        OnPropertyChanged(nameof(PodiumBronzeStarts));
     }
 }

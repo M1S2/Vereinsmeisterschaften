@@ -92,7 +92,13 @@ namespace Vereinsmeisterschaften.Core.Models
         public Dictionary<SwimmingStyles, Competition> AvailableCompetitions
         {
             get => _availableCompetitions;
-            set { SetProperty(ref _availableCompetitions, value); OnPropertyChanged(nameof(AvailableCompetitionsFlags)); }
+            set
+            {
+                if (SetProperty(ref _availableCompetitions, value))
+                {
+                    OnPropertyChanged(nameof(AvailableCompetitionsFlags));
+                }
+            }
         }
 
         /// <summary>
@@ -123,7 +129,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 Dictionary<SwimmingStyles, int> availableCompetitionsIDs = new Dictionary<SwimmingStyles, int>();
                 foreach (KeyValuePair<SwimmingStyles, Competition> kvp in AvailableCompetitions)
                 {
-                    availableCompetitionsIDs.Add(kvp.Key, kvp.Value?.ID ?? -1);
+                    availableCompetitionsIDs.Add(kvp.Key, kvp.Value?.Id ?? -1);
                 }
                 return availableCompetitionsIDs;
             }

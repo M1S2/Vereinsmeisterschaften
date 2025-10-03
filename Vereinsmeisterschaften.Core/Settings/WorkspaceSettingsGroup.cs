@@ -1,24 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json.Linq;
 
 namespace Vereinsmeisterschaften.Core.Settings
 {
     /// <summary>
     /// A group of <see cref="WorkspaceSetting{T}"/> objects
     /// </summary>
-    public class WorkspaceSettingsGroup : ObservableObject, IEquatable<WorkspaceSettingsGroup>, ICloneable
+    public partial class WorkspaceSettingsGroup : ObservableObject, IEquatable<WorkspaceSettingsGroup>, ICloneable
     {
         #region Properties
 
-        private string _groupKey;
         /// <summary>
         /// Key for this group. Should be unique.
         /// </summary>
-        public string GroupKey
-        {
-            get => _groupKey;
-            set => SetProperty(ref _groupKey, value);
-        }
+        [ObservableProperty]
+        private string _groupKey;
 
         /// <summary>
         /// List with <see cref="IWorkspaceSetting"/> instances belonging to this group.

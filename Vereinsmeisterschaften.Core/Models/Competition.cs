@@ -6,7 +6,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class describing a competition.
     /// </summary>
-    public class Competition : ObservableObject, IEquatable<Competition>, ICloneable
+    public partial class Competition : ObservableObject, IEquatable<Competition>, ICloneable
     {
         /// <summary>
         /// Constructor for a new Competition object.
@@ -22,7 +22,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public Competition(Competition other) : this()
         {
             if (other == null) { return; }
-            this.ID = other.ID;
+            this.Id = other.Id;
             this.Gender = other.Gender;
             this.SwimmingStyle = other.SwimmingStyle;
             this.Age = other.Age;
@@ -37,7 +37,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// Competition ID
         /// </summary>
         [FileServiceOrder]
-        public int ID
+        public int Id
         {
             get => _id;
             set => SetProperty(ref _id, value);
@@ -110,7 +110,7 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             switch (propertyName)
             {
-                case nameof(ID): dataObj.ID = int.Parse(value); break;
+                case nameof(Id): dataObj.Id = int.Parse(value); break;
                 case nameof(Gender): dataObj.Gender = (Genders)Enum.Parse(typeof(Genders), value); break;
                 case nameof(SwimmingStyle): dataObj.SwimmingStyle = (SwimmingStyles)Enum.Parse(typeof(SwimmingStyles), value); break;
                 case nameof(Age): dataObj.Age = byte.Parse(value); break;
@@ -128,7 +128,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Competition to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Competition"/></returns>
         public override bool Equals(object obj)
-            => obj is Competition c && (c.ID, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime).Equals((ID, Gender, SwimmingStyle, Age, Distance, BestTime));
+            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime).Equals((Id, Gender, SwimmingStyle, Age, Distance, BestTime));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -143,14 +143,14 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-            => (ID, Gender, SwimmingStyle, Age, Distance, BestTime).GetHashCode();
+            => (Id, Gender, SwimmingStyle, Age, Distance, BestTime).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-            => $"{ID}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
+            => $"{Id}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
 
         /// <summary>
         /// Create a new object that has the same property values than this one

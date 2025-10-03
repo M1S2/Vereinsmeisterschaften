@@ -10,18 +10,14 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the settings page.
 /// </summary>
-public class SettingsViewModel : ObservableObject, INavigationAware
+public partial class SettingsViewModel : ObservableObject, INavigationAware
 {
-    private AppTheme _theme;
     /// <summary>
     /// App Theme (dark, light)
     /// </summary>
-    public AppTheme Theme
-    {
-        get { return _theme; }
-        set { SetProperty(ref _theme, value); }
-    }
-
+    [ObservableProperty]
+    private AppTheme _theme;
+    
     private ICommand _setThemeCommand;
     /// <summary>
     /// Command to change the app theme

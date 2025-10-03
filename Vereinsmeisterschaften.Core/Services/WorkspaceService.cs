@@ -7,7 +7,7 @@ namespace Vereinsmeisterschaften.Core.Services
     /// <summary>
     /// Service used to manage a workspace
     /// </summary>
-    public class WorkspaceService : ObservableObject, IWorkspaceService
+    public partial class WorkspaceService : ObservableObject, IWorkspaceService
     {
         /// <summary>
         /// Name of the workspace settings file
@@ -77,8 +77,10 @@ namespace Vereinsmeisterschaften.Core.Services
             get => _isWorkspaceOpen;
             set
             {
-                SetProperty(ref _isWorkspaceOpen, value);
-                OnPropertyChangedAllHasUnsavedChanges();
+                if (SetProperty(ref _isWorkspaceOpen, value))
+                {
+                    OnPropertyChangedAllHasUnsavedChanges();
+                }
             }
         }
 
@@ -164,7 +166,14 @@ namespace Vereinsmeisterschaften.Core.Services
         public WorkspaceSettings Settings
         {
             get => _settings;
-            set { SetProperty(ref _settings, value); OnPropertyChanged(nameof(HasUnsavedChanges_Settings)); OnPropertyChanged(nameof(HasUnsavedChanges)); }
+            set
+            {
+                if (SetProperty(ref _settings, value))
+                {
+                    OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+                    OnPropertyChanged(nameof(HasUnsavedChanges));
+                }
+            }
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -176,16 +185,12 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private WorkspaceSettings _settingsPersistedInFile;
         /// <summary>
         /// Last workspace settings that were loaded from the file.
         /// </summary>
-        public WorkspaceSettings SettingsPersistedInFile
-        {
-            get => _settingsPersistedInFile;
-            private set { SetProperty(ref _settingsPersistedInFile, value); }
-        }
-
+        [ObservableProperty]
+        private WorkspaceSettings _settingsPersistedInFile;
+        
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IPersonService _personService;

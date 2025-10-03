@@ -52,7 +52,7 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <summary>
         /// Support for resetting the setting value to the default value.
         /// </summary>
-        public bool SupportResetToDefault 
+        public bool SupportResetToDefault
         {
             get => _supportResetToDefault;
             set => SetProperty(ref _supportResetToDefault, value);
@@ -74,7 +74,16 @@ namespace Vereinsmeisterschaften.ViewModels
         public T Value
         {
             get => Setting.Value;
-            set { Setting.Value = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasChanged)); OnPropertyChanged(nameof(HasDefaultValue)); }
+            set
+            {
+                if (!Setting.Value.Equals(value))
+                {
+                    Setting.Value = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(HasChanged));
+                    OnPropertyChanged(nameof(HasDefaultValue));
+                }
+            }
         }
 
         /// <summary>

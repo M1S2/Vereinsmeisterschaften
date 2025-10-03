@@ -14,7 +14,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         /// <summary>
         /// Key for this setting. Should be unique.
         /// </summary>
-        public string Key 
+        public string Key
         {
             get => _key;
             set => SetProperty(ref _key, value);

@@ -52,7 +52,7 @@
 
             <DataGrid.Columns>
                 <!-- ID -->
-                <DataGridTextColumn Binding="{Binding ID}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding Id}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="#" FontSize="20" Margin="5"/>

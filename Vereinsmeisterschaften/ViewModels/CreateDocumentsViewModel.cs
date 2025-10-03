@@ -18,7 +18,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for creating various types of documents such as certificates, overview
 /// </summary>
-public class CreateDocumentsViewModel : ObservableObject, INavigationAware
+public partial class CreateDocumentsViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
     /// Dictionary to hold the state of whether a document creation process is currently running for each <see cref="DocumentCreationTypes"/> type.
@@ -112,16 +112,13 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     #region Create Certificates Properties
 
-    private int _numberCreatedCertificates = -1;
+    
     /// <summary>
     /// Number of created certificates during the last creation process.
     /// </summary>
-    public int NumberCreatedCertificates
-    {
-        get => _numberCreatedCertificates;
-        set => SetProperty(ref _numberCreatedCertificates, value);
-    }
-
+    [ObservableProperty]
+    private int _numberCreatedCertificates = -1;
+    
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -143,15 +140,11 @@ public class CreateDocumentsViewModel : ObservableObject, INavigationAware
 
     #region Create Time Forms Properties
 
-    private int _numberCreatedTimeForms = -1;
     /// <summary>
     /// Number of created time forms during the last creation process.
     /// </summary>
-    public int NumberCreatedTimeForms
-    {
-        get => _numberCreatedTimeForms;
-        set => SetProperty(ref _numberCreatedTimeForms, value);
-    }
+    [ObservableProperty]
+    private int _numberCreatedTimeForms = -1;
 
     #endregion
 

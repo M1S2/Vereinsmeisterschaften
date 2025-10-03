@@ -87,7 +87,13 @@ namespace Vereinsmeisterschaften.Core.Models
         public Competition CompetitionObj
         {
             get => _competitionObj;
-            set { SetProperty(ref _competitionObj, value); OnPropertyChanged(nameof(IsCompetitionObjAssigned)); }
+            set
+            {
+                if (SetProperty(ref _competitionObj, value))
+                {
+                    OnPropertyChanged(nameof(IsCompetitionObjAssigned));
+                }
+            }
         }
 
         /// <summary>

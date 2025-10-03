@@ -216,7 +216,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Text="{Binding CompetitionObj.ID, FallbackValue=/}"/>
+                                    <TextBlock Text="{Binding CompetitionObj.Id, FallbackValue=/}"/>
                                     <Path Margin="15,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
                                            Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
                                            ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>

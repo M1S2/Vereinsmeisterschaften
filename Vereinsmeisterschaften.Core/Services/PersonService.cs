@@ -307,7 +307,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 case PersonStartFilters.None: return allPersonStarts;
                 case PersonStartFilters.Person: return allPersonStarts.Where(s => s.PersonObj == (Person)filterParameter).ToList();
                 case PersonStartFilters.SwimmingStyle: return allPersonStarts.Where(s => s.Style == (SwimmingStyles)filterParameter).ToList();
-                case PersonStartFilters.CompetitionID: return allPersonStarts.Where(s => s.CompetitionObj != null && s.CompetitionObj.ID == (int)filterParameter).ToList();
+                case PersonStartFilters.CompetitionID: return allPersonStarts.Where(s => s.CompetitionObj != null && s.CompetitionObj.Id == (int)filterParameter).ToList();
                 default: return allPersonStarts;
             }
         }

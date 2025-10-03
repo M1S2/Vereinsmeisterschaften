@@ -116,8 +116,8 @@ namespace Vereinsmeisterschaften.Core.Documents
                 case ItemOrderingsCertificate.ByNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.Name).ToList(); break;
                 case ItemOrderingsCertificate.ByFirstNameAscending: starts = starts.OrderBy(s => s.PersonObj?.FirstName).ToList(); break;
                 case ItemOrderingsCertificate.ByFirstNameDescending: starts = starts.OrderByDescending(s => s.PersonObj?.FirstName).ToList(); break;
-                case ItemOrderingsCertificate.ByCompetitionAscending: starts = starts.OrderBy(s => s.CompetitionObj?.ID).ToList(); break;
-                case ItemOrderingsCertificate.ByCompetitionDescending: starts = starts.OrderByDescending(s => s.CompetitionObj?.ID).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionAscending: starts = starts.OrderBy(s => s.CompetitionObj?.Id).ToList(); break;
+                case ItemOrderingsCertificate.ByCompetitionDescending: starts = starts.OrderByDescending(s => s.CompetitionObj?.Id).ToList(); break;
                 default: break;
             }
             return starts.ToArray();

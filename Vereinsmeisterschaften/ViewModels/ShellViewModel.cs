@@ -15,7 +15,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the main shell of the application.
 /// </summary>
-public class ShellViewModel : ObservableObject
+public partial class ShellViewModel : ObservableObject
 {
     /// <summary>
     /// Path to the current workspace folder.
@@ -37,25 +37,17 @@ public class ShellViewModel : ObservableObject
 
     #region Hamburger menu items
 
-    private HamburgerMenuItem _selectedMenuItem;
     /// <summary>
     /// Menu item that is currently selected in the hamburger menu.
     /// </summary>
-    public HamburgerMenuItem SelectedMenuItem
-    {
-        get { return _selectedMenuItem; }
-        set { SetProperty(ref _selectedMenuItem, value); }
-    }
+    [ObservableProperty]
+    private HamburgerMenuItem _selectedMenuItem;
 
-    private HamburgerMenuItem _selectedOptionsMenuItem;
     /// <summary>
     /// Menu item that is currently selected in the hamburger menu options section.
     /// </summary>
-    public HamburgerMenuItem SelectedOptionsMenuItem
-    {
-        get { return _selectedOptionsMenuItem; }
-        set { SetProperty(ref _selectedOptionsMenuItem, value); }
-    }
+    [ObservableProperty]
+    private HamburgerMenuItem _selectedOptionsMenuItem;
 
     /// <summary>
     /// Available menu items in the hamburger menu.

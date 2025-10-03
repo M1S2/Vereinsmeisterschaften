@@ -68,9 +68,11 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         get => _currentRacesVariant;
         set
         {
-            SetProperty(ref _currentRacesVariant, value);
-            _currentRacesVariant?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
-            OnPropertyChanged(nameof(CurrentRacesVariantIsPersistent));
+            if (SetProperty(ref _currentRacesVariant, value))
+            {
+                _currentRacesVariant?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
+                OnPropertyChanged(nameof(CurrentRacesVariantIsPersistent));
+            }
         }
     }
 
@@ -125,7 +127,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public HighlightPersonStartModes HighlightPersonStartMode
     {
         get => _highlightPersonStartMode;
-        set { SetProperty(ref _highlightPersonStartMode, value); recalculateHighlightedPersonStarts(); }
+        set
+        {
+            if (SetProperty(ref _highlightPersonStartMode, value))
+            {
+                recalculateHighlightedPersonStarts();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -142,7 +150,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public Person HighlightedPerson
     {
         get => _highlightedPerson;
-        set { SetProperty(ref _highlightedPerson, value); recalculateHighlightedPersonStarts(); }
+        set
+        {
+            if (SetProperty(ref _highlightedPerson, value))
+            {
+                recalculateHighlightedPersonStarts();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +174,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public SwimmingStyles HighlightedSwimmingStyle
     {
         get => _highlightedSwimmingStyle;
-        set { SetProperty(ref _highlightedSwimmingStyle, value); recalculateHighlightedPersonStarts(); }
+        set
+        {
+            if (SetProperty(ref _highlightedSwimmingStyle, value))
+            {
+                recalculateHighlightedPersonStarts();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -172,7 +192,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public Genders HighlightedGender
     {
         get => _highlightedGender;
-        set { SetProperty(ref _highlightedGender, value); recalculateHighlightedPersonStarts(); }
+        set
+        {
+            if (SetProperty(ref _highlightedGender, value))
+            {
+                recalculateHighlightedPersonStarts();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -184,7 +210,13 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public ushort HighlightedDistance
     {
         get => _highlightedDistance;
-        set { SetProperty(ref _highlightedDistance, value); recalculateHighlightedPersonStarts(); }
+        set
+        {
+            if (SetProperty(ref _highlightedDistance, value))
+            {
+                recalculateHighlightedPersonStarts();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------

@@ -99,7 +99,13 @@ namespace Vereinsmeisterschaften.Core.Models
         public bool IsPersistent
         {
             get => _isPersistent;
-            set { SetProperty(ref _isPersistent, value); OnPropertyChanged(nameof(KeepWhileRacesCalculation)); }
+            set
+            {
+                if (SetProperty(ref _isPersistent, value))
+                {
+                    OnPropertyChanged(nameof(KeepWhileRacesCalculation));
+                }
+            }
         }
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------

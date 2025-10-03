@@ -17,17 +17,13 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the person overview page
 /// </summary>
-public class PeopleViewModel : ObservableObject, INavigationAware
+public partial class PeopleViewModel : ObservableObject, INavigationAware
 {
-    private ObservableCollection<Person> _people;
     /// <summary>
     /// List of people shown on the person overview page
     /// </summary>
-    public ObservableCollection<Person> People
-    {
-        get => _people;
-        set => SetProperty(ref _people, value);
-    }
+    [ObservableProperty]
+    private ObservableCollection<Person> _people;
 
     /// <summary>
     /// String used to describe, which person is duplicated
@@ -56,16 +52,12 @@ public class PeopleViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _peopleCollectionView, value);
     }
 
-    private Person _selectedPerson;
     /// <summary>
     /// Currently selected <see cref="Person"/>
     /// </summary>
-    public Person SelectedPerson
-    {
-        get => _selectedPerson;
-        set => SetProperty(ref _selectedPerson, value);
-    }
-
+    [ObservableProperty]
+    private Person _selectedPerson;
+    
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private Subject<bool> filterInputSubject = new Subject<bool>();         // Used to delay the filter while typing
@@ -77,7 +69,13 @@ public class PeopleViewModel : ObservableObject, INavigationAware
     public string FilterText
     {
         get => _filterText;
-        set { SetProperty(ref _filterText, value); filterInputSubject?.OnNext(true); }
+        set
+        {
+            if (SetProperty(ref _filterText, value))
+            {
+                filterInputSubject?.OnNext(true);
+            }
+        }
     }
 
     /// <summary>

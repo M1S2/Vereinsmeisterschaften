@@ -11,7 +11,7 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the Time Input page.
 /// </summary>
-public class TimeInputViewModel : ObservableObject, INavigationAware
+public partial class TimeInputViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
     /// List of all available <see cref="PersonStart"/> objects.
@@ -33,15 +33,11 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     /// </summary>
     public RacesVariant PersistedRacesVariant => _raceService?.PersistedRacesVariant;
 
-    private int _timeInputMillisecondDigits;
     /// <summary>
     /// Number of digits used to display milliseconds in the time input control.
     /// </summary>
-    public int TimeInputMillisecondDigits
-    {
-        get => _timeInputMillisecondDigits;
-        set => SetProperty(ref _timeInputMillisecondDigits, value);
-    }
+    [ObservableProperty]
+    private int _timeInputMillisecondDigits;
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -54,7 +50,13 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     public TimeInputPersonStartFilterModes FilterPersonStartMode
     {
         get => _filterPersonStartMode;
-        set { SetProperty(ref _filterPersonStartMode, value); AvailablePersonStartsCollectionView.Refresh(); }
+        set
+        {
+            if (SetProperty(ref _filterPersonStartMode, value))
+            {
+                AvailablePersonStartsCollectionView.Refresh();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +73,13 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     public Person FilteredPerson
     {
         get => _filteredPerson;
-        set { SetProperty(ref _filteredPerson, value); AvailablePersonStartsCollectionView.Refresh(); }
+        set
+        {
+            if (SetProperty(ref _filteredPerson, value))
+            {
+                AvailablePersonStartsCollectionView.Refresh();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,7 +91,13 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     public int FilteredRaceID
     {
         get => _filteredRaceID;
-        set { SetProperty(ref _filteredRaceID, value); AvailablePersonStartsCollectionView.Refresh(); }
+        set
+        {
+            if (SetProperty(ref _filteredRaceID, value))
+            {
+                AvailablePersonStartsCollectionView.Refresh();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +109,13 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
     public int FilteredCompetitionID
     {
         get => _filteredCompetitionID;
-        set { SetProperty(ref _filteredCompetitionID, value); AvailablePersonStartsCollectionView.Refresh(); }
+        set
+        {
+            if (SetProperty(ref _filteredCompetitionID, value))
+            {
+                AvailablePersonStartsCollectionView.Refresh();
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -120,7 +140,7 @@ public class TimeInputViewModel : ObservableObject, INavigationAware
                         Race race = PersistedRacesVariant?.Races?.Where(r => r.Starts.Contains(personStart)).FirstOrDefault();
                         return race == null ? false : race.RaceID == FilteredRaceID;
                     case TimeInputPersonStartFilterModes.CompetitionID:
-                        return (personStart?.CompetitionObj?.ID ?? -1) == FilteredCompetitionID;
+                        return (personStart?.CompetitionObj?.Id ?? -1) == FilteredCompetitionID;
                     case TimeInputPersonStartFilterModes.None:
                     default:
                         break;

@@ -56,6 +56,7 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionList = new ObservableCollection<Competition>();
             _fileService = fileService;
             _personService = personService;
+            _personService.SetCompetitionServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
         }
 
         /// <summary>

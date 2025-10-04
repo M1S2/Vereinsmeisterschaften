@@ -44,6 +44,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IFileService _fileService;
         private IScoreService _scoreService;
+        private ICompetitionService _competitionService;
 
         /// <summary>
         /// Constructor
@@ -63,6 +64,16 @@ namespace Vereinsmeisterschaften.Core.Services
         public void SetScoreServiceObj(IScoreService scoreService)
         {
             _scoreService = scoreService;
+        }
+
+        /// <summary>
+        /// Save the reference to the <see cref="ICompetitionService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="competitionService">Reference to the <see cref="ICompetitionService"/> implementation</param>
+        public void SetCompetitionServiceObj(ICompetitionService competitionService)
+        {
+            _competitionService = competitionService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -234,7 +245,15 @@ namespace Vereinsmeisterschaften.Core.Services
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
-        private bool _isupdatingScores = false;         // Flag to avoid recursive calls of the Person_PropertyChanged event
+        private bool _isupdatingScores = false;     // Flag to avoid recursive calls of the Person_PropertyChanged event. During UpdateScoresForPerson the Score of the PersonStart is changed which would raise a property changed event of the Starts property of the Person again.
+        /// <summary>
+        /// Event that is raised when a property of a <see cref="Person"/> changes.
+        /// - Update the scores of the person.
+        /// - Update all competitions for the person.
+        /// - Raise some further property changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Person.Starts) && sender is Person senderPerson && _scoreService != null && !_isupdatingScores)
@@ -243,6 +262,16 @@ namespace Vereinsmeisterschaften.Core.Services
                 _scoreService.UpdateScoresForPerson(senderPerson);
                 _isupdatingScores = false;
             }
+            // Update the competitions for the person. They depend on the gender and birth year.
+            switch(e.PropertyName)
+            {
+                case nameof(Person.Gender):
+                case nameof(Person.BirthYear):
+                    _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
+                    break;
+                default: break;
+            }
+
             OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }

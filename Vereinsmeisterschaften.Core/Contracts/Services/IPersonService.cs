@@ -17,6 +17,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void SetScoreServiceObj(IScoreService scoreService);
 
         /// <summary>
+        /// Save the reference to the <see cref="ICompetitionService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="competitionService">Reference to the <see cref="ICompetitionService"/> implementation</param>
+        void SetCompetitionServiceObj(ICompetitionService competitionService);
+
+        /// <summary>
         /// Return all available Persons
         /// </summary>
         /// <returns>List of <see cref="Person"/> objects</returns>

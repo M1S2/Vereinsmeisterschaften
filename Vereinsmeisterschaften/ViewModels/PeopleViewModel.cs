@@ -174,7 +174,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
 
         foreach(Person person in People)
         {
-            person.PropertyChanged -= Person_PropertyChanged; // Unsubscribe from the event to avoid multiple subscriptions
+            // Unsubscribe from and resubscribe to the event to avoid multiple subscriptions
+            person.PropertyChanged -= Person_PropertyChanged; 
             person.PropertyChanged += Person_PropertyChanged;
         }
 
@@ -184,21 +185,24 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
+        // Unsubscribe from the event to avoid raising this event on another page (not necessary there)
+        foreach (Person person in People)
+        {
+            person.PropertyChanged -= Person_PropertyChanged;
+        }
     }
 
     private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        OnPropertyChanged(nameof(DuplicatePersonString));
-        if (e.PropertyName != nameof(Person.Starts) && 
-            e.PropertyName != nameof(Person.AvailableCompetitions) && 
-            e.PropertyName != nameof(Person.AvailableCompetitionsFlags) && 
-            e.PropertyName != nameof(Person.IsUsingMaxAgeCompetitionDict) &&
-            e.PropertyName != nameof(Person.IsUsingExactAgeCompetitionDict) &&
-            e.PropertyName != nameof(Person.HighestScore) &&
-            e.PropertyName != nameof(Person.HighestScoreStyle) &&
-            e.PropertyName != nameof(Person.HighestScoreCompetition))
+        switch (e.PropertyName)
         {
-            _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
+            case nameof(Person.FirstName):
+            case nameof(Person.Name):
+            case nameof(Person.Gender):
+            case nameof(Person.BirthYear):
+                OnPropertyChanged(nameof(DuplicatePersonString));
+                break;
+            default: break;
         }
     }
 }

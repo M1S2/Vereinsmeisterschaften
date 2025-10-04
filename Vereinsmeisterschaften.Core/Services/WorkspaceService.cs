@@ -273,15 +273,15 @@ namespace Vereinsmeisterschaften.Core.Services
                 Settings = new WorkspaceSettings();
                 Settings.Load(_fileService, WorkspaceSettingsFilePath);
                 Settings.PropertyChanged += Settings_PropertyChanged;
-
-                // Persons
-                openResult = await _personService.Load(PersonFilePath, cancellationToken);
-                if(!openResult) { return openResult; }
-
+                
                 // Competitions
                 openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
                 if (!openResult) { return openResult; }
 
+                // Persons
+                openResult = await _personService.Load(PersonFilePath, cancellationToken);
+                if(!openResult) { return openResult; }
+                
                 _competitionService.UpdateAllCompetitionsForPerson();
 
                 // Best Race
@@ -321,14 +321,14 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 // Workspace settings
                 Settings?.Save(_fileService, WorkspaceSettingsFilePath);
-
+                
+                // Competitions
+                saveResult = await _competitionService.Save(cancellationToken, CompetitionsFilePath);
+                
                 // Persons
                 saveResult = await _personService.Save(cancellationToken, PersonFilePath);
                 if (!saveResult) { return saveResult; }
-
-                // Competitions
-                saveResult = await _competitionService.Save(cancellationToken, CompetitionsFilePath);
-
+                
                 // Best Race
                 saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
 

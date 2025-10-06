@@ -28,15 +28,15 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_Name) { textPlaceholder.Add(placeholder, item.FirstName + " " + item.Name); }
             foreach (string placeholder in Placeholders.Placeholders_FirstName) { textPlaceholder.Add(placeholder, item.FirstName); }
             foreach (string placeholder in Placeholders.Placeholders_LastName) { textPlaceholder.Add(placeholder, item.Name); }
-            foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.Gender)); }
+            foreach (string placeholder in Placeholders.Placeholders_Gender) { textPlaceholder.Add(placeholder, EnumCoreLocalizedStringHelper.Convert(item.Gender)); }
             foreach (string placeholder in Placeholders.Placeholders_GenderSymbol) { textPlaceholder.Add(placeholder, item.Gender == Genders.Male ? "♂" : "♀"); }
             foreach (string placeholder in Placeholders.Placeholders_BirthYear) { textPlaceholder.Add(placeholder, item.BirthYear.ToString() ?? "?"); }
-            foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item.HighestScoreStyle)); }
+            foreach (string placeholder in Placeholders.Placeholders_SwimmingStyle) { textPlaceholder.Add(placeholder, EnumCoreLocalizedStringHelper.Convert(item.HighestScoreStyle)); }
             foreach (string placeholder in Placeholders.Placeholders_Distance) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.Distance.ToString() + "m" ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_CompetitionID) { textPlaceholder.Add(placeholder, item.HighestScoreCompetition?.Id.ToString() ?? "?"); }
             foreach (string placeholder in Placeholders.Placeholders_Score) { textPlaceholder.Add(placeholder, item.HighestScore.ToString()); }
             foreach (string placeholder in Placeholders.Placeholders_ResultListPlace) { textPlaceholder.Add(placeholder, item?.ResultListPlace == 0 ? "-" : item.ResultListPlace.ToString() ?? "?"); }
-            foreach (string placeholder in Placeholders.Placeholders_BestStyle) { textPlaceholder.Add(placeholder, EnumCoreToLocalizedString.Convert(item?.HighestScoreStyle)); }
+            foreach (string placeholder in Placeholders.Placeholders_BestStyle) { textPlaceholder.Add(placeholder, EnumCoreLocalizedStringHelper.Convert(item?.HighestScoreStyle)); }
 
             string cellEmptyString = "-";
             foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Score.ToString() ?? cellEmptyString); }

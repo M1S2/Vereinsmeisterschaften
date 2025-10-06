@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
@@ -106,7 +107,10 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Competition> list = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress);
+                        List<Competition> list = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress, (header) =>
+                        {
+                            return PropertyNameLocalizedStringHelper.FindProperty(typeof(Competition), header);
+                        });
                         _competitionList = new ObservableCollection<Competition>();
                         foreach (Competition competition in list)
                         {
@@ -151,7 +155,21 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress);
+                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress, (data) =>
+                    {
+                        if (data is Enum dataEnum)
+                        {
+                            return EnumCoreLocalizedStringHelper.Convert(dataEnum);
+                        }
+                        else
+                        {
+                            return data.ToString();
+                        }
+                    },
+                    (header, type) =>
+                    {
+                        return PropertyNameLocalizedStringHelper.Convert(typeof(Competition), header);
+                    });
 
                     _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
                     saveResult = true;

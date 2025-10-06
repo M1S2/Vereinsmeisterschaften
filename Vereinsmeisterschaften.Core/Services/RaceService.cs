@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
@@ -161,7 +162,10 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress);
+                        List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress, (header) =>
+                        {
+                            return PropertyNameLocalizedStringHelper.FindProperty(typeof(Race), header);
+                        });
                         RacesVariant bestRacesVariant = new RacesVariant(raceList, _workspaceService);
                         bestRacesVariant.IsPersistent = true;
                         uiContext.Send((d) =>
@@ -206,7 +210,7 @@ namespace Vereinsmeisterschaften.Core.Services
             switch (propertyName)
             {
                 case nameof(Race.Distance): _lastParsedDistance = int.Parse(value); break;
-                case nameof(Race.Style): _lastParsedStyle = (SwimmingStyles)Enum.Parse(typeof(SwimmingStyles), value); break;
+                case nameof(Race.Style): if (EnumCoreLocalizedStringHelper.TryParse(value, out SwimmingStyles parsedStyle)) { _lastParsedStyle = parsedStyle; } break;
                 default:
                     {
                         if (dataObj.Starts == null) { dataObj.Starts = new ObservableCollection<PersonStart>(); }
@@ -262,6 +266,10 @@ namespace Vereinsmeisterschaften.Core.Services
                             {
                                 return string.Join(";", dataList.Select(p => p.PersonObj?.FirstName + ", " + p.PersonObj?.Name));
                             }
+                            else if (data is Enum dataEnum)
+                            {
+                                return EnumCoreLocalizedStringHelper.Convert(dataEnum);
+                            }
                             else
                             {
                                 return data.ToString();
@@ -274,14 +282,14 @@ namespace Vereinsmeisterschaften.Core.Services
                                 string formatedHeader = "";
                                 for(int i = 1; i <= maxNumberStarts; i++)
                                 {
-                                    formatedHeader += $"Person {i};";
+                                    formatedHeader += $"{PropertyNameLocalizedStringHelper.Convert(typeof(Race), "Person")} {i};";
                                 }
                                 formatedHeader = formatedHeader.Trim(';');
                                 return formatedHeader;
                             }
                             else
                             {
-                                return header;
+                                return PropertyNameLocalizedStringHelper.Convert(typeof(Race), header);
                             }
                         });
 

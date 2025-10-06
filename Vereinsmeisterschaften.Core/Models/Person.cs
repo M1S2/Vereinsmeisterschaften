@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -393,7 +394,7 @@ namespace Vereinsmeisterschaften.Core.Models
             {
                 case nameof(FirstName): dataObj.FirstName = value; break;
                 case nameof(Name): dataObj.Name = value; break;
-                case nameof(Gender): dataObj.Gender = (Genders)Enum.Parse(typeof(Genders), value); break;
+                case nameof(Gender): if (EnumCoreLocalizedStringHelper.TryParse(value, out Genders parsedGender)) { dataObj.Gender = parsedGender; } break;
                 case nameof(BirthYear): dataObj.BirthYear = UInt16.Parse(value); break;
                 case nameof(Breaststroke): dataObj.Breaststroke = !string.IsNullOrEmpty(value); break;
                 case nameof(Freestyle): dataObj.Freestyle = !string.IsNullOrEmpty(value); break;

@@ -46,7 +46,7 @@ namespace Vereinsmeisterschaften.Core.Documents
                             if (ItemFilterParameter is Person) { templateFileNamePostfixReplaceStr = "_" + ((Person)ItemFilterParameter).FirstName + "_" + ((Person)ItemFilterParameter).Name; }
                             break;
                         case PersonStartFilters.SwimmingStyle:
-                            if (ItemFilterParameter is SwimmingStyles) { templateFileNamePostfixReplaceStr = "_" + EnumCoreToLocalizedString.Convert((SwimmingStyles)ItemFilterParameter); }
+                            if (ItemFilterParameter is SwimmingStyles) { templateFileNamePostfixReplaceStr = "_" + EnumCoreLocalizedStringHelper.Convert((SwimmingStyles)ItemFilterParameter); }
                             break;
                         case PersonStartFilters.CompetitionID:
                             if (ItemFilterParameter is int || ItemFilterParameter is double) { templateFileNamePostfixReplaceStr = "_WK" + Convert.ToInt32(ItemFilterParameter); }

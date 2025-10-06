@@ -25,6 +25,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     public delegate string FormatDataHeaderDelegate(string header, Type type);
 
     /// <summary>
+    /// Delegate to find propety name by localized header string
+    /// </summary>
+    /// <param name="header">Input header used to find the property</param>
+    /// <returns>Return the found property name as string</returns>
+    public delegate string FindPropertyFromHeaderDelegate(string header);
+
+    /// <summary>
     /// Delegate to change a specific property in the data object
     /// </summary>
     /// <typeparam name="T">Type of the data object</typeparam>

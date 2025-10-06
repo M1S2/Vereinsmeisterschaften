@@ -134,9 +134,10 @@ public class FileService : IFileService
     /// <param name="cancellationToken">Used to cancel the load process</param>
     /// <param name="setPropertyFromStringDelegate">Delegate used to change the data element properties</param>
     /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report load progress</param>
+    /// <param name="findPropertyFromHeader">Callback that can be used to get the property name from the data headers. Use <see langword="null"/> to use the header name as property name</param>
     /// <param name="delimiter">Delimiter for the .csv file</param>
     /// <returns>Loaded data list</returns>
-    public List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, ProgressDelegate onProgress = null, char delimiter = ';') where T : new()
+    public List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, ProgressDelegate onProgress = null, FindPropertyFromHeaderDelegate findPropertyFromHeader = null, char delimiter = ';') where T : new()
     {
         List<T> dataList = new List<T>();
         if (!File.Exists(filePath)) { return dataList; }
@@ -156,7 +157,8 @@ public class FileService : IFileService
                 T data = new T();
                 for (int i = 0; i < Math.Min(headers.Count, lineParts.Count); i++)
                 {
-                    setPropertyFromStringDelegate(data, headers[i], lineParts[i]);
+                    string header = findPropertyFromHeader == null ? headers[i] : findPropertyFromHeader(headers[i]);
+                    setPropertyFromStringDelegate(data, header, lineParts[i]);
                     cancellationToken.ThrowIfCancellationRequested();
                 }
                 dataList.Add(data);

@@ -1,7 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -102,7 +103,10 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Person> list = _fileService.LoadFromCsv<Person>(path, cancellationToken, Person.SetPropertyFromString, OnFileProgress);
+                        List<Person> list = _fileService.LoadFromCsv<Person>(path, cancellationToken, Person.SetPropertyFromString, OnFileProgress, (header) =>
+                        {
+                            return PropertyNameLocalizedStringHelper.FindProperty(typeof(Person), header);
+                        });
                         _personList = new ObservableCollection<Person>();
                         foreach (Person person in list)
                         {
@@ -153,10 +157,18 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             return dataBool ? "X" : "";
                         }
+                        else if (data is Enum dataEnum)
+                        {
+                            return EnumCoreLocalizedStringHelper.Convert(dataEnum);
+                        }
                         else
                         {
                             return data.ToString();
                         }
+                    },
+                    (header, type) =>
+                    {
+                        return PropertyNameLocalizedStringHelper.Convert(typeof(Person), header);
                     });
 
                     _personListOnLoad = _personList.ToList().ConvertAll(p => new Person(p));

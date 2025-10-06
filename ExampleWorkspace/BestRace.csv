@@ -1,10 +1,10 @@
-﻿Style;Distance;Person 1;Person 2;Person 3
-WaterFlea;25;Tim, Mustersohn
-Breaststroke;50;Test, Test;Eva, Musterfrau
-Breaststroke;50;Test2, Test2;abc, xyz;Maxxe, Mustermann
-Backstroke;100;Günter, Gönner
-Butterfly;50;Cordulä, Grün
-Backstroke;50;Eva, Musterfrau
-Freestyle;50;Maxxe, Mustermann;Test, Test
-Freestyle;50;abc, xyz
-Freestyle;100;Cordulä, Grün;Günter, Gönner
+﻿Schwimmstil;Strecke;Person 1;Person 2;Person 3
+Wasserfloh;25;Tim, Mustersohn
+Brust;50;Test, Test;Eva, Musterfrau
+Brust;50;Test2, Test2;abc, xyz;Maxxe, Mustermann
+Rücken;100;Günter, Gönner
+Delphin;50;Cordulä, Grün
+Rücken;50;Eva, Musterfrau
+Freistil;50;Maxxe, Mustermann;Test, Test
+Freistil;50;abc, xyz
+Freistil;100;Cordulä, Grün;Günter, Gönner

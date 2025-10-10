@@ -1,0 +1,725 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Documents.IDocumentStrategy Interface Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">8038e1134b3b40482f42c82f2a71f52708445158</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;. It takes place once a year.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Documents.IDocumentStrategy Interface Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface for document strategies that define how to create and collect data for different types of documents.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Documents.IDocumentStrategy:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy.png" usemap="#Vereinsmeisterschaften.Core.Documents.IDocumentStrategy_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Core.Documents.IDocumentStrategy_map" name="Vereinsmeisterschaften.Core.Documents.IDocumentStrategy_map">
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html" title="Base class for document strategies that define how to create and collect data for different types of ..." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;" shape="rect" coords="1110,56,1544,80"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html" title="Document strategy for creating certificates." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates" shape="rect" coords="0,112,434,136"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html" title="Document strategy for creating an overview list." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList" shape="rect" coords="444,112,878,136"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html" title="Document strategy for creating a race start list." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyRaceStartList" shape="rect" coords="888,112,1322,136"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html" title="Document strategy for creating a result list." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultList" shape="rect" coords="1332,112,1766,136"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html" title="Document strategy for creating a result list with details." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail" shape="rect" coords="1776,112,2210,136"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html" title="Document strategy for creating time forms." alt="Vereinsmeisterschaften.Core.Documents.DocumentStrategyTimeForms" shape="rect" coords="2220,112,2654,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3db0d616407285492a03ef73862e1d72" id="r_a3db0d616407285492a03ef73862e1d72"><td class="memItemLeft" align="right" valign="top">object[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3db0d616407285492a03ef73862e1d72">GetItems</a> ()</td></tr>
+<tr class="memdesc:a3db0d616407285492a03ef73862e1d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the items that will be used to create the document.  <br /></td></tr>
+<tr class="separator:a3db0d616407285492a03ef73862e1d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0fafd9aa6d86ee68e307db4f5e835f" id="r_a8f0fafd9aa6d86ee68e307db4f5e835f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html">DocXPlaceholderHelper.TextPlaceholders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f0fafd9aa6d86ee68e307db4f5e835f">ResolveTextPlaceholders</a> (object item=null)</td></tr>
+<tr class="memdesc:a8f0fafd9aa6d86ee68e307db4f5e835f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve text placeholders for the given item.  <br /></td></tr>
+<tr class="separator:a8f0fafd9aa6d86ee68e307db4f5e835f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b76fb6866ec717c5411ef8a778a93e" id="r_a95b76fb6866ec717c5411ef8a778a93e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html">DocXPlaceholderHelper.TablePlaceholders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95b76fb6866ec717c5411ef8a778a93e">ResolveTablePlaceholders</a> (object[] items)</td></tr>
+<tr class="memdesc:a95b76fb6866ec717c5411ef8a778a93e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve table placeholders for the given items.  <br /></td></tr>
+<tr class="separator:a95b76fb6866ec717c5411ef8a778a93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:aad4dcdad50e2670cae8a473b5b57172e" id="r_aad4dcdad50e2670cae8a473b5b57172e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6b47c461f6af89e3ba40e8c49fbba9a6">DocumentCreationTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad4dcdad50e2670cae8a473b5b57172e">DocumentType</a><code> [get]</code></td></tr>
+<tr class="memdesc:aad4dcdad50e2670cae8a473b5b57172e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of document this strategy creates.  <br /></td></tr>
+<tr class="separator:aad4dcdad50e2670cae8a473b5b57172e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2903114b63845445b2372b5279b2150e" id="r_a2903114b63845445b2372b5279b2150e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2903114b63845445b2372b5279b2150e">TemplatePath</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2903114b63845445b2372b5279b2150e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the path to the template used for creating the document.  <br /></td></tr>
+<tr class="separator:a2903114b63845445b2372b5279b2150e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d9a55ba05b8eb490c1bd9e3b77ed973" id="r_a1d9a55ba05b8eb490c1bd9e3b77ed973"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d9a55ba05b8eb490c1bd9e3b77ed973">TemplateFileNamePostfixReplaceStr</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1d9a55ba05b8eb490c1bd9e3b77ed973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this string instead of the template file name postfix during document creation.  <br /></td></tr>
+<tr class="separator:a1d9a55ba05b8eb490c1bd9e3b77ed973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad422ea96c4cc00099cc5846bc1d2088c" id="r_ad422ea96c4cc00099cc5846bc1d2088c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad422ea96c4cc00099cc5846bc1d2088c">CreateMultiplePages</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad422ea96c4cc00099cc5846bc1d2088c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this strategy supports creating multiple pages in the document.  <br /></td></tr>
+<tr class="separator:ad422ea96c4cc00099cc5846bc1d2088c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ca6dae96a6313652e0a078e12411ed2" id="r_a9ca6dae96a6313652e0a078e12411ed2"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ca6dae96a6313652e0a078e12411ed2">ItemType</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9ca6dae96a6313652e0a078e12411ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of items that this strategy will handle.  <br /></td></tr>
+<tr class="separator:a9ca6dae96a6313652e0a078e12411ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31288699d69fa46e8a7be7804ce24ec8" id="r_a31288699d69fa46e8a7be7804ce24ec8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31288699d69fa46e8a7be7804ce24ec8">SupportTextPlaceholders</a><code> [get]</code></td></tr>
+<tr class="memdesc:a31288699d69fa46e8a7be7804ce24ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicating if <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a> are supported.  <br /></td></tr>
+<tr class="separator:a31288699d69fa46e8a7be7804ce24ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2ac0a7446a68bba198cdbe854e6fb6c" id="r_ad2ac0a7446a68bba198cdbe854e6fb6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2ac0a7446a68bba198cdbe854e6fb6c">SupportTablePlaceholders</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad2ac0a7446a68bba198cdbe854e6fb6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicating if <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html" title="Class to hold table placeholders and their list of values.">DocXPlaceholderHelper.TablePlaceholders</a> are supported.  <br /></td></tr>
+<tr class="separator:ad2ac0a7446a68bba198cdbe854e6fb6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fd560228536144b1ebeb12d5185182" id="r_ae4fd560228536144b1ebeb12d5185182"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4fd560228536144b1ebeb12d5185182">SupportedPlaceholderKeys</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae4fd560228536144b1ebeb12d5185182"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of placeholder keys that are supported by this strategy.  <br /></td></tr>
+<tr class="separator:ae4fd560228536144b1ebeb12d5185182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8af8393af10a899e3378da570602313e" id="r_a8af8393af10a899e3378da570602313e"><td class="memItemLeft" align="right" valign="top">List&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8af8393af10a899e3378da570602313e">PostfixNumbersSupported</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8af8393af10a899e3378da570602313e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of postfix numbers that are supported for the placeholders.  <br /></td></tr>
+<tr class="separator:a8af8393af10a899e3378da570602313e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37ba1905d2aa8ad8086b9700676de80" id="r_ab37ba1905d2aa8ad8086b9700676de80"><td class="memItemLeft" align="right" valign="top">Enum&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab37ba1905d2aa8ad8086b9700676de80">ItemOrdering</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab37ba1905d2aa8ad8086b9700676de80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current ordering for the items.  <br /></td></tr>
+<tr class="separator:ab37ba1905d2aa8ad8086b9700676de80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40fb68d7e12dc7adc94e89af88fd2bcc" id="r_a40fb68d7e12dc7adc94e89af88fd2bcc"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; Enum &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40fb68d7e12dc7adc94e89af88fd2bcc">AvailableItemOrderings</a><code> [get]</code></td></tr>
+<tr class="memdesc:a40fb68d7e12dc7adc94e89af88fd2bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array with all available orderings for the items.  <br /></td></tr>
+<tr class="separator:a40fb68d7e12dc7adc94e89af88fd2bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a769cf49d4a9fc465c4c6bdb20c3e224e" id="r_a769cf49d4a9fc465c4c6bdb20c3e224e"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; Enum &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a769cf49d4a9fc465c4c6bdb20c3e224e">AvailableItemFilters</a><code> [get]</code></td></tr>
+<tr class="memdesc:a769cf49d4a9fc465c4c6bdb20c3e224e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array with all available filters for the items.  <br /></td></tr>
+<tr class="separator:a769cf49d4a9fc465c4c6bdb20c3e224e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36eb027950112b918337f89fe46d945" id="r_ae36eb027950112b918337f89fe46d945"><td class="memItemLeft" align="right" valign="top">Enum&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36eb027950112b918337f89fe46d945">ItemFilter</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae36eb027950112b918337f89fe46d945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current filter for the items.  <br /></td></tr>
+<tr class="separator:ae36eb027950112b918337f89fe46d945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a021486843959379a06616d7efaf90a2a" id="r_a021486843959379a06616d7efaf90a2a"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a021486843959379a06616d7efaf90a2a">ItemFilterParameter</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a021486843959379a06616d7efaf90a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter parameter that can be used together with ItemFiltering.  <br /></td></tr>
+<tr class="separator:a021486843959379a06616d7efaf90a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for document strategies that define how to create and collect data for different types of documents. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00009">9</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3db0d616407285492a03ef73862e1d72" name="a3db0d616407285492a03ef73862e1d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db0d616407285492a03ef73862e1d72">&#9670;&#160;</a></span>GetItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object[] Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.GetItems </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the items that will be used to create the document. </p>
+<dl class="section return"><dt>Returns</dt><dd>List with items</dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a3613d5ce69d431425cf6bc1a834d83e9">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#a4cd66f0d63af2d130042b19133eda1d7">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#aeae4042f0486ac812ac7498d7288013b">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html#aa4b784a4cfc09571c48f0c6863513cbf">Vereinsmeisterschaften.Core.Documents.DocumentStrategyRaceStartList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html#a51c21adde4643435f60685502874ebb7">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#a46545dd0ed30d45605930bb5a8c89276">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html#a5e6a5ace4a3d025d2724c50f4b6a9705">Vereinsmeisterschaften.Core.Documents.DocumentStrategyTimeForms</a>.</p>
+
+</div>
+</div>
+<a id="a95b76fb6866ec717c5411ef8a778a93e" name="a95b76fb6866ec717c5411ef8a778a93e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b76fb6866ec717c5411ef8a778a93e">&#9670;&#160;</a></span>ResolveTablePlaceholders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html">DocXPlaceholderHelper.TablePlaceholders</a> Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ResolveTablePlaceholders </td>
+          <td>(</td>
+          <td class="paramtype">object[]</td>          <td class="paramname"><span class="paramname"><em>items</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolve table placeholders for the given items. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">items</td><td>List of items to generate <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html" title="Class to hold table placeholders and their list of values.">DocXPlaceholderHelper.TablePlaceholders</a> from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html" title="Class to hold table placeholders and their list of values.">DocXPlaceholderHelper.TablePlaceholders</a></dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#adb81672a162f9b2f906b66a49d90eea3">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a8f0fafd9aa6d86ee68e307db4f5e835f" name="a8f0fafd9aa6d86ee68e307db4f5e835f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f0fafd9aa6d86ee68e307db4f5e835f">&#9670;&#160;</a></span>ResolveTextPlaceholders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html">DocXPlaceholderHelper.TextPlaceholders</a> Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ResolveTextPlaceholders </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>item</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolve text placeholders for the given item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>Item to generate <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a> from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a></dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#aba4447fe21a010835fb6a7e22be94c47">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a769cf49d4a9fc465c4c6bdb20c3e224e" name="a769cf49d4a9fc465c4c6bdb20c3e224e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769cf49d4a9fc465c4c6bdb20c3e224e">&#9670;&#160;</a></span>AvailableItemFilters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;Enum&gt; Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.AvailableItemFilters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Array with all available filters for the items. </p>
+<p>If no filtering is supported, this will be <code>null</code>. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a4cbf3b15ff14df477ef0f4eb47132148">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#ac78b6c228a59595ce618ddf535cb62d2">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00098">98</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a40fb68d7e12dc7adc94e89af88fd2bcc" name="a40fb68d7e12dc7adc94e89af88fd2bcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40fb68d7e12dc7adc94e89af88fd2bcc">&#9670;&#160;</a></span>AvailableItemOrderings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;Enum&gt; Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.AvailableItemOrderings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Array with all available orderings for the items. </p>
+<p>If no ordering is supported, this will be <code>null</code>. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a976d159aa63b4783fd9ab5f8150caa24">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#a13caa1f14438ffbfefd1e715202d488a">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#a000fd01d52820214ada6d182c8d70334">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#af1b5450249aca9cf4935d804c09b44ef">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00093">93</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad422ea96c4cc00099cc5846bc1d2088c" name="ad422ea96c4cc00099cc5846bc1d2088c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad422ea96c4cc00099cc5846bc1d2088c">&#9670;&#160;</a></span>CreateMultiplePages</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.CreateMultiplePages</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this strategy supports creating multiple pages in the document. </p>
+<p>Each element returned by <a class="el" href="#a3db0d616407285492a03ef73862e1d72" title="Retrieves the items that will be used to create the document.">GetItems</a> will be used for a separate page if this is true. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a4b349034aaa545dbcf0722b214c62cb8">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#ac5423329b0e5389815a07443e752c2ab">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#a09fce29a035e079a08765672d5b2bb46">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html#a2f0ef9ec67babf72ee2ba04adf3eb55f">Vereinsmeisterschaften.Core.Documents.DocumentStrategyRaceStartList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html#a35b104682747339338d728b2987eb330">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#a15625c451be89cc0eefe4c45dfcdfed2">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html#ae508e86faaeb50377f7627d315ed59a7">Vereinsmeisterschaften.Core.Documents.DocumentStrategyTimeForms</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00034">34</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="aad4dcdad50e2670cae8a473b5b57172e" name="aad4dcdad50e2670cae8a473b5b57172e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4dcdad50e2670cae8a473b5b57172e">&#9670;&#160;</a></span>DocumentType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6b47c461f6af89e3ba40e8c49fbba9a6">DocumentCreationTypes</a> Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.DocumentType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the type of document this strategy creates. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#ae6b22b708dc1b6de0fce830e1c2c8c39">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#a51c5a2c9cc54130091e96d1088b399f3">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#a64e20ffababb11ab63b42c37ec62e9f1">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html#a667e9c18328355577e5148e2de82861f">Vereinsmeisterschaften.Core.Documents.DocumentStrategyRaceStartList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html#ae5d4b1d6f37a3426656aef73d4715bbd">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#a2bae5c31775c03c8b1be27b272f98e46">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html#afe3be7cd7d408a97c41e9e0b7c89715c">Vereinsmeisterschaften.Core.Documents.DocumentStrategyTimeForms</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00014">14</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae36eb027950112b918337f89fe46d945" name="ae36eb027950112b918337f89fe46d945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae36eb027950112b918337f89fe46d945">&#9670;&#160;</a></span>ItemFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Enum Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ItemFilter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current filter for the items. </p>
+<p>If no filtering is supported, this will be <code>null</code>. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a107f1edc37a0d7c31d6f2d0527e005f4">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#a71d5221a1b4e4a2ef79180e3095b549d">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00103">103</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a021486843959379a06616d7efaf90a2a" name="a021486843959379a06616d7efaf90a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021486843959379a06616d7efaf90a2a">&#9670;&#160;</a></span>ItemFilterParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ItemFilterParameter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filter parameter that can be used together with ItemFiltering. </p>
+<p>The type and usage of this parameter depends on the selected <a class="el" href="#ae36eb027950112b918337f89fe46d945" title="Current filter for the items.">ItemFilter</a>. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#af27257292c7ad76b08d51aea3b1922cb">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#aa8138f4a8c159716a4c9c090753c6938">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00108">108</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab37ba1905d2aa8ad8086b9700676de80" name="ab37ba1905d2aa8ad8086b9700676de80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab37ba1905d2aa8ad8086b9700676de80">&#9670;&#160;</a></span>ItemOrdering</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Enum Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ItemOrdering</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current ordering for the items. </p>
+<p>If no ordering is supported, this will be <code>null</code>. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#ac5bcdf58b42e9a9bb3fe5103df92d6ca">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#ab38b12010970432fba1a3f60d4c673ef">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#a405e6678e92491da0acd2ea26e7b0908">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#a0128abc85e6023d1bc7d3a2930715350">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00088">88</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9ca6dae96a6313652e0a078e12411ed2" name="a9ca6dae96a6313652e0a078e12411ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ca6dae96a6313652e0a078e12411ed2">&#9670;&#160;</a></span>ItemType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.ItemType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the type of items that this strategy will handle. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a34c765c42f65ec99ab21508678c3ae30">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00039">39</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8af8393af10a899e3378da570602313e" name="a8af8393af10a899e3378da570602313e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8af8393af10a899e3378da570602313e">&#9670;&#160;</a></span>PostfixNumbersSupported</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;int&gt; Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.PostfixNumbersSupported</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of postfix numbers that are supported for the placeholders. </p>
+<p>If this is e.g. 2, the placeholders Name%, Name1% and Name2% will be allowed If 0, only the placeholder without postfix will be allowed, e.g. Name% only. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#ab06dea7af6e745b5e4082d625034bb71">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00069">69</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae4fd560228536144b1ebeb12d5185182" name="ae4fd560228536144b1ebeb12d5185182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fd560228536144b1ebeb12d5185182">&#9670;&#160;</a></span>SupportedPlaceholderKeys</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;string&gt; Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.SupportedPlaceholderKeys</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of placeholder keys that are supported by this strategy. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a100d7a1d93edbd0dcd504cce631904c5">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00062">62</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad2ac0a7446a68bba198cdbe854e6fb6c" name="ad2ac0a7446a68bba198cdbe854e6fb6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2ac0a7446a68bba198cdbe854e6fb6c">&#9670;&#160;</a></span>SupportTablePlaceholders</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.SupportTablePlaceholders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicating if <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_table_placeholders.html" title="Class to hold table placeholders and their list of values.">DocXPlaceholderHelper.TablePlaceholders</a> are supported. </p>
+<p>If <a class="el" href="#ad422ea96c4cc00099cc5846bc1d2088c" title="Gets a value indicating whether this strategy supports creating multiple pages in the document.">CreateMultiplePages</a> is false, this will return true, because all element of the <a class="el" href="#a3db0d616407285492a03ef73862e1d72" title="Retrieves the items that will be used to create the document.">GetItems</a> are used for one page. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a14f0afce6f12117ec68e3d5725d42a57">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00057">57</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a31288699d69fa46e8a7be7804ce24ec8" name="a31288699d69fa46e8a7be7804ce24ec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31288699d69fa46e8a7be7804ce24ec8">&#9670;&#160;</a></span>SupportTextPlaceholders</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.SupportTextPlaceholders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicating if <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a> are supported. </p>
+<p>If <a class="el" href="#ad422ea96c4cc00099cc5846bc1d2088c" title="Gets a value indicating whether this strategy supports creating multiple pages in the document.">CreateMultiplePages</a> is true, this will also return true, because each element of the <a class="el" href="#a3db0d616407285492a03ef73862e1d72" title="Retrieves the items that will be used to create the document.">GetItems</a> is used for one page. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#ae0c2377594bd63a401f734e2713980f2">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00051">51</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1d9a55ba05b8eb490c1bd9e3b77ed973" name="a1d9a55ba05b8eb490c1bd9e3b77ed973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d9a55ba05b8eb490c1bd9e3b77ed973">&#9670;&#160;</a></span>TemplateFileNamePostfixReplaceStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.TemplateFileNamePostfixReplaceStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Use this string instead of the template file name postfix during document creation. </p>
+<p>e.g. Template = "Certificate_Template.docx" and TemplateFileNamePostfix = "_Template"</p><ul>
+<li>with this Property = "" the output file becomes "Certificate.docx"</li>
+<li>with this Property = "_WK1" the output file becomes "Certificate_WK1.docx"</li>
+<li>with this Property = "_Name" the output file becomes "Certificate_Name.docx" </li>
+</ul>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a6b06d87e2a4a1fef2b45bbe4d3c28c47">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#a10ab9d328909a4f97ba28d2d2f26a0b5">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00028">28</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2903114b63845445b2372b5279b2150e" name="a2903114b63845445b2372b5279b2150e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2903114b63845445b2372b5279b2150e">&#9670;&#160;</a></span>TemplatePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Core.Documents.IDocumentStrategy.TemplatePath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the path to the template used for creating the document. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_base-1-g.html#a9f36770074e9127553efed6646a70945">Vereinsmeisterschaften.Core.Documents.DocumentStrategyBase&lt; TData &gt;</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_certificates.html#af920fee9be7791c7270fc35744c4ff46">Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_overview_list.html#a5688d2ac94c2fb8ead7407256c3268d2">Vereinsmeisterschaften.Core.Documents.DocumentStrategyOverviewList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_race_start_list.html#a04ec602b4cfb97390d0204e543444c42">Vereinsmeisterschaften.Core.Documents.DocumentStrategyRaceStartList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list.html#a91841b3fc49dcd082ab1b048de3e1584">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultList</a>, <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_result_list_detail.html#ac0ba692629e8f91d8c3b2df29e526ef6">Vereinsmeisterschaften.Core.Documents.DocumentStrategyResultListDetail</a>, and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategy_time_forms.html#aa072c86b9c980ea75b54ebf32a1a6f05">Vereinsmeisterschaften.Core.Documents.DocumentStrategyTimeForms</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_document_strategy_8cs_source.html#l00019">19</a> of file <a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Documents/<a class="el" href="_i_document_strategy_8cs_source.html">IDocumentStrategy.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_documents.html">Documents</a></li><li class="navelem"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy.html">IDocumentStrategy</a></li>
+    <li class="footer">Generated on Fri Oct 10 2025 19:33:43 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

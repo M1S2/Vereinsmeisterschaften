@@ -260,7 +260,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     {
                         int maxNumberStarts = PersistedRacesVariant.Races.Count == 0 ? 0 : PersistedRacesVariant.Races.Select(r => r.Starts.Count).Max();
                         _fileService.SaveToCsv(path, PersistedRacesVariant.Races.ToList(), cancellationToken, OnFileProgress,
-                        (data) =>
+                        (data, parentObject, currentProperty) =>
                         {
                             if (data is IList<PersonStart> dataList)
                             {

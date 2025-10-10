@@ -151,11 +151,22 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _personList.ToList(), cancellationToken, OnFileProgress, (data) =>
+                    _fileService.SaveToCsv(path, _personList.ToList(), cancellationToken, OnFileProgress, (data, parentObject, currentProperty) =>
                     {
                         if (data is bool dataBool)
                         {
-                            return dataBool ? "X" : "";
+                            // Get the corresponding IsActive flag for the swimming style and set the file content accordingly
+                            bool isActive = true;
+                            switch(currentProperty.Name)
+                            {
+                                case nameof(Person.Breaststroke): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Breaststroke]?.IsActive ?? true; break;
+                                case nameof(Person.Freestyle): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Freestyle]?.IsActive ?? true; break;
+                                case nameof(Person.Backstroke): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Backstroke]?.IsActive ?? true; break;
+                                case nameof(Person.Butterfly): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Butterfly]?.IsActive ?? true; break;
+                                case nameof(Person.Medley): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Medley]?.IsActive ?? true; break;
+                                case nameof(Person.WaterFlea): isActive = (parentObject as Person)?.Starts[SwimmingStyles.WaterFlea]?.IsActive ?? true; break;
+                            }
+                            return dataBool ? (isActive ? "X" : Person.START_INACTIVE_MARKER_STRING) : "";
                         }
                         else if (data is Enum dataEnum)
                         {

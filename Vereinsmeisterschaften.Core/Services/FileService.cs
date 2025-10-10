@@ -98,10 +98,11 @@ public class FileService : IFileService
             string line = string.Empty;
             foreach (string header in originalHeaders)
             {
-                object dataObj = typeof(T).GetProperty(header)?.GetValue(data, null);
+                PropertyInfo propInfo = typeof(T).GetProperty(header);
+                object dataObj = propInfo?.GetValue(data, null);
                 if(formatData != null)
                 {
-                    line += formatData(dataObj);
+                    line += formatData(dataObj, data, propInfo);
                 }
                 else
                 {

@@ -202,6 +202,22 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         /// <summary>
+        /// Check if at least one of the starts in the <see cref="Starts"/> dictionary is active.
+        /// Or set all starts to active/inactive.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsActive
+        {
+            get => Starts?.Values?.Where(s => s != null)?.Any(s => s.IsActive) ?? false;
+            set
+            {
+                if (Starts == null) { return; }
+                Starts?.Values?.Where(s => s != null)?.ToList()?.ForEach(s => s.IsActive = value);
+                OnPropertyChanged(nameof(IsActive));
+            }
+        }
+
+        /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
         /// </summary>
         /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
@@ -239,6 +255,13 @@ namespace Vereinsmeisterschaften.Core.Models
             OnPropertyChanged(nameof(HighestScore));
             OnPropertyChanged(nameof(HighestScoreStyle));
             OnPropertyChanged(nameof(HighestScoreCompetition));
+            switch(e.PropertyName)
+            {
+                case nameof(PersonStart.IsActive):
+                    OnPropertyChanged(nameof(IsActive));
+                    break;
+                default: break;
+            }
         }
 
         /// <summary>
@@ -381,6 +404,11 @@ namespace Vereinsmeisterschaften.Core.Models
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
+        /// String used to mark a start as inactive in the file (case-insensitive)
+        /// </summary>
+        public const string START_INACTIVE_MARKER_STRING = "i";
+
+        /// <summary>
         /// Set the requested property in the <see cref="Person"/> object by parsing the given string value
         /// </summary>
         /// <param name="dataObj"><see cref="Person"/> in which to set the property</param>
@@ -396,12 +424,30 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(Name): dataObj.Name = value; break;
                 case nameof(Gender): if (EnumCoreLocalizedStringHelper.TryParse(value, out Genders parsedGender)) { dataObj.Gender = parsedGender; } break;
                 case nameof(BirthYear): dataObj.BirthYear = UInt16.Parse(value); break;
-                case nameof(Breaststroke): dataObj.Breaststroke = !string.IsNullOrEmpty(value); break;
-                case nameof(Freestyle): dataObj.Freestyle = !string.IsNullOrEmpty(value); break;
-                case nameof(Backstroke): dataObj.Backstroke = !string.IsNullOrEmpty(value); break;
-                case nameof(Butterfly): dataObj.Butterfly = !string.IsNullOrEmpty(value); break;
-                case nameof(Medley): dataObj.Medley = !string.IsNullOrEmpty(value); break;
-                case nameof(WaterFlea): dataObj.WaterFlea = !string.IsNullOrEmpty(value); break;
+                case nameof(Breaststroke):
+                    dataObj.Breaststroke = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.Breaststroke] != null) { dataObj.Starts[SwimmingStyles.Breaststroke].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
+                case nameof(Freestyle): 
+                    dataObj.Freestyle = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.Freestyle] != null) { dataObj.Starts[SwimmingStyles.Freestyle].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
+                case nameof(Backstroke): 
+                    dataObj.Backstroke = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.Backstroke] != null) { dataObj.Starts[SwimmingStyles.Backstroke].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
+                case nameof(Butterfly): 
+                    dataObj.Butterfly = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.Butterfly] != null) { dataObj.Starts[SwimmingStyles.Butterfly].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
+                case nameof(Medley):
+                    dataObj.Medley = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.Medley] != null) { dataObj.Starts[SwimmingStyles.Medley].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
+                case nameof(WaterFlea): 
+                    dataObj.WaterFlea = !string.IsNullOrEmpty(value);
+                    if (dataObj.Starts[SwimmingStyles.WaterFlea] != null) { dataObj.Starts[SwimmingStyles.WaterFlea].IsActive = !value.Equals(START_INACTIVE_MARKER_STRING, StringComparison.OrdinalIgnoreCase); }
+                    break;
                 case nameof(BreaststrokeTime): dataObj.BreaststrokeTime = TimeSpan.Parse(value); break;
                 case nameof(FreestyleTime): dataObj.FreestyleTime = TimeSpan.Parse(value); break;
                 case nameof(BackstrokeTime): dataObj.BackstrokeTime = TimeSpan.Parse(value); break;

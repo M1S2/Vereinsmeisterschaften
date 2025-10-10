@@ -155,7 +155,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress, (data) =>
+                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress, (data, parentObject, currentProperty) =>
                     {
                         if (data is Enum dataEnum)
                         {

@@ -1,4 +1,6 @@
 ﻿
+using System.Reflection;
+
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
     /// <summary>
@@ -13,8 +15,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// Delegate to format data
     /// </summary>
     /// <param name="data">Input object to format</param>
+    /// <param name="parentObject">Parent object containing the data to format</param>
+    /// <param name="currentProperty"><see cref="PropertyInfo"/> for the data to format</param>
     /// <returns>Return the formated object as string</returns>
-    public delegate string FormatDataDelegate(object data);
+    public delegate string FormatDataDelegate(object data, object parentObject, PropertyInfo currentProperty);
 
     /// <summary>
     /// Delegate to format data headers

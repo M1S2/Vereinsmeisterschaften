@@ -123,4 +123,13 @@
   <data name="Error_LibreOffice_ConversionFailed" xml:space="preserve">
     <value>LibreOffice failed to convert the .docx file to a .pdf file. Error code was {0}.</value>
   </data>
+  <data name="FileName_BestRace" xml:space="preserve">
+    <value>BestRace.csv</value>
+  </data>
+  <data name="FileName_Competitions" xml:space="preserve">
+    <value>Competitions.csv</value>
+  </data>
+  <data name="FileName_Person" xml:space="preserve">
+    <value>Person.csv</value>
+  </data>
 </root>

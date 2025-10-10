@@ -6,17 +6,6 @@
 
 Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertissen.
 
-## Arbeitsbereich
-Der Arbeitsbereich ist ein Ordner, in dem alle Einstellungen, Wettkämpfe und Meldungen gespeichert werden. Hier bietet es sich an, für jeden Wettkampf (z.B. jedes Jahr) einen neuen Ordner anzulegen. Es ist egal, wo sich der Ordner auf der Festplatte befindet.
-
-Folgende Dateien werden erzeugt:
-- WorkspaceSettings.json: JSON Datei mit allen Einstellungen für den Arbeitsbereich.
-- Person.csv: Liste mit allen Meldungen und den erschwommenen Zeiten.
-- Competitions.csv: Liste mit allen verfügbaren Wettkämpfen.
-- BestRace.csv: Das Rennen, das als gute Variante markiert wurde, wird hier gespeichert. Wenn kein Rennen markiert wurde, existiert diese Datei nicht.
-
-Es können hier natürlich weitere Dateien abgelegt werden (z.B. Templates).
-
 ## Seiten Beschreibung
 Nachfolgend werden kurz die Funktionen der jeweiligen Seite der Anwendung beschrieben. Die Reihenfolge der Seiten spiegelt ungefähr den gesamten Workflow wieder (von der Eingabe der Meldungen, über die Eingabe der Zeiten während des Wettkampfs bis zur Auswertung).
 
@@ -26,7 +15,7 @@ Startseite, von der auf alle anderen Bereiche zugegriffen werden kann. Gleichwer
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Main.png" width="100%"></img>
 
 ### Arbeitsbereich
-Hier kann der aktuelle Ordner des Arbeitsbereichs ausgewählt und alle Änderungen gespeichert werden.
+Hier kann der aktuelle Ordner des Arbeitsbereichs (mehr Details siehe unten) ausgewählt und alle Änderungen gespeichert werden.
 Außerdem können alle Einstellungen für verschiedene Aspekte der Software hier getroffen und auch wieder zurückgesetzt werden.
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Workspace.png" width="100%"></img>
@@ -73,6 +62,23 @@ Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die
 Hier kann das Software Design verändert werden. Hell, Dunkel oder Systemeinstellung stehen zur Verfügung.
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Settings.png" width="100%"></img>
+
+## Arbeitsbereich
+Der Arbeitsbereich ist ein Ordner, in dem alle Einstellungen, Wettkämpfe und Meldungen gespeichert werden. Hier bietet es sich an, für jeden Wettkampf (z.B. jedes Jahr) einen neuen Ordner anzulegen. Es ist egal, wo sich der Ordner auf der Festplatte befindet.
+
+Folgende Dateien werden erzeugt:
+- WorkspaceSettings.json: JSON Datei mit allen Einstellungen für den Arbeitsbereich. Dieser Dateiname ist fix.
+- Personen.csv / Person.csv: Liste mit allen Meldungen und den erschwommenen Zeiten.
+- Wettkaempfe.csv / Competitions.csv: Liste mit allen verfügbaren Wettkämpfen.
+- BestesRennen.csv / BestRace.csv: Das Rennen, das als gute Variante markiert wurde, wird hier gespeichert. Wenn kein Rennen markiert wurde, existiert diese Datei nicht.
+
+Die Dateinamen werden folgendermaßen ermittelt:
+- Beim Laden des Arbeitsbereichs wird die Datei der aktuellen Systemsprache verwendet (wenn verfügbar). Wenn nicht verfügbar, wird die neueste Datei aus allen verfügbaren Sprachen (momentan Deutsch und Englisch) verwendet.
+- Beim Speichern des Arbeitsbereichs wird immer die aktuelle Systemsprache verwendet. Sollte der Arbeitsbereich mit einer Datei einer anderen Sprache geladen worden sein, wird die alte Datei gelöscht und die neue Datei in Systemsprache abgespeichert.
+
+Bei den Datei-Inhalten gilt die gleiche Logik wie beim Dateinamen. Beim Laden wird z.B. "Brust" und "Breaststroke" beim Stil unterstützt. Beim Abspeichern wird z.B. immer "Brust" geschrieben, wenn die Systemsprache Deutsch ist.
+
+Es können hier natürlich weitere Dateien abgelegt werden (z.B. Templates).
 
 ## Punktewertung
 Die Punkte eines Starts werden folgendermaßen berechnet:

@@ -77,5 +77,32 @@ namespace Vereinsmeisterschaften.Core.Properties {
                 return ResourceManager.GetString("Error_LibreOffice_ConversionFailed", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die BestRace.csv ähnelt.
+        /// </summary>
+        public static string FileName_BestRace {
+            get {
+                return ResourceManager.GetString("FileName_BestRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competitions.csv ähnelt.
+        /// </summary>
+        public static string FileName_Competitions {
+            get {
+                return ResourceManager.GetString("FileName_Competitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Person.csv ähnelt.
+        /// </summary>
+        public static string FileName_Person {
+            get {
+                return ResourceManager.GetString("FileName_Person", resourceCulture);
+            }
+        }
     }
 }

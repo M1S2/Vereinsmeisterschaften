@@ -1,6 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Globalization;
+using System.Resources;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Settings;
+using Windows.ApplicationModel.VoiceCommands;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -9,48 +13,6 @@ namespace Vereinsmeisterschaften.Core.Services
     /// </summary>
     public partial class WorkspaceService : ObservableObject, IWorkspaceService
     {
-        /// <summary>
-        /// Name of the workspace settings file
-        /// </summary>
-        public const string WorkspaceSettingsFileName = "WorkspaceSettings.json";
-
-        /// <summary>
-        /// Name of the person file
-        /// </summary>
-        public const string PersonFileName = "Person.csv";
-
-        /// <summary>
-        /// Name of the competitions file
-        /// </summary>
-        public const string CompetitionsFileName = "Competitions.csv";
-
-        /// <summary>
-        /// Name of the best race file
-        /// </summary>
-        public const string BestRaceFileName = "BestRace.csv";
-
-        /// <summary>
-        /// Combined path to the workspace settings file
-        /// </summary>
-        public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
-
-        /// <summary>
-        /// Combined path to the person file
-        /// </summary>
-        public string PersonFilePath => Path.Combine(PersistentPath, PersonFileName);
-
-        /// <summary>
-        /// Combined path to the competitions file
-        /// </summary>
-        public string CompetitionsFilePath => Path.Combine(PersistentPath, CompetitionsFileName);
-
-        /// <summary>
-        /// Combined path to the best race file
-        /// </summary>
-        public string BestRaceFilePath => Path.Combine(PersistentPath, BestRaceFileName);
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         /// <summary>
         /// Event that is raised when the file operation progress changes
         /// </summary>
@@ -275,17 +237,17 @@ namespace Vereinsmeisterschaften.Core.Services
                 Settings.PropertyChanged += Settings_PropertyChanged;
                 
                 // Competitions
-                openResult = await _competitionService.Load(CompetitionsFilePath, cancellationToken);
+                openResult = await _competitionService.Load(getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONS), cancellationToken);
                 if (!openResult) { return openResult; }
 
                 // Persons
-                openResult = await _personService.Load(PersonFilePath, cancellationToken);
+                openResult = await _personService.Load(getFilePathToLoadFrom(KEY_FILENAME_PERSON), cancellationToken);
                 if(!openResult) { return openResult; }
                 
                 _competitionService.UpdateAllCompetitionsForPerson();
 
                 // Best Race
-                openResult = await _raceService.Load(BestRaceFilePath, cancellationToken);
+                openResult = await _raceService.Load(getFilePathToLoadFrom(KEY_FILENAME_BESTRACE), cancellationToken);
 
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
@@ -321,16 +283,18 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 // Workspace settings
                 Settings?.Save(_fileService, WorkspaceSettingsFilePath);
-                
-                // Competitions
-                saveResult = await _competitionService.Save(cancellationToken, CompetitionsFilePath);
-                
+
+                // Competitions (delete old file if the file name changed)
+                if (!await saveServiceAsync(KEY_FILENAME_COMPETITIONS, _competitionService, cancellationToken))
+                    return false;
+
                 // Persons
-                saveResult = await _personService.Save(cancellationToken, PersonFilePath);
-                if (!saveResult) { return saveResult; }
-                
+                if (!await saveServiceAsync(KEY_FILENAME_PERSON, _personService, cancellationToken))
+                    return false;
+
                 // Best Race
-                saveResult = await _raceService.Save(cancellationToken, BestRaceFilePath);
+                if (!await saveServiceAsync(KEY_FILENAME_BESTRACE, _raceService, cancellationToken))
+                    return false;
 
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
@@ -343,6 +307,27 @@ namespace Vereinsmeisterschaften.Core.Services
             OnFileFinished?.Invoke(this, null);
             if (exception != null) { throw exception; }
             return saveResult;
+        }
+
+        /// <summary>
+        /// Helper method to save a service and delete the old file if the file name changed.
+        /// </summary>
+        /// <param name="fileNameResourceKey">Resource key used to find the file name resource</param>
+        /// <param name="saveableService">Service with <see cref="ISaveable"/> implementation</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> for the save operation</param>
+        /// <returns>Result of <see cref="ISaveable.Save(CancellationToken, string)"/></returns>
+        private async Task<bool> saveServiceAsync(string fileNameResourceKey, ISaveable saveableService, CancellationToken cancellationToken)
+        {
+            string newPath = getFilePathToSaveTo(fileNameResourceKey);
+
+            if (!string.IsNullOrEmpty(saveableService.PersistentPath) &&
+                File.Exists(saveableService.PersistentPath) &&
+                !string.Equals(saveableService.PersistentPath, newPath, StringComparison.OrdinalIgnoreCase))
+            {
+                File.Delete(saveableService.PersistentPath);
+            }
+
+            return await saveableService.Save(cancellationToken, newPath);
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -372,5 +357,76 @@ namespace Vereinsmeisterschaften.Core.Services
             OnFileFinished?.Invoke(this, null);
             return saveResult;
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region File name handling
+
+        /// <summary>
+        /// Name of the workspace settings file
+        /// </summary>
+        public const string WorkspaceSettingsFileName = "WorkspaceSettings.json";
+
+        /// <summary>
+        /// Combined path to the workspace settings file
+        /// </summary>
+        public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
+
+        private readonly ResourceManager _fileNameResources = new ResourceManager(typeof(Properties.Resources));
+        private const string KEY_FILENAME_PERSON = "FileName_Person";
+        private const string KEY_FILENAME_COMPETITIONS = "FileName_Competitions";
+        private const string KEY_FILENAME_BESTRACE = "FileName_BestRace";
+
+        private string getLocalizedFilePath(string resourceKey, CultureInfo culture = null)
+        {
+            string localizedFileName = _fileNameResources.GetString(resourceKey, culture == null ? CultureInfo.CurrentUICulture : culture)
+                                   ?? _fileNameResources.GetString(resourceKey, CultureInfo.InvariantCulture);
+            return Path.Combine(PersistentPath, localizedFileName);
+        }
+
+        /// <summary>
+        /// This method returns the file path to save to. This is always the file for the current culture.
+        /// </summary>
+        /// <param name="resourceKey">The resource key decides, which Resource is used to find the file name.</param>
+        /// <returns>File path to save to</returns>
+        private string getFilePathToSaveTo(string resourceKey)
+            => getLocalizedFilePath(resourceKey);
+
+        /// <summary>
+        /// This method returns the file path to load from. If the file for the current culture doesn't exist, all other cultures are checked and the newest file is returned.
+        /// </summary>
+        /// <param name="resourceKey">The resource key decides, which Resource is used to find the file name.</param>
+        /// <returns>File path to load from</returns>
+        private string getFilePathToLoadFrom(string resourceKey)
+        {
+            if (string.IsNullOrEmpty(resourceKey)) { return string.Empty; }
+            List<string> candidates = new List<string>();
+
+            // Test if the file for the current culture exists
+            string current = getLocalizedFilePath(resourceKey);
+            if (File.Exists(current))
+            {
+                return current;
+            }
+
+            // Check all known cultures
+            List<string> localizedFileNames = GeneralLocalizationHelper.GetAllTranslationsForKey(_fileNameResources, resourceKey).Values.ToList();
+            List<string> localizedFilePaths = localizedFileNames.Select(f => Path.Combine(PersistentPath, f)).ToList();
+            foreach (string localizedFilePath in localizedFilePaths)
+            {
+                if (File.Exists(localizedFilePath) && !candidates.Contains(localizedFilePath, StringComparer.OrdinalIgnoreCase))
+                {
+                    candidates.Add(localizedFilePath);
+                }
+            }
+
+            // Use newest file depending on last write time
+            return candidates.Select(f => new FileInfo(f))
+                             .OrderByDescending(f => f.LastWriteTimeUtc)
+                             .FirstOrDefault()?.FullName;
+        }
+
+        #endregion
+
     }
 }

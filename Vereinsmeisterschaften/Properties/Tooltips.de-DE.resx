@@ -315,4 +315,10 @@ Dieses Datum wird nur für die Erstellung von Dokumenten verwendet (nur als Info
   <data name="TooltipCompetitionSearchMode" xml:space="preserve">
     <value>Suchmodus, der festlegt, wie der richtige Wettkampf für einen Start gesucht wird.</value>
   </data>
+  <data name="TooltipPersonActiveInactiveButton" xml:space="preserve">
+    <value>Alle Starts einer Person auf aktiv oder inaktiv setzen.</value>
+  </data>
+  <data name="TooltipPersonInactiveStart" xml:space="preserve">
+    <value>Dieser Start der Person ist inaktiv.</value>
+  </data>
 </root>

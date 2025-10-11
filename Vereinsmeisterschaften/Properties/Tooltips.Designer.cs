@@ -282,6 +282,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set all starts of the person to active or inactive. ähnelt.
+        /// </summary>
+        public static string TooltipPersonActiveInactiveButton {
+            get {
+                return ResourceManager.GetString("TooltipPersonActiveInactiveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This start of the person is inactive. ähnelt.
+        /// </summary>
+        public static string TooltipPersonInactiveStart {
+            get {
+                return ResourceManager.GetString("TooltipPersonInactiveStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die String marker for placeholders in the template files. The placeholder must be enclosed by this marker.
         ///e.g. PlaceholderMarker = &quot;%&quot; --&gt; %PLACEHOLDER% ähnelt.
         /// </summary>

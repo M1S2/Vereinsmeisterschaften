@@ -57,11 +57,11 @@ namespace Vereinsmeisterschaften.Core.Models
             }
             else if (raceStarts == null)
             {
-                NotAssignedStarts = allStarts;
+                NotAssignedStarts = allStarts.Where(s => s.IsActive).ToList();
             }
             else
             {
-                NotAssignedStarts = allStarts?.Except(raceStarts)?.ToList();
+                NotAssignedStarts = allStarts?.Except(raceStarts)?.Where(s => s.IsActive)?.ToList();
             }
             OnPropertyChanged(nameof(IsValid_AllRacesValid));
             OnPropertyChanged(nameof(IsValid_AllStartsAssigned));

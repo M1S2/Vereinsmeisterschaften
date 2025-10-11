@@ -285,12 +285,16 @@ namespace Vereinsmeisterschaften.Core.Services
                 _scoreService.UpdateScoresForPerson(senderPerson);
                 _isupdatingScores = false;
             }
-            // Update the competitions for the person. They depend on the gender and birth year.
+
             switch(e.PropertyName)
             {
                 case nameof(Person.Gender):
                 case nameof(Person.BirthYear):
+                    // Update the competitions for the person. They depend on the gender and birth year.
                     _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
+                    break;
+                case nameof(Person.Starts):
+                    OnPropertyChanged(nameof(PersonStarts));
                     break;
                 default: break;
             }
@@ -356,10 +360,15 @@ namespace Vereinsmeisterschaften.Core.Services
 
             switch (filter)
             {
-                case PersonStartFilters.None: return allPersonStarts;
-                case PersonStartFilters.Person: return allPersonStarts.Where(s => s.PersonObj == (Person)filterParameter).ToList();
-                case PersonStartFilters.SwimmingStyle: return allPersonStarts.Where(s => s.Style == (SwimmingStyles)filterParameter).ToList();
-                case PersonStartFilters.CompetitionID: return allPersonStarts.Where(s => s.CompetitionObj != null && s.CompetitionObj.Id == (int)filterParameter).ToList();
+                case PersonStartFilters.None:
+                    return allPersonStarts;
+                case PersonStartFilters.Person:
+                    PersonBasicEqualityComparer personBasicComparer = new PersonBasicEqualityComparer();
+                    return allPersonStarts.Where(s => personBasicComparer.Equals(s.PersonObj, (Person)filterParameter)).ToList();
+                case PersonStartFilters.SwimmingStyle:
+                    return allPersonStarts.Where(s => s.Style == (SwimmingStyles)filterParameter).ToList();
+                case PersonStartFilters.CompetitionID:
+                    return allPersonStarts.Where(s => s.CompetitionObj != null && s.CompetitionObj.Id == (int)filterParameter).ToList();
                 default: return allPersonStarts;
             }
         }

@@ -50,6 +50,7 @@
         </ObjectDataProvider>
 
         <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
+        <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
     </Page.Resources>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -374,6 +375,9 @@
                                                     <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
                                                         <Setter Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
                                                     </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                                        <Setter Property="Background" Value="{StaticResource BrushStartInactive}"/>
+                                                    </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
                                                         <Setter Property="Background" Value="{StaticResource BrushHighlight}"/>
                                                     </DataTrigger>
@@ -395,11 +399,16 @@
                                             <controls:FontIcon DockPanel.Dock="Right" FontSize="20" Glyph="&#xF140;" Margin="5,0,0,0"
                                                                Visibility="{Binding IsCompetitionObjAssigned, Converter={StaticResource InvertedBoolVisibilityConverter}}"
                                                                ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
-
+                                            
                                             <!-- Icon that is shown for all starts that use the max age competitions -->
                                             <Path DockPanel.Dock="Right" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                                   Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                                  Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                  ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+
+                                            <!-- Icon to indicate if the start is inactive -->
+                                            <controls:FontIcon DockPanel.Dock="Left" Glyph="&#xE7E8;"
+                                                               Visibility="{Binding IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                               ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
 
                                             <!-- Show the name of the person -->
                                             <TextBlock FontSize="{StaticResource MediumFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -11,6 +11,7 @@
     xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
@@ -83,6 +84,17 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
             </DataGrid.RowHeaderStyle>
+            
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive}" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
 
             <DataGrid.Columns>
                 <!-- First Name -->
@@ -144,6 +156,7 @@
                 </DataGridTextColumn>
 
                 <!-- Breaststroke -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -165,18 +178,37 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Breaststroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Breaststroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Breaststroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[Breaststroke].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[Breaststroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[Breaststroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[Breaststroke].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- Freestyle -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -198,18 +230,37 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Freestyle}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Freestyle], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Freestyle], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[Freestyle].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[Freestyle], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[Freestyle], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[Freestyle].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- Backstroke -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -231,18 +282,37 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Backstroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Backstroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Backstroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[Backstroke].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[Backstroke], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[Backstroke], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[Backstroke].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- Butterfly -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -264,18 +334,37 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Butterfly}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Butterfly], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Butterfly], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[Butterfly].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[Butterfly], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[Butterfly], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[Butterfly].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- Medley -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -297,18 +386,37 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding Medley}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[Medley], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[Medley], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[Medley].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[Medley], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[Medley], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[Medley].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- WaterFlea -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -330,25 +438,67 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <CheckBox IsChecked="{Binding WaterFlea}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
-                                <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                      Visibility="{Binding IsUsingMaxAgeCompetitionDict[WaterFlea], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                                      ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
-                                                   Visibility="{Binding IsUsingExactAgeCompetitionDict[WaterFlea], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
-                                                   ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Starts[WaterFlea].IsActive, FallbackValue=True}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <!-- Icon for max. age competition -->
+                                    <Path Margin="2,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                          Visibility="{Binding IsUsingMaxAgeCompetitionDict[WaterFlea], Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                          ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
+                                    <!-- Icon for not exact age competition -->
+                                    <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE816;"
+                                                       Visibility="{Binding IsUsingExactAgeCompetitionDict[WaterFlea], Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                       ToolTip="{x:Static properties:Tooltips.TooltipNotExactAgeCompetition}"/>
+                                </StackPanel>
+                                <!-- Icon to indicate if the start is inactive -->
+                                <controls:FontIcon Margin="2,0,0,0" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding Starts[WaterFlea].IsActive, Converter={StaticResource InvertedBoolVisibilityConverter}, FallbackValue=Collapsed}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactiveStart}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                
+                <!-- Set Person active/inactive Button -->
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="PersonActiveInactiveButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
+                                    Visibility="Hidden" Width="30" Height="30" 
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.PersonActiveInactiveCommand}" CommandParameter="{Binding}"
+                                    ToolTip="{x:Static properties:Tooltips.TooltipPersonActiveInactiveButton}">
+                                <controls:FontIcon FontSize="15" Glyph="&#xE7E8;"/>
+                            </Button>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsMouseOver}" Value="True">
+                                    <Setter TargetName="PersonActiveInactiveButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsSelected}" Value="True">
+                                    <Setter TargetName="PersonActiveInactiveButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <!-- Remove Person Button -->
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="RemovePersonButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
-                                        Visibility="Hidden" Width="30" Height="30" 
-                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemovePersonCommand}" CommandParameter="{Binding}"
-                                        ToolTip="{x:Static properties:Resources.RemovePersonString}">
+                        Visibility="Hidden" Width="30" Height="30" 
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemovePersonCommand}" CommandParameter="{Binding}"
+                        ToolTip="{x:Static properties:Resources.RemovePersonString}">
                                 <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
                             </Button>
                             <DataTemplate.Triggers>
@@ -362,6 +512,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 

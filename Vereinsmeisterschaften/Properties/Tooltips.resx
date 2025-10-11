@@ -316,4 +316,10 @@ This is only used during document creation as info text.</value>
   <data name="TooltipCompetitionSearchMode" xml:space="preserve">
     <value>Search mode that defines how the correct competition for a start is found.</value>
   </data>
+  <data name="TooltipPersonActiveInactiveButton" xml:space="preserve">
+    <value>Set all starts of the person to active or inactive.</value>
+  </data>
+  <data name="TooltipPersonInactiveStart" xml:space="preserve">
+    <value>This start of the person is inactive.</value>
+  </data>
 </root>

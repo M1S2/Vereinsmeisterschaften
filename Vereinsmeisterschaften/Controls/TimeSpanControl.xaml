@@ -15,6 +15,7 @@
         <Style x:Key="TimeSpanControlTextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
         </Style>
 
         <SolidColorBrush x:Key="digitsHighlightBrush" Color="{DynamicResource MahApps.Colors.Accent}"/>
@@ -38,7 +39,7 @@
                 <!-- Hours -->
                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Visibility="{Binding HoursVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock x:Name="txt_hours" PreviewMouseDown="txt_hours_PreviewMouseDown"
-                           Text="{Binding Hours, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                               Text="{Binding Hours, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
                                 <Style.Triggers>
@@ -58,7 +59,7 @@
                 <!-- Minutes -->
                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                     <TextBlock x:Name="txt_minutes" PreviewMouseDown="txt_minutes_PreviewMouseDown"
-                           Text="{Binding Minutes, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                               Text="{Binding Minutes, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
                                 <Style.Triggers>
@@ -77,7 +78,7 @@
                 </StackPanel>
                 <!-- Seconds -->
                 <TextBlock x:Name="txt_seconds" DockPanel.Dock="Left" PreviewMouseDown="txt_seconds_PreviewMouseDown"
-                       Text="{Binding Seconds, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
+                           Text="{Binding Seconds, StringFormat={}{0:00}, UpdateSourceTrigger=PropertyChanged, FallbackValue=00}">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeSpanControlTextBlockStyle}">
                             <Style.Triggers>

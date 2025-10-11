@@ -162,6 +162,15 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         }
     }));
 
+    private ICommand _personActiveInactiveCommand;
+    /// <summary>
+    /// Command to set a person active or inactive
+    /// </summary>
+    public ICommand PersonActiveInactiveCommand => _personActiveInactiveCommand ?? (_personActiveInactiveCommand = new RelayCommand<Person>((person) =>
+    {
+        person.IsActive = !person.IsActive;
+    }));
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     /// <inheritdoc/>

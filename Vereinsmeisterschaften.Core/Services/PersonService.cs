@@ -45,6 +45,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IFileService _fileService;
         private IScoreService _scoreService;
+        private IRaceService _raceService;
         private ICompetitionService _competitionService;
 
         /// <summary>
@@ -75,6 +76,16 @@ namespace Vereinsmeisterschaften.Core.Services
         public void SetCompetitionServiceObj(ICompetitionService competitionService)
         {
             _competitionService = competitionService;
+        }
+
+        /// <summary>
+        /// Save the reference to the <see cref="IRaceService"/> object.
+        /// Dependency Injection in the constructor can't be used here because there would be a circular dependency.
+        /// </summary>
+        /// <param name="raceService">Reference to the <see cref="IRaceService"/> implementation</param>
+        public void SetRaceServiceObj(IRaceService raceService)
+        {
+            _raceService = raceService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -237,6 +248,8 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 AddPerson(new Person(person));
             }
+            _competitionService.UpdateAllCompetitionsForPerson();
+            _raceService.ReassignAllPersonStarts();
         }
 
         /// <summary>
@@ -299,7 +312,6 @@ namespace Vereinsmeisterschaften.Core.Services
                 default: break;
             }
 
-            OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 

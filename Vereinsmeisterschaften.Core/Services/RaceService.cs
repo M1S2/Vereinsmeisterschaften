@@ -41,6 +41,7 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             _fileService = fileService;
             _personService = personService;
+            _personService.SetRaceServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
             _competitionService = competitionService;
 
             _nextVariantID = 1;
@@ -367,6 +368,29 @@ namespace Vereinsmeisterschaften.Core.Services
         }
 
         /// <summary>
+        /// Reassign all <see cref="PersonStart"/> objects in all <see cref="RacesVariant"/> in <see cref="AllRacesVariants"/>.
+        /// This is necessary if the <see cref="PersonStart"/> objects were changed during <see cref="IPersonService.ResetToLoadedState()"/>
+        /// </summary>
+        public void ReassignAllPersonStarts()
+        {
+            List<PersonStart> allStarts = _personService.GetAllPersonStarts();
+            foreach (RacesVariant racesVariant in AllRacesVariants)
+            {
+                foreach (Race race in racesVariant.Races)
+                {
+                    ObservableCollection<PersonStart> newRaceStarts = new ObservableCollection<PersonStart>();
+                    foreach (PersonStart oldStart in race.Starts)
+                    {
+                        PersonStart newStart = allStarts.Where(s => s.PersonObj.Equals(oldStart.PersonObj) && 
+                                                                    s.Style == oldStart.Style).FirstOrDefault();
+                        newRaceStarts.Add(newStart ?? oldStart);
+                    }
+                    race.Starts = newRaceStarts;
+                }
+            }
+        }
+
+        /// <summary>
         /// Sort the complete list <see cref="AllRacesVariants"/> descending by the <see cref="RacesVariant.Score"/>
         /// </summary>
         public void SortVariantsByScore()
@@ -416,13 +440,13 @@ namespace Vereinsmeisterschaften.Core.Services
         public void CleanupRacesVariants()
         {
             List<PersonStart> validPersonStarts = _personService.GetAllPersonStarts();
-
+            
             foreach (RacesVariant racesVariant in AllRacesVariants)
             {
                 foreach(Race race in racesVariant.Races)
                 {
                     // Find all starts in this race that are no longer part of the valid PersonStarts and remove them from the Race
-                    List<PersonStart> startsToDelete = race.Starts.Except(validPersonStarts).ToList();
+                    List<PersonStart> startsToDelete = race.Starts.Except(validPersonStarts, new PersonStartWithoutIsActiveEqualityComparer()).ToList();
                     startsToDelete.ForEach(s => race.Starts.Remove(s));
                 }
 

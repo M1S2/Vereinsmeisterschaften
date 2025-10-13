@@ -34,7 +34,9 @@ namespace Vereinsmeisterschaften.Core.Models
             this.FirstName = other.FirstName;
             this.Gender = other.Gender;
             this.BirthYear = other.BirthYear;
-            this.Starts = new Dictionary<SwimmingStyles, PersonStart>(other.Starts);
+
+            // Deep clone of the Starts dictionary
+            this.Starts = other.Starts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value?.Clone() as PersonStart);
         }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

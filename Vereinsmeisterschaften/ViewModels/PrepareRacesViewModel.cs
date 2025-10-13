@@ -478,6 +478,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));
         OnPropertyChanged(nameof(AvailablePersons));
+        OnPropertyChanged(nameof(CurrentRacesVariant));
         CurrentVariantID = 0;
     }
 

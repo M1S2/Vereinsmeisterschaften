@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Xml.Linq;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
 namespace Vereinsmeisterschaften.Core.Models
@@ -21,11 +22,16 @@ namespace Vereinsmeisterschaften.Core.Models
         [FileServiceOrder]
         public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
 
+        private ObservableCollection<PersonStart> _starts;
         /// <summary>
         /// List with all starts of this <see cref="Race"/>
         /// </summary>
         [FileServiceOrder]
-        public ObservableCollection<PersonStart> Starts { get; set; }
+        public ObservableCollection<PersonStart> Starts
+        {
+            get => _starts;
+            set => SetProperty(ref _starts, value);
+        }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -145,7 +151,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other <see cref="Race"> to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Race"/></returns>
         public override bool Equals(object obj)
-            => obj is Race r && r.Starts.SequenceEqual(Starts);
+            => obj is Race r && r.Starts.SequenceEqual(Starts, new PersonStartWithoutIsActiveEqualityComparer());
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.

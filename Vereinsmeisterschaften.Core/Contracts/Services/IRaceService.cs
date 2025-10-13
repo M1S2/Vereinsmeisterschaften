@@ -57,6 +57,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void ResetToLoadedState();
 
         /// <summary>
+        /// Reassign all <see cref="PersonStart"/> objects in all <see cref="RacesVariant"/> in <see cref="AllRacesVariants"/>.
+        /// This is necessary if the <see cref="PersonStart"/> objects were changed during <see cref="IPersonService.ResetToLoadedState()"/>
+        /// </summary>
+        void ReassignAllPersonStarts();
+
+        /// <summary>
         /// Sort the complete list <see cref="AllRacesVariants"/> descending by the <see cref="RacesVariant.Score"/>
         /// </summary>
         void SortVariantsByScore();

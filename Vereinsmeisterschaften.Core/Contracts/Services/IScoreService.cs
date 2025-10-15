@@ -27,8 +27,9 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Get all persons, sort them depending on the requested <see cref="ResultTypes"/> and return as new list
         /// </summary>
         /// <param name="resultType">The list with all persons is sorted depending on this parameter</param>
+        /// <param name="onlyActivePersons">Only return persons with <see cref="Person.IsActive"/> true</param>
         /// <returns>List with <see cref="Person"/> sorted (descending)</returns>
-        List<Person> GetPersonsSortedByScore(ResultTypes resultType = ResultTypes.Overall);
+        List<Person> GetPersonsSortedByScore(ResultTypes resultType = ResultTypes.Overall, bool onlyActivePersons = true);
 
         /// <summary>
         /// Find the best starts of all persons depending on the <see cref="ResultTypes"/> and requested <see cref="ResultPodiumsPlaces"/>

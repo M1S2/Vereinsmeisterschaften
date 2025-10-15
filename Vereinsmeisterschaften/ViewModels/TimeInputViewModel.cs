@@ -174,7 +174,7 @@ public partial class TimeInputViewModel : ObservableObject, INavigationAware
     /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
-        AvailablePersonStarts = _personService.GetAllPersonStarts();
+        AvailablePersonStarts = _personService.GetAllPersonStarts().Where(s => s.IsActive).ToList();
         AvailablePersonStartsCollectionView = CollectionViewSource.GetDefaultView(AvailablePersonStarts);
         AvailablePersonStartsCollectionView.Filter += AvailablePersonStartsFilterPredicate;
 

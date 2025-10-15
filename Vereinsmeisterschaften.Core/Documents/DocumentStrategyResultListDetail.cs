@@ -57,7 +57,7 @@ namespace Vereinsmeisterschaften.Core.Documents
                 case ItemOrderingsResultListDetail.ByBestPlaceDescending: persons = persons.OrderByDescending(p => p?.ResultListPlace).ToList(); break;
                 default: break;
             }
-            return persons.ToArray();
+            return persons.Where(p => p.IsActive).ToArray();
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

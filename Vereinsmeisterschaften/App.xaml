@@ -51,6 +51,8 @@
             <SolidColorBrush x:Key="BrushOkWithTransparency">#5B008000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushWarning">#FFFF5733</SolidColorBrush>
             <SolidColorBrush x:Key="BrushWarningWithTransparency">#B4FF5733</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
 
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">

@@ -177,19 +177,19 @@ namespace Vereinsmeisterschaften.Core.Models
         /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
         /// </summary>
         [FileServiceIgnore]
-        public double HighestScore => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
+        public double HighestScore => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
 
         /// <summary>
         /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
         /// </summary>
         [FileServiceIgnore]
-        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
 
         /// <summary>
         /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
         /// </summary>
         [FileServiceIgnore]
-        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
+        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
 
         private int _resultListPlace = 0;
         /// <summary>

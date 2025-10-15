@@ -22,6 +22,7 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             if (other == null) { return; }
             this.PersonObj = other.PersonObj;
+            this.CompetitionObj = other.CompetitionObj;
             this.Style = other.Style;
             this.Time = other.Time;
             this.Score = other.Score;

@@ -52,28 +52,36 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 if (start == null) { continue; }
 
-                Competition competition = start.CompetitionObj;
-                if (competition == null) { continue; }
-                // If the start time equals the competition best time the score will be 100
-                // If the person swims faster, the score is higher
-                if (start.Time.TotalMilliseconds == 0)
+                if (!start.IsActive)
                 {
+                    // Inactive starts have no score
                     start.Score = 0;
                 }
                 else
                 {
-                    // Original formula from old Vereinsmeisterschaften tool:
-                    // score = 100 * (1 - ((start_time - competition_best_time) / competition_best_time)) = 100 * (2 - (start_time / competition_best_time))
-                    // if startTime == bestTime  =>  BEST_TIME_SCORE
-                    // linear equation around this point
-                    // zero points if startTime >= 2* bestTime
-                    start.Score = (2 - (start.Time.TotalMilliseconds / competition.BestTime.TotalMilliseconds)) * BEST_TIME_SCORE;
+                    Competition competition = start.CompetitionObj;
+                    if (competition == null) { continue; }
+                    // If the start time equals the competition best time the score will be 100
+                    // If the person swims faster, the score is higher
+                    if (start.Time.TotalMilliseconds == 0)
+                    {
+                        start.Score = 0;
+                    }
+                    else
+                    {
+                        // Original formula from old Vereinsmeisterschaften tool:
+                        // score = 100 * (1 - ((start_time - competition_best_time) / competition_best_time)) = 100 * (2 - (start_time / competition_best_time))
+                        // if startTime == bestTime  =>  BEST_TIME_SCORE
+                        // linear equation around this point
+                        // zero points if startTime >= 2* bestTime
+                        start.Score = (2 - (start.Time.TotalMilliseconds / competition.BestTime.TotalMilliseconds)) * BEST_TIME_SCORE;
 
-                    ushort scoreFractionalDigits = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS) ?? 1;
-                    start.Score = Math.Round(start.Score, scoreFractionalDigits);
+                        ushort scoreFractionalDigits = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS) ?? 1;
+                        start.Score = Math.Round(start.Score, scoreFractionalDigits);
 
-                    // Limit score to 0
-                    if (start.Score < 0) { start.Score = 0; }
+                        // Limit score to 0
+                        if (start.Score < 0) { start.Score = 0; }
+                    }
                 }
             }
         }
@@ -94,7 +102,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public void UpdateResultListPlacesForAllPersons()
         {
-            List<Person> sortedPersons = GetPersonsSortedByScore(ResultTypes.Overall);
+            List<Person> sortedPersons = GetPersonsSortedByScore(ResultTypes.Overall, false);
             List<PersonStart> bestStarts = new List<PersonStart>();
             bestStarts = sortedPersons.Where(p => p.HighestScoreStyle != SwimmingStyles.Unknown && p.Starts[p.HighestScoreStyle] != null)?.Select(p => p.Starts[p.HighestScoreStyle]).ToList();
 
@@ -111,11 +119,13 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Get all persons, sort them depending on the requested <see cref="ResultTypes"/> and return as new list
         /// </summary>
         /// <param name="resultType">The list with all persons is sorted depending on this parameter</param>
+        /// <param name="onlyActivePersons">Only return persons with <see cref="Person.IsActive"/> true</param>
         /// <returns>List with <see cref="Person"/> sorted (descending)</returns>
-        public List<Person> GetPersonsSortedByScore(ResultTypes resultType)
+        public List<Person> GetPersonsSortedByScore(ResultTypes resultType, bool onlyActivePersons)
         {
             UpdateScoresForAllPersons();
             List<Person> persons = new List<Person>(_personService.GetPersons());
+            persons = onlyActivePersons ? persons.Where(p => p.IsActive).ToList() : persons;
 
             if (resultType == ResultTypes.Overall)
             {
@@ -141,7 +151,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>List with best <see cref="PersonStart"/> or null if no elements are found</returns>
         public List<PersonStart> GetWinnersPodiumStarts(ResultTypes resultType, ResultPodiumsPlaces podiumsPlace)
         {
-            List<Person> sortedPersons = GetPersonsSortedByScore(resultType);
+            List<Person> sortedPersons = GetPersonsSortedByScore(resultType, true);
             UpdateResultListPlacesForAllPersons();
             List<PersonStart> bestStarts = new List<PersonStart>();
             if (resultType == ResultTypes.Overall || resultType == ResultTypes.MaxAgeCompetitions)
@@ -153,7 +163,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 SwimmingStyles style = getStyleFromResultType(resultType);
                 bestStarts = sortedPersons.Where(p => p.Starts[style] != null)?.Select(p => p.Starts[style]).ToList();
             }
-            
+            bestStarts = bestStarts.Where(s => s.IsActive).ToList();
+
             // Group all starts by the score. It is possible to have more than one start with the same score leading to the same podium place
             List<IGrouping<double, PersonStart>> groupedStarts = bestStarts.GroupBy(s => s.Score).ToList();
             if(podiumsPlace == ResultPodiumsPlaces.Gold && groupedStarts.Count > 0)

@@ -1,13 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Windows.Data;
+using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Services;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
 /// <summary>
 /// ViewModel for the results page, showing the sorted persons based on their scores.
 /// </summary>
-public partial class ResultsViewModel : ObservableObject
+public partial class ResultsViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
     /// List with all persons sorted by score
@@ -59,9 +63,20 @@ public partial class ResultsViewModel : ObservableObject
         updatePersonsAndPlaces();
     }
 
+    /// <inheritdoc/>
+    public void OnNavigatedTo(object parameter)
+    {
+        updatePersonsAndPlaces();
+    }
+
+    /// <inheritdoc/>
+    public void OnNavigatedFrom()
+    {
+    }
+
     private void updatePersonsAndPlaces()
     {
-        SortedPersons = _scoreService.GetPersonsSortedByScore(ResultType);
+        SortedPersons = _scoreService.GetPersonsSortedByScore(ResultType, true);
         _scoreService.UpdateResultListPlacesForAllPersons();
         OnPropertyChanged(nameof(PodiumGoldStarts));
         OnPropertyChanged(nameof(PodiumSilverStarts));

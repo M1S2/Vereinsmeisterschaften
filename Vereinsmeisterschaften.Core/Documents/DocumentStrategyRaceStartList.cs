@@ -39,6 +39,16 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// </summary>
         /// <returns>List of all <see cref="Race"/> items of the <see cref="RaceService.PersistedRacesVariant"/></returns>
         public override Race[] GetItems()
-            => _raceService.PersistedRacesVariant?.Races?.ToArray();
+        {
+            // Return a list of all races but only with the active starts
+            List<Race> raceClones = new List<Race>();
+            foreach (Race originalRace in _raceService.PersistedRacesVariant?.Races)
+            {
+                Race newRace = new Race(originalRace, true);
+                newRace.Starts = new System.Collections.ObjectModel.ObservableCollection<PersonStart>(newRace.Starts.Where(s => s.IsActive));
+                raceClones.Add(newRace);
+            }
+            return raceClones.ToArray();
+        }
     }
 }

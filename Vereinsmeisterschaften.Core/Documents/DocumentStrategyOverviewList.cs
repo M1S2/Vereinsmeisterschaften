@@ -46,7 +46,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <returns>List of all <see cref="PersonStart"/> items.</returns>
         public override PersonStart[] GetItems()
         {
-            List<PersonStart> starts = _personService.GetAllPersonStarts();
+            List<PersonStart> starts = _personService.GetAllPersonStarts().Where(s => s.IsActive).ToList();
             switch (ItemOrdering)
             {
                 case ItemOrderingsOverviewList.ByNameAscending: starts = starts.OrderBy(s => s.PersonObj?.Name).ToList(); break;

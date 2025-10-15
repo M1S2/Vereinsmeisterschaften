@@ -131,6 +131,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 Starts = new ObservableCollection<PersonStart>(other.Starts);
             }
             Starts.CollectionChanged += Starts_CollectionChanged;
+            RaceID = other.RaceID;
         }
 
         private void Starts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

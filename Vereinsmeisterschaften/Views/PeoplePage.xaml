@@ -473,7 +473,7 @@
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="PersonActiveInactiveButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
+                            <Button x:Name="PersonActiveInactiveButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource BrushStartInactive}"
                                     Visibility="Hidden" Width="30" Height="30" 
                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.PersonActiveInactiveCommand}" CommandParameter="{Binding}"
                                     ToolTip="{x:Static properties:Tooltips.TooltipPersonActiveInactiveButton}">
@@ -495,10 +495,10 @@
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="RemovePersonButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
-                        Visibility="Hidden" Width="30" Height="30" 
-                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemovePersonCommand}" CommandParameter="{Binding}"
-                        ToolTip="{x:Static properties:Resources.RemovePersonString}">
+                            <Button x:Name="RemovePersonButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource BrushError}"
+                                    Visibility="Hidden" Width="30" Height="30" 
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemovePersonCommand}" CommandParameter="{Binding}"
+                                    ToolTip="{x:Static properties:Resources.RemovePersonString}">
                                 <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
                             </Button>
                             <DataTemplate.Triggers>

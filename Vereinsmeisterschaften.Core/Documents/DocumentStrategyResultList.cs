@@ -40,7 +40,7 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <returns>List of all <see cref="Person"/> items sorted by their scores.</returns>
         public override Person[] GetItems()
         {
-            List<Person> sortedPersons = _scoreService.GetPersonsSortedByScore(ResultTypes.Overall);
+            List<Person> sortedPersons = _scoreService.GetPersonsSortedByScore(ResultTypes.Overall, true);
             _scoreService.UpdateResultListPlacesForAllPersons();
             return sortedPersons.ToArray();
         }

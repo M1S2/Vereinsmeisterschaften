@@ -48,9 +48,6 @@
                 <x:Type TypeName="viewModels:HighlightPersonStartModes"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-
-        <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
-        <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
     </Page.Resources>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -96,14 +93,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- Remove race variant button -->
-            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding RemoveRaceVariantCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <controls:FontIcon FontSize="20" Glyph="&#xE738;"/>
-                    <TextBlock Text="{x:Static properties:Resources.RemoveRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-
             <!-- Copy race variant button -->
             <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CopyRaceVariantCommand}">
                 <StackPanel Orientation="Horizontal">
@@ -113,10 +102,18 @@
             </Button>
 
             <!-- Reorder race variants button -->
-            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ReorderRaceVariantsCommand}">
+            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ReorderRaceVariantsCommand}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE8CB;"/>
                     <TextBlock Text="{x:Static properties:Resources.ReorderRaceVariantsString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Remove race variant button -->
+            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{DynamicResource BrushError}" Command="{Binding RemoveRaceVariantCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:FontIcon FontSize="20" Glyph="&#xE738;"/>
+                    <TextBlock Text="{x:Static properties:Resources.RemoveRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
         </WrapPanel>

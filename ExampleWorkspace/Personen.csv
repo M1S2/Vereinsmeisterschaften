@@ -1,9 +1,9 @@
 ﻿Name;Vorname;Geschlecht;Geburtsjahr;Brust;Freistil;Rücken;Delphin;Lagen;Wasserfloh;Brust Zeit;Freistil Zeit;Rücken Zeit;Delphin Zeit;Lagen Zeit;Wasserfloh Zeit
 Mustermann;Maxxe;Männlich;2015;X;X;;;;;00:01:00;00:02:00;00:00:00;00:00:00;00:00:00;00:00:00
-Musterfrau;Eva;Weiblich;2016;i;;X;X;X;;00:00:30;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
+Musterfrau;Eva;Weiblich;2016;X;;X;X;X;;00:00:30;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
 Mustersohn;Tim;Männlich;2020;;;;;X;X;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
 xyz;abc;Männlich;2018;X;X;;;;;00:00:20;00:00:10;00:00:00;00:00:00;00:00:00;00:00:00
 Test;Test;Männlich;2017;X;X;;;;;00:00:15;00:00:50;00:00:00;00:00:00;00:00:00;00:00:00
-Test2;Test2;Weiblich;2017;X;;;;;;00:00:15;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
+Inaktiv;Test2;Weiblich;2017;i;;;;;;00:00:15;00:00:00;00:00:00;00:00:00;00:00:00;00:00:00
 Gönner;Günter;Männlich;1900;;X;X;;;;00:00:00;00:01:00;00:00:00;00:00:00;00:00:00;00:00:00
 Grün;Cordulä;Weiblich;2000;;X;;X;;;00:00:00;00:01:20;00:00:00;00:00:50;00:00:00;00:00:00

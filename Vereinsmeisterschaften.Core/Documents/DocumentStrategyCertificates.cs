@@ -109,7 +109,7 @@ namespace Vereinsmeisterschaften.Core.Documents
                 if(personStartFilterParameter == null) { personStartFilter = PersonStartFilters.None; }
             }
 
-            List<PersonStart> starts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null).ToList();
+            List<PersonStart> starts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s => s.CompetitionObj != null && s.IsActive).ToList();
             switch (ItemOrdering)
             {
                 case ItemOrderingsCertificate.ByNameAscending: starts = starts.OrderBy(s => s.PersonObj?.Name).ToList(); break;

@@ -9,15 +9,12 @@
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
+    xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
     <Page.Resources>
-        <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-        </Style>
-
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableFilterPersonStartModes">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="viewModels:TimeInputPersonStartFilterModes"/>
@@ -125,156 +122,150 @@
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-        <ListView Grid.Row="2" ItemsSource="{Binding AvailablePersonStartsCollectionView}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Height" Value="40"/>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding AvailablePersonStartsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
+                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+            <!-- Center the row numbers -->
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.Resources>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="TextAlignment" Value="Center"/>
-                </Style>
-            </ListView.Resources>
+            </DataGrid.RowHeaderStyle>
 
-            <ListView.View>
-                <GridView>
-                    <!-- First Name -->
-                    <GridViewColumn DisplayMemberBinding="{Binding PersonObj.FirstName}" Width="120">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.FirstNameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
+            <DataGrid.Columns>
+                <!-- First Name -->
+                <DataGridTextColumn Binding="{Binding PersonObj.FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.FirstNameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
 
-                    <!-- Name -->
-                    <GridViewColumn DisplayMemberBinding="{Binding PersonObj.Name}" Width="120">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
+                <!-- Name -->
+                <DataGridTextColumn Binding="{Binding PersonObj.Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.NameString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
 
-                    <!-- Gender -->
-                    <GridViewColumn Width="120">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.GenderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Border HorizontalAlignment="Center">
-                                    <ContentControl Content="{Binding PersonObj.Gender}" Style="{StaticResource GenderWithIconStyle}"/>
-                                </Border>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                <!-- Gender -->
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.GenderString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border HorizontalAlignment="Center">
+                                <ContentControl Content="{Binding PersonObj.Gender}" Style="{StaticResource GenderWithIconStyle}"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                    <!-- Swimming Style -->
-                    <GridViewColumn Width="150">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
-                                <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Border HorizontalAlignment="Center">
-                                    <ContentControl Content="{Binding Style}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
-                                </Border>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                <!-- Swimming Style -->
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
+                            <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border HorizontalAlignment="Center">
+                                <ContentControl Content="{Binding Style}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                    <!-- Distance -->
-                    <GridViewColumn DisplayMemberBinding="{Binding CompetitionObj.Distance, StringFormat={}{0}m, FallbackValue=/}">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
+                <!-- Distance -->
+                <DataGridTextColumn Binding="{Binding CompetitionObj.Distance, StringFormat={}{0}m, FallbackValue=/}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
 
-                    <!-- Competition ID -->
-                    <GridViewColumn>
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="#" FontSize="20" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.CompetitionIDString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                <!-- Competition ID -->
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="#" FontSize="20" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.CompetitionIDString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding CompetitionObj.Id, FallbackValue=/}"/>
+                                <Path Margin="15,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
+                                        Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
                             </StackPanel>
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Text="{Binding CompetitionObj.Id, FallbackValue=/}"/>
-                                    <Path Margin="15,0,0,0" Data="{StaticResource Geometry_AccountTie}" Style="{StaticResource IconStyle}"
-                                           Visibility="{Binding IsUsingMaxAgeCompetition, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                           ToolTip="{x:Static properties:Tooltips.TooltipMaxAgeCompetition}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                    <!-- Time -->
-                    <GridViewColumn Width="150">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:FontIcon Glyph="&#xE916;" Margin="5"/>
-                                <TextBlock Text="{x:Static properties:Resources.TimeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ContentControl Margin="5">
-                                    <ContentControl.Style>
-                                        <Style TargetType="{x:Type ContentControl}">
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <Border HorizontalAlignment="Center">
-                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
-                                                    </Border>
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
-                                                    <Setter Property="Content">
-                                                        <Setter.Value>
-                                                            <Border Background="{StaticResource BrushErrorWithTransparency}" Height="40" VerticalAlignment="Center">
-                                                                <!-- Show an error icon if no competition object is assigned -->
-                                                                <controls:FontIcon FontSize="20" Glyph="&#xF140;" ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
-                                                            </Border>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ContentControl.Style>
-                                </ContentControl>                                
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                <!-- Time -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon Glyph="&#xE916;" Margin="5"/>
+                            <TextBlock Text="{x:Static properties:Resources.TimeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Margin="5">
+                                <ContentControl.Style>
+                                    <Style TargetType="{x:Type ContentControl}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <Border HorizontalAlignment="Center">
+                                                    <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
+                                                </Border>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsCompetitionObjAssigned}" Value="False">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Border Background="{StaticResource BrushErrorWithTransparency}" Height="40" VerticalAlignment="Center">
+                                                            <!-- Show an error icon if no competition object is assigned -->
+                                                            <controls:FontIcon FontSize="20" Glyph="&#xF140;" ToolTip="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}"/>
+                                                        </Border>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>                                
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                    <!-- Score -->
-                    <GridViewColumn DisplayMemberBinding="{Binding Score, FallbackValue=?}">
-                        <GridViewColumn.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Path Width="20" Height="20" Margin="5" Data="{StaticResource Geometry_Trophy}" Style="{StaticResource IconStyle}"/>
-                                <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                            </StackPanel>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                <!-- Score -->
+                <DataGridTextColumn Binding="{Binding Score, FallbackValue=?}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Path Width="20" Height="20" Margin="5" Data="{StaticResource Geometry_Trophy}" Style="{StaticResource IconStyle}"/>
+                            <TextBlock Text="{x:Static properties:Resources.CalculatedScoreString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

@@ -54,6 +54,15 @@
             <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
             <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
 
+            <Style x:Key="DataGridColumnHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="DataGridTextCellCenteringStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">
                 <Grid>

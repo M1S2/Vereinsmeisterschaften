@@ -15,16 +15,8 @@
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
-    
+
     <Page.Resources>
-        <Style x:Key="DataGridHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style x:Key="DataGridTextCellCenteringStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-        </Style>
-
         <Style x:Key="DataGridCheckboxCellCenteringStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MahApps.Styles.CheckBox.DataGrid.Win10}">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="MinWidth" Value="20"/>
@@ -78,7 +70,9 @@
         <!-- DataGrid with all people -->
         <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
-                  SelectedItem="{Binding SelectedPerson}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedPerson}">
+                  SelectedItem="{Binding SelectedPerson}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedPerson}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+            <!-- Center the row numbers -->
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -98,7 +92,7 @@
 
             <DataGrid.Columns>
                 <!-- First Name -->
-                <DataGridTextColumn Binding="{Binding FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -108,7 +102,7 @@
                 </DataGridTextColumn>
 
                 <!-- Name -->
-                <DataGridTextColumn Binding="{Binding Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding Name}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -118,7 +112,7 @@
                 </DataGridTextColumn>
 
                 <!-- Gender -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="Gender">
+                <DataGridTemplateColumn SortMemberPath="Gender">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -146,7 +140,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Birth Year -->
-                <DataGridTextColumn Binding="{Binding BirthYear}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding BirthYear}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
@@ -157,7 +151,7 @@
 
                 <!-- Breaststroke -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -209,7 +203,7 @@
 
                 <!-- Freestyle -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -261,7 +255,7 @@
 
                 <!-- Backstroke -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -313,7 +307,7 @@
 
                 <!-- Butterfly -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -365,7 +359,7 @@
 
                 <!-- Medley -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -417,7 +411,7 @@
 
                 <!-- WaterFlea -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>

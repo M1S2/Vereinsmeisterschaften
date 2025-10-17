@@ -190,6 +190,7 @@ namespace Vereinsmeisterschaften.Core.Models
             _workspaceService = workspaceService ?? other._workspaceService;
             if (_workspaceService != null) { _workspaceService.PropertyChanged += workspaceServicePropertyChangedEvent; }
 
+            VariantID = other.VariantID;
             Races_CollectionChanged(Races, null);
         }
 
@@ -215,7 +216,10 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
-        private void updateRaceStartsCollectionChangedEvent()
+        /// <summary>
+        /// Update the internal event handlers for the <see cref="Race.Starts"/> collection changed events
+        /// </summary>
+        public void UpdateRaceStartsCollectionChangedEvent()
         {
             OnPropertyChanged(nameof(Races));
             foreach (Race race in Races)
@@ -238,7 +242,7 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             updateRaceIDs();
             CalculateScore();
-            updateRaceStartsCollectionChangedEvent();
+            UpdateRaceStartsCollectionChangedEvent();
             OnPropertyChanged(nameof(IsValid_AllRacesValid));
             OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
             OnPropertyChanged(nameof(IsValid));

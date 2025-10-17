@@ -68,7 +68,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         get => _currentRacesVariant;
         set
         {
-            if (SetProperty(ref _currentRacesVariant, value))
+            if (SetProperty(ref _currentRacesVariant, value, new RacesVariantFullEqualityComparer()))
             {
                 _currentRacesVariant?.UpdateNotAssignedStarts(_personService.GetAllPersonStarts());
                 OnPropertyChanged(nameof(CurrentRacesVariantIsPersistent));
@@ -289,6 +289,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
                     OnPropertyChanged(nameof(CurrentRacesVariant));
                     OnPropertyChanged(nameof(AllRacesVariants));
                     OnPropertyChanged(nameof(AreRacesVariantsAvailable));
+                    break;
+                case nameof(RaceService.PersistedRacesVariant):
+                    OnPropertyChanged(nameof(CurrentRacesVariant));
                     break;
                 default:
                     break;

@@ -358,12 +358,22 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public void ResetToLoadedState()
         {
-            RacesVariantFullEqualityComparer fullEqualityComparer = new RacesVariantFullEqualityComparer();
-            foreach (RacesVariant racesVariant in AllRacesVariants)
+            int persistedRaceIndex = PersistedRacesVariant == null ? -1 : AllRacesVariants.IndexOf(PersistedRacesVariant);
+            RacesVariant resetRaceVariant = new RacesVariant(_persistedRacesVariantOnLoad, true, false, _workspaceService) { IsPersistent = true };
+            if (persistedRaceIndex != -1)
             {
-                racesVariant.IsPersistent = fullEqualityComparer.Equals(racesVariant, _persistedRacesVariantOnLoad);
+                PersistedRacesVariant.PropertyChanged -= RacesVariant_PropertyChanged;
+                AllRacesVariants[persistedRaceIndex] = resetRaceVariant;
+                resetRaceVariant.PropertyChanged += RacesVariant_PropertyChanged;
             }
+            else
+            {
+                AddRacesVariant(resetRaceVariant);
+            }
+            ReassignAllPersonStarts();
+
             OnPropertyChanged(nameof(AllRacesVariants));
+            OnPropertyChanged(nameof(PersistedRacesVariant));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
@@ -387,6 +397,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     race.Starts = newRaceStarts;
                 }
+                racesVariant.UpdateRaceStartsCollectionChangedEvent();
             }
         }
 

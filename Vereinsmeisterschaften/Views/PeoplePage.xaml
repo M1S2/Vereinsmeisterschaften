@@ -151,7 +151,7 @@
 
                 <!-- Breaststroke -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Breaststroke">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Breaststroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -203,7 +203,7 @@
 
                 <!-- Freestyle -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Freestyle">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Freestyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -255,7 +255,7 @@
 
                 <!-- Backstroke -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Backstroke">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Backstroke}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -307,7 +307,7 @@
 
                 <!-- Butterfly -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Butterfly">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Butterfly}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -359,7 +359,7 @@
 
                 <!-- Medley -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Medley">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.Medley}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>
@@ -411,7 +411,7 @@
 
                 <!-- WaterFlea -->
                 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="WaterFlea">
                     <DataGridTemplateColumn.Header>
                         <ContentControl Content="{x:Static coreModels:SwimmingStyles.WaterFlea}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
                     </DataGridTemplateColumn.Header>

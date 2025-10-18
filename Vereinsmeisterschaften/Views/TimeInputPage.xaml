@@ -154,7 +154,7 @@
                 </DataGridTextColumn>
 
                 <!-- Gender -->
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True" SortMemberPath="PersonObj.Gender">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -171,7 +171,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Swimming Style -->
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True" SortMemberPath="Style">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
@@ -198,7 +198,7 @@
                 </DataGridTextColumn>
 
                 <!-- Competition ID -->
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True" SortMemberPath="CompetitionObj.Id">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="#" FontSize="20" Margin="5"/>
@@ -218,7 +218,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Time -->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn SortMemberPath="Time">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE916;" Margin="5"/>

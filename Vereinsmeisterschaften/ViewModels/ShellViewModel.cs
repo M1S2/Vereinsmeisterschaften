@@ -146,6 +146,7 @@ public partial class ShellViewModel : ObservableObject
     {
         _navigationService.Navigated += OnNavigated;
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
+        updateMenuItemsEnabledState();
 
         // Load the workspace
         try
@@ -173,15 +174,23 @@ public partial class ShellViewModel : ObservableObject
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
                     OnPropertyChanged(nameof(CurrentWorkspaceFolder));
-                    foreach (HamburgerMenuItem menuItem in MenuItems)
-                    {
-                        if (menuItem.TargetPageType == typeof(MainViewModel) || menuItem.TargetPageType == typeof(WorkspaceViewModel)) { continue; }
-
-                        menuItem.IsEnabled = _workspaceService.IsWorkspaceOpen;
-                    }
+                    updateMenuItemsEnabledState();
                     break;
                 }
             default: break;
+        }
+    }
+
+    /// <summary>
+    /// Update the enabled state of the menu items based on whether a workspace is open.
+    /// </summary>
+    private void updateMenuItemsEnabledState()
+    {
+        foreach (HamburgerMenuItem menuItem in MenuItems)
+        {
+            if (menuItem.TargetPageType == typeof(MainViewModel) || menuItem.TargetPageType == typeof(WorkspaceViewModel)) { continue; }
+
+            menuItem.IsEnabled = _workspaceService.IsWorkspaceOpen;
         }
     }
 

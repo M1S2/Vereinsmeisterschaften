@@ -15,7 +15,8 @@
     mc:Ignorable="d"
     Width="1800"
     Height="920"
-    Title="{x:Static properties:Resources.AppDisplayName}">
+    Title="{x:Static properties:Resources.AppDisplayName}"
+    WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />

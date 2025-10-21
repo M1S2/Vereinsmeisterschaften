@@ -530,7 +530,7 @@
         
         <!-- Duplicate Person Warning -->
         <Expander Grid.Row="5" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
-                  controls:HeaderedControlHelper.HeaderBackground="OrangeRed" BorderBrush="OrangeRed">
+                  controls:HeaderedControlHelper.HeaderBackground="{StaticResource BrushWarning}" BorderBrush="{StaticResource BrushWarning}">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon Glyph="&#xE7BA;" Margin="5"/>

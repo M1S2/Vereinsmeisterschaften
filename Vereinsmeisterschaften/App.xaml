@@ -54,7 +54,7 @@
             <SolidColorBrush x:Key="BrushWarningWithTransparency">#B4FF5733</SolidColorBrush>
             <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
             <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
-
+            
             <Style x:Key="DataGridColumnHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
             </Style>

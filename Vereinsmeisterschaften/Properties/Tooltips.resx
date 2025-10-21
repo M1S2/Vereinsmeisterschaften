@@ -322,4 +322,7 @@ This is only used during document creation as info text.</value>
   <data name="TooltipPersonInactiveStart" xml:space="preserve">
     <value>This start of the person is inactive.</value>
   </data>
+  <data name="TooltipNoTimeSet" xml:space="preserve">
+    <value>No time was set yet (time is zero).</value>
+  </data>
 </root>

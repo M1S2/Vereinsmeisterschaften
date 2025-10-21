@@ -321,4 +321,7 @@ Dieses Datum wird nur für die Erstellung von Dokumenten verwendet (nur als Info
   <data name="TooltipPersonInactiveStart" xml:space="preserve">
     <value>Dieser Start der Person ist inaktiv.</value>
   </data>
+  <data name="TooltipNoTimeSet" xml:space="preserve">
+    <value>Es wurde noch keine Zeit eingegeben (Zeit ist Null).</value>
+  </data>
 </root>

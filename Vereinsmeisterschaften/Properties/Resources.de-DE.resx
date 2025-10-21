@@ -581,4 +581,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="CompetitionSearchModeString" xml:space="preserve">
     <value>Wettkampf Suchmodus</value>
   </data>
+  <data name="TimeInputWarningAtLeastOneTimeMissingString" xml:space="preserve">
+    <value>Mindestens eine Zeit ist nicht gesetzt (Zeit ist Null)!</value>
+  </data>
 </root>

@@ -1334,6 +1334,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die At least one time isn&apos;t set (time is zero)! ähnelt.
+        /// </summary>
+        public static string TimeInputWarningAtLeastOneTimeMissingString {
+            get {
+                return ResourceManager.GetString("TimeInputWarningAtLeastOneTimeMissingString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Time ähnelt.
         /// </summary>
         public static string TimeString {

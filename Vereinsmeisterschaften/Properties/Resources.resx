@@ -580,4 +580,7 @@
   <data name="CompetitionSearchModeString" xml:space="preserve">
     <value>Competition Search Mode</value>
   </data>
+  <data name="TimeInputWarningAtLeastOneTimeMissingString" xml:space="preserve">
+    <value>At least one time isn't set (time is zero)!</value>
+  </data>
 </root>

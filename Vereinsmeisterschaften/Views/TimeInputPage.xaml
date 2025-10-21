@@ -27,6 +27,7 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
@@ -233,7 +234,11 @@
                                         <Setter Property="Content">
                                             <Setter.Value>
                                                 <Border HorizontalAlignment="Center">
-                                                    <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
+                                                        <!-- Warning icon -->
+                                                        <controls:FontIcon Glyph="&#xE7BA;" Visibility="{Binding IsTimeSet, Converter={StaticResource InvertedBoolVisibilityConverter}}" ToolTip="{x:Static properties:Tooltips.TooltipNoTimeSet}"/>
+                                                    </StackPanel>
                                                 </Border>
                                             </Setter.Value>
                                         </Setter>
@@ -267,5 +272,17 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <!-- Time Input Missing Warning -->
+        <Border Grid.Row="3" Background="{StaticResource BrushWarning}" Margin="0,20,0,0"
+                Visibility="{Binding IsTimeInputMissing, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <!-- Warning icon -->
+                <controls:FontIcon Margin="5" Glyph="&#xE7BA;" Visibility="{Binding IsTimeSet, Converter={StaticResource InvertedBoolVisibilityConverter}}" ToolTip="{x:Static properties:Tooltips.TooltipNoTimeSet}"/>
+                <TextBlock Text="{x:Static properties:Resources.TimeInputWarningAtLeastOneTimeMissingString}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

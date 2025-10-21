@@ -44,11 +44,26 @@ namespace Vereinsmeisterschaften.Core.Models
         [ObservableProperty]
         private SwimmingStyles _style;
 
+        private TimeSpan _time;
         /// <summary>
         /// Time the person needed during the race of this start
         /// </summary>
-        [ObservableProperty]
-        private TimeSpan _time;
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                if (SetProperty(ref _time, value))
+                {
+                    OnPropertyChanged(nameof(IsTimeSet));
+                }
+            }
+        }
+
+        /// <summary>
+        /// True if the <see cref="Time"/> is set (not TimeSpan.Zero)
+        /// </summary>
+        public bool IsTimeSet => Time != TimeSpan.Zero;
 
         /// <summary>
         /// Score of the person for this start

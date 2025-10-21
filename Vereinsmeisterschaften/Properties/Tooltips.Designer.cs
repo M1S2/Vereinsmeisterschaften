@@ -173,6 +173,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No time was set yet (time is zero). ähnelt.
+        /// </summary>
+        public static string TooltipNoTimeSet {
+            get {
+                return ResourceManager.GetString("TooltipNoTimeSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of available swim lanes.
         ///This is used during calculation of the race variants (determines the maximum number of parallel starts). ähnelt.
         /// </summary>

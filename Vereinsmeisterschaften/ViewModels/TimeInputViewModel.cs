@@ -39,6 +39,11 @@ public partial class TimeInputViewModel : ObservableObject, INavigationAware
     [ObservableProperty]
     private int _timeInputMillisecondDigits;
 
+    /// <summary>
+    /// True, if at least one active <see cref="PersonStart"/> is missing a time input.
+    /// </summary>
+    public bool IsTimeInputMissing => AvailablePersonStarts.Any(s => s.IsActive && s.CompetitionObj != null && !s.IsTimeSet);
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     #region Filter Feature
@@ -180,12 +185,37 @@ public partial class TimeInputViewModel : ObservableObject, INavigationAware
 
         TimeInputMillisecondDigits = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS) ?? 2;
 
+        foreach (PersonStart start in AvailablePersonStarts)
+        {
+            // Unsubscribe from and resubscribe to the event to avoid multiple subscriptions
+            start.PropertyChanged -= Start_PropertyChanged;
+            start.PropertyChanged += Start_PropertyChanged;
+        }
+
         OnPropertyChanged(nameof(PersistedRacesVariant));
         OnPropertyChanged(nameof(AvailablePersons));
+        OnPropertyChanged(nameof(IsTimeInputMissing));
     }
 
     /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
+        // Unsubscribe from the event to avoid raising this event on another page (not necessary there)
+        foreach (PersonStart start in AvailablePersonStarts)
+        {
+            start.PropertyChanged -= Start_PropertyChanged;
+        }
+    }
+    
+    private void Start_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(PersonStart.IsActive):
+            case nameof(PersonStart.IsTimeSet):
+                OnPropertyChanged(nameof(IsTimeInputMissing));
+                break;
+            default: break;
+        }
     }
 }

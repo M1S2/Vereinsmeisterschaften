@@ -325,4 +325,13 @@ This is only used during document creation as info text.</value>
   <data name="TooltipNoTimeSet" xml:space="preserve">
     <value>No time was set yet (time is zero).</value>
   </data>
+  <data name="TooltipDuplicatePerson" xml:space="preserve">
+    <value>There was at least one other person with the same basic parameters found.</value>
+  </data>
+  <data name="TooltipEmptyPerson" xml:space="preserve">
+    <value>This person has no starts.</value>
+  </data>
+  <data name="TooltipPersonInactive" xml:space="preserve">
+    <value>This person is inactive.</value>
+  </data>
 </root>

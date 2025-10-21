@@ -87,6 +87,32 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        private bool _hasDuplicates = false;
+        /// <summary>
+        /// This flag indicates if there are duplicates of this person in the person list.
+        /// It is updated by the <see cref="Services.PersonService"/> when loading or modifying the person list.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool HasDuplicates
+        {
+            get => _hasDuplicates;
+            set => SetProperty(ref _hasDuplicates, value);
+        }
+
+        private int _resultListPlace = 0;
+        /// <summary>
+        /// This is the place in the overall result list of the person.
+        /// This is 1-based. 0 means not assigned yet or not available.
+        /// </summary>
+        [FileServiceIgnore]
+        public int ResultListPlace
+        {
+            get => _resultListPlace;
+            set => SetProperty(ref _resultListPlace, value);
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private Dictionary<SwimmingStyles, Competition> _availableCompetitions = new Dictionary<SwimmingStyles, Competition>();
         /// <summary>
         /// Dictionary with all available <see cref="Competition"/> of the person
@@ -174,6 +200,12 @@ namespace Vereinsmeisterschaften.Core.Models
         }
 
         /// <summary>
+        /// True if at least one of the starts in the <see cref="Starts"/> dictionary is not null
+        /// </summary>
+        [FileServiceIgnore]
+        public bool HasStarts => Starts?.Values?.Any(s => s != null) ?? false;
+
+        /// <summary>
         /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
         /// </summary>
         [FileServiceIgnore]
@@ -190,18 +222,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         [FileServiceIgnore]
         public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
-
-        private int _resultListPlace = 0;
-        /// <summary>
-        /// This is the place in the overall result list of the person.
-        /// This is 1-based. 0 means not assigned yet or not available.
-        /// </summary>
-        [FileServiceIgnore]
-        public int ResultListPlace
-        {
-            get => _resultListPlace;
-            set => SetProperty(ref _resultListPlace, value);
-        }
 
         /// <summary>
         /// Check if at least one of the starts in the <see cref="Starts"/> dictionary is active.
@@ -249,6 +269,8 @@ namespace Vereinsmeisterschaften.Core.Models
                 Starts[style] = null;
             }
             OnPropertyChanged(nameof(Starts));
+            OnPropertyChanged(nameof(HasStarts));
+            OnPropertyChanged(nameof(IsActive));
         }
 
         private void PersonStart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

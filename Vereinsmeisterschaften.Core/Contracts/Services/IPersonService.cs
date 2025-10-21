@@ -71,10 +71,9 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         int PersonStarts { get; }
 
         /// <summary>
-        /// Find all duplicate <see cref="Person"/> objects.
+        /// Find all duplicate <see cref="Person"/> objects and update the <see cref="Person.HasDuplicates"/> flags.
         /// </summary>
-        /// <returns>List with duplicate <see cref="Person"/></returns>
-        List<Person> CheckForDuplicatePerson();
+        void UpdateHasDuplicatesForPersons();
 
         /// <summary>
         /// Get all <see cref="PersonStart"/> objects for all <see cref="Person"/> objects that are not <see langword="null"/>.

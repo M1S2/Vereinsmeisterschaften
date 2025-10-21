@@ -583,4 +583,7 @@
   <data name="TimeInputWarningAtLeastOneTimeMissingString" xml:space="preserve">
     <value>At least one time isn't set (time is zero)!</value>
   </data>
+  <data name="EmptyPersonFound" xml:space="preserve">
+    <value>Empty Person found (no starts assigned)</value>
+  </data>
 </root>

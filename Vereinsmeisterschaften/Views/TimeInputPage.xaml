@@ -280,7 +280,7 @@
                 Visibility="{Binding IsTimeInputMissing, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <!-- Warning icon -->
-                <controls:FontIcon Margin="5" Glyph="&#xE7BA;" Visibility="{Binding IsTimeSet, Converter={StaticResource InvertedBoolVisibilityConverter}}" ToolTip="{x:Static properties:Tooltips.TooltipNoTimeSet}"/>
+                <controls:FontIcon Margin="5" Glyph="&#xE7BA;"/>
                 <TextBlock Text="{x:Static properties:Resources.TimeInputWarningAtLeastOneTimeMissingString}" VerticalAlignment="Center"/>
             </StackPanel>
         </Border>

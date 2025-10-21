@@ -262,7 +262,9 @@ namespace Vereinsmeisterschaften.Core.Services
             _personList.Add(person);
 
             person.PropertyChanged += Person_PropertyChanged;
-            
+
+            UpdateHasDuplicatesForPersons();
+
             OnPropertyChanged(nameof(PersonCount));
             OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -276,6 +278,9 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             person.PropertyChanged -= Person_PropertyChanged;
             _personList?.Remove(person);
+
+            UpdateHasDuplicatesForPersons();
+
             OnPropertyChanged(nameof(PersonCount));
             OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -301,8 +306,15 @@ namespace Vereinsmeisterschaften.Core.Services
 
             switch(e.PropertyName)
             {
+                case nameof(Person.Name):
+                case nameof(Person.FirstName):
+                    // Duplicates depends on the basic parameters of the person (First name, Name, Birth year, Gender)
+                    UpdateHasDuplicatesForPersons();
+                    break;
                 case nameof(Person.Gender):
                 case nameof(Person.BirthYear):
+                    // Duplicates depends on the basic parameters of the person (First name, Name, Birth year, Gender)
+                    UpdateHasDuplicatesForPersons();
                     // Update the competitions for the person. They depend on the gender and birth year.
                     _competitionService.UpdateAllCompetitionsForPerson(sender as Person);
                     break;
@@ -326,26 +338,21 @@ namespace Vereinsmeisterschaften.Core.Services
         public int PersonStarts => _personList.Sum(p => p.Starts.Where(s => s.Value != null).Count());
 
         /// <summary>
-        /// Find all duplicate <see cref="Person"/> objects.
+        /// Find all duplicate <see cref="Person"/> objects and update the <see cref="Person.HasDuplicates"/> flags.
         /// </summary>
-        /// <returns>List with duplicate <see cref="Person"/></returns>
-        public List<Person> CheckForDuplicatePerson()
+        public void UpdateHasDuplicatesForPersons()
         {
-            List<Person> tmpPersonList = new List<Person>();
-            List<Person> duplicates = new List<Person>();
             PersonBasicEqualityComparer basicPersonComparer = new PersonBasicEqualityComparer();
-            foreach (Person person in _personList)
+            IEnumerable<IGrouping<Person, Person>> duplicateGroups = _personList.GroupBy(p => p, basicPersonComparer).Where(g => g.Count() > 1);
+
+            // Reset all HasDuplicates flags
+            foreach (Person p in _personList) { p.HasDuplicates = false; }
+
+            // Set HasDuplicates flag for all persons that are in a duplicate group
+            foreach (IGrouping<Person, Person> duplicateGroup in duplicateGroups)
             {
-                if(!tmpPersonList.Contains(person, basicPersonComparer))
-                {
-                    tmpPersonList.Add(person);
-                }
-                else
-                {
-                    duplicates.Add(person);
-                }
+                foreach (Person person in duplicateGroup) { person.HasDuplicates = true; }
             }
-            return duplicates.Distinct().ToList();
         }
 
         /// <summary>

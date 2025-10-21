@@ -41,6 +41,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
@@ -91,6 +92,30 @@
             </DataGrid.RowStyle>
 
             <DataGrid.Columns>
+                <!-- Warning / Info Icons -->
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Person is inactive Icon -->
+                                <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE7E8;"
+                                                   Visibility="{Binding IsActive, Converter={StaticResource InvertedBoolVisibilityHiddenConverter}}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipPersonInactive}"/>
+
+                                <!-- Person has no starts Icon -->
+                                <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE75D;"
+                                                   Visibility="{Binding HasStarts, Converter={StaticResource InvertedBoolVisibilityHiddenConverter}}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipEmptyPerson}"/>
+
+                                <!-- Person has duplicates Icon -->
+                                <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE8FA;"
+                                                   Visibility="{Binding HasDuplicates, Converter={StaticResource BoolVisibilityHiddenConverter}}"
+                                                   ToolTip="{x:Static properties:Tooltips.TooltipDuplicatePerson}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <!-- First Name -->
                 <DataGridTextColumn Binding="{Binding FirstName}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
@@ -510,7 +535,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DockPanel Grid.Row="4" LastChildFill="False">
+        <DockPanel Grid.Row="4" LastChildFill="False" Margin="{StaticResource MediumBottomMargin}">
             <!-- Add Person Button -->
             <Button DockPanel.Dock="Left" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
@@ -527,26 +552,26 @@
                 </Border>
             </StackPanel>
         </DockPanel>
-        
+
         <!-- Duplicate Person Warning -->
-        <Expander Grid.Row="5" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="True"
-                  controls:HeaderedControlHelper.HeaderBackground="{StaticResource BrushWarning}" BorderBrush="{StaticResource BrushWarning}">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <controls:FontIcon Glyph="&#xE7BA;" Margin="5"/>
-                    <TextBlock Text="{x:Static properties:Resources.DuplicatePersonFound}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Expander.Header>
-            <TextBlock VerticalAlignment="Center" Text="{Binding DuplicatePersonString}"/>
-            <Expander.Style>
-                <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding DuplicatePersonString}" Value="">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Expander.Style>
-        </Expander>
+        <Border Grid.Row="5" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+                Visibility="{Binding HasDuplicatePersons, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <!-- Warning icon -->
+                <controls:FontIcon Margin="5" Glyph="&#xE8FA;"/>
+                <TextBlock Text="{x:Static properties:Resources.DuplicatePersonFound}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Empty Person Warning -->
+        <Border Grid.Row="6" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+                Visibility="{Binding HasEmptyPersons, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <!-- Warning icon -->
+                <controls:FontIcon Margin="5" Glyph="&#xE75D;"/>
+                <TextBlock Text="{x:Static properties:Resources.EmptyPersonFound}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Page>

@@ -584,4 +584,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="TimeInputWarningAtLeastOneTimeMissingString" xml:space="preserve">
     <value>Mindestens eine Zeit ist nicht gesetzt (Zeit ist Null)!</value>
   </data>
+  <data name="EmptyPersonFound" xml:space="preserve">
+    <value>Leere Person gefunden (ohne zugeordnete Starts)</value>
+  </data>
 </root>

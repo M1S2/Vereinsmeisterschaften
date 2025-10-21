@@ -324,4 +324,13 @@ Dieses Datum wird nur für die Erstellung von Dokumenten verwendet (nur als Info
   <data name="TooltipNoTimeSet" xml:space="preserve">
     <value>Es wurde noch keine Zeit eingegeben (Zeit ist Null).</value>
   </data>
+  <data name="TooltipDuplicatePerson" xml:space="preserve">
+    <value>Es wurde mindestens eine andere Person mit den selben Basiswerten gefunden.</value>
+  </data>
+  <data name="TooltipEmptyPerson" xml:space="preserve">
+    <value>Diese Person hat keine Starts.</value>
+  </data>
+  <data name="TooltipPersonInactive" xml:space="preserve">
+    <value>Diese Person ist inaktiv.</value>
+  </data>
 </root>

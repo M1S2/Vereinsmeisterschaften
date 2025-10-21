@@ -495,6 +495,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Empty Person found (no starts assigned) ähnelt.
+        /// </summary>
+        public static string EmptyPersonFound {
+            get {
+                return ResourceManager.GetString("EmptyPersonFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         public static string ErrorString {

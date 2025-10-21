@@ -117,6 +117,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There was at least one other person with the same basic parameters found. ähnelt.
+        /// </summary>
+        public static string TooltipDuplicatePerson {
+            get {
+                return ResourceManager.GetString("TooltipDuplicatePerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This person has no starts. ähnelt.
+        /// </summary>
+        public static string TooltipEmptyPerson {
+            get {
+                return ResourceManager.GetString("TooltipEmptyPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Hide resolved path ähnelt.
         /// </summary>
         public static string TooltipHideResolvedPath {
@@ -296,6 +314,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipPersonActiveInactiveButton {
             get {
                 return ResourceManager.GetString("TooltipPersonActiveInactiveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This person is inactive. ähnelt.
+        /// </summary>
+        public static string TooltipPersonInactive {
+            get {
+                return ResourceManager.GetString("TooltipPersonInactive", resourceCulture);
             }
         }
         

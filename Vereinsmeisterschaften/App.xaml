@@ -39,6 +39,8 @@
             <converters:EnumToLocalizedStringConverter x:Key="enumLocalizedStringConverter"/>
             <converters:EnumValueToAvailableEnumValuesConverter x:Key="enumValuesConverter"/>
             <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
+            <converters:InvertedBooleanToVisibilityHiddenConverter x:Key="InvertedBoolVisibilityHiddenConverter"/>
+            <converters:BooleanToVisibilityHiddenConverter x:Key="BoolVisibilityHiddenConverter"/>
 
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
                 <ObjectDataProvider.MethodParameters>

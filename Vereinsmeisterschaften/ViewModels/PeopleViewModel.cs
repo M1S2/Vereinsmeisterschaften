@@ -26,21 +26,14 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     private ObservableCollection<Person> _people;
 
     /// <summary>
-    /// String used to describe, which person is duplicated
+    /// True if there are persons with empty starts
     /// </summary>
-    public string DuplicatePersonString
-    {
-        get
-        {
-            List<Person> duplicates = _personService.CheckForDuplicatePerson();
-            string duplicateString = string.Empty;
-            foreach(Person person in duplicates)
-            {
-                duplicateString += person.Name + ", " + person.FirstName + Environment.NewLine;
-            }
-            return duplicateString.Trim(Environment.NewLine.ToCharArray());
-        }
-    }
+    public bool HasEmptyPersons => People?.Any(p => !p.HasStarts) ?? false;
+
+    /// <summary>
+    /// True if there are duplicate persons
+    /// </summary>
+    public bool HasDuplicatePersons => People?.Any(p => p.HasDuplicates) ?? false;
 
     private ICollectionView _peopleCollectionView;
     /// <summary>
@@ -145,6 +138,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         _personService.AddPerson(person);
         _competitionService.UpdateAllCompetitionsForPerson(person);
         SelectedPerson = person;
+        OnPropertyChanged(nameof(HasDuplicatePersons));
+        OnPropertyChanged(nameof(HasEmptyPersons));
     }));
 
     private ICommand _removePersonCommand;
@@ -158,7 +153,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         {
             person.PropertyChanged -= Person_PropertyChanged;
             _personService.RemovePerson(person);
-            OnPropertyChanged(nameof(DuplicatePersonString));
+            OnPropertyChanged(nameof(HasDuplicatePersons));
+            OnPropertyChanged(nameof(HasEmptyPersons));
         }
     }));
 
@@ -188,7 +184,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
             person.PropertyChanged += Person_PropertyChanged;
         }
 
-        OnPropertyChanged(nameof(DuplicatePersonString));
+        OnPropertyChanged(nameof(HasDuplicatePersons));
+        OnPropertyChanged(nameof(HasEmptyPersons));
     }
 
     /// <inheritdoc/>
@@ -205,12 +202,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     {
         switch (e.PropertyName)
         {
-            case nameof(Person.FirstName):
-            case nameof(Person.Name):
-            case nameof(Person.Gender):
-            case nameof(Person.BirthYear):
-                OnPropertyChanged(nameof(DuplicatePersonString));
-                break;
+            case nameof(Person.HasDuplicates): OnPropertyChanged(nameof(HasDuplicatePersons)); break;
+            case nameof(Person.HasStarts): OnPropertyChanged(nameof(HasEmptyPersons)); break;
             default: break;
         }
     }

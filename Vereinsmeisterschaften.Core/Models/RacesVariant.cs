@@ -12,116 +12,9 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class RacesVariant : ObservableObject, IEquatable<RacesVariant>, ICloneable
     {
-        /// <summary>
-        /// List with races
-        /// </summary>
-        public ObservableCollection<Race> Races { get; set; }
+        #region Constructors / Destructor
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private int _variantID;
-        /// <summary>
-        /// Number for this <see cref="RacesVariant"/>
-        /// </summary>
-        [FileServiceIgnore]
-        public int VariantID
-        {
-            get => _variantID;
-            set => SetProperty(ref _variantID, value);
-        }
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private List<PersonStart> _notAssignedStarts;
-        /// <summary>
-        /// List with not assigned <see cref="PersonStart"> objects (not part of any <see cref="Race"/> in <see cref="Races"/>)
-        /// </summary>
-        public List<PersonStart> NotAssignedStarts
-        {
-            get => _notAssignedStarts;
-            set => SetProperty(ref _notAssignedStarts, value);
-        }
-
-        // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// Update the list of not assigned <see cref="PersonStart"/> objects
-        /// </summary>
-        /// <param name="allStarts">Complete list with all <see cref="PersonStart"/> objects</param>
-        public void UpdateNotAssignedStarts(List<PersonStart> allStarts)
-        {
-            List<PersonStart> raceStarts = GetAllStarts();
-            if (allStarts == null)
-            {
-                NotAssignedStarts = new List<PersonStart>();
-            }
-            else if (raceStarts == null)
-            {
-                NotAssignedStarts = allStarts.Where(s => s.IsActive).ToList();
-            }
-            else
-            {
-                NotAssignedStarts = allStarts?.Except(raceStarts)?.Where(s => s.IsActive)?.ToList();
-            }
-            OnPropertyChanged(nameof(IsValid_AllRacesValid));
-            OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
-            OnPropertyChanged(nameof(IsValid));
-        }
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <summary>
-        /// True when all <see cref="Races"/> are valid
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid_AllRacesValid => Races?.All(r => r.IsValid) ?? true;
-
-        /// <summary>
-        /// True when there are no empty unassigned races
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid_AllStartsAssigned => NotAssignedStarts?.Count == 0;
-
-        /// <summary>
-        /// This <see cref="RacesVariant"/> is consideres valid when:
-        /// - All <see cref="Races"/> are valid
-        /// - There are no empty unassigned races
-        /// </summary>
-        public bool IsValid => IsValid_AllRacesValid && IsValid_AllStartsAssigned;
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private bool _isPersistent;
-        /// <summary>
-        /// If true, this <see cref="RacesVariant"/> should be persisted (to a file).
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsPersistent
-        {
-            get => _isPersistent;
-            set
-            {
-                if (SetProperty(ref _isPersistent, value))
-                {
-                    OnPropertyChanged(nameof(KeepWhileRacesCalculation));
-                }
-            }
-        }
-
-        // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-        private bool _keepWhileRacesCalculation;
-        /// <summary>
-        /// Keep this <see cref="RacesVariant"/> while calculating new variants
-        /// </summary>
-        [FileServiceIgnore]
-        public bool KeepWhileRacesCalculation
-        {
-            get => _keepWhileRacesCalculation || IsPersistent;
-            set => SetProperty(ref _keepWhileRacesCalculation, value);
-        }
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private IWorkspaceService _workspaceService;
 
         /// <summary>
         /// Constructor for a new <see cref="RacesVariant"/> (create an empty <see cref="Race"/> collection).
@@ -174,7 +67,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> used to get the weights used to calculate the scores. If this is <see langword="null"/> the value from the cloned object is taken</param>
         public RacesVariant(RacesVariant other, bool deepClone = true, bool deepCloneRaces = true, IWorkspaceService workspaceService = null) : this()
         {
-            if(other == null) { return; }
+            if (other == null) { return; }
             if (deepClone)
             {
                 // Create a deep copy of the list
@@ -202,11 +95,133 @@ namespace Vereinsmeisterschaften.Core.Models
             if (_workspaceService != null) { _workspaceService.PropertyChanged -= workspaceServicePropertyChangedEvent; }
         }
 
-        // ----------------------------------------------------------------------------------------------------------------------------------------------
+        #endregion
+        
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private IWorkspaceService _workspaceService;
+        #region Basic properties
 
-        // ----------------------------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// List with races
+        /// </summary>
+        public ObservableCollection<Race> Races { get; set; }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Not assigned starts
+
+        private List<PersonStart> _notAssignedStarts;
+        /// <summary>
+        /// List with not assigned <see cref="PersonStart"> objects (not part of any <see cref="Race"/> in <see cref="Races"/>)
+        /// </summary>
+        [FileServiceIgnore]
+        public List<PersonStart> NotAssignedStarts
+        {
+            get => _notAssignedStarts;
+            set => SetProperty(ref _notAssignedStarts, value);
+        }
+
+        /// <summary>
+        /// Update the list of not assigned <see cref="PersonStart"/> objects
+        /// </summary>
+        /// <param name="allStarts">Complete list with all <see cref="PersonStart"/> objects</param>
+        public void UpdateNotAssignedStarts(List<PersonStart> allStarts)
+        {
+            List<PersonStart> raceStarts = GetAllStarts();
+            if (allStarts == null)
+            {
+                NotAssignedStarts = new List<PersonStart>();
+            }
+            else if (raceStarts == null)
+            {
+                NotAssignedStarts = allStarts.Where(s => s.IsActive).ToList();
+            }
+            else
+            {
+                NotAssignedStarts = allStarts?.Except(raceStarts)?.Where(s => s.IsActive)?.ToList();
+            }
+            OnPropertyChanged(nameof(IsValid_AllRacesValid));
+            OnPropertyChanged(nameof(IsValid_AllStartsAssigned));
+            OnPropertyChanged(nameof(IsValid));
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Other properties
+
+        private int _variantID;
+        /// <summary>
+        /// Number for this <see cref="RacesVariant"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public int VariantID
+        {
+            get => _variantID;
+            set => SetProperty(ref _variantID, value);
+        }
+
+        private bool _isPersistent;
+        /// <summary>
+        /// If true, this <see cref="RacesVariant"/> should be persisted (to a file).
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsPersistent
+        {
+            get => _isPersistent;
+            set
+            {
+                if (SetProperty(ref _isPersistent, value))
+                {
+                    OnPropertyChanged(nameof(KeepWhileRacesCalculation));
+                }
+            }
+        }
+
+        private bool _keepWhileRacesCalculation;
+        /// <summary>
+        /// Keep this <see cref="RacesVariant"/> while calculating new variants
+        /// </summary>
+        [FileServiceIgnore]
+        public bool KeepWhileRacesCalculation
+        {
+            get => _keepWhileRacesCalculation || IsPersistent;
+            set => SetProperty(ref _keepWhileRacesCalculation, value);
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Validation properties
+
+        /// <summary>
+        /// True when all <see cref="Races"/> are valid
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_AllRacesValid => Races?.All(r => r.IsValid) ?? true;
+
+        /// <summary>
+        /// True when there are no empty unassigned races
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_AllStartsAssigned => NotAssignedStarts?.Count == 0;
+
+        /// <summary>
+        /// This <see cref="RacesVariant"/> is consideres valid when:
+        /// - All <see cref="Races"/> are valid
+        /// - There are no empty unassigned races
+        /// </summary>
+        public bool IsValid => IsValid_AllRacesValid && IsValid_AllStartsAssigned;
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Event handlers
 
         private void workspaceServicePropertyChangedEvent(object sender, PropertyChangedEventArgs e)
         {
@@ -248,6 +263,9 @@ namespace Vereinsmeisterschaften.Core.Models
             OnPropertyChanged(nameof(IsValid));
         }
 
+        /// <summary>
+        /// Reassign the IDs for all races in <see cref="Races"/> starting from 1
+        /// </summary>
         private void updateRaceIDs()
         {
             int id = 1;
@@ -258,7 +276,11 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Helper methods
 
         /// <summary>
         /// Get a list with all <see cref="PersonStart"> objects of this <see cref="RacesVariant"/>
@@ -269,7 +291,11 @@ namespace Vereinsmeisterschaften.Core.Models
             return Races.SelectMany(r => r.Starts).ToList();
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Score properties
 
         /// <summary>
         /// Overall score. This combines all single score using weights.
@@ -348,7 +374,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _scoreStartGenders, value);
         }
 
-        // ----------------------------------------------------------------------------------------------------------------------------------------------
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Score calculation methods
 
         /// <summary>
         /// Recalculate all scores
@@ -507,7 +537,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 { SwimmingStyles.WaterFlea, _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA) ?? 6 }
             };
 
-        double penalty = 0;
+            double penalty = 0;
             foreach (var (race, index) in Races.Select((r, i) => (r, i)))
             {
                 if (StylePriorities.TryGetValue(race.Style, out int priority))
@@ -565,7 +595,11 @@ namespace Vereinsmeisterschaften.Core.Models
             return Math.Max(min, Math.Min(max, value));
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Equality, HashCode, ToString, Clone
 
         /// <summary>
         /// Compare if two <see cref="RacesVariant"/> are equal
@@ -596,5 +630,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Cloned object of type</returns>
         public object Clone()
             => new RacesVariant(this, true, true);
+
+        #endregion
     }
 }

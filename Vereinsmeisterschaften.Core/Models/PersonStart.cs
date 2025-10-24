@@ -7,6 +7,8 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public partial class PersonStart : ObservableObject, IEquatable<PersonStart>, ICloneable
     {
+        #region Constructors
+        
         /// <summary>
         /// Constructor for a new PersonStart object
         /// </summary>
@@ -30,7 +32,11 @@ namespace Vereinsmeisterschaften.Core.Models
             this.IsActive = other.IsActive;
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Basic properties
 
         /// <summary>
         /// Reference to the person object to which the start belongs
@@ -77,11 +83,11 @@ namespace Vereinsmeisterschaften.Core.Models
         [ObservableProperty]
         private bool _isActive = true;
 
-        /// <summary>
-        /// Flag indicating if this start should be highlighted in the UI
-        /// </summary>
-        [ObservableProperty]
-        private bool _isHighlighted;
+        #endregion
+        
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Competition related properties
 
         private Competition _competitionObj;
         /// <summary>
@@ -118,7 +124,23 @@ namespace Vereinsmeisterschaften.Core.Models
         [ObservableProperty]
         private bool _isUsingExactAgeCompetition;
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Other properties
+
+        /// <summary>
+        /// Flag indicating if this start should be highlighted in the UI
+        /// </summary>
+        [ObservableProperty]
+        private bool _isHighlighted;
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Equality, HashCode, ToString, Clone
 
         /// <summary>
         /// Compare if two PersonStarts are equal
@@ -156,5 +178,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Cloned object of type</returns>
         public object Clone()
             => new PersonStart(this);
+
+        #endregion
     }
 }

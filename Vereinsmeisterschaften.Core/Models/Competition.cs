@@ -9,6 +9,8 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public partial class Competition : ObservableObject, IEquatable<Competition>, ICloneable
     {
+        #region Constructors
+
         /// <summary>
         /// Constructor for a new Competition object.
         /// </summary>
@@ -31,7 +33,11 @@ namespace Vereinsmeisterschaften.Core.Models
             this.BestTime = other.BestTime;
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Basic properties
 
         private int _id = 0;
         /// <summary>
@@ -99,7 +105,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _bestTime, value);
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region SetPropertyFromString helper
 
         /// <summary>
         /// Set the requested property in the <see cref="Competition"/> object by parsing the given string value
@@ -121,7 +131,11 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Equality, HashCode, ToString, Clone
 
         /// <summary>
         /// Compare if two Competitions are equal
@@ -159,5 +173,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Cloned object of type</returns>
         public object Clone()
             => new Competition(this);
+
+        #endregion
     }
 }

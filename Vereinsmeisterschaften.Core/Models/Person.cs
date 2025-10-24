@@ -9,6 +9,8 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Person : ObservableObject, IEquatable<Person>, ICloneable
     {
+        #region Constructors
+
         /// <summary>
         /// Constructor for a new Person object.
         /// </summary>
@@ -39,8 +41,12 @@ namespace Vereinsmeisterschaften.Core.Models
             this.Starts = other.Starts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value?.Clone() as PersonStart);
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        
+
+        #region Basic properties
+
         private string _name = string.Empty;
         /// <summary>
         /// Last name of the person.
@@ -85,33 +91,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _birthYear, value);
         }
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private bool _hasDuplicates = false;
-        /// <summary>
-        /// This flag indicates if there are duplicates of this person in the person list.
-        /// It is updated by the <see cref="Services.PersonService"/> when loading or modifying the person list.
-        /// </summary>
-        [FileServiceIgnore]
-        public bool HasDuplicates
-        {
-            get => _hasDuplicates;
-            set => SetProperty(ref _hasDuplicates, value);
-        }
-
-        private int _resultListPlace = 0;
-        /// <summary>
-        /// This is the place in the overall result list of the person.
-        /// This is 1-based. 0 means not assigned yet or not available.
-        /// </summary>
-        [FileServiceIgnore]
-        public int ResultListPlace
-        {
-            get => _resultListPlace;
-            set => SetProperty(ref _resultListPlace, value);
-        }
+        #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Competition related properties
 
         private Dictionary<SwimmingStyles, Competition> _availableCompetitions = new Dictionary<SwimmingStyles, Competition>();
         /// <summary>
@@ -186,7 +170,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _isUsingExactAgeCompetitionDict, value);
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Starts management
 
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();
         /// <summary>
@@ -204,40 +192,6 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         [FileServiceIgnore]
         public bool HasStarts => Starts?.Values?.Any(s => s != null) ?? false;
-
-        /// <summary>
-        /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
-        /// </summary>
-        [FileServiceIgnore]
-        public double HighestScore => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
-
-        /// <summary>
-        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
-        /// </summary>
-        [FileServiceIgnore]
-        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
-
-        /// <summary>
-        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
-        /// </summary>
-        [FileServiceIgnore]
-        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
-
-        /// <summary>
-        /// Check if at least one of the starts in the <see cref="Starts"/> dictionary is active.
-        /// Or set all starts to active/inactive.
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsActive
-        {
-            get => Starts?.Values?.Where(s => s != null)?.Any(s => s.IsActive) ?? false;
-            set
-            {
-                if (Starts == null) { return; }
-                Starts?.Values?.Where(s => s != null)?.ToList()?.ForEach(s => s.IsActive = value);
-                OnPropertyChanged(nameof(IsActive));
-            }
-        }
 
         /// <summary>
         /// Get the first start in the list of starts of the person that matches the style
@@ -273,6 +227,94 @@ namespace Vereinsmeisterschaften.Core.Models
             OnPropertyChanged(nameof(IsActive));
         }
 
+        /// <summary>
+        /// Set the time for the matching start if available
+        /// </summary>
+        /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
+        /// <param name="time">Time to set for the start</param>
+        public void SetStartTime(SwimmingStyles style, TimeSpan time)
+        {
+            PersonStart start = GetStartByStyle(style);
+            if (start == null) { return; }
+            start.Time = time;
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Properties derived from the starts
+
+        /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
+        /// </summary>
+        [FileServiceIgnore]
+        public double HighestScore => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
+
+        /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// </summary>
+        [FileServiceIgnore]
+        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+
+        /// <summary>
+        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// </summary>
+        [FileServiceIgnore]
+        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
+
+        /// <summary>
+        /// Check if at least one of the starts in the <see cref="Starts"/> dictionary is active.
+        /// Or set all starts to active/inactive.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsActive
+        {
+            get => Starts?.Values?.Where(s => s != null)?.Any(s => s.IsActive) ?? false;
+            set
+            {
+                if (Starts == null) { return; }
+                Starts?.Values?.Where(s => s != null)?.ToList()?.ForEach(s => s.IsActive = value);
+                OnPropertyChanged(nameof(IsActive));
+            }
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Other properties
+
+        private bool _hasDuplicates = false;
+        /// <summary>
+        /// This flag indicates if there are duplicates of this person in the person list.
+        /// It is updated by the <see cref="Services.PersonService"/> when loading or modifying the person list.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool HasDuplicates
+        {
+            get => _hasDuplicates;
+            set => SetProperty(ref _hasDuplicates, value);
+        }
+
+        private int _resultListPlace = 0;
+        /// <summary>
+        /// This is the place in the overall result list of the person.
+        /// This is 1-based. 0 means not assigned yet or not available.
+        /// </summary>
+        [FileServiceIgnore]
+        public int ResultListPlace
+        {
+            get => _resultListPlace;
+            set => SetProperty(ref _resultListPlace, value);
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region PersonStart PropertyChanged event handler
+
         private void PersonStart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Starts));
@@ -288,20 +330,11 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
-        /// <summary>
-        /// Set the time for the matching start if available
-        /// </summary>
-        /// <param name="style">Requested <see cref="SwimmingStyles"/></param>
-        /// <param name="time">Time to set for the start</param>
-        public void SetStartTime(SwimmingStyles style, TimeSpan time)
-        {
-            PersonStart start = GetStartByStyle(style);
-            if (start == null) { return; }
-            start.Time = time;
-        }
+        #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // PROPERTIES FOR FASTER ACCESS AND FILE SAVING
+
+        #region Style Properties for faster access and file saving
 
         /// <summary>
         /// Starting with Breaststroke
@@ -363,7 +396,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set { SetStartAvailable(SwimmingStyles.WaterFlea, value); OnPropertyChanged(); }
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Time Properties for faster access and file saving
 
         /// <summary>
         /// Time for Breaststroke
@@ -425,7 +462,11 @@ namespace Vereinsmeisterschaften.Core.Models
             set { SetStartTime(SwimmingStyles.WaterFlea, value); OnPropertyChanged(); }
         }
 
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region SetPropertyFromString helper
 
         /// <summary>
         /// String used to mark a start as inactive in the file (case-insensitive)
@@ -482,6 +523,12 @@ namespace Vereinsmeisterschaften.Core.Models
             }
         }
 
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Equality, HashCode, ToString, Clone
+
         /// <summary>
         /// Compare if two Persons are equal
         /// </summary>
@@ -519,8 +566,6 @@ namespace Vereinsmeisterschaften.Core.Models
         public object Clone()
             => new Person(this);
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         /// <summary>
         /// Compare if two dictionaries are equal (same keys and same values)
         /// </summary>
@@ -546,5 +591,7 @@ namespace Vereinsmeisterschaften.Core.Models
             }
             return true;
         }
+
+        #endregion
     }
 }

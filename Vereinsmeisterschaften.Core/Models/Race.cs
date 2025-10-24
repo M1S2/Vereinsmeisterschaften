@@ -10,72 +10,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// </summary>
     public class Race : ObservableObject, IEquatable<Race>, ICloneable
     {
-        /// <summary>
-        /// <see cref="SwimmingStyles"> for this <see cref="Race"/>. This is the <see cref="SwimmingStyles"/>> from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
-        /// </summary>
-        [FileServiceOrder]
-        public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
-
-        /// <summary>
-        /// Distance for this <see cref="Race"/>. This is the distance from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
-        /// </summary>
-        [FileServiceOrder]
-        public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
-
-        private ObservableCollection<PersonStart> _starts;
-        /// <summary>
-        /// List with all starts of this <see cref="Race"/>
-        /// </summary>
-        [FileServiceOrder]
-        public ObservableCollection<PersonStart> Starts
-        {
-            get => _starts;
-            set => SetProperty(ref _starts, value);
-        }
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <summary>
-        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid_SameDistances => Starts?.GroupBy(s => s?.CompetitionObj?.Distance).Count() <= 1;
-
-        /// <summary>
-        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid_SameStyles => Starts?.GroupBy(s => s?.Style).Count() <= 1;
-
-        /// <summary>
-        /// True when the starts are not empty
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid_StartsAvailable => Starts?.Count > 0;
-
-        /// <summary>
-        /// A <see cref="Race"/> is considered as valid, when:
-        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
-        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
-        /// - the starts are not empty
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsValid => IsValid_SameStyles && IsValid_SameDistances && IsValid_StartsAvailable;
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        private int _raceID;
-        /// <summary>
-        /// Number for this <see cref="Race"/>
-        /// </summary>
-        [FileServiceIgnore]
-        public int RaceID
-        {
-            get => _raceID;
-            set => SetProperty(ref _raceID, value);
-        }
-
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Constructors
 
         /// <summary>
         /// Constructor for the Race class (create an empty <see cref="Starts"/> collection).
@@ -93,7 +28,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public Race(List<PersonStart> starts)
         {
             Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
-            if(Starts != null)
+            if (Starts != null)
             {
                 Starts.CollectionChanged += Starts_CollectionChanged;
             }
@@ -134,6 +69,91 @@ namespace Vereinsmeisterschaften.Core.Models
             RaceID = other.RaceID;
         }
 
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Basic properties
+
+        /// <summary>
+        /// <see cref="SwimmingStyles"> for this <see cref="Race"/>. This is the <see cref="SwimmingStyles"/>> from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
+        /// </summary>
+        [FileServiceOrder]
+        public SwimmingStyles Style => Starts?.FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+
+        /// <summary>
+        /// Distance for this <see cref="Race"/>. This is the distance from the first <see cref="PersonStart"/> in the <see cref="Starts"/> collection.
+        /// </summary>
+        [FileServiceOrder]
+        public int Distance => Starts?.FirstOrDefault()?.CompetitionObj?.Distance ?? 0;
+
+        private ObservableCollection<PersonStart> _starts;
+        /// <summary>
+        /// List with all starts of this <see cref="Race"/>
+        /// </summary>
+        [FileServiceOrder]
+        public ObservableCollection<PersonStart> Starts
+        {
+            get => _starts;
+            set => SetProperty(ref _starts, value);
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Validation properties
+
+        /// <summary>
+        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_SameDistances => Starts?.GroupBy(s => s?.CompetitionObj?.Distance).Count() <= 1;
+
+        /// <summary>
+        /// True when all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_SameStyles => Starts?.GroupBy(s => s?.Style).Count() <= 1;
+
+        /// <summary>
+        /// True when the starts are not empty
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid_StartsAvailable => Starts?.Count > 0;
+
+        /// <summary>
+        /// A <see cref="Race"/> is considered as valid, when:
+        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same <see cref="SwimmingStyles"/>
+        /// - all <see cref="PersonStart"/> in the <see cref="Starts"/> collection have the same distance
+        /// - the starts are not empty
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsValid => IsValid_SameStyles && IsValid_SameDistances && IsValid_StartsAvailable;
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Other properties
+
+        private int _raceID;
+        /// <summary>
+        /// Number for this <see cref="Race"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public int RaceID
+        {
+            get => _raceID;
+            set => SetProperty(ref _raceID, value);
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Starts Collection Changed Event Handler
+
         private void Starts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Style));
@@ -143,8 +163,12 @@ namespace Vereinsmeisterschaften.Core.Models
             OnPropertyChanged(nameof(IsValid_StartsAvailable));
             OnPropertyChanged(nameof(IsValid));
         }
+        
+        #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Equality, HashCode, ToString, Clone
 
         /// <summary>
         /// Compare if two <see cref="Race"/> are equal
@@ -175,5 +199,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Cloned object of type</returns>
         public object Clone()
             => new Race(this, true);
+
+        #endregion
     }
 }

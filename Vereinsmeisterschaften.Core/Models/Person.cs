@@ -22,6 +22,11 @@ namespace Vereinsmeisterschaften.Core.Models
             foreach(SwimmingStyles style in availableSwimmingStyles)
             {
                 Starts.Add(style, null);
+
+                // prepare a PersonStart object for each style and store it in the available starts dictionary
+                PersonStart newStart = new PersonStart() { Style = style, PersonObj = this };
+                newStart.PropertyChanged += PersonStart_PropertyChanged;
+                _availableStartsDict.Add(style, newStart);
             }
         }
 
@@ -176,6 +181,12 @@ namespace Vereinsmeisterschaften.Core.Models
 
         #region Starts management
 
+        /// <summary>
+        /// This dictionary holds all available starts of the person (no matter if assigned or not).
+        /// The <see cref="Starts"/> dictionary holds only the assigned starts."/>
+        /// </summary>
+        private Dictionary<SwimmingStyles, PersonStart> _availableStartsDict = new Dictionary<SwimmingStyles, PersonStart>();
+
         private Dictionary<SwimmingStyles, PersonStart> _starts = new Dictionary<SwimmingStyles, PersonStart>();
         /// <summary>
         /// Dictionary with all starts of the person
@@ -213,13 +224,10 @@ namespace Vereinsmeisterschaften.Core.Models
             PersonStart start = GetStartByStyle(style);
             if (start == null && available)
             {
-                PersonStart newStart = new PersonStart() { Style = style, PersonObj = this };
-                newStart.PropertyChanged += PersonStart_PropertyChanged;
-                Starts[style] = newStart;
+                Starts[style] = _availableStartsDict[style];
             }
             else if (start != null && !available)
             {
-                Starts[style].PropertyChanged -= PersonStart_PropertyChanged;
                 Starts[style] = null;
             }
             OnPropertyChanged(nameof(Starts));

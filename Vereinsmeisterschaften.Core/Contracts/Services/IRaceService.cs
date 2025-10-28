@@ -75,9 +75,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         int RecalculateVariantIDs(int oldVariantID = -1);
 
         /// <summary>
-        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="AllRacesVariants"/>.
-        /// Also delete empty races.
+        /// Remove non-existing and inactive <see cref="PersonStart"/> objects from all races in <see cref="AllRacesVariants"/>.
+        /// Also delete empty <see cref="Race">.
         /// </summary>
-        void CleanupRacesVariants();
+        /// <param name="removeInactiveStarts">If true, also remove all inactive starts</param>
+        void CleanupRacesVariants(bool removeInactiveStarts = true);
     }
 }

@@ -183,7 +183,8 @@
         </DataGrid>
 
         <!-- Add Competition Button -->
-        <Button Grid.Row="2" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddCompetitionCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
+        <Button Grid.Row="2" Margin="{StaticResource MediumLeftTopRightMargin}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left"
+                Command="{Binding AddCompetitionCommand}">
             <StackPanel Orientation="Horizontal">
                 <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
                 <TextBlock Text="{x:Static properties:Resources.AddNewCompetition}" VerticalAlignment="Center" Margin="10,0,0,0"/>

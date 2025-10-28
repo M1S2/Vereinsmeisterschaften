@@ -472,7 +472,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
-        _raceService.CleanupRacesVariants();
+        _raceService.CleanupRacesVariants(false);
         _raceService.RecalculateVariantIDs();
 
         ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;

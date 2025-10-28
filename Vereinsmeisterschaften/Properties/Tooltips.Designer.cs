@@ -61,11 +61,30 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new race for the current race variant. ähnelt.
+        /// </summary>
+        public static string TooltipAddNewRaceToRaceVariant {
+            get {
+                return ResourceManager.GetString("TooltipAddNewRaceToRaceVariant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Browse for file or folder. ähnelt.
         /// </summary>
         public static string TooltipBrowse {
             get {
                 return ResourceManager.GetString("TooltipBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove non-existing and inactive starts from all races.
+        ///Also delete empty races. ähnelt.
+        /// </summary>
+        public static string TooltipCleanupRaces {
+            get {
+                return ResourceManager.GetString("TooltipCleanupRaces", resourceCulture);
             }
         }
         
@@ -406,11 +425,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add a new race variant. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantAdd {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This variant contains errors. ähnelt.
         /// </summary>
         public static string TooltipRaceVariantContainsError {
             get {
                 return ResourceManager.GetString("TooltipRaceVariantContainsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the current race variant. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantCopy {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantCopy", resourceCulture);
             }
         }
         
@@ -447,6 +484,34 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipRaceVariantKeepWhileCalculationToggleButton {
             get {
                 return ResourceManager.GetString("TooltipRaceVariantKeepWhileCalculationToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove the current race variant. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantRemove {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calculate new race variants depending on the settings of the workspace.
+        ///The race variant marked as best variant and all variants marked to keep during calculation are untouched. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantsCalculate {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantsCalculate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sort the complete list of race variants descending by their scores. ähnelt.
+        /// </summary>
+        public static string TooltipRaceVariantsReorder {
+            get {
+                return ResourceManager.GetString("TooltipRaceVariantsReorder", resourceCulture);
             }
         }
         

@@ -333,4 +333,27 @@ Dieses Datum wird nur für die Erstellung von Dokumenten verwendet (nur als Info
   <data name="TooltipPersonInactive" xml:space="preserve">
     <value>Diese Person ist inaktiv.</value>
   </data>
+  <data name="TooltipCleanupRaces" xml:space="preserve">
+    <value>Nicht existierende und inaktive Starts von allen Rennen löschen.
+Außerdem leere Rennen löschen.</value>
+  </data>
+  <data name="TooltipAddNewRaceToRaceVariant" xml:space="preserve">
+    <value>Neues Rennen für die aktuelle Renn-Variante hinzufügen.</value>
+  </data>
+  <data name="TooltipRaceVariantAdd" xml:space="preserve">
+    <value>Neue Renn-Variante hinzufügen.</value>
+  </data>
+  <data name="TooltipRaceVariantRemove" xml:space="preserve">
+    <value>Aktuelle Renn-Variante löschen.</value>
+  </data>
+  <data name="TooltipRaceVariantCopy" xml:space="preserve">
+    <value>Aktuelle Renn-Variante kopieren.</value>
+  </data>
+  <data name="TooltipRaceVariantsReorder" xml:space="preserve">
+    <value>Komplette Liste mit Renn-Varianten anhand der Bewertung sortieren.</value>
+  </data>
+  <data name="TooltipRaceVariantsCalculate" xml:space="preserve">
+    <value>Neue Renn-Varianten abhängig von den Einstellungen im Arbeitsbereich berechnen.
+Die Variante, die als beste Variante markiert wurde und alle Varianten, die während der Berechnung behalten werden sollen, werden behalten.</value>
+  </data>
 </root>

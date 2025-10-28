@@ -445,10 +445,11 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Remove non-existing <see cref="PersonStart"/> objects from all races in <see cref="AllRacesVariants"/>.
+        /// Remove non-existing and inactive <see cref="PersonStart"/> objects from all races in <see cref="AllRacesVariants"/>.
         /// Also delete empty <see cref="Race">.
         /// </summary>
-        public void CleanupRacesVariants()
+        /// <param name="removeInactiveStarts">If true, also remove all inactive starts</param>
+        public void CleanupRacesVariants(bool removeInactiveStarts = true)
         {
             List<PersonStart> validPersonStarts = _personService.GetAllPersonStarts();
             
@@ -458,6 +459,14 @@ namespace Vereinsmeisterschaften.Core.Services
                 {
                     // Find all starts in this race that are no longer part of the valid PersonStarts and remove them from the Race
                     List<PersonStart> startsToDelete = race.Starts.Except(validPersonStarts, new PersonStartWithoutIsActiveEqualityComparer()).ToList();
+                    if (removeInactiveStarts)
+                    {
+                        // Also remove all inactive starts
+                        startsToDelete.AddRange(race.Starts.Where(s => !s.IsActive));
+                        // Make sure to remove duplicate elements
+                        startsToDelete = startsToDelete.Distinct(new PersonStartWithoutIsActiveEqualityComparer()).ToList();
+                    }
+                    // Remove the starts from the race
                     startsToDelete.ForEach(s => race.Starts.Remove(s));
                 }
 

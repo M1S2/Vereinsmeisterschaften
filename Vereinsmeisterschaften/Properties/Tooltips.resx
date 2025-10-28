@@ -334,4 +334,27 @@ This is only used during document creation as info text.</value>
   <data name="TooltipPersonInactive" xml:space="preserve">
     <value>This person is inactive.</value>
   </data>
+  <data name="TooltipCleanupRaces" xml:space="preserve">
+    <value>Remove non-existing and inactive starts from all races.
+Also delete empty races.</value>
+  </data>
+  <data name="TooltipAddNewRaceToRaceVariant" xml:space="preserve">
+    <value>Add new race for the current race variant.</value>
+  </data>
+  <data name="TooltipRaceVariantAdd" xml:space="preserve">
+    <value>Add a new race variant.</value>
+  </data>
+  <data name="TooltipRaceVariantRemove" xml:space="preserve">
+    <value>Remove the current race variant.</value>
+  </data>
+  <data name="TooltipRaceVariantCopy" xml:space="preserve">
+    <value>Copy the current race variant.</value>
+  </data>
+  <data name="TooltipRaceVariantsReorder" xml:space="preserve">
+    <value>Sort the complete list of race variants descending by their scores.</value>
+  </data>
+  <data name="TooltipRaceVariantsCalculate" xml:space="preserve">
+    <value>Calculate new race variants depending on the settings of the workspace.
+The race variant marked as best variant and all variants marked to keep during calculation are untouched.</value>
+  </data>
 </root>

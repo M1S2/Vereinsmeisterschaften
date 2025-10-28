@@ -78,7 +78,9 @@
         <!-- Buttons to manage the race variants -->
         <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,10,0,10" VerticalAlignment="Top">
             <!-- Calculate races button -->
-            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CalculateRacesVariantsCommand}">
+            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding CalculateRacesVariantsCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantsCalculate}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE7C1;"/>
                     <TextBlock Text="{x:Static properties:Resources.CalculateRacesVariantsString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -86,7 +88,9 @@
             </Button>
 
             <!-- Add race variant button -->
-            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceVariantCommand}">
+            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding AddNewRaceVariantCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantAdd}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
                     <TextBlock Text="{x:Static properties:Resources.AddRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -94,7 +98,9 @@
             </Button>
 
             <!-- Copy race variant button -->
-            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CopyRaceVariantCommand}">
+            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding CopyRaceVariantCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantCopy}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE8C8;"/>
                     <TextBlock Text="{x:Static properties:Resources.CopyRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -102,7 +108,9 @@
             </Button>
 
             <!-- Reorder race variants button -->
-            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding ReorderRaceVariantsCommand}">
+            <Button Margin="0,0,10,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding ReorderRaceVariantsCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantsReorder}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE8CB;"/>
                     <TextBlock Text="{x:Static properties:Resources.ReorderRaceVariantsString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -110,7 +118,9 @@
             </Button>
 
             <!-- Remove race variant button -->
-            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{DynamicResource BrushError}" Command="{Binding RemoveRaceVariantCommand}">
+            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{DynamicResource BrushError}"
+                    Command="{Binding RemoveRaceVariantCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantRemove}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE738;"/>
                     <TextBlock Text="{x:Static properties:Resources.RemoveRaceVariantString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -520,7 +530,9 @@
         <!-- Edit races variant and highlight controls-->
         <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,10" LastChildFill="False">
             <!-- Add empty race button -->
-            <Button DockPanel.Dock="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AddNewRaceCommand}">
+            <Button DockPanel.Dock="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding AddNewRaceCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipAddNewRaceToRaceVariant}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
                     <TextBlock Text="{x:Static properties:Resources.AddEmptyRaceString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -528,7 +540,9 @@
             </Button>
 
             <!-- Cleanup races button -->
-            <Button DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CleanupRacesCommand}">
+            <Button DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Command="{Binding CleanupRacesCommand}"
+                    ToolTip="{x:Static properties:Tooltips.TooltipCleanupRaces}">
                 <StackPanel Orientation="Horizontal">
                     <controls:FontIcon FontSize="20" Glyph="&#xEA99;"/>
                     <TextBlock Text="{x:Static properties:Resources.CleanupRacesString}" VerticalAlignment="Center" Margin="10,0,0,0"/>

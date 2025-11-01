@@ -10,6 +10,7 @@
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
+    xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     Dialog:DialogParticipation.Register="{Binding}"
@@ -372,7 +373,7 @@
                         </Border>
                         <!-- List with all PersonStarts-->
                         <ListBox x:Name="InnerListBoxRace"
-                                 ItemsSource="{Binding Starts}"                                 
+                                 ItemsSource="{Binding Starts}"
                                  dd:DragDrop.IsDragSource="True"
                                  dd:DragDrop.IsDropTarget="True"
                                  dd:DragDrop.UseDefaultDragAdorner="True"
@@ -380,7 +381,8 @@
                                  dd:DragDrop.UseDropTargetHint="True"
                                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerObj}"
                                  dd:DragDrop.DropHintDataTemplate="{StaticResource DefaultDropHintTemplate}"
-                                 PreviewMouseWheel="InnerListBoxRace_PreviewMouseWheel">
+                                 PreviewMouseWheel="InnerListBoxRace_PreviewMouseWheel"
+                                 behaviors:ListBoxGlobalSingleSelectionBehavior.IsEnabled="True">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>

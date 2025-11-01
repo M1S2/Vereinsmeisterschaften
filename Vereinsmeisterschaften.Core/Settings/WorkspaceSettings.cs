@@ -28,6 +28,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES = "WeightPersonStartPauses";
         public const string SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER = "WeightStyleOrder";
         public const string SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS = "WeightStartGenders";
+        public const string SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD = "ShortPauseThreshold";
         public const string SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE = "PriorityStyleBreaststroke";
         public const string SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE = "PriorityStyleFreestyle";
         public const string SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE = "PriorityStyleBackstroke";
@@ -82,6 +83,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES, 65.0, 0.0, 100.0);
             groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER, 10.0, 0.0, 100.0);
             groupRaceCalculation.MakeSureSettingExists<double>(SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS, 5.0, 0.0, 100.0);
+            groupRaceCalculation.MakeSureSettingExists<uint>(SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD, 3u, 1u, 100u);
             groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE, 1, 1, 6);          // The lower the number the higher the priority
             groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE, 2, 1, 6);
             groupRaceCalculation.MakeSureSettingExists<int>(SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE, 3, 1, 6);

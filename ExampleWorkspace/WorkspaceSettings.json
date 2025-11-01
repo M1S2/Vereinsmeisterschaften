@@ -64,6 +64,10 @@
         "Value": 5.0
       },
       {
+        "Key": "ShortPauseThreshold",
+        "Value": 3
+      },
+      {
         "Key": "PriorityStyleBreaststroke",
         "Value": 1
       },

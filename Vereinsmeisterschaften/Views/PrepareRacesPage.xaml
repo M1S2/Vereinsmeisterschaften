@@ -173,6 +173,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -192,6 +193,19 @@
 
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStartGendersString}"/>
                 <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreStartGenders, StringFormat={}{0:N2}%}"/>
+
+                <Expander Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0" IsExpanded="True"
+                          controls:HeaderedControlHelper.HeaderBackground="{StaticResource BrushWarning}"
+                          Visibility="{Binding CurrentRacesVariant.AreStartPausesSeverelyAffectedPersonsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Warning icon -->
+                            <controls:FontIcon Margin="5,0" Glyph="&#xE7BA;"/>
+                            <TextBlock Text="{x:Static properties:Resources.PersonsWithShortPausesString}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Expander.Header>
+                    <ItemsControl ItemsSource="{Binding CurrentRacesVariant.PersonStartPausesSeverelyAffectedPersons}"/>
+                </Expander>
             </Grid>
         </Expander>
 

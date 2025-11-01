@@ -116,6 +116,10 @@ namespace Vereinsmeisterschaften.ViewModels
                 new WorkspaceSettingViewConfig() { Label=Resources.MinimumRacesVariantsScoreString, Tooltip = Tooltips.TooltipMinRacesVariantsScore, Icon = "\uEDE1", Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
+                (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD),
+                new WorkspaceSettingViewConfig() { Label=Resources.ShortPauseThresholdString, Tooltip = Tooltips.TooltipShortPauseThreshold, Icon = "\uE769", Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS),
                 new WorkspaceSettingViewConfig() { Label=Resources.WeightSingleStartsString, Tooltip = Tooltips.TooltipWeightSingleStarts, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },

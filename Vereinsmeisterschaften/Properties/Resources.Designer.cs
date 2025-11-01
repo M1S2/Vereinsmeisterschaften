@@ -794,6 +794,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Persons with short pauses ähnelt.
+        /// </summary>
+        public static string PersonsWithShortPausesString {
+            get {
+                return ResourceManager.GetString("PersonsWithShortPausesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder Marker ähnelt.
         /// </summary>
         public static string PlaceholderMarkerString {
@@ -1285,6 +1294,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ShellWorkspacePage {
             get {
                 return ResourceManager.GetString("ShellWorkspacePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Short Pause Threshold ähnelt.
+        /// </summary>
+        public static string ShortPauseThresholdString {
+            get {
+                return ResourceManager.GetString("ShortPauseThresholdString", resourceCulture);
             }
         }
         

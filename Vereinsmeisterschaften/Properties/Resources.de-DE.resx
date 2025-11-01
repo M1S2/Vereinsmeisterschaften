@@ -587,4 +587,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="EmptyPersonFound" xml:space="preserve">
     <value>Leere Person gefunden (ohne zugeordnete Starts)</value>
   </data>
+  <data name="PersonsWithShortPausesString" xml:space="preserve">
+    <value>Personen mit kurzer Pause</value>
+  </data>
+  <data name="ShortPauseThresholdString" xml:space="preserve">
+    <value>Schwelle für kurze Pause</value>
+  </data>
 </root>

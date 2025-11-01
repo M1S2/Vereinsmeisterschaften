@@ -356,4 +356,8 @@ Außerdem leere Rennen löschen.</value>
     <value>Neue Renn-Varianten abhängig von den Einstellungen im Arbeitsbereich berechnen.
 Die Variante, die als beste Variante markiert wurde und alle Varianten, die während der Berechnung behalten werden sollen, werden behalten.</value>
   </data>
+  <data name="TooltipShortPauseThreshold" xml:space="preserve">
+    <value>Wenn zwei Starts einer Person weniger Pause als diese Zahl haben, wird die Pause als kurz angesehen.
+Das führt zu einer schlechten Bewertung für die Renn-Variante.</value>
+  </data>
 </root>

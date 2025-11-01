@@ -10,7 +10,7 @@ namespace Vereinsmeisterschaften.Core.Models
     /// <summary>
     /// Class that represents a combination variant of all single races.
     /// </summary>
-    public class RacesVariant : ObservableObject, IEquatable<RacesVariant>, ICloneable
+    public partial class RacesVariant : ObservableObject, IEquatable<RacesVariant>, ICloneable
     {
         #region Constructors / Destructor
 
@@ -324,55 +324,63 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-        private double _scoreSingleStarts;
         /// <summary>
         /// Score regarding single starts
         /// </summary>
-        public double ScoreSingleStarts
-        {
-            get => _scoreSingleStarts;
-            set => SetProperty(ref _scoreSingleStarts, value);
-        }
-
-        private double _scoreSameStyleSequence;
+        [ObservableProperty]
+        private double _scoreSingleStarts;
+        
         /// <summary>
         /// Score regarding same styles in sequence
         /// </summary>
-        public double ScoreSameStyleSequence
-        {
-            get => _scoreSameStyleSequence;
-            set => SetProperty(ref _scoreSameStyleSequence, value);
-        }
-
-        private double _scorePersonStartPauses;
+        [ObservableProperty]
+        private double _scoreSameStyleSequence;
+        
         /// <summary>
         /// Score regarding pauses between person starts
         /// </summary>
-        public double ScorePersonStartPauses
-        {
-            get => _scorePersonStartPauses;
-            set => SetProperty(ref _scorePersonStartPauses, value);
-        }
-
-        private double _scoreStyleOrder;
+        [ObservableProperty]
+        private double _scorePersonStartPauses;
+        
         /// <summary>
         /// Score regarding the preferred order of the styles
         /// </summary>
-        public double ScoreStyleOrder
-        {
-            get => _scoreStyleOrder;
-            set => SetProperty(ref _scoreStyleOrder, value);
-        }
+        [ObservableProperty]
+        private double _scoreStyleOrder;
 
-        private double _scoreStartGenders;
         /// <summary>
         /// Score regarding the homogenity of genders in the starts
         /// </summary>
-        public double ScoreStartGenders
+        [ObservableProperty]
+        private double _scoreStartGenders;
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Additional score properties
+
+        private List<Person> _personStartPausesSeverelyAffectedPersons;
+        /// <summary>
+        /// List of persons that are severely affected by short pauses between their starts.
+        /// This is updated during <see cref="EvaluatePersonStartPauses"/>
+        /// </summary>
+        public List<Person> PersonStartPausesSeverelyAffectedPersons
         {
-            get => _scoreStartGenders;
-            set => SetProperty(ref _scoreStartGenders, value);
+            get => _personStartPausesSeverelyAffectedPersons;
+            set
+            {
+                if(SetProperty(ref _personStartPausesSeverelyAffectedPersons, value))
+                {
+                    OnPropertyChanged(nameof(AreStartPausesSeverelyAffectedPersonsAvailable));
+                }
+            }
         }
+
+        /// <summary>
+        /// True if the number of persons who are severely affected by start pauses is greater than 0.
+        /// </summary>
+        public bool AreStartPausesSeverelyAffectedPersonsAvailable => (PersonStartPausesSeverelyAffectedPersons?.Count ?? 0) > 0;
 
         #endregion
 
@@ -450,7 +458,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Score for person pauses:
         /// The more pause between the starts of a person the better
-        /// This returns 0 if there are any <see cref="PersonStart"/> of the same person that have a pause of less than 3 races
+        /// This returns 0 if there are any <see cref="PersonStart"/> of the same person that have a pause of less than the short pauses threshold races
         /// </summary>
         /// <returns>Score for person pauses</returns>
         private double EvaluatePersonStartPauses()
@@ -460,13 +468,18 @@ namespace Vereinsmeisterschaften.Core.Models
 
             Dictionary<Person, int> lastRaceIndex = new();
             Dictionary<Person, double> individualPenalties = new();
+            List<Person> severelyAffectedPersons = new List<Person>();
 
-            int severelyAffectedPersons = 0;    // Number of persons with hard penalty
+            uint shortPausesThreshold = _workspaceService?.Settings?.GetSettingValue<uint>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD) ?? 3;
+            int severelyAffectedPersonsCount = 0;    // Number of persons with hard penalty
 
             for (int i = 0; i < Races.Count; i++)
             {
                 foreach (var personStart in Races[i].Starts)
                 {
+                    // Only consider active starts
+                    if (!personStart.IsActive) { continue; }
+
                     Person person = personStart.PersonObj;
 
                     if (lastRaceIndex.TryGetValue(person, out int lastIndex))
@@ -482,10 +495,11 @@ namespace Vereinsmeisterschaften.Core.Models
                             _ => Math.Max(0, 10 - distance) // Minimal penalty for 3+ races pause
                         };
 
-                        // if the distance is below 3 races, this is regarded as severly affected
-                        if (distance < 3)
+                        // if the distance is below shortPausesThreshold races, this is regarded as severly affected
+                        if (distance < shortPausesThreshold)
                         {
-                            severelyAffectedPersons++;
+                            severelyAffectedPersonsCount++;
+                            severelyAffectedPersons.Add(person);
                         }
 
                         // Save the highest penalty for a person
@@ -501,8 +515,10 @@ namespace Vereinsmeisterschaften.Core.Models
                 }
             }
 
+            PersonStartPausesSeverelyAffectedPersons = severelyAffectedPersons.Distinct().ToList();
+
             // Return the worst score if there are severely affected persons
-            if (severelyAffectedPersons > 0)
+            if (severelyAffectedPersonsCount > 0)
             {
                 return 0;
             }

@@ -357,4 +357,8 @@ Also delete empty races.</value>
     <value>Calculate new race variants depending on the settings of the workspace.
 The race variant marked as best variant and all variants marked to keep during calculation are untouched.</value>
   </data>
+  <data name="TooltipShortPauseThreshold" xml:space="preserve">
+    <value>If two starts of a person have less pause than this number, the pause is regarded short.
+This leads to a bad score for the race variant.</value>
+  </data>
 </root>

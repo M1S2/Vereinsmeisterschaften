@@ -526,6 +526,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die If two starts of a person have less pause than this number, the pause is regarded short.
+        ///This leads to a bad score for the race variant. ähnelt.
+        /// </summary>
+        public static string TooltipShortPauseThreshold {
+            get {
+                return ResourceManager.GetString("TooltipShortPauseThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show resolved path ähnelt.
         /// </summary>
         public static string TooltipShowResolvedPath {

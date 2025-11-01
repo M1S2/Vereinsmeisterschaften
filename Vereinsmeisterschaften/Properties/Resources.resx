@@ -586,4 +586,10 @@
   <data name="EmptyPersonFound" xml:space="preserve">
     <value>Empty Person found (no starts assigned)</value>
   </data>
+  <data name="PersonsWithShortPausesString" xml:space="preserve">
+    <value>Persons with short pauses</value>
+  </data>
+  <data name="ShortPauseThresholdString" xml:space="preserve">
+    <value>Short Pause Threshold</value>
+  </data>
 </root>

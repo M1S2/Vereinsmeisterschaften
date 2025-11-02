@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 
@@ -41,6 +42,10 @@ namespace Vereinsmeisterschaften.Core.Models
             this.FirstName = other.FirstName;
             this.Gender = other.Gender;
             this.BirthYear = other.BirthYear;
+
+            // Shallow clone of the Friends list
+            this.FriendGroupIDs = (other.FriendGroupIDs != null) ? new ObservableCollection<int>(other.FriendGroupIDs) : null;
+            this.Friends = (other.Friends != null) ? new List<Person>(other.Friends) : null;
 
             // Deep clone of the Starts dictionary
             this.Starts = other.Starts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value?.Clone() as PersonStart);
@@ -480,6 +485,52 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Friendship properties
+
+        private ObservableCollection<int> _friendGroupIDs = new ObservableCollection<int>();
+        /// <summary>
+        /// IDs of the friend groups the person belongs to.
+        /// These IDs are used to save the friendship relations in the file.
+        /// </summary>
+        [FileServiceOrder]
+        public ObservableCollection<int> FriendGroupIDs
+        {
+            get => _friendGroupIDs;
+            set
+            {
+                if (_friendGroupIDs != null) { _friendGroupIDs.CollectionChanged -= _friendGroupIDs_CollectionChanged; }
+                if (SetProperty(ref _friendGroupIDs, value))
+                {
+                    if (_friendGroupIDs != null)
+                    {
+                        _friendGroupIDs.Sort((a, b) => a.CompareTo(b));
+                        _friendGroupIDs.CollectionChanged += _friendGroupIDs_CollectionChanged;
+                    }
+                }
+            }
+        }
+
+        private void _friendGroupIDs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(FriendGroupIDs));
+        }
+
+        private List<Person> _friends = new List<Person>();
+        /// <summary>
+        /// Friends of the person.
+        /// These references are resolved from the <see cref="FriendGroupIDs"/> by the <see cref="IPersonService.UpdateAllFriendReferencesFromFriendGroupIDs"/>
+        /// </summary>
+        [FileServiceIgnore]
+        public List<Person> Friends
+        {
+            get => _friends;
+            set => SetProperty(ref _friends, value);
+        }
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         #region SetPropertyFromString helper
 
         /// <summary>
@@ -533,6 +584,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(ButterflyTime): dataObj.ButterflyTime = TimeSpan.Parse(value); break;
                 case nameof(MedleyTime): dataObj.MedleyTime = TimeSpan.Parse(value); break;
                 case nameof(WaterFleaTime): dataObj.WaterFleaTime = TimeSpan.Parse(value); break;
+                case nameof(FriendGroupIDs): dataObj.FriendGroupIDs = new ObservableCollection<int>(value.Split(',').Select(s => int.Parse(s))); dataObj.FriendGroupIDs.Sort((a, b) => a.CompareTo(b)); break;
                 default: break;
             }
         }
@@ -549,7 +601,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Person to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Person"/></returns>
         public override bool Equals(object obj)
-            => obj is Person p && (p.Name.ToUpper(), p.FirstName.ToUpper(), p.Gender, p.BirthYear).Equals((Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear)) && CompareDictionaries(Starts, p.Starts);
+            => obj is Person p && (p.Name.ToUpper(), p.FirstName.ToUpper(), p.Gender, p.BirthYear).Equals((Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear)) && p.FriendGroupIDs.SequenceEqual(FriendGroupIDs) && CompareDictionaries(Starts, p.Starts);
         
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -567,7 +619,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
             => base.GetHashCode();
-            //=> (Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear, Starts).GetHashCode();
+            //=> (Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear, FriendGroupIDs, Starts).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.

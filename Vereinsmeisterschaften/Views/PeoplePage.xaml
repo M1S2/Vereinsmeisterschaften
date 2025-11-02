@@ -42,6 +42,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
@@ -108,7 +109,7 @@
                                                    ToolTip="{x:Static properties:Tooltips.TooltipEmptyPerson}"/>
 
                                 <!-- Person has duplicates Icon -->
-                                <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE8FA;"
+                                <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE8C8;"
                                                    Visibility="{Binding HasDuplicates, Converter={StaticResource BoolVisibilityHiddenConverter}}"
                                                    ToolTip="{x:Static properties:Tooltips.TooltipDuplicatePerson}"/>
                             </StackPanel>
@@ -549,15 +550,16 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
 
-        <DockPanel Grid.Row="4" LastChildFill="False" Margin="{StaticResource MediumBottomMargin}">
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <DockPanel Grid.Row="4" LastChildFill="False">
             <!-- Add Person Button -->
             <Button DockPanel.Dock="Left" Margin="{StaticResource MediumLeftTopRightMargin}" Command="{Binding AddPersonCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
-                    <controls:FontIcon FontSize="20" Glyph="&#xE8FA;"/>
+                    <controls:FontIcon FontSize="20" Glyph="&#xE948;"/>
                     <TextBlock Text="{x:Static properties:Resources.AddNewPerson}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
@@ -571,18 +573,71 @@
             </StackPanel>
         </DockPanel>
 
+        <!-- Friend Groups -->
+        <Expander Grid.Row="5" Margin="{StaticResource MediumLeftTopRightBottomMargin}" IsExpanded="False">
+            <Expander.Header>
+                <StackPanel Orientation="Horizontal" ToolTip="{x:Static properties:Tooltips.TooltipFriendGroups}">
+                    <controls:FontIcon FontSize="25" Glyph="&#xE8FA;" Margin="0,0,10,0"/>
+                    <TextBlock Text="{x:Static properties:Resources.FriendGroupsString}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding FriendGroups.Count, StringFormat=' ({0})'}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Expander.Header>
+            <DockPanel LastChildFill="True">
+                <!-- Add Friend group button -->
+                <Button DockPanel.Dock="Bottom" Margin="{StaticResource SmallTopMargin}" Command="{Binding AddNewFriendGroupCommand}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:FontIcon FontSize="20" Glyph="&#xE8FA;"/>
+                        <TextBlock Text="{x:Static properties:Resources.AddNewFriendGroupString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <ListBox ItemsSource="{Binding FriendGroups}" MaxHeight="150">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Margin="5" LastChildFill="False">
+                                <TextBlock DockPanel.Dock="Left" Text="{Binding GroupId, StringFormat=#{0}}" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                <controls:MultiSelectionComboBox DockPanel.Dock="Left"
+                                                                 ItemsSource="{Binding AvailableFriends}"
+                                                                 controls:MultiSelectorHelper.SelectedItems="{Binding Friends, Mode=TwoWay}"
+                                                                 ItemTemplate="{StaticResource DataTemplatePersonShort}"
+                                                                 SelectedItemTemplate="{StaticResource DataTemplatePersonShort}"/>
+                                <Button DockPanel.Dock="Right" Background="{StaticResource BrushError}"
+                                        Width="30" Height="30"
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemoveFriendGroupCommand}" CommandParameter="{Binding}">
+                                    <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Expander>
+        
         <!-- Duplicate Person Warning -->
-        <Border Grid.Row="5" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+        <Border Grid.Row="6" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
                 Visibility="{Binding HasDuplicatePersons, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <!-- Warning icon -->
-                <controls:FontIcon Margin="5" Glyph="&#xE8FA;"/>
+                <controls:FontIcon Margin="5" Glyph="&#xE8C8;"/>
                 <TextBlock Text="{x:Static properties:Resources.DuplicatePersonFound}" VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
         <!-- Empty Person Warning -->
-        <Border Grid.Row="6" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+        <Border Grid.Row="7" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
                 Visibility="{Binding HasEmptyPersons, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <!-- Warning icon -->

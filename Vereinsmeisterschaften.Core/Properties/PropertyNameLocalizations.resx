@@ -192,4 +192,7 @@
   <data name="Race_Style" xml:space="preserve">
     <value>Swimming Style</value>
   </data>
+  <data name="Person_FriendGroupIDs" xml:space="preserve">
+    <value>Friends</value>
+  </data>
 </root>

@@ -29,6 +29,11 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public bool AreRacesVariantsAvailable => AllRacesVariants?.Count > 0;
 
+    /// <summary>
+    /// True, if there are friend groups available in the <see cref="IPersonService"/>
+    /// </summary>
+    public bool AreFriendGroupsAvailable => _personService.NumberFriendGroups > 0;
+
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -492,6 +497,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));
         OnPropertyChanged(nameof(AvailablePersons));
         OnPropertyChanged(nameof(CurrentRacesVariant));
+        OnPropertyChanged(nameof(AreFriendGroupsAvailable));
         CurrentVariantID = 0;
     }
 

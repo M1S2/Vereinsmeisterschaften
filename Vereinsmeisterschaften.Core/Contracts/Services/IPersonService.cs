@@ -82,5 +82,15 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="filterParameter">Parameter used depending on the selected filter</param>
         /// <returns>List with <see cref="PersonStart"/> objects</returns>
         List<PersonStart> GetAllPersonStarts(PersonStartFilters filter = PersonStartFilters.None, object filterParameter = null);
+
+        /// <summary>
+        /// Loop all <see cref="Person"/> objects and update their friend references (<see cref="Person.Friends"/>) from the friend group IDs (<see cref="Person.FriendGroupIDs"/>).
+        /// </summary>
+        void UpdateAllFriendReferencesFromFriendGroupIDs();
+
+        /// <summary>
+        /// Return the number of friend groups.
+        /// </summary>
+        int NumberFriendGroups { get; }
     }
 }

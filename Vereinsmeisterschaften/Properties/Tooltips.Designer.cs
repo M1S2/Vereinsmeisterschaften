@@ -154,6 +154,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A friend group defines which persons are friends.
+        ///This information is used during race calculation to prefer races with friends as competitors. ähnelt.
+        /// </summary>
+        public static string TooltipFriendGroups {
+            get {
+                return ResourceManager.GetString("TooltipFriendGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Hide resolved path ähnelt.
         /// </summary>
         public static string TooltipHideResolvedPath {
@@ -619,6 +629,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipTimeInputMillisecondDigits {
             get {
                 return ResourceManager.GetString("TooltipTimeInputMillisecondDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight for the score for friendships (The more friends start together in the same race the better). ähnelt.
+        /// </summary>
+        public static string TooltipWeightFriendship {
+            get {
+                return ResourceManager.GetString("TooltipWeightFriendship", resourceCulture);
             }
         }
         

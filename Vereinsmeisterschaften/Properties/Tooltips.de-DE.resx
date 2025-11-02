@@ -360,4 +360,11 @@ Die Variante, die als beste Variante markiert wurde und alle Varianten, die wäh
     <value>Wenn zwei Starts einer Person weniger Pause als diese Zahl haben, wird die Pause als kurz angesehen.
 Das führt zu einer schlechten Bewertung für die Renn-Variante.</value>
   </data>
+  <data name="TooltipFriendGroups" xml:space="preserve">
+    <value>Eine Freundesgruppe definiert, welche Personen Freunde sind.
+Diese Information wird während der Berechnung der Rennen verwendet, um Rennen zu bevorzugen, in denen Freunde gemeinsam antreten.</value>
+  </data>
+  <data name="TooltipWeightFriendship" xml:space="preserve">
+    <value>Gewichtung für die Punkte für die Freundschaften (je mehr Freunde zusammen im selben Rennen starten, umso besser).</value>
+  </data>
 </root>

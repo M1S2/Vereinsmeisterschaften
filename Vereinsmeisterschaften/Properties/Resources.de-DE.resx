@@ -593,6 +593,18 @@ Alle Starts sind zugewiesen.</value>
   <data name="ShortPauseThresholdString" xml:space="preserve">
     <value>Schwelle für kurze Pause</value>
   </data>
+  <data name="FriendGroupsString" xml:space="preserve">
+    <value>Freundesgruppen</value>
+  </data>
+  <data name="AddNewFriendGroupString" xml:space="preserve">
+    <value>Neue Freundesgruppe hinzufügen</value>
+  </data>
+  <data name="ScoreFriendshipsString" xml:space="preserve">
+    <value>Bewertung Freundschaften</value>
+  </data>
+  <data name="WeightFriendshipString" xml:space="preserve">
+    <value>Gewichtung Freundschaften (%)</value>
+  </data>
   <data name="IterationProgressString" xml:space="preserve">
     <value>Iterationsfortschritt</value>
   </data>

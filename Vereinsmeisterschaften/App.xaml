@@ -76,6 +76,18 @@
                 <Setter Property="behaviors:DataGridBehavior.EnableThreeStateSorting" Value="True" />
             </Style>
 
+            <!-- Style to gray out TextBlocks when they are disabled -->
+            <Style TargetType="{x:Type TextBlock}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.25" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">
                 <Grid>
@@ -100,6 +112,19 @@
                 </Grid>
             </ControlTemplate>
 
+            <!-- DataTemplate to show all relevant infos of a person in short form -->
+            <DataTemplate x:Key="DataTemplatePersonShort" DataType="{x:Type coreModels:Person}">
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}, {1} ({2})">
+                            <Binding Path="Name"/>
+                            <Binding Path="FirstName"/>
+                            <Binding Path="BirthYear"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </DataTemplate>
+            
             <!-- Style for reset settings button -->
             <Style x:Key="StyleResetSettingsButton" TargetType="{x:Type Button}">
                 <Setter Property="Template">

@@ -592,6 +592,18 @@
   <data name="ShortPauseThresholdString" xml:space="preserve">
     <value>Short Pause Threshold</value>
   </data>
+  <data name="FriendGroupsString" xml:space="preserve">
+    <value>Friend Groups</value>
+  </data>
+  <data name="AddNewFriendGroupString" xml:space="preserve">
+    <value>Add new friend group</value>
+  </data>
+  <data name="ScoreFriendshipsString" xml:space="preserve">
+    <value>Score Friendships</value>
+  </data>
+  <data name="WeightFriendshipString" xml:space="preserve">
+    <value>Weight Friendship (%)</value>
+  </data>
   <data name="IterationProgressString" xml:space="preserve">
     <value>Iteration Progress</value>
   </data>

@@ -79,6 +79,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new friend group ähnelt.
+        /// </summary>
+        public static string AddNewFriendGroupString {
+            get {
+                return ResourceManager.GetString("AddNewFriendGroupString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new person ähnelt.
         /// </summary>
         public static string AddNewPerson {
@@ -536,6 +545,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string FreestyleString {
             get {
                 return ResourceManager.GetString("FreestyleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Friend Groups ähnelt.
+        /// </summary>
+        public static string FriendGroupsString {
+            get {
+                return ResourceManager.GetString("FriendGroupsString", resourceCulture);
             }
         }
         
@@ -1064,6 +1082,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Score Friendships ähnelt.
+        /// </summary>
+        public static string ScoreFriendshipsString {
+            get {
+                return ResourceManager.GetString("ScoreFriendshipsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Score Person Pauses ähnelt.
         /// </summary>
         public static string ScorePersonStartPausesString {
@@ -1429,6 +1456,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string WaterFleaString {
             get {
                 return ResourceManager.GetString("WaterFleaString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Weight Friendship (%) ähnelt.
+        /// </summary>
+        public static string WeightFriendshipString {
+            get {
+                return ResourceManager.GetString("WeightFriendshipString", resourceCulture);
             }
         }
         

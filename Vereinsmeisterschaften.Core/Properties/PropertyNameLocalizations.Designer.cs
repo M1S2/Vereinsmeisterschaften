@@ -205,6 +205,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Friends ähnelt.
+        /// </summary>
+        internal static string Person_FriendGroupIDs {
+            get {
+                return ResourceManager.GetString("Person_FriendGroupIDs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gender ähnelt.
         /// </summary>
         internal static string Person_Gender {

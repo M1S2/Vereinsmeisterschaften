@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Data;
-using System.Windows.Input;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Windows.Data;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -50,7 +50,7 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     /// </summary>
     [ObservableProperty]
     private Person _selectedPerson;
-    
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private Subject<bool> filterInputSubject = new Subject<bool>();         // Used to delay the filter while typing
@@ -169,6 +169,117 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    #region Friend Groups Handling
+
+    /// <summary>
+    /// List with all friend group view models
+    /// </summary>
+    [ObservableProperty]
+    private ObservableCollection<FriendGroupViewModel> _friendGroups = new ObservableCollection<FriendGroupViewModel>();
+
+    [ICommand]
+    /// <summary>
+    /// Add a new friend group
+    /// </summary>
+    public void AddNewFriendGroup()
+    {
+        int newGroupId = 0;
+        if (FriendGroups?.Count > 0) { newGroupId = FriendGroups?.Max(g => g.GroupId) + 1 ?? 0; }
+        FriendGroupViewModel newGroup = new FriendGroupViewModel()
+        {
+            GroupId = newGroupId,
+            AvailableFriends = People,
+            Friends = new ObservableCollection<Person>()
+        };
+        newGroup.Friends.CollectionChanged += (s, e) => Friends_CollectionChanged(s, e, newGroup);
+        FriendGroups.Add(newGroup);
+    }
+
+    /// <summary>
+    /// Remove the given friend group and remove the group ID from all persons belonging to this group
+    /// </summary>
+    /// <param name="group"><see cref="FriendGroupViewModel"/> to remove</param>
+    [ICommand]
+    public void RemoveFriendGroup(FriendGroupViewModel group)
+    {
+        foreach (Person person in group.Friends)
+        {
+            if (person.FriendGroupIDs.Contains(group.GroupId))
+            {
+                person.FriendGroupIDs.Remove(group.GroupId);
+            }
+        }
+        FriendGroups.Remove(group);
+        _personService.UpdateAllFriendReferencesFromFriendGroupIDs();
+    }
+
+    /// <summary>
+    /// Creates the friend group view model based on the persons' friend group IDs and friends
+    /// </summary>
+    public void CreateFriendGroupViewModel()
+    {
+        _pauseFriendsCollectionChangedEvent = true;
+        FriendGroups.Clear();
+        _pauseFriendsCollectionChangedEvent = false;
+
+        // Collect all unique group IDs from all persons
+        List<int> allGroupIds = People.SelectMany(p => p.FriendGroupIDs ?? Enumerable.Empty<int>()).Distinct().OrderBy(id => id).ToList();
+
+        foreach (int groupId in allGroupIds)
+        {
+            // Create view model entry for the group
+            FriendGroupViewModel group = new FriendGroupViewModel()
+            {
+                GroupId = groupId,
+                AvailableFriends = People,
+                // Get all persons belonging to this group
+                Friends = new ObservableCollection<Person>(People.Where(p => p.FriendGroupIDs.Contains(groupId)))
+            };
+            group.Friends.CollectionChanged += (s, e) => Friends_CollectionChanged(s, e, group);
+            FriendGroups.Add(group);
+        }
+    }
+
+    private bool _pauseFriendsCollectionChangedEvent = false;
+    private void Friends_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e, FriendGroupViewModel groupViewModel)
+    {
+        if (_pauseFriendsCollectionChangedEvent) { return; }
+
+        int groupId = groupViewModel.GroupId;
+        switch (e.Action)
+        {
+            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                {
+                    foreach (Person newPerson in e.NewItems)
+                    {
+                        if (!newPerson.FriendGroupIDs.Contains(groupId))
+                        {
+                            newPerson.FriendGroupIDs.Add(groupId);
+                        }
+                    }
+                    break;
+                }
+            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                {
+                    foreach (Person oldPerson in e.OldItems)
+                    {
+                        if (oldPerson.FriendGroupIDs.Contains(groupId))
+                        {
+                            oldPerson.FriendGroupIDs.Remove(groupId);
+                        }
+                    }
+                    break;
+                }
+            default: break;
+        }
+        _personService.UpdateAllFriendReferencesFromFriendGroupIDs();
+    }
+
+    #endregion
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
     /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
@@ -184,6 +295,8 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
             person.PropertyChanged += Person_PropertyChanged;
         }
 
+        CreateFriendGroupViewModel();
+
         OnPropertyChanged(nameof(HasDuplicatePersons));
         OnPropertyChanged(nameof(HasEmptyPersons));
     }
@@ -198,6 +311,10 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         }
     }
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Property changed event handler
+
     private void Person_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
@@ -207,4 +324,6 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
             default: break;
         }
     }
+
+    #endregion
 }

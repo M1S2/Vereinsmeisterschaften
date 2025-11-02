@@ -361,4 +361,11 @@ The race variant marked as best variant and all variants marked to keep during c
     <value>If two starts of a person have less pause than this number, the pause is regarded short.
 This leads to a bad score for the race variant.</value>
   </data>
+  <data name="TooltipFriendGroups" xml:space="preserve">
+    <value>A friend group defines which persons are friends.
+This information is used during race calculation to prefer races with friends as competitors.</value>
+  </data>
+  <data name="TooltipWeightFriendship" xml:space="preserve">
+    <value>Weight for the score for friendships (The more friends start together in the same race the better).</value>
+  </data>
 </root>

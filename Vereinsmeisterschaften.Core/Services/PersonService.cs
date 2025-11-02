@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -123,6 +124,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             AddPerson(person);
                         }
+                        UpdateAllFriendReferencesFromFriendGroupIDs();
                     }
 
                     _personListOnLoad = _personList.ToList().ConvertAll(p => new Person(p));
@@ -154,7 +156,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if saving succeeded; false if saving failed (e.g. canceled)</returns>
         public async Task<bool> Save(CancellationToken cancellationToken, string path = "")
         {
-            if(string.IsNullOrEmpty(path)) { path = PersistentPath; }
+            if (string.IsNullOrEmpty(path)) { path = PersistentPath; }
 
             bool saveResult = false;
             Exception exception = null;
@@ -168,7 +170,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             // Get the corresponding IsActive flag for the swimming style and set the file content accordingly
                             bool isActive = true;
-                            switch(currentProperty.Name)
+                            switch (currentProperty.Name)
                             {
                                 case nameof(Person.Breaststroke): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Breaststroke]?.IsActive ?? true; break;
                                 case nameof(Person.Freestyle): isActive = (parentObject as Person)?.Starts[SwimmingStyles.Freestyle]?.IsActive ?? true; break;
@@ -182,6 +184,10 @@ namespace Vereinsmeisterschaften.Core.Services
                         else if (data is Enum dataEnum)
                         {
                             return EnumCoreLocalizedStringHelper.Convert(dataEnum);
+                        }
+                        else if (data is IList dataList)
+                        {
+                            return string.Join(",", dataList.Cast<object>().Select(d => d.ToString()));
                         }
                         else
                         {
@@ -225,7 +231,7 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             if (_personList == null) { _personList = new ObservableCollection<Person>(); }
 
-            foreach(Person person in _personList)
+            foreach (Person person in _personList)
             {
                 person.PropertyChanged -= Person_PropertyChanged;
             }
@@ -248,6 +254,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 AddPerson(new Person(person));
             }
+            UpdateAllFriendReferencesFromFriendGroupIDs();
             _competitionService.UpdateAllCompetitionsForPerson();
             _raceService.ReassignAllPersonStarts();
         }
@@ -258,7 +265,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Person"/> to add</param>
         public void AddPerson(Person person)
         {
-            if(_personList == null) { _personList = new ObservableCollection<Person>(); }
+            if (_personList == null) { _personList = new ObservableCollection<Person>(); }
             _personList.Add(person);
 
             person.PropertyChanged += Person_PropertyChanged;
@@ -304,7 +311,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 _isupdatingScores = false;
             }
 
-            switch(e.PropertyName)
+            switch (e.PropertyName)
             {
                 case nameof(Person.Name):
                 case nameof(Person.FirstName):
@@ -391,5 +398,46 @@ namespace Vereinsmeisterschaften.Core.Services
                 default: return allPersonStarts;
             }
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Friend Management
+
+        /// <summary>
+        /// Loop all <see cref="Person"/> objects and update their friend references (<see cref="Person.Friends"/>) from the friend group IDs (<see cref="Person.FriendGroupIDs"/>).
+        /// </summary>
+        public void UpdateAllFriendReferencesFromFriendGroupIDs()
+        {
+            // For each person: Find all other persons with whom they share a common FriendGroupID
+            foreach (Person person in _personList)
+            {
+                // Make sure the friend group IDs are sorted ascending
+                person.FriendGroupIDs.Sort((a, b) => a.CompareTo(b));
+
+                person.Friends?.Clear();
+                
+                // Skip persons without FriendGroupIDs
+                if (person.FriendGroupIDs == null || person.FriendGroupIDs.Count == 0) { continue; }
+
+                List<Person> friends = _personList.Where(p => p != person &&
+                                                              p.FriendGroupIDs != null &&
+                                                              p.FriendGroupIDs.Intersect(person.FriendGroupIDs).Any()).ToList();
+                person.Friends?.AddRange(friends);
+            }
+
+            foreach (RacesVariant racesVariant in _raceService.AllRacesVariants)
+            {
+                racesVariant.CalculateScore();
+            }
+        }
+
+        /// <summary>
+        /// Return the number of friend groups.
+        /// </summary>
+        //public int NumberFriendGroups => _personList?.Sum(p => p.FriendGroupIDs.Count) ?? 0;
+        public int NumberFriendGroups => _personList?.SelectMany(p => p.FriendGroupIDs)?.Distinct().Count() ?? 0;
+
+        #endregion
+
     }
 }

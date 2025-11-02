@@ -306,10 +306,12 @@ namespace Vereinsmeisterschaften.Core.Models
             {
                 double weightSingleStarts = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS) ?? 5;
                 double weightSameStyleSequence = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE) ?? 5;
-                double weightPersonStartPauses = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES) ?? 65;
+                double weightPersonStartPauses = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES) ?? 60;
                 double weightStyleOrder = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER) ?? 10;
                 double weightStartGenders = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS) ?? 5;
-                double sumWeights = weightSingleStarts + weightSameStyleSequence + weightPersonStartPauses + weightStyleOrder + weightStartGenders;
+                double weightFriendships = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_FRIENDSHIP) ?? 5;
+                weightFriendships = AreFriendshipsDefined ? weightFriendships : 0;
+                double sumWeights = weightSingleStarts + weightSameStyleSequence + weightPersonStartPauses + weightStyleOrder + weightStartGenders + weightFriendships;
 
                 double score = 0;
                 score += ScoreSingleStarts * (weightSingleStarts / sumWeights);
@@ -317,6 +319,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 score += ScorePersonStartPauses * (weightPersonStartPauses / sumWeights);
                 score += ScoreStyleOrder * (weightStyleOrder / sumWeights);
                 score += ScoreStartGenders * (weightStartGenders / sumWeights);
+                score += ScoreFriendships * (weightFriendships / sumWeights);
 
                 return LimitValue(score, 0, 100);
             }
@@ -353,6 +356,19 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         [ObservableProperty]
         private double _scoreStartGenders;
+
+        /// <summary>
+        /// Score regarding friendships between persons
+        /// </summary>
+        [ObservableProperty]
+        private double _scoreFriendships;
+
+        /// <summary>
+        /// True when at least one friendship is defined between persons in this <see cref="RacesVariant"/>.
+        /// This is updated during <see cref="EvaluateFriendships"/>
+        /// </summary>
+        [ObservableProperty]
+        private bool _areFriendshipsDefined;
 
         #endregion
 
@@ -401,6 +417,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 ScorePersonStartPauses = 0;
                 ScoreStyleOrder = 0;
                 ScoreStartGenders = 0;
+                ScoreFriendships = 0;
             }
             else
             {
@@ -409,6 +426,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 ScorePersonStartPauses = EvaluatePersonStartPauses();
                 ScoreStyleOrder = EvaluateStyleOrder();
                 ScoreStartGenders = EvaluateStartGenders();
+                ScoreFriendships = EvaluateFriendships();
             }
             OnPropertyChanged(nameof(Score));
             return Score;
@@ -423,7 +441,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Score for single starts</returns>
         private double EvaluateSingleStarts()
         {
-            if (Races.Count == 0) return 0;
+            if (Races.Count == 0) return 0.0;
 
             int singleStarts = Races.Count(r => r.Starts.Count == 1);
             double ratio = (double)singleStarts / Races.Count;
@@ -441,7 +459,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Score for same styles in sequence</returns>
         private double EvaluateSameStyleSequence()
         {
-            if (Races.Count <= 1) return 100;   // Only one race = no evaluation needed
+            if (Races.Count <= 1) return 100.0;   // Only one race = no evaluation needed
 
             int matchingPairs = 0;
             for (int i = 1; i < Races.Count; i++)
@@ -540,7 +558,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Score for style order</returns>
         private double EvaluateStyleOrder()
         {
-            if (Races.Count == 0) return 100;
+            if (Races.Count == 0) return 100.0;
 
             // lower numbers should start earlier
             Dictionary<SwimmingStyles, int> StylePriorities = new()
@@ -600,6 +618,66 @@ namespace Vereinsmeisterschaften.Core.Models
         // ----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
+        /// Score for friendships:
+        /// The more friends start together in the same race the better
+        /// </summary>
+        /// <returns>Score for friendships</returns>
+        public double EvaluateFriendships()
+        {
+            if (Races == null || Races.Count == 0) return 100.0;
+
+            double totalFriendScore = 0;
+            double maxPossibleScore = 0;
+            AreFriendshipsDefined = false;
+
+            foreach (Race race in Races)
+            {
+                List<Person> personsInRace = race.Starts.Select(s => s.PersonObj).ToList();
+
+                // Skip races where all persons have no friends
+                if (!personsInRace.Any(p => p.Friends != null && p.Friends.Count > 0)) continue;
+
+                double raceScore = 0;
+                double raceMax = 0;
+
+                foreach (Person p1 in personsInRace)
+                {
+                    if (p1.Friends == null || p1.Friends.Count == 0 || !p1.IsActive) continue;
+
+                    AreFriendshipsDefined = true;
+
+                    // Only evaluate friends that could compete in the same style / distance
+                    List<Person> potentialFriends = p1.Friends.Where(f =>
+                    {
+                        PersonStart friendStart = f.GetStartByStyle(race.Style);
+                        return friendStart != null && friendStart.CompetitionObj != null && friendStart.CompetitionObj?.Distance == race.Distance;
+                    }).ToList();
+
+                    if (potentialFriends.Count == 0) continue;
+
+                    int friendCountInRace = personsInRace.Count(p2 => potentialFriends.Contains(p2));
+
+                    raceScore += friendCountInRace;
+                    raceMax += potentialFriends.Count;
+                }
+
+                if (raceMax > 0)
+                {
+                    totalFriendScore += raceScore / raceMax;
+                    maxPossibleScore += 1;
+                }
+            }
+
+            // Neutral score if no friendships are defined
+            if (maxPossibleScore == 0) return 50.0;
+
+            double score = (totalFriendScore / maxPossibleScore) * 100.0;
+            return LimitValue(score, 0, 100);
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
         /// Limit the value to [min, max] (both inclusive)
         /// </summary>
         /// <param name="value">Value to limit</param>
@@ -611,7 +689,7 @@ namespace Vereinsmeisterschaften.Core.Models
             return Math.Max(min, Math.Min(max, value));
         }
 
-        #endregion
+#endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

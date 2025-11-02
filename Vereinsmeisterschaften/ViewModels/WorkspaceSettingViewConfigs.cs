@@ -140,6 +140,10 @@ namespace Vereinsmeisterschaften.ViewModels
                 new WorkspaceSettingViewConfig() { Label=Resources.WeightStartGendersString, Tooltip = Tooltips.TooltipWeightStartGenders, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },
             {
+                (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_FRIENDSHIP),
+                new WorkspaceSettingViewConfig() { Label=Resources.WeightFriendshipString, Tooltip = Tooltips.TooltipWeightFriendship, IconGeometry = (Geometry)iconResourceDict["Geometry_Weight"], Editor = WorkspaceSettingEditorTypes.Numeric }
+            },
+            {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE),
                 new WorkspaceSettingViewConfig() { Label=Resources.PriorityStyleBreaststrokeString, Tooltip = Tooltips.TooltipPriorityStyleBreaststroke, IconGeometry = (Geometry)iconResourceDict["Geometry_Priority"], Editor = WorkspaceSettingEditorTypes.Numeric }
             },

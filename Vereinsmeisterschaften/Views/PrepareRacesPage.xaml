@@ -174,6 +174,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -195,7 +196,23 @@
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.ScoreStartGendersString}"/>
                 <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentRacesVariant.ScoreStartGenders, StringFormat={}{0:N2}%}"/>
 
-                <Expander Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0" IsExpanded="True"
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static properties:Resources.ScoreFriendshipsString}" IsEnabled="{Binding AreFriendGroupsAvailable}"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" IsEnabled="{Binding AreFriendGroupsAvailable}">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="{Binding CurrentRacesVariant.ScoreFriendships, StringFormat={}{0:N2}%}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AreFriendGroupsAvailable}" Value="False">
+                                    <Setter Property="Text" Value="/"/>
+                                    <!-- Change opacity to indicate IsEnabled==False -->
+                                    <Setter Property="Opacity" Value="0.25"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0" IsExpanded="True"
                           controls:HeaderedControlHelper.HeaderBackground="{StaticResource BrushWarning}"
                           Visibility="{Binding CurrentRacesVariant.AreStartPausesSeverelyAffectedPersonsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Header>
@@ -633,7 +650,8 @@
 
                 <!-- Selection for highlighted person. This is only visible if highlight mode is Person. -->
                 <ComboBox Margin="5,0,0,0" Width="250" VerticalAlignment="Center"
-                          ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding HighlightedPerson}">
+                          ItemsSource="{Binding AvailablePersons}" SelectedItem="{Binding HighlightedPerson}"
+                          ItemTemplate="{StaticResource DataTemplatePersonShort}">
                     <ComboBox.Style>
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
                             <Setter Property="Visibility" Value="Collapsed"/>

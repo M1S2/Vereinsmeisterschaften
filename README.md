@@ -4,7 +4,22 @@
 [![GitHub License](https://img.shields.io/github/license/M1S2/Vereinsmeisterschaften)](https://github.com/M1S2/Vereinsmeisterschaften/blob/master/LICENSE.md)
 
 
-Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertissen.
+Programm für die Vereinsmeisterschaften der Schwimmabteilung des TSV Illertissen. Folgende Funktionen sind enthalten:
+- Verwaltung von Meldungen
+- Verwaltung von Wettkämpfen
+- Automatische oder manuelle Erstellung von Rennabläufen
+- Eingabe der erschwommenen Zeiten
+- Auswertung der Ergebnisse
+- Erstellung von Dokumenten (Startlisten, Urkunden, Ergebnislisten, ...)
+
+## Erste Inbetriebnahme ("Installation")
+
+Die Software benötigt keine Installation im klassischen Sinne. Es muss lediglich die .exe Datei entpackt werden.
+
+1. [Aktuellstes Release herunterladen](https://github.com/M1S2/Vereinsmeisterschaften/releases/latest).
+2. Die heruntergeladene .zip Datei an einen beliebigen Ort entpacken.
+3. Die Datei `Vereinsmeisterschaften.exe` im entpackten Ordner ausführen.
+4. Nach dem ersten Start einen Arbeitsbereich auswählen oder einen neuen Ordner anlegen und dann auswählen.
 
 ## Seiten Beschreibung
 Nachfolgend werden kurz die Funktionen der jeweiligen Seite der Anwendung beschrieben. Die Reihenfolge der Seiten spiegelt ungefähr den gesamten Workflow wieder (von der Eingabe der Meldungen, über die Eingabe der Zeiten während des Wettkampfs bis zur Auswertung).

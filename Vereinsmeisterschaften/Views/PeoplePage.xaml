@@ -12,6 +12,7 @@
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
+    xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
@@ -596,11 +597,10 @@
                         <DataTemplate>
                             <DockPanel Margin="5" LastChildFill="False">
                                 <TextBlock DockPanel.Dock="Left" Text="{Binding GroupId, StringFormat=#{0}}" VerticalAlignment="Center" Margin="0,0,20,0"/>
-                                <controls:MultiSelectionComboBox DockPanel.Dock="Left"
-                                                                 ItemsSource="{Binding AvailableFriends}"
-                                                                 controls:MultiSelectorHelper.SelectedItems="{Binding Friends, Mode=TwoWay}"
-                                                                 ItemTemplate="{StaticResource DataTemplatePersonShort}"
-                                                                 SelectedItemTemplate="{StaticResource DataTemplatePersonShort}"/>
+                                <userControls:MultiSelectComboBox MinWidth="300"
+                                                                  ItemsSource="{Binding AvailableFriends}"
+                                                                  SelectedItems="{Binding Friends, Mode=TwoWay}"
+                                                                  ItemTemplate="{StaticResource DataTemplatePersonShort}" />                                
                                 <Button DockPanel.Dock="Right" Background="{StaticResource BrushError}"
                                         Width="30" Height="30"
                                         Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemoveFriendGroupCommand}" CommandParameter="{Binding}">

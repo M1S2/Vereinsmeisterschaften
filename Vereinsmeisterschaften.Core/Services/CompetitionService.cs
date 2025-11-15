@@ -329,7 +329,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     break;
                 case CompetitionSearchModes.ExactOrNearestPreferLower:
                     foundCompetition = competitions.FirstOrDefault(c => c.Age == personAge);
-                    if (foundCompetition == null && personAge >= minAge)
+                    if (foundCompetition == null)
                     {
                         // Calculate age distance and order by minimal distance. Prefer lower age on equal distance.
                         foundCompetition = competitions.OrderBy(c => Math.Abs(c.Age - personAge)).ThenBy(c => c.Age).FirstOrDefault();
@@ -337,7 +337,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     break;
                 case CompetitionSearchModes.ExactOrNearestPreferHigher:
                     foundCompetition = competitions.FirstOrDefault(c => c.Age == personAge);
-                    if (foundCompetition == null && personAge >= minAge)
+                    if (foundCompetition == null)
                     {
                         // Calculate age distance and order by minimal distance. Prefer higher age on equal distance.
                         foundCompetition = competitions.OrderBy(c => Math.Abs(c.Age - personAge)).ThenByDescending(c => c.Age).FirstOrDefault();

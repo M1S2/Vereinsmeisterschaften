@@ -61,7 +61,7 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer higher age when distance is equal, ages below min. age ignored) ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer higher age when distance is equal) ähnelt.
         /// </summary>
         public static string CompetitionSearchModes_ExactOrNearestPreferHigher {
             get {
@@ -70,7 +70,7 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer lower age when distance is equal, ages below min. age ignored) ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exact or nearest age (prefer lower age when distance is equal) ähnelt.
         /// </summary>
         public static string CompetitionSearchModes_ExactOrNearestPreferLower {
             get {

@@ -40,6 +40,8 @@ namespace Vereinsmeisterschaften.Core.Documents
         /// <returns>List of all <see cref="Race"/> items</returns>
         public override Race[] GetItems()
         {
+            if (_raceService.PersistedRacesVariant == null || _raceService.PersistedRacesVariant?.Races == null) { return null; }
+
             // Return a list of all races but only with the active starts
             List<Race> raceClones = new List<Race>();
             foreach(Race originalRace in _raceService.PersistedRacesVariant?.Races)

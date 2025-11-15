@@ -140,8 +140,8 @@ flowchart LR
         L2["🔴② Genaues oder nächst niedrigeres Alter"]
         L3["🟢③ Genaues oder nächst höheres Alter"]
         L4["🔵④ Genaues Alter oder max. Alter wenn die Person älter ist"]
-        L5["⚫⑤ Genaues Alter oder nächstgelegenes Alter (niedrigeres Alter bevorzugen bei gleichem Abstand, Alter unter min. Alter werden ignoriert)"]
-        L6["⚪⑥ Genaues Alter oder nächstgelegenes Alter (höheres Alter bevorzugen bei gleichem Abstand, Alter unter min. Alter werden ignoriert)"]
+        L5["⚫⑤ Genaues Alter oder nächstgelegenes Alter (niedrigeres Alter bevorzugen bei gleichem Abstand)"]
+        L6["⚪⑥ Genaues Alter oder nächstgelegenes Alter (höheres Alter bevorzugen bei gleichem Abstand)"]
     end
 
     P19f["👤 ♀ 19J."]

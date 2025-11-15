@@ -259,9 +259,9 @@
     <value>Exact or max. age when person is older</value>
   </data>
   <data name="CompetitionSearchModes_ExactOrNearestPreferLower" xml:space="preserve">
-    <value>Exact or nearest age (prefer lower age when distance is equal, ages below min. age ignored)</value>
+    <value>Exact or nearest age (prefer lower age when distance is equal)</value>
   </data>
   <data name="CompetitionSearchModes_ExactOrNearestPreferHigher" xml:space="preserve">
-    <value>Exact or nearest age (prefer higher age when distance is equal, ages below min. age ignored)</value>
+    <value>Exact or nearest age (prefer higher age when distance is equal)</value>
   </data>
 </root>

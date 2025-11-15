@@ -1,0 +1,4 @@
+var namespace_vereinsmeisterschaften_1_1_contracts_1_1_activation =
+[
+    [ "IActivationHandler", "interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html", "interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler" ]
+];

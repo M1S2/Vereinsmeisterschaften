@@ -205,6 +205,9 @@
                                                 <DataTrigger Binding="{Binding Starts[Breaststroke].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding Breaststroke}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Style>
@@ -256,6 +259,9 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Starts[Freestyle].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Freestyle}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -309,6 +315,9 @@
                                                 <DataTrigger Binding="{Binding Starts[Backstroke].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding Backstroke}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Style>
@@ -360,6 +369,9 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Starts[Butterfly].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Butterfly}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -413,6 +425,9 @@
                                                 <DataTrigger Binding="{Binding Starts[Medley].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding Medley}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Style>
@@ -464,6 +479,9 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Starts[WaterFlea].IsActive, FallbackValue=True}" Value="False">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding WaterFlea}" Value="False">
+                                                    <Setter Property="Opacity" Value="{StaticResource OpacityDisabled}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

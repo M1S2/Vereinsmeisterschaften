@@ -555,10 +555,13 @@ namespace Vereinsmeisterschaften.Core.Models
 
         /// <summary>
         /// Serves as the default hash function.
+        /// Use the default <see cref="GetHashCode"/> method here.
+        /// Otherwise the application crashed sometimes with the "An item with the same key has already been added. Key: System.Windows.Controls.ItemsControl+ItemInfo" error when the person is used inside a DataGrid.
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
-            => (Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear, Starts).GetHashCode();
+            => base.GetHashCode();
+            //=> (Name.ToUpper(), FirstName.ToUpper(), Gender, BirthYear, Starts).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.

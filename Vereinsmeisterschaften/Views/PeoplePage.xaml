@@ -196,7 +196,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding Breaststroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding Breaststroke, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>
@@ -248,7 +248,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding Freestyle}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding Freestyle, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>
@@ -300,7 +300,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding Backstroke}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding Backstroke, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>
@@ -352,7 +352,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding Butterfly}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding Butterfly, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>
@@ -404,7 +404,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding Medley}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding Medley, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>
@@ -456,7 +456,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <CheckBox IsChecked="{Binding WaterFlea}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
+                                <CheckBox IsChecked="{Binding WaterFlea, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridCheckboxCellCenteringStyle}"/>
                                 <!-- This stack panel contains all icons (without the inactive icon) and is only shown when the start is active -->
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Style>

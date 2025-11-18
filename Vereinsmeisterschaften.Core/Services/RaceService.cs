@@ -85,9 +85,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
-        /// <param name="onProgress">Callback used to report progress of the calculation</param>
+        /// <param name="onProgressIteration">Callback used to report progress of the iterations of the calculation</param>
+        /// <param name="onProgressSolution">Callback used to report progress of the solutions of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgress = null)
+        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgressIteration = null, ProgressDelegate onProgressSolution = null)
         {
             // Collect all starts
             _competitionService.UpdateAllCompetitionsForPerson();
@@ -117,7 +118,8 @@ namespace Vereinsmeisterschaften.Core.Services
             double minRacesVariantsScore = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE) ?? 0;
             int numberOfResultsToGenerate = Math.Max(0, numberRequestedVariants - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
             
-            RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgress?.Invoke(this, (float)progress, "")),
+            RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgressIteration?.Invoke(this, (float)progress, "")),
+                                                                          new Progress<double>(progress => onProgressSolution?.Invoke(this, (float)progress, "")),
                                                                           numberOfResultsToGenerate,
                                                                           maxRaceVariantCalculationLoops,
                                                                           minRacesVariantsScore,

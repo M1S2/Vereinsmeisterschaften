@@ -30,9 +30,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
-        /// <param name="onProgress">Callback used to report progress of the calculation</param>
+        /// <param name="onProgressIteration">Callback used to report progress of the iterations of the calculation</param>
+        /// <param name="onProgressSolution">Callback used to report progress of the solutions of the calculation</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgress = null);
+        Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgressIteration = null, ProgressDelegate onProgressSolution = null);
 
         /// <summary>
         /// Add a new <see cref="RacesVariant"/> to the list <see cref="AllRacesVariants"/>

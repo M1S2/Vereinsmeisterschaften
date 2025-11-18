@@ -593,4 +593,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="ShortPauseThresholdString" xml:space="preserve">
     <value>Schwelle für kurze Pause</value>
   </data>
+  <data name="IterationProgressString" xml:space="preserve">
+    <value>Iterationsfortschritt</value>
+  </data>
+  <data name="SolutionProgressString" xml:space="preserve">
+    <value>Lösungsfortschritt</value>
+  </data>
 </root>

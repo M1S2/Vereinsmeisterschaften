@@ -594,6 +594,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Iteration Progress ähnelt.
+        /// </summary>
+        public static string IterationProgressString {
+            get {
+                return ResourceManager.GetString("IterationProgressString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die LibreOffice Path ähnelt.
         /// </summary>
         public static string LibreOfficePathString {
@@ -1303,6 +1312,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ShortPauseThresholdString {
             get {
                 return ResourceManager.GetString("ShortPauseThresholdString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Solution Progress ähnelt.
+        /// </summary>
+        public static string SolutionProgressString {
+            get {
+                return ResourceManager.GetString("SolutionProgressString", resourceCulture);
             }
         }
         

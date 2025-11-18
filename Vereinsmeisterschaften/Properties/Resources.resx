@@ -592,4 +592,10 @@
   <data name="ShortPauseThresholdString" xml:space="preserve">
     <value>Short Pause Threshold</value>
   </data>
+  <data name="IterationProgressString" xml:space="preserve">
+    <value>Iteration Progress</value>
+  </data>
+  <data name="SolutionProgressString" xml:space="preserve">
+    <value>Solution Progress</value>
+  </data>
 </root>

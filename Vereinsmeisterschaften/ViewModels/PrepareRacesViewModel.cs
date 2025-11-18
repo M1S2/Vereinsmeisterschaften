@@ -3,7 +3,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
-using Vereinsmeisterschaften.Contracts.Services;
+using Vereinsmeisterschaften.Controls;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
@@ -265,7 +265,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
-    private ProgressDialogController _progressController;
+    private DoubleProgressDialog _progressDialog;
 
     /// <summary>
     /// Constructor of the prepare races view model
@@ -280,6 +280,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+
+        _progressDialog = new DoubleProgressDialog();
+        _progressDialog.Title = Properties.Resources.CalculateRacesVariantsString;
+        _progressDialog.ProgressDescription1 = Properties.Resources.IterationProgressString;
+        _progressDialog.ProgressDescription2 = Properties.Resources.SolutionProgressString;
+        _progressDialog.ProgressNumberDecimals = 1;
 
         _raceService.PropertyChanged += (sender, e) =>
         {
@@ -317,28 +323,35 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CalculateRacesVariantsCommand => _calculateRacesVariantsCommand ?? (_calculateRacesVariantsCommand = new RelayCommand(async() => 
     {
-        double nextProgressLevel = 0.0;
-        ProgressDelegate onProgress = (sender, progress, currentStep) =>
+        double nextProgressLevelIteration = 0.0;
+        ProgressDelegate onProgressIteration = (sender, progress, currentStep) =>
         {
-            if (progress >= nextProgressLevel)
+            if (progress >= nextProgressLevelIteration)
             {
-                nextProgressLevel += 0.5;   // Only report all 0.5%. This is enough.
-                _progressController?.SetProgress(progress / 100);
-                _progressController?.SetMessage(string.IsNullOrEmpty(currentStep) ? $"{progress:F1}%" : $"{currentStep}: {progress:F1}%");
+                nextProgressLevelIteration += 0.1;   // Only report all 0.1%. This is enough.
+                _progressDialog.Progress1 = progress;
+            }
+        };
+        double nextProgressLevelSolution = 0.0;
+        ProgressDelegate onProgressSolution = (sender, progress, currentStep) =>
+        {
+            if (progress >= nextProgressLevelSolution)
+            {
+                nextProgressLevelSolution += 0.5;   // Only report all 0.5%. This is enough.
+                _progressDialog.Progress2 = progress;
             }
         };
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        // Open a user dialog to show the current calculation progress
-        _progressController = await _dialogCoordinator.ShowProgressAsync(this, Properties.Resources.CalculateRacesVariantsString, "", true);
-        _progressController.Canceled += (sender, e) => cancellationTokenSource.Cancel();
+        _progressDialog.OnCanceled += (sender, e) => cancellationTokenSource.Cancel();
+        await _dialogCoordinator.ShowMetroDialogAsync(this, _progressDialog);
 
         try
         {
-            await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgress);
+            await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgressIteration, onProgressSolution);
             recalculateVariantIDs();
 
-            await _progressController?.CloseAsync();
+            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
 
             int numberVariants = AllRacesVariants.Count;
             ushort numberRequestedVariants = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION) ?? 0;
@@ -350,16 +363,16 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         }
         catch (OperationCanceledException)
         {
-            await _progressController?.CloseAsync();
+            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
         }
         catch (Exception ex)
         {
-            await _progressController?.CloseAsync();
+            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
             await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.ErrorString, ex.Message);
         }
     }));
 
-    #endregion
+#endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

@@ -1,5 +1,5 @@
 # Vereinsmeisterschaften Changelog
 
-## [v0.0.0]
+## [v1.0.0]
 
 * Erste Version

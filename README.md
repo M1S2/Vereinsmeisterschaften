@@ -67,7 +67,7 @@ Hier wird die Auswertung aus allen Starts angezeigt (wie viele Punkte die jeweil
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Results.png" width="100%"></img>
 
 ### Dokumente erstellen
-Hier können verschiedene Dokumente erstellt werden, die vor, während oder nach dem Wettkampf nötig sind. Der Filter gilt nur für die Urkunden-Erstellung.
+Hier können verschiedene Dokumente erstellt werden, die vor, während oder nach dem Wettkampf nötig sind.
 
 Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die in den Dokumenten verwendet werden können.
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Services
@@ -43,9 +44,10 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Calculate the variants asynchronously.
         /// </summary>
         /// <param name="sets">Sets with elements to combine. The elements are not mixed between sets.</param>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> passed to the <see cref="RacesVariant"/></param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List with different <see cref="RacesVariant"/> all with a score above <see cref="_minScoreThreshold"/></returns>
-        public async Task<List<RacesVariant>> GenerateBestRacesAsync(List<List<PersonStart>> sets, CancellationToken cancellationToken = default)
+        public async Task<List<RacesVariant>> GenerateBestRacesAsync(List<List<PersonStart>> sets, IWorkspaceService workspaceService = null, CancellationToken cancellationToken = default)
         {
             ConcurrentBag<RacesVariant> bestRaces = new ConcurrentBag<RacesVariant>();
             int attempts = 0;
@@ -62,7 +64,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
 
                     // Random grouping creation
-                    RacesVariant candidate = CreateValidGrouping(sets);
+                    RacesVariant candidate = CreateValidGrouping(sets, workspaceService);
 
                     // Calculate score and keep if above threshold
                     double score = candidate.CalculateScore();
@@ -91,8 +93,9 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Create a valid group by combining the elements within the sets randomly.
         /// </summary>
         /// <param name="sets">Sets which elements are combined</param>
+        /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> passed to the <see cref="RacesVariant"/></param>
         /// <returns>Randomly created <see cref="RacesVariant"/></returns>
-        private RacesVariant CreateValidGrouping(List<List<PersonStart>> sets)
+        private RacesVariant CreateValidGrouping(List<List<PersonStart>> sets, IWorkspaceService workspaceService = null)
         {
             List<List<PersonStart>> groups = new List<List<PersonStart>>();
             List<List<PersonStart>> shuffledSets = sets.OrderBy(_ => _random.Next()).ToList(); // Shuffle sets for more randomness
@@ -127,7 +130,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 groups = MergeSmallGroups(groups, sets);
             }
 
-            RacesVariant variant = new RacesVariant();
+            RacesVariant variant = new RacesVariant(workspaceService);
             foreach (var group in groups)
             {
                 variant.Races.Add(new Race(group));

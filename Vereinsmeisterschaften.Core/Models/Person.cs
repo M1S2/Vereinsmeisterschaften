@@ -257,19 +257,25 @@ namespace Vereinsmeisterschaften.Core.Models
         /// This is the start in the <see cref="Starts"/> dictionary with the highest score value
         /// </summary>
         [FileServiceIgnore]
-        public double HighestScore => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Score ?? 0;
+        public PersonStart HighestScoreStart => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault();
 
         /// <summary>
-        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// This is score of the start in the <see cref="Starts"/> dictionary with the highest score value
         /// </summary>
         [FileServiceIgnore]
-        public SwimmingStyles HighestScoreStyle => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.Style ?? SwimmingStyles.Unknown;
+        public double HighestScore => HighestScoreStart?.Score ?? 0;
 
         /// <summary>
-        /// This is the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// This is the style of the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
         /// </summary>
         [FileServiceIgnore]
-        public Competition HighestScoreCompetition => Starts?.Values?.Where(s => s != null && s.IsActive)?.OrderByDescending(s => s.Score).FirstOrDefault()?.CompetitionObj;
+        public SwimmingStyles HighestScoreStyle => HighestScoreStart?.Style ?? SwimmingStyles.Unknown;
+
+        /// <summary>
+        /// This is the competition of the start in the <see cref="Starts"/> dictionary for which the highest score value was reached
+        /// </summary>
+        [FileServiceIgnore]
+        public Competition HighestScoreCompetition => HighestScoreStart?.CompetitionObj;
 
         /// <summary>
         /// Check if at least one of the starts in the <see cref="Starts"/> dictionary is active.

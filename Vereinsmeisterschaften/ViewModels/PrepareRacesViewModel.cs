@@ -265,7 +265,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
-    private DoubleProgressDialog _progressDialog;
 
     /// <summary>
     /// Constructor of the prepare races view model
@@ -280,12 +279,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
-
-        _progressDialog = new DoubleProgressDialog();
-        _progressDialog.Title = Properties.Resources.CalculateRacesVariantsString;
-        _progressDialog.ProgressDescription1 = Properties.Resources.IterationProgressString;
-        _progressDialog.ProgressDescription2 = Properties.Resources.SolutionProgressString;
-        _progressDialog.ProgressNumberDecimals = 1;
 
         _raceService.PropertyChanged += (sender, e) =>
         {
@@ -310,7 +303,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             ((RelayCommand)RemoveRaceVariantCommand).NotifyCanExecuteChanged();
             ((RelayCommand)ReorderRaceVariantsCommand).NotifyCanExecuteChanged();
         };
-
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -323,6 +315,12 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CalculateRacesVariantsCommand => _calculateRacesVariantsCommand ?? (_calculateRacesVariantsCommand = new RelayCommand(async() => 
     {
+        DoubleProgressDialog _progressDialog = new DoubleProgressDialog();
+        _progressDialog.Title = Properties.Resources.CalculateRacesVariantsString;
+        _progressDialog.ProgressDescription1 = Properties.Resources.IterationProgressString;
+        _progressDialog.ProgressDescription2 = Properties.Resources.SolutionProgressString;
+        _progressDialog.ProgressNumberDecimals = 1;
+
         double nextProgressLevelIteration = 0.0;
         ProgressDelegate onProgressIteration = (sender, progress, currentStep) =>
         {
@@ -371,7 +369,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
             await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.ErrorString, ex.Message);
         }
     }));
-
 #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -409,7 +406,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand AddNewRaceVariantCommand => _addNewRaceVariantCommand ?? (_addNewRaceVariantCommand = new RelayCommand(() =>
     {
-        RacesVariant newVariant = new RacesVariant();
+        RacesVariant newVariant = new RacesVariant(_workspaceService);
         _raceService?.AddRacesVariant(newVariant);
         CurrentRacesVariant = newVariant;
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));
@@ -457,7 +454,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CopyRaceVariantCommand => _copyRaceVariantCommand ?? (_copyRaceVariantCommand = new RelayCommand(() =>
     {
-        RacesVariant copyVariant = new RacesVariant(CurrentRacesVariant, true, false);
+        RacesVariant copyVariant = new RacesVariant(CurrentRacesVariant, true, false, _workspaceService);
         _raceService?.AddRacesVariant(copyVariant);
         CurrentRacesVariant = copyVariant;
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));

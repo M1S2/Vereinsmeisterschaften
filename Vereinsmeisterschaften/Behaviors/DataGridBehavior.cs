@@ -21,7 +21,7 @@ namespace Vereinsmeisterschaften.Behaviors
         #region DisplayRowNumber
 
         /// <summary>
-        /// Attached property to enable displaying row numbers in the DataGrid row headers.
+        /// Attached property to enable displaying row numbers (1-based) in the DataGrid row headers.
         /// </summary>
         public static DependencyProperty DisplayRowNumberProperty =
             DependencyProperty.RegisterAttached("DisplayRowNumber",
@@ -62,7 +62,7 @@ namespace Vereinsmeisterschaften.Behaviors
                         dataGrid.LoadingRow -= loadedRowHandler;
                         return;
                     }
-                    ea.Row.Header = ea.Row.GetIndex();
+                    ea.Row.Header = ea.Row.GetIndex() + 1;
                 };
                 dataGrid.LoadingRow += loadedRowHandler;
 
@@ -75,7 +75,7 @@ namespace Vereinsmeisterschaften.Behaviors
                         return;
                     }
                     GetVisualChildCollection<DataGridRow>(dataGrid).
-                        ForEach(d => d.Header = d.GetIndex());
+                        ForEach(d => d.Header = d.GetIndex() + 1);
                 };
                 dataGrid.ItemContainerGenerator.ItemsChanged += itemsChangedHandler;
             }

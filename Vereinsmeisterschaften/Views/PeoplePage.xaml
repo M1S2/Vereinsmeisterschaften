@@ -69,7 +69,7 @@
         </DockPanel>
 
         <!-- DataGrid with all people -->
-        <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
                   SelectedItem="{Binding SelectedPerson}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedPerson}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace Vereinsmeisterschaften.Controls
@@ -10,6 +11,11 @@ namespace Vereinsmeisterschaften.Controls
     public partial class DoubleProgressDialog : CustomDialog
     {
         public DoubleProgressDialog()
+        {
+            InitializeComponent();
+        }
+
+        public DoubleProgressDialog(MetroWindow parentWindow) : base(parentWindow)
         {
             InitializeComponent();
         }

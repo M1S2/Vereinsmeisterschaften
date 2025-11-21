@@ -124,7 +124,7 @@ namespace Vereinsmeisterschaften.Core.Services
                                                                           maxRaceVariantCalculationLoops,
                                                                           minRacesVariantsScore,
                                                                           numSwimLanes);
-            List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), cancellationToken);
+            List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), _workspaceService, cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)
             {

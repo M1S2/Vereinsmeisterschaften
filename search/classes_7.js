@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['iactivationhandler_0',['IActivationHandler',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html',1,'Vereinsmeisterschaften::Contracts::Activation']]],
+  ['iapplicationinfoservice_1',['IApplicationInfoService',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_application_info_service.html',1,'Vereinsmeisterschaften::Contracts::Services']]],
+  ['icompetitionservice_2',['ICompetitionService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['idocumentplaceholderresolver_2d1_2dg_3',['IDocumentPlaceholderResolver-1-g',['../interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_placeholder_resolver-1-g.html',1,'Vereinsmeisterschaften::Core::Documents']]],
+  ['idocumentservice_4',['IDocumentService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_document_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['idocumentstrategy_5',['IDocumentStrategy',['../interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_i_document_strategy.html',1,'Vereinsmeisterschaften::Core::Documents']]],
+  ['ifileservice_6',['IFileService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['inavigationaware_7',['INavigationAware',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware.html',1,'Vereinsmeisterschaften::Contracts::ViewModels']]],
+  ['inavigationservice_8',['INavigationService',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html',1,'Vereinsmeisterschaften::Contracts::Services']]],
+  ['invertedbooleantovisibilityconverter_9',['InvertedBooleanToVisibilityConverter',['../class_vereinsmeisterschaften_1_1_converters_1_1_inverted_boolean_to_visibility_converter.html',1,'Vereinsmeisterschaften::Converters']]],
+  ['invertedbooleantovisibilityhiddenconverter_10',['InvertedBooleanToVisibilityHiddenConverter',['../class_vereinsmeisterschaften_1_1_converters_1_1_inverted_boolean_to_visibility_hidden_converter.html',1,'Vereinsmeisterschaften::Converters']]],
+  ['ipageservice_11',['IPageService',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_page_service.html',1,'Vereinsmeisterschaften::Contracts::Services']]],
+  ['ipersistandrestoreservice_12',['IPersistAndRestoreService',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html',1,'Vereinsmeisterschaften::Contracts::Services']]],
+  ['ipersonservice_13',['IPersonService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['iraceservice_14',['IRaceService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['isaveable_15',['ISaveable',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['iscoreservice_16',['IScoreService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['ishellwindow_17',['IShellWindow',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_views_1_1_i_shell_window.html',1,'Vereinsmeisterschaften::Contracts::Views']]],
+  ['ithemeselectorservice_18',['IThemeSelectorService',['../interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html',1,'Vereinsmeisterschaften::Contracts::Services']]],
+  ['iworkspaceservice_19',['IWorkspaceService',['../interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html',1,'Vereinsmeisterschaften::Core::Contracts::Services']]],
+  ['iworkspacesetting_20',['IWorkspaceSetting',['../interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html',1,'Vereinsmeisterschaften::Core::Settings']]],
+  ['iworkspacesettingviewmodel_21',['IWorkspaceSettingViewModel',['../interface_vereinsmeisterschaften_1_1_view_models_1_1_i_workspace_setting_view_model.html',1,'Vereinsmeisterschaften::ViewModels']]]
+];

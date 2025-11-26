@@ -1,6 +1,7 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Documents
 {
@@ -39,18 +40,20 @@ namespace Vereinsmeisterschaften.Core.Documents
             foreach (string placeholder in Placeholders.Placeholders_BestStyle) { textPlaceholder.Add(placeholder, EnumCoreLocalizedStringHelper.Convert(item?.HighestScoreStyle)); }
 
             string cellEmptyString = "-";
+            ushort numberMillisecondDigits = _workspaceService.Settings.GetSettingValue<ushort>(WorkspaceSettings.GROUP_GENERAL, WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS);
+            string timeFormat = @"mm\:ss" + (numberMillisecondDigits == 0 ? "" : @"\.") + new string('f', numberMillisecondDigits);
             foreach (string placeholder in Placeholders.Placeholders_ScoreBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_ScoreFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_ScoreBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_ScoreButterfly) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Butterfly)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_ScoreMedley) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Medley)?.Score.ToString() ?? cellEmptyString); }
             foreach (string placeholder in Placeholders.Placeholders_ScoreWaterflea) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.WaterFlea)?.Score.ToString() ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeButterfly) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Butterfly)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeMedley) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Medley)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
-            foreach (string placeholder in Placeholders.Placeholders_TimeWaterflea) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.WaterFlea)?.Time.ToString(@"mm\:ss\.fff") ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeBreaststroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Breaststroke)?.Time.ToString(timeFormat) ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeFreestyle) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Freestyle)?.Time.ToString(timeFormat) ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeBackstroke) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Backstroke)?.Time.ToString(timeFormat) ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeButterfly) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Butterfly)?.Time.ToString(timeFormat) ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeMedley) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.Medley)?.Time.ToString(timeFormat) ?? cellEmptyString); }
+            foreach (string placeholder in Placeholders.Placeholders_TimeWaterflea) { textPlaceholder.Add(placeholder, item?.GetStartByStyle(SwimmingStyles.WaterFlea)?.Time.ToString(timeFormat) ?? cellEmptyString); }
 
             return textPlaceholder;
         }

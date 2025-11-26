@@ -33,11 +33,26 @@ public partial class TimeInputViewModel : ObservableObject, INavigationAware
     /// </summary>
     public RacesVariant PersistedRacesVariant => _raceService?.PersistedRacesVariant;
 
+    private int _timeInputMillisecondDigits;
     /// <summary>
     /// Number of digits used to display milliseconds in the time input control.
     /// </summary>
-    [ObservableProperty]
-    private int _timeInputMillisecondDigits;
+    public int TimeInputMillisecondDigits
+    {
+        get => _timeInputMillisecondDigits;
+        set
+        {
+            if (SetProperty(ref _timeInputMillisecondDigits, value))
+            {
+                OnPropertyChanged(nameof(TimeInputFormatString));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Format string displayed as tooltip in the time input control.
+    /// </summary>
+    public string TimeInputFormatString => $"mm:ss.{new string('f', TimeInputMillisecondDigits)}";
 
     /// <summary>
     /// True, if at least one active <see cref="PersonStart"/> is missing a time input.

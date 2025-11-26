@@ -235,7 +235,9 @@
                                             <Setter.Value>
                                                 <Border HorizontalAlignment="Center">
                                                     <StackPanel Orientation="Horizontal">
-                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False" ToolTip="mm:ss.fff" MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
+                                                        <userControls:TimeSpanControl Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HoursVisible="False"
+                                                                                      MillisecondDigits="{Binding DataContext.TimeInputMillisecondDigits, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                                                                      ToolTip="{Binding DataContext.TimeInputFormatString, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"/>
                                                         <!-- Warning icon -->
                                                         <controls:FontIcon Glyph="&#xE7BA;" Visibility="{Binding IsTimeSet, Converter={StaticResource InvertedBoolVisibilityConverter}}" ToolTip="{x:Static properties:Tooltips.TooltipNoTimeSet}"/>
                                                     </StackPanel>

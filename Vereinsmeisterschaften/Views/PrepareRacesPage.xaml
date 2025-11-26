@@ -427,9 +427,11 @@
                                         <Border.ToolTip>
                                             <TextBlock>
                                                 <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0}m {1}" FallbackValue="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}">
+                                                    <MultiBinding StringFormat="{}{0}m {1} ({2} {3})" FallbackValue="{x:Static properties:Resources.PersonStartCompetitionObjMissingString}">
                                                         <Binding Path="CompetitionObj.Distance" />
                                                         <Binding Path="CompetitionObj.SwimmingStyle" Converter="{StaticResource enumLocalizedStringConverter}" />
+                                                        <Binding Source="{x:Static properties:Resources.BirthYearString}"/>
+                                                        <Binding Path="PersonObj.BirthYear"/>
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>

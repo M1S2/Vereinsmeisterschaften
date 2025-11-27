@@ -108,6 +108,7 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     private IPersonService _personService;
     private ICompetitionService _competitionService;
     private IDialogCoordinator _dialogCoordinator;
+    private ShellViewModel _shellVM;
 
     /// <summary>
     /// Constructor of the people view model
@@ -115,11 +116,13 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    public PeopleViewModel(IPersonService personService, ICompetitionService competitionService, IDialogCoordinator dialogCoordinator)
+    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
+    public PeopleViewModel(IPersonService personService, ICompetitionService competitionService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
     {
         _personService = personService;
         _competitionService = competitionService;
         _dialogCoordinator = dialogCoordinator;
+        _shellVM = shellVM;
 
         // Delay the filtering to make the typing smoother
         filterInputSubject.Throttle(TimeSpan.FromMilliseconds(100)).ObserveOn(SynchronizationContext.Current).Subscribe((b) => PeopleCollectionView.Refresh());
@@ -148,7 +151,7 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand RemovePersonCommand => _removePersonCommand ?? (_removePersonCommand = new RelayCommand<Person>(async (person) =>
     {
-        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RemovePersonString, Resources.RemovePersonConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
             person.PropertyChanged -= Person_PropertyChanged;

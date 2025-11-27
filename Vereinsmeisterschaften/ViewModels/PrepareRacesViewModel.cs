@@ -270,6 +270,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
+    private ShellViewModel _shellVM;
 
     /// <summary>
     /// Constructor of the prepare races view model
@@ -278,12 +279,14 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
+    public PrepareRacesViewModel(IRaceService raceService, IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
     {
         _raceService = raceService;
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+        _shellVM = shellVM;
 
         _raceService.PropertyChanged += (sender, e) =>
         {
@@ -347,31 +350,31 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         _progressDialog.OnCanceled += (sender, e) => cancellationTokenSource.Cancel();
-        await _dialogCoordinator.ShowMetroDialogAsync(this, _progressDialog);
+        await _dialogCoordinator.ShowMetroDialogAsync(_shellVM, _progressDialog);
 
         try
         {
             await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgressIteration, onProgressSolution);
             recalculateVariantIDs();
 
-            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
+            await _dialogCoordinator.HideMetroDialogAsync(_shellVM, _progressDialog);
 
             int numberVariants = AllRacesVariants.Count;
             ushort numberRequestedVariants = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION) ?? 0;
             if (numberVariants < numberRequestedVariants)
             {
                 // Less variants than required are calculated    
-                await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.CalculateRacesVariantsString, string.Format(Properties.Resources.CalculationWarningTooLessVariantsString, numberVariants, numberRequestedVariants));
+                await _dialogCoordinator.ShowMessageAsync(_shellVM, Properties.Resources.CalculateRacesVariantsString, string.Format(Properties.Resources.CalculationWarningTooLessVariantsString, numberVariants, numberRequestedVariants));
             }
         }
         catch (OperationCanceledException)
         {
-            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
+            await _dialogCoordinator.HideMetroDialogAsync(_shellVM, _progressDialog);
         }
         catch (Exception ex)
         {
-            await _dialogCoordinator.HideMetroDialogAsync(this, _progressDialog);
-            await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.ErrorString, ex.Message);
+            await _dialogCoordinator.HideMetroDialogAsync(_shellVM, _progressDialog);
+            await _dialogCoordinator.ShowMessageAsync(_shellVM, Properties.Resources.ErrorString, ex.Message);
         }
     }));
 #endregion
@@ -429,7 +432,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
     public ICommand RemoveRaceVariantCommand => _removeRaceVariantCommand ?? (_removeRaceVariantCommand = new RelayCommand(async () =>
     {
         // Ask the user for deletion confirmation
-        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Properties.Resources.DeleteConfirmationTitleString,
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Properties.Resources.DeleteConfirmationTitleString,
             Properties.Resources.DeleteRaceVariantConfirmationString,
             MessageDialogStyle.AffirmativeAndNegative,
             new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.RemoveRaceVariantString, NegativeButtonText = Properties.Resources.CancelString });

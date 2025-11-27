@@ -101,7 +101,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         }
         catch (Exception ex)
         {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
     }, () => _workspaceService.IsWorkspaceOpen));
 
@@ -119,7 +119,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         }
         catch (Exception ex)
         {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
     }, () => _workspaceService.IsWorkspaceOpen));
 
@@ -154,7 +154,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             }
             catch (Exception ex)
             {
-                await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+                await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
             }
         }
     }));
@@ -173,7 +173,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         }
         catch (Exception ex)
         {
-            _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
     }, () => _workspaceService.IsWorkspaceOpen));    
 
@@ -195,7 +195,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
                 FirstAuxiliaryButtonText = Resources.CancelString,
                 DefaultButtonFocus = MessageDialogResult.Affirmative
             };
-            MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(this, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
+            MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
                                                                                         MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogButtonSettings);
             switch (dialogResult)
             {
@@ -333,6 +333,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
     private IDialogCoordinator _dialogCoordinator;
+    private ShellViewModel _shellVM;
 
     /// <summary>
     /// Constructor of the workspace view model
@@ -340,11 +341,13 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator)
+    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
+    public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
     {
         _workspaceService = workspaceService;
         _personService = personService;
         _dialogCoordinator = dialogCoordinator;
+        _shellVM = shellVM;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

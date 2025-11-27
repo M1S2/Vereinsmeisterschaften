@@ -13,7 +13,6 @@
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
-    Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
 

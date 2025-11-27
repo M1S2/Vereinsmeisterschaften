@@ -11,7 +11,6 @@
                       mc:Ignorable="d" 
                       d:DesignHeight="450" d:DesignWidth="800"
                       xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-                      Dialog:DialogParticipation.Register="{Binding}"
                       x:Name="root"
                       Title="{Binding Title, ElementName=root}">
 

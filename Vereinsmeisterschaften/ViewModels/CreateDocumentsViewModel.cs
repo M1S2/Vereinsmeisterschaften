@@ -220,6 +220,7 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
     private IPersonService _personService;
     private IWorkspaceService _workspaceService;
     private IDialogCoordinator _dialogCoordinator;
+    private ShellViewModel _shellVM;
     private IEnumerable<IDocumentStrategy> _documentStrategies;
 
     /// <summary>
@@ -229,13 +230,15 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
     /// <param name="personService"><see cref="IPersonService"/> object</param>
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
+    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
     /// <param name="documentStrategies">List with <see cref="IDocumentStrategy"/> objects</param>
-    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, IEnumerable<IDocumentStrategy> documentStrategies)
+    public CreateDocumentsViewModel(IDocumentService documentService, IPersonService personService, IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM, IEnumerable<IDocumentStrategy> documentStrategies)
     {
         _documentService = documentService;
         _personService = personService;
         _workspaceService = workspaceService;
         _dialogCoordinator = dialogCoordinator;
+        _shellVM = shellVM;
         _documentStrategies = documentStrategies;
 
         List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
@@ -333,7 +336,7 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
         }
         catch (Exception ex)
         {
-            await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
         changeDocumentCreationRunningState(documentType, false);
     }, (documentType) => !IsAnyDocumentCreationRunning));

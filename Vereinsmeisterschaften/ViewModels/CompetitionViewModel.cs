@@ -61,16 +61,19 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
 
     private ICompetitionService _competitionService;
     private IDialogCoordinator _dialogCoordinator;
+    private ShellViewModel _shellVM;
 
     /// <summary>
     /// Constructor of the competitions view model
     /// </summary>
     /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    public CompetitionViewModel(ICompetitionService competitionService, IDialogCoordinator dialogCoordinator)
+    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
+    public CompetitionViewModel(ICompetitionService competitionService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
     {
         _competitionService = competitionService;
         _dialogCoordinator = dialogCoordinator;
+        _shellVM = shellVM;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -92,7 +95,7 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand RemoveCompetitionCommand => _removeCompetitionCommand ?? (_removeCompetitionCommand = new RelayCommand<Competition>(async (competition) =>
     {
-        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(this, Resources.RemoveCompetitionString, Resources.RemoveCompetitionConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RemoveCompetitionString, Resources.RemoveCompetitionConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
             _competitionService.RemoveCompetition(competition);

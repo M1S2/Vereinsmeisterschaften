@@ -12,7 +12,6 @@
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
-    Dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
 

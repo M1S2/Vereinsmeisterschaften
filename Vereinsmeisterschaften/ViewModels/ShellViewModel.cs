@@ -222,49 +222,55 @@ public partial class ShellViewModel : ObservableObject
         // execute shutdown logic - set ForceClose and request Close() to actually close the window
         Dispatcher.CurrentDispatcher.InvokeAsync(async () =>
         {
-            bool save = await checkForUnsavedChangesAndQueryUserAction();
-            if (save)
+            bool save = true, cancel = false;
+            (save, cancel) = await CheckForUnsavedChangesAndQueryUserAction();
+            if (!cancel)
             {
-                try
+                if (save)
                 {
-                    await _workspaceService.Save(CancellationToken.None);
+                    try
+                    {
+                        await _workspaceService.Save(CancellationToken.None);
+                    }
+                    catch (Exception ex)
+                    {
+                        await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
-                }
+                App.Current.Properties["LastWorkspaceFolder"] = CurrentWorkspaceFolder;
+                _forceClose = true;
+                WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
             }
-            App.Current.Properties["LastWorkspaceFolder"] = CurrentWorkspaceFolder;
-            _forceClose = true;
-            WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
         }, DispatcherPriority.Normal);
     }
 
     /// <summary>
-    /// Show a dialog to the user when there are unsave changes. The user can choose to save or not save.
+    /// Show a dialog to the user when there are unsaved changes. The user can choose to save, not save or cancel.
     /// </summary>
-    /// <returns>If True, changes should be saved; otherwise save nothing</returns>
-    private async Task<bool> checkForUnsavedChangesAndQueryUserAction()
+    /// <returns>Tuple of two bools (save, cancel)</returns>
+    public async Task<(bool saveOut, bool cancelOut)> CheckForUnsavedChangesAndQueryUserAction()
     {
-        bool save = false;
+        bool save = true, cancel = false;
         if (_workspaceService?.HasUnsavedChanges ?? false)
         {
             MetroDialogSettings dialogButtonSettings = new MetroDialogSettings()
             {
                 AffirmativeButtonText = Resources.SaveString,
                 NegativeButtonText = Resources.DontSaveString,
+                FirstAuxiliaryButtonText = Resources.CancelString,
                 DefaultButtonFocus = MessageDialogResult.Affirmative
             };
             MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(this, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
-                                                                                        MessageDialogStyle.AffirmativeAndNegative, dialogButtonSettings);
+                                                                                        MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogButtonSettings);
             switch (dialogResult)
             {
-                case MessageDialogResult.Affirmative: save = true; break;
-                case MessageDialogResult.Negative: save = false; break;
+                case MessageDialogResult.Affirmative: save = true; cancel = false; break;
+                case MessageDialogResult.Negative: save = false; cancel = false; break;
+                case MessageDialogResult.FirstAuxiliary: save = false; cancel = true; break;
                 default: break;
             }
         }
-        return save;
+        return (save, cancel);
     }
 
     #endregion

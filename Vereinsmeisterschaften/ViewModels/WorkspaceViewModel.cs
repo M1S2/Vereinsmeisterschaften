@@ -90,7 +90,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         try
         {
             bool save = true, cancel = false;
-            (save, cancel) = await checkForUnsavedChangesAndQueryUserAction();
+            (save, cancel) = await _shellVM.CheckForUnsavedChangesAndQueryUserAction();
 
             if (!cancel)
             {
@@ -132,7 +132,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     public ICommand LoadWorkspaceCommand => _loadWorkspaceCommand ?? (_loadWorkspaceCommand = new RelayCommand(async() =>
     {
         bool save = true, cancel = false;
-        (save, cancel) = await checkForUnsavedChangesAndQueryUserAction();
+        (save, cancel) = await _shellVM.CheckForUnsavedChangesAndQueryUserAction();
 
         if (!cancel)
         {
@@ -175,38 +175,7 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         {
             _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
-    }, () => _workspaceService.IsWorkspaceOpen));    
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// Show a dialog to the user when there are unsave changes. The user can choose to save, not save or cancel.
-    /// </summary>
-    /// <returns>Tuple of two bools (save, cancel)</returns>
-    private async Task<(bool saveOut, bool cancelOut)> checkForUnsavedChangesAndQueryUserAction()
-    {
-        bool save = true, cancel = false;
-        if (_workspaceService?.HasUnsavedChanges ?? false)
-        {
-            MetroDialogSettings dialogButtonSettings = new MetroDialogSettings()
-            {
-                AffirmativeButtonText = Resources.SaveString,
-                NegativeButtonText = Resources.DontSaveString,
-                FirstAuxiliaryButtonText = Resources.CancelString,
-                DefaultButtonFocus = MessageDialogResult.Affirmative
-            };
-            MessageDialogResult dialogResult = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.UnsavedChangesString, Resources.UnsavedChangesSavePromptString,
-                                                                                        MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogButtonSettings);
-            switch (dialogResult)
-            {
-                case MessageDialogResult.Affirmative: save = true; cancel = false; break;
-                case MessageDialogResult.Negative: save = false; cancel = false; break;
-                case MessageDialogResult.FirstAuxiliary: save = false; cancel = true; break;
-                default: break;
-            }
-        }
-        return (save, cancel);
-    }
+    }, () => _workspaceService.IsWorkspaceOpen));
 
     #endregion
 

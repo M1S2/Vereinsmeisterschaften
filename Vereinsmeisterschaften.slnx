@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Vereinsmeisterschaften.Core/Vereinsmeisterschaften.Core.csproj" />
+  <Project Path="Vereinsmeisterschaften/Vereinsmeisterschaften.csproj" />
+</Solution>

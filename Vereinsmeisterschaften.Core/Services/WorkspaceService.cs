@@ -4,7 +4,6 @@ using System.Resources;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Settings;
-using Windows.ApplicationModel.VoiceCommands;
 
 namespace Vereinsmeisterschaften.Core.Services
 {

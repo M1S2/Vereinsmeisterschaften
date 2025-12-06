@@ -16,6 +16,7 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -51,7 +52,7 @@
 
         <!-- Icons: https://learn.microsoft.com/de-de/windows/apps/design/style/segoe-ui-symbol-font -->
 
-        <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding WorkspaceCommand}">
+        <Button Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Margin="0,0,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding WorkspaceCommand}">
             <StackPanel>
                 <controls:FontIcon FontSize="50" Glyph="&#xE821;" Margin="10"/>
                 <TextBlock Text="{x:Static properties:Resources.ShellWorkspacePage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
@@ -87,8 +88,13 @@
                 <TextBlock Text="{x:Static properties:Resources.ShellResultsPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
             </StackPanel>
         </Button>
-
-        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,20,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding PrepareDocumentsCommand}">
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,20,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding AnalyticsCommand}">
+            <StackPanel>
+                <controls:FontIcon FontSize="50" Glyph="&#xE9D2;" Margin="10"/>
+                <TextBlock Text="{x:Static properties:Resources.ShellAnalyticsPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,20,20,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding PrepareDocumentsCommand}">
             <StackPanel>
                 <controls:FontIcon FontSize="50" Glyph="&#xE8A5;" Margin="10"/>
                 <TextBlock Text="{x:Static properties:Resources.ShellCreateDocumentsPage}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>

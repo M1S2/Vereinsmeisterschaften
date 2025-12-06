@@ -77,6 +77,7 @@ public partial class App : Application
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
         services.AddSingleton<IRaceService, RaceService>();
+        services.AddSingleton<IAnalyticsService, AnalyticsService>();
         services.AddSingleton<IDocumentPlaceholderResolver<PersonStart>, DocumentPlaceholderResolverPersonStart>();
         services.AddSingleton<IDocumentPlaceholderResolver<Person>, DocumentPlaceholderResolverPerson>();
         services.AddSingleton<IDocumentPlaceholderResolver<Race>, DocumentPlaceholderResolverRace>();
@@ -122,6 +123,9 @@ public partial class App : Application
 
         services.AddSingleton<ResultsViewModel>();
         services.AddSingleton<ResultsPage>();
+
+        services.AddSingleton<AnalyticsViewModel>();
+        services.AddSingleton<AnalyticsPage>();
 
         services.AddSingleton<SettingsViewModel>();
         services.AddSingleton<SettingsPage>();

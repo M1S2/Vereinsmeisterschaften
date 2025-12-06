@@ -611,4 +611,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="SolutionProgressString" xml:space="preserve">
     <value>Lösungsfortschritt</value>
   </data>
+  <data name="AnalyticsPageTitle" xml:space="preserve">
+    <value>Analysen</value>
+  </data>
+  <data name="ShellAnalyticsPage" xml:space="preserve">
+    <value>Analysen</value>
+  </data>
 </root>

@@ -31,6 +31,7 @@ public class PageService : IPageService
         Configure<CreateDocumentsViewModel, CreateDocumentsPage>();
         Configure<TimeInputViewModel, TimeInputPage>();
         Configure<ResultsViewModel, ResultsPage>();
+        Configure<AnalyticsViewModel, AnalyticsPage>();
         Configure<SettingsViewModel, SettingsPage>();
     }
 

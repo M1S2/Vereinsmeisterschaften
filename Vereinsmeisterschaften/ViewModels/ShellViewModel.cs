@@ -61,6 +61,7 @@ public partial class ShellViewModel : ObservableObject
         new HamburgerMenuGlyphItem() { Label = Resources.ShellPrepareRacesPage, Glyph = "\uE7C1", TargetPageType = typeof(PrepareRacesViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellTimeInputPage, Glyph = "\uE916", TargetPageType = typeof(TimeInputViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellResultsPage, Glyph = "\uE9F9", TargetPageType = typeof(ResultsViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.ShellAnalyticsPage, Glyph = "\uE9D2", TargetPageType = typeof(AnalyticsViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.ShellCreateDocumentsPage, Glyph = "\uE8A5", TargetPageType = typeof(CreateDocumentsViewModel) },
     };
 

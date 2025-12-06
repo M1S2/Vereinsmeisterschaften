@@ -610,4 +610,10 @@
   <data name="SolutionProgressString" xml:space="preserve">
     <value>Solution Progress</value>
   </data>
+  <data name="AnalyticsPageTitle" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
+  <data name="ShellAnalyticsPage" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
 </root>

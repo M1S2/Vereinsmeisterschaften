@@ -616,4 +616,10 @@
   <data name="ShellAnalyticsPage" xml:space="preserve">
     <value>Analytics</value>
   </data>
+  <data name="AnalyticsGenderStartsUserControlTitle" xml:space="preserve">
+    <value>Gender distribution of active starts</value>
+  </data>
+  <data name="AnalyticsGenderPersonsUserControlTitle" xml:space="preserve">
+    <value>Gender distribution of active persons</value>
+  </data>
 </root>

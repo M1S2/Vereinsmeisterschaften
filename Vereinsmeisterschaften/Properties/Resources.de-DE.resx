@@ -617,4 +617,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="ShellAnalyticsPage" xml:space="preserve">
     <value>Analysen</value>
   </data>
+  <data name="AnalyticsGenderStartsUserControlTitle" xml:space="preserve">
+    <value>Geschlechterverteilung der aktiven Starts</value>
+  </data>
+  <data name="AnalyticsGenderPersonsUserControlTitle" xml:space="preserve">
+    <value>Geschlechterverteilung der aktiven Personen</value>
+  </data>
 </root>

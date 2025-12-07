@@ -8,6 +8,7 @@
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
+    xmlns:analyticsControls="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -110,6 +111,44 @@
                     <controls:FontIcon FontSize="20" Glyph="&#xF139;" Foreground="{StaticResource BrushWarning}"/>
                     <controls:FontIcon FontSize="20" Glyph="&#xF13B;" Foreground="White"/>
                 </Grid>
+            </ControlTemplate>
+
+            <!-- ControlTemplate for the AnalyticsUserControlBase base styling -->
+            <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsUserControlBase}" x:Key="ControlTemplateAnalyticsUserControlBase">
+                <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsUserControlBase}}}"
+                          Width="{Binding AnalyticsModuleWidth}" Height="{Binding AnalyticsModuleHeight}">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Icon for the analytics control. Icon is used if it isn't null, otherwise IconGeometry is used -->
+                            <ContentControl>
+                                <ContentControl.Style>
+                                    <Style TargetType="{x:Type ContentControl}">
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <Path Width="25" Height="25" Data="{Binding DataContext.IconGeometry, RelativeSource={RelativeSource AncestorType=GroupBox}}" Style="{StaticResource IconStyle}"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IconGeometry}" Value="{x:Null}">
+                                                <Setter Property="ContentTemplate">
+                                                    <Setter.Value>
+                                                        <DataTemplate>
+                                                            <controls:FontIcon FontSize="25" Glyph="{Binding DataContext.Icon, RelativeSource={RelativeSource AncestorType=GroupBox}}"/>
+                                                        </DataTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Title}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <ContentPresenter/>
+                </GroupBox>
             </ControlTemplate>
 
             <!-- DataTemplate to show all relevant infos of a person in short form -->

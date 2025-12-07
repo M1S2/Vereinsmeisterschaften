@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.Views;
+using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Core.Models;
@@ -16,6 +17,7 @@ using Vereinsmeisterschaften.Models;
 using Vereinsmeisterschaften.Services;
 using Vereinsmeisterschaften.ViewModels;
 using Vereinsmeisterschaften.Views;
+using Vereinsmeisterschaften.Views.AnalyticsUserControls;
 
 namespace Vereinsmeisterschaften;
 
@@ -77,7 +79,6 @@ public partial class App : Application
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
         services.AddSingleton<IRaceService, RaceService>();
-        services.AddSingleton<IAnalyticsService, AnalyticsService>();
         services.AddSingleton<IDocumentPlaceholderResolver<PersonStart>, DocumentPlaceholderResolverPersonStart>();
         services.AddSingleton<IDocumentPlaceholderResolver<Person>, DocumentPlaceholderResolverPerson>();
         services.AddSingleton<IDocumentPlaceholderResolver<Race>, DocumentPlaceholderResolverRace>();
@@ -87,6 +88,8 @@ public partial class App : Application
         services.AddSingleton<IDocumentStrategy, DocumentStrategyTimeForms>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultList>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultListDetail>();
+        services.AddSingleton<AnalyticsModuleGenderPersons>();
+        services.AddSingleton<AnalyticsModuleGenderStarts>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -129,6 +132,10 @@ public partial class App : Application
 
         services.AddSingleton<SettingsViewModel>();
         services.AddSingleton<SettingsPage>();
+
+        //Analytics UserControls
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderPersonsUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

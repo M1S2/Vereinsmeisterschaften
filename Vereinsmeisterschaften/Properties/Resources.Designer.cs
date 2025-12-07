@@ -124,6 +124,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active persons ähnelt.
+        /// </summary>
+        public static string AnalyticsGenderPersonsUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsGenderPersonsUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active starts ähnelt.
+        /// </summary>
+        public static string AnalyticsGenderStartsUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsGenderStartsUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analytics ähnelt.
         /// </summary>
         public static string AnalyticsPageTitle {

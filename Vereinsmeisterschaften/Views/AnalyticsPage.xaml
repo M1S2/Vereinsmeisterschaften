@@ -6,11 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:localControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
     xmlns:models="clr-namespace:Vereinsmeisterschaften.Models"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
@@ -26,12 +26,17 @@
             <!--<controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoAnalyticsPage}"/>-->
         </StackPanel>
 
-        <WrapPanel Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Gender distribution (starting people)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <lvc:PieChart Width="200" Height="200" Series="{Binding GenderSeries}"/>
-            </StackPanel>
-        </WrapPanel>
-        
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding AnalyticsUserControls}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <localControls:MasonryPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type UserControl}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
     </Grid>
 </Page>

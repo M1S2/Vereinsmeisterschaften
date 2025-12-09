@@ -151,6 +151,33 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Persons ähnelt.
+        /// </summary>
+        public static string AnalyticsPersonCountersUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsPersonCountersUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Starts ähnelt.
+        /// </summary>
+        public static string AnalyticsStartsCountersUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsStartsCountersUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per style ähnelt.
+        /// </summary>
+        public static string AnalyticsStartsPerStyleUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsStartsPerStyleUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vereinsmeisterschaften ähnelt.
         /// </summary>
         public static string AppDisplayName {
@@ -617,6 +644,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string IDString {
             get {
                 return ResourceManager.GetString("IDString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inactive ähnelt.
+        /// </summary>
+        public static string InactiveString {
+            get {
+                return ResourceManager.GetString("InactiveString", resourceCulture);
             }
         }
         
@@ -1456,6 +1492,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TimeString {
             get {
                 return ResourceManager.GetString("TimeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Total ähnelt.
+        /// </summary>
+        public static string TotalString {
+            get {
+                return ResourceManager.GetString("TotalString", resourceCulture);
             }
         }
         

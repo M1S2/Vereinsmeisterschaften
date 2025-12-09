@@ -90,6 +90,9 @@ public partial class App : Application
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultListDetail>();
         services.AddSingleton<AnalyticsModuleGenderPersons>();
         services.AddSingleton<AnalyticsModuleGenderStarts>();
+        services.AddSingleton<AnalyticsModuleStartsPerStyle>();
+        services.AddSingleton<AnalyticsModulePersonCounters>();
+        services.AddSingleton<AnalyticsModuleStartsCounters>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -136,6 +139,9 @@ public partial class App : Application
         //Analytics UserControls
         services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderPersonsUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsPersonCountersUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsCountersUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsPerStyleUserControl>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

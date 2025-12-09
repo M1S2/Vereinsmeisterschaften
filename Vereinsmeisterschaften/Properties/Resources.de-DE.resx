@@ -623,4 +623,19 @@ Alle Starts sind zugewiesen.</value>
   <data name="AnalyticsGenderPersonsUserControlTitle" xml:space="preserve">
     <value>Geschlechterverteilung der aktiven Personen</value>
   </data>
+  <data name="AnalyticsStartsPerStyleUserControlTitle" xml:space="preserve">
+    <value>Anzahl von aktiven Starts pro Stil</value>
+  </data>
+  <data name="AnalyticsPersonCountersUserControlTitle" xml:space="preserve">
+    <value>Anzahl Personen</value>
+  </data>
+  <data name="AnalyticsStartsCountersUserControlTitle" xml:space="preserve">
+    <value>Anzahl Starts</value>
+  </data>
+  <data name="TotalString" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="InactiveString" xml:space="preserve">
+    <value>Inaktiv</value>
+  </data>
 </root>

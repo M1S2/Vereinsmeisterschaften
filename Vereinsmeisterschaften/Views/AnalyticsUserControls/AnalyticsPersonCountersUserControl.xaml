@@ -1,0 +1,30 @@
+﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsPersonCountersUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
+             xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+             xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+             Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.TotalString}" FontSize="15" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding NumberOfPeople}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.InactiveString}" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource BrushStartInactive}"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding NumberOfInactivePeople}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{DynamicResource BrushStartInactive}"/>
+    </Grid>
+</local:AnalyticsUserControlBase>

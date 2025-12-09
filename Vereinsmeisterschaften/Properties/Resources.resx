@@ -622,4 +622,19 @@
   <data name="AnalyticsGenderPersonsUserControlTitle" xml:space="preserve">
     <value>Gender distribution of active persons</value>
   </data>
+  <data name="AnalyticsStartsPerStyleUserControlTitle" xml:space="preserve">
+    <value>Number of active starts per style</value>
+  </data>
+  <data name="AnalyticsPersonCountersUserControlTitle" xml:space="preserve">
+    <value>Number Persons</value>
+  </data>
+  <data name="AnalyticsStartsCountersUserControlTitle" xml:space="preserve">
+    <value>Number Starts</value>
+  </data>
+  <data name="TotalString" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="InactiveString" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
 </root>

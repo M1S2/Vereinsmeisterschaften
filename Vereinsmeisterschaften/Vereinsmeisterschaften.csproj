@@ -11,6 +11,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <IncludeWindowsSDKRefFrameworkReferences>False</IncludeWindowsSDKRefFrameworkReferences>
     <RootNamespace>Vereinsmeisterschaften</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -41,7 +42,6 @@
     <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-    <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
   
   <ItemGroup>

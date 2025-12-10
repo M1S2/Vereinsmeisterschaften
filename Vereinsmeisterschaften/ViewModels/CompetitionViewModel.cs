@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Reactive.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;

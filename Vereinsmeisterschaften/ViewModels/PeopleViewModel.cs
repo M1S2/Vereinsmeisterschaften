@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Windows.Data;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -53,8 +51,6 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    private Subject<bool> filterInputSubject = new Subject<bool>();         // Used to delay the filter while typing
-
     private string _filterText = "";
     /// <summary>
     /// Text used to filter the person list
@@ -66,7 +62,7 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         {
             if (SetProperty(ref _filterText, value))
             {
-                filterInputSubject?.OnNext(true);
+                PeopleCollectionView.Refresh();
             }
         }
     }
@@ -123,9 +119,6 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         _competitionService = competitionService;
         _dialogCoordinator = dialogCoordinator;
         _shellVM = shellVM;
-
-        // Delay the filtering to make the typing smoother
-        filterInputSubject.Throttle(TimeSpan.FromMilliseconds(100)).ObserveOn(SynchronizationContext.Current).Subscribe((b) => PeopleCollectionView.Refresh());
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -226,7 +219,11 @@ public partial class PeopleViewModel : ObservableObject, INavigationAware
         _pauseFriendsCollectionChangedEvent = false;
 
         // Collect all unique group IDs from all persons
-        List<int> allGroupIds = People.SelectMany(p => p.FriendGroupIDs ?? Enumerable.Empty<int>()).Distinct().OrderBy(id => id).ToList();
+        List<int> allGroupIds = People.Select(p => p.FriendGroupIDs ?? Enumerable.Empty<int>()).Aggregate(new List<int>(), (acc, innerList) =>
+        {
+            acc.AddRange(innerList);
+            return acc;
+        }).Distinct().OrderBy(id => id).ToList();
 
         foreach (int groupId in allGroupIds)
         {

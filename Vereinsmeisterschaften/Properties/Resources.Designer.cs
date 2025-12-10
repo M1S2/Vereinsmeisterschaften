@@ -124,6 +124,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of persons per birth year ähnelt.
+        /// </summary>
+        public static string AnalyticsAgeDistributionUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsAgeDistributionUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active persons ähnelt.
         /// </summary>
         public static string AnalyticsGenderPersonsUserControlTitle {

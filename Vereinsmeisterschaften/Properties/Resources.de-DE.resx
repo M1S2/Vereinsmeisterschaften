@@ -638,4 +638,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="InactiveString" xml:space="preserve">
     <value>Inaktiv</value>
   </data>
+  <data name="AnalyticsAgeDistributionUserControlTitle" xml:space="preserve">
+    <value>Anzahl Personen pro Geburtsjahr</value>
+  </data>
 </root>

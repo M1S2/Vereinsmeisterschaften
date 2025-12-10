@@ -637,4 +637,7 @@
   <data name="InactiveString" xml:space="preserve">
     <value>Inactive</value>
   </data>
+  <data name="AnalyticsAgeDistributionUserControlTitle" xml:space="preserve">
+    <value>Number of persons per birth year</value>
+  </data>
 </root>

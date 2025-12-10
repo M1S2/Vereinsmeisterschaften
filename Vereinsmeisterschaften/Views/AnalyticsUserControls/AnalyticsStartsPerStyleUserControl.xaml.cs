@@ -86,7 +86,6 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             new Axis
             {
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
-                CustomSeparators = Enumerable.Range(0, NumberStartsPerStyleReordered.Values.Count == 0 ? 0 : NumberStartsPerStyleReordered.Values.Max() + 1).Select(i => (double)i),
                 LabelsPaint = ColorPaintMahAppsText,
                 Labeler = (value) =>
                 {

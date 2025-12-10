@@ -93,6 +93,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModuleStartsPerStyle>();
         services.AddSingleton<AnalyticsModulePersonCounters>();
         services.AddSingleton<AnalyticsModuleStartsCounters>();
+        services.AddSingleton<AnalyticsModuleAgeDistribution>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -137,11 +138,12 @@ public partial class App : Application
         services.AddSingleton<SettingsPage>();
 
         //Analytics UserControls
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderPersonsUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsPersonCountersUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderPersonsUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsCountersUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsPerStyleUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsAgeDistributionUserControl>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

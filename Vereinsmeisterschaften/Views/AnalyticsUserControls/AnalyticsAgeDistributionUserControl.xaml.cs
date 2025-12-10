@@ -59,7 +59,6 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             {
                 IsVisible = true,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
-                CustomSeparators = Enumerable.Range(0, NumberPersonsPerBirthYear.Values.Count == 0 ? 0 : NumberPersonsPerBirthYear.Values.Max() + 1).Select(i => (double)i),
                 LabelsPaint = ColorPaintMahAppsText,
                 LabelsDensity = 0,
                 Labeler = (value) =>

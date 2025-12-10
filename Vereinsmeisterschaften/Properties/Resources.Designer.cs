@@ -151,6 +151,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of starts per person ähnelt.
+        /// </summary>
+        public static string AnalyticsMostStartsUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsMostStartsUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analytics ähnelt.
         /// </summary>
         public static string AnalyticsPageTitle {

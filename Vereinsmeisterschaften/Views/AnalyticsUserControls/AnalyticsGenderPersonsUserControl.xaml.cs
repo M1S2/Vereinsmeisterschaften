@@ -20,6 +20,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         }
 
         public override string Title => Properties.Resources.AnalyticsGenderPersonsUserControlTitle;
+        public override string Icon { get; } = "\uE77B";
         public override double AnalyticsModuleWidth => 300;
         public override double AnalyticsModuleHeight => 250;
 

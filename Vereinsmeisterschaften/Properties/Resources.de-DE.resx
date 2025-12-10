@@ -641,4 +641,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="AnalyticsAgeDistributionUserControlTitle" xml:space="preserve">
     <value>Anzahl Personen pro Geburtsjahr</value>
   </data>
+  <data name="AnalyticsMostStartsUserControlTitle" xml:space="preserve">
+    <value>Anzahl an Starts pro Person</value>
+  </data>
 </root>

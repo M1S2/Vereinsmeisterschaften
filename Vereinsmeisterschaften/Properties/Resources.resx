@@ -640,4 +640,7 @@
   <data name="AnalyticsAgeDistributionUserControlTitle" xml:space="preserve">
     <value>Number of persons per birth year</value>
   </data>
+  <data name="AnalyticsMostStartsUserControlTitle" xml:space="preserve">
+    <value>Number of starts per person</value>
+  </data>
 </root>

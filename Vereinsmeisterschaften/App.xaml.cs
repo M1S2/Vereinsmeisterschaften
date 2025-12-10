@@ -94,6 +94,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModulePersonCounters>();
         services.AddSingleton<AnalyticsModuleStartsCounters>();
         services.AddSingleton<AnalyticsModuleAgeDistribution>();
+        services.AddSingleton<AnalyticsModuleMostStarts>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -144,6 +145,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsPerStyleUserControl>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsAgeDistributionUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsMostStartsUserControl>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

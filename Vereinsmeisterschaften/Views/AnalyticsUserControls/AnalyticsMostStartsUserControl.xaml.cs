@@ -110,26 +110,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             {
                 IsVisible = true,
                 SeparatorsPaint = null,
+                Labels = NumberStartsPerPersonReordered.Keys.Select(p => $"{p.FirstName}, {p.Name}").ToArray(),
                 LabelsPaint = ColorPaintMahAppsText,
-                LabelsDensity = 0,
-                Labeler = (pointIndex) =>
-                {
-                    // Only return labels for real indices (no doubles with fractional part)
-                    if(pointIndex == Math.Floor(pointIndex))
-                    {
-                        Dictionary<Person, int> numberStartsPerPerson = NumberStartsPerPersonReordered;
-                        if (pointIndex >= 0 && pointIndex < numberStartsPerPerson.Keys.Count)
-                        {
-                            Person person = numberStartsPerPerson.Keys.ToList()[(int)pointIndex];
-                            return $"{person.FirstName}, {person.Name}";
-                        }
-                        else
-                        {
-                            return "?";
-                        }
-                    }
-                    return "";
-                }
+                LabelsDensity = 0
             }
         ];
     }

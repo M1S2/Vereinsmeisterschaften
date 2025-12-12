@@ -178,6 +178,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distances between the starts of a person ähnelt.
+        /// </summary>
+        public static string AnalyticsStartDistancesUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsStartDistancesUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number Starts ähnelt.
         /// </summary>
         public static string AnalyticsStartsCountersUserControlTitle {

@@ -105,18 +105,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             {
                 IsVisible = true,
                 SeparatorsPaint = null,
+                Labels = NumberStartsPerStyleReordered.Keys.Select(s => EnumCoreLocalizedStringHelper.Convert(s)).ToArray(),
                 LabelsPaint = ColorPaintMahAppsText,
-                LabelsDensity = 0,
-                Labeler = (pointIndex) =>
-                {
-                    // Only return labels for real indices (no doubles with fractional part)
-                    if(pointIndex == Math.Floor(pointIndex))
-                    {
-                        Dictionary<SwimmingStyles, int> numberStartsPerStyle = NumberStartsPerStyleReordered;
-                        return (pointIndex >= 0 && pointIndex < numberStartsPerStyle.Keys.Count) ? EnumCoreLocalizedStringHelper.Convert(numberStartsPerStyle.Keys.ToList()[(int)pointIndex]) : "?";
-                    }
-                    return "";
-                }
+                LabelsDensity = 0
             }
         ];
     }

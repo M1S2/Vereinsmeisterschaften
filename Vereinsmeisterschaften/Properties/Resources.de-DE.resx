@@ -644,4 +644,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="AnalyticsMostStartsUserControlTitle" xml:space="preserve">
     <value>Anzahl an Starts pro Person</value>
   </data>
+  <data name="AnalyticsStartDistancesUserControlTitle" xml:space="preserve">
+    <value>Abstände zwischen den Starts einer Person</value>
+  </data>
 </root>

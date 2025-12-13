@@ -138,6 +138,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per distance are available.
+        ///Only active persons are regarded. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsStartsPerDistance {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsStartsPerDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per style are available.
         ///Only active persons are regarded. ähnelt.
         /// </summary>

@@ -4,20 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
-             xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
-             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <ScrollViewer x:Name="PART_scrollViewerChart"
-                  Visibility="{Binding AnalyticsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <liveCharts:CartesianChart Height="{Binding ChartHeight}"
-                                   Series="{Binding StartDistancesPerPersonSeries}"
-                                   XAxes="{Binding XAxes}"
-                                   YAxes="{Binding YAxes}"
-                                   TooltipPosition="Hidden"/>
-    </ScrollViewer>
-
+    <liveCharts:PieChart Series="{Binding StartsPerDistanceSeries}" InitialRotation="-90"
+                         LegendPosition="Right" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_LEGEND_TEXTSIZE_DEFAULT}"
+                         TooltipPosition="Hidden"/>
+    
 </local:AnalyticsUserControlBase>

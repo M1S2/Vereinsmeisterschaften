@@ -4,65 +4,39 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Analytics
 {
     /// <summary>
-    /// Analytics module to calculate the distances between the starts of each person in the persisted race variant
+    /// Analytics module to calculate the number of starts per distance
     /// </summary>
     public class AnalyticsModuleStartDistances : IAnalyticsModule
     {
-        private IRaceService _raceService;
+        private IPersonService _personService;
 
         /// <summary>
         /// Constructor for the <see cref="AnalyticsModuleStartDistances"/>
         /// </summary>
-        /// <param name="raceService"><see cref="IRaceService"/> object</param>
-        public AnalyticsModuleStartDistances(IRaceService raceService)
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        public AnalyticsModuleStartDistances(IPersonService personService)
         {
-            _raceService = raceService;
+            _personService = personService;
         }
 
-        /// <summary>
-        /// This analytics is only available, when a persisted race is available
-        /// </summary>
-        public bool AnalyticsAvailable => _raceService?.PersistedRacesVariant != null;
+        /// <inheritdoc/>
+        public bool AnalyticsAvailable => true;
 
         /// <summary>
-        /// Distances between the starts (value) per person (key).
-        /// Only persons with more than one start are part of this list (otherwise a distance can't be calculated).
-        /// A distance of 1 means the starts are consecutive. A lower value isn't possible.
+        /// Number of starts per distance. The list is ordered descending by the number.
         /// </summary>
-        public Dictionary<Person, List<int>> DistancesBetweenStartsPerPerson
-        {
-            get
-            {
-                Dictionary<Person, List<int>> distancesBetweenStartsPerPerson = new Dictionary<Person, List<int>>();
-                if (!AnalyticsAvailable) { return distancesBetweenStartsPerPerson; }
+        public Dictionary<ushort, int> NumberStartsPerDistance => _personService.GetAllPersonStarts()
+                                                                                .Where(s => s.IsActive && s.CompetitionObj != null)
+                                                                                .GroupBy(s => s.CompetitionObj.Distance)
+                                                                                .ToDictionary(g => g.Key, g => g.Count())
+                                                                                .OrderByDescending(d => d.Value)
+                                                                                .ToDictionary();
 
-                RacesVariant racesVariant = _raceService.PersistedRacesVariant;
-
-                Dictionary<Person, int> lastRaceIndex = new Dictionary<Person, int>();
-                for (int i = 0; i < racesVariant.Races.Count; i++)
-                {
-                    foreach (PersonStart personStart in racesVariant.Races[i].Starts)
-                    {
-                        // Only consider active starts
-                        if (!personStart.IsActive) { continue; }
-
-                        Person person = personStart.PersonObj;
-
-                        if (lastRaceIndex.TryGetValue(person, out int lastIndex))
-                        {
-                            int distance = i - lastIndex;
-                            if (!distancesBetweenStartsPerPerson.ContainsKey(person) || distancesBetweenStartsPerPerson[person] == null)
-                            {
-                                distancesBetweenStartsPerPerson[person] = new List<int>();
-                            }
-                            distancesBetweenStartsPerPerson[person].Add(distance);
-                        }
-
-                        lastRaceIndex[person] = i;
-                    }
-                }
-                return distancesBetweenStartsPerPerson;
-            }
-        }
+        /// <summary>
+        /// Percentage of starts per distance. The list is ordered descending by the percentage.
+        /// </summary>
+        public Dictionary<ushort, double> PercentageStartsPerDistance => NumberStartsPerDistance.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.CompetitionObj != null)) * 100)
+                                                                                                .OrderByDescending(d => d.Value)
+                                                                                                .ToDictionary();
     }
 }

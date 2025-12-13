@@ -398,4 +398,8 @@ Only active persons are regarded.</value>
     <value>Analyse how many starts per style are available.
 Only active persons are regarded.</value>
   </data>
+  <data name="TooltipAnalyticsStartsPerDistance" xml:space="preserve">
+    <value>Analyse how many starts per distance are available.
+Only active persons are regarded.</value>
+  </data>
 </root>

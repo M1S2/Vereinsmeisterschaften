@@ -646,4 +646,7 @@
   <data name="AnalyticsStartDistancesUserControlTitle" xml:space="preserve">
     <value>Distances between the starts of a person</value>
   </data>
+  <data name="AnalyticsStartsPerDistanceUserControlTitle" xml:space="preserve">
+    <value>Number of active starts per distance</value>
+  </data>
 </root>

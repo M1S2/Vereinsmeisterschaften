@@ -397,4 +397,8 @@ Nur aktive Personen werden gezählt.</value>
     <value>Analysieren, wie viele Starts pro Schwimmstil gemeldet sind.
 Nur aktive Personen werden gezählt.</value>
   </data>
+  <data name="TooltipAnalyticsStartsPerDistance" xml:space="preserve">
+    <value>Analysieren, wie viele Starts pro Distanz gemeldet sind.
+Nur aktive Personen werden gezählt.</value>
+  </data>
 </root>

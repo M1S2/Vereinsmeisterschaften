@@ -196,6 +196,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per distance ähnelt.
+        /// </summary>
+        public static string AnalyticsStartsPerDistanceUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsStartsPerDistanceUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per style ähnelt.
         /// </summary>
         public static string AnalyticsStartsPerStyleUserControlTitle {

@@ -17,12 +17,11 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsStartsPerStyleUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModuleStartsPerStyle _analyticsModule;
+        private AnalyticsModuleStartsPerStyle _analyticsModule => AnalyticsModule as AnalyticsModuleStartsPerStyle;
 
-        public AnalyticsStartsPerStyleUserControl(AnalyticsModuleStartsPerStyle analyticsModule)
+        public AnalyticsStartsPerStyleUserControl(AnalyticsModuleStartsPerStyle analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
         }
 
         /// <summary>
@@ -35,6 +34,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         public override string Title => Properties.Resources.AnalyticsStartsPerStyleUserControlTitle;
         public override Geometry IconGeometry => (Geometry)swimmingStyleResourceDict["Geometry_Breaststroke"];
+        public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerStyle;
 
         public override void Refresh()
         {

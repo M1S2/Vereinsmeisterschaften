@@ -7,16 +7,16 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsPersonCountersUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModulePersonCounters _analyticsModule;
+        private AnalyticsModulePersonCounters _analyticsModule => AnalyticsModule as AnalyticsModulePersonCounters;
 
-        public AnalyticsPersonCountersUserControl(AnalyticsModulePersonCounters analyticsModule)
+        public AnalyticsPersonCountersUserControl(AnalyticsModulePersonCounters analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
         }
 
         public override string Title => Properties.Resources.AnalyticsPersonCountersUserControlTitle;
         public override string Icon { get; } = "\uE77B";
+        public override string Info => Properties.Tooltips.TooltipAnalyticsPersonCounters;
         public override double AnalyticsModuleWidth => this.Width;      // Size is determined by the control content
         public override double AnalyticsModuleHeight => this.Height;    // Size is determined by the control content
 

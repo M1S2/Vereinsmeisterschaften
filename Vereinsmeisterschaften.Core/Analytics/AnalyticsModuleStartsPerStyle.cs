@@ -6,7 +6,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// <summary>
     /// Analytics module to calculate the number of starts per style
     /// </summary>
-    public class AnalyticsModuleStartsPerStyle
+    public class AnalyticsModuleStartsPerStyle : IAnalyticsModule
     {
         private IPersonService _personService;
 
@@ -18,6 +18,9 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             _personService = personService;
         }
+
+        /// <inheritdoc/>
+        public bool AnalyticsAvailable => true;
 
         /// <summary>
         /// Number of starts per style. The list is ordered descending by the number.

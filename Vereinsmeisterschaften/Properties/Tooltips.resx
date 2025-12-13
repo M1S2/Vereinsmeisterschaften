@@ -368,4 +368,34 @@ This information is used during race calculation to prefer races with friends as
   <data name="TooltipWeightFriendship" xml:space="preserve">
     <value>Weight for the score for friendships (The more friends start together in the same race the better).</value>
   </data>
+  <data name="TooltipAnalyticsAgeDistribution" xml:space="preserve">
+    <value>Analyse how many people per birth year have started.
+Only active persons are regarded.</value>
+  </data>
+  <data name="TooltipAnalyticsGenderPersons" xml:space="preserve">
+    <value>Analyse the percentage of male/female persons.
+Only active persons are regarded.</value>
+  </data>
+  <data name="TooltipAnalyticsGenderStarts" xml:space="preserve">
+    <value>Analyse the percentage of male/female starts.
+Only active persons are regarded.</value>
+  </data>
+  <data name="TooltipAnalyticsMostStarts" xml:space="preserve">
+    <value>Analyse which person has the most starts.
+Only active persons are regarded.</value>
+  </data>
+  <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
+    <value>Analyse the number of active and inactive persons.</value>
+  </data>
+  <data name="TooltipAnalyticsStartsCounters" xml:space="preserve">
+    <value>Analyse the number of active and inactive starts.</value>
+  </data>
+  <data name="TooltipAnalyticsStartDistances" xml:space="preserve">
+    <value>Analyse the distances between the starts of a person.
+Only active persons are regarded.</value>
+  </data>
+  <data name="TooltipAnalyticsStartsPerStyle" xml:space="preserve">
+    <value>Analyse how many starts per style are available.
+Only active persons are regarded.</value>
+  </data>
 </root>

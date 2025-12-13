@@ -6,7 +6,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// <summary>
     /// Analytics module to calculate the gender deviation for the starts
     /// </summary>
-    public class AnalyticsModuleGenderStarts
+    public class AnalyticsModuleGenderStarts : IAnalyticsModule
     {
         private IPersonService _personService;
 
@@ -18,6 +18,9 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             _personService = personService;
         }
+
+        /// <inheritdoc/>
+        public bool AnalyticsAvailable => true;
 
         /// <summary>
         /// Number of starts that are male

@@ -16,16 +16,16 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsMostStartsUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModuleMostStarts _analyticsModule;
+        private AnalyticsModuleMostStarts _analyticsModule => AnalyticsModule as AnalyticsModuleMostStarts;
 
-        public AnalyticsMostStartsUserControl(AnalyticsModuleMostStarts analyticsModule)
+        public AnalyticsMostStartsUserControl(AnalyticsModuleMostStarts analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
         }
 
         public override string Title => Properties.Resources.AnalyticsMostStartsUserControlTitle;
         public override string Icon { get; } = "\uE77B";
+        public override string Info => Properties.Tooltips.TooltipAnalyticsMostStarts;
 
         public override void Refresh()
         {

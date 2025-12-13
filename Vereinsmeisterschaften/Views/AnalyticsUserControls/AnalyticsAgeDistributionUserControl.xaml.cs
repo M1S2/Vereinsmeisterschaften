@@ -10,16 +10,16 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsAgeDistributionUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModuleAgeDistribution _analyticsModule;
+        private AnalyticsModuleAgeDistribution _analyticsModule => AnalyticsModule as AnalyticsModuleAgeDistribution;
 
-        public AnalyticsAgeDistributionUserControl(AnalyticsModuleAgeDistribution analyticsModule)
+        public AnalyticsAgeDistributionUserControl(AnalyticsModuleAgeDistribution analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
         }
 
         public override string Title => Properties.Resources.AnalyticsAgeDistributionUserControlTitle;
         public override string Icon => "\uED55";
+        public override string Info => Properties.Tooltips.TooltipAnalyticsAgeDistribution;
 
         public override void Refresh()
         {

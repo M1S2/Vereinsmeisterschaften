@@ -1,14 +1,15 @@
-﻿using System.Windows;
-using System.Windows.Media;
-using LiveChartsCore;
+﻿using LiveChartsCore;
 using LiveChartsCore.Kernel.Events;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using System.Windows;
+using System.Windows.Media;
 using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
@@ -18,18 +19,18 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsStartDistancesUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModuleStartDistances _analyticsModule;
+        private AnalyticsModuleStartDistances _analyticsModule => AnalyticsModule as AnalyticsModuleStartDistances;
         private IWorkspaceService _workspaceService;
 
-        public AnalyticsStartDistancesUserControl(AnalyticsModuleStartDistances analyticsModule, IWorkspaceService workspaceService)
+        public AnalyticsStartDistancesUserControl(AnalyticsModuleStartDistances analyticsModule, IWorkspaceService workspaceService) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
             _workspaceService = workspaceService;
         }
 
         public override string Title => Properties.Resources.AnalyticsStartDistancesUserControlTitle;
         public override string Icon { get; } = "\uECC6";
+        public override string Info => Properties.Tooltips.TooltipAnalyticsStartDistances;
 
         public override void Refresh()
         {
@@ -37,6 +38,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(ChartHeight));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
+            OnPropertyChanged(nameof(AnalyticsAvailable));
         }
 
         public Dictionary<Person, List<int>> DistancesBetweenStartsPerPersonReversed => _analyticsModule?.DistancesBetweenStartsPerPerson?.Reverse()?.ToDictionary() ?? new Dictionary<Person, List<int>>();
@@ -45,7 +47,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         {
             get
             {
-                if (_analyticsModule == null || _analyticsModule?.DistancesBetweenStartsPerPerson.Count == 0) return null;
+                if (_analyticsModule == null || AnalyticsAvailable == false) return null;
 
                 uint shortPausesThreshold = _workspaceService?.Settings?.GetSettingValue<uint>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD) ?? 3;
 

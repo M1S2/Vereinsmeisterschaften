@@ -11,16 +11,16 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
     /// </summary>
     public partial class AnalyticsGenderPersonsUserControl : AnalyticsUserControlBase
     {
-        private AnalyticsModuleGenderPersons _analyticsModule;
+        private AnalyticsModuleGenderPersons _analyticsModule => AnalyticsModule as AnalyticsModuleGenderPersons;
 
-        public AnalyticsGenderPersonsUserControl(AnalyticsModuleGenderPersons analyticsModule)
+        public AnalyticsGenderPersonsUserControl(AnalyticsModuleGenderPersons analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
-            _analyticsModule = analyticsModule;
         }
 
         public override string Title => Properties.Resources.AnalyticsGenderPersonsUserControlTitle;
         public override string Icon { get; } = "\uE77B";
+        public override string Info => Properties.Tooltips.TooltipAnalyticsGenderPersons;
         public override double AnalyticsModuleWidth => 300;
 
         public override void Refresh()

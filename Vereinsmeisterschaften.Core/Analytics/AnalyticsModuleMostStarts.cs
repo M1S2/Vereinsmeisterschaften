@@ -6,7 +6,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// <summary>
     /// Analytics module to calculate the persons with the most starts
     /// </summary>
-    public class AnalyticsModuleMostStarts
+    public class AnalyticsModuleMostStarts : IAnalyticsModule
     {
         private IPersonService _personService;
 
@@ -18,6 +18,9 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             _personService = personService;
         }
+
+        /// <inheritdoc/>
+        public bool AnalyticsAvailable => true;
 
         /// <summary>
         /// Number of starts (value) per person (key)

@@ -367,4 +367,34 @@ Diese Information wird während der Berechnung der Rennen verwendet, um Rennen z
   <data name="TooltipWeightFriendship" xml:space="preserve">
     <value>Gewichtung für die Punkte für die Freundschaften (je mehr Freunde zusammen im selben Rennen starten, umso besser).</value>
   </data>
+  <data name="TooltipAnalyticsAgeDistribution" xml:space="preserve">
+    <value>Analysieren, wie viele Personen pro Geburtsjahr gestartet sind.
+Nur aktive Personen werden gezählt.</value>
+  </data>
+  <data name="TooltipAnalyticsGenderPersons" xml:space="preserve">
+    <value>Analysieren, wie viel Prozent der Personen männlich bzw. weiblich sind.
+Nur aktive Personen werden gezählt.</value>
+  </data>
+  <data name="TooltipAnalyticsGenderStarts" xml:space="preserve">
+    <value>Analysieren, wie viel Prozent der Starts männlich bzw. weiblich sind.
+Nur aktive Personen werden gezählt.</value>
+  </data>
+  <data name="TooltipAnalyticsMostStarts" xml:space="preserve">
+    <value>Analysieren, welche Person die meisten Starts hat.
+Nur aktive Personen werden gezählt.</value>
+  </data>
+  <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
+    <value>Analysieren, wie viele Personen gemeldet sind (aktiv und inaktiv).</value>
+  </data>
+  <data name="TooltipAnalyticsStartsCounters" xml:space="preserve">
+    <value>Analysieren, wie viele Starts gemeldet sind (aktiv und inaktiv).</value>
+  </data>
+  <data name="TooltipAnalyticsStartDistances" xml:space="preserve">
+    <value>Analysieren, wie viel Pause zwischen den Starts einer Person ist.
+Nur aktive Personen werden gezählt.</value>
+  </data>
+  <data name="TooltipAnalyticsStartsPerStyle" xml:space="preserve">
+    <value>Analysieren, wie viele Starts pro Schwimmstil gemeldet sind.
+Nur aktive Personen werden gezählt.</value>
+  </data>
 </root>

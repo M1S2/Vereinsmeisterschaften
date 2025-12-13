@@ -1,18 +1,13 @@
-﻿using LiveChartsCore;
-using LiveChartsCore.Kernel;
+﻿using System.Windows;
+using System.Windows.Media;
+using LiveChartsCore;
 using LiveChartsCore.Kernel.Events;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.Themes;
 using SkiaSharp;
-using System;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
@@ -35,8 +30,6 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         public override string Title => Properties.Resources.AnalyticsStartDistancesUserControlTitle;
         public override string Icon { get; } = "\uECC6";
-        public override double AnalyticsModuleWidth => 400;
-        public override double AnalyticsModuleHeight => 250;
 
         public override void Refresh()
         {
@@ -52,7 +45,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         {
             get
             {
-                if (_analyticsModule == null) return null;
+                if (_analyticsModule == null || _analyticsModule?.DistancesBetweenStartsPerPerson.Count == 0) return null;
 
                 uint shortPausesThreshold = _workspaceService?.Settings?.GetSettingValue<uint>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD) ?? 3;
 
@@ -119,6 +112,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 MinLimit = 0,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
+                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
                 Labeler = (value) =>
                 {
                     // Only return labels for real values (no doubles with fractional part)
@@ -139,6 +133,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 SeparatorsPaint = null,
                 Labels = DistancesBetweenStartsPerPersonReversed.Keys.Select(p => $"{p.FirstName}, {p.Name}").ToArray(),
                 LabelsPaint = ColorPaintMahAppsText,
+                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
                 LabelsDensity = 0
             }
         ];

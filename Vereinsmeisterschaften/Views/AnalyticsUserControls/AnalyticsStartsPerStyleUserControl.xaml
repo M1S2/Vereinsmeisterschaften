@@ -9,9 +9,8 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <liveCharts:CartesianChart Series="{Binding StartsPerStyleSeries}"
-                               XAxes="{Binding XAxes}"
-                               YAxes="{Binding YAxes}"
-                               TooltipPosition="Hidden"/>
+    <liveCharts:PieChart Series="{Binding StartsPerStyleSeries}" InitialRotation="-90"
+                         LegendPosition="Right" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_LEGEND_TEXTSIZE_DEFAULT}"
+                         TooltipPosition="Hidden"/>
     
 </local:AnalyticsUserControlBase>

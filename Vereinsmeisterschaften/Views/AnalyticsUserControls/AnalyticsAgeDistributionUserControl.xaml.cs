@@ -1,16 +1,7 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.Kernel;
-using LiveChartsCore.Kernel.Events;
-using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.Themes;
-using SkiaSharp;
-using System.Windows;
-using System.Windows.Media;
 using Vereinsmeisterschaften.Core.Analytics;
-using Vereinsmeisterschaften.Core.Helpers;
-using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
@@ -29,8 +20,6 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         public override string Title => Properties.Resources.AnalyticsAgeDistributionUserControlTitle;
         public override string Icon => "\uED55";
-        public override double AnalyticsModuleWidth => 400;
-        public override double AnalyticsModuleHeight => 250;
 
         public override void Refresh()
         {
@@ -60,6 +49,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 IsVisible = true,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
+                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
                 LabelsDensity = 0,
                 Labeler = (value) =>
                 {

@@ -1,8 +1,4 @@
-﻿using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using SkiaSharp;
-using Vereinsmeisterschaften.Core.Analytics;
+﻿using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {

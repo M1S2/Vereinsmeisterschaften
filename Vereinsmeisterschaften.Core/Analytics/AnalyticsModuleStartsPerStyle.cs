@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -23,13 +20,20 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <summary>
-        /// Percentage of starts that are male
+        /// Number of starts per style. The list is ordered descending by the number.
         /// </summary>
         public Dictionary<SwimmingStyles, int> NumberStartsPerStyle => _personService.GetAllPersonStarts()
                                                                                      .Where(s => s.IsActive)
                                                                                      .GroupBy(s => s.Style)
                                                                                      .ToDictionary(g => g.Key, g => g.Count())
-                                                                                     .OrderByDescending(g => g.Value)
+                                                                                     .OrderByDescending(d => d.Value)
                                                                                      .ToDictionary();
+
+        /// <summary>
+        /// Percentage of starts per style. The list is ordered descending by the percentage.
+        /// </summary>
+        public Dictionary<SwimmingStyles, double> PercentageStartsPerStyle => NumberStartsPerStyle.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive)) * 100)
+                                                                                                  .OrderByDescending(d => d.Value)
+                                                                                                  .ToDictionary();
     }
 }

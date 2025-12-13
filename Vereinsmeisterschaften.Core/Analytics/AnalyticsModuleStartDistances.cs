@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Services;
-using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Core.Analytics
 {

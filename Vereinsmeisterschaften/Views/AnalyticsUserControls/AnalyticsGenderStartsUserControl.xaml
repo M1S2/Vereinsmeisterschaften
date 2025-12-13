@@ -9,8 +9,8 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <liveCharts:PieChart Series="{Binding GenderStartsSeries}"
-                         LegendPosition="Bottom" LegendTextPaint="{Binding ColorPaintMahAppsText}"
+    <liveCharts:PieChart Series="{Binding GenderStartsSeries}" InitialRotation="-90"
+                         LegendPosition="Bottom" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_LEGEND_TEXTSIZE_DEFAULT}"
                          TooltipPosition="Hidden"/>
 
 </local:AnalyticsUserControlBase>

@@ -32,9 +32,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <inheritdoc/>
         public virtual Geometry IconGeometry { get; } = null;
         /// <inheritdoc/>
-        public abstract double AnalyticsModuleWidth { get; }
+        public virtual double AnalyticsModuleWidth { get; } = ANALYTICS_WIDTH_DEFAULT;
         /// <inheritdoc/>
-        public abstract double AnalyticsModuleHeight { get; }
+        public virtual double AnalyticsModuleHeight { get; } = ANALYTICS_HEIGHT_DEFAULT;
 
         /// <inheritdoc/>
         public virtual void Refresh() { }
@@ -46,6 +46,17 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public static readonly SolidColorPaint COLORPAINT_MALE = new SolidColorPaint(SKColor.Parse("2986cc"));
         public static readonly SolidColorPaint COLORPAINT_FEMALE = new SolidColorPaint(SKColor.Parse("c90076"));
         public static readonly SolidColorPaint COLORPAINT_SEPARATORS = new SolidColorPaint(SKColor.Parse("dcdcdc"));
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Fixed sizes
+
+        public static readonly double ANALYTICS_WIDTH_DEFAULT = 400;
+        public static readonly double ANALYTICS_HEIGHT_DEFAULT = 275;
+        public static readonly double ANALYTICS_LEGEND_TEXTSIZE_DEFAULT = 14;
+        public static readonly double ANALYTICS_AXIS_TEXTSIZE_DEFAULT = 16;
 
         #endregion
 

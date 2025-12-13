@@ -5,7 +5,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// <summary>
     /// Analytics module to calculate the age distribution of all persons
     /// </summary>
-    public class AnalyticsModuleAgeDistribution
+    public class AnalyticsModuleAgeDistribution : IAnalyticsModule
     {
         private IPersonService _personService;
 
@@ -17,6 +17,9 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             _personService = personService;
         }
+
+        /// <inheritdoc/>
+        public bool AnalyticsAvailable => true;
 
         /// <summary>
         /// Dictionary that counts the number of persons (value) per birth year (key)

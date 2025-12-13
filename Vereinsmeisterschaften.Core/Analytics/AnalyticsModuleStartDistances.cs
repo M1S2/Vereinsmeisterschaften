@@ -6,19 +6,16 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// <summary>
     /// Analytics module to calculate the distances between the starts of each person in the persisted race variant
     /// </summary>
-    public class AnalyticsModuleStartDistances
+    public class AnalyticsModuleStartDistances : IAnalyticsModule
     {
-        private IPersonService _personService;
         private IRaceService _raceService;
 
         /// <summary>
         /// Constructor for the <see cref="AnalyticsModuleStartDistances"/>
         /// </summary>
-        /// <param name="personService"><see cref="IPersonService"/> object</param>
         /// <param name="raceService"><see cref="IRaceService"/> object</param>
-        public AnalyticsModuleStartDistances(IPersonService personService, IRaceService raceService)
+        public AnalyticsModuleStartDistances(IRaceService raceService)
         {
-            _personService = personService;
             _raceService = raceService;
         }
 

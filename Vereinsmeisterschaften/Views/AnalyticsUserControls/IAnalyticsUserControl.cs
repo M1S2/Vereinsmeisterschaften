@@ -18,6 +18,11 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         string Icon { get; }
 
         /// <summary>
+        /// Info text for this analytics
+        /// </summary>
+        string Info { get; }
+
+        /// <summary>
         /// Icon Geometry for this analytics. This is used instead of <see cref="Icon"/> when <see cref="Icon"/> is <see langword="null"/>.
         /// </summary>
         Geometry IconGeometry { get; }

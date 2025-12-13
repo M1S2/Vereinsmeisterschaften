@@ -6,6 +6,7 @@ using System.Windows.Media;
 using ControlzEx.Theming;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
@@ -30,6 +31,8 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <inheritdoc/>
         public virtual string Icon { get; } = "\uE9D2";
         /// <inheritdoc/>
+        public virtual string Info { get; } = "";
+        /// <inheritdoc/>
         public virtual Geometry IconGeometry { get; } = null;
         /// <inheritdoc/>
         public virtual double AnalyticsModuleWidth { get; } = ANALYTICS_WIDTH_DEFAULT;
@@ -38,7 +41,23 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         /// <inheritdoc/>
         public virtual void Refresh() { }
-        
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Analytics Module
+
+        /// <summary>
+        /// Analytics module used by this user control
+        /// </summary>
+        public IAnalyticsModule AnalyticsModule { get; }
+
+        /// <summary>
+        /// Indicating if the analytics module has data
+        /// </summary>
+        public bool AnalyticsAvailable => AnalyticsModule?.AnalyticsAvailable ?? false;
+
+        #endregion
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         #region Fixed colors
@@ -85,8 +104,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <summary>
         /// Constructor of the <see cref="AnalyticsUserControlBase"/>
         /// </summary>
-        public AnalyticsUserControlBase()
+        public AnalyticsUserControlBase(IAnalyticsModule analyticsModule)
         {
+            AnalyticsModule = analyticsModule;
             ThemeManager.Current.ThemeChanged += (sender, e) =>
             {
                 OnPropertyChanged(nameof(ColorPaintMahAppsText));

@@ -24,6 +24,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override void Refresh()
         {
             OnPropertyChanged(nameof(NumberPersonsPerBirthYearSeries));
+            OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
         }
 
@@ -41,6 +42,16 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 YToolTipLabelFormatter = point => $"{point.Model.Key}: {point.Model.Value}"
             }
         };
+
+        public Axis[] XAxes =>
+        [
+            new Axis
+            {
+                IsVisible = true,
+                LabelsPaint = ColorPaintMahAppsText,
+                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT
+            }
+        ];
 
         public Axis[] YAxes =>
         [

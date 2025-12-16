@@ -401,4 +401,7 @@ Nur aktive Personen werden gezählt.</value>
     <value>Analysieren, wie viele Starts pro Distanz gemeldet sind.
 Nur aktive Personen werden gezählt.</value>
   </data>
+  <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.</value>
+  </data>
 </root>

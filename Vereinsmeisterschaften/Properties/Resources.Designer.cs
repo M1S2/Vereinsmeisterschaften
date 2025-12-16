@@ -178,6 +178,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per result place ähnelt.
+        /// </summary>
+        public static string AnalyticsPlacesAgeDistributionUserControlTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsPlacesAgeDistributionUserControlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Distances between the starts of a person ähnelt.
         /// </summary>
         public static string AnalyticsStartDistancesUserControlTitle {

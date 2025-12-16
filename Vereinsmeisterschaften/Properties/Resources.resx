@@ -649,4 +649,7 @@
   <data name="AnalyticsStartsPerDistanceUserControlTitle" xml:space="preserve">
     <value>Number of active starts per distance</value>
   </data>
+  <data name="AnalyticsPlacesAgeDistributionUserControlTitle" xml:space="preserve">
+    <value>Birth years per result place</value>
+  </data>
 </root>

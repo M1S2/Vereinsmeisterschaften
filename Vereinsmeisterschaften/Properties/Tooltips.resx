@@ -402,4 +402,7 @@ Only active persons are regarded.</value>
     <value>Analyse how many starts per distance are available.
 Only active persons are regarded.</value>
   </data>
+  <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Analyse the birth year for each result place.</value>
+  </data>
 </root>

@@ -119,6 +119,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth year for each result place. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsPlacesAgeDistribution {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsPlacesAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the distances between the starts of a person.
         ///Only active persons are regarded. ähnelt.
         /// </summary>

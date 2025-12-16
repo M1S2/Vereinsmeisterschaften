@@ -1,4 +1,4 @@
-﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsAgeDistributionUserControl"
+﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsPlacesAgeDistributionUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <liveCharts:CartesianChart Series="{Binding NumberPersonsPerBirthYearSeries}"
+    <liveCharts:CartesianChart Series="{Binding BirthYearsPerResultPlaceSeries}"
                                XAxes="{Binding XAxes}"
                                YAxes="{Binding YAxes}"/>
     

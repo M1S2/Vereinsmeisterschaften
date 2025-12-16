@@ -650,4 +650,7 @@ Alle Starts sind zugewiesen.</value>
   <data name="AnalyticsStartsPerDistanceUserControlTitle" xml:space="preserve">
     <value>Anzahl von aktiven Starts pro Distanz</value>
   </data>
+  <data name="AnalyticsPlacesAgeDistributionUserControlTitle" xml:space="preserve">
+    <value>Geburtsjahr je Platz im Gesamtergebnis</value>
+  </data>
 </root>

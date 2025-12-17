@@ -23,20 +23,22 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE9D2;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.AnalyticsPageTitle}" />
-            <!--<controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoAnalyticsPage}"/>-->
+            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoAnalyticsPage}"/>
         </StackPanel>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding AnalyticsUserControls}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <localControls:MasonryPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="{x:Type UserControl}">
-                    <Setter Property="Margin" Value="5"/>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-        </ItemsControl>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding AnalyticsUserControls}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type UserControl}">
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Page>

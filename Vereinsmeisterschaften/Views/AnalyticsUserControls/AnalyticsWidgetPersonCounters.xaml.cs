@@ -3,22 +3,21 @@
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsPersonCountersUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetPersonCounters.xaml
     /// </summary>
-    public partial class AnalyticsPersonCountersUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetPersonCounters : AnalyticsUserControlBase
     {
         private AnalyticsModulePersonCounters _analyticsModule => AnalyticsModule as AnalyticsModulePersonCounters;
 
-        public AnalyticsPersonCountersUserControl(AnalyticsModulePersonCounters analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetPersonCounters(AnalyticsModulePersonCounters analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsPersonCountersUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetPersonCountersTitle;
         public override string Icon { get; } = "\uE77B";
         public override string Info => Properties.Tooltips.TooltipAnalyticsPersonCounters;
-        public override double AnalyticsModuleWidth => this.Width;      // Size is determined by the control content
-        public override double AnalyticsModuleHeight => this.Height;    // Size is determined by the control content
+        public override double AnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_EXTRA_SMALL;
 
         public override void Refresh()
         {

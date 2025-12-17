@@ -15,20 +15,20 @@ using Vereinsmeisterschaften.Core.Settings;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsDistancesBetweenStartsUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetDistancesBetweenStarts.xaml
     /// </summary>
-    public partial class AnalyticsDistancesBetweenStartsUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetDistancesBetweenStarts : AnalyticsUserControlBase
     {
         private AnalyticsModuleDistancesBetweenStarts _analyticsModule => AnalyticsModule as AnalyticsModuleDistancesBetweenStarts;
         private IWorkspaceService _workspaceService;
 
-        public AnalyticsDistancesBetweenStartsUserControl(AnalyticsModuleDistancesBetweenStarts analyticsModule, IWorkspaceService workspaceService) : base(analyticsModule)
+        public AnalyticsWidgetDistancesBetweenStarts(AnalyticsModuleDistancesBetweenStarts analyticsModule, IWorkspaceService workspaceService) : base(analyticsModule)
         {
             InitializeComponent();
             _workspaceService = workspaceService;
         }
 
-        public override string Title => Properties.Resources.AnalyticsStartDistancesUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetDistancesBetweenStartsTitle;
         public override string Icon { get; } = "\uE769";
         public override string Info => Properties.Tooltips.TooltipAnalyticsStartDistances;
 
@@ -111,10 +111,13 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         [
             new Axis
             {
+                Name = Properties.Resources.DistanceBetweenStartsString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 MinLimit = 0,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 Labeler = (value) =>
                 {
                     // Only return labels for real values (no doubles with fractional part)
@@ -135,8 +138,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 SeparatorsPaint = null,
                 Labels = DistancesBetweenStartsPerPersonReversed.Keys.Select(p => $"{p.FirstName}, {p.Name}").ToArray(),
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
-                LabelsDensity = 0
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                MinStep = 1,
+                ForceStepToMin = true                
             }
         ];
     }

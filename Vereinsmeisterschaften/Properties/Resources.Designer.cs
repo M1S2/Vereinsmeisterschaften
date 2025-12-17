@@ -124,42 +124,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of persons per birth year ähnelt.
-        /// </summary>
-        public static string AnalyticsAgeDistributionUserControlTitle {
-            get {
-                return ResourceManager.GetString("AnalyticsAgeDistributionUserControlTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active persons ähnelt.
-        /// </summary>
-        public static string AnalyticsGenderPersonsUserControlTitle {
-            get {
-                return ResourceManager.GetString("AnalyticsGenderPersonsUserControlTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active starts ähnelt.
-        /// </summary>
-        public static string AnalyticsGenderStartsUserControlTitle {
-            get {
-                return ResourceManager.GetString("AnalyticsGenderStartsUserControlTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of starts per person ähnelt.
-        /// </summary>
-        public static string AnalyticsMostStartsUserControlTitle {
-            get {
-                return ResourceManager.GetString("AnalyticsMostStartsUserControlTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analytics ähnelt.
         /// </summary>
         public static string AnalyticsPageTitle {
@@ -169,56 +133,92 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number Persons ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of persons per birth year ähnelt.
         /// </summary>
-        public static string AnalyticsPersonCountersUserControlTitle {
+        public static string AnalyticsWidgetAgeDistributionTitle {
             get {
-                return ResourceManager.GetString("AnalyticsPersonCountersUserControlTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per result place ähnelt.
-        /// </summary>
-        public static string AnalyticsPlacesAgeDistributionUserControlTitle {
-            get {
-                return ResourceManager.GetString("AnalyticsPlacesAgeDistributionUserControlTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetAgeDistributionTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Distances between the starts of a person ähnelt.
         /// </summary>
-        public static string AnalyticsStartDistancesUserControlTitle {
+        public static string AnalyticsWidgetDistancesBetweenStartsTitle {
             get {
-                return ResourceManager.GetString("AnalyticsStartDistancesUserControlTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetDistancesBetweenStartsTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number Starts ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active persons ähnelt.
         /// </summary>
-        public static string AnalyticsStartsCountersUserControlTitle {
+        public static string AnalyticsWidgetGenderPersonsTitle {
             get {
-                return ResourceManager.GetString("AnalyticsStartsCountersUserControlTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetGenderPersonsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active starts ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetGenderStartsTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetGenderStartsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Persons ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetPersonCountersTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetPersonCountersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per result place ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetPlacesAgeDistributionTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetPlacesAgeDistributionTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per distance ähnelt.
         /// </summary>
-        public static string AnalyticsStartsPerDistanceUserControlTitle {
+        public static string AnalyticsWidgetStartDistancesTitle {
             get {
-                return ResourceManager.GetString("AnalyticsStartsPerDistanceUserControlTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetStartDistancesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number Starts ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetStartsCountersTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetStartsCountersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of starts per person ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetStartsPerPersonTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetStartsPerPersonTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per style ähnelt.
         /// </summary>
-        public static string AnalyticsStartsPerStyleUserControlTitle {
+        public static string AnalyticsWidgetStartsPerStyleTitle {
             get {
-                return ResourceManager.GetString("AnalyticsStartsPerStyleUserControlTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetStartsPerStyleTitle", resourceCulture);
             }
         }
         
@@ -423,6 +423,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Count ähnelt.
+        /// </summary>
+        public static string CountString {
+            get {
+                return ResourceManager.GetString("CountString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Certificates were created. ähnelt.
         /// </summary>
         public static string CreateCertificatesResultString {
@@ -554,6 +563,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string DeleteRaceVariantConfirmationString {
             get {
                 return ResourceManager.GetString("DeleteRaceVariantConfirmationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distance between starts ähnelt.
+        /// </summary>
+        public static string DistanceBetweenStartsString {
+            get {
+                return ResourceManager.GetString("DistanceBetweenStartsString", resourceCulture);
             }
         }
         
@@ -1114,6 +1132,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ResultListTemplatePathString {
             get {
                 return ResourceManager.GetString("ResultListTemplatePathString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result Place ähnelt.
+        /// </summary>
+        public static string ResultPlaceString {
+            get {
+                return ResourceManager.GetString("ResultPlaceString", resourceCulture);
             }
         }
         

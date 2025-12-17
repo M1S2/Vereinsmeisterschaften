@@ -616,19 +616,19 @@
   <data name="ShellAnalyticsPage" xml:space="preserve">
     <value>Analytics</value>
   </data>
-  <data name="AnalyticsGenderStartsUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetGenderStartsTitle" xml:space="preserve">
     <value>Gender distribution of active starts</value>
   </data>
-  <data name="AnalyticsGenderPersonsUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetGenderPersonsTitle" xml:space="preserve">
     <value>Gender distribution of active persons</value>
   </data>
-  <data name="AnalyticsStartsPerStyleUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetStartsPerStyleTitle" xml:space="preserve">
     <value>Number of active starts per style</value>
   </data>
-  <data name="AnalyticsPersonCountersUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetPersonCountersTitle" xml:space="preserve">
     <value>Number Persons</value>
   </data>
-  <data name="AnalyticsStartsCountersUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetStartsCountersTitle" xml:space="preserve">
     <value>Number Starts</value>
   </data>
   <data name="TotalString" xml:space="preserve">
@@ -637,19 +637,28 @@
   <data name="InactiveString" xml:space="preserve">
     <value>Inactive</value>
   </data>
-  <data name="AnalyticsAgeDistributionUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetAgeDistributionTitle" xml:space="preserve">
     <value>Number of persons per birth year</value>
   </data>
-  <data name="AnalyticsMostStartsUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetStartsPerPersonTitle" xml:space="preserve">
     <value>Number of starts per person</value>
   </data>
-  <data name="AnalyticsStartDistancesUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetDistancesBetweenStartsTitle" xml:space="preserve">
     <value>Distances between the starts of a person</value>
   </data>
-  <data name="AnalyticsStartsPerDistanceUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetStartDistancesTitle" xml:space="preserve">
     <value>Number of active starts per distance</value>
   </data>
-  <data name="AnalyticsPlacesAgeDistributionUserControlTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetPlacesAgeDistributionTitle" xml:space="preserve">
     <value>Birth years per result place</value>
+  </data>
+  <data name="CountString" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="DistanceBetweenStartsString" xml:space="preserve">
+    <value>Distance between starts</value>
+  </data>
+  <data name="ResultPlaceString" xml:space="preserve">
+    <value>Result Place</value>
   </data>
 </root>

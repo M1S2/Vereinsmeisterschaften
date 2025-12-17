@@ -75,7 +75,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="Views\AnalyticsUserControls\AnalyticsGenderPersonsUserControl.xaml.cs">
+    <Compile Update="Views\AnalyticsUserControls\AnalyticsWidgetGenderPersons.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

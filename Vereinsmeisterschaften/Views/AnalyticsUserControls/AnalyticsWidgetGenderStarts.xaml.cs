@@ -7,21 +7,21 @@ using Vereinsmeisterschaften.Core.Analytics;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsGenderStartsUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetGenderStarts.xaml
     /// </summary>
-    public partial class AnalyticsGenderStartsUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetGenderStarts : AnalyticsUserControlBase
     {
         private AnalyticsModuleGenderStarts _analyticsModule => AnalyticsModule as AnalyticsModuleGenderStarts;
 
-        public AnalyticsGenderStartsUserControl(AnalyticsModuleGenderStarts analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetGenderStarts(AnalyticsModuleGenderStarts analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsGenderStartsUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetGenderStartsTitle;
         public override string Icon { get; } = "\uE7C1";
         public override string Info => Properties.Tooltips.TooltipAnalyticsGenderStarts;
-        public override double AnalyticsModuleWidth => 300;
+        public override double AnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_SMALL;
 
         public override void Refresh()
         {

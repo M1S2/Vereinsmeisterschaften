@@ -94,7 +94,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModulePersonCounters>();
         services.AddSingleton<AnalyticsModuleStartsCounters>();
         services.AddSingleton<AnalyticsModuleAgeDistribution>();
-        services.AddSingleton<AnalyticsModuleMostStarts>();
+        services.AddSingleton<AnalyticsModuleStartsPerPerson>();
         services.AddSingleton<AnalyticsModuleDistancesBetweenStarts>();
         services.AddSingleton<AnalyticsModuleStartDistances>();
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
@@ -142,16 +142,16 @@ public partial class App : Application
         services.AddSingleton<SettingsPage>();
 
         //Analytics UserControls
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsPersonCountersUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderPersonsUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsCountersUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsGenderStartsUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsStartsPerStyleUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsStartDistancesUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsAgeDistributionUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsMostStartsUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsDistancesBetweenStartsUserControl>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsPlacesAgeDistributionUserControl>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetPersonCounters>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetGenderPersons>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsCounters>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetGenderStarts>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsPerStyle>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartDistances>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetAgeDistribution>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsPerPerson>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetDistancesBetweenStarts>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetPlacesAgeDistribution>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

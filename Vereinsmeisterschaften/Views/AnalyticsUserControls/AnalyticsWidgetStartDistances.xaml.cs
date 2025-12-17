@@ -13,18 +13,18 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsStartDistancesUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetStartDistances.xaml
     /// </summary>
-    public partial class AnalyticsStartDistancesUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetStartDistances : AnalyticsUserControlBase
     {
         private AnalyticsModuleStartDistances _analyticsModule => AnalyticsModule as AnalyticsModuleStartDistances;
 
-        public AnalyticsStartDistancesUserControl(AnalyticsModuleStartDistances analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetStartDistances(AnalyticsModuleStartDistances analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsStartsPerDistanceUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetStartDistancesTitle;
         public override string Icon { get; } = "\uECC6";
         public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerDistance;
 

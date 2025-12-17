@@ -379,8 +379,8 @@ Nur aktive Personen werden gezählt.</value>
     <value>Analysieren, wie viel Prozent der Starts männlich bzw. weiblich sind.
 Nur aktive Personen werden gezählt.</value>
   </data>
-  <data name="TooltipAnalyticsMostStarts" xml:space="preserve">
-    <value>Analysieren, welche Person die meisten Starts hat.
+  <data name="TooltipAnalyticsStartsPerPerson" xml:space="preserve">
+    <value>Analysieren, wie viele Starts jede Person hat.
 Nur aktive Personen werden gezählt.</value>
   </data>
   <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
@@ -403,5 +403,9 @@ Nur aktive Personen werden gezählt.</value>
   </data>
   <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
     <value>Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.</value>
+  </data>
+  <data name="TooltipPageInfoAnalyticsPage" xml:space="preserve">
+    <value>Auf dieser Seite werden verschiedene Analysen dargestellt. Diese Analysen hängen von verschiedenen Daten ab, die auf den anderen Seiten eingegeben wurden.
+Für mehr Infos zu den einzelnen Analysen siehe die Info in den einzelnen Analyse Widgets.</value>
   </data>
 </root>

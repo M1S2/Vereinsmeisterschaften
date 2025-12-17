@@ -12,20 +12,20 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsMostStartsUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetStartsPerPerson.xaml
     /// </summary>
-    public partial class AnalyticsMostStartsUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetStartsPerPerson : AnalyticsUserControlBase
     {
-        private AnalyticsModuleMostStarts _analyticsModule => AnalyticsModule as AnalyticsModuleMostStarts;
+        private AnalyticsModuleStartsPerPerson _analyticsModule => AnalyticsModule as AnalyticsModuleStartsPerPerson;
 
-        public AnalyticsMostStartsUserControl(AnalyticsModuleMostStarts analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetStartsPerPerson(AnalyticsModuleStartsPerPerson analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsMostStartsUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetStartsPerPersonTitle;
         public override string Icon { get; } = "\uE77B";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsMostStarts;
+        public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerPerson;
 
         public override void Refresh()
         {
@@ -85,9 +85,12 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         [
             new Axis
             {
+                Name = Properties.Resources.CountString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 Labeler = (value) =>
                 {
                     // Only return labels for real values (no doubles with fractional part)
@@ -108,8 +111,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 SeparatorsPaint = null,
                 Labels = NumberStartsPerPersonReordered.Keys.Select(p => $"{p.FirstName}, {p.Name}").ToArray(),
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
-                LabelsDensity = 0
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                MinStep = 1,
+                ForceStepToMin = true
             }
         ];
     }

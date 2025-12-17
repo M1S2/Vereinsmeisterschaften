@@ -6,18 +6,18 @@ using Vereinsmeisterschaften.Core.Analytics;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsAgeDistributionUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetAgeDistribution.xaml
     /// </summary>
-    public partial class AnalyticsAgeDistributionUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetAgeDistribution : AnalyticsUserControlBase
     {
         private AnalyticsModuleAgeDistribution _analyticsModule => AnalyticsModule as AnalyticsModuleAgeDistribution;
 
-        public AnalyticsAgeDistributionUserControl(AnalyticsModuleAgeDistribution analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetAgeDistribution(AnalyticsModuleAgeDistribution analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsAgeDistributionUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetAgeDistributionTitle;
         public override string Icon => "\uED55";
         public override string Info => Properties.Tooltips.TooltipAnalyticsAgeDistribution;
 
@@ -48,8 +48,11 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             new Axis
             {
                 IsVisible = true,
+                Name = Properties.Resources.BirthYearString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT
             }
         ];
 
@@ -58,9 +61,12 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             new Axis
             {
                 IsVisible = true,
+                Name = Properties.Resources.CountString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 LabelsDensity = 0,
                 Labeler = (value) =>
                 {

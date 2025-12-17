@@ -100,16 +100,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse which person has the most starts.
-        ///Only active persons are regarded. ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsMostStarts {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsMostStarts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of active and inactive persons. ähnelt.
         /// </summary>
         public static string TooltipAnalyticsPersonCounters {
@@ -153,6 +143,16 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipAnalyticsStartsPerDistance {
             get {
                 return ResourceManager.GetString("TooltipAnalyticsStartsPerDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of starts per person.
+        ///Only active persons are regarded. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsStartsPerPerson {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsStartsPerPerson", resourceCulture);
             }
         }
         
@@ -351,6 +351,16 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipOpenDocument {
             get {
                 return ResourceManager.GetString("TooltipOpenDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Various analytics can be found on this page. These analytics depend on different data aspects entered on the other pages.
+        ///For more details about the single analytics refer to the info on the specific widget. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoAnalyticsPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoAnalyticsPage", resourceCulture);
             }
         }
         

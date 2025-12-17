@@ -73,6 +73,22 @@ Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Documents.png" width="100%"></img>
 
+### Analysen
+Auf dieser Seite werden verschiedene Analysen dargestellt. Diese Analysen hängen von verschiedenen Daten ab, die auf den anderen Seiten eingegeben wurden.
+Infos zu den einzelnen Analysen:
+- Anzahl Personen pro Geburtsjahr: Analysieren, wie viele Personen pro Geburtsjahr gestartet sind. Nur aktive Personen werden gezählt.
+- Geschlechterverteilung der aktiven Personen: Analysieren, wie viel Prozent der Personen männlich bzw. weiblich sind. Nur aktive Personen werden gezählt.
+- Geschlechterverteilung der aktiven Starts: Analysieren, wie viel Prozent der Starts männlich bzw. weiblich sind. Nur aktive Personen werden gezählt.
+- Anzahl Personen: Analysieren, wie viele Personen gemeldet sind (aktiv und inaktiv).
+- Geburtsjahr je Platz im Gesamtergebnis: Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.
+- Abstände zwischen den Starts einer Person: Analysieren, wie viel Pause zwischen den Starts einer Person ist. Nur aktive Personen werden gezählt.
+- Anzahl Starts: Analysieren, wie viele Starts gemeldet sind (aktiv und inaktiv).
+- Anzahl von aktiven Starts pro Distanz: Analysieren, wie viele Starts pro Distanz gemeldet sind. Nur aktive Personen werden gezählt.
+- Anzahl an Starts pro Person: Analysieren, wie viele Starts jede Person hat. Nur aktive Personen werden gezählt.
+- Anzahl von aktiven Starts pro Stil: Analysieren, wie viele Starts pro Schwimmstil gemeldet sind. Nur aktive Personen werden gezählt.
+
+TBD: Bild der Seite .................
+
 ### Einstellungen
 Hier kann das Software Design verändert werden. Hell, Dunkel oder Systemeinstellung stehen zur Verfügung.
 

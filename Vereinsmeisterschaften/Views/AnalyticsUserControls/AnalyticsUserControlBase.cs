@@ -35,9 +35,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <inheritdoc/>
         public virtual Geometry IconGeometry { get; } = null;
         /// <inheritdoc/>
-        public virtual double AnalyticsModuleWidth { get; } = ANALYTICS_WIDTH_DEFAULT;
+        public virtual double AnalyticsWidgetWidth { get; } = ANALYTICS_WIDGET_WIDTH_NORMAL;
         /// <inheritdoc/>
-        public virtual double AnalyticsModuleHeight { get; } = ANALYTICS_HEIGHT_DEFAULT;
+        public virtual double AnalyticsWidgetHeight { get; } = ANALYTICS_WIDGET_HEIGHT_NORMAL;
 
         /// <inheritdoc/>
         public virtual void Refresh() { }
@@ -72,10 +72,12 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         #region Fixed sizes
 
-        public static readonly double ANALYTICS_WIDTH_DEFAULT = 400;
-        public static readonly double ANALYTICS_HEIGHT_DEFAULT = 275;
-        public static readonly double ANALYTICS_LEGEND_TEXTSIZE_DEFAULT = 14;
-        public static readonly double ANALYTICS_AXIS_TEXTSIZE_DEFAULT = 16;
+        public static readonly double ANALYTICS_WIDGET_WIDTH_NORMAL = 400;
+        public static readonly double ANALYTICS_WIDGET_WIDTH_SMALL = 300;
+        public static readonly double ANALYTICS_WIDGET_WIDTH_EXTRA_SMALL = 150;
+        public static readonly double ANALYTICS_WIDGET_HEIGHT_NORMAL = 275;
+        public static readonly double ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT = 14;
+        public static readonly double ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT = 16;
 
         #endregion
 

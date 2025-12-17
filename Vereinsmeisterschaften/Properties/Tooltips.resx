@@ -380,8 +380,8 @@ Only active persons are regarded.</value>
     <value>Analyse the percentage of male/female starts.
 Only active persons are regarded.</value>
   </data>
-  <data name="TooltipAnalyticsMostStarts" xml:space="preserve">
-    <value>Analyse which person has the most starts.
+  <data name="TooltipAnalyticsStartsPerPerson" xml:space="preserve">
+    <value>Analyse the number of starts per person.
 Only active persons are regarded.</value>
   </data>
   <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
@@ -404,5 +404,9 @@ Only active persons are regarded.</value>
   </data>
   <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
     <value>Analyse the birth year for each result place.</value>
+  </data>
+  <data name="TooltipPageInfoAnalyticsPage" xml:space="preserve">
+    <value>Various analytics can be found on this page. These analytics depend on different data aspects entered on the other pages.
+For more details about the single analytics refer to the info on the specific widget.</value>
   </data>
 </root>

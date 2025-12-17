@@ -28,14 +28,14 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         Geometry IconGeometry { get; }
 
         /// <summary>
-        /// Width for the analytics module
+        /// Width for the analytics widget
         /// </summary>
-        double AnalyticsModuleWidth { get; }
+        double AnalyticsWidgetWidth { get; }
 
         /// <summary>
-        /// Height for the analytics module
+        /// Height for the analytics widget
         /// </summary>
-        double AnalyticsModuleHeight { get; }
+        double AnalyticsWidgetHeight { get; }
 
         /// <summary>
         /// Refresh the data displayed in the user control

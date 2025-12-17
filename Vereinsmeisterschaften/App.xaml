@@ -124,7 +124,7 @@
             <!-- ControlTemplate for the AnalyticsUserControlBase base styling -->
             <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsUserControlBase}" x:Key="ControlTemplateAnalyticsUserControlBase">
                 <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsUserControlBase}}}"
-                          Width="{Binding AnalyticsModuleWidth}" Height="{Binding AnalyticsModuleHeight}">
+                          Width="{Binding AnalyticsWidgetWidth}" Height="{Binding AnalyticsWidgetHeight}">
                     <GroupBox.Header>
                         <DockPanel>
                             <controls:FontIcon DockPanel.Dock="Right"

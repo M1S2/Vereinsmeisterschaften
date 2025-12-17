@@ -1,4 +1,4 @@
-﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsGenderPersonsUserControl"
+﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsWidgetGenderPersons"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,7 +11,7 @@
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
     <liveCharts:PieChart Series="{Binding GenderPersonsSeries}" InitialRotation="-90"
-                         LegendPosition="Bottom" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_LEGEND_TEXTSIZE_DEFAULT}"
+                         LegendPosition="Bottom" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT}"
                          TooltipPosition="Hidden"/>
     
 </local:AnalyticsUserControlBase>

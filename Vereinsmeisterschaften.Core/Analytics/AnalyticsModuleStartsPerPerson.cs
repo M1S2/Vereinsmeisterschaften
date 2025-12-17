@@ -4,17 +4,17 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Analytics
 {
     /// <summary>
-    /// Analytics module to calculate the persons with the most starts
+    /// Analytics module to calculate the number of starts per persons
     /// </summary>
-    public class AnalyticsModuleMostStarts : IAnalyticsModule
+    public class AnalyticsModuleStartsPerPerson : IAnalyticsModule
     {
         private IPersonService _personService;
 
         /// <summary>
-        /// Constructor for the <see cref="AnalyticsModuleMostStarts"/>
+        /// Constructor for the <see cref="AnalyticsModuleStartsPerPerson"/>
         /// </summary>
         /// <param name="personService"><see cref="IPersonService"/> object</param>
-        public AnalyticsModuleMostStarts(IPersonService personService)
+        public AnalyticsModuleStartsPerPerson(IPersonService personService)
         {
             _personService = personService;
         }

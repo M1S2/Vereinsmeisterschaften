@@ -7,18 +7,18 @@ using Vereinsmeisterschaften.Core.Analytics;
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsPlacesAgeDistributionUserControl.xaml
+    /// Interaktionslogik für AnalyticsWidgetPlacesAgeDistribution.xaml
     /// </summary>
-    public partial class AnalyticsPlacesAgeDistributionUserControl : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetPlacesAgeDistribution : AnalyticsUserControlBase
     {
         private AnalyticsModulePlacesAgeDistribution _analyticsModule => AnalyticsModule as AnalyticsModulePlacesAgeDistribution;
 
-        public AnalyticsPlacesAgeDistributionUserControl(AnalyticsModulePlacesAgeDistribution analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetPlacesAgeDistribution(AnalyticsModulePlacesAgeDistribution analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsPlacesAgeDistributionUserControlTitle;
+        public override string Title => Properties.Resources.AnalyticsWidgetPlacesAgeDistributionTitle;
         public override string Icon => "\uE9F9";
         public override string Info => Properties.Tooltips.TooltipAnalyticsPlacesAgeDistribution;
 
@@ -49,8 +49,13 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             new Axis
             {
                 IsVisible = true,
+                Name = Properties.Resources.ResultPlaceString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                MinStep = 1,
+                ForceStepToMin = true
             }
         ];
 
@@ -59,10 +64,14 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             new Axis
             {
                 IsVisible = true,
+                Name = Properties.Resources.BirthYearString,
+                NamePaint = ColorPaintMahAppsText,
+                NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_AXIS_TEXTSIZE_DEFAULT,
-                LabelsDensity = 0
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                LabelsDensity = 0,
+                MinStep = 1
             }
         ];
     }

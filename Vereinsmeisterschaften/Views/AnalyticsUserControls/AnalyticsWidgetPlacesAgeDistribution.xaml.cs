@@ -1,7 +1,9 @@
-﻿using LiveChartsCore;
+﻿using System.Drawing;
+using LiveChartsCore;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
@@ -31,6 +33,10 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         public List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution> BirthYearsPerResultPlace => _analyticsModule?.BirthYearsPerResultPlace ?? new List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution>();
 
+        static float regressionLineStrokeThickness = 4;
+        static float[] regressionLineStrokeDashArray = new float[] { 3 * regressionLineStrokeThickness, 2 * regressionLineStrokeThickness };
+        static DashEffect regressionLineStrokeEffect = new DashEffect(regressionLineStrokeDashArray);
+
         public ISeries[] BirthYearsPerResultPlaceSeries => _analyticsModule == null ? null : new ISeries[]
         {
             new LineSeries<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution>
@@ -44,6 +50,24 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
                 GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
                 Fill = new SolidColorPaint(new SkiaSharp.SKColor(ColorPaintMahAppsAccent.Color.Red, ColorPaintMahAppsAccent.Color.Green, ColorPaintMahAppsAccent.Color.Blue, 0x33))     // modify alpha channel for transparency
+            },
+            // Linear Regression Line
+            new LineSeries<PointF>
+            {
+                Values = _analyticsModule.LinearRegressionLinePoints,
+                Mapping = (model, index) =>
+                {
+                    return new Coordinate(model.X, model.Y);
+                },
+                YToolTipLabelFormatter = point => point.Model.Y.ToString("F2"),
+                Stroke = new SolidColorPaint(ColorPaintMahAppsText.Color)
+                {
+                    StrokeCap = SkiaSharp.SKStrokeCap.Round,
+                    StrokeThickness = regressionLineStrokeThickness,
+                    PathEffect = regressionLineStrokeEffect
+                },
+                GeometrySize = 0,
+                Fill = null
             }
         };
 

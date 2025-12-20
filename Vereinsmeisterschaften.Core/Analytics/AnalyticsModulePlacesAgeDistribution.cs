@@ -1,4 +1,5 @@
-﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+﻿using System.Drawing;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -36,6 +37,44 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// </summary>
         public List<ModelPlacesAgeDistribution> BirthYearsPerResultPlace => _scoreService.GetPersonsSortedByScore(ResultTypes.Overall, true)
                                                                                          .Select((person, index) => new ModelPlacesAgeDistribution() { ResultPlace = index + 1, BirthYear = person.BirthYear, PersonObj = person }).ToList();
+
+        /// <summary>
+        /// List with the start and end points of a linear regression line through the BirthYearsPerResultPlace points.
+        /// Point.X is the result place, Point.Y is the birth year.
+        /// </summary>
+        public List<PointF> LinearRegressionLinePoints
+        {
+            get
+            {
+                List<ModelPlacesAgeDistribution> birthYearsPerResultPlace = BirthYearsPerResultPlace;
+                List<float> xs = birthYearsPerResultPlace.Select(p => (float)p.ResultPlace).ToList();
+                List<float> ys = birthYearsPerResultPlace.Select(p => (float)p.BirthYear).ToList();
+
+                float xAvg = xs.Average();
+                float yAvg = ys.Average();
+
+                float numerator = 0;
+                float denominator = 0;
+
+                for (int i = 0; i < xs.Count; i++)
+                {
+                    numerator += (xs[i] - xAvg) * (ys[i] - yAvg);
+                    denominator += (xs[i] - xAvg) * (xs[i] - xAvg);
+                }
+
+                float a = numerator / denominator;
+                float b = yAvg - a * xAvg;
+
+                int minPlace = birthYearsPerResultPlace.Min(p => p.ResultPlace);
+                int maxPlace = birthYearsPerResultPlace.Max(p => p.ResultPlace);
+
+                return new List<PointF>()
+                {
+                    new PointF(minPlace, a * minPlace + b),
+                    new PointF(maxPlace, a * maxPlace + b)
+                };
+            }
+        }
 
     }
 }

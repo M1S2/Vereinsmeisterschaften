@@ -86,6 +86,7 @@ Infos zu den einzelnen Analysen:
 - **Anzahl an gültigen Starts pro Person:** Analysieren, wie viele Starts jede Person hat. Nur gültige Starts werden gezählt (aktiv und mit zugewiesenem Wettkampf).
 - **Abstände zwischen den Starts einer Person:** Analysieren, wie viel Pause zwischen den Starts einer Person ist. Nur aktive Starts werden gezählt.
 - **Geburtsjahr je Platz im Gesamtergebnis:** Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.
+- **Geburtsjahre je Rennen:** Analysieren, welche Geburtsjahre je Rennen antreten.
 
 TBD: Bild der Seite .................
 

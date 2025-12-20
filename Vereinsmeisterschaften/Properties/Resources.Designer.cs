@@ -196,6 +196,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per race ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetRacesAgeSpanTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetRacesAgeSpanTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of valid starts per distance ähnelt.
         /// </summary>
         public static string AnalyticsWidgetStartDistancesTitle {
@@ -1055,11 +1064,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race ID ähnelt.
+        /// </summary>
+        public static string RaceIDString {
+            get {
+                return ResourceManager.GetString("RaceIDString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Race Start List Template ähnelt.
         /// </summary>
         public static string RaceStartListTemplatePathString {
             get {
                 return ResourceManager.GetString("RaceStartListTemplatePathString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race ähnelt.
+        /// </summary>
+        public static string RaceString {
+            get {
+                return ResourceManager.GetString("RaceString", resourceCulture);
             }
         }
         

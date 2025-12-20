@@ -98,6 +98,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModuleDistancesBetweenStarts>();
         services.AddSingleton<AnalyticsModuleStartDistances>();
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
+        services.AddSingleton<AnalyticsModuleRacesAgeSpan>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -152,6 +153,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsPerPerson>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetDistancesBetweenStarts>();
         services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetPlacesAgeDistribution>();
+        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetRacesAgeSpan>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

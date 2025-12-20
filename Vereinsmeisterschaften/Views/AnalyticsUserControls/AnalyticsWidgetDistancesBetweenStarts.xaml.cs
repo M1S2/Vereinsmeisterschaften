@@ -25,6 +25,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         {
             InitializeComponent();
             _workspaceService = workspaceService;
+            PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));
         }
 
         public override string Title => Properties.Resources.AnalyticsWidgetDistancesBetweenStartsTitle;
@@ -37,7 +38,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(ChartHeight));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
-            OnPropertyChanged(nameof(AnalyticsAvailable));
+            base.Refresh();
         }
 
         public Dictionary<Person, List<int>> DistancesBetweenStartsPerPersonReversed => _analyticsModule?.DistancesBetweenStartsPerPerson?.Reverse()?.ToDictionary() ?? new Dictionary<Person, List<int>>();

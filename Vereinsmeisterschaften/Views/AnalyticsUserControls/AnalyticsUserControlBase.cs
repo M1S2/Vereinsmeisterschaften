@@ -61,7 +61,10 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         }
 
         /// <inheritdoc/>
-        public virtual void Refresh() { }
+        public virtual void Refresh()
+        {
+            OnPropertyChanged(nameof(AnalyticsAvailable));
+        }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -132,6 +135,19 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 return new SolidColorPaint(SKColor.Parse(accentBrushString));
             }
         }
+        /// <summary>
+        /// <see cref="SolidColorPaint"/> that represents the MahApps.Brushes.ThemeBackground brush.
+        /// This can be used as color in charts
+        /// </summary>
+        public SolidColorPaint ColorPaintMahAppsBackground
+        {
+            get
+            {
+                Brush backgroundBrush = (Brush)ThemeManager.Current.DetectTheme(Application.Current).Resources["MahApps.Brushes.ThemeBackground"];
+                string backgroundBrushString = (string)new BrushConverter().ConvertTo(backgroundBrush, typeof(string));
+                return new SolidColorPaint(SKColor.Parse(backgroundBrushString));
+            }
+        }
 
         #endregion
 
@@ -147,6 +163,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             {
                 OnPropertyChanged(nameof(ColorPaintMahAppsText));
                 OnPropertyChanged(nameof(ColorPaintMahAppsAccent));
+                OnPropertyChanged(nameof(ColorPaintMahAppsBackground));
                 Refresh();
             };
         }

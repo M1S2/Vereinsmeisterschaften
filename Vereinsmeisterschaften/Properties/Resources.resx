@@ -673,4 +673,13 @@
   <data name="ShowDetailViewString" xml:space="preserve">
     <value>Show detailed view</value>
   </data>
+  <data name="RaceIDString" xml:space="preserve">
+    <value>Race ID</value>
+  </data>
+  <data name="AnalyticsWidgetRacesAgeSpanTitle" xml:space="preserve">
+    <value>Birth years per race</value>
+  </data>
+  <data name="RaceString" xml:space="preserve">
+    <value>Race</value>
+  </data>
 </root>

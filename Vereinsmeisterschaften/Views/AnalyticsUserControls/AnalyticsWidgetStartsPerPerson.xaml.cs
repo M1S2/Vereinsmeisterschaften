@@ -21,6 +21,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public AnalyticsWidgetStartsPerPerson(AnalyticsModuleStartsPerPerson analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
+            PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));
         }
 
         public override string Title => Properties.Resources.AnalyticsWidgetStartsPerPersonTitle;
@@ -33,6 +34,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(ChartHeight));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
+            base.Refresh();
         }
 
         public Dictionary<Person, int> NumberStartsPerPersonReordered => _analyticsModule?.NumberStartsPerPerson?.OrderBy(s => s.Value)?.ToDictionary() ?? new Dictionary<Person, int>();

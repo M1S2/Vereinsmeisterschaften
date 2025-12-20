@@ -25,6 +25,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(NumberOfInactiveStarts));
             OnPropertyChanged(nameof(NumberOfStartsWithMissingCompetition));
             OnPropertyChanged(nameof(NumberOfValidStarts));
+            base.Refresh();
         }
 
         public int NumberOfStarts => _analyticsModule?.NumberOfStarts ?? 0;

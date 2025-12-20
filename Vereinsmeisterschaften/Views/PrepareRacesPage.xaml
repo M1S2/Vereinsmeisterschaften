@@ -32,17 +32,6 @@
             </DataTemplate.Triggers>
         </DataTemplate>
 
-        <!-- Style that removes all effects (e.g. mouse over, highlight color ...) from the toggle button -->
-        <Style x:Key="PlainToggleButtonStyle" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableHighlightPersonStartModes">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="viewModels:HighlightPersonStartModes"/>

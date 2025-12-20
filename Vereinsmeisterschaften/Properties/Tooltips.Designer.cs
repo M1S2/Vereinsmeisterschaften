@@ -91,7 +91,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the percentage of male/female starts.
-        ///Only active persons are regarded. ähnelt.
+        ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
         public static string TooltipAnalyticsGenderStarts {
             get {
@@ -119,7 +119,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the distances between the starts of a person.
-        ///Only active persons are regarded. ähnelt.
+        ///Only active starts are regarded. ähnelt.
         /// </summary>
         public static string TooltipAnalyticsStartDistances {
             get {
@@ -138,7 +138,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per distance are available.
-        ///Only active persons are regarded. ähnelt.
+        ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
         public static string TooltipAnalyticsStartsPerDistance {
             get {
@@ -148,7 +148,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of starts per person.
-        ///Only active persons are regarded. ähnelt.
+        ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
         public static string TooltipAnalyticsStartsPerPerson {
             get {
@@ -158,7 +158,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per style are available.
-        ///Only active persons are regarded. ähnelt.
+        ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
         public static string TooltipAnalyticsStartsPerStyle {
             get {
@@ -401,7 +401,7 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create a order for the starts. This can be done either manually (by adding a variant and manually dragging the starts from the right area to the middle) or automatically (variants are randomly created and evaluated according to various criteria).
         ///Each race variant is scored from 0% (poor) to 100% (perfect). In the workspace, you can set the weighting or various parameters for the automatic calculation.
-        ///You can also highlight specific starts. For example, all of a person&apos;s starts to c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///You can also highlight specific starts. For example, all of a person&apos;s starts to che [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoPrepareRacesPage {
             get {
@@ -436,7 +436,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///- WorkspaceSettings.json: JSON file with all settings for the workspace.
         ///- Person.csv: List of all people and swim times.
         ///- Competitions.csv: List of all available competitions.
-        ///- BestRace.csv: The race marked as a good option is saved here. If n [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///- BestRace.csv: The race marked as a good option is saved here. If no race [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoWorkspacePage {
             get {

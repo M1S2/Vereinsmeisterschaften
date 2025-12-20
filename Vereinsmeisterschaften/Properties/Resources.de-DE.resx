@@ -618,13 +618,13 @@ Alle Starts sind zugewiesen.</value>
     <value>Analysen</value>
   </data>
   <data name="AnalyticsWidgetGenderStartsTitle" xml:space="preserve">
-    <value>Geschlechterverteilung der aktiven Starts</value>
+    <value>Geschlechterverteilung der gültigen Starts</value>
   </data>
   <data name="AnalyticsWidgetGenderPersonsTitle" xml:space="preserve">
     <value>Geschlechterverteilung der aktiven Personen</value>
   </data>
   <data name="AnalyticsWidgetStartsPerStyleTitle" xml:space="preserve">
-    <value>Anzahl von aktiven Starts pro Stil</value>
+    <value>Anzahl von gültigen Starts pro Stil</value>
   </data>
   <data name="AnalyticsWidgetPersonCountersTitle" xml:space="preserve">
     <value>Anzahl Personen</value>
@@ -639,16 +639,16 @@ Alle Starts sind zugewiesen.</value>
     <value>Inaktiv</value>
   </data>
   <data name="AnalyticsWidgetAgeDistributionTitle" xml:space="preserve">
-    <value>Anzahl Personen pro Geburtsjahr</value>
+    <value>Anzahl aktive Personen pro Geburtsjahr</value>
   </data>
   <data name="AnalyticsWidgetStartsPerPersonTitle" xml:space="preserve">
-    <value>Anzahl an Starts pro Person</value>
+    <value>Anzahl an gültigen Starts pro Person</value>
   </data>
   <data name="AnalyticsWidgetDistancesBetweenStartsTitle" xml:space="preserve">
     <value>Abstände zwischen den Starts einer Person</value>
   </data>
   <data name="AnalyticsWidgetStartDistancesTitle" xml:space="preserve">
-    <value>Anzahl von aktiven Starts pro Distanz</value>
+    <value>Anzahl von gültigen Starts pro Distanz</value>
   </data>
   <data name="AnalyticsWidgetPlacesAgeDistributionTitle" xml:space="preserve">
     <value>Geburtsjahr je Platz im Gesamtergebnis</value>
@@ -661,5 +661,17 @@ Alle Starts sind zugewiesen.</value>
   </data>
   <data name="ResultPlaceString" xml:space="preserve">
     <value>Platz im Gesamtergebnis</value>
+  </data>
+  <data name="RestoreLayoutString" xml:space="preserve">
+    <value>Layout zurücksetzen (Detail-Ansicht verlassen)</value>
+  </data>
+  <data name="ActiveString" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="ValidString" xml:space="preserve">
+    <value>Gültig</value>
+  </data>
+  <data name="ShowDetailViewString" xml:space="preserve">
+    <value>Detail-Ansicht öffnen</value>
   </data>
 </root>

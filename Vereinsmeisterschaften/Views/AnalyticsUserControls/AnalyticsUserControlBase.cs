@@ -10,7 +10,7 @@ using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
-    public abstract class AnalyticsUserControlBase : UserControl, IAnalyticsUserControl, INotifyPropertyChanged
+    public abstract class AnalyticsUserControlBase : UserControl, IAnalyticsUserControl
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,10 +34,31 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public virtual string Info { get; } = "";
         /// <inheritdoc/>
         public virtual Geometry IconGeometry { get; } = null;
+        
         /// <inheritdoc/>
-        public virtual double AnalyticsWidgetWidth { get; } = ANALYTICS_WIDGET_WIDTH_NORMAL;
+        public virtual double NormalAnalyticsWidgetWidth { get; } = ANALYTICS_WIDGET_WIDTH_NORMAL;
         /// <inheritdoc/>
-        public virtual double AnalyticsWidgetHeight { get; } = ANALYTICS_WIDGET_HEIGHT_NORMAL;
+        public virtual double NormalAnalyticsWidgetHeight { get; } = ANALYTICS_WIDGET_HEIGHT_NORMAL;
+
+        /// <inheritdoc/>
+        public double CurrentAnalyticsWidgetWidth => IsMaximized ? double.NaN : NormalAnalyticsWidgetWidth;     // use NaN to fill up the complete space
+
+        /// <inheritdoc/>
+        public double CurrentAnalyticsWidgetHeight => IsMaximized ? double.NaN : NormalAnalyticsWidgetHeight;   // use NaN to fill up the complete space
+
+        private bool _isMaximized = false;
+        /// <inheritdoc/>
+        public bool IsMaximized
+        {
+            get => _isMaximized;
+            set
+            {
+                _isMaximized = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CurrentAnalyticsWidgetWidth)); 
+                OnPropertyChanged(nameof(CurrentAnalyticsWidgetHeight)); 
+            }
+        }
 
         /// <inheritdoc/>
         public virtual void Refresh() { }
@@ -73,8 +94,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         #region Fixed sizes
 
         public static readonly double ANALYTICS_WIDGET_WIDTH_NORMAL = 400;
-        public static readonly double ANALYTICS_WIDGET_WIDTH_SMALL = 300;
-        public static readonly double ANALYTICS_WIDGET_WIDTH_EXTRA_SMALL = 150;
+        public static readonly double ANALYTICS_WIDGET_WIDTH_SMALL = 200;
         public static readonly double ANALYTICS_WIDGET_HEIGHT_NORMAL = 275;
         public static readonly double ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT = 14;
         public static readonly double ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT = 16;
@@ -99,6 +119,20 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             }
         }
 
+        /// <summary>
+        /// <see cref="SolidColorPaint"/> that represents the MahApps.Brushes.Accent brush.
+        /// This can be used as color in charts
+        /// </summary>
+        public SolidColorPaint ColorPaintMahAppsAccent
+        {
+            get
+            {
+                Brush accentBrush = (Brush)ThemeManager.Current.DetectTheme(Application.Current).Resources["MahApps.Brushes.Accent"];
+                string accentBrushString = (string)new BrushConverter().ConvertTo(accentBrush, typeof(string));
+                return new SolidColorPaint(SKColor.Parse(accentBrushString));
+            }
+        }
+
         #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -112,6 +146,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             ThemeManager.Current.ThemeChanged += (sender, e) =>
             {
                 OnPropertyChanged(nameof(ColorPaintMahAppsText));
+                OnPropertyChanged(nameof(ColorPaintMahAppsAccent));
                 Refresh();
             };
         }

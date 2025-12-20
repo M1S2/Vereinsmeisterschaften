@@ -10,7 +10,7 @@
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
     <liveCharts:PieChart Series="{Binding GenderStartsSeries}" InitialRotation="-90"
-                         LegendPosition="Bottom" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT}"
+                         LegendPosition="Right" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT}"
                          TooltipPosition="Hidden"/>
 
 </local:AnalyticsUserControlBase>

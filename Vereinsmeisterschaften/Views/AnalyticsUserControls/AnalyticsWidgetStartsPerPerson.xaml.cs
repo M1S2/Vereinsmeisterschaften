@@ -73,7 +73,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <summary>
         /// Maximum width for the bars in the chart
         /// </summary>
-        public double ChartMaxBarWidth => 35;
+        public double ChartMaxBarWidth => 45;
 
         /// <summary>
         /// Calculate the chart height manually to support scrolling of the RowSeries by the surrounding scroll viewer.
@@ -88,18 +88,12 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 Name = Properties.Resources.CountString,
                 NamePaint = ColorPaintMahAppsText,
                 NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                MinLimit = 0,
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
                 TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
-                Labeler = (value) =>
-                {
-                    // Only return labels for real values (no doubles with fractional part)
-                    if(value == Math.Floor(value))
-                    {
-                        return value.ToString();
-                    }
-                    return "";
-                }
+                MinStep = 1,
+                ForceStepToMin = true
             }
         ];
 

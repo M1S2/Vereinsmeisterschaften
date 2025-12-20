@@ -617,13 +617,13 @@
     <value>Analytics</value>
   </data>
   <data name="AnalyticsWidgetGenderStartsTitle" xml:space="preserve">
-    <value>Gender distribution of active starts</value>
+    <value>Gender distribution of valid starts</value>
   </data>
   <data name="AnalyticsWidgetGenderPersonsTitle" xml:space="preserve">
     <value>Gender distribution of active persons</value>
   </data>
   <data name="AnalyticsWidgetStartsPerStyleTitle" xml:space="preserve">
-    <value>Number of active starts per style</value>
+    <value>Number of valid starts per style</value>
   </data>
   <data name="AnalyticsWidgetPersonCountersTitle" xml:space="preserve">
     <value>Number Persons</value>
@@ -638,16 +638,16 @@
     <value>Inactive</value>
   </data>
   <data name="AnalyticsWidgetAgeDistributionTitle" xml:space="preserve">
-    <value>Number of persons per birth year</value>
+    <value>Number of active persons per birth year</value>
   </data>
   <data name="AnalyticsWidgetStartsPerPersonTitle" xml:space="preserve">
-    <value>Number of starts per person</value>
+    <value>Number of valid starts per person</value>
   </data>
   <data name="AnalyticsWidgetDistancesBetweenStartsTitle" xml:space="preserve">
     <value>Distances between the starts of a person</value>
   </data>
   <data name="AnalyticsWidgetStartDistancesTitle" xml:space="preserve">
-    <value>Number of active starts per distance</value>
+    <value>Number of valid starts per distance</value>
   </data>
   <data name="AnalyticsWidgetPlacesAgeDistributionTitle" xml:space="preserve">
     <value>Birth years per result place</value>
@@ -660,5 +660,17 @@
   </data>
   <data name="ResultPlaceString" xml:space="preserve">
     <value>Result Place</value>
+  </data>
+  <data name="RestoreLayoutString" xml:space="preserve">
+    <value>Restore Layout (exit detailed view)</value>
+  </data>
+  <data name="ActiveString" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ValidString" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="ShowDetailViewString" xml:space="preserve">
+    <value>Show detailed view</value>
   </data>
 </root>

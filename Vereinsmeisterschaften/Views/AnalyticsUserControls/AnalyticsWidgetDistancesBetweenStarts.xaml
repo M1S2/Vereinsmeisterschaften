@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
              xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
              xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <ScrollViewer x:Name="PART_scrollViewerChart"
+    <ScrollViewer x:Name="PART_scrollViewerChart" behaviors:NestedScrollViewersBehavior.IsEnabled="True"
                   Visibility="{Binding AnalyticsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
         <liveCharts:CartesianChart Height="{Binding ChartHeight}"
                                    Series="{Binding StartDistancesPerPersonSeries}"

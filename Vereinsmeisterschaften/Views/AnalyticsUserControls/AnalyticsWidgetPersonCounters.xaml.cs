@@ -17,15 +17,17 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override string Title => Properties.Resources.AnalyticsWidgetPersonCountersTitle;
         public override string Icon { get; } = "\uE77B";
         public override string Info => Properties.Tooltips.TooltipAnalyticsPersonCounters;
-        public override double AnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_EXTRA_SMALL;
+        public override double NormalAnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_SMALL;
 
         public override void Refresh()
         {
             OnPropertyChanged(nameof(NumberOfPeople));
+            OnPropertyChanged(nameof(NumberOfActivePeople));
             OnPropertyChanged(nameof(NumberOfInactivePeople));
         }
 
         public int NumberOfPeople => _analyticsModule?.NumberOfPeople ?? 0;
+        public int NumberOfActivePeople => _analyticsModule?.NumberOfActivePeople ?? 0;
         public int NumberOfInactivePeople => _analyticsModule?.NumberOfInactivePeople ?? 0;
     }
 }

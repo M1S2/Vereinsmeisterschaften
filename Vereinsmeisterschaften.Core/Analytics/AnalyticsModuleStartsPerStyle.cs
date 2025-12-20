@@ -23,19 +23,19 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public bool AnalyticsAvailable => true;
 
         /// <summary>
-        /// Number of starts per style. The list is ordered descending by the number.
+        /// Number of valid starts per style. The list is ordered descending by the number.
         /// </summary>
         public Dictionary<SwimmingStyles, int> NumberStartsPerStyle => _personService.GetAllPersonStarts()
-                                                                                     .Where(s => s.IsActive)
+                                                                                     .Where(s => s.IsActive && s.IsCompetitionObjAssigned)
                                                                                      .GroupBy(s => s.Style)
                                                                                      .ToDictionary(g => g.Key, g => g.Count())
                                                                                      .OrderByDescending(d => d.Value)
                                                                                      .ToDictionary();
 
         /// <summary>
-        /// Percentage of starts per style. The list is ordered descending by the percentage.
+        /// Percentage of valid starts per style. The list is ordered descending by the percentage.
         /// </summary>
-        public Dictionary<SwimmingStyles, double> PercentageStartsPerStyle => NumberStartsPerStyle.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive)) * 100)
+        public Dictionary<SwimmingStyles, double> PercentageStartsPerStyle => NumberStartsPerStyle.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned)) * 100)
                                                                                                   .OrderByDescending(d => d.Value)
                                                                                                   .ToDictionary();
     }

@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        /// </summary>
+        public static string ActiveString {
+            get {
+                return ResourceManager.GetString("ActiveString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new empty race ähnelt.
         /// </summary>
         public static string AddEmptyRaceString {
@@ -133,7 +142,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of persons per birth year ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of active persons per birth year ähnelt.
         /// </summary>
         public static string AnalyticsWidgetAgeDistributionTitle {
             get {
@@ -160,7 +169,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of active starts ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gender distribution of valid starts ähnelt.
         /// </summary>
         public static string AnalyticsWidgetGenderStartsTitle {
             get {
@@ -187,7 +196,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per distance ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of valid starts per distance ähnelt.
         /// </summary>
         public static string AnalyticsWidgetStartDistancesTitle {
             get {
@@ -205,7 +214,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of starts per person ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of valid starts per person ähnelt.
         /// </summary>
         public static string AnalyticsWidgetStartsPerPersonTitle {
             get {
@@ -214,7 +223,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Number of active starts per style ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number of valid starts per style ähnelt.
         /// </summary>
         public static string AnalyticsWidgetStartsPerStyleTitle {
             get {
@@ -1118,6 +1127,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Restore Layout (exit detailed view) ähnelt.
+        /// </summary>
+        public static string RestoreLayoutString {
+            get {
+                return ResourceManager.GetString("RestoreLayoutString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Result List Detail Template ähnelt.
         /// </summary>
         public static string ResultListDetailTemplatePathString {
@@ -1487,6 +1505,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show detailed view ähnelt.
+        /// </summary>
+        public static string ShowDetailViewString {
+            get {
+                return ResourceManager.GetString("ShowDetailViewString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Solution Progress ähnelt.
         /// </summary>
         public static string SolutionProgressString {
@@ -1591,6 +1618,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string UnsavedChangesString {
             get {
                 return ResourceManager.GetString("UnsavedChangesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Valid ähnelt.
+        /// </summary>
+        public static string ValidString {
+            get {
+                return ResourceManager.GetString("ValidString", resourceCulture);
             }
         }
         

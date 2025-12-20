@@ -378,11 +378,11 @@ Only active persons are regarded.</value>
   </data>
   <data name="TooltipAnalyticsGenderStarts" xml:space="preserve">
     <value>Analyse the percentage of male/female starts.
-Only active persons are regarded.</value>
+Only valid starts are regarded (active and competition assigned).</value>
   </data>
   <data name="TooltipAnalyticsStartsPerPerson" xml:space="preserve">
     <value>Analyse the number of starts per person.
-Only active persons are regarded.</value>
+Only valid starts are regarded (active and competition assigned).</value>
   </data>
   <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
     <value>Analyse the number of active and inactive persons.</value>
@@ -392,15 +392,15 @@ Only active persons are regarded.</value>
   </data>
   <data name="TooltipAnalyticsStartDistances" xml:space="preserve">
     <value>Analyse the distances between the starts of a person.
-Only active persons are regarded.</value>
+Only active starts are regarded.</value>
   </data>
   <data name="TooltipAnalyticsStartsPerStyle" xml:space="preserve">
     <value>Analyse how many starts per style are available.
-Only active persons are regarded.</value>
+Only valid starts are regarded (active and competition assigned).</value>
   </data>
   <data name="TooltipAnalyticsStartsPerDistance" xml:space="preserve">
     <value>Analyse how many starts per distance are available.
-Only active persons are regarded.</value>
+Only valid starts are regarded (active and competition assigned).</value>
   </data>
   <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
     <value>Analyse the birth year for each result place.</value>

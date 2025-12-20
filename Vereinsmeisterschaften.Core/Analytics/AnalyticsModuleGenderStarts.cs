@@ -25,21 +25,21 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// Number of starts that are male
         /// </summary>
-        public double MaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.PersonObj?.Gender == Genders.Male);
+        public double MaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Male);
 
         /// <summary>
         /// Percentage of starts that are male
         /// </summary>
-        public double MaleStartsPercentage => (MaleStartsCount / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive)) * 100;
+        public double MaleStartsPercentage => (MaleStartsCount / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned)) * 100;
 
         /// <summary>
         /// Number of starts that are female
         /// </summary>
-        public double FemaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.PersonObj?.Gender == Genders.Female);
+        public double FemaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Female);
 
         /// <summary>
         /// Percentage of starts that are female
         /// </summary>
-        public double FemaleStartsPercentage => (FemaleStartsCount / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive)) * 100;
+        public double FemaleStartsPercentage => (FemaleStartsCount / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned)) * 100;
     }
 }

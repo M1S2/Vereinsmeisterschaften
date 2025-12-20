@@ -1,15 +1,14 @@
-﻿using LiveChartsCore;
+﻿using System.Windows;
+using System.Windows.Media;
+using LiveChartsCore;
 using LiveChartsCore.Kernel.Events;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using System.Windows;
-using System.Windows.Media;
 using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
@@ -99,7 +98,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         /// <summary>
         /// Maximum width for the bars in the chart
         /// </summary>
-        public double ChartMaxBarWidth => 35;
+        public double ChartMaxBarWidth => 45;
 
         /// <summary>
         /// Calculate the chart height manually to support scrolling of the RowSeries by the surrounding scroll viewer.
@@ -118,15 +117,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 SeparatorsPaint = COLORPAINT_SEPARATORS,
                 LabelsPaint = ColorPaintMahAppsText,
                 TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
-                Labeler = (value) =>
-                {
-                    // Only return labels for real values (no doubles with fractional part)
-                    if(value == Math.Floor(value))
-                    {
-                        return value.ToString();
-                    }
-                    return "";
-                }
+                MinStep = 1
             }
         ];
 

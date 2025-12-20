@@ -1,11 +1,12 @@
-﻿using System.Windows.Media;
+﻿using System.ComponentModel;
+using System.Windows.Media;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {
     /// <summary>
     /// Interface used for any user control that displays analytics data
     /// </summary>
-    public interface IAnalyticsUserControl
+    public interface IAnalyticsUserControl : INotifyPropertyChanged
     {
         /// <summary>
         /// Title used for the diagram of the analytics user control
@@ -28,14 +29,29 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         Geometry IconGeometry { get; }
 
         /// <summary>
-        /// Width for the analytics widget
+        /// Normal Width for the analytics widget (this is the default width regardless if the control is maximized)
         /// </summary>
-        double AnalyticsWidgetWidth { get; }
+        double NormalAnalyticsWidgetWidth { get; }
 
         /// <summary>
-        /// Height for the analytics widget
+        /// Normal Height for the analytics widget (this is the default height regardless if the control is maximized)
         /// </summary>
-        double AnalyticsWidgetHeight { get; }
+        double NormalAnalyticsWidgetHeight { get; }
+
+        /// <summary>
+        /// Current Width for the analytics widget
+        /// </summary>
+        double CurrentAnalyticsWidgetWidth { get; }
+
+        /// <summary>
+        /// Current Height for the analytics widget
+        /// </summary>
+        double CurrentAnalyticsWidgetHeight { get; }
+
+        /// <summary>
+        /// True if the analytics user control is displayed maximized (only one at a time should have this flag set to true)
+        /// </summary>
+        bool IsMaximized { get; set; }
 
         /// <summary>
         /// Refresh the data displayed in the user control

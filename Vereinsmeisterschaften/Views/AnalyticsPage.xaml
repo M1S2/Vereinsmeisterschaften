@@ -23,11 +23,15 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE9D2;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.AnalyticsPageTitle}" />
-            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoAnalyticsPage}"/>
+            <controls:FontIcon Margin="30,0,0,0"
+                               FontSize="25" Glyph="&#xF167;"
+                               Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                               ToolTip="{x:Static properties:Tooltips.TooltipPageInfoAnalyticsPage}"/>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding AnalyticsUserControls}">
+        <ScrollViewer Grid.Row="1"
+                      Visibility="{Binding IsMaximizedAnalyticsUserControlAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+            <ItemsControl ItemsSource="{Binding NormalSizedAnalyticsUserControls}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -40,5 +44,22 @@
                 </ItemsControl.ItemContainerStyle>
             </ItemsControl>
         </ScrollViewer>
+
+        <DockPanel Grid.Row="1"
+                   Visibility="{Binding IsMaximizedAnalyticsUserControlAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!-- Restore Layout button -->
+            <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5,10"
+                    Command="{Binding RestoreLayoutCommand}"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Icon exit full screen -->
+                    <controls:FontIcon FontSize="20" Glyph="&#xE73F;"/>
+                    <TextBlock Text="{x:Static properties:Resources.RestoreLayoutString}"
+                               VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <ContentControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                            Content="{Binding MaximizedAnalyticsUserControl}"/>
+        </DockPanel>
     </Grid>
 </Page>

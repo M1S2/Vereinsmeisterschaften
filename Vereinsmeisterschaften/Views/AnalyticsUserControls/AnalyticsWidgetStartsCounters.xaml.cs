@@ -17,15 +17,19 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override string Title => Properties.Resources.AnalyticsWidgetStartsCountersTitle;
         public override string Icon { get; } = "\uE7C1";
         public override string Info => Properties.Tooltips.TooltipAnalyticsStartsCounters;
-        public override double AnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_EXTRA_SMALL;
+        public override double NormalAnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_SMALL;
 
         public override void Refresh()
         {
             OnPropertyChanged(nameof(NumberOfStarts));
             OnPropertyChanged(nameof(NumberOfInactiveStarts));
+            OnPropertyChanged(nameof(NumberOfStartsWithMissingCompetition));
+            OnPropertyChanged(nameof(NumberOfValidStarts));
         }
 
         public int NumberOfStarts => _analyticsModule?.NumberOfStarts ?? 0;
         public int NumberOfInactiveStarts => _analyticsModule?.NumberOfInactiveStarts ?? 0;
+        public int NumberOfStartsWithMissingCompetition => _analyticsModule?.NumberOfStartsWithMissingCompetition ?? 0;
+        public int NumberOfValidStarts => _analyticsModule?.NumberOfValidStarts ?? 0;
     }
 }

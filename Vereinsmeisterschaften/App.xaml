@@ -89,6 +89,17 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- Style that removes all effects (e.g. mouse over, highlight color ...) from the toggle button -->
+            <Style x:Key="PlainToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">
                 <Grid>
@@ -122,11 +133,13 @@
             </ControlTemplate>
 
             <!-- ControlTemplate for the AnalyticsUserControlBase base styling -->
-            <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsUserControlBase}" x:Key="ControlTemplateAnalyticsUserControlBase">
+            <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsUserControlBase}" x:Key="ControlTemplateAnalyticsUserControlBase" x:Shared="false">
                 <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsUserControlBase}}}"
-                          Width="{Binding AnalyticsWidgetWidth}" Height="{Binding AnalyticsWidgetHeight}">
+                          Width="{Binding CurrentAnalyticsWidgetWidth}" Height="{Binding CurrentAnalyticsWidgetHeight}"
+                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <GroupBox.Header>
                         <DockPanel>
+                            <!-- Info icon -->
                             <controls:FontIcon DockPanel.Dock="Right"
                                                FontSize="20" Glyph="&#xF167;"
                                                ToolTip="{Binding Info}">
@@ -141,6 +154,34 @@
                                     </Style>
                                 </controls:FontIcon.Style>
                             </controls:FontIcon>
+                            <!-- IsMaximized icon -->
+                            <ToggleButton DockPanel.Dock="Right" Margin="5,0"
+                                          Width="25" Height="25"
+                                          IsChecked="{Binding IsMaximized}"
+                                          BorderBrush="Transparent" Background="Transparent">
+                                <ToggleButton.Style>
+                                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PlainToggleButtonStyle}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <!-- Icon Full Screen -->
+                                                <controls:FontIcon FontSize="20" Glyph="&#xE740;"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="ToolTip" Value="{x:Static properties:Resources.ShowDetailViewString}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMaximized}" Value="True">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <!-- Icon exit full screen -->
+                                                        <controls:FontIcon FontSize="20" Glyph="&#xE73F;"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip" Value="{x:Static properties:Resources.RestoreLayoutString}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
                             <!-- Icon for the analytics control. Icon is used if it isn't null, otherwise IconGeometry is used -->
                             <ContentControl DockPanel.Dock="Left">
                                 <ContentControl.Style>

@@ -10,7 +10,7 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
 
-    <Grid>
+    <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="10"/>
@@ -19,12 +19,21 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.TotalString}" FontSize="15" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding NumberOfStarts}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static properties:Resources.ValidString}" FontSize="15" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding NumberOfValidStarts}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static properties:Resources.InactiveString}" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource BrushStartInactive}"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding NumberOfInactiveStarts}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{DynamicResource BrushStartInactive}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static properties:Resources.CompetitionMissingString}" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource BrushError}"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding NumberOfStartsWithMissingCompetition}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{DynamicResource BrushError}"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static properties:Resources.TotalString}" FontSize="15" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding NumberOfStarts}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Right"/>
     </Grid>
 </local:AnalyticsUserControlBase>

@@ -1,6 +1,8 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using Newtonsoft.Json.Linq;
 using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
@@ -39,7 +41,10 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 {
                     return new Coordinate(model.Key, model.Value);
                 },
-                YToolTipLabelFormatter = point => $"{point.Model.Key}: {point.Model.Value}"
+                YToolTipLabelFormatter = point => $"{point.Model.Key}: {point.Model.Value}",
+                Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
+                GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
+                Fill = new SolidColorPaint(new SkiaSharp.SKColor(ColorPaintMahAppsAccent.Color.Red, ColorPaintMahAppsAccent.Color.Green, ColorPaintMahAppsAccent.Color.Blue, 0x33))     // modify alpha channel for transparency
             }
         };
 
@@ -52,7 +57,8 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 NamePaint = ColorPaintMahAppsText,
                 NameTextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 LabelsPaint = ColorPaintMahAppsText,
-                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT
+                TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
+                MinStep = 1
             }
         ];
 

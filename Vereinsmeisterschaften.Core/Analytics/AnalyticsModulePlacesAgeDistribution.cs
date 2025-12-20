@@ -8,6 +8,15 @@ namespace Vereinsmeisterschaften.Core.Analytics
     /// </summary>
     public class AnalyticsModulePlacesAgeDistribution : IAnalyticsModule
     {
+        #region Model
+        public class ModelPlacesAgeDistribution
+        {
+            public int ResultPlace { get; set; }
+            public ushort BirthYear { get; set; }
+            public Person PersonObj { get; set; }
+        }
+        #endregion
+        
         private IScoreService _scoreService;
 
         /// <summary>
@@ -23,11 +32,10 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public bool AnalyticsAvailable => true;
 
         /// <summary>
-        /// Birth year (value) per result place (key)
+        /// List with <see cref="ModelPlacesAgeDistribution"/> ordered by the result place.
         /// </summary>
-        public Dictionary<int, ushort> BirthYearsPerResultPlace => _scoreService.GetPersonsSortedByScore(ResultTypes.Overall, true)
-                                                                                .Select((value, index) => new { value, index })
-                                                                                .ToDictionary(pair => pair.index + 1, pair => pair.value.BirthYear);
+        public List<ModelPlacesAgeDistribution> BirthYearsPerResultPlace => _scoreService.GetPersonsSortedByScore(ResultTypes.Overall, true)
+                                                                                         .Select((person, index) => new ModelPlacesAgeDistribution() { ResultPlace = index + 1, BirthYear = person.BirthYear, PersonObj = person }).ToList();
 
     }
 }

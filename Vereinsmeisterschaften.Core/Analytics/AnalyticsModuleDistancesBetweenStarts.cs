@@ -28,6 +28,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// Distances between the starts (value) per person (key).
         /// Only persons with more than one start are part of this list (otherwise a distance can't be calculated).
         /// A distance of 1 means the starts are consecutive. A lower value isn't possible.
+        /// The list is ordered ascending by the minimum of each start distances per person.
         /// </summary>
         public Dictionary<Person, List<int>> DistancesBetweenStartsPerPerson
         {
@@ -61,7 +62,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
                         lastRaceIndex[person] = i;
                     }
                 }
-                return distancesBetweenStartsPerPerson;
+                return distancesBetweenStartsPerPerson.OrderBy(d => d.Value.Min()).ToDictionary(d => d.Key, d => d.Value);
             }
         }
     }

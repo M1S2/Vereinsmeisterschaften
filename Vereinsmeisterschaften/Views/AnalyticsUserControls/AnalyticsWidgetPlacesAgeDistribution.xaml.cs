@@ -1,7 +1,7 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
-using System.Xaml;
+using LiveChartsCore.SkiaSharpView.Painting;
 using Vereinsmeisterschaften.Core.Analytics;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
@@ -29,18 +29,21 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(YAxes));
         }
 
-        public Dictionary<int, ushort> BirthYearsPerResultPlace => _analyticsModule?.BirthYearsPerResultPlace ?? new Dictionary<int, ushort>();
+        public List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution> BirthYearsPerResultPlace => _analyticsModule?.BirthYearsPerResultPlace ?? new List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution>();
 
         public ISeries[] BirthYearsPerResultPlaceSeries => _analyticsModule == null ? null : new ISeries[]
         {
-            new LineSeries<KeyValuePair<int, ushort>>
+            new LineSeries<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution>
             {
                 Values = BirthYearsPerResultPlace,
                 Mapping = (model, index) =>
                 {
-                    return new Coordinate(model.Key, model.Value);
+                    return new Coordinate(model.ResultPlace, model.BirthYear);
                 },
-                YToolTipLabelFormatter = point => $"{point.Model.Key}: {point.Model.Value}"
+                YToolTipLabelFormatter = point => $"{point.Model.ResultPlace}: {point.Model.BirthYear}{Environment.NewLine}{point.Model.PersonObj.FirstName}, {point.Model.PersonObj.Name}",
+                Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
+                GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
+                Fill = new SolidColorPaint(new SkiaSharp.SKColor(ColorPaintMahAppsAccent.Color.Red, ColorPaintMahAppsAccent.Color.Green, ColorPaintMahAppsAccent.Color.Blue, 0x33))     // modify alpha channel for transparency
             }
         };
 
@@ -55,7 +58,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 LabelsPaint = ColorPaintMahAppsText,
                 TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 MinStep = 1,
-                ForceStepToMin = true
+                MinLimit = 0.5
             }
         ];
 

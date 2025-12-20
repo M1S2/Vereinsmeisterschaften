@@ -1,14 +1,10 @@
-﻿using System.Windows;
-using System.Windows.Media;
-using LiveChartsCore;
+﻿using LiveChartsCore;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.Themes;
 using SkiaSharp;
 using Vereinsmeisterschaften.Core.Analytics;
-using Vereinsmeisterschaften.Core.Helpers;
-using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 {

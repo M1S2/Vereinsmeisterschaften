@@ -30,5 +30,15 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// Number of inactive starts
         /// </summary>
         public int NumberOfInactiveStarts => _personService.GetAllPersonStarts().Count(s => !s.IsActive);
+
+        /// <summary>
+        /// Number of active starts with missing competitions
+        /// </summary>
+        public int NumberOfStartsWithMissingCompetition => _personService.GetAllPersonStarts().Count(s => s.IsActive && !s.IsCompetitionObjAssigned);
+
+        /// <summary>
+        /// Number of active starts with a competition assigned (valid starts)
+        /// </summary>
+        public int NumberOfValidStarts => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned);
     }
 }

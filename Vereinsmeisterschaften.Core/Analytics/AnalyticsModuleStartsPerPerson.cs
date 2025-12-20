@@ -23,11 +23,11 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public bool AnalyticsAvailable => true;
 
         /// <summary>
-        /// Number of starts (value) per person (key)
+        /// Number of starts (value) per person (key). The list is ordered descending by number of starts.
         /// </summary>
         public Dictionary<Person, int> NumberStartsPerPerson => _personService.GetPersons()
-                                                                              .Where(s => s.IsActive)
-                                                                              .ToDictionary(p => p, p => p.Starts.Count(s => s.Value != null))
+                                                                              .Where(p => p.IsActive)
+                                                                              .ToDictionary(p => p, p => p.Starts.Count(s => s.Value != null && s.Value.IsCompetitionObjAssigned))
                                                                               .OrderByDescending(p => p.Value)
                                                                               .ToDictionary();
     }

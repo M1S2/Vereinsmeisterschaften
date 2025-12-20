@@ -21,7 +21,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override string Title => Properties.Resources.AnalyticsWidgetGenderStartsTitle;
         public override string Icon { get; } = "\uE7C1";
         public override string Info => Properties.Tooltips.TooltipAnalyticsGenderStarts;
-        public override double AnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_SMALL;
+        public override double NormalAnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_NORMAL;
 
         public override void Refresh()
         {

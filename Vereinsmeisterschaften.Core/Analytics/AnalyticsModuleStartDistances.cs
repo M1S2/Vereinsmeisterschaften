@@ -23,7 +23,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public bool AnalyticsAvailable => true;
 
         /// <summary>
-        /// Number of starts per distance. The list is ordered descending by the number.
+        /// Number of valid starts per distance. The list is ordered descending by the number.
         /// </summary>
         public Dictionary<ushort, int> NumberStartsPerDistance => _personService.GetAllPersonStarts()
                                                                                 .Where(s => s.IsActive && s.CompetitionObj != null)
@@ -33,7 +33,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
                                                                                 .ToDictionary();
 
         /// <summary>
-        /// Percentage of starts per distance. The list is ordered descending by the percentage.
+        /// Percentage of valid starts per distance. The list is ordered descending by the percentage.
         /// </summary>
         public Dictionary<ushort, double> PercentageStartsPerDistance => NumberStartsPerDistance.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.CompetitionObj != null)) * 100)
                                                                                                 .OrderByDescending(d => d.Value)

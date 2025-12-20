@@ -26,6 +26,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override void Refresh()
         {
             OnPropertyChanged(nameof(GenderStartsSeries));
+            base.Refresh();
         }
 
         public ISeries[] GenderStartsSeries => _analyticsModule == null ? null : new ISeries[]

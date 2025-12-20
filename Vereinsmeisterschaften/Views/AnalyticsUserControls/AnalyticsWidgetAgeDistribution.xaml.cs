@@ -28,6 +28,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(NumberPersonsPerBirthYearSeries));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
+            base.Refresh();
         }
 
         public Dictionary<UInt16, int> NumberPersonsPerBirthYear => _analyticsModule?.NumberPersonsPerBirthYear ?? new Dictionary<UInt16, int>();
@@ -44,7 +45,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 YToolTipLabelFormatter = point => $"{point.Model.Key}: {point.Model.Value}",
                 Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
                 GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
-                Fill = new SolidColorPaint(new SkiaSharp.SKColor(ColorPaintMahAppsAccent.Color.Red, ColorPaintMahAppsAccent.Color.Green, ColorPaintMahAppsAccent.Color.Blue, 0x33))     // modify alpha channel for transparency
+                Fill = new SolidColorPaint(ColorPaintMahAppsAccent.Color.WithAlpha(0x33))     // modify alpha channel for transparency
             }
         };
 

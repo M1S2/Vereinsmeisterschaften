@@ -61,7 +61,10 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         }
 
         /// <inheritdoc/>
-        public virtual void Refresh() { }
+        public virtual void Refresh()
+        {
+            OnPropertyChanged(nameof(AnalyticsAvailable));
+        }
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

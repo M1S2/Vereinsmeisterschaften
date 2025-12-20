@@ -33,6 +33,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(ChartHeight));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
+            base.Refresh();
         }
 
         public Dictionary<Person, int> NumberStartsPerPersonReordered => _analyticsModule?.NumberStartsPerPerson?.OrderBy(s => s.Value)?.ToDictionary() ?? new Dictionary<Person, int>();

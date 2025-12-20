@@ -674,4 +674,10 @@ Alle Starts sind zugewiesen.</value>
   <data name="ShowDetailViewString" xml:space="preserve">
     <value>Detail-Ansicht öffnen</value>
   </data>
+  <data name="RaceIDString" xml:space="preserve">
+    <value>Renn-ID</value>
+  </data>
+  <data name="AnalyticsWidgetRacesAgeSpanTitle" xml:space="preserve">
+    <value>Geburtsjahre je Rennen</value>
+  </data>
 </root>

@@ -27,6 +27,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override void Refresh()
         {
             OnPropertyChanged(nameof(StartsPerDistanceSeries));
+            base.Refresh();
         }
 
         public ISeries[] StartsPerDistanceSeries

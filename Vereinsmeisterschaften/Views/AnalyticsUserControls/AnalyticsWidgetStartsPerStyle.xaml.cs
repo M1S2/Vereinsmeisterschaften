@@ -39,6 +39,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         public override void Refresh()
         {
             OnPropertyChanged(nameof(StartsPerStyleSeries));
+            base.Refresh();
         }
 
         public ISeries[] StartsPerStyleSeries

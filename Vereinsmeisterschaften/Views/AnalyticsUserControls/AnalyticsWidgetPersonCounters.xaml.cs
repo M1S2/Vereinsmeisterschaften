@@ -24,6 +24,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(NumberOfPeople));
             OnPropertyChanged(nameof(NumberOfActivePeople));
             OnPropertyChanged(nameof(NumberOfInactivePeople));
+            base.Refresh();
         }
 
         public int NumberOfPeople => _analyticsModule?.NumberOfPeople ?? 0;

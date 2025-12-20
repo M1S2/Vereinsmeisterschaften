@@ -29,6 +29,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(BirthYearsPerResultPlaceSeries));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
+            base.Refresh();
         }
 
         public List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution> BirthYearsPerResultPlace => _analyticsModule?.BirthYearsPerResultPlace ?? new List<AnalyticsModulePlacesAgeDistribution.ModelPlacesAgeDistribution>();
@@ -49,7 +50,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
                 YToolTipLabelFormatter = point => $"{point.Model.ResultPlace}: {point.Model.BirthYear}{Environment.NewLine}{point.Model.PersonObj.FirstName}, {point.Model.PersonObj.Name}",
                 Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
                 GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
-                Fill = new SolidColorPaint(new SkiaSharp.SKColor(ColorPaintMahAppsAccent.Color.Red, ColorPaintMahAppsAccent.Color.Green, ColorPaintMahAppsAccent.Color.Blue, 0x33))     // modify alpha channel for transparency
+                Fill = new SolidColorPaint(ColorPaintMahAppsAccent.Color.WithAlpha(0x33))     // modify alpha channel for transparency
             },
             // Linear Regression Line
             new LineSeries<PointF>

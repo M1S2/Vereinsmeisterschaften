@@ -37,7 +37,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             OnPropertyChanged(nameof(ChartHeight));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
-            OnPropertyChanged(nameof(AnalyticsAvailable));
+            base.Refresh();
         }
 
         public Dictionary<Person, List<int>> DistancesBetweenStartsPerPersonReversed => _analyticsModule?.DistancesBetweenStartsPerPerson?.Reverse()?.ToDictionary() ?? new Dictionary<Person, List<int>>();

@@ -134,9 +134,6 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -151,26 +148,14 @@
 
                     <Separator Grid.Row="1" Grid.ColumnSpan="4" Background="{StaticResource MahApps.Brushes.Accent}"/>
 
-                    <!-- NumberPersons -->
-                    <controls:FontIcon Grid.Row="2" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE77B;"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Margin="{StaticResource MarginNames}" Text="{Binding NumberPersons}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-
-                    <!-- NumberStarts -->
-                    <controls:FontIcon Grid.Row="3" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE7C1;"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.NumberStartsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="2" Margin="{StaticResource MarginNames}" Text="{Binding NumberStarts}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}"/>
-
-                    <Separator Grid.Row="4" Grid.ColumnSpan="4" Background="{StaticResource MahApps.Brushes.Accent}"/>
-
                     <!-- Save states -->
-                    <controls:FontIcon Grid.Row="5" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusCompetitionsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="5" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="2" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusCompetitionsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="2" Grid.Column="2" Margin="0,0,5,0"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Competitions}"/>
-                    <Button Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetCompetitionsCommand}">
+                    <Button Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetCompetitionsCommand}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -183,13 +168,13 @@
                         </Button.Style>
                     </Button>
 
-                    <controls:FontIcon Grid.Row="6" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="6" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="3" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusPersonsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="3" Grid.Column="2" Margin="0,0,5,0"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Persons}"/>
-                    <Button Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetPersonsCommand}">
+                    <Button Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetPersonsCommand}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -202,13 +187,13 @@
                         </Button.Style>
                     </Button>
 
-                    <controls:FontIcon Grid.Row="7" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusRacesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="7" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="4" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusRacesString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="4" Grid.Column="2" Margin="0,0,5,0"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Races}"/>
-                    <Button Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetRacesCommand}">
+                    <Button Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetRacesCommand}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -221,13 +206,13 @@
                         </Button.Style>
                     </Button>
 
-                    <controls:FontIcon Grid.Row="8" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
-                    <TextBlock Grid.Row="8" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusSettingsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    <userControls:BoolTemplateContentControl Grid.Row="8" Grid.Column="2"
+                    <controls:FontIcon Grid.Row="5" Grid.Column="0" Margin="{StaticResource MarginIcons}" FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" Text="{x:Static properties:Resources.SavedStatusSettingsString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="5" Grid.Column="2" Margin="0,0,5,0"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                              BoolValue="{Binding HasUnsavedChanges_Settings}"/>
-                    <Button Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetSettingsCommand}">
+                    <Button Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0" Command="{Binding ResetSettingsCommand}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
                                 <Setter Property="Visibility" Value="Collapsed"/>

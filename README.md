@@ -88,7 +88,7 @@ Infos zu den einzelnen Analysen:
 - **Geburtsjahr je Platz im Gesamtergebnis:** Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.
 - **Geburtsjahre je Rennen:** Analysieren, welche Geburtsjahre je Rennen antreten.
 
-TBD: Bild der Seite .................
+<img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Analytics.png" width="100%"></img>
 
 ### Einstellungen
 Hier kann das Software Design verändert werden. Hell, Dunkel oder Systemeinstellung stehen zur Verfügung.

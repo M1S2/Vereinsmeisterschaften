@@ -9,12 +9,12 @@ using SkiaSharp;
 using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Models;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetStartsPerPerson.xaml
     /// </summary>
-    public partial class AnalyticsWidgetStartsPerPerson : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetStartsPerPerson : AnalyticsWidgetBase
     {
         private AnalyticsModuleStartsPerPerson _analyticsModule => AnalyticsModule as AnalyticsModuleStartsPerPerson;
 
@@ -24,9 +24,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetStartsPerPersonTitle;
         public override string Icon { get; } = "\uE77B";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerPerson;
 
         public override void Refresh()
         {

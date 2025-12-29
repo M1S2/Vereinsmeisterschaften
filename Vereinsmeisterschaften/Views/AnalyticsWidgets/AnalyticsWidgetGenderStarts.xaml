@@ -1,16 +1,16 @@
-﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsWidgetGenderStarts"
+﻿<local:AnalyticsWidgetBase x:Class="Vereinsmeisterschaften.Views.AnalyticsWidgets.AnalyticsWidgetGenderStarts"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
              xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-             Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
+             Template="{StaticResource ControlTemplateAnalyticsWidgetBase}">
 
     <liveCharts:PieChart Series="{Binding GenderStartsSeries}" InitialRotation="-90"
-                         LegendPosition="Right" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsUserControlBase.ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT}"
+                         LegendPosition="Right" LegendTextPaint="{Binding ColorPaintMahAppsText}" LegendTextSize="{x:Static local:AnalyticsWidgetBase.ANALYTICS_WIDGET_LEGEND_TEXTSIZE_DEFAULT}"
                          TooltipPosition="Hidden"/>
 
-</local:AnalyticsUserControlBase>
+</local:AnalyticsWidgetBase>

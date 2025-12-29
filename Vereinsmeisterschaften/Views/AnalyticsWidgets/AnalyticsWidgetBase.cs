@@ -1,16 +1,17 @@
-﻿using System.ComponentModel;
+﻿using ControlzEx.Theming;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
+using System.ComponentModel;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using ControlzEx.Theming;
-using LiveChartsCore.SkiaSharpView.Painting;
-using SkiaSharp;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
-    public abstract class AnalyticsUserControlBase : UserControl, IAnalyticsUserControl
+    public abstract class AnalyticsWidgetBase : UserControl, IAnalyticsWidget
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,12 +27,35 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <inheritdoc/>
-        public abstract string Title { get; }
+        /// <summary>
+        /// Title used for the diagram of the analytics user control.
+        /// You can override this to assign a custom title. Or add a resource to the Resources.resx with the format: %ClassNameOfTheWidget%Title (e.g. AnalyticsWidgetAgeDistributionTitle)
+        /// </summary>
+        public virtual string Title
+        {
+            get
+            {
+                ResourceManager rm = new ResourceManager(typeof(Properties.Resources));
+                return rm.GetString($"{this.GetType().Name}Title") ?? "?";
+            }
+        }
+
         /// <inheritdoc/>
         public virtual string Icon { get; } = "\uE9D2";
-        /// <inheritdoc/>
-        public virtual string Info { get; } = "";
+
+        /// <summary>
+        /// Info text for this analytics.
+        /// You can override this to assign a custom tooltip. Or add a resource to the Tooltips.resx with the format: Tooltip%ClassNameOfTheWidget% (e.g. TooltipAnalyticsWidgetAgeDistribution)
+        /// </summary>
+        public virtual string Info
+        {
+            get
+            {
+                ResourceManager rm = new ResourceManager(typeof(Properties.Tooltips));
+                return rm.GetString($"Tooltip{this.GetType().Name}") ?? "?";
+            }
+        }
+
         /// <inheritdoc/>
         public virtual Geometry IconGeometry { get; } = null;
         
@@ -154,9 +178,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Constructor of the <see cref="AnalyticsUserControlBase"/>
+        /// Constructor of the <see cref="AnalyticsWidgetBase"/>
         /// </summary>
-        public AnalyticsUserControlBase(IAnalyticsModule analyticsModule)
+        public AnalyticsWidgetBase(IAnalyticsModule analyticsModule)
         {
             AnalyticsModule = analyticsModule;
             ThemeManager.Current.ThemeChanged += (sender, e) =>

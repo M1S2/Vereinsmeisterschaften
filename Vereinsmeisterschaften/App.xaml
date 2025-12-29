@@ -8,7 +8,7 @@
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
-    xmlns:analyticsControls="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
+    xmlns:analyticsControls="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -133,8 +133,8 @@
             </ControlTemplate>
 
             <!-- ControlTemplate for the AnalyticsUserControlBase base styling -->
-            <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsUserControlBase}" x:Key="ControlTemplateAnalyticsUserControlBase" x:Shared="false">
-                <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsUserControlBase}}}"
+            <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsWidgetBase}" x:Key="ControlTemplateAnalyticsWidgetBase" x:Shared="false">
+                <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsWidgetBase}}}"
                           Width="{Binding CurrentAnalyticsWidgetWidth}" Height="{Binding CurrentAnalyticsWidgetHeight}"
                           VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <GroupBox.Header>

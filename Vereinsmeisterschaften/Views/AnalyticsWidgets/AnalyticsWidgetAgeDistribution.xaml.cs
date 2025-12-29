@@ -2,15 +2,14 @@
 using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using Newtonsoft.Json.Linq;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetAgeDistribution.xaml
     /// </summary>
-    public partial class AnalyticsWidgetAgeDistribution : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetAgeDistribution : AnalyticsWidgetBase
     {
         private AnalyticsModuleAgeDistribution _analyticsModule => AnalyticsModule as AnalyticsModuleAgeDistribution;
 
@@ -19,9 +18,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetAgeDistributionTitle;
         public override string Icon => "\uED55";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsAgeDistribution;
 
         public override void Refresh()
         {

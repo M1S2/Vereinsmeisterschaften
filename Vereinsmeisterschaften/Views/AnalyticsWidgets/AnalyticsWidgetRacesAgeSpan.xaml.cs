@@ -1,25 +1,19 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
-using LiveChartsCore.Drawing;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.Kernel.Events;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView.VisualElements;
-using LiveChartsCore.VisualElements;
-using SkiaSharp;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetRacesAgeSpan.xaml
     /// </summary>
-    public partial class AnalyticsWidgetRacesAgeSpan : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetRacesAgeSpan : AnalyticsWidgetBase
     {
         #region Class WidgetModelRaceAgePoint
 
@@ -84,9 +78,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             Refresh();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetRacesAgeSpanTitle;
         public override string Icon => "\uED55";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsRacesAgeSpan;
 
         public override void Refresh()
         {

@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interface used for any user control that displays analytics data
     /// </summary>
-    public interface IAnalyticsUserControl : INotifyPropertyChanged
+    public interface IAnalyticsWidget : INotifyPropertyChanged
     {
         /// <summary>
-        /// Title used for the diagram of the analytics user control
+        /// Title used for the diagram of the analytics user control.
         /// </summary>
         string Title { get; }
 

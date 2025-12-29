@@ -17,7 +17,7 @@ using Vereinsmeisterschaften.Models;
 using Vereinsmeisterschaften.Services;
 using Vereinsmeisterschaften.ViewModels;
 using Vereinsmeisterschaften.Views;
-using Vereinsmeisterschaften.Views.AnalyticsUserControls;
+using Vereinsmeisterschaften.Views.AnalyticsWidgets;
 
 namespace Vereinsmeisterschaften;
 
@@ -143,17 +143,17 @@ public partial class App : Application
         services.AddSingleton<SettingsPage>();
 
         //Analytics UserControls
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetPersonCounters>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetGenderPersons>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsCounters>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetGenderStarts>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsPerStyle>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartDistances>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetAgeDistribution>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetStartsPerPerson>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetDistancesBetweenStarts>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetPlacesAgeDistribution>();
-        services.AddSingleton<IAnalyticsUserControl, AnalyticsWidgetRacesAgeSpan>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPersonCounters>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetGenderPersons>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetStartsCounters>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetGenderStarts>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetStartsPerStyle>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetStartDistances>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetAgeDistribution>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetStartsPerPerson>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetDistancesBetweenStarts>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPlacesAgeDistribution>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetRacesAgeSpan>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

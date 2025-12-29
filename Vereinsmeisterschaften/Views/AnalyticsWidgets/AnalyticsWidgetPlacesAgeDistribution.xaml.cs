@@ -6,12 +6,12 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetPlacesAgeDistribution.xaml
     /// </summary>
-    public partial class AnalyticsWidgetPlacesAgeDistribution : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetPlacesAgeDistribution : AnalyticsWidgetBase
     {
         private AnalyticsModulePlacesAgeDistribution _analyticsModule => AnalyticsModule as AnalyticsModulePlacesAgeDistribution;
 
@@ -20,9 +20,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetPlacesAgeDistributionTitle;
         public override string Icon => "\uE9F9";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsPlacesAgeDistribution;
 
         public override void Refresh()
         {

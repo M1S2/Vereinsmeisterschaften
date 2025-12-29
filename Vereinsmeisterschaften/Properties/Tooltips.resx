@@ -368,48 +368,48 @@ This information is used during race calculation to prefer races with friends as
   <data name="TooltipWeightFriendship" xml:space="preserve">
     <value>Weight for the score for friendships (The more friends start together in the same race the better).</value>
   </data>
-  <data name="TooltipAnalyticsAgeDistribution" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetAgeDistribution" xml:space="preserve">
     <value>Analyse how many people per birth year have started.
 Only active persons are regarded.</value>
   </data>
-  <data name="TooltipAnalyticsGenderPersons" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetGenderPersons" xml:space="preserve">
     <value>Analyse the percentage of male/female persons.
 Only active persons are regarded.</value>
   </data>
-  <data name="TooltipAnalyticsGenderStarts" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetGenderStarts" xml:space="preserve">
     <value>Analyse the percentage of male/female starts.
 Only valid starts are regarded (active and competition assigned).</value>
   </data>
-  <data name="TooltipAnalyticsStartsPerPerson" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetStartsPerPerson" xml:space="preserve">
     <value>Analyse the number of starts per person.
 Only valid starts are regarded (active and competition assigned).</value>
   </data>
-  <data name="TooltipAnalyticsPersonCounters" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetPersonCounters" xml:space="preserve">
     <value>Analyse the number of active and inactive persons.</value>
   </data>
-  <data name="TooltipAnalyticsStartsCounters" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetStartsCounters" xml:space="preserve">
     <value>Analyse the number of active and inactive starts.</value>
   </data>
-  <data name="TooltipAnalyticsStartDistances" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetDistancesBetweenStarts" xml:space="preserve">
     <value>Analyse the distances between the starts of a person.
 Only active starts are regarded.</value>
   </data>
-  <data name="TooltipAnalyticsStartsPerStyle" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetStartsPerStyle" xml:space="preserve">
     <value>Analyse how many starts per style are available.
 Only valid starts are regarded (active and competition assigned).</value>
   </data>
-  <data name="TooltipAnalyticsStartsPerDistance" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetStartDistances" xml:space="preserve">
     <value>Analyse how many starts per distance are available.
 Only valid starts are regarded (active and competition assigned).</value>
   </data>
-  <data name="TooltipAnalyticsPlacesAgeDistribution" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetPlacesAgeDistribution" xml:space="preserve">
     <value>Analyse the birth year for each result place.</value>
   </data>
   <data name="TooltipPageInfoAnalyticsPage" xml:space="preserve">
     <value>Various analytics can be found on this page. These analytics depend on different data aspects entered on the other pages.
 For more details about the single analytics refer to the info on the specific widget.</value>
   </data>
-  <data name="TooltipAnalyticsRacesAgeSpan" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetRacesAgeSpan" xml:space="preserve">
     <value>Analyse the birth years for each race</value>
   </data>
 </root>

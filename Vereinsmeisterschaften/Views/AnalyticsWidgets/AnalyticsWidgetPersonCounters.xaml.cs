@@ -1,11 +1,11 @@
 ﻿using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetPersonCounters.xaml
     /// </summary>
-    public partial class AnalyticsWidgetPersonCounters : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetPersonCounters : AnalyticsWidgetBase
     {
         private AnalyticsModulePersonCounters _analyticsModule => AnalyticsModule as AnalyticsModulePersonCounters;
 
@@ -14,9 +14,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetPersonCountersTitle;
         public override string Icon { get; } = "\uE77B";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsPersonCounters;
         public override double NormalAnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_SMALL;
 
         public override void Refresh()

@@ -4,37 +4,35 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsWidgetGenderStarts.xaml
+    /// Interaktionslogik für AnalyticsWidgetGenderPersons.xaml
     /// </summary>
-    public partial class AnalyticsWidgetGenderStarts : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetGenderPersons : AnalyticsWidgetBase
     {
-        private AnalyticsModuleGenderStarts _analyticsModule => AnalyticsModule as AnalyticsModuleGenderStarts;
+        private AnalyticsModuleGenderPersons _analyticsModule => AnalyticsModule as AnalyticsModuleGenderPersons;
 
-        public AnalyticsWidgetGenderStarts(AnalyticsModuleGenderStarts analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetGenderPersons(AnalyticsModuleGenderPersons analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetGenderStartsTitle;
-        public override string Icon { get; } = "\uE7C1";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsGenderStarts;
+        public override string Icon { get; } = "\uE77B";
         public override double NormalAnalyticsWidgetWidth => ANALYTICS_WIDGET_WIDTH_NORMAL;
 
         public override void Refresh()
         {
-            OnPropertyChanged(nameof(GenderStartsSeries));
+            OnPropertyChanged(nameof(GenderPersonsSeries));
             base.Refresh();
         }
 
-        public ISeries[] GenderStartsSeries => _analyticsModule == null ? null : new ISeries[]
+        public ISeries[] GenderPersonsSeries => _analyticsModule == null ? null : new ISeries[]
         {
             new PieSeries<double>
             {
-                Values = new []{ _analyticsModule.MaleStartsPercentage },
-                Name = $"{Core.Properties.EnumsCore.Genders_Male} ({_analyticsModule.MaleStartsCount})",
+                Values = new []{ _analyticsModule.MalePersonPercentage },
+                Name = $"{Core.Properties.EnumsCore.Genders_Male} ({_analyticsModule.MalePersonCount})",
                 Fill = COLORPAINT_MALE,
                 DataLabelsPaint = new SolidColorPaint(SKColors.Black),
                 DataLabelsSize = 20,
@@ -45,8 +43,8 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             },
             new PieSeries<double>
             {
-                Values = new[] { _analyticsModule.FemaleStartsPercentage },
-                Name = $"{Core.Properties.EnumsCore.Genders_Female} ({_analyticsModule.FemaleStartsCount})",
+                Values = new[] { _analyticsModule.FemalePersonPercentage },
+                Name = $"{Core.Properties.EnumsCore.Genders_Female} ({_analyticsModule.FemalePersonCount})",
                 Fill = COLORPAINT_FEMALE,
                 DataLabelsPaint = new SolidColorPaint(SKColors.Black),
                 DataLabelsSize = 20,

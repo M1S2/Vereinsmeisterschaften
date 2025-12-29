@@ -6,12 +6,12 @@ using LiveChartsCore.Themes;
 using SkiaSharp;
 using Vereinsmeisterschaften.Core.Analytics;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetStartDistances.xaml
     /// </summary>
-    public partial class AnalyticsWidgetStartDistances : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetStartDistances : AnalyticsWidgetBase
     {
         private AnalyticsModuleStartDistances _analyticsModule => AnalyticsModule as AnalyticsModuleStartDistances;
 
@@ -20,9 +20,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             InitializeComponent();
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetStartDistancesTitle;
         public override string Icon { get; } = "\uECC6";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerDistance;
 
         public override void Refresh()
         {

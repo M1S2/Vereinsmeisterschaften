@@ -11,12 +11,12 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetDistancesBetweenStarts.xaml
     /// </summary>
-    public partial class AnalyticsWidgetDistancesBetweenStarts : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetDistancesBetweenStarts : AnalyticsWidgetBase
     {
         private AnalyticsModuleDistancesBetweenStarts _analyticsModule => AnalyticsModule as AnalyticsModuleDistancesBetweenStarts;
         private IWorkspaceService _workspaceService;
@@ -28,9 +28,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));
         }
 
-        public override string Title => Properties.Resources.AnalyticsWidgetDistancesBetweenStartsTitle;
         public override string Icon { get; } = "\uE769";
-        public override string Info => Properties.Tooltips.TooltipAnalyticsStartDistances;
 
         public override void Refresh()
         {

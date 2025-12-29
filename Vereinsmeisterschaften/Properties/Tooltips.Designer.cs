@@ -73,56 +73,9 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many people per birth year have started.
         ///Only active persons are regarded. ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsAgeDistribution {
+        public static string TooltipAnalyticsWidgetAgeDistribution {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsAgeDistribution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the percentage of male/female persons.
-        ///Only active persons are regarded. ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsGenderPersons {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsGenderPersons", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the percentage of male/female starts.
-        ///Only valid starts are regarded (active and competition assigned). ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsGenderStarts {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsGenderStarts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of active and inactive persons. ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsPersonCounters {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsPersonCounters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth year for each result place. ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsPlacesAgeDistribution {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsPlacesAgeDistribution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth years for each race ähnelt.
-        /// </summary>
-        public static string TooltipAnalyticsRacesAgeSpan {
-            get {
-                return ResourceManager.GetString("TooltipAnalyticsRacesAgeSpan", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetAgeDistribution", resourceCulture);
             }
         }
         
@@ -130,18 +83,56 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the distances between the starts of a person.
         ///Only active starts are regarded. ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsStartDistances {
+        public static string TooltipAnalyticsWidgetDistancesBetweenStarts {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsStartDistances", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetDistancesBetweenStarts", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of active and inactive starts. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the percentage of male/female persons.
+        ///Only active persons are regarded. ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsStartsCounters {
+        public static string TooltipAnalyticsWidgetGenderPersons {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsStartsCounters", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetGenderPersons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the percentage of male/female starts.
+        ///Only valid starts are regarded (active and competition assigned). ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetGenderStarts {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetGenderStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of active and inactive persons. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetPersonCounters {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetPersonCounters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth year for each result place. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetPlacesAgeDistribution {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetPlacesAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth years for each race ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetRacesAgeSpan {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetRacesAgeSpan", resourceCulture);
             }
         }
         
@@ -149,9 +140,18 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per distance are available.
         ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsStartsPerDistance {
+        public static string TooltipAnalyticsWidgetStartDistances {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsStartsPerDistance", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetStartDistances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of active and inactive starts. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetStartsCounters {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetStartsCounters", resourceCulture);
             }
         }
         
@@ -159,9 +159,9 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of starts per person.
         ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsStartsPerPerson {
+        public static string TooltipAnalyticsWidgetStartsPerPerson {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsStartsPerPerson", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetStartsPerPerson", resourceCulture);
             }
         }
         
@@ -169,9 +169,9 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse how many starts per style are available.
         ///Only valid starts are regarded (active and competition assigned). ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsStartsPerStyle {
+        public static string TooltipAnalyticsWidgetStartsPerStyle {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsStartsPerStyle", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetStartsPerStyle", resourceCulture);
             }
         }
         

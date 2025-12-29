@@ -1,0 +1,42 @@
+/*! @page page_3_analytics_modules_widgets 3 - Analytics Modules and Widgets
+
+This page describes how to add new analytics widgets (displayed on the analytics page).
+
+@section newAnalyticsModule_sec Add a new analytics module
+The module will deliver the data.
+
+- Add a new analytics module .cs file (Vereinsmeisterschaften.Core > Analytics):
+- The name should be of format AnalyticsModule<AnalyticsName>
+- The class must derive from <code>IAnalyticsModule</code>. The <code>AnalyticsAvailable</code> flag can be set to false depending on the available data.
+- All services can be used here to calculate the analytics properties (use dependency injection to get the services)
+- The analytics module must be added to the services (App.xaml.cs): <code>services.AddSingleton<AnalyticsModule<AnalyticsName>>();</code>
+
+@section newAnalyticsWidget_sec Add a new analytics widget
+The widget will display the data that is delivered by the module.
+
+- Add a new analytics widget user control (Vereinsmeisterschaften > Views > AnalyticsWidgets):
+- The name should be of format AnalyticsWidget<AnalyticsName>
+- Add following resource to the Resources.resx (Vereinsmeisterschaften > Properties):
+  - AnalyticsWidget<AnalyticsName>Title (e.g. AnalyticsWidgetAgeDistributionTitle): Title that is displayed on the UI for the widget
+- Add following resource to the Tooltips.resx (Vereinsmeisterschaften > Properties):
+  - TooltipAnalyticsWidget<AnalyticsName> (e.g. TooltipAnalyticsWidgetAgeDistribution): Tooltip that is displayed on the UI for the widget
+- Code Behind:
+  - The class must derive from <code>AnalyticsWidgetBase</code>.
+  - The constructor can be like this: <code>public AnalyticsWidget<AnalyticsName>(AnalyticsModule<AnalyticsName> analyticsModule) : base(analyticsModule) { InitializeComponent(); } </code>
+  - For an easier access to the analytics module, use something like this: <code>private AnalyticsModule<AnalyticsName> _analyticsModule => AnalyticsModule as AnalyticsModule<AnalyticsName>; </code>
+  - When necessary, use any Series type from the LiveChartsCore namespace
+  - Override the Icon property.
+  - The title and info properties are automatically retrieved from the Resources.resx and Tooltips.resx.
+  - To change the size of the widget, also override the <code>NormalAnalyticsWidgetWidth</code> and <code>NormalAnalyticsWidgetHeight</code> properties.
+- XAML:
+  - <code><local:AnalyticsWidgetBase x:Class="Vereinsmeisterschaften.Views.AnalyticsWidgets.AnalyticsWidget<AnalyticsName>"...</code>
+  - DataContext: <code>DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"</code>
+  - Template: <code>Template="{StaticResource ControlTemplateAnalyticsWidgetBase}"</code>
+
+When the charts needs scrolling (see e.g. AnalyticsWidgetStartsPerPerson.xaml for an example):
+- XAML: use a scroll viewer around: <code><ScrollViewer x:Name="PART_scrollViewerChart" behaviors:NestedScrollViewersBehavior.IsEnabled="True"></code>
+- XAML: set the chart height to a defined value: <code>...Chart Height="{Binding ChartHeight}"</code>
+- Code Behind: trigger a change of the chart height, when the size of the scroll viewer changes (add this to the constructor): <code>PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));</code>
+- Code Behind: Chart height could e.g. be: <code>public double ChartHeight => Math.Max(PART_scrollViewerChart.ActualHeight, NumberRows * ChartMaxBarWidth);</code>
+
+ */

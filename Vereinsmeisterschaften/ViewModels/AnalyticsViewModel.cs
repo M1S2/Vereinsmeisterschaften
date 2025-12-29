@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
-using Vereinsmeisterschaften.Views.AnalyticsUserControls;
+using Vereinsmeisterschaften.Views.AnalyticsWidgets;
 
 namespace Vereinsmeisterschaften.ViewModels
 {
@@ -11,42 +11,43 @@ namespace Vereinsmeisterschaften.ViewModels
     public partial class AnalyticsViewModel : ObservableObject, INavigationAware
     {        
         /// <summary>
-        /// List of available <see cref="IAnalyticsUserControl"/> objects
+        /// List of available <see cref="IAnalyticsWidget"/> objects
         /// </summary>
-        public IEnumerable<IAnalyticsUserControl> AvailableAnalyticsUserControls { get; }
+        public IEnumerable<IAnalyticsWidget> AvailableAnalyticsWidgets { get; }
 
         /// <summary>
-        /// List of normal sized (not maximized) <see cref="IAnalyticsUserControl"/> objects.
-        /// When <see cref="IsMaximizedAnalyticsUserControlAvailable"/> is <see langword="true"/> the corresponding user control isn't part of this list anymore.
+        /// List of normal sized (not maximized) <see cref="IAnalyticsWidget"/> objects.
+        /// When <see cref="IsMaximizedAnalyticsWidgetAvailable"/> is <see langword="true"/> the corresponding user control isn't part of this list anymore.
         /// </summary>
-        public IEnumerable<IAnalyticsUserControl> NormalSizedAnalyticsUserControls => AvailableAnalyticsUserControls.Where(c => !c.IsMaximized);
+        public IEnumerable<IAnalyticsWidget> NormalSizedAnalyticsWidgets => AvailableAnalyticsWidgets.Where(c => !c.IsMaximized);
 
         /// <summary>
-        /// Return the first <see cref="IAnalyticsUserControl"/> with the <see cref="IAnalyticsUserControl.IsMaximized"/> flag set.
+        /// Return the first <see cref="IAnalyticsWidget"/> with the <see cref="IAnalyticsWidget.IsMaximized"/> flag set.
         /// </summary>
-        public IAnalyticsUserControl MaximizedAnalyticsUserControl => AvailableAnalyticsUserControls.Where(c => c.IsMaximized).FirstOrDefault();
+        public IAnalyticsWidget MaximizedAnalyticsWidget => AvailableAnalyticsWidgets.Where(c => c.IsMaximized).FirstOrDefault();
 
         /// <summary>
         /// True, when the <see cref="MaximizedAnalyticsUserControl"/> isn't <see langword="null"/>
         /// </summary>
-        public bool IsMaximizedAnalyticsUserControlAvailable => MaximizedAnalyticsUserControl != null;
+        public bool IsMaximizedAnalyticsWidgetAvailable => MaximizedAnalyticsWidget != null;
 
         /// <summary>
         /// Constructor of the analytics view model
         /// </summary>
-        public AnalyticsViewModel(IEnumerable<IAnalyticsUserControl> availableAnalyticsUserControls)
+        /// <param name="availableAnalyticsWidgets">list with all available <see cref="IAnalyticsWidget"/> instances</param>
+        public AnalyticsViewModel(IEnumerable<IAnalyticsWidget> availableAnalyticsWidgets)
         {
-            AvailableAnalyticsUserControls = availableAnalyticsUserControls;
-            foreach (IAnalyticsUserControl userControl in AvailableAnalyticsUserControls)
+            AvailableAnalyticsWidgets = availableAnalyticsWidgets;
+            foreach (IAnalyticsWidget widget in AvailableAnalyticsWidgets)
             {
-                userControl.IsMaximized = false;
-                userControl.PropertyChanged += (sender, e) =>
+                widget.IsMaximized = false;
+                widget.PropertyChanged += (sender, e) =>
                 {
-                    if (e.PropertyName == nameof(IAnalyticsUserControl.IsMaximized))
+                    if (e.PropertyName == nameof(IAnalyticsWidget.IsMaximized))
                     {
-                        OnPropertyChanged(nameof(NormalSizedAnalyticsUserControls));
-                        OnPropertyChanged(nameof(IsMaximizedAnalyticsUserControlAvailable));
-                        OnPropertyChanged(nameof(MaximizedAnalyticsUserControl));
+                        OnPropertyChanged(nameof(NormalSizedAnalyticsWidgets));
+                        OnPropertyChanged(nameof(IsMaximizedAnalyticsWidgetAvailable));
+                        OnPropertyChanged(nameof(MaximizedAnalyticsWidget));
                     }
                 };
             }
@@ -57,9 +58,9 @@ namespace Vereinsmeisterschaften.ViewModels
         [ICommand]
         public void RestoreLayout()
         {
-            foreach (IAnalyticsUserControl analyticsUserControl in AvailableAnalyticsUserControls)
+            foreach (IAnalyticsWidget analyticsWidget in AvailableAnalyticsWidgets)
             {
-                analyticsUserControl.IsMaximized = false;
+                analyticsWidget.IsMaximized = false;
             }
         }
 
@@ -73,9 +74,9 @@ namespace Vereinsmeisterschaften.ViewModels
         /// <inheritdoc/>
         public void OnNavigatedTo(object parameter)
         {
-            foreach (IAnalyticsUserControl analyticsUserControl in AvailableAnalyticsUserControls)
+            foreach (IAnalyticsWidget analyticsWidget in AvailableAnalyticsWidgets)
             {
-                analyticsUserControl.Refresh();
+                analyticsWidget.Refresh();
             }
         }
     }

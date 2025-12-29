@@ -10,12 +10,12 @@ using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
-namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
+namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
     /// Interaktionslogik für AnalyticsWidgetStartsPerStyle.xaml
     /// </summary>
-    public partial class AnalyticsWidgetStartsPerStyle : AnalyticsUserControlBase
+    public partial class AnalyticsWidgetStartsPerStyle : AnalyticsWidgetBase
     {
         private AnalyticsModuleStartsPerStyle _analyticsModule => AnalyticsModule as AnalyticsModuleStartsPerStyle;
 
@@ -32,9 +32,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsUserControls
             Source = new Uri("pack://application:,,,/Vereinsmeisterschaften;component/Styles/SwimmingStyleResources.xaml")
         };
 
-        public override string Title => Properties.Resources.AnalyticsWidgetStartsPerStyleTitle;
         public override Geometry IconGeometry => (Geometry)swimmingStyleResourceDict["Geometry_Breaststroke"];
-        public override string Info => Properties.Tooltips.TooltipAnalyticsStartsPerStyle;
 
         public override void Refresh()
         {

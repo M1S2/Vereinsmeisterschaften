@@ -30,8 +30,8 @@
         </StackPanel>
 
         <ScrollViewer Grid.Row="1"
-                      Visibility="{Binding IsMaximizedAnalyticsUserControlAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-            <ItemsControl ItemsSource="{Binding NormalSizedAnalyticsUserControls}">
+                      Visibility="{Binding IsMaximizedAnalyticsWidgetAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+            <ItemsControl ItemsSource="{Binding NormalSizedAnalyticsWidgets}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -46,7 +46,7 @@
         </ScrollViewer>
 
         <DockPanel Grid.Row="1"
-                   Visibility="{Binding IsMaximizedAnalyticsUserControlAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                   Visibility="{Binding IsMaximizedAnalyticsWidgetAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
             <!-- Restore Layout button -->
             <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5,10"
                     Command="{Binding RestoreLayoutCommand}"
@@ -59,7 +59,7 @@
                 </StackPanel>
             </Button>
             <ContentControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                            Content="{Binding MaximizedAnalyticsUserControl}"/>
+                            Content="{Binding MaximizedAnalyticsWidget}"/>
         </DockPanel>
     </Grid>
 </Page>

@@ -1,21 +1,24 @@
-﻿<local:AnalyticsUserControlBase x:Class="Vereinsmeisterschaften.Views.AnalyticsUserControls.AnalyticsWidgetStartsPerPerson"
+﻿<local:AnalyticsWidgetBase x:Class="Vereinsmeisterschaften.Views.AnalyticsWidgets.AnalyticsWidgetDistancesBetweenStarts"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsUserControls"
-             xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
+             xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
              xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-             Template="{StaticResource ControlTemplateAnalyticsUserControlBase}">
+             Template="{StaticResource ControlTemplateAnalyticsWidgetBase}">
 
-    <ScrollViewer x:Name="PART_scrollViewerChart" behaviors:NestedScrollViewersBehavior.IsEnabled="True">
+    <ScrollViewer x:Name="PART_scrollViewerChart" behaviors:NestedScrollViewersBehavior.IsEnabled="True"
+                  Visibility="{Binding AnalyticsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
         <liveCharts:CartesianChart Height="{Binding ChartHeight}"
-                                   Series="{Binding StartsPerPersonSeries}"
+                                   Series="{Binding StartDistancesPerPersonSeries}"
                                    XAxes="{Binding XAxes}"
                                    YAxes="{Binding YAxes}"
                                    TooltipPosition="Hidden"/>
     </ScrollViewer>
-</local:AnalyticsUserControlBase>
+
+</local:AnalyticsWidgetBase>

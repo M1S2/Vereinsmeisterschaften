@@ -7,6 +7,14 @@ The intention of this doxygen documentation is to help anyone who develops, main
 
 For the source code visit the repository at https://github.com/M1S2/Vereinsmeisterschaften.
 
+@section devEnv_sec Development Environment
+
+The software is developed with the following environment:
+|Name			| Value																													|
+|--------------	| ---------------------------------------------------------------------------------------------------------------------	|
+| .NET Version	| .NET 10 [(.NET Desktop Runtime 10.0.1 Installer)](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.1-windows-x64-installer)	|
+| IDE			| Microsoft Visual Studio (e.g. Community) 2026. This is the minimum version necessary for .NET 10						|
+
 @section content_sec Content
 
 See the following pages for more informations.

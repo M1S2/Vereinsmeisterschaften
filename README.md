@@ -21,6 +21,10 @@ Die Software benötigt keine Installation im klassischen Sinne. Es muss lediglic
 3. Die Datei `Vereinsmeisterschaften.exe` im entpackten Ordner ausführen.
 4. Nach dem ersten Start einen Arbeitsbereich auswählen oder einen neuen Ordner anlegen und dann auswählen.
 
+Sollte die Software nicht starten, könnte eine Runtime Version fehlen.
+Dann folgenden Runtime Installer herunterladen und installieren: [.NET Desktop Runtime 10.0.1 Installer](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.1-windows-x64-installer)
+Anschließend sollte die Software starten.
+
 ## Seiten Beschreibung
 Nachfolgend werden kurz die Funktionen der jeweiligen Seite der Anwendung beschrieben. Die Reihenfolge der Seiten spiegelt ungefähr den gesamten Workflow wieder (von der Eingabe der Meldungen, über die Eingabe der Zeiten während des Wettkampfs bis zur Auswertung).
 

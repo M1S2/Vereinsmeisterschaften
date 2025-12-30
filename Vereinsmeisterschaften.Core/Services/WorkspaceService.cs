@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Resources;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -21,6 +22,30 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Event that is raised when the file operation is finished.
         /// </summary>
         public event EventHandler OnFileFinished;
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private ObservableCollection<string> _lastWorkspacePaths = new ObservableCollection<string>();
+        /// <inheritdoc/>
+        public ObservableCollection<string> LastWorkspacePaths
+        {
+            get => _lastWorkspacePaths;
+            set { _lastWorkspacePaths = value; OnPropertyChanged(); }
+        }
+
+        /// <inheritdoc/>
+        public void AddLastWorkspacePath(string path)
+        {
+            if (LastWorkspacePaths.Contains(path))
+            {
+                LastWorkspacePaths.Remove(path);
+            }
+            LastWorkspacePaths.Insert(0, path);
+        }
+
+        /// <inheritdoc/>
+        public void ClearAllLastWorkspacePaths()
+            => LastWorkspacePaths?.Clear();
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -251,6 +276,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
                 IsWorkspaceOpen = openResult;
+
+                AddLastWorkspacePath(path);
             }
             catch(Exception ex)
             {

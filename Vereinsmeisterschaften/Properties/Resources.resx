@@ -682,4 +682,22 @@
   <data name="RaceString" xml:space="preserve">
     <value>Race</value>
   </data>
+  <data name="LastWorkspacePathsString" xml:space="preserve">
+    <value>Last workspace paths</value>
+  </data>
+  <data name="ClearListString" xml:space="preserve">
+    <value>Clear list</value>
+  </data>
+  <data name="WorkspaceNotLoadedString" xml:space="preserve">
+    <value>The workspace couldn't be loaded. E.g. the given path doesn't exist.</value>
+  </data>
+  <data name="ManageWorkspaceString" xml:space="preserve">
+    <value>Manage Workspace</value>
+  </data>
+  <data name="NoWorkspaceString" xml:space="preserve">
+    <value>No workspace loaded.</value>
+  </data>
+  <data name="WorkspaceSettingsString" xml:space="preserve">
+    <value>Workspace settings</value>
+  </data>
 </root>

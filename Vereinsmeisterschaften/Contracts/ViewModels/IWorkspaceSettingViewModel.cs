@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Windows;
 
-namespace Vereinsmeisterschaften.ViewModels
+namespace Vereinsmeisterschaften.Contracts.ViewModels
 {
     /// <summary>
     /// Interface for the workspace setting view model

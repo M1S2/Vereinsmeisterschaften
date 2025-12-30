@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 
@@ -9,6 +10,22 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// </summary>
     public interface IWorkspaceService : INotifyPropertyChanged, ISaveable
     {
+        /// <summary>
+        /// List with previous workspace paths
+        /// </summary>
+        ObservableCollection<string> LastWorkspacePaths { get; set; }
+
+        /// <summary>
+        /// Add a path to the <see cref="LastWorkspacePaths"/>
+        /// </summary>
+        /// <param name="path">Path to add</param>
+        void AddLastWorkspacePath(string path);
+
+        /// <summary>
+        /// Clear all <see cref="LastWorkspacePaths"/>
+        /// </summary>
+        void ClearAllLastWorkspacePaths();
+
         /// <summary>
         /// If true, a workspace is loaded; if false, not workspace is loaded
         /// </summary>

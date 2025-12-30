@@ -9,6 +9,7 @@
     xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:views="clr-namespace:Vereinsmeisterschaften.Views"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     mc:Ignorable="d"
     d:DesignHeight="800" d:DesignWidth="1200">
@@ -46,46 +47,20 @@
                 <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoWorkspacePage}"/>
             </StackPanel>
 
-            <!-- Workspace edit buttons and workspace path -->
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                <Button Width="130" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding LoadWorkspaceCommand}" Margin="{StaticResource SmallTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceOpen}">
-                    <StackPanel>
-                        <controls:FontIcon FontSize="50" Glyph="&#xED25;" Margin="10"/>
-                        <TextBlock Text="{x:Static properties:Resources.OpenString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+            <Expander Grid.Row="1" Grid.Column="0" IsExpanded="{Binding IsWorkspaceManagerExpanded, Mode=TwoWay}" Margin="{StaticResource MediumTopRightBottomMargin}">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static properties:Resources.ManageWorkspaceString}" VerticalAlignment="Center"/>
+                        <TextBlock Text=":  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding CurrentWorkspaceFolder}" VerticalAlignment="Center"/>
                     </StackPanel>
-                </Button>
-                <Button Width="130" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding OpenWorkspaceFolderCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceOpenInExplorer}">
-                    <StackPanel>
-                        <controls:FontIcon FontSize="50" Glyph="&#xED25;" Margin="10"/>
-                        <TextBlock Text="{x:Static properties:Resources.OpenInExplorerString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    </StackPanel>
-                </Button>
-                <Button Width="130" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding SaveWorkspaceCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceSave}">
-                    <StackPanel>
-                        <controls:FontIcon FontSize="50" Glyph="&#xE74E;" Margin="10"/>
-                        <TextBlock Text="{x:Static properties:Resources.SaveString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    </StackPanel>
-                </Button>
-                <Button Width="130" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Command="{Binding CloseWorkspaceCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceClose}">
-                    <StackPanel>
-                        <controls:FontIcon FontSize="50" Glyph="&#xE8BB;" Margin="10"/>
-                        <TextBlock Text="{x:Static properties:Resources.CloseString}" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+                </Expander.Header>
+                <!--Workspace manage controls--> 
+                <views:WorkspaceManagerUserControl IsSidebar="False"/>
+            </Expander>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding CurrentWorkspaceFolder}" FontSize="{StaticResource LargeFontSize}" VerticalAlignment="Center" Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="FontStyle" Value="Italic"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <!-- Workspace settings heading -->
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SubtitleTextStyle}" Text="{x:Static properties:Resources.WorkspaceSettingsString}"/>
 
             <!-- Settings for workspace -->
             <ItemsControl Grid.Row="3" Grid.Column="0" ItemsSource="{Binding SettingsGroups}" HorizontalAlignment="Stretch" Margin="{StaticResource MediumTopRightBottomMargin}">
@@ -96,7 +71,7 @@
                                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MahApps.Styles.Expander}">
                                     <Setter Property="Visibility" Value="Visible"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding DataContext.CurrentWorkspaceFolder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" Value="">
+                                        <DataTrigger Binding="{Binding DataContext.IsCurrentWorkspaceOpen, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" Value="False">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -122,9 +97,9 @@
             </ItemsControl>
 
             <!-- Info section for workspace -->
-            <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" VerticalAlignment="Top"
+            <Border Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" VerticalAlignment="Top"
                     BorderThickness="2" BorderBrush="{StaticResource MahApps.Brushes.Accent}" CornerRadius="5"
-                    Margin="{StaticResource SmallTopMargin}"
+                    Margin="{StaticResource MediumTopMargin}"
                     Style="{StaticResource StyleShowWhenWorkspaceOpen}">
                 <Grid>
                     <Grid.RowDefinitions>

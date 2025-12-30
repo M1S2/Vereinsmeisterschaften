@@ -1,21 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls.Dialogs;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Settings;
-using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
 /// <summary>
 /// ViewModel for the workspace, managing the current workspace folder, settings, and commands to load, save, and close the workspace.
 /// </summary>
-public class WorkspaceViewModel : ObservableObject, INavigationAware
+public partial class WorkspaceViewModel : ObservableObject, INavigationAware
 {
     #region Properties
 
@@ -23,6 +20,17 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     /// Current workspace folder path.
     /// </summary>
     public string CurrentWorkspaceFolder => _workspaceService.PersistentPath;
+
+    /// <summary>
+    /// Is a workspace opened at the moment?
+    /// </summary>
+    public bool IsCurrentWorkspaceOpen => _workspaceService.IsWorkspaceOpen;
+
+    /// <summary>
+    /// True, when the WorkspaceManagerUserControl should be visible.
+    /// </summary>
+    [ObservableProperty]
+    private bool _isWorkspaceManagerExpanded;
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -62,120 +70,6 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     /// Settings for the current workspace that are persisted in the file.
     /// </summary>
     public WorkspaceSettings SettingsPersistedInFile => _workspaceService?.SettingsPersistedInFile;
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// Number of persons in the current workspace.
-    /// </summary>
-    public int NumberPersons => _personService?.PersonCount ?? 0;
-
-    /// <summary>
-    /// Number of starts in the current workspace.
-    /// </summary>
-    public int NumberStarts => _personService?.PersonStarts ?? 0;
-
-    #endregion
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    #region Commands: Close / Save / Load
-
-    private ICommand _closeWorkspaceCommand;
-    /// <summary>
-    /// Command to close the current workspace.
-    /// </summary>
-    public ICommand CloseWorkspaceCommand => _closeWorkspaceCommand ?? (_closeWorkspaceCommand = new RelayCommand(async() =>
-    {
-        try
-        {
-            bool save = true, cancel = false;
-            (save, cancel) = await _shellVM.CheckForUnsavedChangesAndQueryUserAction();
-
-            if (!cancel)
-            {
-                await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
-                OnPropertyChanged(nameof(NumberPersons));
-                OnPropertyChanged(nameof(NumberStarts));
-            }
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
-        }
-    }, () => _workspaceService.IsWorkspaceOpen));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    private ICommand _saveWorkspaceCommand;
-    /// <summary>
-    /// Command to save the current workspace to a folder.
-    /// </summary>
-    public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async() =>
-    {
-        try
-        {
-            await _workspaceService?.Save(CancellationToken.None);
-        }
-        catch (Exception ex)
-        {
-            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
-        }
-    }, () => _workspaceService.IsWorkspaceOpen));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    private ICommand _loadWorkspaceCommand;
-    /// <summary>
-    /// Command to load a workspace from a folder.
-    /// </summary>
-    public ICommand LoadWorkspaceCommand => _loadWorkspaceCommand ?? (_loadWorkspaceCommand = new RelayCommand(async() =>
-    {
-        bool save = true, cancel = false;
-        (save, cancel) = await _shellVM.CheckForUnsavedChangesAndQueryUserAction();
-
-        if (!cancel)
-        {
-            try
-            {
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.InitialDirectory = CurrentWorkspaceFolder;
-                if (folderDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (_workspaceService?.IsWorkspaceOpen ?? false)
-                    {
-                        await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
-                    }
-                    await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
-                    OnPropertyChanged(nameof(NumberPersons));
-                    OnPropertyChanged(nameof(NumberStarts));
-                    initSettingsGroups(_workspaceService.Settings);
-                }
-            }
-            catch (Exception ex)
-            {
-                await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
-            }
-        }
-    }));
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-    private ICommand _openWorkspaceFolderCommand;
-    /// <summary>
-    /// Command to open the current workspace folder in the file explorer.
-    /// </summary>
-    public ICommand OpenWorkspaceFolderCommand => _openWorkspaceFolderCommand ?? (_openWorkspaceFolderCommand = new RelayCommand(() =>
-    {
-        try
-        {
-            System.Diagnostics.Process.Start("explorer.exe", CurrentWorkspaceFolder);
-        }
-        catch (Exception ex)
-        {
-            _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
-        }
-    }, () => _workspaceService.IsWorkspaceOpen));
 
     #endregion
 
@@ -300,23 +194,18 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private IWorkspaceService _workspaceService;
-    private IPersonService _personService;
-    private IDialogCoordinator _dialogCoordinator;
-    private ShellViewModel _shellVM;
+    private IWorkspaceManagerViewModel _workspaceManagerViewModel;
 
     /// <summary>
     /// Constructor of the workspace view model
     /// </summary>
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
-    /// <param name="personService"><see cref="IPersonService"/> object</param>
-    /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
-    /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
-    public WorkspaceViewModel(IWorkspaceService workspaceService, IPersonService personService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
+    /// <param name="workspaceManagerViewModel"><see cref="IWorkspaceManagerViewModel"/> object used for workspace management commands</param>
+    public WorkspaceViewModel(IWorkspaceService workspaceService, IWorkspaceManagerViewModel workspaceManagerViewModel)
     {
         _workspaceService = workspaceService;
-        _personService = personService;
-        _dialogCoordinator = dialogCoordinator;
-        _shellVM = shellVM;
+        _workspaceManagerViewModel = workspaceManagerViewModel;
+        _workspaceManagerViewModel.OnWorkspaceLoaded += (sender, path) => initSettingsGroups(_workspaceService.Settings);
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -339,11 +228,9 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
                     OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+                    OnPropertyChanged(nameof(IsCurrentWorkspaceOpen));
                     OnPropertyChanged(nameof(Settings));
-                    ((RelayCommand)LoadWorkspaceCommand).NotifyCanExecuteChanged();
-                    ((RelayCommand)SaveWorkspaceCommand).NotifyCanExecuteChanged();
-                    ((RelayCommand)CloseWorkspaceCommand).NotifyCanExecuteChanged();
-                    ((RelayCommand)OpenWorkspaceFolderCommand).NotifyCanExecuteChanged();
+                    IsWorkspaceManagerExpanded = !IsCurrentWorkspaceOpen;
                     break;
                 }
             default: break;
@@ -356,9 +243,8 @@ public class WorkspaceViewModel : ObservableObject, INavigationAware
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
 
         OnPropertyChanged(nameof(CurrentWorkspaceFolder));
+        OnPropertyChanged(nameof(IsCurrentWorkspaceOpen));
         OnPropertyChanged(nameof(Settings));
-        OnPropertyChanged(nameof(NumberPersons));
-        OnPropertyChanged(nameof(NumberStarts));
         OnPropertyChanged(nameof(HasUnsavedChanges));
         OnPropertyChanged(nameof(HasUnsavedChanges_Competitions));
         OnPropertyChanged(nameof(HasUnsavedChanges_Persons));

@@ -683,4 +683,22 @@ Alle Starts sind zugewiesen.</value>
   <data name="RaceString" xml:space="preserve">
     <value>Rennen</value>
   </data>
+  <data name="LastWorkspacePathsString" xml:space="preserve">
+    <value>Zuletzt geöffnete Arbeitsbereiche</value>
+  </data>
+  <data name="ClearListString" xml:space="preserve">
+    <value>Liste leeren</value>
+  </data>
+  <data name="WorkspaceNotLoadedString" xml:space="preserve">
+    <value>Der Arbeitsbereich konnte nicht geladen werden. Z.B. könnte der Pfad nicht existieren.</value>
+  </data>
+  <data name="ManageWorkspaceString" xml:space="preserve">
+    <value>Arbeitsbereich verwalten</value>
+  </data>
+  <data name="NoWorkspaceString" xml:space="preserve">
+    <value>Kein Arbeitsbereich geöffnet.</value>
+  </data>
+  <data name="WorkspaceSettingsString" xml:space="preserve">
+    <value>Arbeitsbereich Einstellungen</value>
+  </data>
 </root>

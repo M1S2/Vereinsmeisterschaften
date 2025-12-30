@@ -1,12 +1,13 @@
-﻿using System.IO;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Threading;
-using MahApps.Metro.Controls.Dialogs;
+﻿using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Threading;
 using Vereinsmeisterschaften.Contracts.Services;
+using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Contracts.Views;
 using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
@@ -141,6 +142,8 @@ public partial class App : Application
 
         services.AddSingleton<SettingsViewModel>();
         services.AddSingleton<SettingsPage>();
+
+        services.AddSingleton<IWorkspaceManagerViewModel, WorkspaceManagerViewModel>();
 
         //Analytics UserControls
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPersonCounters>();

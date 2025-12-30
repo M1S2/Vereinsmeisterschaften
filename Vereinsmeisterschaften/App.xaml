@@ -42,6 +42,7 @@
             <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
             <converters:InvertedBooleanToVisibilityHiddenConverter x:Key="InvertedBoolVisibilityHiddenConverter"/>
             <converters:BooleanToVisibilityHiddenConverter x:Key="BoolVisibilityHiddenConverter"/>
+            <converters:BooleanInvertConverter x:Key="BoolInvertConverter"/>
 
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
                 <ObjectDataProvider.MethodParameters>

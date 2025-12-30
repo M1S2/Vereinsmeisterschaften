@@ -360,6 +360,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Clear list ähnelt.
+        /// </summary>
+        public static string ClearListString {
+            get {
+                return ResourceManager.GetString("ClearListString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
         /// </summary>
         public static string CloseString {
@@ -765,6 +774,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last workspace paths ähnelt.
+        /// </summary>
+        public static string LastWorkspacePathsString {
+            get {
+                return ResourceManager.GetString("LastWorkspacePathsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die LibreOffice Path ähnelt.
         /// </summary>
         public static string LibreOfficePathString {
@@ -788,6 +806,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string MainPageTitle {
             get {
                 return ResourceManager.GetString("MainPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Manage Workspace ähnelt.
+        /// </summary>
+        public static string ManageWorkspaceString {
+            get {
+                return ResourceManager.GetString("ManageWorkspaceString", resourceCulture);
             }
         }
         
@@ -861,6 +888,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NoTemplateAvailableWarningString {
             get {
                 return ResourceManager.GetString("NoTemplateAvailableWarningString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No workspace loaded. ähnelt.
+        /// </summary>
+        public static string NoWorkspaceString {
+            get {
+                return ResourceManager.GetString("NoWorkspaceString", resourceCulture);
             }
         }
         
@@ -1730,11 +1766,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The workspace couldn&apos;t be loaded. E.g. the given path doesn&apos;t exist. ähnelt.
+        /// </summary>
+        public static string WorkspaceNotLoadedString {
+            get {
+                return ResourceManager.GetString("WorkspaceNotLoadedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
         /// </summary>
         public static string WorkspacePageTitle {
             get {
                 return ResourceManager.GetString("WorkspacePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Workspace settings ähnelt.
+        /// </summary>
+        public static string WorkspaceSettingsString {
+            get {
+                return ResourceManager.GetString("WorkspaceSettingsString", resourceCulture);
             }
         }
         

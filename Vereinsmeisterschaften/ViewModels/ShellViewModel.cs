@@ -27,12 +27,27 @@ public partial class ShellViewModel : ObservableObject
     /// </summary>
     public bool HasUnsavedChanges => _workspaceService.HasUnsavedChanges;
 
+    /// <summary>
+    /// True if the workspace flyout is open (used to open, save, ... the workspace)
+    /// </summary>
+    [ObservableProperty]
+    private bool _isWorkspaceFlyoutOpen;
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private readonly INavigationService _navigationService;
     private IDialogCoordinator _dialogCoordinator;
     private IWorkspaceService _workspaceService;
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Setting Keys
+
+    private const string SETTING_KEY_LAST_WORKSPACE_PATHS = "LastWorkspacePaths";
+    private const string SETTING_KEY_LAST_WORKSPACE_FOLDER = "LastWorkspaceFolder";
+
+    #endregion
+    
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     #region Hamburger menu items
@@ -86,6 +101,7 @@ public partial class ShellViewModel : ObservableObject
     private ICommand _unloadedCommand;
     private ICommand _closingCommand;
     private ICommand _saveWorkspaceCommand;
+    private ICommand _openWorkspaceFlyoutCommand;
 
     /// <summary>
     /// Command to navigate back in the navigation stack.
@@ -122,6 +138,11 @@ public partial class ShellViewModel : ObservableObject
     /// </summary>
     public ICommand SaveWorkspaceCommand => _saveWorkspaceCommand ?? (_saveWorkspaceCommand = new RelayCommand(async () => await _workspaceService?.Save(CancellationToken.None)));
 
+    /// <summary>
+    /// Command to open the workspace flyout.
+    /// </summary>
+    public ICommand OpenWorkspaceFlyoutCommand => _openWorkspaceFlyoutCommand ?? (_openWorkspaceFlyoutCommand = new RelayCommand(() => IsWorkspaceFlyoutOpen = !IsWorkspaceFlyoutOpen));
+
     #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -149,10 +170,18 @@ public partial class ShellViewModel : ObservableObject
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
         updateMenuItemsEnabledState();
 
+        object lastWorkspacePaths = App.Current.Properties[SETTING_KEY_LAST_WORKSPACE_PATHS];
+        if (lastWorkspacePaths != null)
+        {
+            Newtonsoft.Json.Linq.JArray lastWorkspacePathsJArray = lastWorkspacePaths as Newtonsoft.Json.Linq.JArray;
+            List<string> lastWorkspacePathsList = lastWorkspacePathsJArray.ToObject<List<string>>();
+            _workspaceService.LastWorkspacePaths = new ObservableCollection<string>(lastWorkspacePathsList);
+        }
+
         // Load the workspace
         try
         {
-            await _workspaceService.Load(App.Current.Properties["LastWorkspaceFolder"]?.ToString(), CancellationToken.None);
+            await _workspaceService.Load(App.Current.Properties[SETTING_KEY_LAST_WORKSPACE_FOLDER]?.ToString(), CancellationToken.None);
         }
         catch (Exception ex)
         {
@@ -238,7 +267,8 @@ public partial class ShellViewModel : ObservableObject
                         await _dialogCoordinator.ShowMessageAsync(this, Resources.ErrorString, ex.Message);
                     }
                 }
-                App.Current.Properties["LastWorkspaceFolder"] = CurrentWorkspaceFolder;
+                App.Current.Properties[SETTING_KEY_LAST_WORKSPACE_FOLDER] = CurrentWorkspaceFolder;
+                App.Current.Properties[SETTING_KEY_LAST_WORKSPACE_PATHS] = _workspaceService.LastWorkspacePaths.ToList();
                 _forceClose = true;
                 WindowCloseRequested?.Invoke(this, null);   // Notify the ShellWindow to close
             }

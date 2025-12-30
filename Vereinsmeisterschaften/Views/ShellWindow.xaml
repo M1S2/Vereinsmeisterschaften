@@ -10,6 +10,7 @@
     xmlns:templateSelectors="clr-namespace:Vereinsmeisterschaften.TemplateSelectors"
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
+    xmlns:views="clr-namespace:Vereinsmeisterschaften.Views"
     Dialog:DialogParticipation.Register="{Binding}"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
@@ -30,17 +31,20 @@
     </i:Interaction.Triggers>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
-            <Button
-                Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
-                AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}"
-                ToolTip="{x:Static properties:Resources.ShellGoBackButton}"
-                Command="{Binding GoBackCommand}">
-                <TextBlock
-                    Text="&#xE72B;"
-                    FontSize="14"
-                    FontFamily="Segoe MDL2 Assets"
-                    AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}" />
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
+                        AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}"
+                        ToolTip="{x:Static properties:Resources.ShellGoBackButton}"
+                        Command="{Binding GoBackCommand}">
+                    <controls:FontIcon Glyph="&#xE72B;"
+                               FontSize="14"
+                               AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}" />
+                </Button>
+
+                <Button Command="{Binding OpenWorkspaceFlyoutCommand}" ToolTip="{x:Static properties:Resources.ManageWorkspaceString}">
+                    <controls:FontIcon Glyph="&#xE821;"/>
+                </Button>
+            </StackPanel>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
     <controls:MetroWindow.RightWindowCommands>
@@ -48,6 +52,13 @@
             <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="{x:Static properties:Resources.ManageWorkspaceString}" IsOpen="{Binding IsWorkspaceFlyoutOpen}" IsPinned="False" Position="Left">
+                <views:WorkspaceManagerUserControl IsSidebar="True" Margin="{StaticResource MediumLeftTopRightBottomMargin}"/>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
     <controls:MetroWindow.Resources>
         <templateSelectors:MenuItemTemplateSelector
             x:Key="MenuItemTemplateSelector">

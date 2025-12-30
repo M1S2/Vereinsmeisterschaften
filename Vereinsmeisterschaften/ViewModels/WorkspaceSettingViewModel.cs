@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Settings;
 
 namespace Vereinsmeisterschaften.ViewModels

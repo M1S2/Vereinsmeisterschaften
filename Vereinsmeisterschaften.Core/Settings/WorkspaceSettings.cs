@@ -287,7 +287,8 @@ namespace Vereinsmeisterschaften.Core.Settings
         public WorkspaceSettings(WorkspaceSettings other)
         {
             Groups = new List<WorkspaceSettingsGroup>();
-            foreach (WorkspaceSettingsGroup group in other.Groups)
+            if(other == null) { return; }
+            foreach (WorkspaceSettingsGroup group in other?.Groups)
             {
                 if (group is ICloneable cloneableGroup)
                 {

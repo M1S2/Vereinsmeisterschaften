@@ -34,10 +34,14 @@ Startseite, von der auf alle anderen Bereiche zugegriffen werden kann. Gleichwer
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Main.png" width="100%"></img>
 
 ### Arbeitsbereich
-Hier kann der aktuelle Ordner des Arbeitsbereichs (mehr Details siehe unten) ausgewählt und alle Änderungen gespeichert werden.
+Hier kann der aktuelle Ordner des Arbeitsbereichs (mehr Details siehe unten) ausgewählt und alle Änderungen gespeichert werden (standardmäßig eingeklappt, sobald ein Arbeitsbereich offen ist).
 Außerdem können alle Einstellungen für verschiedene Aspekte der Software hier getroffen und auch wieder zurückgesetzt werden.
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Workspace.png" width="100%"></img>
+
+Es gibt außerdem einen alternative Ansicht, mit der von überall aus der aktuelle Arbeitsbereich gespeichert oder gewechselt werden kann (diese ist über die Titelleiste neben dem Zurück-Knopf zugänglich).
+
+<img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_WorkspaceManager.png" width="100%"></img>
 
 ### Wettkämpfe
 Hier werden alle verfügbaren Wettkämpfe definiert. Ein Wettkampf wird beschrieben über die Lage, die Strecke, das Alter und eine entsprechende Zeit.

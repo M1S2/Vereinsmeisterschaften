@@ -1,0 +1,14 @@
+var class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model =
+[
+    [ "WorkspaceManagerViewModel", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a808015386822f8b14caa14a1332e2471", null ],
+    [ "ClearAllLastWorkspacePathsCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#aa0e0784d4955b1723c51da14cee3bdad", null ],
+    [ "CloseWorkspaceCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a99bf8888927a8dd20b4077fac8788fb1", null ],
+    [ "CurrentWorkspaceFolder", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#ae1ad17385ef42ca0636289acb3a0dc27", null ],
+    [ "HasUnsavedChanges", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#ae3a2dca6595b0d6e3d382d0747cc2ad3", null ],
+    [ "LastWorkspacePaths", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a02f46dfc1e579ac5342c241f30bce501", null ],
+    [ "LoadLastWorkspaceCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a72c62dd36055f91e96252f7f99138873", null ],
+    [ "LoadWorkspaceCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#ac1db12b3bc1a1c8ced0a4d5df77197c7", null ],
+    [ "OpenWorkspaceFolderCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a647091e3b0e023a37fefd2c287b0bebe", null ],
+    [ "SaveWorkspaceCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#aa6b9a8a4f675a1f05a73eb8817247e49", null ],
+    [ "OnWorkspaceLoaded", "class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html#a9b7f27be14683f35f5ed74d69b4e656a", null ]
+];

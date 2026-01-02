@@ -152,25 +152,31 @@ Wenn die Anzahl an Varianten früher erreicht wird, wird die Schleife früher ab
 Dieses Jahr wird verwendet, um den richtigen Wettkampf für die jeweiligen Starts zu finden.</value>
   </data>
   <data name="TooltipTemplatePathCertificate" xml:space="preserve">
-    <value>Pfad zum Urkunden Template.</value>
+    <value>Pfad zum Urkunden Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipDocumentOutputFolder" xml:space="preserve">
-    <value>Ordner, in dem die Dokumente erstellt werden.</value>
+    <value>Ordner, in dem die Dokumente erstellt werden.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipTemplatePathOverviewList" xml:space="preserve">
-    <value>Pfad zum Übersichtslisten Template.</value>
+    <value>Pfad zum Übersichtslisten Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipLibreOfficePath" xml:space="preserve">
     <value>Pfad zur LibreOffice soffice.exe, die zur PDF Konvertierung verwendet wird.</value>
   </data>
   <data name="TooltipTemplatePathRaceStartList" xml:space="preserve">
-    <value>Pfad zum Renn-Startlisten Template.</value>
+    <value>Pfad zum Renn-Startlisten Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipTemplatePathResultList" xml:space="preserve">
-    <value>Pfad zum Ergebnislisten Template.</value>
+    <value>Pfad zum Ergebnislisten Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipTemplatePathTimeForms" xml:space="preserve">
-    <value>Pfad zum Zeitzettel Template.</value>
+    <value>Pfad zum Zeitzettel Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipWorkspaceOpen" xml:space="preserve">
     <value>Öffnet einen Arbeitsplatz und lädt alle Einstellungen, Personen, Wettkämpfe...</value>
@@ -185,7 +191,8 @@ Dieses Jahr wird verwendet, um den richtigen Wettkampf für die jeweiligen Start
     <value>Schließt den aktuellen Arbeitsplatz. Wenn es ungespeicherte Änderungen gibt, erscheint ein Dialog vor dem Schließen.</value>
   </data>
   <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
-    <value>Pfad zum Ergebnislisten Detail Template.</value>
+    <value>Pfad zum Ergebnislisten Detail Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipPlaceholderMarker" xml:space="preserve">
     <value>Marker text für Platzhalter in der Template Datei. Die Platzhalter müssen von diesem Zeichen eingeschlossen sein.

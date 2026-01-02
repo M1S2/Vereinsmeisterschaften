@@ -252,7 +252,7 @@ public partial class ShellViewModel : ObservableObject
         // execute shutdown logic - set ForceClose and request Close() to actually close the window
         Dispatcher.CurrentDispatcher.InvokeAsync(async () =>
         {
-            bool save = true, cancel = false;
+            bool save = false, cancel = false;
             (save, cancel) = await CheckForUnsavedChangesAndQueryUserAction();
             if (!cancel)
             {
@@ -281,7 +281,7 @@ public partial class ShellViewModel : ObservableObject
     /// <returns>Tuple of two bools (save, cancel)</returns>
     public async Task<(bool saveOut, bool cancelOut)> CheckForUnsavedChangesAndQueryUserAction()
     {
-        bool save = true, cancel = false;
+        bool save = false, cancel = false;
         if (_workspaceService?.HasUnsavedChanges ?? false)
         {
             MetroDialogSettings dialogButtonSettings = new MetroDialogSettings()

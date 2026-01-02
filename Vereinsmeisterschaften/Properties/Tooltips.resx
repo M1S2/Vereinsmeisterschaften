@@ -152,25 +152,31 @@ If the number of variants after calculation is reached earlier, the loop will br
 This year is used to find the correct competition for each start.</value>
   </data>
   <data name="TooltipTemplatePathCertificate" xml:space="preserve">
-    <value>Path to the certificate template.</value>
+    <value>Path to the certificate template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipDocumentOutputFolder" xml:space="preserve">
-    <value>Output folder where the documents are created.</value>
+    <value>Output folder where the documents are created.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipTemplatePathOverviewList" xml:space="preserve">
-    <value>Path to the overview list template.</value>
+    <value>Path to the overview list template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipLibreOfficePath" xml:space="preserve">
     <value>Path to the LibreOffice soffice.exe used for PDF conversion.</value>
   </data>
   <data name="TooltipTemplatePathRaceStartList" xml:space="preserve">
-    <value>Path to the race start list template.</value>
+    <value>Path to the race start list template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipTemplatePathResultList" xml:space="preserve">
-    <value>Path to the result list template.</value>
+    <value>Path to the result list template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipTemplatePathTimeForms" xml:space="preserve">
-    <value>Path to the time forms template.</value>
+    <value>Path to the time forms template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipWorkspaceOpen" xml:space="preserve">
     <value>Open a workspace and load all settings, persons, competitions...</value>
@@ -185,7 +191,8 @@ This year is used to find the correct competition for each start.</value>
     <value>Close the current workspace. If there are unsaved changes, there will be a dialog before closing.</value>
   </data>
   <data name="TooltipTemplatePathResultListDetail" xml:space="preserve">
-    <value>Path to the result list detail template.</value>
+    <value>Path to the result list detail template.
+Relative paths are relative to the workspace path.</value>
   </data>
   <data name="TooltipPlaceholderMarker" xml:space="preserve">
     <value>String marker for placeholders in the template files. The placeholder must be enclosed by this marker.

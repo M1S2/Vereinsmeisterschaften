@@ -32,6 +32,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         bool IsWorkspaceOpen { get; set; }
 
         /// <summary>
+        /// If true, the workspace wasn't loaded from previously saved files. If at least one part of the workspace is loaded from a file, this will be false.
+        /// </summary>
+        bool IsCompletelyNewWorkspace { get; set; }
+
+        /// <summary>
         /// Settings for the current workspace
         /// </summary>
         WorkspaceSettings Settings { get; set; }

@@ -19,7 +19,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <inheritdoc/>
-        public bool AnalyticsAvailable => true;
+        public bool AnalyticsAvailable => _personService.PersonCount > 0;
 
         /// <summary>
         /// Dictionary that counts the number of persons (value) per birth year (key)

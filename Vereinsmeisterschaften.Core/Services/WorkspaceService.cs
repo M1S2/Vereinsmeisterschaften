@@ -70,6 +70,10 @@ namespace Vereinsmeisterschaften.Core.Services
             }
         }
 
+        /// <inheritdoc/>
+        [ObservableProperty]
+        private bool _isCompletelyNewWorkspace;
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
@@ -96,7 +100,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Check if there are unsaved changes in the workspace.
         /// </summary>
         public bool HasUnsavedChanges => IsWorkspaceOpen && 
-                                        (HasUnsavedChanges_Persons || HasUnsavedChanges_Competitions || HasUnsavedChanges_Races || HasUnsavedChanges_Settings);
+                                        (HasUnsavedChanges_Persons || HasUnsavedChanges_Competitions || HasUnsavedChanges_Races || HasUnsavedChanges_Settings || IsCompletelyNewWorkspace);
 
         private void OnPropertyChangedAllHasUnsavedChanges()
         {
@@ -255,23 +259,35 @@ namespace Vereinsmeisterschaften.Core.Services
             Exception exception = null;
             try
             {
+                string filePathCompetitions = getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONS);
+                string filePathPersons = getFilePathToLoadFrom(KEY_FILENAME_PERSON);
+                string filePathBestRace = getFilePathToLoadFrom(KEY_FILENAME_BESTRACE);
+                if (!File.Exists(WorkspaceSettingsFilePath) && !File.Exists(filePathCompetitions) && !File.Exists(filePathPersons) && !File.Exists(filePathBestRace))
+                {
+                    IsCompletelyNewWorkspace = true;
+                }
+                else
+                {
+                    IsCompletelyNewWorkspace = false;
+                }
+
                 // Workspace settings
                 Settings = new WorkspaceSettings();
                 Settings.Load(_fileService, WorkspaceSettingsFilePath);
                 Settings.PropertyChanged += Settings_PropertyChanged;
                 
                 // Competitions
-                openResult = await _competitionService.Load(getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONS), cancellationToken);
+                openResult = await _competitionService.Load(filePathCompetitions, cancellationToken);
                 if (!openResult) { return openResult; }
 
                 // Persons
-                openResult = await _personService.Load(getFilePathToLoadFrom(KEY_FILENAME_PERSON), cancellationToken);
+                openResult = await _personService.Load(filePathPersons, cancellationToken);
                 if(!openResult) { return openResult; }
                 
                 _competitionService.UpdateAllCompetitionsForPerson();
 
                 // Best Race
-                openResult = await _raceService.Load(getFilePathToLoadFrom(KEY_FILENAME_BESTRACE), cancellationToken);
+                openResult = await _raceService.Load(filePathBestRace, cancellationToken);
 
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
                 OnPropertyChangedAllHasUnsavedChanges();
@@ -323,6 +339,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     return false;
 
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
+                IsCompletelyNewWorkspace = false;
                 OnPropertyChangedAllHasUnsavedChanges();
             }
             catch (Exception ex)

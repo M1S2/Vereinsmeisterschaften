@@ -20,7 +20,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <inheritdoc/>
-        public bool AnalyticsAvailable => true;
+        public bool AnalyticsAvailable => _personService.PersonCount > 0;
 
         /// <summary>
         /// Number of starts (value) per person (key). The list is ordered descending by number of starts.

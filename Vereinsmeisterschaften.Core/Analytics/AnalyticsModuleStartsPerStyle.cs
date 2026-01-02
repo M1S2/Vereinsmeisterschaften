@@ -20,7 +20,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <inheritdoc/>
-        public bool AnalyticsAvailable => true;
+        public bool AnalyticsAvailable => _personService.PersonCount > 0;
 
         /// <summary>
         /// Number of valid starts per style. The list is ordered descending by the number.

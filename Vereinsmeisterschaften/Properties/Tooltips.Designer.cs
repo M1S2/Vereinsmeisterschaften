@@ -233,7 +233,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Output folder where the documents are created. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Output folder where the documents are created.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipDocumentOutputFolder {
             get {
@@ -686,7 +687,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the certificate template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the certificate template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathCertificate {
             get {
@@ -695,7 +697,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the overview list template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the overview list template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathOverviewList {
             get {
@@ -704,7 +707,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the race start list template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the race start list template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathRaceStartList {
             get {
@@ -713,7 +717,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathResultList {
             get {
@@ -722,7 +727,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list detail template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the result list detail template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathResultListDetail {
             get {
@@ -731,7 +737,8 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the time forms template. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the time forms template.
+        ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>
         public static string TooltipTemplatePathTimeForms {
             get {

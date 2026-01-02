@@ -19,18 +19,21 @@ namespace Vereinsmeisterschaften.Core.Analytics
         #endregion
         
         private IScoreService _scoreService;
+        private IPersonService _personService;
 
         /// <summary>
         /// Constructor for the <see cref="AnalyticsModulePlacesAgeDistribution"/>
         /// </summary>
         /// <param name="scoreService"><see cref="IScoreService"/> object</param>
-        public AnalyticsModulePlacesAgeDistribution(IScoreService scoreService)
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        public AnalyticsModulePlacesAgeDistribution(IScoreService scoreService, IPersonService personService)
         {
             _scoreService = scoreService;
+            _personService = personService;
         }
 
         /// <inheritdoc/>
-        public bool AnalyticsAvailable => true;
+        public bool AnalyticsAvailable => _personService.PersonCount > 0;
 
         /// <summary>
         /// List with <see cref="ModelPlacesAgeDistribution"/> ordered by the result place.
@@ -46,6 +49,8 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             get
             {
+                if(BirthYearsPerResultPlace == null || BirthYearsPerResultPlace.Count == 0) { return new  List<PointF>(); }
+
                 List<ModelPlacesAgeDistribution> birthYearsPerResultPlace = BirthYearsPerResultPlace;
                 List<float> xs = birthYearsPerResultPlace.Select(p => (float)p.ResultPlace).ToList();
                 List<float> ys = birthYearsPerResultPlace.Select(p => (float)p.BirthYear).ToList();

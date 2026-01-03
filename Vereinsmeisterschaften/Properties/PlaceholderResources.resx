@@ -351,4 +351,19 @@ This only works outside of tables.</value>
   <data name="PlaceholderNameAnalyticsGenderStartsMalePercentage" xml:space="preserve">
     <value>Analytics: Gender Starts: Male Percentage</value>
   </data>
+  <data name="PlaceholderGroupGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="PlaceholderGroupAnalytics" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
+  <data name="PlaceholderGroupScores" xml:space="preserve">
+    <value>Scores</value>
+  </data>
+  <data name="PlaceholderGroupTimes" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="PlaceholderGroupPersondetails" xml:space="preserve">
+    <value>Person details</value>
+  </data>
 </root>

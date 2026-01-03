@@ -61,6 +61,51 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics ähnelt.
+        /// </summary>
+        public static string PlaceholderGroupAnalytics {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupAnalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General ähnelt.
+        /// </summary>
+        public static string PlaceholderGroupGeneral {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Person details ähnelt.
+        /// </summary>
+        public static string PlaceholderGroupPersondetails {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupPersondetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scores ähnelt.
+        /// </summary>
+        public static string PlaceholderGroupScores {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Times ähnelt.
+        /// </summary>
+        public static string PlaceholderGroupTimes {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of female persons. ähnelt.
         /// </summary>
         public static string PlaceholderInfoAnalyticsGenderPersonsFemaleCount {

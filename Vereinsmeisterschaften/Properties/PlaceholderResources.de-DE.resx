@@ -351,4 +351,19 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderNameAnalyticsGenderStartsMalePercentage" xml:space="preserve">
     <value>Analyse: Geschlechter pro Start: Prozent Männlich</value>
   </data>
+  <data name="PlaceholderGroupGeneral" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="PlaceholderGroupAnalytics" xml:space="preserve">
+    <value>Analysen</value>
+  </data>
+  <data name="PlaceholderGroupScores" xml:space="preserve">
+    <value>Punkte</value>
+  </data>
+  <data name="PlaceholderGroupTimes" xml:space="preserve">
+    <value>Zeiten</value>
+  </data>
+  <data name="PlaceholderGroupPersondetails" xml:space="preserve">
+    <value>Personendetails</value>
+  </data>
 </root>

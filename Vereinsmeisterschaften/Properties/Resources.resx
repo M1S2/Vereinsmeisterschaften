@@ -700,4 +700,13 @@
   <data name="WorkspaceSettingsString" xml:space="preserve">
     <value>Workspace settings</value>
   </data>
+  <data name="CreateAnalyticsString" xml:space="preserve">
+    <value>Create Analytics Document</value>
+  </data>
+  <data name="CreateAnalyticsResultString" xml:space="preserve">
+    <value>Analytics document was created.</value>
+  </data>
+  <data name="AnalyticsTemplatePathString" xml:space="preserve">
+    <value>Analytics Template</value>
+  </data>
 </root>

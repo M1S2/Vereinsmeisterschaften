@@ -419,4 +419,8 @@ For more details about the single analytics refer to the info on the specific wi
   <data name="TooltipAnalyticsWidgetRacesAgeSpan" xml:space="preserve">
     <value>Analyse the birth years for each race</value>
   </data>
+  <data name="TooltipTemplatePathAnalytics" xml:space="preserve">
+    <value>Path to the analytics template.
+Relative paths are relative to the workspace path.</value>
+  </data>
 </root>

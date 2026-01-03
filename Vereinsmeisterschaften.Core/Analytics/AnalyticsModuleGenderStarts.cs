@@ -25,7 +25,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// Number of starts that are male
         /// </summary>
-        public double MaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Male);
+        public int MaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Male);
 
         /// <summary>
         /// Percentage of starts that are male
@@ -35,7 +35,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// Number of starts that are female
         /// </summary>
-        public double FemaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Female);
+        public int FemaleStartsCount => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned && s.PersonObj?.Gender == Genders.Female);
 
         /// <summary>
         /// Percentage of starts that are female

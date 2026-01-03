@@ -47,6 +47,7 @@ namespace Vereinsmeisterschaften.Core.Settings
         public const string SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH = "TimeFormsTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH = "ResultListTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH = "ResultListDetailTemplatePath";
+        public const string SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH = "AnalyticsTemplatePath";
         public const string SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH = "LibreOfficePath";
         public const string SETTING_DOCUMENT_CREATION_FILE_TYPES = "DocumentFileTypes";
 
@@ -105,6 +106,7 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @"Templates\\Zeitzettel_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Templates\\Ergebnisliste_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH, @"Templates\\ErgebnislisteDetail_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH, @"Templates\\Analyse_Template.docx");
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
             
             //... Add new settings and groups here ...

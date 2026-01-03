@@ -303,4 +303,52 @@ z.B. "3" -&gt; %Name1%, %Name2%, %Name3% verfügbar zusätzlich zu %Name%</value
     <value>Diese Platzhalter nutzen, um das Wettkampfdatum einzufügen.
 Kann nur außerhalb von Tabellen genutzt werden.</value>
   </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsMaleCount" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Person: Anzahl Männlich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsMalePercentage" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Person: Prozent Männlich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsFemaleCount" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Person: Anzahl Weiblich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsFemalePercentage" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Person: Prozent Weiblich</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsMaleCount" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an männlichen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsFemaleCount" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an weiblichen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsFemalePercentage" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Anteil an weiblichen Personen in Prozent einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsMalePercentage" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Anteil an männlichen Personen in Prozent einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsFemaleCount" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an weiblichen Starts einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsFemalePercentage" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Anteil an weiblichen Starts in Prozent einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsMaleCount" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an männlichen Starts einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsMalePercentage" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um den Anteil an männlichen Starts in Prozent einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsFemaleCount" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Start: Anzahl Weiblich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsFemalePercentage" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Start: Prozent Weiblich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsMaleCount" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Start: Anzahl Männlich</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsMalePercentage" xml:space="preserve">
+    <value>Analyse: Geschlechter pro Start: Prozent Männlich</value>
+  </data>
 </root>

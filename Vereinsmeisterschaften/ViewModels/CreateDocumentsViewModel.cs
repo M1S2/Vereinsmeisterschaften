@@ -329,6 +329,11 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
                         (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.ResultListDetail);
                         break;
                     }
+                case DocumentCreationTypes.Analytics:
+                    {
+                        (numCreatedPages, returnFilePath) = await _documentService.CreateDocument(DocumentCreationTypes.Analytics);
+                        break;
+                    }
                 default: throw new ArgumentOutOfRangeException(nameof(documentType), documentType, "Unknown document type for creation command.");
             }
             changeLastDocumentFilePath(documentType, returnFilePath);

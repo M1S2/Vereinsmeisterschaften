@@ -142,6 +142,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics Template ähnelt.
+        /// </summary>
+        public static string AnalyticsTemplatePathString {
+            get {
+                return ResourceManager.GetString("AnalyticsTemplatePathString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number of active persons per birth year ähnelt.
         /// </summary>
         public static string AnalyticsWidgetAgeDistributionTitle {
@@ -455,6 +464,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CountString {
             get {
                 return ResourceManager.GetString("CountString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics document was created. ähnelt.
+        /// </summary>
+        public static string CreateAnalyticsResultString {
+            get {
+                return ResourceManager.GetString("CreateAnalyticsResultString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Analytics Document ähnelt.
+        /// </summary>
+        public static string CreateAnalyticsString {
+            get {
+                return ResourceManager.GetString("CreateAnalyticsString", resourceCulture);
             }
         }
         

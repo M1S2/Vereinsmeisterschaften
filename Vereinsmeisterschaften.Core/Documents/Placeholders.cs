@@ -125,6 +125,40 @@
         /// </summary>
         public static List<string> Placeholders_TimeWaterflea = new List<string>() { "ZeitWasserfloh", "TimeWaterflea", "ZW", "TW" };
 
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender person male count.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderPersonsMaleCount = new List<string>() { "NumberMale", "AnzahlMännlich", "A_NM", "A_AM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender person male percentage.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderPersonsMalePercentage = new List<string>() { "PercentMale", "ProzentMännlich", "A_PM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender person female count.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderPersonsFemaleCount = new List<string>() { "NumberFemale", "AnzahlWeiblich", "A_NF", "A_AW" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender person female percentage.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderPersonsFemalePercentage = new List<string>() { "PercentFemale", "ProzentWeiblich", "A_PF", "A_PW" };
+
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender starts male count.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderStartsMaleCount = new List<string>() { "NumberStartsMale", "AnzahlStartsMännlich", "A_NSM", "A_ASM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender starts male percentage.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderStartsMalePercentage = new List<string>() { "PercentStartsMale", "ProzentStartsMännlich", "A_PSM" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender starts female count.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderStartsFemaleCount = new List<string>() { "NumberStartsFemale", "AnzahlStartsWeiblich", "A_NSF", "A_ASW" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics gender starts female percentage.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsGenderStartsFemalePercentage = new List<string>() { "PercentStartsFemale", "ProzentStartsWeiblich", "A_PSF", "A_PSW" };
+
         #endregion
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -161,6 +195,16 @@
         public const string PLACEHOLDER_KEY_TIMEBUTTERFLY = "TimeButterfly";
         public const string PLACEHOLDER_KEY_TIMEMEDLEY = "TimeMedley";
         public const string PLACEHOLDER_KEY_TIMEWATERFLEA = "TimeWaterflea";
+
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_COUNT = "AnalyticsGenderPersonsMaleCount";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE = "AnalyticsGenderPersonsMalePercentage";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT = "AnalyticsGenderPersonsFemaleCount";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE = "AnalyticsGenderPersonsFemalePercentage";
+
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT = "AnalyticsGenderStartsMaleCount";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE = "AnalyticsGenderStartsMalePercentage";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT = "AnalyticsGenderStartsFemaleCount";
+        public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE = "AnalyticsGenderStartsFemalePercentage";
 
         #endregion
 
@@ -199,7 +243,15 @@
             { PLACEHOLDER_KEY_TIMEBACKSTROKE, Placeholders_TimeBackstroke },
             { PLACEHOLDER_KEY_TIMEBUTTERFLY, Placeholders_TimeButterfly },
             { PLACEHOLDER_KEY_TIMEMEDLEY, Placeholders_TimeMedley },
-            { PLACEHOLDER_KEY_TIMEWATERFLEA, Placeholders_TimeWaterflea }
+            { PLACEHOLDER_KEY_TIMEWATERFLEA, Placeholders_TimeWaterflea },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_COUNT, Placeholders_AnalyticsGenderPersonsMaleCount },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE, Placeholders_AnalyticsGenderPersonsMalePercentage },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT, Placeholders_AnalyticsGenderPersonsFemaleCount },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE, Placeholders_AnalyticsGenderPersonsFemalePercentage },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT, Placeholders_AnalyticsGenderStartsMaleCount },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE, Placeholders_AnalyticsGenderStartsMalePercentage },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT, Placeholders_AnalyticsGenderStartsFemaleCount },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE, Placeholders_AnalyticsGenderStartsFemalePercentage }
         };
     }
 }

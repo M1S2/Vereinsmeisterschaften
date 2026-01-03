@@ -701,4 +701,13 @@ Alle Starts sind zugewiesen.</value>
   <data name="WorkspaceSettingsString" xml:space="preserve">
     <value>Arbeitsbereich Einstellungen</value>
   </data>
+  <data name="CreateAnalyticsString" xml:space="preserve">
+    <value>Analyse Dokument erstellen</value>
+  </data>
+  <data name="CreateAnalyticsResultString" xml:space="preserve">
+    <value>Analyse Dokument wurde erstellt.</value>
+  </data>
+  <data name="AnalyticsTemplatePathString" xml:space="preserve">
+    <value>Analyse Template</value>
+  </data>
 </root>

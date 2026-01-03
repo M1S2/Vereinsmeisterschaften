@@ -687,6 +687,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the analytics template.
+        ///Relative paths are relative to the workspace path. ähnelt.
+        /// </summary>
+        public static string TooltipTemplatePathAnalytics {
+            get {
+                return ResourceManager.GetString("TooltipTemplatePathAnalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Path to the certificate template.
         ///Relative paths are relative to the workspace path. ähnelt.
         /// </summary>

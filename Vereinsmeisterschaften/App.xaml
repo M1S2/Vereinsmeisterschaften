@@ -90,6 +90,15 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- Style to make a TextBox look like a TextBlock (and make the text selectable) -->
+            <Style TargetType="{x:Type TextBox}" x:Key="selectableTextBlockStyle">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Focusable" Value="True"/>
+            </Style>
+            
             <!-- Style that removes all effects (e.g. mouse over, highlight color ...) from the toggle button -->
             <Style x:Key="PlainToggleButtonStyle" TargetType="{x:Type ToggleButton}">
                 <Setter Property="Template">

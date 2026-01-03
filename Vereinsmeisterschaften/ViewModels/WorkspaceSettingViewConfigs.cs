@@ -95,6 +95,10 @@ namespace Vereinsmeisterschaften.ViewModels
                 new WorkspaceSettingViewConfig() { Label=Resources.ResultListDetailTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathResultListDetail, Icon = "\uE7B3", Editor = WorkspaceSettingEditorTypes.FileDocxRelative, SupportResetToDefault = false}
             },
             {
+                (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH),
+                new WorkspaceSettingViewConfig() { Label=Resources.AnalyticsTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathAnalytics, Icon = "\uE9D2", Editor = WorkspaceSettingEditorTypes.FileDocxRelative, SupportResetToDefault = false}
+            },
+            {
                 (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH),
                 new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Tooltips.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute }
             },

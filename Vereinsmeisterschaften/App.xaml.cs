@@ -83,12 +83,14 @@ public partial class App : Application
         services.AddSingleton<IDocumentPlaceholderResolver<PersonStart>, DocumentPlaceholderResolverPersonStart>();
         services.AddSingleton<IDocumentPlaceholderResolver<Person>, DocumentPlaceholderResolverPerson>();
         services.AddSingleton<IDocumentPlaceholderResolver<Race>, DocumentPlaceholderResolverRace>();
+        services.AddSingleton<IDocumentPlaceholderResolver<IAnalyticsModule>, DocumentPlaceholderResolverIAnalyticsModule>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyCertificates>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyOverviewList>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyRaceStartList>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyTimeForms>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultList>();
         services.AddSingleton<IDocumentStrategy, DocumentStrategyResultListDetail>();
+        services.AddSingleton<IDocumentStrategy, DocumentStrategyAnalytics>();
         services.AddSingleton<AnalyticsModuleGenderPersons>();
         services.AddSingleton<AnalyticsModuleGenderStarts>();
         services.AddSingleton<AnalyticsModuleStartsPerStyle>();
@@ -100,6 +102,17 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModuleStartDistances>();
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
         services.AddSingleton<AnalyticsModuleRacesAgeSpan>();
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderPersons>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderStarts>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsPerStyle>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePersonCounters>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsCounters>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleAgeDistribution>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsPerPerson>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleDistancesBetweenStarts>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartDistances>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePlacesAgeDistribution>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAgeSpan>());
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();

@@ -25,7 +25,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// Number of people that are male
         /// </summary>
-        public double MalePersonCount => _personService.GetPersons().Count(p => p.IsActive && p.Gender == Genders.Male);
+        public int MalePersonCount => _personService.GetPersons().Count(p => p.IsActive && p.Gender == Genders.Male);
 
         /// <summary>
         /// Percentage of people that are male
@@ -35,7 +35,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// Number of people that are female
         /// </summary>
-        public double FemalePersonCount => _personService.GetPersons().Count(p => p.IsActive && p.Gender == Genders.Female);
+        public int FemalePersonCount => _personService.GetPersons().Count(p => p.IsActive && p.Gender == Genders.Female);
 
         /// <summary>
         /// Percentage of people that are female

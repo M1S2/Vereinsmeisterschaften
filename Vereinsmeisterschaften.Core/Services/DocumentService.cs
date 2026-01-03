@@ -155,12 +155,24 @@ namespace Vereinsmeisterschaften.Core.Services
                 else
                 {
                     // Create a single page document
+                    string inputFile = documentTemplate;
+
                     DocXPlaceholderHelper.TablePlaceholders tablePlaceholders = documentStrategy.ResolveTablePlaceholders(items);
-                    if (tablePlaceholders != null) { DocXPlaceholderHelper.ReplaceTablePlaceholders(documentTemplate, outputFile, tablePlaceholders, placeholderMarker); }
+                    if (tablePlaceholders != null)
+                    {
+                        DocXPlaceholderHelper.ReplaceTablePlaceholders(inputFile, outputFile, tablePlaceholders, placeholderMarker);
+                        inputFile = outputFile;
+                    }
 
-                    DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders();
-                    if (textPlaceholders != null) { DocXPlaceholderHelper.ReplaceTextPlaceholders(tablePlaceholders == null ? documentTemplate : outputFile, outputFile, textPlaceholders, placeholderMarker); }
-
+                    foreach (object item in items)
+                    {
+                        DocXPlaceholderHelper.TextPlaceholders textPlaceholders = documentStrategy.ResolveTextPlaceholders(item);
+                        if (textPlaceholders != null)
+                        {
+                            DocXPlaceholderHelper.ReplaceTextPlaceholders(inputFile, outputFile, textPlaceholders, placeholderMarker);
+                            inputFile = outputFile;
+                        }
+                    }
                     insertAlwaysSupportedPlaceholderValues(outputFile, outputFile);
 
                     numCreatedPages = 1; // We created one page for the document

@@ -418,4 +418,8 @@ Für mehr Infos zu den einzelnen Analysen siehe die Info in den einzelnen Analys
   <data name="TooltipAnalyticsWidgetRacesAgeSpan" xml:space="preserve">
     <value>Analysieren, welche Geburtsjahre je Rennen antreten.</value>
   </data>
+  <data name="TooltipTemplatePathAnalytics" xml:space="preserve">
+    <value>Pfad zum Analyse Template.
+Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
+  </data>
 </root>

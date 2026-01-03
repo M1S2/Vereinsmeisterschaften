@@ -303,4 +303,52 @@ e.g. "3" -&gt; %Name1%, %Name2%, %Name3% available beside %Name%</value>
     <value>Use these placeholders to insert the competition date.
 This only works outside of tables.</value>
   </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsMaleCount" xml:space="preserve">
+    <value>Analytics: Gender Persons: Male Count</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsMalePercentage" xml:space="preserve">
+    <value>Analytics: Gender Persons: Male Percentage</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsFemaleCount" xml:space="preserve">
+    <value>Analytics: Gender Persons: Female Count</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderPersonsFemalePercentage" xml:space="preserve">
+    <value>Analytics: Gender Persons: Female Percentage</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsMaleCount" xml:space="preserve">
+    <value>Use these placeholders to insert the number of male persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsFemaleCount" xml:space="preserve">
+    <value>Use these placeholders to insert the number of female persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsFemalePercentage" xml:space="preserve">
+    <value>Use these placeholders to insert the percentage of female persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderPersonsMalePercentage" xml:space="preserve">
+    <value>Use these placeholders to insert the number of male persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsFemaleCount" xml:space="preserve">
+    <value>Use these placeholders to insert the number of female starts.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsFemalePercentage" xml:space="preserve">
+    <value>Use these placeholders to insert the percentage of female starts.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsMaleCount" xml:space="preserve">
+    <value>Use these placeholders to insert the number of male starts.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsGenderStartsMalePercentage" xml:space="preserve">
+    <value>Use these placeholders to insert the number of male starts.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsFemaleCount" xml:space="preserve">
+    <value>Analytics: Gender Starts: Female Count</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsFemalePercentage" xml:space="preserve">
+    <value>Analytics: Gender Starts: Female Percentage</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsMaleCount" xml:space="preserve">
+    <value>Analytics: Gender Starts: Male Count</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsGenderStartsMalePercentage" xml:space="preserve">
+    <value>Analytics: Gender Starts: Male Percentage</value>
+  </data>
 </root>

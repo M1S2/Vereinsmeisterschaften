@@ -33,6 +33,11 @@
         /// <summary>
         /// List with the overall result and all details
         /// </summary>
-        ResultListDetail
+        ResultListDetail,
+
+        /// <summary>
+        /// Overview with different analytics
+        /// </summary>
+        Analytics
     }
 }

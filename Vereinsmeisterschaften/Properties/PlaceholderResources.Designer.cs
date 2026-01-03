@@ -19,7 +19,7 @@ namespace Vereinsmeisterschaften.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class PlaceholderResources {
@@ -57,6 +57,78 @@ namespace Vereinsmeisterschaften.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of female persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderPersonsFemaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderPersonsFemaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the percentage of female persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderPersonsFemalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderPersonsFemalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of male persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderPersonsMaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderPersonsMaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of male persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderPersonsMalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderPersonsMalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of female starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderStartsFemaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderStartsFemaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the percentage of female starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderStartsFemalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderStartsFemalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of male starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderStartsMaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderStartsMaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of male starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsGenderStartsMalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderStartsMalePercentage", resourceCulture);
             }
         }
         
@@ -348,6 +420,78 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderLegendNotAvailable {
             get {
                 return ResourceManager.GetString("PlaceholderLegendNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Persons: Female Count ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderPersonsFemaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderPersonsFemaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Persons: Female Percentage ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderPersonsFemalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderPersonsFemalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Persons: Male Count ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderPersonsMaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderPersonsMaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Persons: Male Percentage ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderPersonsMalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderPersonsMalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Starts: Female Count ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderStartsFemaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderStartsFemaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Starts: Female Percentage ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderStartsFemalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderStartsFemalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Starts: Male Count ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderStartsMaleCount {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderStartsMaleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Starts: Male Percentage ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsGenderStartsMalePercentage {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsGenderStartsMalePercentage", resourceCulture);
             }
         }
         

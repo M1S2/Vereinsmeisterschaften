@@ -37,9 +37,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xE8A5;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CreateDocumentsPageTitle}" />
             <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoCreateDocumentsPage}"/>
@@ -189,10 +190,29 @@
                                         SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"
                                         ButtonIconGlyph="&#xE7B3;"
                                         NumberCreatedDocuments="-1"/>
-        
+
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Create Analytics -->
+        <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="6"
+                                DocumentType="{x:Static coreModels:DocumentCreationTypes.Analytics}"
+                                CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                IsRunning="{Binding IsDocumentCreationRunning[Analytics]}"
+                                IsSuccessful="{Binding IsDocumentCreationSuccessful[Analytics]}"
+                                IsDataAvailable="{Binding IsDocumentDataAvailable[Analytics]}"
+                                IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[Analytics]}"
+                                LastCreatedDocumentPath="{Binding LastDocumentFilePaths[Analytics]}"
+                                AvailableItemOrderings="{Binding AvailableItemOrderings[Analytics]}"
+                                ItemOrdering="{Binding CurrentItemOrderings[Analytics], Mode=TwoWay}"
+                                AvailableItemFilters="{Binding AvailableItemFilters[Analytics]}"
+                                ItemFilter="{Binding CurrentItemFilters[Analytics], Mode=TwoWay}"
+                                ButtonText="{x:Static properties:Resources.CreateAnalyticsString}"
+                                SuccessText="{x:Static properties:Resources.CreateAnalyticsResultString}"
+                                ButtonIconGlyph="&#xE9D2;"
+                                NumberCreatedDocuments="-1"/>
+
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
-        <Expander Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" Grid.ColumnSpan="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsExpanded="True" controls:ControlsHelper.ContentCharacterCasing="Normal">
+        <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsExpanded="True" controls:ControlsHelper.ContentCharacterCasing="Normal">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="25" Text="%...%"/>
@@ -237,8 +257,14 @@
                                             Binding="{Binding Info}" IsReadOnly="True"/>
 
                         <!-- Placeholders -->
-                        <DataGridTextColumn Header="{x:Static properties:Resources.AvailablePlaceholdersString}" HeaderStyle="{StaticResource DataGridColumnHeaderLeftStyle}"
-                                            Binding="{Binding Placeholders}" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="{x:Static properties:Resources.AvailablePlaceholdersString}" HeaderStyle="{StaticResource DataGridColumnHeaderLeftStyle}"
+                                                IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Placeholders}" Style="{StaticResource selectableTextBlockStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
                         <!-- Supported Placeholders for Certificates Document Type -->
                         <DataGridTemplateColumn SortMemberPath="IsSupportedForDocumentType[Certificates]" IsReadOnly="True">
@@ -331,6 +357,22 @@
                                         <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
                                                                                      FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                                                      BoolValue="{Binding IsSupportedForDocumentType[ResultListDetail]}"/>
+                                    </controls:Badged>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Supported Placeholders for Analytics Document Type -->
+                        <DataGridTemplateColumn SortMemberPath="IsSupportedForDocumentType[Analytics]" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <controls:FontIcon Glyph="&#xE9D2;" ToolTip="{x:Static properties:Resources.CreateAnalyticsString}"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[Analytics]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                             BoolValue="{Binding IsSupportedForDocumentType[Analytics]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

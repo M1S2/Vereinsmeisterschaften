@@ -163,32 +163,46 @@
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Placeholder Groups
+
+        public const string PLACEHOLDER_GROUP_GENERAL = "General";
+        public const string PLACEHOLDER_GROUP_PERSONDETAILS = "Persondetails";
+        public const string PLACEHOLDER_GROUP_SCORES = "Scores";
+        public const string PLACEHOLDER_GROUP_TIMES = "Times";
+        public const string PLACEHOLDER_GROUP_ANALYTICS = "Analytics";
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         #region Placeholder Keys
 
         public const string PLACEHOLDER_KEY_COMPETITION_YEAR = "CompetitionYear";
         public const string PLACEHOLDER_KEY_COMPETITION_DATE = "CompetitionDate";
         public const string PLACEHOLDER_KEY_APP_VERSION = "AppVersion";
         public const string PLACEHOLDER_KEY_WORKSPACE_PATH = "WorkspacePath";
+        public const string PLACEHOLDER_KEY_DISTANCE = "Distance";
+        public const string PLACEHOLDER_KEY_SWIMMING_STYLE = "SwimmingStyle";
+        public const string PLACEHOLDER_KEY_COMPETITION_ID = "CompetitionID";
+        public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
+        public const string PLACEHOLDER_KEY_BEST_STYLE = "BestStyle";
+        public const string PLACEHOLDER_KEY_RACE_NUMBER = "RaceNumber";
+
         public const string PLACEHOLDER_KEY_NAME = "Name";
         public const string PLACEHOLDER_KEY_FIRSTNAME = "FirstName";
         public const string PLACEHOLDER_KEY_LASTNAME = "LastName";
         public const string PLACEHOLDER_KEY_GENDER = "Gender";
         public const string PLACEHOLDER_KEY_GENDER_SYMBOL = "GenderSymbol";
         public const string PLACEHOLDER_KEY_BIRTH_YEAR = "BirthYear";
-        public const string PLACEHOLDER_KEY_DISTANCE = "Distance";
-        public const string PLACEHOLDER_KEY_SWIMMING_STYLE = "SwimmingStyle";
-        public const string PLACEHOLDER_KEY_COMPETITION_ID = "CompetitionID";
-        public const string PLACEHOLDER_KEY_SCORE = "Score";
-        public const string PLACEHOLDER_KEY_RESULT_LIST_PLACE = "ResultListPlace";
-        public const string PLACEHOLDER_KEY_BEST_STYLE = "BestStyle";
-        public const string PLACEHOLDER_KEY_RACE_NUMBER = "RaceNumber";
 
+        public const string PLACEHOLDER_KEY_SCORE = "Score";
         public const string PLACEHOLDER_KEY_SCOREBREASTSTROKE = "ScoreBreaststroke";
         public const string PLACEHOLDER_KEY_SCOREFREESTYLE = "ScoreFreestyle";
         public const string PLACEHOLDER_KEY_SCOREBACKSTROKE = "ScoreBackstroke";
         public const string PLACEHOLDER_KEY_SCOREBUTTERFLY = "ScoreButterfly";
         public const string PLACEHOLDER_KEY_SCOREMEDLEY = "ScoreMedley";
         public const string PLACEHOLDER_KEY_SCOREWATERFLEA = "ScoreWaterflea";
+
         public const string PLACEHOLDER_KEY_TIMEBREASTSTROKE = "TimeBreaststroke";
         public const string PLACEHOLDER_KEY_TIMEFREESTYLE = "TimeFreestyle";
         public const string PLACEHOLDER_KEY_TIMEBACKSTROKE = "TimeBackstroke";
@@ -200,7 +214,6 @@
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE = "AnalyticsGenderPersonsMalePercentage";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT = "AnalyticsGenderPersonsFemaleCount";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE = "AnalyticsGenderPersonsFemalePercentage";
-
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT = "AnalyticsGenderStartsMaleCount";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE = "AnalyticsGenderStartsMalePercentage";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT = "AnalyticsGenderStartsFemaleCount";
@@ -211,47 +224,51 @@
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
-        /// Dictionary that maps placeholder keys to their corresponding lists of placeholders.
+        /// Dictionary that maps placeholder keys to a tuple of the group and their corresponding lists of placeholders.
         /// </summary>
-        public static Dictionary<string, List<string>> PlaceholderDict = new Dictionary<string, List<string>>()
+        public static Dictionary<string, (string groupName, List<string> placeholders)> PlaceholderDict = new Dictionary<string, (string, List<string>)>()
         {
-            { PLACEHOLDER_KEY_COMPETITION_YEAR, Placeholders_CompetitionYear },
-            { PLACEHOLDER_KEY_COMPETITION_DATE, Placeholders_CompetitionDate },
-            { PLACEHOLDER_KEY_APP_VERSION, Placeholders_AppVersion },
-            { PLACEHOLDER_KEY_WORKSPACE_PATH, Placeholders_WorkspacePath },
-            { PLACEHOLDER_KEY_NAME, Placeholders_Name },
-            { PLACEHOLDER_KEY_FIRSTNAME, Placeholders_FirstName },
-            { PLACEHOLDER_KEY_LASTNAME, Placeholders_LastName },
-            { PLACEHOLDER_KEY_GENDER, Placeholders_Gender },
-            { PLACEHOLDER_KEY_GENDER_SYMBOL, Placeholders_GenderSymbol },
-            { PLACEHOLDER_KEY_BIRTH_YEAR, Placeholders_BirthYear },
-            { PLACEHOLDER_KEY_DISTANCE, Placeholders_Distance },
-            { PLACEHOLDER_KEY_SWIMMING_STYLE, Placeholders_SwimmingStyle },
-            { PLACEHOLDER_KEY_COMPETITION_ID, Placeholders_CompetitionID },
-            { PLACEHOLDER_KEY_SCORE, Placeholders_Score },
-            { PLACEHOLDER_KEY_BEST_STYLE, Placeholders_BestStyle },
-            { PLACEHOLDER_KEY_RESULT_LIST_PLACE, Placeholders_ResultListPlace },
-            { PLACEHOLDER_KEY_RACE_NUMBER, Placeholders_RaceNumber },
-            { PLACEHOLDER_KEY_SCOREBREASTSTROKE, Placeholders_ScoreBreaststroke },
-            { PLACEHOLDER_KEY_SCOREFREESTYLE, Placeholders_ScoreFreestyle },
-            { PLACEHOLDER_KEY_SCOREBACKSTROKE, Placeholders_ScoreBackstroke },
-            { PLACEHOLDER_KEY_SCOREBUTTERFLY, Placeholders_ScoreButterfly },
-            { PLACEHOLDER_KEY_SCOREMEDLEY, Placeholders_ScoreMedley },
-            { PLACEHOLDER_KEY_SCOREWATERFLEA, Placeholders_ScoreWaterflea },
-            { PLACEHOLDER_KEY_TIMEBREASTSTROKE, Placeholders_TimeBreaststroke },
-            { PLACEHOLDER_KEY_TIMEFREESTYLE, Placeholders_TimeFreestyle },
-            { PLACEHOLDER_KEY_TIMEBACKSTROKE, Placeholders_TimeBackstroke },
-            { PLACEHOLDER_KEY_TIMEBUTTERFLY, Placeholders_TimeButterfly },
-            { PLACEHOLDER_KEY_TIMEMEDLEY, Placeholders_TimeMedley },
-            { PLACEHOLDER_KEY_TIMEWATERFLEA, Placeholders_TimeWaterflea },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_COUNT, Placeholders_AnalyticsGenderPersonsMaleCount },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE, Placeholders_AnalyticsGenderPersonsMalePercentage },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT, Placeholders_AnalyticsGenderPersonsFemaleCount },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE, Placeholders_AnalyticsGenderPersonsFemalePercentage },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT, Placeholders_AnalyticsGenderStartsMaleCount },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE, Placeholders_AnalyticsGenderStartsMalePercentage },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT, Placeholders_AnalyticsGenderStartsFemaleCount },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE, Placeholders_AnalyticsGenderStartsFemalePercentage }
+            { PLACEHOLDER_KEY_COMPETITION_YEAR, (PLACEHOLDER_GROUP_GENERAL, Placeholders_CompetitionYear) },
+            { PLACEHOLDER_KEY_COMPETITION_DATE, (PLACEHOLDER_GROUP_GENERAL, Placeholders_CompetitionDate) },
+            { PLACEHOLDER_KEY_APP_VERSION, (PLACEHOLDER_GROUP_GENERAL, Placeholders_AppVersion) },
+            { PLACEHOLDER_KEY_WORKSPACE_PATH, (PLACEHOLDER_GROUP_GENERAL, Placeholders_WorkspacePath) },
+            { PLACEHOLDER_KEY_DISTANCE, (PLACEHOLDER_GROUP_GENERAL, Placeholders_Distance) },
+            { PLACEHOLDER_KEY_SWIMMING_STYLE, (PLACEHOLDER_GROUP_GENERAL, Placeholders_SwimmingStyle) },
+            { PLACEHOLDER_KEY_COMPETITION_ID, (PLACEHOLDER_GROUP_GENERAL, Placeholders_CompetitionID) },
+            { PLACEHOLDER_KEY_BEST_STYLE, (PLACEHOLDER_GROUP_GENERAL, Placeholders_BestStyle) },
+            { PLACEHOLDER_KEY_RESULT_LIST_PLACE, (PLACEHOLDER_GROUP_GENERAL, Placeholders_ResultListPlace) },
+            { PLACEHOLDER_KEY_RACE_NUMBER, (PLACEHOLDER_GROUP_GENERAL, Placeholders_RaceNumber) },
+
+            { PLACEHOLDER_KEY_NAME, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_Name) },
+            { PLACEHOLDER_KEY_FIRSTNAME, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_FirstName) },
+            { PLACEHOLDER_KEY_LASTNAME, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_LastName) },
+            { PLACEHOLDER_KEY_GENDER, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_Gender) },
+            { PLACEHOLDER_KEY_GENDER_SYMBOL, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_GenderSymbol) },
+            { PLACEHOLDER_KEY_BIRTH_YEAR, (PLACEHOLDER_GROUP_PERSONDETAILS, Placeholders_BirthYear) },
+
+            { PLACEHOLDER_KEY_SCORE, (PLACEHOLDER_GROUP_SCORES, Placeholders_Score) },
+            { PLACEHOLDER_KEY_SCOREBREASTSTROKE, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreBreaststroke) },
+            { PLACEHOLDER_KEY_SCOREFREESTYLE, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreFreestyle) },
+            { PLACEHOLDER_KEY_SCOREBACKSTROKE, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreBackstroke) },
+            { PLACEHOLDER_KEY_SCOREBUTTERFLY, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreButterfly) },
+            { PLACEHOLDER_KEY_SCOREMEDLEY, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreMedley) },
+            { PLACEHOLDER_KEY_SCOREWATERFLEA, (PLACEHOLDER_GROUP_SCORES, Placeholders_ScoreWaterflea) },
+
+            { PLACEHOLDER_KEY_TIMEBREASTSTROKE, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeBreaststroke) },
+            { PLACEHOLDER_KEY_TIMEFREESTYLE, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeFreestyle) },
+            { PLACEHOLDER_KEY_TIMEBACKSTROKE, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeBackstroke) },
+            { PLACEHOLDER_KEY_TIMEBUTTERFLY, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeButterfly) },
+            { PLACEHOLDER_KEY_TIMEMEDLEY, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeMedley) },
+            { PLACEHOLDER_KEY_TIMEWATERFLEA, (PLACEHOLDER_GROUP_TIMES, Placeholders_TimeWaterflea) },
+
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderPersonsMaleCount) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderPersonsMalePercentage) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderPersonsFemaleCount) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderPersonsFemalePercentage) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsMaleCount) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsMalePercentage) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsFemaleCount) },
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsFemalePercentage) }
         };
     }
 }

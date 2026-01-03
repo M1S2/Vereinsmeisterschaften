@@ -6,7 +6,7 @@ This page describes how to add new placeholders and document types.
 - Adapt Placeholders.cs (Vereinsmeisterschaften.Core > Documents):
   - Add new list with placeholders: e.g. <code>public static List<string> Placeholders_Name = new List<string>() { "Name", "N" };</code>
   - Add new placeholder key: e.g. <code>public const string PLACEHOLDER_KEY_NAME = "Name";</code>
-  - Add the new placeholder combination in the PlaceholderDict: e.g. <code>{ PLACEHOLDER_KEY_NAME, Placeholders_Name }</code>
+  - Add the new placeholder combination in the PlaceholderDict: e.g. <code>{ PLACEHOLDER_KEY_NAME, (PLACEHOLDER_GROUP_NAME, Placeholders_Name) }</code>
 - Add following resources to the PlaceholderResources.resx (Vereinsmeisterschaften > Properties):
   - PlaceholderName<PlaceholderKey> (e.g. PlaceholderNameName): Name for the placeholder that is shown in the UI
   - PlaceholderInfo<PlaceholderKey> (e.g. PlaceholderInfoName): Description for the placeholder that is shown in the UI
@@ -17,6 +17,12 @@ This page describes how to add new placeholders and document types.
   - Adapt corresponding DocumentPlaceholderResolvers (Vereinsmeisterschaften.Core > Documents):
     - Add the placeholder key to the SupportedPlaceholderKeys list
     - Implement the logic in the ResolveTextPlaceholders method
+
+@section newPlaceholderGroups_sec Add new Placeholder Group
+- Adapt Placeholders.cs (Vereinsmeisterschaften.Core > Documents):
+  - Add a new placeholder group: e.g. <code>public const string PLACEHOLDER_GROUP_NAME = "Group";</code>
+- Add following resources to the PlaceholderResources.resx (Vereinsmeisterschaften > Properties):
+  - PlaceholderGroup<PLACEHOLDER_GROUP_NAME> (e.g. PlaceholderGroupGeneral): Name for the placeholder group
 
 @section newDocumentTypes_sec Add new document type
 - Add a new enum value to <code>DocumentCreationTypes</code> in DocumentCreationTypes.cs (Vereinsmeisterschaften.Core > Models)

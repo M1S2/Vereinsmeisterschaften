@@ -1,17 +1,19 @@
-﻿using System.Windows.Input;
-using System.Resources;
-using System.Collections.ObjectModel;
-using System.IO;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Resources;
+using System.Windows.Data;
+using System.Windows.Input;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
-using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Documents;
-using Vereinsmeisterschaften.Properties;
-using Vereinsmeisterschaften.Core.Settings;
 using Vereinsmeisterschaften.Core.Helpers;
+using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Settings;
+using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -163,17 +165,23 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
     }
 
     /// <summary>
+    /// Collection view used to display the <see cref="PlaceholderViewConfigs"/>
+    /// </summary>
+    public ICollectionView PlaceholderViewConfigsView { get; private set; }
+
+    /// <summary>
     /// Initializes the <see cref="PlaceholderViewConfigs"/> collection with available placeholders.
     /// </summary>
     private void initPlaceholderViewConfigs()
     {
         PlaceholderViewConfigs.Clear();
-        foreach(KeyValuePair<string, List<string>> placeholders in Placeholders.PlaceholderDict)
+        foreach(KeyValuePair<string, (string groupName, List<string> placeholders)> placeholderEntry in Placeholders.PlaceholderDict)
         {
-            string placeholderKey = placeholders.Key;
+            string placeholderKey = placeholderEntry.Key;
             ResourceManager rm = new ResourceManager(typeof(Properties.PlaceholderResources));
             string resourceStringName = rm.GetString($"PlaceholderName{placeholderKey}") ?? "?";
             string resourceStringInfo = rm.GetString($"PlaceholderInfo{placeholderKey}") ?? "?";
+            string resourceStringGroup = rm.GetString($"PlaceholderGroup{placeholderEntry.Value.groupName}") ?? "?";
 
             Dictionary<DocumentCreationTypes, bool> isSupportedForDocumentType = new Dictionary<DocumentCreationTypes, bool>();
             Dictionary<DocumentCreationTypes, string> postfixNumbersSupportedForDocumentType = new Dictionary<DocumentCreationTypes, string>();
@@ -200,10 +208,11 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
 
             DocumentPlaceholderViewConfig placeholderViewConfig = new DocumentPlaceholderViewConfig()
             {
+                Group = resourceStringGroup,
                 Key = placeholderKey,
                 Name = resourceStringName,
                 Info = resourceStringInfo,
-                Placeholders = string.Join(Environment.NewLine, placeholders.Value.Select(p => $"{_documentService.PlaceholderMarker}{p}{_documentService.PlaceholderMarker}")),
+                Placeholders = string.Join(Environment.NewLine, placeholderEntry.Value.placeholders.Select(p => $"{_documentService.PlaceholderMarker}{p}{_documentService.PlaceholderMarker}")),
                 IsSupportedForDocumentType = isSupportedForDocumentType,
                 PostfixNumbersSupportedForDocumentType = postfixNumbersSupportedForDocumentType
             };
@@ -265,6 +274,9 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
             CurrentItemFilters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilter);
             CurrentItemFilterParameters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilterParameter);
         }
+
+        PlaceholderViewConfigsView = CollectionViewSource.GetDefaultView(PlaceholderViewConfigs);
+        PlaceholderViewConfigsView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(DocumentPlaceholderViewConfig.Group)));
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

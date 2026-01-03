@@ -8,6 +8,10 @@ namespace Vereinsmeisterschaften.ViewModels
     public class DocumentPlaceholderViewConfig
     {
         /// <summary>
+        /// Group for the placeholder
+        /// </summary>
+        public string Group { get; set; }
+        /// <summary>
         /// Key for the placeholder, used to identify it
         /// </summary>
         public string Key { get; set; }

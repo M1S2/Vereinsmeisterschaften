@@ -141,7 +141,6 @@
         /// List with all placeholders that can be used in the template to insert the analytics gender person female percentage.
         /// </summary>
         public static List<string> Placeholders_AnalyticsGenderPersonsFemalePercentage = new List<string>() { "PercentFemale", "ProzentWeiblich", "A_PF", "A_PW" };
-
         /// <summary>
         /// List with all placeholders that can be used in the template to insert the analytics gender starts male count.
         /// </summary>
@@ -158,6 +157,50 @@
         /// List with all placeholders that can be used in the template to insert the analytics gender starts female percentage.
         /// </summary>
         public static List<string> Placeholders_AnalyticsGenderStartsFemalePercentage = new List<string>() { "PercentStartsFemale", "ProzentStartsWeiblich", "A_PSF", "A_PSW" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics age distribution.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsAgeDistribution = new List<string>() { "AgeDistribution", "Altersverteilung", "A_AD", "A_AV" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts per person.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsPerPerson = new List<string>() { "StartsPerPerson", "StartsProPerson", "A_SPP" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts per style.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsPerStyle = new List<string>() { "StartsPerStyle", "StartsProLage", "A_SPS", "A_SPL" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics start distances.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartDistances = new List<string>() { "StartDistances", "StartDistanzen", "A_SD" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics person counter number of people.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPersonCountersNumberPeople = new List<string>() { "NumberPeople", "AnzahlPersonen", "A_NP", "A_AP" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics person counter number of active people.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPersonCountersNumberActivePeople = new List<string>() { "NumberActivePeople", "AnzahlAktivePersonen", "A_NAP", "A_AAP" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics person counter number of inactive people.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPersonCountersNumberInactivePeople = new List<string>() { "NumberInactivePeople", "AnzahlInaktivePersonen", "A_NIP", "A_AIP" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts counter number of starts.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsCountersNumberStarts = new List<string>() { "NumberStarts", "AnzahlStarts", "A_NS", "A_AS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts counter number of valid starts.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsCountersNumberValidStarts = new List<string>() { "NumberValidStarts", "AnzahlGültigeStarts", "A_NVS", "A_AGS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts counter number of inactive starts.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsCountersNumberInactiveStarts = new List<string>() { "NumberInactiveStarts", "AnzahlInaktiveStarts", "A_NIS", "A_AIS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics starts counter number of starts with missing competition.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition = new List<string>() { "NumberStartsMissingCompetition", "AnzahlStartsFehlenderWettkampf", "A_NSMC", "A_ASFW" };
 
         #endregion
 
@@ -218,6 +261,17 @@
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE = "AnalyticsGenderStartsMalePercentage";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT = "AnalyticsGenderStartsFemaleCount";
         public const string PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE = "AnalyticsGenderStartsFemalePercentage";
+        public const string PLACEHOLDER_KEY_ANALYTICS_AGE_DISTRIBUTION = "AnalyticsAgeDistribution";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_PER_PERSON = "AnalyticsStartsPerPerson";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_PER_STYLE = "AnalyticsStartsPerStyle";
+        public const string PLACEHOLDER_KEY_ANALYTICS_START_DISTANCES = "AnalyticsStartDistances";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_PEOPLE = "AnalyticsPersonCountersNumberPeople";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_ACTIVE_PEOPLE = "AnalyticsPersonCountersNumberActivePeople";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_INACTIVE_PEOPLE = "AnalyticsPersonCountersNumberInactivePeople";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS = "AnalyticsStartsCountersNumberStarts";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_VALID_STARTS = "AnalyticsStartsCountersNumberValidStarts";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS = "AnalyticsStartsCountersNumberInactiveStarts";
+        public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION = "AnalyticsStartsCountersNumberStartsWithMissingCompetition";
 
         #endregion
 
@@ -268,7 +322,18 @@
             { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsMaleCount) },
             { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_MALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsMalePercentage) },
             { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_COUNT, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsFemaleCount) },
-            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsFemalePercentage) }
+            { PLACEHOLDER_KEY_ANALYTICS_GENDER_STARTS_FEMALE_PERCENTAGE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsGenderStartsFemalePercentage) },
+            { PLACEHOLDER_KEY_ANALYTICS_AGE_DISTRIBUTION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsAgeDistribution) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_PER_PERSON, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsPerPerson) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_PER_STYLE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsPerStyle) },
+            { PLACEHOLDER_KEY_ANALYTICS_START_DISTANCES, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartDistances) },
+            { PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_PEOPLE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPersonCountersNumberPeople) },
+            { PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_ACTIVE_PEOPLE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPersonCountersNumberActivePeople) },
+            { PLACEHOLDER_KEY_ANALYTICS_PERSON_COUNTERS_NUMBER_INACTIVE_PEOPLE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPersonCountersNumberInactivePeople) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStarts) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_VALID_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberValidStarts) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberInactiveStarts) },
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) }
         };
     }
 }

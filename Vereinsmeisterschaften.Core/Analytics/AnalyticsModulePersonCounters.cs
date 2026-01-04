@@ -26,7 +26,6 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// </summary>
         public int NumberOfPeople => _personService.PersonCount;
 
-
         /// <summary>
         /// Number of active people
         /// </summary>

@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the number of active persons per birth year. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsAgeDistribution {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of female persons. ähnelt.
         /// </summary>
         public static string PlaceholderInfoAnalyticsGenderPersonsFemaleCount {
@@ -174,6 +183,96 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderInfoAnalyticsGenderStartsMalePercentage {
             get {
                 return ResourceManager.GetString("PlaceholderInfoAnalyticsGenderStartsMalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of active persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPersonCountersNumberActivePeople {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPersonCountersNumberActivePeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of inactive persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPersonCountersNumberInactivePeople {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPersonCountersNumberInactivePeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the total number of persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPersonCountersNumberPeople {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPersonCountersNumberPeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the number of valid starts per distance. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartDistances {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartDistances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of inactive starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsCountersNumberInactiveStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsCountersNumberInactiveStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the total number of starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsCountersNumberStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsCountersNumberStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of starts with missing competition. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsCountersNumberStartsWithMissingCompetition {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsCountersNumberStartsWithMissingCompetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of valid starts. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsCountersNumberValidStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsCountersNumberValidStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the number of valid starts per person. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsPerPerson {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsPerPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the number of valid starts per swimming style. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsStartsPerStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsStartsPerStyle", resourceCulture);
             }
         }
         
@@ -469,6 +568,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Age Distribution ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsAgeDistribution {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Gender Persons: Female Count ähnelt.
         /// </summary>
         public static string PlaceholderNameAnalyticsGenderPersonsFemaleCount {
@@ -537,6 +645,96 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameAnalyticsGenderStartsMalePercentage {
             get {
                 return ResourceManager.GetString("PlaceholderNameAnalyticsGenderStartsMalePercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Person Counters: Number active People ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPersonCountersNumberActivePeople {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPersonCountersNumberActivePeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Person Counters: Number inactive People ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPersonCountersNumberInactivePeople {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPersonCountersNumberInactivePeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Person Counters: Number People ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPersonCountersNumberPeople {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPersonCountersNumberPeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Start Distances ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartDistances {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartDistances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Counters: Number inactive Starts ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsCountersNumberInactiveStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsCountersNumberInactiveStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Counters: Number Starts ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsCountersNumberStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsCountersNumberStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Counters: Number Starts with missing competition ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsCountersNumberStartsWithMissingCompetition {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsCountersNumberStartsWithMissingCompetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Counters: Number valid Starts ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsCountersNumberValidStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsCountersNumberValidStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Per Person ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsPerPerson {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsPerPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Starts Per Style ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsStartsPerStyle {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsStartsPerStyle", resourceCulture);
             }
         }
         

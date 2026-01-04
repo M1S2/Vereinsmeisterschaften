@@ -366,4 +366,70 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderGroupPersondetails" xml:space="preserve">
     <value>Personendetails</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsAgeDistribution" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der aktiven Personen pro Geburtsjahr einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsAgeDistribution" xml:space="preserve">
+    <value>Analyse: Altersverteilung</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsPerPerson" xml:space="preserve">
+    <value>Analyse: Starts pro Person</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsPerPerson" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der gültigen Starts pro Person einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsPerStyle" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der gültigen Starts pro Lage einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsPerStyle" xml:space="preserve">
+    <value>Analyse: Starts pro Lage</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartDistances" xml:space="preserve">
+    <value>Analyse: Start Distanzen</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartDistances" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der gültigen Starts pro Distanz einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPersonCountersNumberPeople" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Gesamtanzahl an Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPersonCountersNumberActivePeople" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an aktiven Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPersonCountersNumberInactivePeople" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an inaktiven Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPersonCountersNumberPeople" xml:space="preserve">
+    <value>Analyse: Personen Zähler: Anzahl Personen</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPersonCountersNumberActivePeople" xml:space="preserve">
+    <value>Analyse: Personen Zähler: Anzahl aktive Personen</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPersonCountersNumberInactivePeople" xml:space="preserve">
+    <value>Analyse: Personen Zähler: Anzahl inaktive Personen</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsCountersNumberValidStarts" xml:space="preserve">
+    <value>Analyse: Starts Zähler: Anzahl gültige Starts</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsCountersNumberInactiveStarts" xml:space="preserve">
+    <value>Analyse: Starts Zähler: Anzahl inaktive Starts</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsCountersNumberStarts" xml:space="preserve">
+    <value>Analyse: Starts Zähler: Anzahl Starts</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsStartsCountersNumberStartsWithMissingCompetition" xml:space="preserve">
+    <value>Analyse: Starts Zähler: Anzahl Starts mit fehlendem Wettkampf</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsCountersNumberValidStarts" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an gültigen Starts einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsCountersNumberInactiveStarts" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an inaktiven Starts einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsCountersNumberStarts" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Gesamtanzahl an Starts einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsStartsCountersNumberStartsWithMissingCompetition" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um die Anzahl an Starts mit fehlendem Wettkampf einzufügen.</value>
+  </data>
 </root>

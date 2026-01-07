@@ -204,8 +204,11 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
     public WorkspaceViewModel(IWorkspaceService workspaceService, IWorkspaceManagerViewModel workspaceManagerViewModel)
     {
         _workspaceService = workspaceService;
+        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
+
         _workspaceManagerViewModel = workspaceManagerViewModel;
         _workspaceManagerViewModel.OnWorkspaceLoaded += (sender, path) => initSettingsGroups(_workspaceService.Settings);
+        IsWorkspaceManagerExpanded = !IsCurrentWorkspaceOpen;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -240,8 +243,6 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
     /// <inheritdoc/>
     public void OnNavigatedTo(object parameter)
     {
-        _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;
-
         OnPropertyChanged(nameof(CurrentWorkspaceFolder));
         OnPropertyChanged(nameof(IsCurrentWorkspaceOpen));
         OnPropertyChanged(nameof(Settings));
@@ -257,6 +258,5 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
     /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
-        _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
     }
 }

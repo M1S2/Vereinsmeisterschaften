@@ -22,7 +22,7 @@ namespace Vereinsmeisterschaften.Views
         public WorkspaceManagerUserControl()
         {
             App app = App.Current as App;
-            ViewModel = app.GetService<IWorkspaceManagerViewModel>();
+            ViewModel = app?.GetService<IWorkspaceManagerViewModel>();
             DataContext = ViewModel;
             InitializeComponent();
         }

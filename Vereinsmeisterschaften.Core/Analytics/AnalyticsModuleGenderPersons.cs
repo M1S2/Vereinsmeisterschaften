@@ -1,4 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -41,5 +43,25 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// Percentage of people that are female
         /// </summary>
         public double FemalePersonPercentage => (FemalePersonCount / (double)_personService.GetPersons().Count(p => p.IsActive)) * 100;
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsGenderPersonsMaleCount) { textPlaceholder.Add(placeholder, MalePersonCount.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsGenderPersonsMalePercentage) { textPlaceholder.Add(placeholder, MalePersonPercentage.ToString("N1")); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsGenderPersonsFemaleCount) { textPlaceholder.Add(placeholder, FemalePersonCount.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsGenderPersonsFemalePercentage) { textPlaceholder.Add(placeholder, FemalePersonPercentage.ToString("N1")); }
+            return textPlaceholder;
+        }
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_COUNT,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_MALE_PERCENTAGE,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_COUNT,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_GENDER_PERSONS_FEMALE_PERCENTAGE
+        };
     }
 }

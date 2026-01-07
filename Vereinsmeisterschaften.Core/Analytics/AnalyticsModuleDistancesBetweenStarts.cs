@@ -1,4 +1,5 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -65,5 +66,11 @@ namespace Vereinsmeisterschaften.Core.Analytics
                 return distancesBetweenStartsPerPerson.OrderBy(d => d.Value.Min()).ToDictionary(d => d.Key, d => d.Value);
             }
         }
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => null;
     }
 }

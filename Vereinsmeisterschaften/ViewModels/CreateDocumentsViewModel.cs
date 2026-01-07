@@ -188,9 +188,10 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
             foreach (IDocumentStrategy strategy in _documentStrategies)
             {
                 DocumentCreationTypes documentCreationType = strategy.DocumentType;
-                bool isCurrentPlaceholderSupportedForStrategy = strategy.SupportedPlaceholderKeys.Contains(placeholderKey);
+                List<string> supportedPlaceholderKeys = strategy.SupportedPlaceholderKeys;
+                bool isCurrentPlaceholderSupportedForStrategy = supportedPlaceholderKeys.Contains(placeholderKey);
 
-                int indexOfKey = strategy.SupportedPlaceholderKeys.IndexOf(placeholderKey);
+                int indexOfKey = supportedPlaceholderKeys.IndexOf(placeholderKey);
                 int postfixNumbersSupported = (indexOfKey >= 0 && indexOfKey < strategy.PostfixNumbersSupported.Count) ? strategy.PostfixNumbersSupported[indexOfKey] : 0;
                 string postfixNumbersSupportedStr = postfixNumbersSupported > 0 ? postfixNumbersSupported.ToString() : string.Empty;
 

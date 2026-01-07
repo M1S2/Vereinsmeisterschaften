@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -80,6 +81,12 @@ namespace Vereinsmeisterschaften.Core.Analytics
                 };
             }
         }
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => null;
 
     }
 }

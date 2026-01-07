@@ -1,4 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -38,5 +40,32 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public Dictionary<ushort, double> PercentageStartsPerDistance => NumberStartsPerDistance.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.CompetitionObj != null)) * 100)
                                                                                                 .OrderByDescending(d => d.Value)
                                                                                                 .ToDictionary();
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            int maxNumStarts = NumberStartsPerDistance.Max(kv => kv.Value);
+            // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: 100m: 3x | ###  10%)
+            string moduleStartDistancesString = string.Join(Environment.NewLine,
+                                                            NumberStartsPerDistance
+                                                                .Select(kv =>
+                                                                {
+                                                                    ushort distance = kv.Key;
+                                                                    string distanceString = $"{distance} m";
+                                                                    int count = kv.Value;
+                                                                    double percentage = PercentageStartsPerDistance.TryGetValue(distance, out var p) ? p : 0;
+                                                                    return $"{distanceString,5}: {count,2}x | {new string('#', count).PadRight(maxNumStarts)}   {percentage.ToString("N1")}%";
+                                                                }));
+
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartDistances) { textPlaceholder.Add(placeholder, moduleStartDistancesString); }
+            return textPlaceholder;
+        }
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_START_DISTANCES
+        };
     }
 }

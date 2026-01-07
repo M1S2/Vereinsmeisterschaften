@@ -1,4 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
+using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Core.Analytics
 {
@@ -40,5 +42,25 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// Number of active starts with a competition assigned (valid starts)
         /// </summary>
         public int NumberOfValidStarts => _personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned);
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsCountersNumberStarts) { textPlaceholder.Add(placeholder, NumberOfStarts.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsCountersNumberValidStarts) { textPlaceholder.Add(placeholder, NumberOfValidStarts.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsCountersNumberInactiveStarts) { textPlaceholder.Add(placeholder, NumberOfInactiveStarts.ToString()); }
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) { textPlaceholder.Add(placeholder, NumberOfStartsWithMissingCompetition.ToString()); }
+            return textPlaceholder;
+        }
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_VALID_STARTS,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS,
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION
+        };
     }
 }

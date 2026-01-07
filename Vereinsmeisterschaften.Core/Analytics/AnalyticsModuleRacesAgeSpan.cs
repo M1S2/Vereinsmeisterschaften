@@ -1,4 +1,5 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using static Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution;
@@ -43,6 +44,12 @@ namespace Vereinsmeisterschaften.Core.Analytics
                                                                                                                 RaceID = race.RaceID,
                                                                                                                 BirthYears = race.Starts.Where(s => s.IsActive).Select(s => s.PersonObj.BirthYear).OrderBy(b => b).ToList()
                                                                                                             }).ToList();
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => null;
 
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
+using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Analytics
@@ -38,5 +40,32 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public Dictionary<SwimmingStyles, double> PercentageStartsPerStyle => NumberStartsPerStyle.ToDictionary(d => d.Key, d => (d.Value / (double)_personService.GetAllPersonStarts().Count(s => s.IsActive && s.IsCompetitionObjAssigned)) * 100)
                                                                                                   .OrderByDescending(d => d.Value)
                                                                                                   .ToDictionary();
+
+        /// <inheritdoc/>
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            int maxNumStarts = NumberStartsPerStyle.Max(kv => kv.Value);
+            // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: SwimmingStyle: 3x | ###  10%)
+            string moduleStartsPerStyleString = string.Join(Environment.NewLine,
+                                                            NumberStartsPerStyle
+                                                                .Select(kv =>
+                                                                {
+                                                                    SwimmingStyles style = kv.Key;
+                                                                    string styleString = EnumCoreLocalizedStringHelper.Convert(style);
+                                                                    int count = kv.Value;
+                                                                    double percentage = PercentageStartsPerStyle.TryGetValue(style, out var p) ? p : 0;
+                                                                    return $"{styleString,-12}: {count,2}x | {new string('#', count).PadRight(maxNumStarts)}   {percentage.ToString("N1")}%";
+                                                                }));
+
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsPerStyle) { textPlaceholder.Add(placeholder, moduleStartsPerStyleString); }
+            return textPlaceholder;
+        }
+
+        /// <inheritdoc/>
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_STARTS_PER_STYLE
+        };
     }
 }

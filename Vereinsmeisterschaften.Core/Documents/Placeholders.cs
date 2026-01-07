@@ -201,6 +201,14 @@
         /// List with all placeholders that can be used in the template to insert the analytics starts counter number of starts with missing competition.
         /// </summary>
         public static List<string> Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition = new List<string>() { "NumberStartsMissingCompetition", "AnzahlStartsFehlenderWettkampf", "A_NSMC", "A_ASFW" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics places age distribution.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPlacesAgeDistribution = new List<string>() { "PlacesAgeDistribution", "PlätzeAltersverteilung", "A_PAD", "A_PAV" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics races ages.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsRacesAges = new List<string>() { "RacesAges", "AlterJeRennen", "A_RA", "A_AJR" };
 
         #endregion
 
@@ -272,6 +280,8 @@
         public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_VALID_STARTS = "AnalyticsStartsCountersNumberValidStarts";
         public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS = "AnalyticsStartsCountersNumberInactiveStarts";
         public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION = "AnalyticsStartsCountersNumberStartsWithMissingCompetition";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION = "AnalyticsPlacesAgeDistribution";
+        public const string PLACEHOLDER_KEY_ANALYTICS_RACES_AGES = "AnalyticsRacesAges";
 
         #endregion
 
@@ -333,7 +343,9 @@
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStarts) },
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_VALID_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberValidStarts) },
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberInactiveStarts) },
-            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) }
+            { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) },
+            { PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPlacesAgeDistribution) },
+            { PLACEHOLDER_KEY_ANALYTICS_RACES_AGES, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsRacesAges) }
         };
     }
 }

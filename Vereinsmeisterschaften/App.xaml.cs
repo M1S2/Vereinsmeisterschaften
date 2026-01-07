@@ -101,7 +101,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModuleDistancesBetweenStarts>();
         services.AddSingleton<AnalyticsModuleStartDistances>();
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
-        services.AddSingleton<AnalyticsModuleRacesAgeSpan>();
+        services.AddSingleton<AnalyticsModuleRacesAges>();
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderPersons>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderStarts>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsPerStyle>());
@@ -112,7 +112,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleDistancesBetweenStarts>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartDistances>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePlacesAgeDistribution>());
-        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAgeSpan>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAges>());
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
@@ -169,7 +169,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetStartsPerPerson>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetDistancesBetweenStarts>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPlacesAgeDistribution>();
-        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetRacesAgeSpan>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetRacesAges>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

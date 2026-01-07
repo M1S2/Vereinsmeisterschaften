@@ -11,9 +11,9 @@ using Vereinsmeisterschaften.Core.Analytics;
 namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 {
     /// <summary>
-    /// Interaktionslogik für AnalyticsWidgetRacesAgeSpan.xaml
+    /// Interaktionslogik für AnalyticsWidgetRacesAges.xaml
     /// </summary>
-    public partial class AnalyticsWidgetRacesAgeSpan : AnalyticsWidgetBase
+    public partial class AnalyticsWidgetRacesAges : AnalyticsWidgetBase
     {
         #region Class WidgetModelRaceAgePoint
 
@@ -69,9 +69,9 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        private AnalyticsModuleRacesAgeSpan _analyticsModule => AnalyticsModule as AnalyticsModuleRacesAgeSpan;
+        private AnalyticsModuleRacesAges _analyticsModule => AnalyticsModule as AnalyticsModuleRacesAges;
 
-        public AnalyticsWidgetRacesAgeSpan(AnalyticsModuleRacesAgeSpan analyticsModule) : base(analyticsModule)
+        public AnalyticsWidgetRacesAges(AnalyticsModuleRacesAges analyticsModule) : base(analyticsModule)
         {
             InitializeComponent();
             PART_scrollViewerChart.SizeChanged += (sender, e) => OnPropertyChanged(nameof(ChartHeight));
@@ -82,7 +82,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
 
         public override void Refresh()
         {
-            AgeSpanPoints = AgeSpansPerRaceReversed.SelectMany(model =>
+            AgeSpanPoints = AgesPerRaceReversed.SelectMany(model =>
                                                        model.BirthYears.GroupBy(year => year)
                                                                        .Select(group =>
                                                                                new WidgetModelRaceAgePoint(
@@ -108,26 +108,26 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
                 CrosshairSnapEnabled = true
             };
 
-            OnPropertyChanged(nameof(AgeSpansPerRaceSeries));
+            OnPropertyChanged(nameof(AgesPerRaceSeries));
             OnPropertyChanged(nameof(XAxes));
             OnPropertyChanged(nameof(YAxes));
             base.Refresh();
         }
 
         /// <summary>
-        /// Get the <see cref="AnalyticsModuleRacesAgeSpan.AgeListsPerRace"/> in reversed order.
+        /// Get the <see cref="AnalyticsModuleRacesAges.AgeListsPerRace"/> in reversed order.
         /// </summary>
-        public List<AnalyticsModuleRacesAgeSpan.ModelRaceAgeSpan> AgeSpansPerRaceReversed => _analyticsModule?.AgeListsPerRace?.AsEnumerable().Reverse().ToList() ?? new List<AnalyticsModuleRacesAgeSpan.ModelRaceAgeSpan>();
+        public List<AnalyticsModuleRacesAges.ModelRaceAges> AgesPerRaceReversed => _analyticsModule?.AgeListsPerRace?.AsEnumerable().Reverse().ToList() ?? new List<AnalyticsModuleRacesAges.ModelRaceAges>();
 
         /// <summary>
         /// Number of available races
         /// </summary>
-        public int NumberRaces => AgeSpansPerRaceReversed.Count;
+        public int NumberRaces => AgesPerRaceReversed.Count;
 
         /// <summary>
         /// Get a list of race IDs
         /// </summary>
-        public List<int> RaceIds => AgeSpansPerRaceReversed.Select(r => r.RaceID).ToList();
+        public List<int> RaceIds => AgesPerRaceReversed.Select(r => r.RaceID).ToList();
 
         /// <summary>
         /// List with points that are displayed in the scatter chart.
@@ -138,7 +138,7 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
         /// <summary>
         /// Series that is displayed in the chart
         /// </summary>
-        public ISeries[] AgeSpansPerRaceSeries
+        public ISeries[] AgesPerRaceSeries
         {
             get
             {

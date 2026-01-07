@@ -1,4 +1,5 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
@@ -7,12 +8,12 @@ using static Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistr
 namespace Vereinsmeisterschaften.Core.Analytics
 {
     /// <summary>
-    /// Analytics module to calculate the age spans for each race
+    /// Analytics module to calculate the ages for each race
     /// </summary>
-    public class AnalyticsModuleRacesAgeSpan : IAnalyticsModule
+    public class AnalyticsModuleRacesAges : IAnalyticsModule
     {
         #region Model
-        public class ModelRaceAgeSpan
+        public class ModelRaceAges
         {
             public int RaceID { get; set; }
             public List<ushort> BirthYears { get; set; }
@@ -23,10 +24,10 @@ namespace Vereinsmeisterschaften.Core.Analytics
         private IRaceService _raceService;
 
         /// <summary>
-        /// Constructor for the <see cref="AnalyticsModuleRacesAgeSpan"/>
+        /// Constructor for the <see cref="AnalyticsModuleRacesAges"/>
         /// </summary>
         /// <param name="raceService"><see cref="IRaceService"/> object</param>
-        public AnalyticsModuleRacesAgeSpan(IRaceService raceService)
+        public AnalyticsModuleRacesAges(IRaceService raceService)
         {
             _raceService = raceService;
         }
@@ -39,17 +40,29 @@ namespace Vereinsmeisterschaften.Core.Analytics
         /// <summary>
         /// List with <see cref="ModelRaceAgeSpan"/> ordered by the race id and the birth year inside the corresponding list.
         /// </summary>
-        public List<ModelRaceAgeSpan> AgeListsPerRace => _raceService.PersistedRacesVariant?.Races.Select((race, index) => new ModelRaceAgeSpan()
+        public List<ModelRaceAges> AgeListsPerRace => _raceService.PersistedRacesVariant?.Races.Select((race, index) => new ModelRaceAges()
                                                                                                             {
                                                                                                                 RaceID = race.RaceID,
                                                                                                                 BirthYears = race.Starts.Where(s => s.IsActive).Select(s => s.PersonObj.BirthYear).OrderBy(b => b).ToList()
                                                                                                             }).ToList();
 
         /// <inheritdoc/>
-        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            // Create a string for each list entry (Format e.g.: Race 1: 2000, 2010, 2015)
+            string placeholderString = string.Join(Environment.NewLine,
+                                                   AgeListsPerRace
+                                                        .Select(e => $"{Properties.Resources.RaceString} {e.RaceID.ToString().PadLeft(2)}: {string.Join(", ", e.BirthYears)}"));
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsRacesAges) { textPlaceholder.Add(placeholder, placeholderString); }
+            return textPlaceholder;
+        }
 
         /// <inheritdoc/>
-        public List<string> SupportedDocumentPlaceholderKeys => null;
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_RACES_AGES
+        };
 
     }
 }

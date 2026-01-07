@@ -113,5 +113,23 @@ namespace Vereinsmeisterschaften.Core.Properties {
                 return ResourceManager.GetString("FileName_Person", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Race ähnelt.
+        /// </summary>
+        public static string RaceString {
+            get {
+                return ResourceManager.GetString("RaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result Place ähnelt.
+        /// </summary>
+        public static string ResultPlaceString {
+            get {
+                return ResourceManager.GetString("ResultPlaceString", resourceCulture);
+            }
+        }
     }
 }

@@ -214,6 +214,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the birth years per result place. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPlacesAgeDistribution {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPlacesAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the birth years per race. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsRacesAges {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsRacesAges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the number of valid starts per distance. ähnelt.
         /// </summary>
         public static string PlaceholderInfoAnalyticsStartDistances {
@@ -672,6 +690,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameAnalyticsPersonCountersNumberPeople {
             get {
                 return ResourceManager.GetString("PlaceholderNameAnalyticsPersonCountersNumberPeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Places Age Distribution ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPlacesAgeDistribution {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPlacesAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Races Ages ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsRacesAges {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsRacesAges", resourceCulture);
             }
         }
         

@@ -135,4 +135,10 @@
   <data name="FileName_Person" xml:space="preserve">
     <value>Person.csv</value>
   </data>
+  <data name="RaceString" xml:space="preserve">
+    <value>Race</value>
+  </data>
+  <data name="ResultPlaceString" xml:space="preserve">
+    <value>Result Place</value>
+  </data>
 </root>

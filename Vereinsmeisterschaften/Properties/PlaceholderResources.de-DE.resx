@@ -432,4 +432,16 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderInfoAnalyticsStartsCountersNumberStartsWithMissingCompetition" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um die Anzahl an Starts mit fehlendem Wettkampf einzufügen.</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Geburtsjahre je Platz im Gesamtergebnis einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Analyse: Altersverteilung im Gesamtergebnis</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsRacesAges" xml:space="preserve">
+    <value>Analyse: Alter je Rennen</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsRacesAges" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Geburtsjahre pro Rennen einzufügen.</value>
+  </data>
 </root>

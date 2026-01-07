@@ -432,4 +432,16 @@ This only works outside of tables.</value>
   <data name="PlaceholderInfoAnalyticsStartsCountersNumberStartsWithMissingCompetition" xml:space="preserve">
     <value>Use these placeholders to insert the number of starts with missing competition.</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the birth years per result place.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPlacesAgeDistribution" xml:space="preserve">
+    <value>Analytics: Places Age Distribution</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsRacesAges" xml:space="preserve">
+    <value>Analytics: Races Ages</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsRacesAges" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the birth years per race.</value>
+  </data>
 </root>

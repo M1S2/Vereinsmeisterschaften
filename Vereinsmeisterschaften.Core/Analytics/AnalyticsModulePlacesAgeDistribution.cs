@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -83,10 +84,22 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <inheritdoc/>
-        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            // Create a string for each list entry (Format e.g.: Result List Place 1: Birth Year 2000 (Firstname, Name))
+            string placeholderString = string.Join(Environment.NewLine,
+                                                   BirthYearsPerResultPlace
+                                                        .Select(e => $"{Properties.Resources.ResultPlaceString} {e.ResultPlace.ToString().PadLeft(3)}: {Properties.Resources.BirthYearString} {e.BirthYear} ({e.PersonObj?.FirstName}, {e.PersonObj?.Name})"));
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsPlacesAgeDistribution) { textPlaceholder.Add(placeholder, placeholderString); }
+            return textPlaceholder;
+        }
 
         /// <inheritdoc/>
-        public List<string> SupportedDocumentPlaceholderKeys => null;
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION
+        };
 
     }
 }

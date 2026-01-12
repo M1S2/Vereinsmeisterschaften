@@ -207,9 +207,9 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per race ähnelt.
         /// </summary>
-        public static string AnalyticsWidgetRacesAgeSpanTitle {
+        public static string AnalyticsWidgetRacesAgesTitle {
             get {
-                return ResourceManager.GetString("AnalyticsWidgetRacesAgeSpanTitle", resourceCulture);
+                return ResourceManager.GetString("AnalyticsWidgetRacesAgesTitle", resourceCulture);
             }
         }
         

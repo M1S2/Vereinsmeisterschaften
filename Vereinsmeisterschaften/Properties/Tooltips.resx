@@ -416,7 +416,7 @@ Only valid starts are regarded (active and competition assigned).</value>
     <value>Various analytics can be found on this page. These analytics depend on different data aspects entered on the other pages.
 For more details about the single analytics refer to the info on the specific widget.</value>
   </data>
-  <data name="TooltipAnalyticsWidgetRacesAgeSpan" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetRacesAges" xml:space="preserve">
     <value>Analyse the birth years for each race</value>
   </data>
   <data name="TooltipTemplatePathAnalytics" xml:space="preserve">

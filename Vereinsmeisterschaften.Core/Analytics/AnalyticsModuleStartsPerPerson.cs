@@ -37,11 +37,18 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            Dictionary<Person, int> numberStartsPerPerson = NumberStartsPerPerson;
+
+            // Get the joined name strings for each person and determine the maximum length of these strings (will be used for padding)
+            Dictionary<Person, string> nameStringsDict = numberStartsPerPerson.ToDictionary(kv => kv.Key, kv => $"{kv.Key.FirstName}, {kv.Key.Name}");
+            int maxNameStrLen = nameStringsDict.Max(kv => kv.Value?.Length) ?? 30;
+
             // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: Firstname, Name: 3x | ###)
-            string moduleStartsPerPersonString = string.Join(Environment.NewLine,
-                                                             NumberStartsPerPerson
-                                                                .Select(kv => $"{kv.Key.FirstName}, {kv.Key.Name}: ".PadRight(30) + $"{kv.Value.ToString()}x | {new string('#', kv.Value)}"));
-            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsPerPerson) { textPlaceholder.Add(placeholder, moduleStartsPerPersonString); }
+            string moduleString = string.Join(Environment.NewLine,
+                                              numberStartsPerPerson
+                                                .Select(kv => $"{nameStringsDict[kv.Key]}: ".PadRight(maxNameStrLen + 2) +
+                                                              $"{kv.Value.ToString()}x | {new string('#', kv.Value)}"));
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsPerPerson) { textPlaceholder.Add(placeholder, moduleString); }
             return textPlaceholder;
         }
 

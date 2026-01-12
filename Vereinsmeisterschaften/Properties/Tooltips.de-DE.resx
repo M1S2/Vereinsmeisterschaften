@@ -415,7 +415,7 @@ Nur gültige Starts werden gezählt (aktiv und mit zugewiesenem Wettkampf).</val
     <value>Auf dieser Seite werden verschiedene Analysen dargestellt. Diese Analysen hängen von verschiedenen Daten ab, die auf den anderen Seiten eingegeben wurden.
 Für mehr Infos zu den einzelnen Analysen siehe die Info in den einzelnen Analyse Widgets.</value>
   </data>
-  <data name="TooltipAnalyticsWidgetRacesAgeSpan" xml:space="preserve">
+  <data name="TooltipAnalyticsWidgetRacesAges" xml:space="preserve">
     <value>Analysieren, welche Geburtsjahre je Rennen antreten.</value>
   </data>
   <data name="TooltipTemplatePathAnalytics" xml:space="preserve">

@@ -676,7 +676,7 @@
   <data name="RaceIDString" xml:space="preserve">
     <value>Race ID</value>
   </data>
-  <data name="AnalyticsWidgetRacesAgeSpanTitle" xml:space="preserve">
+  <data name="AnalyticsWidgetRacesAgesTitle" xml:space="preserve">
     <value>Birth years per race</value>
   </data>
   <data name="RaceString" xml:space="preserve">

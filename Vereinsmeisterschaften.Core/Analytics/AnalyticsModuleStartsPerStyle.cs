@@ -45,20 +45,28 @@ namespace Vereinsmeisterschaften.Core.Analytics
         public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
-            int maxNumStarts = NumberStartsPerStyle.Max(kv => kv.Value);
-            // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: SwimmingStyle: 3x | ###  10%)
-            string moduleStartsPerStyleString = string.Join(Environment.NewLine,
-                                                            NumberStartsPerStyle
-                                                                .Select(kv =>
-                                                                {
-                                                                    SwimmingStyles style = kv.Key;
-                                                                    string styleString = EnumCoreLocalizedStringHelper.Convert(style);
-                                                                    int count = kv.Value;
-                                                                    double percentage = PercentageStartsPerStyle.TryGetValue(style, out var p) ? p : 0;
-                                                                    return $"{styleString,-12}: {count,2}x | {new string('#', count).PadRight(maxNumStarts)}   {percentage.ToString("N1")}%";
-                                                                }));
+            Dictionary<SwimmingStyles, int> numberStartsPerStyle = NumberStartsPerStyle;
 
-            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsPerStyle) { textPlaceholder.Add(placeholder, moduleStartsPerStyleString); }
+            // Get the localized names for each style and determine the maximum length of these strings (will be used for padding)
+            Dictionary<SwimmingStyles, string> styleNameStringsDict = numberStartsPerStyle.ToDictionary(kv => kv.Key, kv => EnumCoreLocalizedStringHelper.Convert(kv.Key));
+            int maxStyleNameStrLen = styleNameStringsDict.Max(kv => kv.Value?.Length) ?? 12;
+
+            int maxNumStarts = numberStartsPerStyle.Max(kv => kv.Value);
+
+            // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: SwimmingStyle: 3x | ###  10%)
+            string moduleString = string.Join(Environment.NewLine,
+                                              numberStartsPerStyle
+                                                .Select(kv =>
+                                                {
+                                                    SwimmingStyles style = kv.Key;
+                                                    string styleString = EnumCoreLocalizedStringHelper.Convert(style);
+                                                    int count = kv.Value;
+                                                    double percentage = PercentageStartsPerStyle.TryGetValue(style, out var p) ? p : 0;
+                                                    return $"{styleNameStringsDict[kv.Key]}: ".PadRight(maxStyleNameStrLen + 2) + 
+                                                            $"{count,2}x | {new string('#', count).PadRight(maxNumStarts)}   {percentage.ToString("N1")}%";
+                                                }));
+
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsStartsPerStyle) { textPlaceholder.Add(placeholder, moduleString); }
             return textPlaceholder;
         }
 

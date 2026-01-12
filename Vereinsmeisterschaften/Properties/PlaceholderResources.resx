@@ -444,4 +444,10 @@ This only works outside of tables.</value>
   <data name="PlaceholderInfoAnalyticsRacesAges" xml:space="preserve">
     <value>Use these placeholders to insert an overview of the birth years per race.</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsDistancesBetweenStarts" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the distances between the starts of a person.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsDistancesBetweenStarts" xml:space="preserve">
+    <value />
+  </data>
 </root>

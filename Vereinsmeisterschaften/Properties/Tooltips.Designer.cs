@@ -130,9 +130,9 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth years for each race ähnelt.
         /// </summary>
-        public static string TooltipAnalyticsWidgetRacesAgeSpan {
+        public static string TooltipAnalyticsWidgetRacesAges {
             get {
-                return ResourceManager.GetString("TooltipAnalyticsWidgetRacesAgeSpan", resourceCulture);
+                return ResourceManager.GetString("TooltipAnalyticsWidgetRacesAges", resourceCulture);
             }
         }
         

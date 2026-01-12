@@ -115,6 +115,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the distances between the starts of a person. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsDistancesBetweenStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsDistancesBetweenStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert the number of female persons. ähnelt.
         /// </summary>
         public static string PlaceholderInfoAnalyticsGenderPersonsFemaleCount {
@@ -591,6 +600,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameAnalyticsAgeDistribution {
             get {
                 return ResourceManager.GetString("PlaceholderNameAnalyticsAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsDistancesBetweenStarts {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsDistancesBetweenStarts", resourceCulture);
             }
         }
         

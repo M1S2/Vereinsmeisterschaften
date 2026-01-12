@@ -444,4 +444,10 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderInfoAnalyticsRacesAges" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um eine Übersicht der Geburtsjahre pro Rennen einzufügen.</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsDistancesBetweenStarts" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Abstände zwischen den Starts einer Person einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsDistancesBetweenStarts" xml:space="preserve">
+    <value>Analyse: Abstände zwischen Starts einer Person</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
@@ -68,9 +69,33 @@ namespace Vereinsmeisterschaften.Core.Analytics
         }
 
         /// <inheritdoc/>
-        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;
+        public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()
+        {
+            DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
+            Dictionary<Person, List<int>> distancesBetweenStartsPerPerson = DistancesBetweenStartsPerPerson;
+
+            // Get the joined name strings for each person and determine the maximum length of these strings (will be used for padding)
+            Dictionary<Person, string> nameStringsDict = distancesBetweenStartsPerPerson.ToDictionary(kv => kv.Key, kv => $"{kv.Key.FirstName}, {kv.Key.Name}");
+            int maxNameStrLen = nameStringsDict.Max(kv => kv.Value?.Length) ?? 30;
+
+            // Get the joined value strings for each person and determine the maximum length of these strings (will be used for padding)
+            Dictionary<Person, string> valueStringsDict = distancesBetweenStartsPerPerson.ToDictionary(kv => kv.Key, kv => string.Join(", ", kv.Value));
+            int maxValueStrLen = valueStringsDict.Max(kv => kv.Value?.Length) ?? 20;
+
+            // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: Firstname, Name: 3, 4, 2 | ###|####|## )
+            string moduleString = string.Join(Environment.NewLine,
+                                              distancesBetweenStartsPerPerson
+                                                .Select(kv => $"{nameStringsDict[kv.Key]}: ".PadRight(maxNameStrLen + 2) +
+                                                              $"{valueStringsDict[kv.Key].PadRight(maxValueStrLen)} | " +
+                                                              $"{string.Join("|", kv.Value.Select(v => new string('#', v)))}"));
+            foreach (string placeholder in Placeholders.Placeholders_AnalyticsDistancesBetweenStarts) { textPlaceholder.Add(placeholder, moduleString); }
+            return textPlaceholder;
+        }
 
         /// <inheritdoc/>
-        public List<string> SupportedDocumentPlaceholderKeys => null;
+        public List<string> SupportedDocumentPlaceholderKeys => new List<string>()
+        {
+            Placeholders.PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS
+        };
     }
 }

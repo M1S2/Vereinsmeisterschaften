@@ -209,6 +209,10 @@
         /// List with all placeholders that can be used in the template to insert the analytics races ages.
         /// </summary>
         public static List<string> Placeholders_AnalyticsRacesAges = new List<string>() { "RacesAges", "AlterJeRennen", "A_RA", "A_AJR" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics distances between starts.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsDistancesBetweenStarts = new List<string>() { "DistancesBetweenStarts", "AbständeZwischenStarts", "A_DBS", "A_AZS" };
 
         #endregion
 
@@ -282,6 +286,7 @@
         public const string PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION = "AnalyticsStartsCountersNumberStartsWithMissingCompetition";
         public const string PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION = "AnalyticsPlacesAgeDistribution";
         public const string PLACEHOLDER_KEY_ANALYTICS_RACES_AGES = "AnalyticsRacesAges";
+        public const string PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS = "AnalyticsDistancesBetweenStarts";
 
         #endregion
 
@@ -345,7 +350,8 @@
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_INACTIVE_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberInactiveStarts) },
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) },
             { PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPlacesAgeDistribution) },
-            { PLACEHOLDER_KEY_ANALYTICS_RACES_AGES, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsRacesAges) }
+            { PLACEHOLDER_KEY_ANALYTICS_RACES_AGES, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsRacesAges) },
+            { PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsDistancesBetweenStarts) }
         };
     }
 }

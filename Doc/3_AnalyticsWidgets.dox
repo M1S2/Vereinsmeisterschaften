@@ -7,9 +7,30 @@ The module will deliver the data.
 
 - Add a new analytics module .cs file (Vereinsmeisterschaften.Core > Analytics):
 - The name should be of format AnalyticsModule<AnalyticsName>
-- The class must derive from <code>IAnalyticsModule</code>. The <code>AnalyticsAvailable</code> flag can be set to false depending on the available data.
+- The class must derive from <code>IAnalyticsModule</code>. The <code>AnalyticsAvailable</code> flag can be returned, depending on the availability of the data.
 - All services can be used here to calculate the analytics properties (use dependency injection to get the services)
 - The analytics module must be added to the services (App.xaml.cs): <code>services.AddSingleton<AnalyticsModule<AnalyticsName>>();</code>
+- Add all necessary placeholders like described in @ref newPlaceholders_sec
+- Implement the <code>SupportedDocumentPlaceholderKeys</code> property that should return a list with all placeholder keys that are supported by this analytics module.
+  e.g.<br>
+  <code>
+  public List<string> SupportedDocumentPlaceholderKeys => new List<string>()<br>
+  {<br>
+      Placeholders.PLACEHOLDER_KEY_ANALYTICS_EXAMPLE_PLACEHOLDER1,<br>
+      Placeholders.PLACEHOLDER_KEY_ANALYTICS_EXAMPLE_PLACEHOLDER2<br>
+  };
+  </code>
+- Implement the <code>CollectDocumentPlaceholderContents</code> method that should return a <code>DocXPlaceholderHelper.TextPlaceholders</code> object containing all placeholder contents.
+  e.g.<br>
+  <code>
+  public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents()<br>
+  {<br>
+      DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();<br>
+      foreach (string placeholder in Placeholders.Placeholders_AnalyticsExamplePlaceholder1) { textPlaceholder.Add(placeholder, ModulePropertyInt1.ToString()); }<br>
+      foreach (string placeholder in Placeholders.Placeholders_AnalyticsExamplePlaceholder2) { textPlaceholder.Add(placeholder, ModulePropertyStr2); }<br>
+      return textPlaceholder;<br>
+  }
+  </code>
 
 @section newAnalyticsWidget_sec Add a new analytics widget
 The widget will display the data that is delivered by the module.

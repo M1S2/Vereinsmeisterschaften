@@ -603,6 +603,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Default Templates ähnelt.
+        /// </summary>
+        public static string DefaultTemplatesString {
+            get {
+                return ResourceManager.GetString("DefaultTemplatesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {
@@ -882,6 +891,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New ähnelt.
+        /// </summary>
+        public static string NewString {
+            get {
+                return ResourceManager.GetString("NewString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No data is available ähnelt.
         /// </summary>
         public static string NoDataAvailableWarningString {
@@ -896,6 +914,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NoPersistentRaceVariantString {
             get {
                 return ResourceManager.GetString("NoPersistentRaceVariantString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
+        /// </summary>
+        public static string NoString {
+            get {
+                return ResourceManager.GetString("NoString", resourceCulture);
             }
         }
         
@@ -1793,6 +1820,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the default templates to the Workspace folder (subfolder {0})? Already existing templates will be overriden! ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewCopyTemplatesDialogString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewCopyTemplatesDialogString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die In the following dialog select the folder where the new workspace should be created. ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewInfoDialogString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewInfoDialogString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The workspace couldn&apos;t be loaded. E.g. the given path doesn&apos;t exist. ähnelt.
         /// </summary>
         public static string WorkspaceNotLoadedString {
@@ -1825,6 +1870,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string WorkspaceString {
             get {
                 return ResourceManager.GetString("WorkspaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yes ähnelt.
+        /// </summary>
+        public static string YesString {
+            get {
+                return ResourceManager.GetString("YesString", resourceCulture);
             }
         }
     }

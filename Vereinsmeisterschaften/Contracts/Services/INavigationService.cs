@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Vereinsmeisterschaften.Contracts.Services;
 
@@ -18,6 +19,16 @@ public interface INavigationService
     bool CanGoBack { get; }
 
     /// <summary>
+    /// Current <see cref="FrameworkElement"/> that is displayed in the <see cref="Frame"/>. Most times this is a page.
+    /// </summary>
+    FrameworkElement CurrentFrameContent { get; }
+    
+    /// <summary>
+    /// View model used by the <see cref="CurrentFrameContent"/>
+    /// </summary>
+    object CurrentFrameViewModel { get; }
+
+    /// <summary>
     /// Initializes the navigation service with the provided frame.
     /// </summary>
     /// <param name="shellFrame">Use this <see cref="Frame"/> for navigation</param>
@@ -31,6 +42,14 @@ public interface INavigationService
     /// <param name="clearNavigation">True to clear the navigation</param>
     /// <returns>True on navigation success</returns>
     bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false);
+
+    /// <summary>
+    /// Navigates to the specified page using its view model type.
+    /// </summary>
+    /// <param name="parameter">Optional parameter</param>
+    /// <param name="clearNavigation">True to clear the navigation</param>
+    /// <returns>True on navigation success</returns>
+    bool NavigateTo<T_VM>(object parameter = null, bool clearNavigation = false);
 
     /// <summary>
     /// Goes back to the previous page in the navigation stack if possible.

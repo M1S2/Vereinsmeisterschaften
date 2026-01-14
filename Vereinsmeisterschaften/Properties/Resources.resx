@@ -709,4 +709,22 @@
   <data name="AnalyticsTemplatePathString" xml:space="preserve">
     <value>Analytics Template</value>
   </data>
+  <data name="NewString" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="WorkspaceCreateNewInfoDialogString" xml:space="preserve">
+    <value>In the following dialog select the folder where the new workspace should be created.</value>
+  </data>
+  <data name="WorkspaceCreateNewCopyTemplatesDialogString" xml:space="preserve">
+    <value>Copy the default templates to the Workspace folder (subfolder {0})? Already existing templates will be overriden!</value>
+  </data>
+  <data name="DefaultTemplatesString" xml:space="preserve">
+    <value>Default Templates</value>
+  </data>
+  <data name="YesString" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoString" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

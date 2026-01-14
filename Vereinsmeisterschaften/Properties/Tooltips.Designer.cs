@@ -829,6 +829,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create a new workspace including the necessary configuration files and when requested the default templates. ähnelt.
+        /// </summary>
+        public static string TooltipWorkspaceNew {
+            get {
+                return ResourceManager.GetString("TooltipWorkspaceNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Open a workspace and load all settings, persons, competitions... ähnelt.
         /// </summary>
         public static string TooltipWorkspaceOpen {

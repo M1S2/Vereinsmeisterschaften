@@ -1,8 +1,10 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
+using Vereinsmeisterschaften.ViewModels;
 
 namespace Vereinsmeisterschaften.Services;
 
@@ -20,6 +22,12 @@ public class NavigationService : INavigationService
 
     /// <inheritdoc/>
     public bool CanGoBack => _frame.CanGoBack;
+
+    /// <inheritdoc/>
+    public FrameworkElement CurrentFrameContent => _frame.Content as FrameworkElement;
+    
+    /// <inheritdoc/>
+    public object CurrentFrameViewModel => CurrentFrameContent?.DataContext;
 
     /// <summary>
     /// Constructor for the NavigationService.
@@ -85,6 +93,12 @@ public class NavigationService : INavigationService
         }
 
         return false;
+    }
+
+    /// <inheritdoc/>
+    public bool NavigateTo<T_VM>(object parameter = null, bool clearNavigation = false)
+    {
+        return NavigateTo(typeof(T_VM).FullName);
     }
 
     /// <inheritdoc/>

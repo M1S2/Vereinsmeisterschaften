@@ -142,11 +142,11 @@
       },
       {
         "Key": "AnalyticsTemplatePath",
-        "Value": "Templates\\\\Analyse_Template.docx"
+        "Value": "Templates\\Analyse_Template.docx"
       },
       {
         "Key": "LibreOfficePath",
-        "Value": "C:\\\\Program Files\\\\LibreOffice\\\\program\\\\soffice.exe"
+        "Value": "C:\\Program Files\\LibreOffice\\program\\soffice.exe"
       }
     ]
   }

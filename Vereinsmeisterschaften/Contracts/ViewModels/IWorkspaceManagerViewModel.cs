@@ -57,6 +57,11 @@ namespace Vereinsmeisterschaften.Contracts.ViewModels
         /// </summary>
         ICommand OpenWorkspaceFolderCommand { get; }
 
+        /// <summary>
+        /// Command to create a new workspace (add all configuration files to the folder and optionally add default templates)
+        /// </summary>
+        ICommand CreateNewWorkspaceCommand { get; }
+
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>

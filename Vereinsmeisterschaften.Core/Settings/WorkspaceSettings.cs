@@ -60,6 +60,11 @@ namespace Vereinsmeisterschaften.Core.Settings
         #region Init Settings
 
         /// <summary>
+        /// Folder name where the document templates are located per default (e.g. "Templates").
+        /// </summary>
+        public const string DEFAULT_TEMPLATE_FOLDER_NAME = "Templates";
+
+        /// <summary>
         /// Make sure that all necessary groups and settings are available and create them is not existing
         /// </summary>
         private void initializeSettings()
@@ -100,14 +105,14 @@ namespace Vereinsmeisterschaften.Core.Settings
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX, "_Template");
             groupDocumentCreation.MakeSureSettingExists<DocumentCreationFileTypes>(SETTING_DOCUMENT_CREATION_FILE_TYPES, DocumentCreationFileTypes.DOCX_AND_PDF);
             groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER, @"Dokumente");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @"Templates\\Urkunden_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @"Templates\\Gesamtliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @"Templates\\Startliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @"Templates\\Zeitzettel_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @"Templates\\Ergebnisliste_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH, @"Templates\\ErgebnislisteDetail_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH, @"Templates\\Analyse_Template.docx");
-            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @"C:\\Program Files\\LibreOffice\\program\\soffice.exe");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Urkunden_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Gesamtliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Startliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Zeitzettel_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Ergebnisliste_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\ErgebnislisteDetail_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH, @$"{DEFAULT_TEMPLATE_FOLDER_NAME}\Analyse_Template.docx");
+            groupDocumentCreation.MakeSureSettingExists<string>(SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH, @$"C:\Program Files\LibreOffice\program\soffice.exe");
             
             //... Add new settings and groups here ...
 

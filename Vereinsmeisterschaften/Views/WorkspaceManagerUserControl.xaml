@@ -75,6 +75,22 @@
                     <TextBlock Text="{x:Static properties:Resources.OpenString}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </StackPanel>
             </Button>
+            <Button Command="{Binding CreateNewWorkspaceCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceNew}">
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="{x:Type StackPanel}">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSidebar, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Value="True">
+                                    <Setter Property="Orientation" Value="Horizontal"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <controls:FontIcon FontSize="50" Glyph="&#xEDAD;" Margin="10"/>
+                    <TextBlock Text="{x:Static properties:Resources.NewString}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                </StackPanel>
+            </Button>
             <Button Command="{Binding OpenWorkspaceFolderCommand}" Margin="{StaticResource SmallLeftTopRightBottomMargin}" ToolTip="{x:Static properties:Tooltips.TooltipWorkspaceOpenInExplorer}">
                 <StackPanel>
                     <StackPanel.Style>

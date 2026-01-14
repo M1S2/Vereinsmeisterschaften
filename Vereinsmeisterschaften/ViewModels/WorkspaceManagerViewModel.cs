@@ -1,13 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls.Dialogs;
-using System.Collections.ObjectModel;
+﻿using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls.Dialogs;
+using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Settings;
 using Vereinsmeisterschaften.Properties;
-using static SkiaSharp.HarfBuzz.SKShaper;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -16,6 +19,13 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// </summary>
 public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerViewModel
 {
+    /// <summary>
+    /// This is the file name for the default templates ZIP (this name should match the name used in the PostBuildEvent of the Vereinsmeisterschaften.csproj)
+    /// </summary>
+    public const string DEFAULT_TEMPLATE_ZIP_FILE_NAME = "DefaultTemplates.zip";
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     #region Properties
 
     /// <inheritdoc/>
@@ -31,7 +41,7 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region Commands: Close / Save / Load
+    #region Commands: Close / Save / Load / New
 
     private ICommand _closeWorkspaceCommand;
     /// <inheritdoc/>
@@ -45,6 +55,13 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
             if (!cancel)
             {
                 await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
+
+                // Only navigate to the main page, when the current page isn't main page or workspace page
+                if (!(_navigationService?.CurrentFrameViewModel is MainViewModel) && !(_navigationService?.CurrentFrameViewModel is WorkspaceViewModel))
+                {
+                    // Open the main page
+                    _navigationService.NavigateTo<MainViewModel>();
+                }
             }
         }
         catch (Exception ex)
@@ -156,6 +173,68 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
             _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
         }
     }, () => _workspaceService.IsWorkspaceOpen));
+    
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _createNewWorkspaceCommand;
+    /// <inheritdoc/>
+    public ICommand CreateNewWorkspaceCommand => _createNewWorkspaceCommand ?? (_createNewWorkspaceCommand = new RelayCommand(async () =>
+    {
+        bool save = true, cancel = false;
+        (save, cancel) = await _shellVM.CheckForUnsavedChangesAndQueryUserAction();
+
+        if (!cancel)
+        {
+            try
+            {
+                await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.InfoString, Resources.WorkspaceCreateNewInfoDialogString);
+
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                folderDialog.ShowNewFolderButton = true;
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (_workspaceService?.IsWorkspaceOpen ?? false)
+                    {
+                        await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
+                    }
+                    bool result = await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
+                    OnWorkspaceLoaded?.Invoke(this, folderDialog.SelectedPath);
+                    OnPropertyChanged(nameof(LastWorkspacePaths));
+
+                    if (!result)
+                    {
+                        await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.WorkspaceNotLoadedString);
+                        return;
+                    }
+
+                    // Save the workspace to create the workspace files
+                    await _workspaceService.Save(CancellationToken.None);
+                    MessageDialogResult messageResult = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.DefaultTemplatesString, string.Format(Resources.WorkspaceCreateNewCopyTemplatesDialogString, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Resources.YesString, NegativeButtonText = Resources.NoString });
+                    if (messageResult == MessageDialogResult.Affirmative)
+                    {
+                        // Extract the default templates from the ZIP file to the workspace folder (subfolder for the templates)
+                        string templateZipPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), DEFAULT_TEMPLATE_ZIP_FILE_NAME);
+                        string zipExtractPath = Path.Combine(_workspaceService.PersistentPath, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME);
+                        if (File.Exists(templateZipPath))
+                        {
+                            if (Directory.Exists(zipExtractPath))
+                            {
+                                Directory.Delete(zipExtractPath, true);
+                            }
+                            ZipFile.ExtractToDirectory(templateZipPath, Path.Combine(_workspaceService.PersistentPath, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME));
+                        }
+                    }
+
+                    // Open the workspace page
+                    _navigationService.NavigateTo<WorkspaceViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
+            }
+        }
+    }));
 
     #endregion
 
@@ -182,6 +261,7 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
     private IWorkspaceService _workspaceService;
     private IDialogCoordinator _dialogCoordinator;
     private ShellViewModel _shellVM;
+    private INavigationService _navigationService;
 
     /// <summary>
     /// Constructor of the workspace view model
@@ -189,11 +269,13 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
     /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
-    public WorkspaceManagerViewModel(IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
+    /// <param name="navigationService"><see cref="INavigationService"/> object</param>
+    public WorkspaceManagerViewModel(IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM, INavigationService navigationService)
     {
         _workspaceService = workspaceService;
         _dialogCoordinator = dialogCoordinator;
         _shellVM = shellVM;
+        _navigationService = navigationService;
 
         _workspaceService.PropertyChanged -= _workspaceService_PropertyChanged;
         _workspaceService.PropertyChanged += _workspaceService_PropertyChanged;

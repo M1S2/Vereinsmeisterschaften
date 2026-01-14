@@ -116,9 +116,8 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PostBuildEvent>
-      copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
-      copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
+copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
+tar -a -c -f "$(TargetDir)DefaultTemplates.zip" -C "$(SolutionDir)\ExampleWorkspace\Templates" *    </PostBuildEvent>
   </PropertyGroup>
 </Project>

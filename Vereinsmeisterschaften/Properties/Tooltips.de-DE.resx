@@ -422,4 +422,7 @@ Für mehr Infos zu den einzelnen Analysen siehe die Info in den einzelnen Analys
     <value>Pfad zum Analyse Template.
 Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
+  <data name="TooltipWorkspaceNew" xml:space="preserve">
+    <value>Neuen Arbeitsbereich anlegen, der die nötigen Konfigurationsdateien und (wenn gewünscht) Standard Templates enthält</value>
+  </data>
 </root>

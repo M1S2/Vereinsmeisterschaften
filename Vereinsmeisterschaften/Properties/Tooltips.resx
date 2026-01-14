@@ -423,4 +423,7 @@ For more details about the single analytics refer to the info on the specific wi
     <value>Path to the analytics template.
 Relative paths are relative to the workspace path.</value>
   </data>
+  <data name="TooltipWorkspaceNew" xml:space="preserve">
+    <value>Create a new workspace including the necessary configuration files and when requested the default templates.</value>
+  </data>
 </root>

@@ -63,7 +63,7 @@
                                          ItemFilterParameter="{Binding CurrentItemFilterParameters[Certificates], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateCertificatesString}"
                                          SuccessText="{x:Static properties:Resources.CreateCertificatesResultString}"
-                                         ButtonIconGlyph="&#xE8A5;"
+                                         ButtonIconGlyph="&#xEB95;"
                                          NumberCreatedDocuments="{Binding NumberCreatedCertificates}">
             <local:CreateDocumentUserControl.FilterParameterEditorTemplateSelector>
                 <templateSelectors:EnumTemplateSelector>
@@ -296,7 +296,7 @@
                         <!-- Supported Placeholders for Certificates Document Type -->
                         <DataGridTemplateColumn SortMemberPath="IsSupportedForDocumentType[Certificates]" IsReadOnly="True">
                             <DataGridTemplateColumn.Header>
-                                <controls:FontIcon Glyph="&#xE8A5;" ToolTip="{x:Static properties:Resources.CreateCertificatesString}"/>
+                                <controls:FontIcon Glyph="&#xEB95;" ToolTip="{x:Static properties:Resources.CreateCertificatesString}"/>
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

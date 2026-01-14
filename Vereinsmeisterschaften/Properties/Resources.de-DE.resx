@@ -710,4 +710,22 @@ Alle Starts sind zugewiesen.</value>
   <data name="AnalyticsTemplatePathString" xml:space="preserve">
     <value>Analyse Template</value>
   </data>
+  <data name="NewString" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="WorkspaceCreateNewInfoDialogString" xml:space="preserve">
+    <value>Im folgenden Dialog bitte den Ordner auswählen, in dem der neue Arbeitsbereich erstellt werden soll.</value>
+  </data>
+  <data name="WorkspaceCreateNewCopyTemplatesDialogString" xml:space="preserve">
+    <value>Sollen die Standard Templates in den Arbeitsbereich (Unterordner {0}) kopiert werden? Bereits existierende Templates werden überschrieben!</value>
+  </data>
+  <data name="DefaultTemplatesString" xml:space="preserve">
+    <value>Standard Templates</value>
+  </data>
+  <data name="YesString" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="NoString" xml:space="preserve">
+    <value>Nein</value>
+  </data>
 </root>

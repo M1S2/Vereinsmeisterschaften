@@ -21,42 +21,42 @@ public class MainViewModel : ObservableObject
     /// <summary>
     /// Command to navigate to the workspace view.
     /// </summary>
-    public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(WorkspaceViewModel).FullName)));
+    public ICommand WorkspaceCommand => _workspaceCommand ?? (_workspaceCommand = new RelayCommand(() => _navigationService.NavigateTo<WorkspaceViewModel>()));
 
     /// <summary>
     /// Command to navigate to the competition view.
     /// </summary>
-    public ICommand CompetitionCommand => _competitionCommand ?? (_competitionCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(CompetitionViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand CompetitionCommand => _competitionCommand ?? (_competitionCommand = new RelayCommand(() => _navigationService.NavigateTo<CompetitionViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the people view.
     /// </summary>
-    public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PeopleViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand PeopleCommand => _peopleCommand ?? (_peopleCommand = new RelayCommand(() => _navigationService.NavigateTo<PeopleViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the prepare races view.
     /// </summary>
-    public ICommand PrepareRacesCommand => _prepareRacesCommand ?? (_prepareRacesCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(PrepareRacesViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand PrepareRacesCommand => _prepareRacesCommand ?? (_prepareRacesCommand = new RelayCommand(() => _navigationService.NavigateTo<PrepareRacesViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the prepare documents view.
     /// </summary>
-    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(CreateDocumentsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand PrepareDocumentsCommand => _prepareDocumentsCommand ?? (_prepareDocumentsCommand = new RelayCommand(() => _navigationService.NavigateTo<CreateDocumentsViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the time input view.
     /// </summary>
-    public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(TimeInputViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand TimeInputCommand => _timeInputCommand ?? (_timeInputCommand = new RelayCommand(() => _navigationService.NavigateTo<TimeInputViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the results view.
     /// </summary>
-    public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(ResultsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo<ResultsViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
     /// Command to navigate to the analytics view.
     /// </summary>
-    public ICommand AnalyticsCommand => _analyticsCommand ?? (_analyticsCommand = new RelayCommand(() => _navigationService.NavigateTo(typeof(AnalyticsViewModel).FullName), () => _workspaceService.IsWorkspaceOpen));
+    public ICommand AnalyticsCommand => _analyticsCommand ?? (_analyticsCommand = new RelayCommand(() => _navigationService.NavigateTo<AnalyticsViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
 
     private readonly INavigationService _navigationService;

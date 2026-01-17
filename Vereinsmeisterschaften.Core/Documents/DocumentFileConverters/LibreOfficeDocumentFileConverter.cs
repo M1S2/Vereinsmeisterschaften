@@ -1,10 +1,9 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
-using System.Formats.Tar;
 using System.IO.Compression;
 using System.Xml.Linq;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentFileConverters
 {
     /// <summary>
     /// Class that can be used to convert e.g. .docx files to .pdf files via Libre Office.

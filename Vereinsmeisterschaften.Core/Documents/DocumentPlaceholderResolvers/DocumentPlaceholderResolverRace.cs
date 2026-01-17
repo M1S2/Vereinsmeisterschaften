@@ -3,7 +3,7 @@ using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers
 {
     /// <summary>
     /// Document placeholder resolver for the items of type <see cref="Race"/>.

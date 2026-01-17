@@ -1,6 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Helpers;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers
 {
     /// <summary>
     /// Interface for a document placeholder resolver.

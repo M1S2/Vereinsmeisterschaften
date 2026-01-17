@@ -1,13 +1,8 @@
-﻿using System.Diagnostics.Metrics;
-using System.Reflection.Emit;
-using Vereinsmeisterschaften.Core.Analytics;
+﻿using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
-using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Settings;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers
 {
     /// <summary>
     /// Document placeholder resolver for the items of type <see cref="IAnalyticsModule"/>.

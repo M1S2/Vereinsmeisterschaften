@@ -1,10 +1,9 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
-using Vereinsmeisterschaften.Core.Settings;
-using static Vereinsmeisterschaften.Core.Documents.DocumentStrategyCertificates;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
 {
     /// <summary>
     /// Base class for document strategies that define how to create and collect data for different types of documents.

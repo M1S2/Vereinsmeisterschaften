@@ -1,5 +1,4 @@
-﻿
-namespace Vereinsmeisterschaften.Core.Documents
+﻿namespace Vereinsmeisterschaften.Core.Documents.DocumentFileConverters
 {
     /// <summary>
     /// Interface for a class that can be used to convert e.g. .docx files to .pdf files

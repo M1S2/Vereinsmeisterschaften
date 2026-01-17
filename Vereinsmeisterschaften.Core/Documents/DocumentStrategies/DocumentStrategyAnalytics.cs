@@ -1,10 +1,11 @@
 ﻿using Vereinsmeisterschaften.Core.Analytics;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
 {
     /// <summary>
     /// Document strategy for creating an analytics overview.

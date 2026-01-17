@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using Microsoft.Win32;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentFileConverters
 {
     /// <summary>
     /// Class that can be used to convert e.g. .docx files to .pdf files via Microsoft word.

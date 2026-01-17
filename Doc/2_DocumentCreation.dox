@@ -11,10 +11,10 @@ This page describes how to add new placeholders and document types.
   - PlaceholderName<PlaceholderKey> (e.g. PlaceholderNameName): Name for the placeholder that is shown in the UI
   - PlaceholderInfo<PlaceholderKey> (e.g. PlaceholderInfoName): Description for the placeholder that is shown in the UI
 - If the placeholder should be always supported:
-  - Add the placeholder key to the AlwaysSupportedPlaceholderKeys in DocumentStrategyBase.cs (Vereinsmeisterschaften.Core > Documents)
+  - Add the placeholder key to the AlwaysSupportedPlaceholderKeys in DocumentStrategyBase.cs (Vereinsmeisterschaften.Core > Documents > DocumentStrategies)
   - Add logic in the DocumentService.cs (Vereinsmeisterschaften.Core > Services) insertAlwaysSupportedPlaceholderValues method
 - If the placeholder usage depends on the type of data:
-  - Adapt corresponding DocumentPlaceholderResolvers (Vereinsmeisterschaften.Core > Documents):
+  - Adapt corresponding DocumentPlaceholderResolvers (Vereinsmeisterschaften.Core > Documents > DocumentPlaceholderResolvers):
     - Add the placeholder key to the SupportedPlaceholderKeys list
     - Implement the logic in the ResolveTextPlaceholders method
 
@@ -26,7 +26,7 @@ This page describes how to add new placeholders and document types.
 
 @section newDocumentTypes_sec Add new document type
 - Add a new enum value to <code>DocumentCreationTypes</code> in DocumentCreationTypes.cs (Vereinsmeisterschaften.Core > Models)
-- Add a new class inheriting from DocumentStrategyBase in the Documents folder (Vereinsmeisterschaften.Core > Documents)
+- Add a new class inheriting from DocumentStrategyBase in the DocumentStrategies folder (Vereinsmeisterschaften.Core > Documents > DocumentStrategies)
 - Add the new strategy to the <code>ConfigureServices()</code> method in App (Vereinsmeisterschaften > App.xaml.cs):<br>e.g. <code>services.AddSingleton&lt;IDocumentStrategy, YourNewDocumentStrategy&gt;</code>)
 - Add a new case to the <code>CreateDocumentCommand</code> in CreateDocumentViewModel.cs (Vereinsmeisterschaften > ViewModels):<br>e.g. <code>await _documentService.CreateDocument(DocumentCreationTypes.NewDocument);</code>
 - Add following resources to the Resources.resx (Vereinsmeisterschaften > Properties):

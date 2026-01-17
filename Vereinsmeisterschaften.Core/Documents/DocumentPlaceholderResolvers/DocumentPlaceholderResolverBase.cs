@@ -1,7 +1,7 @@
 ﻿using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers
 {
     /// <summary>
     /// Base class for a document placeholder resolver.

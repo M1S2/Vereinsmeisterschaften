@@ -1,7 +1,7 @@
 ﻿using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 
-namespace Vereinsmeisterschaften.Core.Documents
+namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
 {
     /// <summary>
     /// Interface for document strategies that define how to create and collect data for different types of documents.

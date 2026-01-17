@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Vereinsmeisterschaften.Core.Documents
+﻿namespace Vereinsmeisterschaften.Core.Documents.DocumentFileConverters
 {
     /// <summary>
     /// Interface for a class used to select the correct <see cref="IDocumentFileConverter"/>

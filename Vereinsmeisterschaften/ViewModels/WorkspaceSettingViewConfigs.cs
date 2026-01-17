@@ -98,10 +98,6 @@ namespace Vereinsmeisterschaften.ViewModels
                 (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH),
                 new WorkspaceSettingViewConfig() { Label=Resources.AnalyticsTemplatePathString, Tooltip = Tooltips.TooltipTemplatePathAnalytics, Icon = "\uE9D2", Editor = WorkspaceSettingEditorTypes.FileDocxRelative, SupportResetToDefault = false}
             },
-            {
-                (WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH),
-                new WorkspaceSettingViewConfig() { Label=Resources.LibreOfficePathString, Tooltip = Tooltips.TooltipLibreOfficePath, Icon = "\uE756", Editor = WorkspaceSettingEditorTypes.FileAbsolute }
-            },
             // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             {
                 (WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES),

@@ -442,9 +442,6 @@ Alle Starts sind zugewiesen.</value>
   <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Übersichtslisten Template</value>
   </data>
-  <data name="LibreOfficePathString" xml:space="preserve">
-    <value>LibreOffice Pfad</value>
-  </data>
   <data name="CreateRaceStartListString" xml:space="preserve">
     <value>Renn-Startliste erstellen</value>
   </data>

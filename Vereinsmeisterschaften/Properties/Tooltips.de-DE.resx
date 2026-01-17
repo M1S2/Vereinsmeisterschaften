@@ -163,9 +163,6 @@ Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
     <value>Pfad zum Übersichtslisten Template.
 Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
-  <data name="TooltipLibreOfficePath" xml:space="preserve">
-    <value>Pfad zur LibreOffice soffice.exe, die zur PDF Konvertierung verwendet wird.</value>
-  </data>
   <data name="TooltipTemplatePathRaceStartList" xml:space="preserve">
     <value>Pfad zum Renn-Startlisten Template.
 Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>

@@ -163,9 +163,6 @@ Relative paths are relative to the workspace path.</value>
     <value>Path to the overview list template.
 Relative paths are relative to the workspace path.</value>
   </data>
-  <data name="TooltipLibreOfficePath" xml:space="preserve">
-    <value>Path to the LibreOffice soffice.exe used for PDF conversion.</value>
-  </data>
   <data name="TooltipTemplatePathRaceStartList" xml:space="preserve">
     <value>Path to the race start list template.
 Relative paths are relative to the workspace path.</value>

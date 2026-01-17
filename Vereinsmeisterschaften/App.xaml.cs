@@ -113,6 +113,9 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartDistances>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePlacesAgeDistribution>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAges>());
+        services.AddSingleton<IDocumentFileConverterSelector, DocumentFileConverterSelector>();
+        services.AddSingleton<IDocumentFileConverter, MsWordDocumentFileConverter>();
+        services.AddSingleton<IDocumentFileConverter, LibreOfficeDocumentFileConverter>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();

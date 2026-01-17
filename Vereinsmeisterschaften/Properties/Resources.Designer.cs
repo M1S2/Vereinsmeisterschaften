@@ -819,15 +819,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die LibreOffice Path ähnelt.
-        /// </summary>
-        public static string LibreOfficePathString {
-            get {
-                return ResourceManager.GetString("LibreOfficePathString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
         /// </summary>
         public static string LoadWorkspaceString {

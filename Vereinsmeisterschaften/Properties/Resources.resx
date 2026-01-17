@@ -441,9 +441,6 @@
   <data name="OverviewListTemplatePathString" xml:space="preserve">
     <value>Overview List Template</value>
   </data>
-  <data name="LibreOfficePathString" xml:space="preserve">
-    <value>LibreOffice Path</value>
-  </data>
   <data name="CreateRaceStartListString" xml:space="preserve">
     <value>Create Race Start List</value>
   </data>

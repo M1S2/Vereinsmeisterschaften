@@ -37,4 +37,13 @@ This page describes how to add new placeholders and document types.
   - Add a new CreateDocumentUserControl
   - Extend the Placeholder Info and add a new <code>GridViewColumn</code> for the new document type
 
+@section newDocumentFileConverter Add new document file converter
+A document file converter is used to convert a .docx file to a .pdf file. Different applications can be used to do this conversion (e.g. Microsoft Word or Libre Office).
+To add a new converter:
+- Add a new class inheriting from IDocumentFileConverter in the DocumentFileConverters folder (Vereinsmeisterschaften.Core > Documents > DocumentFileConverters)
+- The <code>IsAvailable</code> property should return a flag if the converter application is available (e.g. Microsoft Word is not installed on all computers)
+- The <code>bool Convert(string inputFile, string outputFile)</code> method will perform the conversion. Call the corresponding conversion logic for the converter application here.
+- The <code>bool IsDocxCreateWithThisConverter(string docxFile)</code> method will return true, when the .docx file was created using this converter application (e.g. Microsoft Word converter will return true, when the .docx file was created using Microsoft Word).
+- The document file converter must be added to the services (App.xaml.cs): <code>services.AddSingleton<IDocumentFileConverter, YourDocumentFileConverter>();</code>
+
  */

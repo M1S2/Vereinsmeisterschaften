@@ -126,6 +126,9 @@
   <data name="Error_LibreOffice_ConversionFailed" xml:space="preserve">
     <value>LibreOffice failed to convert the .docx file to a .pdf file. Error code was {0}.</value>
   </data>
+  <data name="Error_MSWord_ConversionFailed" xml:space="preserve">
+    <value>Microsoft Word failed to convert the .docx file to a .pdf file. Error was: {0}.</value>
+  </data>
   <data name="FileName_BestRace" xml:space="preserve">
     <value>BestRace.csv</value>
   </data>

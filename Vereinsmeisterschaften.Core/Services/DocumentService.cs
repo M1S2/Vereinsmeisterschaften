@@ -18,16 +18,19 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IWorkspaceService _workspaceService;        
         private readonly IEnumerable<IDocumentStrategy> _documentStrategies;
+        private IDocumentFileConverterSelector _documentFileConverterSelector;
 
         /// <summary>
         /// Constructor for the DocumentService.
         /// </summary>
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
         /// <param name="documentStrategies">List of <see cref="IDocumentStrategy"/> objects</param>
-        public DocumentService(IWorkspaceService workspaceService, IEnumerable<IDocumentStrategy> documentStrategies)
+        /// <param name="documentFileConverterSelector"><see cref="IDocumentFileConverterSelector"/> object</param>
+        public DocumentService(IWorkspaceService workspaceService, IEnumerable<IDocumentStrategy> documentStrategies, IDocumentFileConverterSelector documentFileConverterSelector)
         {
             _workspaceService = workspaceService;
             _documentStrategies = documentStrategies;
+            _documentFileConverterSelector = documentFileConverterSelector;
         }
 
         private IDocumentStrategy getDocumentStrategy(DocumentCreationTypes type)
@@ -252,8 +255,36 @@ namespace Vereinsmeisterschaften.Core.Services
             string outputFilePdf = docxFile.Replace(".docx", ".pdf");
             File.Delete(outputFilePdf);
 
-            string libreOfficePath = _workspaceService?.Settings?.GetSettingValue<string>(WorkspaceSettings.GROUP_DOCUMENT_CREATION, WorkspaceSettings.SETTING_DOCUMENT_CREATION_LIBRE_OFFICE_PATH) ?? string.Empty;
-            LibreOfficeDocumentConverter.Convert(docxFile, outputFilePdf, libreOfficePath);
+            List<IDocumentFileConverter> ignoreConverters = new List<IDocumentFileConverter>();
+            IDocumentFileConverter converter = null;
+            bool conversionResult = false;
+            Exception firstException = null;
+            // Loop until no converter is found anymore or the conversion is finished.
+            do
+            {
+                converter = _documentFileConverterSelector.GetConverter(docxFile, ignoreConverters);
+                try
+                {
+                    conversionResult = converter?.Convert(docxFile, outputFilePdf) ?? false;
+                }
+                catch(Exception ex)
+                {
+                    if(firstException == null)
+                    {
+                        firstException = ex;
+                    }
+                    conversionResult = false;
+                }
+                if(!conversionResult)
+                {
+                    ignoreConverters.Add(converter);
+                }
+            } while (converter != null && !conversionResult);
+
+            if(!conversionResult && firstException != null)
+            {
+                throw firstException;
+            }
             return outputFilePdf;
         }
 

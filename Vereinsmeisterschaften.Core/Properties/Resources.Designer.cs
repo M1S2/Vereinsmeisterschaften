@@ -88,6 +88,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Microsoft Word failed to convert the .docx file to a .pdf file. Error was: {0}. ähnelt.
+        /// </summary>
+        public static string Error_MSWord_ConversionFailed {
+            get {
+                return ResourceManager.GetString("Error_MSWord_ConversionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die BestRace.csv ähnelt.
         /// </summary>
         public static string FileName_BestRace {

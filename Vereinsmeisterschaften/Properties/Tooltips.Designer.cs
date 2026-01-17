@@ -280,15 +280,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Path to the LibreOffice soffice.exe used for PDF conversion. ähnelt.
-        /// </summary>
-        public static string TooltipLibreOfficePath {
-            get {
-                return ResourceManager.GetString("TooltipLibreOfficePath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This start is using a competition that was selected, because the person is older than all available competitions for this style and gender.
         ///The competition with the highest age is used then. ähnelt.
         /// </summary>

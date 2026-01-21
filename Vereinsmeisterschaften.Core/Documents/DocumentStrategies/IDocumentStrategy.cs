@@ -1,5 +1,6 @@
 ﻿using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
+using Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers;
 
 namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
 {
@@ -60,6 +61,11 @@ namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
         /// List of placeholder keys that are supported by this strategy.
         /// </summary>
         List<string> SupportedPlaceholderKeys { get; }
+
+        /// <summary>
+        /// List with placeholder keys that are always supported, no matter what the <see cref="IDocumentPlaceholderResolver{T}"/> supports.
+        /// </summary>
+        List<string> AlwaysSupportedPlaceholderKeys { get; }
 
         /// <summary>
         /// Number of postfix numbers that are supported for the placeholders.

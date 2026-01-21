@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Resources;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -14,6 +16,7 @@ using Vereinsmeisterschaften.Core.Documents.DocumentStrategies;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
+using Vereinsmeisterschaften.Models;
 using Vereinsmeisterschaften.Properties;
 
 namespace Vereinsmeisterschaften.ViewModels;
@@ -24,92 +27,47 @@ namespace Vereinsmeisterschaften.ViewModels;
 public partial class CreateDocumentsViewModel : ObservableObject, INavigationAware
 {
     /// <summary>
-    /// Dictionary to hold the state of whether a document creation process is currently running for each <see cref="DocumentCreationTypes"/> type.
+    /// Dictionary to hold the <see cref="DocumentCreationConfig"> for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
-    public Dictionary<DocumentCreationTypes, bool> IsDocumentCreationRunning { get; } = new Dictionary<DocumentCreationTypes, bool>();
+    public Dictionary<DocumentCreationTypes, DocumentCreationConfig> DocumentCreationConfigPerType { get; } = new Dictionary<DocumentCreationTypes, DocumentCreationConfig>();
 
     /// <summary>
-    /// Dictionary to hold the state of whether a document creation process was successful for each <see cref="DocumentCreationTypes"/> type.
+    /// Dictionary to hold the <see cref="DocumentCreationStatus"> for each <see cref="DocumentCreationTypes"/> type.
     /// </summary>
-    public Dictionary<DocumentCreationTypes, bool> IsDocumentCreationSuccessful { get; } = new Dictionary<DocumentCreationTypes, bool>();
+    public Dictionary<DocumentCreationTypes, DocumentCreationStatus> DocumentCreationStatusPerType { get; } = new Dictionary<DocumentCreationTypes, DocumentCreationStatus>();
 
     /// <summary>
-    /// Dictionary to hold the state of whether data is available for document creation for each <see cref="DocumentCreationTypes"/> type.
+    /// Indicates whether at leas one document creation process is currently running.
     /// </summary>
-    public Dictionary<DocumentCreationTypes, bool> IsDocumentDataAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
-
-    /// <summary>
-    /// Dictionary to hold the state of whether the template file is available for document creation for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, bool> IsDocumentTemplateAvailable { get; } = new Dictionary<DocumentCreationTypes, bool>();
-
-    /// <summary>
-    /// Dictionary to hold the file paths of the last created documents for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, string> LastDocumentFilePaths { get; } = new Dictionary<DocumentCreationTypes, string>();
+    public bool IsAnyDocumentCreationRunning => DocumentCreationStatusPerType.Any(kv => kv.Value.IsDocumentCreationRunning == true);
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private void changeDocumentCreationRunningState(DocumentCreationTypes documentType, bool isRunning)
-        => setDictionaryValue(IsDocumentCreationRunning, documentType, isRunning, nameof(IsDocumentCreationRunning));
+        => setDictionaryValue(documentType, isRunning, nameof(DocumentCreationStatus.IsDocumentCreationRunning));
     
     private void changeDocumentCreationSuccessfulState(DocumentCreationTypes documentType, bool isSuccessful)
-        => setDictionaryValue(IsDocumentCreationSuccessful, documentType, isSuccessful, nameof(IsDocumentCreationSuccessful));
-    
-    private void changeDocumentDataAvailableState(DocumentCreationTypes documentType, bool isDataAvailable)
-        => setDictionaryValue(IsDocumentDataAvailable, documentType, isDataAvailable, nameof(IsDocumentDataAvailable));
-    
-    private void changeDocumentTemplateAvailableState(DocumentCreationTypes documentType, bool isTemplateAvailable)
-        => setDictionaryValue(IsDocumentTemplateAvailable, documentType, isTemplateAvailable, nameof(IsDocumentTemplateAvailable));
-    
-    private void changeLastDocumentFilePath(DocumentCreationTypes documentType, string lastDocumentFilePaths)
-        => setDictionaryValue(LastDocumentFilePaths, documentType, lastDocumentFilePaths, nameof(LastDocumentFilePaths));
+        => setDictionaryValue(documentType, isSuccessful, nameof(DocumentCreationStatus.IsDocumentCreationSuccessful));
 
-    private void setDictionaryValue<T>(Dictionary<DocumentCreationTypes, T> dictionary, DocumentCreationTypes documentType, T value, string propertyName)
+    private void changeDocumentDataAvailableState(DocumentCreationTypes documentType, bool isDataAvailable)
+        => setDictionaryValue(documentType, isDataAvailable, nameof(DocumentCreationStatus.IsDocumentDataAvailable));
+
+    private void changeDocumentTemplateAvailableState(DocumentCreationTypes documentType, bool isTemplateAvailable)
+        => setDictionaryValue(documentType, isTemplateAvailable, nameof(DocumentCreationStatus.IsDocumentTemplateAvailable));
+
+    private void changeLastDocumentFilePath(DocumentCreationTypes documentType, string lastDocumentFilePath)
+        => setDictionaryValue(documentType, lastDocumentFilePath, nameof(DocumentCreationStatus.LastDocumentFilePath));
+
+    private void setDictionaryValue<T>(DocumentCreationTypes documentType, T value, string propertyName)
     {
-        if (dictionary.ContainsKey(documentType))
+        if (DocumentCreationStatusPerType.ContainsKey(documentType))
         {
-            dictionary[documentType] = value;
-            OnPropertyChanged(propertyName);
+            PropertyInfo propInfo = typeof(DocumentCreationStatus).GetProperty(propertyName);
+            propInfo?.SetValue(DocumentCreationStatusPerType[documentType], value);
+            OnPropertyChanged(nameof(DocumentCreationStatusPerType));
             ((RelayCommand<DocumentCreationTypes>)CreateDocumentCommand).NotifyCanExecuteChanged();
         }
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    #region Document Ordering and Filters Dictionaries
-
-    /// <summary>
-    /// Indicates whether at leas one document creation process is currently running (either certificates or overview list or race start list).
-    /// </summary>
-    public bool IsAnyDocumentCreationRunning => IsDocumentCreationRunning.Any(r => r.Value == true);
-
-    /// <summary>
-    /// Dictionary to hold the available item orderings for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, IEnumerable<Enum>> AvailableItemOrderings { get; } = new Dictionary<DocumentCreationTypes, IEnumerable<Enum>>();
-
-    /// <summary>
-    /// Dictionary to hold the current item ordering for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, Enum> CurrentItemOrderings { get; } = new Dictionary<DocumentCreationTypes, Enum>();
-
-    /// <summary>
-    /// Dictionary to hold the available item filters for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, IEnumerable<Enum>> AvailableItemFilters { get; } = new Dictionary<DocumentCreationTypes, IEnumerable<Enum>>();
-
-    /// <summary>
-    /// Dictionary to hold the current item filter for each <see cref="DocumentCreationTypes"/> type.
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, Enum> CurrentItemFilters { get; } = new Dictionary<DocumentCreationTypes, Enum>();
-
-    /// <summary>
-    /// Dictionary to hold the current item filter parameter for each <see cref="DocumentCreationTypes"/>
-    /// </summary>
-    public Dictionary<DocumentCreationTypes, object> CurrentItemFilterParameters { get; } = new Dictionary<DocumentCreationTypes, object>();
-
-    #endregion
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -185,12 +143,16 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
             string resourceStringGroup = rm.GetString($"PlaceholderGroup{placeholderEntry.Value.groupName}") ?? "?";
 
             Dictionary<DocumentCreationTypes, bool> isSupportedForDocumentType = new Dictionary<DocumentCreationTypes, bool>();
+            Dictionary<DocumentCreationTypes, bool> isSupportedForTextPlaceholders = new Dictionary<DocumentCreationTypes, bool>();
+            Dictionary<DocumentCreationTypes, bool> isSupportedForTablePlaceholders = new Dictionary<DocumentCreationTypes, bool>();
             Dictionary<DocumentCreationTypes, string> postfixNumbersSupportedForDocumentType = new Dictionary<DocumentCreationTypes, string>();
             foreach (IDocumentStrategy strategy in _documentStrategies)
             {
                 DocumentCreationTypes documentCreationType = strategy.DocumentType;
                 List<string> supportedPlaceholderKeys = strategy.SupportedPlaceholderKeys;
                 bool isCurrentPlaceholderSupportedForStrategy = supportedPlaceholderKeys.Contains(placeholderKey);
+                bool isCurrentPlaceholderSupportedForText = strategy.SupportTextPlaceholders || strategy.AlwaysSupportedPlaceholderKeys.Contains(placeholderKey);
+                bool isCurrentPlaceholderSupportedForTable = strategy.SupportTablePlaceholders || strategy.AlwaysSupportedPlaceholderKeys.Contains(placeholderKey);
 
                 int indexOfKey = supportedPlaceholderKeys.IndexOf(placeholderKey);
                 int postfixNumbersSupported = (indexOfKey >= 0 && indexOfKey < strategy.PostfixNumbersSupported.Count) ? strategy.PostfixNumbersSupported[indexOfKey] : 0;
@@ -199,11 +161,15 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
                 if (!isSupportedForDocumentType.ContainsKey(documentCreationType))
                 {
                     isSupportedForDocumentType.Add(documentCreationType, isCurrentPlaceholderSupportedForStrategy);
+                    isSupportedForTextPlaceholders.Add(documentCreationType, isCurrentPlaceholderSupportedForText);
+                    isSupportedForTablePlaceholders.Add(documentCreationType, isCurrentPlaceholderSupportedForTable);
                     postfixNumbersSupportedForDocumentType.Add(documentCreationType, postfixNumbersSupportedStr);
                 }
                 else
                 {
                     isSupportedForDocumentType[documentCreationType] = isCurrentPlaceholderSupportedForStrategy;
+                    isSupportedForTextPlaceholders[documentCreationType] = isCurrentPlaceholderSupportedForText;
+                    isSupportedForTablePlaceholders[documentCreationType] = isCurrentPlaceholderSupportedForTable;
                     postfixNumbersSupportedForDocumentType[documentCreationType] = postfixNumbersSupportedStr;
                 }
             }
@@ -216,6 +182,8 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
                 Info = resourceStringInfo,
                 Placeholders = string.Join(Environment.NewLine, placeholderEntry.Value.placeholders.Select(p => $"{_documentService.PlaceholderMarker}{p}{_documentService.PlaceholderMarker}")),
                 IsSupportedForDocumentType = isSupportedForDocumentType,
+                IsSupportedForTextPlaceholders = isSupportedForTextPlaceholders,
+                IsSupportedForTablePlaceholders = isSupportedForTablePlaceholders,
                 PostfixNumbersSupportedForDocumentType = postfixNumbersSupportedForDocumentType
             };
             PlaceholderViewConfigs.Add(placeholderViewConfig);
@@ -253,28 +221,22 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
         _documentStrategies = documentStrategies;
 
         List<DocumentCreationTypes> availableDocumentCreationTypes = Enum.GetValues(typeof(DocumentCreationTypes)).Cast<DocumentCreationTypes>().ToList();
-        IsDocumentCreationRunning.Clear();
-        IsDocumentCreationSuccessful.Clear();
-        IsDocumentDataAvailable.Clear();
-        IsDocumentTemplateAvailable.Clear();
-        LastDocumentFilePaths.Clear();
-        AvailableItemOrderings.Clear();
-        CurrentItemOrderings.Clear();
-        AvailableItemFilters.Clear();
-        CurrentItemFilters.Clear();
-        CurrentItemFilterParameters.Clear();
+        DocumentCreationStatusPerType.Clear();
+        DocumentCreationConfigPerType.Clear();     
         foreach (DocumentCreationTypes type in availableDocumentCreationTypes)
         {
-            IsDocumentCreationRunning.Add(type, false);
-            IsDocumentCreationSuccessful.Add(type, false);
-            IsDocumentDataAvailable.Add(type, false);
-            IsDocumentTemplateAvailable.Add(type, false);
-            LastDocumentFilePaths.Add(type, string.Empty);
-            AvailableItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.AvailableItemOrderings);
-            CurrentItemOrderings.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemOrdering);
-            AvailableItemFilters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.AvailableItemFilters);
-            CurrentItemFilters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilter);
-            CurrentItemFilterParameters.Add(type, _documentStrategies.FirstOrDefault(s => s.DocumentType == type)?.ItemFilterParameter);
+            IDocumentStrategy strategy = _documentStrategies.FirstOrDefault(d => d.DocumentType == type);
+
+            DocumentCreationStatusPerType.Add(type, new DocumentCreationStatus());
+            DocumentCreationConfigPerType.Add(type, new DocumentCreationConfig()
+            {
+                DocumentStrategy = strategy,
+                AvailableItemOrderings = strategy?.AvailableItemOrderings,
+                CurrentItemOrdering = strategy?.ItemOrdering,
+                AvailableItemFilters = strategy?.AvailableItemFilters,
+                CurrentItemFilter = strategy?.ItemFilter,
+                CurrentItemFilterParameter = strategy?.ItemFilterParameter
+            });
         }
 
         PlaceholderViewConfigsView = CollectionViewSource.GetDefaultView(PlaceholderViewConfigs);
@@ -299,9 +261,9 @@ public partial class CreateDocumentsViewModel : ObservableObject, INavigationAwa
             IDocumentStrategy strategy = _documentStrategies.FirstOrDefault(s => s.DocumentType == type);
             if (strategy != null)
             {
-                strategy.ItemOrdering = CurrentItemOrderings[type];
-                strategy.ItemFilter = CurrentItemFilters[type];
-                strategy.ItemFilterParameter = CurrentItemFilterParameters[type];
+                strategy.ItemOrdering = DocumentCreationConfigPerType[type].CurrentItemOrdering;
+                strategy.ItemFilter = DocumentCreationConfigPerType[type].CurrentItemFilter;
+                strategy.ItemFilterParameter = DocumentCreationConfigPerType[type].CurrentItemFilterParameter;
             }
         }
 

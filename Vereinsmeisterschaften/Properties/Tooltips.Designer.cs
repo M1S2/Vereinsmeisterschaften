@@ -243,6 +243,49 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Multiple pages will be created for the data of this document type
+        ///(one page for each data item, e.g. one page per person). ähnelt.
+        /// </summary>
+        public static string TooltipDocumentsMultiplePages {
+            get {
+                return ResourceManager.GetString("TooltipDocumentsMultiplePages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only a single page will be created for the data of this document type
+        ///(or, if the content becomes too long, there will be multiple pages). ähnelt.
+        /// </summary>
+        public static string TooltipDocumentsSinglePage {
+            get {
+                return ResourceManager.GetString("TooltipDocumentsSinglePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Table placeholders are supported by this document type.
+        ///Table placeholders must be inside a table of the document. All tables in the document that contain at least one placeholder will be processed.
+        ///The first row that contains a placeholder will be used as a pattern for the new rows. There will be a new row for each data item.
+        ///The replacement data is determined by the placeholder name. ähnelt.
+        /// </summary>
+        public static string TooltipDocumentsTablePlaceholdersSupported {
+            get {
+                return ResourceManager.GetString("TooltipDocumentsTablePlaceholdersSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Text placeholders are supported by this document type.
+        ///Text placeholders are simply replaced where they occur in the document.
+        ///The replacement data is determined by the placeholder name. ähnelt.
+        /// </summary>
+        public static string TooltipDocumentsTextPlaceholdersSupported {
+            get {
+                return ResourceManager.GetString("TooltipDocumentsTextPlaceholdersSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There was at least one other person with the same basic parameters found. ähnelt.
         /// </summary>
         public static string TooltipDuplicatePerson {
@@ -402,7 +445,7 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create a order for the starts. This can be done either manually (by adding a variant and manually dragging the starts from the right area to the middle) or automatically (variants are randomly created and evaluated according to various criteria).
         ///Each race variant is scored from 0% (poor) to 100% (perfect). In the workspace, you can set the weighting or various parameters for the automatic calculation.
-        ///You can also highlight specific starts. For example, all of a person&apos;s starts to c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///You can also highlight specific starts. For example, all of a person&apos;s starts to che [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoPrepareRacesPage {
             get {
@@ -437,7 +480,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///- WorkspaceSettings.json: JSON file with all settings for the workspace.
         ///- Person.csv: List of all people and swim times.
         ///- Competitions.csv: List of all available competitions.
-        ///- BestRace.csv: The race marked as a good option is saved here. If n [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///- BestRace.csv: The race marked as a good option is saved here. If no race [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoWorkspacePage {
             get {

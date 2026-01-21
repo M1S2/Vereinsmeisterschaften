@@ -142,8 +142,8 @@ This only works outside of tables.</value>
   <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
     <value>Use these placeholders to insert the swimming style.</value>
   </data>
-  <data name="PlaceholderLegendAvailable" xml:space="preserve">
-    <value>Placeholder available</value>
+  <data name="PlaceholderLegendAvailableOnlyText" xml:space="preserve">
+    <value>Placeholder available (only inside text)</value>
   </data>
   <data name="PlaceholderLegendAvailableWithPostfix" xml:space="preserve">
     <value>Placeholder available (with postfix up to this number)
@@ -449,5 +449,11 @@ This only works outside of tables.</value>
   </data>
   <data name="PlaceholderNameAnalyticsDistancesBetweenStarts" xml:space="preserve">
     <value />
+  </data>
+  <data name="PlaceholderLegendAvailableOnlyTable" xml:space="preserve">
+    <value>Placeholder available (only inside tables)</value>
+  </data>
+  <data name="PlaceholderLegendAvailableTextAndTable" xml:space="preserve">
+    <value>Placeholder available (inside text and tables)</value>
   </data>
 </root>

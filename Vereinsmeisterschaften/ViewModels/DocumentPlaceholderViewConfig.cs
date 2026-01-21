@@ -31,7 +31,14 @@ namespace Vereinsmeisterschaften.ViewModels
         /// Indicates whether this placeholder is supported for the document type
         /// </summary>
         public Dictionary<DocumentCreationTypes, bool> IsSupportedForDocumentType { get; set; }
-
+        /// <summary>
+        /// Indicates whether this placeholder is supported for text placeholders
+        /// </summary>
+        public Dictionary<DocumentCreationTypes, bool> IsSupportedForTextPlaceholders { get; set; }
+        /// <summary>
+        /// Indicates whether this placeholder is supported for table placeholders
+        /// </summary>
+        public Dictionary<DocumentCreationTypes, bool> IsSupportedForTablePlaceholders { get; set; }
         /// <summary>
         /// Postfix numbers that can be used for the placeholder, formatted as a string
         /// </summary>

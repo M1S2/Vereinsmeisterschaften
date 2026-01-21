@@ -567,11 +567,29 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available (only inside tables) ähnelt.
         /// </summary>
-        public static string PlaceholderLegendAvailable {
+        public static string PlaceholderLegendAvailableOnlyTable {
             get {
-                return ResourceManager.GetString("PlaceholderLegendAvailable", resourceCulture);
+                return ResourceManager.GetString("PlaceholderLegendAvailableOnlyTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available (only inside text) ähnelt.
+        /// </summary>
+        public static string PlaceholderLegendAvailableOnlyText {
+            get {
+                return ResourceManager.GetString("PlaceholderLegendAvailableOnlyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Placeholder available (inside text and tables) ähnelt.
+        /// </summary>
+        public static string PlaceholderLegendAvailableTextAndTable {
+            get {
+                return ResourceManager.GetString("PlaceholderLegendAvailableTextAndTable", resourceCulture);
             }
         }
         

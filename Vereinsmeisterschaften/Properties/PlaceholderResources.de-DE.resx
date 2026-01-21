@@ -142,8 +142,8 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderInfoSwimmingStyle" xml:space="preserve">
     <value>Diese Platzhalter nutzen, um den Schwimmstil einzufügen.</value>
   </data>
-  <data name="PlaceholderLegendAvailable" xml:space="preserve">
-    <value>Platzhalter verfügbar</value>
+  <data name="PlaceholderLegendAvailableOnlyText" xml:space="preserve">
+    <value>Platzhalter verfügbar (nur im Text)</value>
   </data>
   <data name="PlaceholderLegendAvailableWithPostfix" xml:space="preserve">
     <value>Platzhalter verfügbar (mit Postfix Nummern bis zu dieser Nummer)
@@ -449,5 +449,11 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   </data>
   <data name="PlaceholderNameAnalyticsDistancesBetweenStarts" xml:space="preserve">
     <value>Analyse: Abstände zwischen Starts einer Person</value>
+  </data>
+  <data name="PlaceholderLegendAvailableOnlyTable" xml:space="preserve">
+    <value>Platzhalter verfügbar (nur in Tabellen)</value>
+  </data>
+  <data name="PlaceholderLegendAvailableTextAndTable" xml:space="preserve">
+    <value>Platzhalter verfügbar (im Text und in Tabellen)</value>
   </data>
 </root>

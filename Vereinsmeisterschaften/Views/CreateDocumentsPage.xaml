@@ -22,6 +22,36 @@
         <Style x:Key="StyleCenteredGridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource MahApps.Styles.GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
+
+        <ControlTemplate x:Key="ControlTemplatePlaceholderAvailableOnlyTextIndicator">
+            <Grid>
+                <controls:FontIcon FontSize="20" Glyph="&#xE91F;" Foreground="{StaticResource BrushOk}"/>
+                <controls:FontIcon FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ControlTemplatePlaceholderAvailableOnlyTableIndicator">
+            <Grid>
+                <controls:FontIcon FontSize="20" Glyph="&#xE91F;" Foreground="LightSeaGreen"/>
+                <controls:FontIcon FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ControlTemplatePlaceholderAvailableTextAndTableIndicator">
+            <Grid Width="20" Height="20">
+                <Grid RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform Angle="-45"/>
+                    </Grid.RenderTransform>
+
+                    <!-- Right half circle -->
+                    <Path Fill="LightSeaGreen" Data="M 10,0 A 10,10 0 0,1 10,20 L 10,10 Z" />
+                    <!-- Left half circle -->
+                    <Path Fill="{StaticResource BrushOk}" Data="M 10,0 A 10,10 0 0,0 10,20 L 10,10 Z" />
+                </Grid>
+                <controls:FontIcon FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
+            </Grid>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -49,21 +79,12 @@
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Certificates -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="0"
-                                         DocumentType="{x:Static coreModels:DocumentCreationTypes.Certificates}"
                                          CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                         IsRunning="{Binding IsDocumentCreationRunning[Certificates]}"
-                                         IsSuccessful="{Binding IsDocumentCreationSuccessful[Certificates]}"
-                                         IsDataAvailable="{Binding IsDocumentDataAvailable[Certificates]}"
-                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[Certificates]}"
-                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[Certificates]}"
-                                         AvailableItemOrderings="{Binding AvailableItemOrderings[Certificates]}"
-                                         ItemOrdering="{Binding CurrentItemOrderings[Certificates], Mode=TwoWay}"
-                                         AvailableItemFilters="{Binding AvailableItemFilters[Certificates]}"
-                                         ItemFilter="{Binding CurrentItemFilters[Certificates], Mode=TwoWay}"
-                                         ItemFilterParameter="{Binding CurrentItemFilterParameters[Certificates], Mode=TwoWay}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[Certificates]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[Certificates], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateCertificatesString}"
-                                         SuccessText="{x:Static properties:Resources.CreateCertificatesResultString}"
                                          ButtonIconGlyph="&#xEB95;"
+                                         SuccessText="{x:Static properties:Resources.CreateCertificatesResultString}"                                         
                                          NumberCreatedDocuments="{Binding NumberCreatedCertificates}">
             <local:CreateDocumentUserControl.FilterParameterEditorTemplateSelector>
                 <templateSelectors:EnumTemplateSelector>
@@ -72,13 +93,13 @@
                         <DataTemplate x:Key="{x:Static coreModels:PersonStartFilters.Person}">
                             <ComboBox VerticalAlignment="Center" Style="{StaticResource MahApps.Styles.ComboBox}"
                                       ItemsSource="{Binding DataContext.AvailablePersons, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
-                                      SelectedItem="{Binding DataContext.CurrentItemFilterParameters[Certificates], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}"/>
+                                      SelectedItem="{Binding DataContext.DocumentCreationConfigPerType[Certificates].CurrentItemFilterParameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}"/>
                         </DataTemplate>
                         <!-- DataTemplate for swimming style. This is only visible if filter is SwimmingStyle. -->
                         <DataTemplate x:Key="{x:Static coreModels:PersonStartFilters.SwimmingStyle}">
                             <ComboBox VerticalAlignment="Center" Style="{StaticResource MahApps.Styles.ComboBox}"
                                       ItemsSource="{Binding DataContext.AvailableSwimmingStyles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
-                                      SelectedItem="{Binding DataContext.CurrentItemFilterParameters[Certificates], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}">
+                                      SelectedItem="{Binding DataContext.DocumentCreationConfigPerType[Certificates].CurrentItemFilterParameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
@@ -99,116 +120,68 @@
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Overview List -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="1"
-                                         DocumentType="{x:Static coreModels:DocumentCreationTypes.OverviewList}"
                                          CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                         IsRunning="{Binding IsDocumentCreationRunning[OverviewList]}"
-                                         IsSuccessful="{Binding IsDocumentCreationSuccessful[OverviewList]}"
-                                         IsDataAvailable="{Binding IsDocumentDataAvailable[OverviewList]}"
-                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[OverviewList]}"
-                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[OverviewList]}"
-                                         AvailableItemOrderings="{Binding AvailableItemOrderings[OverviewList]}"
-                                         ItemOrdering="{Binding CurrentItemOrderings[OverviewList], Mode=TwoWay}"
-                                         AvailableItemFilters="{Binding AvailableItemFilters[OverviewList]}"
-                                         ItemFilter="{Binding CurrentItemFilters[OverviewList], Mode=TwoWay}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[OverviewList]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[OverviewList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateOverviewListString}"
-                                         SuccessText="{x:Static properties:Resources.CreateOverviewListResultString}"
                                          ButtonIconGlyph="&#xE9D5;"
+                                         SuccessText="{x:Static properties:Resources.CreateOverviewListResultString}"                                         
                                          NumberCreatedDocuments="-1"/>
         
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Race Start List -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="2"
-                                         DocumentType="{x:Static coreModels:DocumentCreationTypes.RaceStartList}"
                                          CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                         IsRunning="{Binding IsDocumentCreationRunning[RaceStartList]}"
-                                         IsSuccessful="{Binding IsDocumentCreationSuccessful[RaceStartList]}"
-                                         IsDataAvailable="{Binding IsDocumentDataAvailable[RaceStartList]}"
-                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[RaceStartList]}"
-                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[RaceStartList]}"
-                                         AvailableItemOrderings="{Binding AvailableItemOrderings[RaceStartList]}"
-                                         ItemOrdering="{Binding CurrentItemOrderings[RaceStartList], Mode=TwoWay}"
-                                         AvailableItemFilters="{Binding AvailableItemFilters[RaceStartList]}"
-                                         ItemFilter="{Binding CurrentItemFilters[RaceStartList], Mode=TwoWay}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[RaceStartList]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[RaceStartList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateRaceStartListString}"
-                                         SuccessText="{x:Static properties:Resources.CreateRaceStartListResultString}"
                                          ButtonIconGlyph="&#xE7C1;"
+                                         SuccessText="{x:Static properties:Resources.CreateRaceStartListResultString}"                                         
                                          NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Time Forms -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="3"
-                                 DocumentType="{x:Static coreModels:DocumentCreationTypes.TimeForms}"
-                                 CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                 IsRunning="{Binding IsDocumentCreationRunning[TimeForms]}"
-                                 IsSuccessful="{Binding IsDocumentCreationSuccessful[TimeForms]}"
-                                 IsDataAvailable="{Binding IsDocumentDataAvailable[TimeForms]}"
-                                 IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[TimeForms]}"
-                                 LastCreatedDocumentPath="{Binding LastDocumentFilePaths[TimeForms]}"
-                                 AvailableItemOrderings="{Binding AvailableItemOrderings[TimeForms]}"
-                                 ItemOrdering="{Binding CurrentItemOrderings[TimeForms], Mode=TwoWay}"
-                                 AvailableItemFilters="{Binding AvailableItemFilters[TimeForms]}"
-                                 ItemFilter="{Binding CurrentItemFilters[TimeForms], Mode=TwoWay}"
-                                 ButtonText="{x:Static properties:Resources.CreateTimeFormsString}"
-                                 SuccessText="{x:Static properties:Resources.CreateTimeFormsResultString}"
-                                 ButtonIconGlyph="&#xE916;"
-                                 NumberCreatedDocuments="{Binding NumberCreatedTimeForms}"/>
+                                         CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[TimeForms]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[TimeForms], Mode=TwoWay}"
+                                         ButtonText="{x:Static properties:Resources.CreateTimeFormsString}"
+                                         ButtonIconGlyph="&#xE916;"
+                                         SuccessText="{x:Static properties:Resources.CreateTimeFormsResultString}"                                 
+                                         NumberCreatedDocuments="{Binding NumberCreatedTimeForms}"/>
         
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Result List -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="4"
-                                         DocumentType="{x:Static coreModels:DocumentCreationTypes.ResultList}"
                                          CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                         IsRunning="{Binding IsDocumentCreationRunning[ResultList]}"
-                                         IsSuccessful="{Binding IsDocumentCreationSuccessful[ResultList]}"
-                                         IsDataAvailable="{Binding IsDocumentDataAvailable[ResultList]}"
-                                         IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[ResultList]}"
-                                         LastCreatedDocumentPath="{Binding LastDocumentFilePaths[ResultList]}"
-                                         AvailableItemOrderings="{Binding AvailableItemOrderings[ResultList]}"
-                                         ItemOrdering="{Binding CurrentItemOrderings[ResultList], Mode=TwoWay}"
-                                         AvailableItemFilters="{Binding AvailableItemFilters[ResultList]}"
-                                         ItemFilter="{Binding CurrentItemFilters[ResultList], Mode=TwoWay}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[ResultList]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[ResultList], Mode=TwoWay}"
                                          ButtonText="{x:Static properties:Resources.CreateResultListString}"
-                                         SuccessText="{x:Static properties:Resources.CreateResultListResultString}"
                                          ButtonIconGlyph="&#xE9F9;"
+                                         SuccessText="{x:Static properties:Resources.CreateResultListResultString}"                                         
                                          NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Result List Details -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="5"
-                                        DocumentType="{x:Static coreModels:DocumentCreationTypes.ResultListDetail}"
-                                        CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                        IsRunning="{Binding IsDocumentCreationRunning[ResultListDetail]}"
-                                        IsSuccessful="{Binding IsDocumentCreationSuccessful[ResultListDetail]}"
-                                        IsDataAvailable="{Binding IsDocumentDataAvailable[ResultListDetail]}"
-                                        IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[ResultListDetail]}"
-                                        LastCreatedDocumentPath="{Binding LastDocumentFilePaths[ResultListDetail]}"
-                                        AvailableItemOrderings="{Binding AvailableItemOrderings[ResultListDetail]}"
-                                        ItemOrdering="{Binding CurrentItemOrderings[ResultListDetail], Mode=TwoWay}"
-                                        AvailableItemFilters="{Binding AvailableItemFilters[ResultListDetail]}"
-                                        ItemFilter="{Binding CurrentItemFilters[ResultListDetail], Mode=TwoWay}"
-                                        ButtonText="{x:Static properties:Resources.CreateResultListDetailString}"
-                                        SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"
-                                        ButtonIconGlyph="&#xE7B3;"
-                                        NumberCreatedDocuments="-1"/>
+                                         CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[ResultListDetail]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[ResultListDetail], Mode=TwoWay}"
+                                         ButtonText="{x:Static properties:Resources.CreateResultListDetailString}"
+                                         ButtonIconGlyph="&#xE7B3;"
+                                         SuccessText="{x:Static properties:Resources.CreateResultListDetailResultString}"                                        
+                                         NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Create Analytics -->
         <local:CreateDocumentUserControl Grid.Row="1" Grid.Column="6"
-                                DocumentType="{x:Static coreModels:DocumentCreationTypes.Analytics}"
-                                CreateDocumentCommand="{Binding CreateDocumentCommand}"
-                                IsRunning="{Binding IsDocumentCreationRunning[Analytics]}"
-                                IsSuccessful="{Binding IsDocumentCreationSuccessful[Analytics]}"
-                                IsDataAvailable="{Binding IsDocumentDataAvailable[Analytics]}"
-                                IsTemplateAvailable="{Binding IsDocumentTemplateAvailable[Analytics]}"
-                                LastCreatedDocumentPath="{Binding LastDocumentFilePaths[Analytics]}"
-                                AvailableItemOrderings="{Binding AvailableItemOrderings[Analytics]}"
-                                ItemOrdering="{Binding CurrentItemOrderings[Analytics], Mode=TwoWay}"
-                                AvailableItemFilters="{Binding AvailableItemFilters[Analytics]}"
-                                ItemFilter="{Binding CurrentItemFilters[Analytics], Mode=TwoWay}"
-                                ButtonText="{x:Static properties:Resources.CreateAnalyticsString}"
-                                SuccessText="{x:Static properties:Resources.CreateAnalyticsResultString}"
-                                ButtonIconGlyph="&#xE9D2;"
-                                NumberCreatedDocuments="-1"/>
+                                         CreateDocumentCommand="{Binding CreateDocumentCommand}"
+                                         CreationStatus="{Binding DocumentCreationStatusPerType[Analytics]}"
+                                         CreationConfig="{Binding DocumentCreationConfigPerType[Analytics], Mode=TwoWay}"
+                                         ButtonText="{x:Static properties:Resources.CreateAnalyticsString}"
+                                         ButtonIconGlyph="&#xE9D2;"
+                                         SuccessText="{x:Static properties:Resources.CreateAnalyticsResultString}"                                
+                                         NumberCreatedDocuments="-1"/>
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Placeholder Info-->
@@ -223,15 +196,21 @@
             <DockPanel LastChildFill="True">
                 <!-- Legend -->
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,20,0,10">
-                    <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
-                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendAvailable}"/>
+                    <ContentControl VerticalAlignment="Center" Template="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"/>
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendAvailableOnlyText}"/>
 
-                    <controls:Badged Margin="30,0,0,0" Badge="3" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                        <ContentControl Template="{StaticResource ControlTemplateOkIndicator}"/>
+                    <ContentControl Margin="30,0,0,0" VerticalAlignment="Center" Template="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"/>
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendAvailableOnlyTable}"/>
+
+                    <ContentControl Margin="30,0,0,0" VerticalAlignment="Center" Template="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"/>
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendAvailableTextAndTable}"/>
+
+                    <controls:Badged Margin="30,0,0,0" VerticalAlignment="Center" Badge="3" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
+                        <ContentControl Template="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"/>
                     </controls:Badged>
                     <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendAvailableWithPostfix}"/>
 
-                    <ContentControl Margin="30,0,0,0" Template="{StaticResource ControlTemplateErrorIndicator}"/>
+                    <ContentControl Margin="30,0,0,0" VerticalAlignment="Center" Template="{StaticResource ControlTemplateErrorIndicator}"/>
                     <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static properties:PlaceholderResources.PlaceholderLegendNotAvailable}"/>
                 </StackPanel>
 
@@ -301,9 +280,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[Certificates]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                    FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                    BoolValue="{Binding IsSupportedForDocumentType[Certificates]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[Certificates]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[Certificates]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[Certificates]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -317,9 +300,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[OverviewList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                    FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                    BoolValue="{Binding IsSupportedForDocumentType[OverviewList]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[OverviewList]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[OverviewList]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[OverviewList]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -333,9 +320,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[RaceStartList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                    FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                    BoolValue="{Binding IsSupportedForDocumentType[RaceStartList]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[RaceStartList]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[RaceStartList]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[RaceStartList]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -349,9 +340,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[TimeForms]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                    FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                    BoolValue="{Binding IsSupportedForDocumentType[TimeForms]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[TimeForms]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[TimeForms]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[TimeForms]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -365,9 +360,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultList]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                    FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                    BoolValue="{Binding IsSupportedForDocumentType[ResultList]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[ResultList]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[ResultList]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[ResultList]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -381,9 +380,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[ResultListDetail]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                                                     FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                                                     BoolValue="{Binding IsSupportedForDocumentType[ResultListDetail]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[ResultListDetail]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[ResultListDetail]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[ResultListDetail]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -397,9 +400,13 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <controls:Badged HorizontalAlignment="Center" Badge="{Binding PostfixNumbersSupportedForDocumentType[Analytics]}" BadgeBackground="{DynamicResource MahApps.Brushes.Accent}" BadgePlacementMode="BottomRight">
-                                        <userControls:BoolTemplateContentControl TrueTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                             FalseTemplate="{StaticResource ControlTemplateErrorIndicator}"
-                                                             BoolValue="{Binding IsSupportedForDocumentType[Analytics]}"/>
+                                        <userControls:PlaceholderAvailableContentControl AvailableOnlyTextTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTextIndicator}"
+                                                                                         AvailableOnlyTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableOnlyTableIndicator}"
+                                                                                         AvailableTextAndTableTemplate="{StaticResource ControlTemplatePlaceholderAvailableTextAndTableIndicator}"
+                                                                                         NotAvailableTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                                                         IsPlaceholderAvailable="{Binding IsSupportedForDocumentType[Analytics]}"
+                                                                                         IsSupportedForText="{Binding IsSupportedForTextPlaceholders[Analytics]}"
+                                                                                         IsSupportedForTable="{Binding IsSupportedForTablePlaceholders[Analytics]}"/>
                                     </controls:Badged>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

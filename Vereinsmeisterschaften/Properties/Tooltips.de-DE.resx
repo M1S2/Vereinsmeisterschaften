@@ -422,4 +422,23 @@ Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   <data name="TooltipWorkspaceNew" xml:space="preserve">
     <value>Neuen Arbeitsbereich anlegen, der die nötigen Konfigurationsdateien und (wenn gewünscht) Standard Templates enthält</value>
   </data>
+  <data name="TooltipDocumentsSinglePage" xml:space="preserve">
+    <value>Es wird nur eine Seite für die Daten dieses Dokumententyps erstellt
+(bzw. falls der Inhalt zu lang wird, gibt es mehrere Seiten).</value>
+  </data>
+  <data name="TooltipDocumentsMultiplePages" xml:space="preserve">
+    <value>Es werden mehrere Seite für die Daten dieses Dokumententyps erstellt
+(eine Seite pro Daten-Element, z.B. eine Seite pro Person).</value>
+  </data>
+  <data name="TooltipDocumentsTextPlaceholdersSupported" xml:space="preserve">
+    <value>Dieser Dokumententyp unterstützt Textplatzhalter.
+Textplatzhalter werden an ihrer jeweiligen Stelle im Dokument einfach ersetzt.
+Die Ersetzungsdaten werden anhand des Platzhalternamens bestimmt.</value>
+  </data>
+  <data name="TooltipDocumentsTablePlaceholdersSupported" xml:space="preserve">
+    <value>Tabellenplatzhalter werden von diesem Dokumenttyp unterstützt.
+Tabellenplatzhalter müssen sich innerhalb einer Tabelle des Dokuments befinden. Alle Tabellen im Dokument, die mindestens einen Platzhalter enthalten, werden verarbeitet.
+Die erste Zeile mit einem Platzhalter dient als Vorlage für die neuen Zeilen. Für jedes Datenelement wird eine neue Zeile erstellt.
+Die Ersetzungsdaten werden durch den Platzhalternamen bestimmt.</value>
+  </data>
 </root>

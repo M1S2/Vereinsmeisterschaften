@@ -16,15 +16,15 @@
 
             <!-- Button to create document -->
             <Button Command="{Binding CreateDocumentCommand}"
-                    CommandParameter="{Binding DocumentType}">
+                    CommandParameter="{Binding CreationConfig.DocumentStrategy.DocumentType}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}">
                         <Setter Property="IsEnabled" Value="True"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                            <DataTrigger Binding="{Binding CreationStatus.IsDocumentDataAvailable}" Value="False">
                                 <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding IsTemplateAvailable}" Value="False">
+                            <DataTrigger Binding="{Binding CreationStatus.IsDocumentTemplateAvailable}" Value="False">
                                 <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -41,6 +41,33 @@
                 </StackPanel>
             </Button>
 
+            <!-- Icons for single/multiple pages and supported placeholders (text and/or table) -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type controls:FontIcon}">
+                        <Setter Property="Margin" Value="5,10,5,0"/>
+                        <Setter Property="FontSize" Value="25"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <!-- Icon single page-->
+                <controls:FontIcon Glyph="&#xF000;"
+                                   Visibility="{Binding CreationConfig.DocumentStrategy.CreateMultiplePages, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                   ToolTip="{x:Static properties:Tooltips.TooltipDocumentsSinglePage}"/>
+                <!-- Icon multiple pages-->
+                <controls:FontIcon Glyph="&#xF571;"
+                                   Visibility="{Binding CreationConfig.DocumentStrategy.CreateMultiplePages, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   ToolTip="{x:Static properties:Tooltips.TooltipDocumentsMultiplePages}"/>
+                <!-- Icon Text-->
+                <controls:FontIcon Glyph="&#xF7B5;" FontSize="30"
+                                   Visibility="{Binding CreationConfig.DocumentStrategy.SupportTextPlaceholders, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   ToolTip="{x:Static properties:Tooltips.TooltipDocumentsTextPlaceholdersSupported}"/>
+                <!-- Icon Table-->
+                <controls:FontIcon Glyph="&#xF579;"
+                                   Visibility="{Binding CreationConfig.DocumentStrategy.SupportTablePlaceholders, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   ToolTip="{x:Static properties:Tooltips.TooltipDocumentsTablePlaceholdersSupported}"/>
+            </StackPanel>
+
             <!-- Grid to overlay the success or warning messages (stacked) with the progress ring (only once is visible at the same time) -->
             <Grid MinHeight="90">
                 <StackPanel Orientation="Vertical">
@@ -52,10 +79,10 @@
                             <Style TargetType="{x:Type StackPanel}">
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsSuccessful}" Value="False">
+                                    <DataTrigger Binding="{Binding CreationStatus.IsDocumentCreationSuccessful}" Value="False">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                                    <DataTrigger Binding="{Binding CreationStatus.IsDocumentDataAvailable}" Value="False">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -94,7 +121,7 @@
                     <StackPanel Margin="0,10,0,0"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Visibility="{Binding IsDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                                Visibility="{Binding CreationStatus.IsDocumentDataAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
                         <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
                         <TextBlock Margin="5,0,0,0"
                                    Text="{x:Static properties:Resources.NoDataAvailableWarningString}"/>
@@ -104,7 +131,7 @@
                     <StackPanel Margin="0,10,0,0"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Visibility="{Binding IsTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                                Visibility="{Binding CreationStatus.IsDocumentTemplateAvailable, Converter={StaticResource InvertedBoolVisibilityConverter}}">
                         <ContentControl Template="{StaticResource ControlTemplateWarningIndicator}"/>
                         <TextBlock Margin="5,0,0,0"
                                    Text="{x:Static properties:Resources.NoTemplateAvailableWarningString}"/>
@@ -117,10 +144,10 @@
                         <Style TargetType="{x:Type controls:ProgressRing}">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsRunning}" Value="False">
+                                <DataTrigger Binding="{Binding CreationStatus.IsDocumentCreationRunning}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding IsDataAvailable}" Value="False">
+                                <DataTrigger Binding="{Binding CreationStatus.IsDocumentDataAvailable}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -134,7 +161,7 @@
                 <DockPanel.Style>
                     <Style TargetType="{x:Type DockPanel}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding AvailableItemOrderings}" Value="{x:Null}">
+                            <DataTrigger Binding="{Binding CreationConfig.AvailableItemOrderings}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -149,8 +176,8 @@
                     <TextBlock Margin="10,10,10,0"
                                Text="{x:Static properties:Resources.SortString}"/>
                     <ComboBox Margin="10,0,10,0"
-                              ItemsSource="{Binding AvailableItemOrderings}"
-                              SelectedItem="{Binding ItemOrdering, Mode=TwoWay}">
+                              ItemsSource="{Binding CreationConfig.AvailableItemOrderings}"
+                              SelectedItem="{Binding CreationConfig.CurrentItemOrdering, Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
@@ -165,7 +192,7 @@
                 <DockPanel.Style>
                     <Style TargetType="{x:Type DockPanel}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding AvailableItemFilters}" Value="{x:Null}">
+                            <DataTrigger Binding="{Binding CreationConfig.AvailableItemFilters}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -180,8 +207,8 @@
                     <TextBlock Margin="10,10,10,0"
                                Text="{x:Static properties:Resources.FilterModeString}"/>
                     <ComboBox Margin="10,0,10,0"
-                              ItemsSource="{Binding AvailableItemFilters}"
-                              SelectedItem="{Binding ItemFilter, Mode=TwoWay}">
+                              ItemsSource="{Binding CreationConfig.AvailableItemFilters}"
+                              SelectedItem="{Binding CreationConfig.CurrentItemFilter, Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}"/>
@@ -190,7 +217,7 @@
                     </ComboBox>
                     <!-- Dynamic control to edit the filter parameter -->
                     <ContentControl Margin="10,5,10,0"
-                                    Content="{Binding ItemFilter}"
+                                    Content="{Binding CreationConfig.CurrentItemFilter}"
                                     ContentTemplateSelector="{Binding FilterParameterEditorTemplateSelector}"/>
                 </StackPanel>
             </DockPanel>

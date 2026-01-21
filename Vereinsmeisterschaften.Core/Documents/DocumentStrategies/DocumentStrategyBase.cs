@@ -86,7 +86,15 @@ namespace Vereinsmeisterschaften.Core.Documents.DocumentStrategies
             }
         }
         /// <inheritdoc/>
-        public List<int> PostfixNumbersSupported => PlaceholderResolver.PostfixNumbersSupported ?? Enumerable.Repeat(0, PlaceholderResolver?.SupportedPlaceholderKeys?.Count ?? 0).ToList();
+        public List<int> PostfixNumbersSupported
+        {
+            get
+            {
+                List<int> postfixNumbersResolver = PlaceholderResolver.PostfixNumbersSupported ?? Enumerable.Repeat(0, PlaceholderResolver?.SupportedPlaceholderKeys?.Count ?? 0).ToList();
+                postfixNumbersResolver.InsertRange(0, Enumerable.Repeat(0, AlwaysSupportedPlaceholderKeys.Count));      // Always supported placeholders don't support postfix numbers
+                return postfixNumbersResolver;
+            }
+        }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

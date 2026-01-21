@@ -423,4 +423,23 @@ Relative paths are relative to the workspace path.</value>
   <data name="TooltipWorkspaceNew" xml:space="preserve">
     <value>Create a new workspace including the necessary configuration files and when requested the default templates.</value>
   </data>
+  <data name="TooltipDocumentsSinglePage" xml:space="preserve">
+    <value>Only a single page will be created for the data of this document type
+(or, if the content becomes too long, there will be multiple pages).</value>
+  </data>
+  <data name="TooltipDocumentsMultiplePages" xml:space="preserve">
+    <value>Multiple pages will be created for the data of this document type
+(one page for each data item, e.g. one page per person).</value>
+  </data>
+  <data name="TooltipDocumentsTextPlaceholdersSupported" xml:space="preserve">
+    <value>Text placeholders are supported by this document type.
+Text placeholders are simply replaced where they occur in the document.
+The replacement data is determined by the placeholder name.</value>
+  </data>
+  <data name="TooltipDocumentsTablePlaceholdersSupported" xml:space="preserve">
+    <value>Table placeholders are supported by this document type.
+Table placeholders must be inside a table of the document. All tables in the document that contain at least one placeholder will be processed.
+The first row that contains a placeholder will be used as a pattern for the new rows. There will be a new row for each data item.
+The replacement data is determined by the placeholder name.</value>
+  </data>
 </root>

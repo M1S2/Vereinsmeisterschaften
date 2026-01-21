@@ -1,0 +1,6 @@
+var namespace_vereinsmeisterschaften_1_1_core_1_1_documents =
+[
+    [ "DocumentFileConverters", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters.html", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters" ],
+    [ "DocumentPlaceholderResolvers", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers.html", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers" ],
+    [ "DocumentStrategies", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies.html", "namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies" ]
+];

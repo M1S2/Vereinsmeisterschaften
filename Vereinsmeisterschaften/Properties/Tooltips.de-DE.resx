@@ -428,7 +428,7 @@ Relative Pfade sind relativ zum Pfad des Arbeitsbereichs.</value>
   </data>
   <data name="TooltipDocumentsMultiplePages" xml:space="preserve">
     <value>Es werden mehrere Seite für die Daten dieses Dokumententyps erstellt
-(eine Seite pro Daten-Element, z.B. eine Seite pro Person).</value>
+(eine Seite pro Datenelement, z.B. eine Seite pro Person).</value>
   </data>
   <data name="TooltipDocumentsTextPlaceholdersSupported" xml:space="preserve">
     <value>Dieser Dokumententyp unterstützt Textplatzhalter.
@@ -437,7 +437,7 @@ Die Ersetzungsdaten werden anhand des Platzhalternamens bestimmt.</value>
   </data>
   <data name="TooltipDocumentsTablePlaceholdersSupported" xml:space="preserve">
     <value>Tabellenplatzhalter werden von diesem Dokumenttyp unterstützt.
-Tabellenplatzhalter müssen sich innerhalb einer Tabelle des Dokuments befinden. Alle Tabellen im Dokument, die mindestens einen Platzhalter enthalten, werden verarbeitet.
+Tabellenplatzhalter müssen sich innerhalb einer Tabelle des Dokuments befinden. Alle Tabellen im Dokument, die mindestens einen unterstützten Platzhalter enthalten, werden verarbeitet.
 Die erste Zeile mit einem Platzhalter dient als Vorlage für die neuen Zeilen. Für jedes Datenelement wird eine neue Zeile erstellt.
 Die Ersetzungsdaten werden durch den Platzhalternamen bestimmt.</value>
   </data>

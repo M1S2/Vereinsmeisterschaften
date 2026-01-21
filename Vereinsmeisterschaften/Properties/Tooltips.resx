@@ -438,7 +438,7 @@ The replacement data is determined by the placeholder name.</value>
   </data>
   <data name="TooltipDocumentsTablePlaceholdersSupported" xml:space="preserve">
     <value>Table placeholders are supported by this document type.
-Table placeholders must be inside a table of the document. All tables in the document that contain at least one placeholder will be processed.
+Table placeholders must be inside a table of the document. All tables in the document that contain at least one supported placeholder will be processed.
 The first row that contains a placeholder will be used as a pattern for the new rows. There will be a new row for each data item.
 The replacement data is determined by the placeholder name.</value>
   </data>

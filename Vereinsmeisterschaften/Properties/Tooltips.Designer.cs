@@ -264,7 +264,7 @@ namespace Vereinsmeisterschaften.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Table placeholders are supported by this document type.
-        ///Table placeholders must be inside a table of the document. All tables in the document that contain at least one placeholder will be processed.
+        ///Table placeholders must be inside a table of the document. All tables in the document that contain at least one supported placeholder will be processed.
         ///The first row that contains a placeholder will be used as a pattern for the new rows. There will be a new row for each data item.
         ///The replacement data is determined by the placeholder name. ähnelt.
         /// </summary>
@@ -445,7 +445,7 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create a order for the starts. This can be done either manually (by adding a variant and manually dragging the starts from the right area to the middle) or automatically (variants are randomly created and evaluated according to various criteria).
         ///Each race variant is scored from 0% (poor) to 100% (perfect). In the workspace, you can set the weighting or various parameters for the automatic calculation.
-        ///You can also highlight specific starts. For example, all of a person&apos;s starts to che [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///You can also highlight specific starts. For example, all of a person&apos;s starts to c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoPrepareRacesPage {
             get {
@@ -480,7 +480,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///- WorkspaceSettings.json: JSON file with all settings for the workspace.
         ///- Person.csv: List of all people and swim times.
         ///- Competitions.csv: List of all available competitions.
-        ///- BestRace.csv: The race marked as a good option is saved here. If no race [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///- BestRace.csv: The race marked as a good option is saved here. If n [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoWorkspacePage {
             get {

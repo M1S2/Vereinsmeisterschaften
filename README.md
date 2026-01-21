@@ -79,6 +79,8 @@ Hier können verschiedene Dokumente erstellt werden, die vor, während oder nach
 
 Außerdem ist eine Übersicht über alle verfügbaren Platzhalter vorhanden, die in den Dokumenten verwendet werden können.
 
+Mehr Details sind im Kapitel [Dokumenten Templates](#dokumenten-templates) zu finden.
+
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Documents.png" width="100%"></img>
 
 ### Analysen
@@ -129,6 +131,37 @@ Die Punkte eines Starts werden folgendermaßen berechnet:
 - Null Punkte, sobald `ErschwommeneZeit >= 2 * WettkampfVorgabeZeit`
 
 Der Start mit der höchsten Punktezahl wird als "Bestes Rennen" gewertet und für die Gesamtwertung herangezogen. Es wird kein Durchschnitt gebildet.
+
+## Dokumenten Templates
+Bei der Erstellung von Dokumenten werden Template Dateien verwendet, die als Vorlage für das spätere Dokument verwendet werden.
+Bei den Templates handelt es sich um gewöhnliche .docx Dateien, die z.B. in Microsoft Word oder Libre Office erstellt werden können. Diese Dateien legen die Struktur und das Aussehen für die späteren Ausgabedokumente fest. Daten aus der Vereinsmeisterschaften Software können über Platzhalter eingefügt werden.
+Platzhalter werden dabei über bestimmte Zeichen (über die Arbeitsbereich Einstellungen konfigurierbar) gekennzeichnet, die vor und nach dem Platzhalternamen stehen (z.B. "%Name%", wobei "%" der Platzhalter Marker ist).
+
+### Verfügbare Platzhalter
+Auf der Seite [Dokumente erstellen](#dokumente-erstellen) ist eine Tabelle verfügbar, die alle verfügbaren Platzhalter auflistet. Nicht jeder Platzhalter kann in jedem Dokumententyp verwendet werden. Das wird auch in der Tabelle aufgeschlüsselt.
+
+### Textplatzhalter / Tabellenplatzhalter
+Die Platzhalter können entweder direkt im Text oder in Tabellen verwendet werden:
+- **Text:** Textplatzhalter werden an ihrer jeweiligen Stelle im Dokument einfach ersetzt. Die Ersetzungsdaten werden anhand des Platzhalternamens bestimmt.
+- **Tabelle:** Tabellenplatzhalter müssen sich innerhalb einer Tabelle des Dokuments befinden. Alle Tabellen im Dokument, die mindestens einen unterstützten Platzhalter enthalten, werden verarbeitet. Die erste Zeile mit einem Platzhalter dient als Vorlage für die neuen Zeilen. Für jedes Datenelement wird eine neue Zeile erstellt (z.B. eine neue Zeile je Person). Die Ersetzungsdaten werden durch den Platzhalternamen bestimmt.
+
+Je nach Dokumententyp werden entweder Text- oder Tabellenplatzhalter unterstützt. Das wird auf der Seite [Dokumente erstellen](#dokumente-erstellen) unter dem jeweiligen Button zum Erstellen des Dokuments mit Icons dargestellt.
+
+### Eine Seite vs. Mehrere Seiten
+Je nach Dokumententyp wird entweder eine Seite oder mehrere Seiten erstellt. Das wird auf der Seite [Dokumente erstellen](#dokumente-erstellen) unter dem jeweiligen Button zum Erstellen des Dokuments mit Icons dargestellt.
+- **Eine Seite:** Es wird nur eine Seite für die Daten dieses Dokumententyps erstellt (bzw. falls der Inhalt zu lang wird, gibt es mehrere Seiten). Z.B. wird aus einer Liste an Personen eine Seite mit einer Tabelle mit allen Personen erzeugt ("Übersichtsliste erstellen").
+- **Mehrere Seiten:** Es werden mehrere Seite für die Daten dieses Dokumententyps erstellt (eine Seite pro Datenelement, z.B. eine Seite pro Person). Z.B. wird aus einer Liste an Personen je eine Seite pro Person erzeugt ("Urkunden erstellen").
+
+### PDF Erstellung
+In den Arbeitsbereich Einstellungen kann konfiguriert werden, dass neben dem .docx Ausgabedokumente auch ein .pdf erstellt werden soll. Für die Umwandlung gibt es momentan folgende unterstützte Programme:
+- Word (Microsoft Office Word): muss auf dem PC installiert sein.
+- Libre Office: muss auf dem PC installiert sein.
+
+Welches Programm zur Umwandlung verwendet wird, wird folgendermaßen bestimmt:
+1. Es wird bestimmt, mit welchem Programm das Template .docx erstellt wurde. Ist das ermittelte Programm installiert, wird es auch zur Umwandlung verwendet (z.B. Template mit Word erstellt und Word installiert -> Word verwenden).
+2. Ist das ermittelte Programm nicht installiert, wird das nächste installierte Programm verwendet (z.B. Template mit Word erstellt, Word NICHT installiert, Libre Office installiert -> Libre Office verwenden).
+3. Gibt es einen Fehler bei der Umwandlung, wird auch das nächste installierte Programm probiert.
+4. Wurde kein passendes Programm gefunden oder gab es einen Fehler bei der Umwandlung, wird eine Fehlermeldung angezeigt.
 
 ## Wettkampf Zuordnung
 Jeder Start einer Person muss einem Wettkampf zugeordnet werden. Dies geschieht abhängig vom gewählten Modus. Folgendes Diagramm zeigt exemplarisch die Zuordnung für Brust Starts (Wasserflöhe werden immer dem ersten gefundenen Wasserfloh-Wettkampf zugeordnet):

@@ -54,7 +54,9 @@
     </controls:MetroWindow.RightWindowCommands>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout Header="{x:Static properties:Resources.ManageWorkspaceString}" IsOpen="{Binding IsWorkspaceFlyoutOpen}" IsPinned="False" Position="Left">
+            <controls:Flyout Header="{x:Static properties:Resources.ManageWorkspaceString}"
+                             IsOpen="{Binding IsWorkspaceFlyoutOpen}" IsPinned="False" Position="Left"
+                             Theme="Adapt" BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1">
                 <views:WorkspaceManagerUserControl IsSidebar="True" Margin="{StaticResource MediumLeftTopRightBottomMargin}"/>
             </controls:Flyout>
         </controls:FlyoutsControl>

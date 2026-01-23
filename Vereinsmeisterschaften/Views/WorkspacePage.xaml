@@ -53,9 +53,9 @@
                       IsExpanded="{Binding IsWorkspaceManagerExpanded, Mode=TwoWay}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{x:Static properties:Resources.ManageWorkspaceString}" VerticalAlignment="Center"/>
-                        <TextBlock Text=":  " VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding CurrentWorkspaceFolder}" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static properties:Resources.ManageWorkspaceString}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                        <TextBlock Text=":  " VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                        <TextBlock Text="{Binding CurrentWorkspaceFolder}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Style.Triggers>

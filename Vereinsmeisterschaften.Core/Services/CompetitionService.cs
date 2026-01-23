@@ -1,7 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
@@ -160,6 +159,10 @@ namespace Vereinsmeisterschaften.Core.Services
                         if (data is Enum dataEnum)
                         {
                             return EnumCoreLocalizedStringHelper.Convert(dataEnum);
+                        }
+                        else if (data is bool dataBool)
+                        {
+                            return dataBool ? "X" : "";
                         }
                         else
                         {
@@ -396,6 +399,24 @@ namespace Vereinsmeisterschaften.Core.Services
             foreach (Person person in _personService.GetPersons())
             {
                 UpdateAllCompetitionsForPerson(person);
+            }
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
+        public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
+        {
+            RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
+
+            foreach(Competition competition in _competitionList)
+            {
+                RudolphTableEntry foundRudolphTableEntry = rudolphTable.GetEntryByParameters(competition.Gender, competition.Age, competition.SwimmingStyle, competition.Distance, rudolphScore);
+                if (foundRudolphTableEntry != null)
+                {
+                    competition.BestTime = foundRudolphTableEntry.Time;
+                    competition.IsTimeFromRudolphTable = true;
+                }
             }
         }
     }

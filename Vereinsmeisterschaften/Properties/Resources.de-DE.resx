@@ -725,4 +725,34 @@ Alle Starts sind zugewiesen.</value>
   <data name="NoString" xml:space="preserve">
     <value>Nein</value>
   </data>
+  <data name="UpdateCompetitionTimesFromRudolphTableString" xml:space="preserve">
+    <value>Wettkampfzeiten aus Rudolph Tabelle aktualisieren</value>
+  </data>
+  <data name="SelectRudolphTableString" xml:space="preserve">
+    <value>Rudolph Tabelle (.csv) auswählen</value>
+  </data>
+  <data name="FileDialogCsvFilterString" xml:space="preserve">
+    <value>CSV Dateien (*.csv)|*.csv</value>
+  </data>
+  <data name="EnterRudolphScoreString" xml:space="preserve">
+    <value>Bitte die Rudolph Punkte (1 - 20) eingeben, die verwendet werden sollen, um die richtigen Zeilen in der Rudolph Tabelle auszuwählen (z.B. 14).</value>
+  </data>
+  <data name="RudolphTableString" xml:space="preserve">
+    <value>Rudolph Tabelle</value>
+  </data>
+  <data name="FinishedUpdateFromRudolphTableString" xml:space="preserve">
+    <value>Update aus der Rudolph Tabelle fertig.</value>
+  </data>
+  <data name="ErrorUpdatingFromRudolphTableString" xml:space="preserve">
+    <value>Fehler während dem Update aus der Rudolph Tabelle (z.B. falsche Eingabe der Rudolph Punkte).</value>
+  </data>
+  <data name="ParsedFromRudolphTableString" xml:space="preserve">
+    <value>Aus Rudolph Tabelle</value>
+  </data>
+  <data name="RudolphTableExplanationString" xml:space="preserve">
+    <value>Die Rudolph-Tabelle des DSV ist ein zentrales Instrument zur altersgerechten Bewertung von Schwimmzeiten, das von Dr. Klaus Rudolph entwickelt wurde.
+Sie ordnet erzielte Zeiten ab 8 Jahren über ein Punktesystem (meist 1-20) in Leistungsniveaus ein, wobei 20 Punkte Weltniveau entsprechen.
+Sie basiert auf einer Analyse der ewigen Bestenlisten der Altersklassen im DSV und wird jährlich an die Leistungsentwicklung angepasst.
+Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Erwachsenenbereich.</value>
+  </data>
 </root>

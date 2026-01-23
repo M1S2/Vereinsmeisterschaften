@@ -19,7 +19,7 @@ namespace Vereinsmeisterschaften.Core.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class PropertyNameLocalizations {
@@ -102,6 +102,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         internal static string Competition_Id {
             get {
                 return ResourceManager.GetString("Competition_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Is Time from Rudolph Table ähnelt.
+        /// </summary>
+        internal static string Competition_IsTimeFromRudolphTable {
+            get {
+                return ResourceManager.GetString("Competition_IsTimeFromRudolphTable", resourceCulture);
             }
         }
         

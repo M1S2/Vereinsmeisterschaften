@@ -31,15 +31,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xF0E3;"/>
             <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CompetitionPageTitle}" />
             <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoCompetitionPage}"/>
         </StackPanel>
 
         <!-- DataGrid with all competitions -->
-        <DataGrid Grid.Row="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+        <DataGrid Grid.Row="1" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
                   ItemsSource="{Binding CompetitionsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
                   SelectedItem="{Binding SelectedCompetition}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedCompetition}">
@@ -146,7 +150,18 @@
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding BestTime, StringFormat='mm\\:ss\\.fff'}" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding BestTime, StringFormat='mm\\:ss\\.fff'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border Margin="10,0,0,0" Background="{DynamicResource BrushOk}" CornerRadius="5" VerticalAlignment="Center"
+                                        Visibility="{Binding IsTimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentControl Margin="5,0" Template="{StaticResource ControlTemplateOkIndicator}"/>
+                                        <TextBlock Margin="5,0" VerticalAlignment="Center"
+                                                   Text="{x:Static properties:Resources.ParsedFromRudolphTableString}"
+                                                   Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -182,7 +197,9 @@
         </DataGrid>
 
         <!-- Add Competition Button -->
-        <Button Grid.Row="2" Margin="{StaticResource MediumLeftTopRightMargin}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left"
+        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"
+                Margin="{StaticResource MediumLeftTopRightMargin}"
+                Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
                 Command="{Binding AddCompetitionCommand}">
             <StackPanel Orientation="Horizontal">
                 <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
@@ -190,5 +207,24 @@
             </StackPanel>
         </Button>
 
+        <!-- Controls for Rudolph table -->
+        <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                  Header="{x:Static properties:Resources.RudolphTableString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+            <StackPanel Orientation="Vertical" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Static properties:Resources.RudolphTableExplanationString}" TextWrapping="Wrap"/>
+                
+                <!-- Update Competition Times from Rudolph table Button -->
+                <Button Margin="0,10,0,0" HorizontalAlignment="Left"
+                        Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                        Command="{Binding UpdateCompetitionTimesFromRudolphTableCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:FontIcon FontSize="20" Glyph="&#xE916;"/>
+                        <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+        
     </Grid>
 </Page>

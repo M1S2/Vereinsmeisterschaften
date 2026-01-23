@@ -693,6 +693,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter the rudolph score (1 - 20) that should be used to get the correct lines from the rudolph table (e.g. 14). ähnelt.
+        /// </summary>
+        public static string EnterRudolphScoreString {
+            get {
+                return ResourceManager.GetString("EnterRudolphScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         public static string ErrorString {
@@ -702,11 +711,38 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while updating from the Rudolph Table (e.g. wrong input of rudolph score). ähnelt.
+        /// </summary>
+        public static string ErrorUpdatingFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("ErrorUpdatingFromRudolphTableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CSV Files (*.csv)|*.csv ähnelt.
+        /// </summary>
+        public static string FileDialogCsvFilterString {
+            get {
+                return ResourceManager.GetString("FileDialogCsvFilterString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Filter Mode ähnelt.
         /// </summary>
         public static string FilterModeString {
             get {
                 return ResourceManager.GetString("FilterModeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finished updating from the Rudolph Table. ähnelt.
+        /// </summary>
+        public static string FinishedUpdateFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("FinishedUpdateFromRudolphTableString", resourceCulture);
             }
         }
         
@@ -1018,6 +1054,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Parsed from Rudolph Table ähnelt.
+        /// </summary>
+        public static string ParsedFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("ParsedFromRudolphTableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die People ähnelt.
         /// </summary>
         public static string PeoplePageTitle {
@@ -1280,6 +1325,27 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
+        ///It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
+        ///It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
+        ///The table considers performance levels from age 8 un [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string RudolphTableExplanationString {
+            get {
+                return ResourceManager.GetString("RudolphTableExplanationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rudolph Table ähnelt.
+        /// </summary>
+        public static string RudolphTableString {
+            get {
+                return ResourceManager.GetString("RudolphTableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competitions saved ähnelt.
         /// </summary>
         public static string SavedStatusCompetitionsString {
@@ -1393,6 +1459,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ScoreStyleOrderString {
             get {
                 return ResourceManager.GetString("ScoreStyleOrderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select a Rudolph Table (.csv) ähnelt.
+        /// </summary>
+        public static string SelectRudolphTableString {
+            get {
+                return ResourceManager.GetString("SelectRudolphTableString", resourceCulture);
             }
         }
         
@@ -1726,6 +1801,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string UnsavedChangesString {
             get {
                 return ResourceManager.GetString("UnsavedChangesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update Competition Times from Rudolph Table ähnelt.
+        /// </summary>
+        public static string UpdateCompetitionTimesFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("UpdateCompetitionTimesFromRudolphTableString", resourceCulture);
             }
         }
         

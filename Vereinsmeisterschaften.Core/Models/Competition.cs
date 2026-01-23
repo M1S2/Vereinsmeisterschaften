@@ -31,6 +31,7 @@ namespace Vereinsmeisterschaften.Core.Models
             this.Age = other.Age;
             this.Distance = other.Distance;
             this.BestTime = other.BestTime;
+            this.IsTimeFromRudolphTable = other.IsTimeFromRudolphTable;
         }
 
         #endregion
@@ -102,7 +103,19 @@ namespace Vereinsmeisterschaften.Core.Models
         public TimeSpan BestTime
         {
             get => _bestTime;
-            set => SetProperty(ref _bestTime, value);
+            set { SetProperty(ref _bestTime, value); IsTimeFromRudolphTable = false; }
+        }
+
+        private bool _isTimeFromRudolphTable = false;
+        /// <summary>
+        /// True, when the <see cref="BestTime"/> was the value taken from the <see cref="RudolphTable"/>.
+        /// This flag will be <see langword="false"/> as soon as the <see cref="BestTime"/> is changed manually.
+        /// </summary>
+        [FileServiceOrder]
+        public bool IsTimeFromRudolphTable
+        {
+            get => _isTimeFromRudolphTable;
+            set => SetProperty(ref _isTimeFromRudolphTable, value);
         }
 
         #endregion
@@ -127,6 +140,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(Age): dataObj.Age = byte.Parse(value); break;
                 case nameof(Distance): dataObj.Distance = ushort.Parse(value); break;
                 case nameof(BestTime): dataObj.BestTime = TimeSpan.Parse(value); break;
+                case nameof(IsTimeFromRudolphTable): dataObj.IsTimeFromRudolphTable = !string.IsNullOrEmpty(value); break;
                 default: break;
             }
         }
@@ -143,7 +157,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Competition to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Competition"/></returns>
         public override bool Equals(object obj)
-            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime).Equals((Id, Gender, SwimmingStyle, Age, Distance, BestTime));
+            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime, c.IsTimeFromRudolphTable).Equals((Id, Gender, SwimmingStyle, Age, Distance, BestTime, IsTimeFromRudolphTable));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -168,7 +182,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-            => $"{Id}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age})";
+            => $"{Id}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age}{(IsTimeFromRudolphTable ? ", from rudolph table" : "")})";
 
         /// <summary>
         /// Create a new object that has the same property values than this one

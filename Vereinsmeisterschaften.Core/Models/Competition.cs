@@ -102,7 +102,19 @@ namespace Vereinsmeisterschaften.Core.Models
         public TimeSpan BestTime
         {
             get => _bestTime;
-            set => SetProperty(ref _bestTime, value);
+            set { SetProperty(ref _bestTime, value); TimeFromRudolphTable = false; }
+        }
+
+        private bool _timeFromRudolphTable = false;
+        /// <summary>
+        /// True, when the <see cref="BestTime"/> was the value taken from the <see cref="RudolphTable"/>.
+        /// This flag will be <see langword="false"/> as soon as the <see cref="BestTime"/> is changed manually.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool TimeFromRudolphTable
+        {
+            get => _timeFromRudolphTable;
+            set => SetProperty(ref _timeFromRudolphTable, value);
         }
 
         #endregion

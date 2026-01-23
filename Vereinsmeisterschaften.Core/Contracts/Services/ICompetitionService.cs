@@ -71,5 +71,12 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Update all <see cref="PersonStart"/> and the <see cref="Person.AvailableCompetitions"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
         void UpdateAllCompetitionsForPerson();
+
+        /// <summary>
+        /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.
+        /// </summary>
+        /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
+        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
+        void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
     }
 }

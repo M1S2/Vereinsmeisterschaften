@@ -724,4 +724,34 @@
   <data name="NoString" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="UpdateCompetitionTimesFromRudolphTableString" xml:space="preserve">
+    <value>Update Competition Times from Rudolph Table</value>
+  </data>
+  <data name="SelectRudolphTableString" xml:space="preserve">
+    <value>Select a Rudolph Table (.csv)</value>
+  </data>
+  <data name="FileDialogCsvFilterString" xml:space="preserve">
+    <value>CSV Files (*.csv)|*.csv</value>
+  </data>
+  <data name="EnterRudolphScoreString" xml:space="preserve">
+    <value>Please enter the rudolph score (1 - 20) that should be used to get the correct lines from the rudolph table (e.g. 14).</value>
+  </data>
+  <data name="RudolphTableString" xml:space="preserve">
+    <value>Rudolph Table</value>
+  </data>
+  <data name="FinishedUpdateFromRudolphTableString" xml:space="preserve">
+    <value>Finished updating from the Rudolph Table.</value>
+  </data>
+  <data name="ErrorUpdatingFromRudolphTableString" xml:space="preserve">
+    <value>Error while updating from the Rudolph Table (e.g. wrong input of rudolph score).</value>
+  </data>
+  <data name="ParsedFromRudolphTableString" xml:space="preserve">
+    <value>Parsed from Rudolph Table</value>
+  </data>
+  <data name="RudolphTableExplanationString" xml:space="preserve">
+    <value>The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
+It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
+It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
+The table considers performance levels from age 8 until the transition to adulthood.</value>
+  </data>
 </root>

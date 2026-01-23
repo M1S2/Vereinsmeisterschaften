@@ -153,7 +153,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding BestTime, StringFormat='mm\\:ss\\.fff'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Border Margin="10,0,0,0" Background="{DynamicResource BrushOk}" CornerRadius="5" VerticalAlignment="Center"
-                                        Visibility="{Binding TimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding IsTimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal">
                                         <ContentControl Margin="5,0" Template="{StaticResource ControlTemplateOkIndicator}"/>
                                         <TextBlock Margin="5,0" VerticalAlignment="Center"

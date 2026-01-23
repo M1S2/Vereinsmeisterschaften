@@ -195,4 +195,7 @@
   <data name="Person_FriendGroupIDs" xml:space="preserve">
     <value>Freunde</value>
   </data>
+  <data name="Competition_IsTimeFromRudolphTable" xml:space="preserve">
+    <value>Zeit aus Rudolph Tabelle?</value>
+  </data>
 </root>

@@ -160,6 +160,10 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             return EnumCoreLocalizedStringHelper.Convert(dataEnum);
                         }
+                        else if (data is bool dataBool)
+                        {
+                            return dataBool ? "X" : "";
+                        }
                         else
                         {
                             return data.ToString();
@@ -411,7 +415,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 if (foundRudolphTableEntry != null)
                 {
                     competition.BestTime = foundRudolphTableEntry.Time;
-                    competition.TimeFromRudolphTable = true;
+                    competition.IsTimeFromRudolphTable = true;
                 }
             }
         }

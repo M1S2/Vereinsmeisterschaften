@@ -755,4 +755,25 @@ Sie ordnet erzielte Zeiten ab 8 Jahren über ein Punktesystem (meist 1-20) in Le
 Sie basiert auf einer Analyse der ewigen Bestenlisten der Altersklassen im DSV und wird jährlich an die Leistungsentwicklung angepasst.
 Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Erwachsenenbereich.</value>
   </data>
+  <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
+    <value>Wettkämpfe aus Rudolph Tabelle erstellen</value>
+  </data>
+  <data name="CompetitionDistanceRulesString" xml:space="preserve">
+    <value>Regeln für Wettkampf Distanzen</value>
+  </data>
+  <data name="MinAgeString" xml:space="preserve">
+    <value>Min. Alter</value>
+  </data>
+  <data name="MaxAgeString" xml:space="preserve">
+    <value>Max. Alter</value>
+  </data>
+  <data name="RemoveDistanceRuleString" xml:space="preserve">
+    <value>Wettkampf Distanz Regeln löschen</value>
+  </data>
+  <data name="RemoveDistanceRuleConfirmationString" xml:space="preserve">
+    <value>Soll diese Wettkampf Distanz Regel wirklich gelöscht werden? Das kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="AddNewDistanceRule" xml:space="preserve">
+    <value>Neue Wettkampf Distanz Regel hinzufügen</value>
+  </data>
 </root>

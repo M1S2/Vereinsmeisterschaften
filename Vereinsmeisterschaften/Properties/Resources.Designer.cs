@@ -88,6 +88,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new distance rule ähnelt.
+        /// </summary>
+        public static string AddNewDistanceRule {
+            get {
+                return ResourceManager.GetString("AddNewDistanceRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new friend group ähnelt.
         /// </summary>
         public static string AddNewFriendGroupString {
@@ -396,6 +405,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Distance Rules ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceRulesString {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRulesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
         /// </summary>
         public static string CompetitionIDString {
@@ -500,6 +518,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CreateCertificatesString {
             get {
                 return ResourceManager.GetString("CreateCertificatesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Competitions from Rudolph Table ähnelt.
+        /// </summary>
+        public static string CreateCompetitionsFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("CreateCompetitionsFromRudolphTableString", resourceCulture);
             }
         }
         
@@ -882,6 +909,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max. Age ähnelt.
+        /// </summary>
+        public static string MaxAgeString {
+            get {
+                return ResourceManager.GetString("MaxAgeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Maximum number of variant calculation loops ähnelt.
         /// </summary>
         public static string MaxRacesVariantCalculationLoopsString {
@@ -896,6 +932,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string MedleyString {
             get {
                 return ResourceManager.GetString("MedleyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Min. Age ähnelt.
+        /// </summary>
+        public static string MinAgeString {
+            get {
+                return ResourceManager.GetString("MinAgeString", resourceCulture);
             }
         }
         
@@ -1240,6 +1285,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string RemoveCompetitionString {
             get {
                 return ResourceManager.GetString("RemoveCompetitionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really remove this distance rule? This can&apos;t be undone! ähnelt.
+        /// </summary>
+        public static string RemoveDistanceRuleConfirmationString {
+            get {
+                return ResourceManager.GetString("RemoveDistanceRuleConfirmationString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Distance Rule ähnelt.
+        /// </summary>
+        public static string RemoveDistanceRuleString {
+            get {
+                return ResourceManager.GetString("RemoveDistanceRuleString", resourceCulture);
             }
         }
         

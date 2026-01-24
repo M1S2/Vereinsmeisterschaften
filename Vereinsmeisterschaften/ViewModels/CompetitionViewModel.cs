@@ -48,6 +48,11 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         set => SetProperty(ref _selectedCompetition, value);
     }
 
+    /// <summary>
+    /// List with all <see cref="CompetitionDistanceRule"/> objects.
+    /// </summary>
+    public ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules => _competitionService.CompetitionDistanceRules;
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
@@ -79,7 +84,7 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+    
     private ICommand _addCompetitionCommand;
     /// <summary>
     /// Command to add a new competition
@@ -103,6 +108,33 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
             _competitionService.RemoveCompetition(competition);
         }
     }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _addDistanceRuleCommand;
+    /// <summary>
+    /// Command to add a new distance rule
+    /// </summary>
+    public ICommand AddDistanceRuleCommand => _addDistanceRuleCommand ?? (_addDistanceRuleCommand = new RelayCommand(() =>
+    {
+        CompetitionDistanceRule rule = new CompetitionDistanceRule();
+        _competitionService.AddDistanceRule(rule);
+    }));
+
+    private ICommand _removeDistanceRuleCommand;
+    /// <summary>
+    /// Command to remove a distance rule from the list
+    /// </summary>
+    public ICommand RemoveDistanceRuleCommand => _removeDistanceRuleCommand ?? (_removeDistanceRuleCommand = new RelayCommand<CompetitionDistanceRule>(async (rule) =>
+    {
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RemoveDistanceRuleString, Resources.RemoveDistanceRuleConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+        if (result == MessageDialogResult.Affirmative)
+        {
+            _competitionService.RemoveDistanceRule(rule);
+        }
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private ICommand _updateCompetitionTimesFromRudolphTableCommand;
     /// <summary>
@@ -137,6 +169,41 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         }
     }));
 
+    private ICommand _createCompetitionsFromRudolphTableCommand;
+    /// <summary>
+    /// Command to create the competitions from a rudolph table.
+    /// </summary>
+    public ICommand CreateCompetitionsFromRudolphTableCommand => _createCompetitionsFromRudolphTableCommand ?? (_createCompetitionsFromRudolphTableCommand = new RelayCommand(async () =>
+    {
+#warning TBD: Warning dialog that all competitions will be deleted..........
+
+        OpenFileDialog fileDialog = new OpenFileDialog();
+        fileDialog.InitialDirectory = _workspaceService.PersistentPath;
+        fileDialog.Filter = Resources.FileDialogCsvFilterString;
+        fileDialog.Title = Resources.SelectRudolphTableString;
+        if (fileDialog.ShowDialog() == DialogResult.OK)
+        {
+            string inputStr = await _dialogCoordinator.ShowInputAsync(_shellVM, Resources.RudolphTableString, Resources.EnterRudolphScoreString, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+            if (inputStr != null)
+            {
+                byte rudolphScore = 0;
+                if (byte.TryParse(inputStr, out rudolphScore) && rudolphScore >= 1 && rudolphScore <= 20)
+                {
+                    _competitionService.CreateCompetitionsFromRudolphTable(fileDialog.FileName, rudolphScore);
+                    await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RudolphTableString, Resources.FinishedUpdateFromRudolphTableString);
+                }
+                else
+                {
+                    await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.ErrorUpdatingFromRudolphTableString);
+                }
+            }
+            else
+            {
+                // User canceled
+            }
+        }
+    }));
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     /// <inheritdoc/>
@@ -145,6 +212,8 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         Competitions = _competitionService?.GetCompetitions();
         CompetitionsCollectionView = CollectionViewSource.GetDefaultView(Competitions);
         SelectedCompetition = Competitions?.FirstOrDefault();
+
+        OnPropertyChanged(nameof(CompetitionDistanceRules));
     }
 
     /// <inheritdoc/>

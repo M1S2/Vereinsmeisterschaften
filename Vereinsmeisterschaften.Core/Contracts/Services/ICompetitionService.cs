@@ -73,10 +73,37 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void UpdateAllCompetitionsForPerson();
 
         /// <summary>
+        /// List with rules used to find/check the distances of the competitions.
+        /// </summary>
+        ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules { get; set; }
+
+        /// <summary>
+        /// Add a new <see cref="CompetitionDistanceRule"/> to the <see cref="CompetitionDistanceRules"/> list.
+        /// </summary>
+        /// <param name="distanceRule"><see cref="CompetitionDistanceRule"/> to add</param>
+        void AddDistanceRule(CompetitionDistanceRule distanceRule);
+
+        /// <summary>
+        /// Remove the given <see cref="CompetitionDistanceRule"/> from the <see cref="Competition"/> list.
+        /// </summary>
+        /// <param name="distanceRule"><see cref="CompetitionDistanceRule"/> to remove</param>
+        void RemoveDistanceRule(CompetitionDistanceRule distanceRule);
+
+        /// <summary>
         /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.
         /// </summary>
         /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
         /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
         void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
+
+        /// <summary>
+        /// Create the <see cref="Competition"/> objects from the given rudolph table.
+        /// The lines from the given rudolph score are used.
+        /// To find the correct columns (distances), the <see cref="CompetitionDistanceRules"/> are used.
+        /// CAUTION: All competitions are removed!
+        /// </summary>
+        /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
+        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
+        public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
     }
 }

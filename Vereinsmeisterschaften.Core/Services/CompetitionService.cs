@@ -44,6 +44,11 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        /// <inheritdoc/>
+        public ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules { get; set; }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private IFileService _fileService;
         private IPersonService _personService;
         private IWorkspaceService _workspaceService;
@@ -92,6 +97,13 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
         public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
+#warning TEST.................
+            CompetitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
+            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 12, MaxAge = 99, SwimmingStyle = SwimmingStyles.Medley, Distance = 200 });
+            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 6, MaxAge = 9, SwimmingStyle = null, Distance = 50 });
+            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 10, MaxAge = 99, SwimmingStyle = SwimmingStyles.Butterfly, Distance = 50 });
+            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 10, MaxAge = 99, SwimmingStyle = null, Distance = 100 });
+
             bool importingResult = false;
             Exception exception = null;
             await Task.Run(() =>
@@ -405,6 +417,44 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
+        public void AddDistanceRule(CompetitionDistanceRule distanceRule)
+        {
+            if (CompetitionDistanceRules == null) { CompetitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>(); }
+            CompetitionDistanceRules.Add(distanceRule);
+            distanceRule.PropertyChanged += DistanceRule_PropertyChanged;
+
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        /// <inheritdoc/>
+        public void RemoveDistanceRule(CompetitionDistanceRule distanceRule)
+        {
+            distanceRule.PropertyChanged -= DistanceRule_PropertyChanged;
+            CompetitionDistanceRules?.Remove(distanceRule);
+
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private void DistanceRule_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private ushort getCompetitionDistanceFromRules(byte age, SwimmingStyles swimmingStyle)
+        {
+            CompetitionDistanceRule rule = CompetitionDistanceRules.FirstOrDefault(r => age >= r.MinAge &&
+                                                                                        age <= r.MaxAge &&
+                                                                                        (r.SwimmingStyle == null || r.SwimmingStyle == swimmingStyle));
+            if (rule == null)
+            {
+                return 0;   // No distance rule found
+            }
+            return rule.Distance;
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
         public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
@@ -417,6 +467,34 @@ namespace Vereinsmeisterschaften.Core.Services
                     competition.BestTime = foundRudolphTableEntry.Time;
                     competition.IsTimeFromRudolphTable = true;
                 }
+            }
+        }
+
+        public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
+        {
+            RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
+
+            List<Competition> competitions = rudolphTable.Entries
+                                                .Where(e => e.RudolphScore == rudolphScore &&
+                                                            !e.IsOpenAge &&
+                                                            e.Distance == getCompetitionDistanceFromRules(e.Age, e.SwimmingStyle))
+                                                .Select(e => new Competition
+                                                             {
+                                                                 Gender = e.Gender,
+                                                                 Age = e.Age,
+                                                                 SwimmingStyle = e.SwimmingStyle,
+                                                                 Distance = e.Distance,
+                                                                 BestTime = e.Time,
+                                                                 IsTimeFromRudolphTable = true
+                                                             }
+                                                ).ToList();
+
+            ClearAll();
+            int id = 1;
+            foreach (Competition competition in competitions)
+            {
+                competition.Id = id++;
+                AddCompetition(competition);
             }
         }
     }

@@ -754,4 +754,25 @@ It categorizes times achieved from age 8 and up into performance levels using a 
 It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
 The table considers performance levels from age 8 until the transition to adulthood.</value>
   </data>
+  <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
+    <value>Create Competitions from Rudolph Table</value>
+  </data>
+  <data name="CompetitionDistanceRulesString" xml:space="preserve">
+    <value>Competition Distance Rules</value>
+  </data>
+  <data name="MinAgeString" xml:space="preserve">
+    <value>Min. Age</value>
+  </data>
+  <data name="MaxAgeString" xml:space="preserve">
+    <value>Max. Age</value>
+  </data>
+  <data name="RemoveDistanceRuleString" xml:space="preserve">
+    <value>Remove Distance Rule</value>
+  </data>
+  <data name="RemoveDistanceRuleConfirmationString" xml:space="preserve">
+    <value>Really remove this distance rule? This can't be undone!</value>
+  </data>
+  <data name="AddNewDistanceRule" xml:space="preserve">
+    <value>Add new distance rule</value>
+  </data>
 </root>

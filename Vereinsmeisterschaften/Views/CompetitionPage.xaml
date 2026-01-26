@@ -234,7 +234,7 @@
                 </Button>
 
                 <!-- DataGrid to edit the CompetitionDistanceRules -->
-                <DataGrid Margin="0,15,0,0" ItemsSource="{Binding CompetitionDistanceRules}" AutoGenerateColumns="False" CanUserAddRows="False"
+                <DataGrid Margin="0,15,0,0" ItemsSource="{Binding CompetitionDistanceRuleCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
                           behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
                     <DataGrid.RowHeaderStyle>
                         <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">

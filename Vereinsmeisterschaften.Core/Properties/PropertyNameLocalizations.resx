@@ -198,4 +198,16 @@
   <data name="Competition_IsTimeFromRudolphTable" xml:space="preserve">
     <value>Is Time from Rudolph Table</value>
   </data>
+  <data name="CompetitionDistanceRule_MinAge" xml:space="preserve">
+    <value>Min. Age</value>
+  </data>
+  <data name="CompetitionDistanceRule_MaxAge" xml:space="preserve">
+    <value>Max. Age</value>
+  </data>
+  <data name="CompetitionDistanceRule_SwimmingStyle" xml:space="preserve">
+    <value>Swimming Style</value>
+  </data>
+  <data name="CompetitionDistanceRule_Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
 </root>

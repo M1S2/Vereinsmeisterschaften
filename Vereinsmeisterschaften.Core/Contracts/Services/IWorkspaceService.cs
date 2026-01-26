@@ -52,7 +52,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         bool HasUnsavedChanges_Persons { get; }
 
         /// <summary>
-        /// Unsaved changes exist in the <see cref="CompetitionService"/>
+        /// Unsaved changes exist in the <see cref="CompetitionService" or <see cref="CompetitionDistanceRuleService"/>/>
         /// </summary>
         bool HasUnsavedChanges_Competitions { get; }
 
@@ -67,7 +67,7 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         bool HasUnsavedChanges_Settings { get; }
 
         /// <summary>
-        /// Call the <see cref="ICompetitionService.ResetToLoadedState"/>
+        /// Call the <see cref="ICompetitionService.ResetToLoadedState" and <see cref="ICompetitionDistanceRuleService.ResetToLoadedState"/>/>
         /// </summary>
         void ResetCompetitionsToLoadedState();
 

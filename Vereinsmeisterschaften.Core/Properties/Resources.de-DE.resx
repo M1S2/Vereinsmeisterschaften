@@ -135,6 +135,9 @@
   <data name="FileName_Competitions" xml:space="preserve">
     <value>Wettkaempfe.csv</value>
   </data>
+  <data name="FileName_CompetitionDistanceRules" xml:space="preserve">
+    <value>WettkampfDistanzRegeln.csv</value>
+  </data>
   <data name="FileName_Person" xml:space="preserve">
     <value>Personen.csv</value>
   </data>
@@ -143,5 +146,8 @@
   </data>
   <data name="ResultPlaceString" xml:space="preserve">
     <value>Platz im Gesamtergebnis</value>
+  </data>
+  <data name="AllString" xml:space="preserve">
+    <value>alle</value>
   </data>
 </root>

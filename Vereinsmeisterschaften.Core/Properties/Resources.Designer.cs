@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die all ähnelt.
+        /// </summary>
+        public static string AllString {
+            get {
+                return ResourceManager.GetString("AllString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Birth Year ähnelt.
         /// </summary>
         public static string BirthYearString {
@@ -102,6 +111,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         public static string FileName_BestRace {
             get {
                 return ResourceManager.GetString("FileName_BestRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CompetitionDistanceRules.csv ähnelt.
+        /// </summary>
+        public static string FileName_CompetitionDistanceRules {
+            get {
+                return ResourceManager.GetString("FileName_CompetitionDistanceRules", resourceCulture);
             }
         }
         

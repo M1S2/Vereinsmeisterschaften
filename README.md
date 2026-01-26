@@ -112,6 +112,7 @@ Folgende Dateien werden erzeugt:
 - WorkspaceSettings.json: JSON Datei mit allen Einstellungen für den Arbeitsbereich. Dieser Dateiname ist fix.
 - Personen.csv / Person.csv: Liste mit allen Meldungen und den erschwommenen Zeiten.
 - Wettkaempfe.csv / Competitions.csv: Liste mit allen verfügbaren Wettkämpfen.
+- WettkampfDistanzRegeln.csv / CompetitionDistanceRules.csv: Liste mit allen verfügbaren Regeln für die Wettkampf Distanzen.
 - BestesRennen.csv / BestRace.csv: Das Rennen, das als gute Variante markiert wurde, wird hier gespeichert. Wenn kein Rennen markiert wurde, existiert diese Datei nicht.
 
 Die Dateinamen werden folgendermaßen ermittelt:

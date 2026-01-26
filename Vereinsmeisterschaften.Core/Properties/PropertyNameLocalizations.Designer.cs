@@ -124,6 +124,42 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distance ähnelt.
+        /// </summary>
+        internal static string CompetitionDistanceRule_Distance {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRule_Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max. Age ähnelt.
+        /// </summary>
+        internal static string CompetitionDistanceRule_MaxAge {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRule_MaxAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Min. Age ähnelt.
+        /// </summary>
+        internal static string CompetitionDistanceRule_MinAge {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRule_MinAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Swimming Style ähnelt.
+        /// </summary>
+        internal static string CompetitionDistanceRule_SwimmingStyle {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRule_SwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Backstroke ähnelt.
         /// </summary>
         internal static string Person_Backstroke {

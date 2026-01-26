@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -16,17 +17,13 @@ namespace Vereinsmeisterschaften.ViewModels;
 /// <summary>
 /// ViewModel for the competitions page
 /// </summary>
-public class CompetitionViewModel : ObservableObject, INavigationAware
+public partial class CompetitionViewModel : ObservableObject, INavigationAware
 {
-    private ObservableCollection<Competition> _competitions;
     /// <summary>
     /// List of competitions shown on the competition page
     /// </summary>
-    public ObservableCollection<Competition> Competitions
-    {
-        get => _competitions;
-        set => SetProperty(ref _competitions, value);
-    }
+    [ObservableProperty]
+    private ObservableCollection<Competition> _competitions;
 
     private ICollectionView _competitionsCollectionView;
     /// <summary>
@@ -38,20 +35,27 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _competitionsCollectionView, value);
     }
 
-    private Competition _selectedCompetition;
     /// <summary>
     /// Currently selected <see cref="Competition"/>
     /// </summary>
-    public Competition SelectedCompetition
-    {
-        get => _selectedCompetition;
-        set => SetProperty(ref _selectedCompetition, value);
-    }
+    [ObservableProperty]
+    private Competition _selectedCompetition;
 
     /// <summary>
-    /// List with all <see cref="CompetitionDistanceRule"/> objects.
+    /// List of competitions distance rules shown on the competition page
     /// </summary>
-    public ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules => _competitionService.CompetitionDistanceRules;
+    [ObservableProperty]
+    private ObservableCollection<CompetitionDistanceRule> _competitionDistanceRules;
+
+    private ICollectionView _competitionDistanceRuleCollectionView;
+    /// <summary>
+    /// CollectionView used to display the list of competition distance rules
+    /// </summary>
+    public ICollectionView CompetitionDistanceRuleCollectionView
+    {
+        get => _competitionDistanceRuleCollectionView;
+        private set => SetProperty(ref _competitionDistanceRuleCollectionView, value);
+    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -64,6 +68,7 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private ICompetitionService _competitionService;
+    private ICompetitionDistanceRuleService _competitionDistanceRuleService;
     private IWorkspaceService _workspaceService;
     private IDialogCoordinator _dialogCoordinator;
     private ShellViewModel _shellVM;
@@ -72,12 +77,14 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     /// Constructor of the competitions view model
     /// </summary>
     /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+    /// <param name="competitionDistanceRuleService"><see cref="ICompetitionDistanceRuleService"/> object</param>
     /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
     /// <param name="dialogCoordinator"><see cref="IDialogCoordinator"/> object</param>
     /// <param name="shellVM"><see cref="ShellViewModel"/> object used for dialog display</param>
-    public CompetitionViewModel(ICompetitionService competitionService, IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
+    public CompetitionViewModel(ICompetitionService competitionService, ICompetitionDistanceRuleService competitionDistanceRuleService, IWorkspaceService workspaceService, IDialogCoordinator dialogCoordinator, ShellViewModel shellVM)
     {
         _competitionService = competitionService;
+        _competitionDistanceRuleService = competitionDistanceRuleService;
         _workspaceService = workspaceService;
         _dialogCoordinator = dialogCoordinator;
         _shellVM = shellVM;
@@ -118,7 +125,7 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     public ICommand AddDistanceRuleCommand => _addDistanceRuleCommand ?? (_addDistanceRuleCommand = new RelayCommand(() =>
     {
         CompetitionDistanceRule rule = new CompetitionDistanceRule();
-        _competitionService.AddDistanceRule(rule);
+        _competitionDistanceRuleService.AddDistanceRule(rule);
     }));
 
     private ICommand _removeDistanceRuleCommand;
@@ -130,7 +137,7 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RemoveDistanceRuleString, Resources.RemoveDistanceRuleConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
-            _competitionService.RemoveDistanceRule(rule);
+            _competitionDistanceRuleService.RemoveDistanceRule(rule);
         }
     }));
 
@@ -175,31 +182,33 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
     /// </summary>
     public ICommand CreateCompetitionsFromRudolphTableCommand => _createCompetitionsFromRudolphTableCommand ?? (_createCompetitionsFromRudolphTableCommand = new RelayCommand(async () =>
     {
-#warning TBD: Warning dialog that all competitions will be deleted..........
-
-        OpenFileDialog fileDialog = new OpenFileDialog();
-        fileDialog.InitialDirectory = _workspaceService.PersistentPath;
-        fileDialog.Filter = Resources.FileDialogCsvFilterString;
-        fileDialog.Title = Resources.SelectRudolphTableString;
-        if (fileDialog.ShowDialog() == DialogResult.OK)
+        MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RudolphTableString, Resources.RudolphTableCompetitionDeletionConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+        if (result == MessageDialogResult.Affirmative)
         {
-            string inputStr = await _dialogCoordinator.ShowInputAsync(_shellVM, Resources.RudolphTableString, Resources.EnterRudolphScoreString, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
-            if (inputStr != null)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = _workspaceService.PersistentPath;
+            fileDialog.Filter = Resources.FileDialogCsvFilterString;
+            fileDialog.Title = Resources.SelectRudolphTableString;
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                byte rudolphScore = 0;
-                if (byte.TryParse(inputStr, out rudolphScore) && rudolphScore >= 1 && rudolphScore <= 20)
+                string inputStr = await _dialogCoordinator.ShowInputAsync(_shellVM, Resources.RudolphTableString, Resources.EnterRudolphScoreString, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
+                if (inputStr != null)
                 {
-                    _competitionService.CreateCompetitionsFromRudolphTable(fileDialog.FileName, rudolphScore);
-                    await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RudolphTableString, Resources.FinishedUpdateFromRudolphTableString);
+                    byte rudolphScore = 0;
+                    if (byte.TryParse(inputStr, out rudolphScore) && rudolphScore >= 1 && rudolphScore <= 20)
+                    {
+                        _competitionService.CreateCompetitionsFromRudolphTable(fileDialog.FileName, rudolphScore);
+                        await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RudolphTableString, Resources.FinishedUpdateFromRudolphTableString);
+                    }
+                    else
+                    {
+                        await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.ErrorUpdatingFromRudolphTableString);
+                    }
                 }
                 else
                 {
-                    await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.ErrorUpdatingFromRudolphTableString);
+                    // User canceled
                 }
-            }
-            else
-            {
-                // User canceled
             }
         }
     }));
@@ -213,7 +222,8 @@ public class CompetitionViewModel : ObservableObject, INavigationAware
         CompetitionsCollectionView = CollectionViewSource.GetDefaultView(Competitions);
         SelectedCompetition = Competitions?.FirstOrDefault();
 
-        OnPropertyChanged(nameof(CompetitionDistanceRules));
+        CompetitionDistanceRules = _competitionDistanceRuleService?.GetCompetitionDistanceRules();
+        CompetitionDistanceRuleCollectionView = CollectionViewSource.GetDefaultView(CompetitionDistanceRules);
     }
 
     /// <inheritdoc/>

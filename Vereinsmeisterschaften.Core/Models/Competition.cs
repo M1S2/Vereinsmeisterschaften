@@ -92,7 +92,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public ushort Distance
         {
             get => _distance;
-            set => SetProperty(ref _distance, value);
+            set { SetProperty(ref _distance, value); IsTimeFromRudolphTable = false; }
         }
 
         private TimeSpan _bestTime;

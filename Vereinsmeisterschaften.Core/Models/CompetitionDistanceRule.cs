@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Core.Models
 {
@@ -58,6 +59,39 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         [ObservableProperty]
         private ushort _distance;
+
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region SetPropertyFromString helper
+
+        /// <summary>
+        /// Set the requested property in the <see cref="CompetitionDistanceRule"/> object by parsing the given string value
+        /// </summary>
+        /// <param name="dataObj"><see cref="CompetitionDistanceRule"/> in which to set the property</param>
+        /// <param name="propertyName">Name of the property to set</param>
+        /// <param name="value">String value that will be parsed and set to the property</param>
+        public static void SetPropertyFromString(CompetitionDistanceRule dataObj, string propertyName, string value)
+        {
+            switch (propertyName)
+            {
+                case nameof(MinAge): dataObj.MinAge = byte.Parse(value); break;
+                case nameof(MaxAge): dataObj.MaxAge = byte.Parse(value); break;
+                case nameof(SwimmingStyle):
+                    if (EnumCoreLocalizedStringHelper.TryParse(value, out SwimmingStyles parsedStyle))
+                    {
+                        dataObj.SwimmingStyle = parsedStyle;
+                    }
+                    else
+                    {
+                        dataObj.SwimmingStyle = null;   // null means all styles allowed
+                    }
+                    break;
+                case nameof(Distance): dataObj.Distance = ushort.Parse(value); break;
+                default: break;
+            }
+        }
 
         #endregion
 

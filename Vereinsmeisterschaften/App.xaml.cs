@@ -79,6 +79,7 @@ public partial class App : Application
         services.AddSingleton<IDocumentService, DocumentService>();
         services.AddSingleton<IPersonService, PersonService>();
         services.AddSingleton<ICompetitionService, CompetitionService>();
+        services.AddSingleton<ICompetitionDistanceRuleService, CompetitionDistanceRuleService>();
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
         services.AddSingleton<IRaceService, RaceService>();

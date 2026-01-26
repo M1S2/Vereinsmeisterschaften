@@ -135,6 +135,9 @@
   <data name="FileName_Competitions" xml:space="preserve">
     <value>Competitions.csv</value>
   </data>
+  <data name="FileName_CompetitionDistanceRules" xml:space="preserve">
+    <value>CompetitionDistanceRules.csv</value>
+  </data>
   <data name="FileName_Person" xml:space="preserve">
     <value>Person.csv</value>
   </data>
@@ -143,5 +146,8 @@
   </data>
   <data name="ResultPlaceString" xml:space="preserve">
     <value>Result Place</value>
+  </data>
+  <data name="AllString" xml:space="preserve">
+    <value>all</value>
   </data>
 </root>

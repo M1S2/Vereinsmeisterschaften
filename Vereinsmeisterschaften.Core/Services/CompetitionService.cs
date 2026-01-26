@@ -44,24 +44,24 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <inheritdoc/>
-        public ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules { get; set; }
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         private IFileService _fileService;
         private IPersonService _personService;
         private IWorkspaceService _workspaceService;
+        private ICompetitionDistanceRuleService _competitionDistanceRuleService;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CompetitionService(IFileService fileService, IPersonService personService)
+        /// <param name="fileService"><see cref="IFileService"/> object</param>
+        /// <param name="personService"><see cref="IPersonService"/> object</param>
+        /// <param name="competitionDistanceRuleService"><see cref="ICompetitionDistanceRuleService"/> object</param>
+        public CompetitionService(IFileService fileService, IPersonService personService, ICompetitionDistanceRuleService competitionDistanceRuleService)
         {
             _competitionList = new ObservableCollection<Competition>();
             _fileService = fileService;
             _personService = personService;
             _personService.SetCompetitionServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
+            _competitionDistanceRuleService = competitionDistanceRuleService;
         }
 
         /// <summary>
@@ -97,13 +97,6 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <returns>true if importing succeeded; false if importing failed (e.g. canceled)</returns>
         public async Task<bool> Load(string path, CancellationToken cancellationToken)
         {
-#warning TEST.................
-            CompetitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
-            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 12, MaxAge = 99, SwimmingStyle = SwimmingStyles.Medley, Distance = 200 });
-            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 6, MaxAge = 9, SwimmingStyle = null, Distance = 50 });
-            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 10, MaxAge = 99, SwimmingStyle = SwimmingStyles.Butterfly, Distance = 50 });
-            AddDistanceRule(new CompetitionDistanceRule() { MinAge = 10, MaxAge = 99, SwimmingStyle = null, Distance = 100 });
-
             bool importingResult = false;
             Exception exception = null;
             await Task.Run(() =>
@@ -417,44 +410,6 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
-        public void AddDistanceRule(CompetitionDistanceRule distanceRule)
-        {
-            if (CompetitionDistanceRules == null) { CompetitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>(); }
-            CompetitionDistanceRules.Add(distanceRule);
-            distanceRule.PropertyChanged += DistanceRule_PropertyChanged;
-
-            OnPropertyChanged(nameof(HasUnsavedChanges));
-        }
-
-        /// <inheritdoc/>
-        public void RemoveDistanceRule(CompetitionDistanceRule distanceRule)
-        {
-            distanceRule.PropertyChanged -= DistanceRule_PropertyChanged;
-            CompetitionDistanceRules?.Remove(distanceRule);
-
-            OnPropertyChanged(nameof(HasUnsavedChanges));
-        }
-
-        private void DistanceRule_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(HasUnsavedChanges));
-        }
-
-        private ushort getCompetitionDistanceFromRules(byte age, SwimmingStyles swimmingStyle)
-        {
-            CompetitionDistanceRule rule = CompetitionDistanceRules.FirstOrDefault(r => age >= r.MinAge &&
-                                                                                        age <= r.MaxAge &&
-                                                                                        (r.SwimmingStyle == null || r.SwimmingStyle == swimmingStyle));
-            if (rule == null)
-            {
-                return 0;   // No distance rule found
-            }
-            return rule.Distance;
-        }
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <inheritdoc/>
         public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
@@ -470,6 +425,7 @@ namespace Vereinsmeisterschaften.Core.Services
             }
         }
 
+        /// <inheritdoc/>
         public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
@@ -477,7 +433,7 @@ namespace Vereinsmeisterschaften.Core.Services
             List<Competition> competitions = rudolphTable.Entries
                                                 .Where(e => e.RudolphScore == rudolphScore &&
                                                             !e.IsOpenAge &&
-                                                            e.Distance == getCompetitionDistanceFromRules(e.Age, e.SwimmingStyle))
+                                                            e.Distance == _competitionDistanceRuleService.GetCompetitionDistanceFromRules(e.Age, e.SwimmingStyle))
                                                 .Select(e => new Competition
                                                              {
                                                                  Gender = e.Gender,

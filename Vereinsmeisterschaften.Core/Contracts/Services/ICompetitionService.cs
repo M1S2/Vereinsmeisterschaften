@@ -5,7 +5,7 @@ using Vereinsmeisterschaften.Core.Models;
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
     /// <summary>
-    /// Interface for a service used to get and store a list of Competition objects
+    /// Interface for a service used to get and store a list of <see cref="Competition"> objects
     /// </summary>
     public interface ICompetitionService : INotifyPropertyChanged, ISaveable
     {
@@ -71,23 +71,6 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Update all <see cref="PersonStart"/> and the <see cref="Person.AvailableCompetitions"/> objects with the corresponding <see cref="Competition"/> objects
         /// </summary>
         void UpdateAllCompetitionsForPerson();
-
-        /// <summary>
-        /// List with rules used to find/check the distances of the competitions.
-        /// </summary>
-        ObservableCollection<CompetitionDistanceRule> CompetitionDistanceRules { get; set; }
-
-        /// <summary>
-        /// Add a new <see cref="CompetitionDistanceRule"/> to the <see cref="CompetitionDistanceRules"/> list.
-        /// </summary>
-        /// <param name="distanceRule"><see cref="CompetitionDistanceRule"/> to add</param>
-        void AddDistanceRule(CompetitionDistanceRule distanceRule);
-
-        /// <summary>
-        /// Remove the given <see cref="CompetitionDistanceRule"/> from the <see cref="Competition"/> list.
-        /// </summary>
-        /// <param name="distanceRule"><see cref="CompetitionDistanceRule"/> to remove</param>
-        void RemoveDistanceRule(CompetitionDistanceRule distanceRule);
 
         /// <summary>
         /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.

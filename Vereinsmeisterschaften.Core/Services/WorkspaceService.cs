@@ -82,9 +82,9 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool HasUnsavedChanges_Persons => _personService?.HasUnsavedChanges ?? false;
 
         /// <summary>
-        /// Unsaved changes exist in the <see cref="CompetitionService"/>
+        /// Unsaved changes exist in the <see cref="CompetitionService" or <see cref="CompetitionDistanceRuleService"/>/>
         /// </summary>
-        public bool HasUnsavedChanges_Competitions => _competitionService?.HasUnsavedChanges ?? false;
+        public bool HasUnsavedChanges_Competitions => (_competitionService?.HasUnsavedChanges ?? false) || (_competitionDistanceRuleService?.HasUnsavedChanges ?? false);
 
         /// <summary>
         /// Unsaved changes exist in the <see cref="RaceService"/>
@@ -116,9 +116,13 @@ namespace Vereinsmeisterschaften.Core.Services
         #region Reset methods of services
 
         /// <summary>
-        /// Call the <see cref="ICompetitionService.ResetToLoadedState"/>
+        /// Call the <see cref="ICompetitionService.ResetToLoadedState"/> and <see cref="ICompetitionDistanceRuleService.ResetToLoadedState"/>
         /// </summary>
-        public void ResetCompetitionsToLoadedState() => _competitionService.ResetToLoadedState();
+        public void ResetCompetitionsToLoadedState()
+        {
+            _competitionService.ResetToLoadedState();
+            _competitionDistanceRuleService.ResetToLoadedState();
+        }
 
         /// <summary>
         /// Call the <see cref="IPersonService.ResetToLoadedState"/>
@@ -185,6 +189,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IPersonService _personService;
         private ICompetitionService _competitionService;
+        private ICompetitionDistanceRuleService _competitionDistanceRuleService;
         private IRaceService _raceService;
         private IFileService _fileService;
 
@@ -193,13 +198,15 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="personService"><see cref="IPersonService"/> object</param>
         /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+        /// <param name="competitionDistanceRuleService"><see cref="ICompetitionDistanceRuleService"/> object</param>
         /// <param name="raceService"><see cref="IRaceService"/> object</param>
         /// <param name="fileService"><see cref="IFileService"/> object</param>
-        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, IRaceService raceService, IFileService fileService)
+        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, ICompetitionDistanceRuleService competitionDistanceRuleService, IRaceService raceService, IFileService fileService)
         {
             _personService = personService;
             _competitionService = competitionService;
             _competitionService.SetWorkspaceServiceObj(this);   // Dependency Injection can't be used in the constructor because of circular dependency
+            _competitionDistanceRuleService = competitionDistanceRuleService;
             _raceService = raceService;
             _raceService.SetWorkspaceServiceObj(this);          // Dependency Injection can't be used in the constructor because of circular dependency
             _fileService = fileService;
@@ -217,6 +224,14 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
             };
             _competitionService.PropertyChanged += (sender, e) =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(CompetitionService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    default: break;
+                }
+            };
+            _competitionDistanceRuleService.PropertyChanged += (sender, e) =>
             {
                 switch (e.PropertyName)
                 {
@@ -260,6 +275,7 @@ namespace Vereinsmeisterschaften.Core.Services
             try
             {
                 string filePathCompetitions = getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONS);
+                string filePathCompetitionDistanceRules = getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONDISTANCERULES);
                 string filePathPersons = getFilePathToLoadFrom(KEY_FILENAME_PERSON);
                 string filePathBestRace = getFilePathToLoadFrom(KEY_FILENAME_BESTRACE);
                 if (!File.Exists(WorkspaceSettingsFilePath) && !File.Exists(filePathCompetitions) && !File.Exists(filePathPersons) && !File.Exists(filePathBestRace))
@@ -278,6 +294,10 @@ namespace Vereinsmeisterschaften.Core.Services
                 
                 // Competitions
                 openResult = await _competitionService.Load(filePathCompetitions, cancellationToken);
+                if (!openResult) { return openResult; }
+
+                // Competition Distance Rules
+                openResult = await _competitionDistanceRuleService.Load(filePathCompetitionDistanceRules, cancellationToken);
                 if (!openResult) { return openResult; }
 
                 // Persons
@@ -328,6 +348,10 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Competitions (delete old file if the file name changed)
                 if (!await saveServiceAsync(KEY_FILENAME_COMPETITIONS, _competitionService, cancellationToken))
+                    return false;
+
+                // Competition Distance Rules
+                if (!await saveServiceAsync(KEY_FILENAME_COMPETITIONDISTANCERULES, _competitionDistanceRuleService, cancellationToken))
                     return false;
 
                 // Persons
@@ -393,6 +417,7 @@ namespace Vereinsmeisterschaften.Core.Services
             Settings = null;
             _personService.ClearAll();
             _competitionService.ClearAll();
+            _competitionDistanceRuleService.ClearAll();
             _raceService.AllRacesVariants.Clear();
             PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
@@ -418,6 +443,7 @@ namespace Vereinsmeisterschaften.Core.Services
         private readonly ResourceManager _fileNameResources = new ResourceManager(typeof(Properties.Resources));
         private const string KEY_FILENAME_PERSON = "FileName_Person";
         private const string KEY_FILENAME_COMPETITIONS = "FileName_Competitions";
+        private const string KEY_FILENAME_COMPETITIONDISTANCERULES = "FileName_CompetitionDistanceRules";
         private const string KEY_FILENAME_BESTRACE = "FileName_BestRace";
 
         private string getLocalizedFilePath(string resourceKey, CultureInfo culture = null)

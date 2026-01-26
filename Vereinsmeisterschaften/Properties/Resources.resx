@@ -775,4 +775,7 @@ The table considers performance levels from age 8 until the transition to adulth
   <data name="AddNewDistanceRule" xml:space="preserve">
     <value>Add new distance rule</value>
   </data>
+  <data name="RudolphTableCompetitionDeletionConfirmationString" xml:space="preserve">
+    <value>CAUTION: When the Rudolph Table is used to create the competitions, all currently existing competitions will be deleted!</value>
+  </data>
 </root>

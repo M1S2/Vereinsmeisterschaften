@@ -798,4 +798,7 @@ Remove all column sortings first</value>
 For each competition the first distance rule is used that matches the age range (both limits inclusive) and the swimming style.
 When multiple rules will match, only the first one will be applied. So it is important to order the rules from specific to generic.</value>
   </data>
+  <data name="DuplicateCompetitionFound" xml:space="preserve">
+    <value>Duplicate Competition found</value>
+  </data>
 </root>

@@ -445,4 +445,7 @@ Die Ersetzungsdaten werden durch den Platzhalternamen bestimmt.</value>
     <value>Es wurde keine gültige Distanz gefunden.
 Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Distanz Regel verfügbar ist.</value>
   </data>
+  <data name="TooltipDuplicateCompetition" xml:space="preserve">
+    <value>Es wurde mindestens ein anderer Wettkampf mit den selben Basiswerten gefunden.</value>
+  </data>
 </root>

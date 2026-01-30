@@ -142,6 +142,24 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Other properties
+
+        private bool _hasDuplicates = false;
+        /// <summary>
+        /// This flag indicates if there are duplicates of this <see cref="Competition"> in the competition list.
+        /// It is updated by the <see cref="ICompetitionService"/> when loading or modifying the competition list.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool HasDuplicates
+        {
+            get => _hasDuplicates;
+            set => SetProperty(ref _hasDuplicates, value);
+        }
+        
+        #endregion
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         #region SetPropertyFromString helper
 
         /// <summary>

@@ -306,8 +306,8 @@ namespace Vereinsmeisterschaften.Core.Models
 
         private bool _hasDuplicates = false;
         /// <summary>
-        /// This flag indicates if there are duplicates of this person in the person list.
-        /// It is updated by the <see cref="Services.PersonService"/> when loading or modifying the person list.
+        /// This flag indicates if there are duplicates of this <see cref="Person"> in the person list.
+        /// It is updated by the <see cref="IPersonService"/> when loading or modifying the person list.
         /// </summary>
         [FileServiceIgnore]
         public bool HasDuplicates

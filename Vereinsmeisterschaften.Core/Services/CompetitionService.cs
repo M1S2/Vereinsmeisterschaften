@@ -5,6 +5,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Settings;
+using Windows.Devices.PointOfService.Provider;
 
 namespace Vereinsmeisterschaften.Core.Services
 {
@@ -257,6 +258,8 @@ namespace Vereinsmeisterschaften.Core.Services
 
             competition.PropertyChanged += Competition_PropertyChanged;
 
+            UpdateHasDuplicatesForCompetitions();
+
             OnPropertyChanged(nameof(CompetitionCount));
             UpdateAllCompetitionsForPerson();
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -270,6 +273,9 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             competition.PropertyChanged -= Competition_PropertyChanged;
             _competitionList?.Remove(competition);
+
+            UpdateHasDuplicatesForCompetitions();
+
             OnPropertyChanged(nameof(CompetitionCount));
             UpdateAllCompetitionsForPerson();
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -277,6 +283,16 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private void Competition_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            switch (e.PropertyName)
+            {
+                case nameof(Competition.Gender):
+                case nameof(Competition.SwimmingStyle):
+                case nameof(Competition.Age):
+                    UpdateHasDuplicatesForCompetitions();
+                    break;
+                default: break;
+            }
+
             UpdateAllCompetitionsForPerson();
             UpdateCompetitionDistanceFromDistanceRules(sender as Competition);
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -284,6 +300,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private void _competitionList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            UpdateHasDuplicatesForCompetitions();
             UpdateAllCompetitionsForPerson();
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
@@ -293,6 +310,24 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <returns>Number of <see cref="Competition"/></returns>
         public int CompetitionCount => _competitionList?.Count ?? 0;
+
+        /// <summary>
+        /// Find all duplicate <see cref="Competition"/> objects and update the <see cref="Competition.HasDuplicates"/> flags.
+        /// </summary>
+        public void UpdateHasDuplicatesForCompetitions()
+        {
+            CompetitionBasicEqualityComparer basicCompetitionComparer = new CompetitionBasicEqualityComparer();
+            IEnumerable<IGrouping<Competition, Competition>> duplicateGroups = _competitionList.GroupBy(c => c, basicCompetitionComparer).Where(g => g.Count() > 1);
+
+            // Reset all HasDuplicates flags
+            foreach (Competition c in _competitionList) { c.HasDuplicates = false; }
+
+            // Set HasDuplicates flag for all competitions that are in a duplicate group
+            foreach (IGrouping<Competition, Competition> duplicateGroup in duplicateGroups)
+            {
+                foreach (Competition c in duplicateGroup) { c.HasDuplicates = true; }
+            }
+        }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

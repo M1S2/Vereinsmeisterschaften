@@ -446,4 +446,7 @@ The replacement data is determined by the placeholder name.</value>
     <value>No valid distance was found.
 Make sure, there is a distance rule for the age and swimming style.</value>
   </data>
+  <data name="TooltipDuplicateCompetition" xml:space="preserve">
+    <value>There was at least one other competition with the same basic parameters found.</value>
+  </data>
 </root>

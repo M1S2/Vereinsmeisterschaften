@@ -33,6 +33,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -63,6 +64,18 @@
             </DataGrid.RowHeaderStyle>
 
             <DataGrid.Columns>
+                <!-- Warning Icons -->
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!-- Competition has duplicates Icon -->
+                            <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xE8C8;"
+                                               Visibility="{Binding HasDuplicates, Converter={StaticResource BoolVisibilityHiddenConverter}}"
+                                               ToolTip="{x:Static properties:Tooltips.TooltipDuplicateCompetition}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <!-- ID -->
                 <DataGridTextColumn Binding="{Binding Id}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
                     <DataGridTextColumn.Header>
@@ -243,8 +256,20 @@
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
+        <!-- Duplicate Competition Warning -->
+        <Border Grid.Row="3" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+                Visibility="{Binding HasDuplicateCompetitions, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <!-- Warning icon -->
+                <controls:FontIcon Margin="5" Glyph="&#xE8C8;"/>
+                <TextBlock Text="{x:Static properties:Resources.DuplicateCompetitionFound}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
         <!-- Add Competition Button -->
-        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"
+        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left"
                 Margin="{StaticResource MediumLeftTopRightMargin}"
                 Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
                 Command="{Binding AddCompetitionCommand}">
@@ -257,7 +282,7 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
         <!-- Competition Distance Rules and Rudolph Table handling -->
-        <Grid Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

@@ -42,6 +42,18 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
     private Competition _selectedCompetition;
 
     /// <summary>
+    /// True, if at least one <see cref="Competition"/> has an invalid distance.
+    /// </summary>
+    public bool IsAnyDistanceInvalid => Competitions.Any(c => !c.IsDistanceValid);
+
+    /// <summary>
+    /// True if there are duplicate <see cref="Competition">
+    /// </summary>
+    public bool HasDuplicateCompetitions => Competitions?.Any(c => c.HasDuplicates) ?? false;
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
     /// List of competitions distance rules shown on the competition page
     /// </summary>
     [ObservableProperty]
@@ -56,11 +68,6 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         get => _competitionDistanceRuleCollectionView;
         private set => SetProperty(ref _competitionDistanceRuleCollectionView, value);
     }
-
-    /// <summary>
-    /// True, if at least one <see cref="Competition"/> has an invalid distance.
-    /// </summary>
-    public bool IsAnyDistanceInvalid => Competitions.Any(c => !c.IsDistanceValid);
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -108,6 +115,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         competition.PropertyChanged += Competition_PropertyChanged;
         SelectedCompetition = competition;
         OnPropertyChanged(nameof(IsAnyDistanceInvalid));
+        OnPropertyChanged(nameof(HasDuplicateCompetitions));
     }));
 
     private ICommand _removeCompetitionCommand;
@@ -122,6 +130,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
             competition.PropertyChanged -= Competition_PropertyChanged;
             _competitionService.RemoveCompetition(competition);
             OnPropertyChanged(nameof(IsAnyDistanceInvalid));
+            OnPropertyChanged(nameof(HasDuplicateCompetitions));
         }
     }));
 
@@ -243,6 +252,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         }
 
         OnPropertyChanged(nameof(IsAnyDistanceInvalid));
+        OnPropertyChanged(nameof(HasDuplicateCompetitions));
     }
 
     /// <inheritdoc/>
@@ -255,15 +265,20 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         }
     }
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    #region Property changed event handler
+
     private void Competition_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {
-            case nameof(Competition.IsDistanceValid):
-                OnPropertyChanged(nameof(IsAnyDistanceInvalid));
-                break;
+            case nameof(Competition.HasDuplicates): OnPropertyChanged(nameof(HasDuplicateCompetitions)); break;
+            case nameof(Competition.IsDistanceValid): OnPropertyChanged(nameof(IsAnyDistanceInvalid)); break;
             default: break;
         }
     }
+
+    #endregion
 
 }

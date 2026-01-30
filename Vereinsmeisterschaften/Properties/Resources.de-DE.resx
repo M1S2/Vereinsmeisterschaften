@@ -799,4 +799,7 @@ Bitte erst alle Spalten-Sortierungen entfernen</value>
 Für jeden Wettkampf wird die erste Distanzregel angewendet, die zur Altersgruppe (einschließlich beider Altersgrenzen) und zum Schwimmstil passt.
 Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wichtig, die Regeln von spezifisch zu allgemein zu ordnen.</value>
   </data>
+  <data name="DuplicateCompetitionFound" xml:space="preserve">
+    <value>Doppelter Wettkampf gefunden</value>
+  </data>
 </root>

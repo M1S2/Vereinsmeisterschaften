@@ -442,4 +442,8 @@ Table placeholders must be inside a table of the document. All tables in the doc
 The first row that contains a placeholder will be used as a pattern for the new rows. There will be a new row for each data item.
 The replacement data is determined by the placeholder name.</value>
   </data>
+  <data name="TooltipDistanceInvalid" xml:space="preserve">
+    <value>No valid distance was found.
+Make sure, there is a distance rule for the age and swimming style.</value>
+  </data>
 </root>

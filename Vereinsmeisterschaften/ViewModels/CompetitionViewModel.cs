@@ -1,12 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls.Dialogs;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls.Dialogs;
 using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
@@ -57,6 +57,11 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _competitionDistanceRuleCollectionView, value);
     }
 
+    /// <summary>
+    /// True, if at least one <see cref="Competition"/> has an invalid distance.
+    /// </summary>
+    public bool IsAnyDistanceInvalid => Competitions.Any(c => !c.IsDistanceValid);
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
@@ -100,7 +105,9 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
     {
         Competition competition = new Competition();
         _competitionService.AddCompetition(competition);
+        competition.PropertyChanged += Competition_PropertyChanged;
         SelectedCompetition = competition;
+        OnPropertyChanged(nameof(IsAnyDistanceInvalid));
     }));
 
     private ICommand _removeCompetitionCommand;
@@ -112,7 +119,9 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         MessageDialogResult result = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RemoveCompetitionString, Resources.RemoveCompetitionConfirmationString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
         if (result == MessageDialogResult.Affirmative)
         {
+            competition.PropertyChanged -= Competition_PropertyChanged;
             _competitionService.RemoveCompetition(competition);
+            OnPropertyChanged(nameof(IsAnyDistanceInvalid));
         }
     }));
 
@@ -199,6 +208,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
                     {
                         _competitionService.CreateCompetitionsFromRudolphTable(fileDialog.FileName, rudolphScore);
                         await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.RudolphTableString, Resources.FinishedUpdateFromRudolphTableString);
+                        OnPropertyChanged(nameof(IsAnyDistanceInvalid));
                     }
                     else
                     {
@@ -224,10 +234,36 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
 
         CompetitionDistanceRules = _competitionDistanceRuleService?.GetCompetitionDistanceRules();
         CompetitionDistanceRuleCollectionView = CollectionViewSource.GetDefaultView(CompetitionDistanceRules);
+
+        foreach (Competition competition in Competitions)
+        {
+            // Unsubscribe from and resubscribe to the event to avoid multiple subscriptions
+            competition.PropertyChanged -= Competition_PropertyChanged;
+            competition.PropertyChanged += Competition_PropertyChanged;
+        }
+
+        OnPropertyChanged(nameof(IsAnyDistanceInvalid));
     }
 
     /// <inheritdoc/>
     public void OnNavigatedFrom()
     {
+        // Unsubscribe from the event to avoid raising this event on another page (not necessary there)
+        foreach (Competition competition in Competitions)
+        {
+            competition.PropertyChanged -= Competition_PropertyChanged;
+        }
     }
+
+    private void Competition_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(Competition.IsDistanceValid):
+                OnPropertyChanged(nameof(IsAnyDistanceInvalid));
+                break;
+            default: break;
+        }
+    }
+
 }

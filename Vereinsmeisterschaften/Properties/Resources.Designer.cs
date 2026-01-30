@@ -142,6 +142,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die all ähnelt.
+        /// </summary>
+        public static string AllString {
+            get {
+                return ResourceManager.GetString("AllString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analytics ähnelt.
         /// </summary>
         public static string AnalyticsPageTitle {
@@ -401,6 +410,17 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CompetitionDateString {
             get {
                 return ResourceManager.GetString("CompetitionDateString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Competition Distance Rules are used to assign a distance to a competition.
+        ///For each competition the first distance rule is used that matches the age range (both limits inclusive) and the swimming style.
+        ///When multiple rules will match, only the first one will be applied. So it is important to order the rules from specific to generic. ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceRuleExplanationString {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRuleExplanationString", resourceCulture);
             }
         }
         
@@ -675,6 +695,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die At least one distance couldn&apos;t be resolved (e.g. distance rule not found)! ähnelt.
+        /// </summary>
+        public static string DistanceWarningAtLeastOneInvalidString {
+            get {
+                return ResourceManager.GetString("DistanceWarningAtLeastOneInvalidString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Document File Types ähnelt.
         /// </summary>
         public static string DocumentFileTypesString {
@@ -698,6 +727,27 @@ namespace Vereinsmeisterschaften.Properties {
         public static string DontSaveString {
             get {
                 return ResourceManager.GetString("DontSaveString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No dropping allowed here
+        ///(different data types) ähnelt.
+        /// </summary>
+        public static string DragDropDifferentTypesString {
+            get {
+                return ResourceManager.GetString("DragDropDifferentTypesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No dropping allowed here
+        ///(DataGrid is sorted)
+        ///Remove all column sortings first ähnelt.
+        /// </summary>
+        public static string DragDropNotAllowedDataGridSortedString {
+            get {
+                return ResourceManager.GetString("DragDropNotAllowedDataGridSortedString", resourceCulture);
             }
         }
         
@@ -1400,7 +1450,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
         ///It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
         ///It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
-        ///The table considers performance levels from age 8 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///The table considers performance levels from age 8 un [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string RudolphTableExplanationString {
             get {

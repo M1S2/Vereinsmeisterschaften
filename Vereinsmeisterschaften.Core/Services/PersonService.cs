@@ -56,6 +56,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public PersonService(IFileService fileService)
         {
             _personList = new ObservableCollection<Person>();
+            _personList.CollectionChanged += _personList_CollectionChanged;
             _fileService = fileService;
         }
 
@@ -120,6 +121,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Person), header);
                         });
                         _personList = new ObservableCollection<Person>();
+                        _personList.CollectionChanged += _personList_CollectionChanged;
                         foreach (Person person in list)
                         {
                             AddPerson(person);
@@ -229,7 +231,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public void ClearAll()
         {
-            if (_personList == null) { _personList = new ObservableCollection<Person>(); }
+            if (_personList == null) 
+            { 
+                _personList = new ObservableCollection<Person>();
+                _personList.CollectionChanged += _personList_CollectionChanged;
+            }
 
             foreach (Person person in _personList)
             {
@@ -265,7 +271,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Person"/> to add</param>
         public void AddPerson(Person person)
         {
-            if (_personList == null) { _personList = new ObservableCollection<Person>(); }
+            if (_personList == null) 
+            {
+                _personList = new ObservableCollection<Person>();
+                _personList.CollectionChanged += _personList_CollectionChanged;
+            }
             _personList.Add(person);
 
             person.PropertyChanged += Person_PropertyChanged;
@@ -331,6 +341,14 @@ namespace Vereinsmeisterschaften.Core.Services
                 default: break;
             }
 
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private void _personList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UpdateHasDuplicatesForPersons();
+            OnPropertyChanged(nameof(PersonCount));
+            OnPropertyChanged(nameof(PersonStarts));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 

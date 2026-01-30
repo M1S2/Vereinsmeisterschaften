@@ -16,22 +16,8 @@
     xmlns:dd="urn:gong-wpf-dragdrop"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Page.Resources>
-        <DataTemplate x:Key="DefaultDropHintTemplate" DataType="{x:Type dd:DropHintData}">
-            <Border x:Name="DropHintRootBorder">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding HintText}" TextWrapping="Wrap" Foreground="White"/>
-            </Border>
-            <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=HintState}" Value="Active">
-                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushOkWithTransparency}" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Path=HintState}" Value="Error">
-                    <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
-                </DataTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
 
+    <Page.Resources>
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableHighlightPersonStartModes">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="viewModels:HighlightPersonStartModes"/>
@@ -384,8 +370,8 @@
                                  dd:DragDrop.UseDefaultDragAdorner="True"
                                  dd:DragDrop.SelectDroppedItems="False"
                                  dd:DragDrop.UseDropTargetHint="True"
-                                 dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerObj}"
-                                 dd:DragDrop.DropHintDataTemplate="{StaticResource DefaultDropHintTemplate}"
+                                 dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedHandler.Instance}"
+                                 dd:DragDrop.DropHintDataTemplate="{StaticResource DropHintTemplate}"
                                  PreviewMouseWheel="InnerListBoxRace_PreviewMouseWheel"
                                  behaviors:ListBoxGlobalSingleSelectionBehavior.IsEnabled="True">
                             <ListBox.ItemsPanel>
@@ -482,7 +468,7 @@
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"
                  dd:DragDrop.UseDropTargetHint="True"
-                 dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}, Path=DataContext.DropAllowedHandlerParkingLotObj}"
+                 dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedHandlerParkingLot.Instance}"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1" Background="Transparent">
             <ListBox.ItemTemplate>
                 <!-- Item template for the parking lot elements -->

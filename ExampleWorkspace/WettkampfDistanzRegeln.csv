@@ -1,5 +1,6 @@
 ﻿Min. Alter;Max. Alter;Schwimmstil;Strecke
 12;99;Lagen;200
-6;9;alle;50
-10;99;Delphin;50
-10;99;alle;100
+6;6;Wasserfloh;25
+11;99;Delphin;50
+6;11;alle;50
+11;99;alle;100

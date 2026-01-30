@@ -44,6 +44,7 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private IFileService _fileService;
+        private ICompetitionService _competitionService;
 
         /// <summary>
         /// Constructor
@@ -51,7 +52,14 @@ namespace Vereinsmeisterschaften.Core.Services
         public CompetitionDistanceRuleService(IFileService fileService)
         {
             _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
+            _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
             _fileService = fileService;
+        }
+
+        /// <inheritdoc/>
+        public void SetCompetitionServiceObj(ICompetitionService competitionService)
+        {
+            _competitionService = competitionService;
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -85,6 +93,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(CompetitionDistanceRule), header);
                         });
                         _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
+                        _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
                         foreach (CompetitionDistanceRule rule in list)
                         {
                             AddDistanceRule(rule);
@@ -182,7 +191,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <inheritdoc/>
         public void ClearAll()
         {
-            if (_competitionDistanceRules == null) { _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>(); }
+            if (_competitionDistanceRules == null)
+            {
+                _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
+                _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
+            }
             foreach (CompetitionDistanceRule rule in _competitionDistanceRules)
             {
                 rule.PropertyChanged -= DistanceRule_PropertyChanged;
@@ -206,7 +219,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <inheritdoc/>
         public void AddDistanceRule(CompetitionDistanceRule distanceRule)
         {
-            if (_competitionDistanceRules == null) { _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>(); }
+            if (_competitionDistanceRules == null)
+            {
+                _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
+                _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
+            }
             _competitionDistanceRules.Add(distanceRule);
             distanceRule.PropertyChanged += DistanceRule_PropertyChanged;
 
@@ -224,6 +241,13 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private void DistanceRule_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            _competitionService.UpdateAllCompetitionDistancesFromDistanceRules();
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private void _competitionDistanceRules_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            _competitionService.UpdateAllCompetitionDistancesFromDistanceRules();
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 

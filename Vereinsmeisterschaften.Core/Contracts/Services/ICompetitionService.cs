@@ -73,6 +73,17 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void UpdateAllCompetitionsForPerson();
 
         /// <summary>
+        /// Update the <see cref="Competition.Distance"/> from the matching <see cref="CompetitionDistanceRule"/>
+        /// </summary>
+        /// <param name="competition"><see cref="Competition"/> that is updated</param>
+        void UpdateCompetitionDistanceFromDistanceRules(Competition competition);
+
+        /// <summary>
+        /// Update the <see cref="Competition.Distance"/> from the matching <see cref="CompetitionDistanceRule"/> for all <see cref="Competition"/> objects.
+        /// </summary>
+        void UpdateAllCompetitionDistancesFromDistanceRules();
+
+        /// <summary>
         /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.
         /// </summary>
         /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>

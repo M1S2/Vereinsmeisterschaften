@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Core.Models
@@ -36,29 +37,70 @@ namespace Vereinsmeisterschaften.Core.Models
 
         #region Properties
 
+        private byte _minAge;
         /// <summary>
         /// Minimum age for this rule (inclusive)
         /// </summary>
-        [ObservableProperty]
-        private byte _minAge;
+        [FileServiceOrder]
+        public byte MinAge
+        {
+            get => _minAge;
+            set => SetProperty(ref  _minAge, value);
+        }
 
+        private byte _maxAge;
         /// <summary>
         /// Maximum age for this rule (inclusive)
         /// </summary>
-        [ObservableProperty]
-        private byte _maxAge;
+        [FileServiceOrder]
+        public byte MaxAge
+        {
+            get => _maxAge;
+            set => SetProperty(ref _maxAge, value);
+        }
 
+        private SwimmingStyles? _swimmingStyle = null;
         /// <summary>
         /// <see cref="SwimmingStyles"/> for this rule. Use <see langword="null"/> to use the rule for all styles.
         /// </summary>
-        [ObservableProperty]
-        private SwimmingStyles? _swimmingStyle = null;
+        [FileServiceOrder]
+        public SwimmingStyles? SwimmingStyle
+        {
+            get => _swimmingStyle;
+            set
+            {
+                if (SetProperty(ref _swimmingStyle, value))
+                {
+                    OnPropertyChanged(nameof(IsAllSwimmingStyles));
+                }
+            }
+        }
 
+        private ushort _distance;
         /// <summary>
         /// Distance in meters for this rule.
         /// </summary>
-        [ObservableProperty]
-        private ushort _distance;
+        [FileServiceOrder]
+        public ushort Distance
+        {
+            get => _distance;
+            set => SetProperty(ref _distance, value);
+        }
+
+        /// <summary>
+        /// Flag indicating if <see cref="SwimmingStyles"/> should be used or all styles are targeted.
+        /// This property uses the <see cref="SwimmingStyle"/> and checks if it is <see langword="null"/> or not.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsAllSwimmingStyles
+        {
+            get => SwimmingStyle == null;
+            set
+            {
+                SwimmingStyle = value ? null : SwimmingStyles.Breaststroke;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 

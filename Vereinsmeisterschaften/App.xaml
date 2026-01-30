@@ -9,6 +9,7 @@
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
     xmlns:analyticsControls="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
+    xmlns:dd="urn:gong-wpf-dragdrop"
     Startup="OnStartup"
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
@@ -293,6 +294,33 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- DataTemplate for a drag & drop hint that only shows a red background on Error and a hint text -->
+            <DataTemplate x:Key="DropHintOnlyErrorBackgroundTemplate" DataType="{x:Type dd:DropHintData}">
+                <Border x:Name="DropHintRootBorder" BorderBrush="Transparent" Background="Transparent">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding HintText}" TextWrapping="Wrap" Foreground="White"/>
+                </Border>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Path=HintState}" Value="Error">
+                        <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            
+            <!-- DataTemplate for a drag & drop hint that shows a red background on Error, green background on drag active and a hint text -->
+            <DataTemplate x:Key="DropHintTemplate" DataType="{x:Type dd:DropHintData}">
+                <Border x:Name="DropHintRootBorder">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding HintText}" TextWrapping="Wrap" Foreground="White"/>
+                </Border>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Path=HintState}" Value="Active">
+                        <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushOkWithTransparency}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=HintState}" Value="Error">
+                        <Setter TargetName="DropHintRootBorder" Property="Background" Value="{StaticResource BrushErrorWithTransparency}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
 
             <!-- App Icon -->
             <DrawingImage x:Key="DrawingImage_AppIcon">

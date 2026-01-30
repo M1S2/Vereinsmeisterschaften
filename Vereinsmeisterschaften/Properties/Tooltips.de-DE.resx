@@ -441,4 +441,8 @@ Tabellenplatzhalter müssen sich innerhalb einer Tabelle des Dokuments befinden.
 Die erste Zeile mit einem Platzhalter dient als Vorlage für die neuen Zeilen. Für jedes Datenelement wird eine neue Zeile erstellt.
 Die Ersetzungsdaten werden durch den Platzhalternamen bestimmt.</value>
   </data>
+  <data name="TooltipDistanceInvalid" xml:space="preserve">
+    <value>Es wurde keine gültige Distanz gefunden.
+Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Distanz Regel verfügbar ist.</value>
+  </data>
 </root>

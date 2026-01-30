@@ -779,4 +779,24 @@ Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Er
   <data name="RudolphTableCompetitionDeletionConfirmationString" xml:space="preserve">
     <value>ACHTUNG: Wenn neue Wettkämpfe mit Hilfe der Rudolph Tabelle erstellt werden sollen, werden alle aktuell existierenden Wettkämpfe gelöscht!</value>
   </data>
+  <data name="AllString" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="DragDropNotAllowedDataGridSortedString" xml:space="preserve">
+    <value>Kein Verschieben möglich
+(Die Tabelle ist sortiert)
+Bitte erst alle Spalten-Sortierungen entfernen</value>
+  </data>
+  <data name="DragDropDifferentTypesString" xml:space="preserve">
+    <value>Kein Verschieben möglich
+(Unterschiedliche Datentypen)</value>
+  </data>
+  <data name="DistanceWarningAtLeastOneInvalidString" xml:space="preserve">
+    <value>Mindestens eine Distanz konnte nicht gefunden werden (z.B. weil keine Wettkampf Distanz Regel vorhanden ist)!</value>
+  </data>
+  <data name="CompetitionDistanceRuleExplanationString" xml:space="preserve">
+    <value>Die Wettkampfdistanzregeln dienen dazu, die Distanz für einen Wettkampf festzulegen.
+Für jeden Wettkampf wird die erste Distanzregel angewendet, die zur Altersgruppe (einschließlich beider Altersgrenzen) und zum Schwimmstil passt.
+Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wichtig, die Regeln von spezifisch zu allgemein zu ordnen.</value>
+  </data>
 </root>

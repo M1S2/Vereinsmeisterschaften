@@ -13,6 +13,7 @@
     xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
+    xmlns:dd="urn:gong-wpf-dragdrop"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="1400">
 
@@ -73,7 +74,13 @@
         <DataGrid Grid.Row="3" ItemsSource="{Binding PeopleCollectionView}" Margin="{StaticResource MediumLeftTopRightBottomMargin}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
                   SelectedItem="{Binding SelectedPerson}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedPerson}"
-                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}"
+                  dd:DragDrop.IsDropTarget="True"
+                  dd:DragDrop.IsDragSource="True"
+                  dd:DragDrop.UseDefaultDragAdorner="True"
+                  dd:DragDrop.UseDropTargetHint="True"
+                  dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedSameTypeAndNotSortedHandler.Instance}"
+                  dd:DragDrop.DropHintDataTemplate="{StaticResource DropHintOnlyErrorBackgroundTemplate}">
             <!-- Center the row numbers -->
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">

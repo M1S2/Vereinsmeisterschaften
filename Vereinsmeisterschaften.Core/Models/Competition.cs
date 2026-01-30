@@ -84,17 +84,6 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _age, value);
         }
 
-        private ushort _distance = 0;
-        /// <summary>
-        /// Distance in meters for this competition (e.g. 25, 50, 100, 200)
-        /// </summary>
-        [FileServiceOrder]
-        public ushort Distance
-        {
-            get => _distance;
-            set { SetProperty(ref _distance, value); IsTimeFromRudolphTable = false; }
-        }
-
         private TimeSpan _bestTime;
         /// <summary>
         /// Time for this competition to reach the maximum points
@@ -103,7 +92,13 @@ namespace Vereinsmeisterschaften.Core.Models
         public TimeSpan BestTime
         {
             get => _bestTime;
-            set { SetProperty(ref _bestTime, value); IsTimeFromRudolphTable = false; }
+            set 
+            {
+                if (SetProperty(ref _bestTime, value))
+                {
+                    IsTimeFromRudolphTable = false;
+                }
+            }
         }
 
         private bool _isTimeFromRudolphTable = false;
@@ -117,6 +112,31 @@ namespace Vereinsmeisterschaften.Core.Models
             get => _isTimeFromRudolphTable;
             set => SetProperty(ref _isTimeFromRudolphTable, value);
         }
+
+
+        private ushort _distance = 0;
+        /// <summary>
+        /// Distance in meters for this competition (e.g. 25, 50, 100, 200)
+        /// </summary>
+        [FileServiceIgnore]
+        public ushort Distance
+        {
+            get => _distance;
+            set 
+            {
+                if (SetProperty(ref _distance, value))
+                {
+                    IsTimeFromRudolphTable = false;
+                    OnPropertyChanged(nameof(IsDistanceValid));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Only <see langword="true"/> when the <see cref="Distance"/> is greater 0.
+        /// </summary>
+        [FileServiceIgnore]
+        public bool IsDistanceValid => Distance > 0;
 
         #endregion
 
@@ -138,7 +158,6 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(Gender): if (EnumCoreLocalizedStringHelper.TryParse(value, out Genders parsedGender)) { dataObj.Gender = parsedGender; } break;
                 case nameof(SwimmingStyle): if (EnumCoreLocalizedStringHelper.TryParse(value, out SwimmingStyles parsedStyle)) { dataObj.SwimmingStyle = parsedStyle; } break;
                 case nameof(Age): dataObj.Age = byte.Parse(value); break;
-                case nameof(Distance): dataObj.Distance = ushort.Parse(value); break;
                 case nameof(BestTime): dataObj.BestTime = TimeSpan.Parse(value); break;
                 case nameof(IsTimeFromRudolphTable): dataObj.IsTimeFromRudolphTable = !string.IsNullOrEmpty(value); break;
                 default: break;
@@ -157,7 +176,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Competition to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Competition"/></returns>
         public override bool Equals(object obj)
-            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.Distance, c.BestTime, c.IsTimeFromRudolphTable).Equals((Id, Gender, SwimmingStyle, Age, Distance, BestTime, IsTimeFromRudolphTable));
+            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.BestTime, c.IsTimeFromRudolphTable).Equals((Id, Gender, SwimmingStyle, Age, BestTime, IsTimeFromRudolphTable));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -175,7 +194,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
             => base.GetHashCode();
-            //=> (Id, Gender, SwimmingStyle, Age, Distance, BestTime).GetHashCode();
+            //=> (Id, Gender, SwimmingStyle, Age, BestTime).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.

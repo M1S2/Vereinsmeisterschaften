@@ -58,10 +58,12 @@ namespace Vereinsmeisterschaften.Core.Services
         public CompetitionService(IFileService fileService, IPersonService personService, ICompetitionDistanceRuleService competitionDistanceRuleService)
         {
             _competitionList = new ObservableCollection<Competition>();
+            _competitionList.CollectionChanged += _competitionList_CollectionChanged;
             _fileService = fileService;
             _personService = personService;
-            _personService.SetCompetitionServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
+            _personService.SetCompetitionServiceObj(this);                          // Dependency Injection can't be used in the constructor because of circular dependency
             _competitionDistanceRuleService = competitionDistanceRuleService;
+            _competitionDistanceRuleService.SetCompetitionServiceObj(this);         // Dependency Injection can't be used in the constructor because of circular dependency
         }
 
         /// <summary>
@@ -116,6 +118,7 @@ namespace Vereinsmeisterschaften.Core.Services
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Competition), header);
                         });
                         _competitionList = new ObservableCollection<Competition>();
+                        _competitionList.CollectionChanged += _competitionList_CollectionChanged;
                         foreach (Competition competition in list)
                         {
                             AddCompetition(competition);
@@ -209,7 +212,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public void ClearAll()
         {
-            if (_competitionList == null) { _competitionList = new ObservableCollection<Competition>(); }
+            if (_competitionList == null) 
+            { 
+                _competitionList = new ObservableCollection<Competition>();
+                _competitionList.CollectionChanged += _competitionList_CollectionChanged;
+            }
             foreach (Competition competition in _competitionList)
             {
                 competition.PropertyChanged -= Competition_PropertyChanged;
@@ -241,7 +248,11 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="person"><see cref="Competition"/> to add</param>
         public void AddCompetition(Competition competition)
         {
-            if (_competitionList == null) { _competitionList = new ObservableCollection<Competition>(); }
+            if (_competitionList == null) 
+            { 
+                _competitionList = new ObservableCollection<Competition>(); 
+                _competitionList.CollectionChanged += _competitionList_CollectionChanged;
+            }
             _competitionList.Add(competition);
 
             competition.PropertyChanged += Competition_PropertyChanged;
@@ -267,6 +278,13 @@ namespace Vereinsmeisterschaften.Core.Services
         private void Competition_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             UpdateAllCompetitionsForPerson();
+            UpdateCompetitionDistanceFromDistanceRules(sender as Competition);
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        }
+
+        private void _competitionList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UpdateAllCompetitionsForPerson();
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
@@ -286,14 +304,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <summary>
-        /// Return the competition that matches the person and swimming style
-        /// </summary>
-        /// <param name="person"><see cref="Person"/> used to search the <see cref="Competition"/></param>
-        /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> that must match the <see cref="Competition"/></param>
-        /// <param name="isUsingMaxAgeCompetition">Flag indicating if this start is using a competition that was found by the max available age.</param>
-        /// <param name="isUsingExactAgeCompetition">Flag indicating if this start is using a competition for which the age of the person matches the competition age.</param>
-        /// <returns>Found <see cref="Competition"/> or <see langword="null"/></returns>
+        /// <inheritdoc/>
         public Competition GetCompetitionForPerson(Person person, SwimmingStyles swimmingStyle, out bool isUsingMaxAgeCompetition, out bool isUsingExactAgeCompetition)
         {
             isUsingMaxAgeCompetition = false;
@@ -361,10 +372,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <summary>
-        /// Update all <see cref="PersonStart"/> objects and the <see cref="Person.AvailableCompetitions"/> for the given <see cref="Person"/> with the corresponding <see cref="Competition"/> objects
-        /// </summary>
-        /// <param name="person"><see cref="Person"/> to update</param>
+        /// <inheritdoc/>
         public void UpdateAllCompetitionsForPerson(Person person)
         {
             // Update the available competitions for the person
@@ -396,14 +404,32 @@ namespace Vereinsmeisterschaften.Core.Services
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// <summary>
-        /// Update all <see cref="PersonStart"/> and the <see cref="Person.AvailableCompetitions"/> objects with the corresponding <see cref="Competition"/> objects
-        /// </summary>
+        /// <inheritdoc/>
         public void UpdateAllCompetitionsForPerson()
         {
             foreach (Person person in _personService.GetPersons())
             {
                 UpdateAllCompetitionsForPerson(person);
+            }
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
+        public void UpdateCompetitionDistanceFromDistanceRules(Competition competition)
+        {
+            if (competition == null) { return; }
+            competition.Distance = _competitionDistanceRuleService.GetCompetitionDistanceFromRules(competition.Age, competition.SwimmingStyle);
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
+        public void UpdateAllCompetitionDistancesFromDistanceRules()
+        {
+            foreach (Competition competition in _competitionList)
+            {
+                UpdateCompetitionDistanceFromDistanceRules(competition);
             }
         }
 
@@ -424,6 +450,8 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
             }
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
         public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)

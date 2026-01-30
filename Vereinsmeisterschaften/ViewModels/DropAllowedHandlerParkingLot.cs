@@ -11,6 +11,28 @@ namespace Vereinsmeisterschaften.ViewModels
     /// </summary>
     public class DropAllowedHandlerParkingLot : DefaultDropHandler
     {
+        #region Singleton
+
+        private static readonly DropAllowedHandlerParkingLot instance = new DropAllowedHandlerParkingLot();
+
+        // Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        static DropAllowedHandlerParkingLot()
+        {
+        }
+
+        private DropAllowedHandlerParkingLot()
+        {
+        }
+
+        /// <summary>
+        /// Singleton instance for the <see cref="DropAllowedHandlerParkingLot"/>
+        /// </summary>
+        public static DropAllowedHandlerParkingLot Instance => instance;
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         /// <inheritdoc/>
         public override void DragOver(IDropInfo dropInfo)
         {

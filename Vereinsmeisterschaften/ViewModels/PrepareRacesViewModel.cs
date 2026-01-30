@@ -250,22 +250,6 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #region Drop Handlers
-
-    /// <summary>
-    /// Drop Handler for the <see cref="CurrentRacesVariant"/>
-    /// </summary>
-    public DropAllowedHandler DropAllowedHandlerObj { get; } = new DropAllowedHandler();
-
-    /// <summary>
-    /// Drop Handler for the parking lot region containing the <see cref="RacesVariant.NotAssignedStarts"/>
-    /// </summary>
-    public DropAllowedHandlerParkingLot DropAllowedHandlerParkingLotObj { get; } = new DropAllowedHandlerParkingLot();
-
-    #endregion
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     private IRaceService _raceService;
     private IWorkspaceService _workspaceService;
     private IPersonService _personService;
@@ -494,7 +478,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _raceService.RecalculateVariantIDs();
 
         ushort numSwimLanes = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES) ?? 0;
-        DropAllowedHandlerObj.MaxItemsInTargetCollection = numSwimLanes;
+        DropAllowedHandler.Instance.MaxItemsInTargetCollection = numSwimLanes;
 
         OnPropertyChanged(nameof(AllRacesVariants));
         OnPropertyChanged(nameof(AreRacesVariantsAvailable));

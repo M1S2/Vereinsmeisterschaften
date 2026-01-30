@@ -18,7 +18,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public Race()
         {
             Starts = new ObservableCollection<PersonStart>();
-            Starts.CollectionChanged += Starts_CollectionChanged;
+            RegisterEvents();
         }
 
         /// <summary>
@@ -28,10 +28,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public Race(List<PersonStart> starts)
         {
             Starts = starts == null ? null : new ObservableCollection<PersonStart>(starts);
-            if (Starts != null)
-            {
-                Starts.CollectionChanged += Starts_CollectionChanged;
-            }
+            RegisterEvents();
         }
 
         /// <summary>
@@ -41,10 +38,7 @@ namespace Vereinsmeisterschaften.Core.Models
         public Race(ObservableCollection<PersonStart> starts)
         {
             Starts = starts;
-            if (Starts != null)
-            {
-                Starts.CollectionChanged += Starts_CollectionChanged;
-            }
+            RegisterEvents();
         }
 
         /// <summary>
@@ -65,7 +59,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 // Create a new list but keep the references to the <see cref="PersonStart"/> objects
                 Starts = new ObservableCollection<PersonStart>(other.Starts);
             }
-            Starts.CollectionChanged += Starts_CollectionChanged;
+            RegisterEvents();
             RaceID = other.RaceID;
         }
 
@@ -152,9 +146,32 @@ namespace Vereinsmeisterschaften.Core.Models
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        #region Starts Collection Changed Event Handler
+        #region Event Handling
+
+        private void RegisterEvents()
+        {
+            if (Starts != null)
+            {
+                Starts.CollectionChanged += Starts_CollectionChanged;
+
+                foreach(PersonStart start in Starts)
+                {
+                    start.PropertyChanged += Start_PropertyChanged;
+                    start.CompetitionObj?.PropertyChanged += Competition_PropertyChanged;
+                }
+            }
+        }
+
+        private void Competition_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => raiseAllPropertyChanged();
+
+        private void Start_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => raiseAllPropertyChanged();
 
         private void Starts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+            => raiseAllPropertyChanged();
+
+        private void raiseAllPropertyChanged()
         {
             OnPropertyChanged(nameof(Style));
             OnPropertyChanged(nameof(Distance));

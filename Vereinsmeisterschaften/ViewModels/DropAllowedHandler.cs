@@ -10,6 +10,28 @@ namespace Vereinsmeisterschaften.ViewModels
     /// </summary>
     public class DropAllowedHandler : DefaultDropHandler
     {
+        #region Singleton
+
+        private static readonly DropAllowedHandler instance = new DropAllowedHandler();
+
+        // Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        static DropAllowedHandler()
+        {
+        }
+
+        private DropAllowedHandler()
+        {
+        }
+
+        /// <summary>
+        /// Singleton instance for the <see cref="DropAllowedHandler"/>
+        /// </summary>
+        public static DropAllowedHandler Instance => instance;
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         /// <summary>
         /// Maximum items that are allowed in the target collection.
         /// If this number of items is reached, no dropping will be allowed anymore.

@@ -1447,7 +1447,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die CAUTION: When the Rudolph Table is used to create the competitions, all currently existing competitions will be deleted! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die CAUTION: When the Rudolph Table is used to create the competitions, all currently existing competitions that have counterparts in the Rudolph Table will be deleted! ähnelt.
         /// </summary>
         public static string RudolphTableCompetitionDeletionConfirmationString {
             get {

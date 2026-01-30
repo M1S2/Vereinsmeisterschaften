@@ -508,11 +508,27 @@ namespace Vereinsmeisterschaften.Core.Services
                                                              }
                                                 ).ToList();
 
-            ClearAll();
+            // All competitions should be deleted here that are later added from the competitions list.
+            // All competitions that are not in this list are kept.
+            CompetitionBasicEqualityComparer basicEqualityComparer = new CompetitionBasicEqualityComparer();
+            List<Competition> competitionsToDelete = _competitionList.Intersect(competitions, basicEqualityComparer).ToList();
+            foreach (Competition competition in competitionsToDelete)
+            {
+                competition.PropertyChanged -= Competition_PropertyChanged;
+                _competitionList.Remove(competition);
+            }
+            OnPropertyChanged(nameof(CompetitionCount));
+            UpdateAllCompetitionsForPerson();
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+
+            // Add all new competitions
             int id = 1;
             foreach (Competition competition in competitions)
             {
-                competition.Id = id++;
+                List<int> currentIds = _competitionList.Select(c => c.Id).ToList();
+                while (currentIds.Contains(id)) { id++; }
+
+                competition.Id = id;
                 AddCompetition(competition);
             }
         }

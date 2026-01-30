@@ -777,7 +777,7 @@ Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Er
     <value>Neue Wettkampf Distanz Regel hinzufügen</value>
   </data>
   <data name="RudolphTableCompetitionDeletionConfirmationString" xml:space="preserve">
-    <value>ACHTUNG: Wenn neue Wettkämpfe mit Hilfe der Rudolph Tabelle erstellt werden sollen, werden alle aktuell existierenden Wettkämpfe gelöscht!</value>
+    <value>ACHTUNG: Wenn neue Wettkämpfe mit Hilfe der Rudolph Tabelle erstellt werden sollen, werden alle aktuell existierenden Wettkämpfe gelöscht, zu denen es neue Einträge in der Rudolph Tabelle gibt!</value>
   </data>
   <data name="AllString" xml:space="preserve">
     <value>Alle</value>

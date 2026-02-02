@@ -69,6 +69,12 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         private set => SetProperty(ref _competitionDistanceRuleCollectionView, value);
     }
 
+    /// <summary>
+    /// <see cref="CompetitionDistanceRuleValidationIssue"/> objects that contain all issues of the validations of the <see cref="CompetitionDistanceRule"/> objects
+    /// </summary>
+    public List<CompetitionDistanceRuleValidationIssue> CompetitionDistanceRuleValidationIssues
+        => _competitionDistanceRuleService.ValidateRules();
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private List<SwimmingStyles> _availableSwimmingStyles = Enum.GetValues(typeof(SwimmingStyles)).Cast<SwimmingStyles>().Where(s => s != SwimmingStyles.Unknown).ToList();
@@ -100,6 +106,15 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         _workspaceService = workspaceService;
         _dialogCoordinator = dialogCoordinator;
         _shellVM = shellVM;
+
+        _competitionDistanceRuleService.PropertyChanged += (sender, e) =>
+        {
+            switch(e.PropertyName)
+            {
+                case nameof(ICompetitionDistanceRuleService.HasUnsavedChanges): OnPropertyChanged(nameof(CompetitionDistanceRuleValidationIssues)); break;
+                default: break;
+            }
+        };
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -253,6 +268,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
 
         OnPropertyChanged(nameof(IsAnyDistanceInvalid));
         OnPropertyChanged(nameof(HasDuplicateCompetitions));
+        OnPropertyChanged(nameof(CompetitionDistanceRuleValidationIssues));
     }
 
     /// <inheritdoc/>

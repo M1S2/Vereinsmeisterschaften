@@ -52,5 +52,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="swimmingStyle"><see cref="SwimmingStyles"/> to find</param>
         /// <returns>Found distance or 0 if not found</returns>
         ushort GetCompetitionDistanceFromRules(byte age, SwimmingStyles swimmingStyle);
+
+        /// <summary>
+        /// Check if all rules are valid and return a list of found issues.
+        /// </summary>
+        /// <returns><see cref="CompetitionDistanceRuleValidationIssue"/> list</returns>
+        List<CompetitionDistanceRuleValidationIssue> ValidateRules();
     }
 }

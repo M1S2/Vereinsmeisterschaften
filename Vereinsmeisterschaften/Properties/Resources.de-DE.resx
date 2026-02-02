@@ -802,4 +802,13 @@ Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wicht
   <data name="DuplicateCompetitionFound" xml:space="preserve">
     <value>Doppelter Wettkampf gefunden</value>
   </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_AgeGap" xml:space="preserve">
+    <value>Alterslücke zwischen {0} und {1} Jahren</value>
+  </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_Overlap" xml:space="preserve">
+    <value>Überlappung im Bereich zwischen {0} und {1} Jahren</value>
+  </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_UnreachableRule" xml:space="preserve">
+    <value>Unerreichbare Regel: {0} bis {1} Jahre</value>
+  </data>
 </root>

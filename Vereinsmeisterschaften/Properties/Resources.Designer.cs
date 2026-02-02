@@ -434,6 +434,33 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Age Gap between {0} and {1} years ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceRuleValidationIssueFormat_AgeGap {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRuleValidationIssueFormat_AgeGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overlap in range {0} to {1} years ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceRuleValidationIssueFormat_Overlap {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRuleValidationIssueFormat_Overlap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unreachable rule: {0} to {1} years ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceRuleValidationIssueFormat_UnreachableRule {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceRuleValidationIssueFormat_UnreachableRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Competition ID ähnelt.
         /// </summary>
         public static string CompetitionIDString {

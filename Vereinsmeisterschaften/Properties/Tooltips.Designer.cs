@@ -61,6 +61,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The competition distance is determined by the first matching competition distance rule. ähnelt.
+        /// </summary>
+        public static string CompetitionDistanceDeterminedByCompetitionDistanceRuleString {
+            get {
+                return ResourceManager.GetString("CompetitionDistanceDeterminedByCompetitionDistanceRuleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new race for the current race variant. ähnelt.
         /// </summary>
         public static string TooltipAddNewRaceToRaceVariant {

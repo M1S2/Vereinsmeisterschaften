@@ -801,4 +801,13 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="DuplicateCompetitionFound" xml:space="preserve">
     <value>Duplicate Competition found</value>
   </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_AgeGap" xml:space="preserve">
+    <value>Age Gap between {0} and {1} years</value>
+  </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_Overlap" xml:space="preserve">
+    <value>Overlap in range {0} to {1} years</value>
+  </data>
+  <data name="CompetitionDistanceRuleValidationIssueFormat_UnreachableRule" xml:space="preserve">
+    <value>Unreachable rule: {0} to {1} years</value>
+  </data>
 </root>

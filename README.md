@@ -44,9 +44,13 @@ Es gibt außerdem einen alternative Ansicht, mit der von überall aus der aktuel
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_WorkspaceManager.png" width="100%"></img>
 
 ### Wettkämpfe
-Hier werden alle verfügbaren Wettkämpfe definiert. Ein Wettkampf wird beschrieben über die Lage, die Strecke, das Alter und eine entsprechende Zeit.
+Hier werden alle verfügbaren Wettkämpfe und Regel für die zugeordneten Wettkampf Strecken definiert. Ein Wettkampf wird beschrieben über die Lage, die Strecke, das Alter und eine entsprechende Zeit.
 Die Zeit wird dann für die Berechnung der Punkte her genommen. Wird exakt die hier eingetragene Zeit erschwommen, gibt es 100 Punkte. Wenn langsamer gibt es weniger Punkte, wenn schneller dann mehr.
+Die Strecke eines Wettkampfs wird über die die Wettkampf Distanz Regeln festgelegt. Die erste passende Regel wird verwendet.
 Für jeden Start einer Person muss auch ein entsprechender Wettkampf verfügbar sein.
+
+Außerdem können hier auch die Wettkämpfe automatisch aus der Rudolph Tabelle erstellt werden (enthält für verschiedene Alter, Stile und Strecken entsprechende Vorgabezeiten).
+Es werden nur Wettkämpfe erzeugt, für die auch Wettkampf Distanz Regeln vorhanden sind.
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Competitions.png" width="100%"></img>
 

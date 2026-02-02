@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+using System.Data;
+using System.Runtime.Intrinsics.X86;
+using System.Text;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
@@ -144,10 +147,6 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             return EnumCoreLocalizedStringHelper.Convert(dataEnum);
                         }
-                        else if(currentProperty.Name == nameof(CompetitionDistanceRule.SwimmingStyle) && data == null)
-                        {
-                            return Properties.Resources.AllString;
-                        }
                         else
                         {
                             return data.ToString();
@@ -256,12 +255,155 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             CompetitionDistanceRule rule = _competitionDistanceRules.FirstOrDefault(r => age >= r.MinAge &&
                                                                                          age <= r.MaxAge &&
-                                                                                         (r.SwimmingStyle == null || r.SwimmingStyle == swimmingStyle));
+                                                                                         r.SwimmingStyle == swimmingStyle);
             if (rule == null)
             {
                 return 0;   // No distance rule found
             }
             return rule.Distance;
         }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Validation
+
+        /// <inheritdoc/>
+        public List<CompetitionDistanceRuleValidationIssue> ValidateRules()
+        {
+            List<CompetitionDistanceRuleValidationIssue> result = new List<CompetitionDistanceRuleValidationIssue>();
+
+            List<SwimmingStyles> ruleStyles = _competitionDistanceRules.Select(r => r.SwimmingStyle).Distinct().ToList();
+            foreach (SwimmingStyles style in ruleStyles)
+            {
+                result.AddRange(validateAgeGaps(style));
+                result.AddRange(validateOverlaps(style));
+                result.AddRange(validateUnreachableRules(style));
+            }
+
+            // Each unreachable rule is also overlapped completely by another rule.
+            // It is enough to only report the unreachable state.
+            HashSet<CompetitionDistanceRule> unreachableRules = result.Where(i => i.IssueType == CompetitionDistanceRuleValidationIssue.CompetitionDistanceRuleValidationIssueType.UnreachableRule)
+                                                                      .Select(i => i.Rule1)
+                                                                      .ToHashSet();
+            result.RemoveAll(i => i.IssueType == CompetitionDistanceRuleValidationIssue.CompetitionDistanceRuleValidationIssueType.Overlap &&
+                                  (unreachableRules.Contains(i.Rule1) || unreachableRules.Contains(i.Rule2)));
+
+            return result;
+        }
+
+        /// <summary>
+        /// Check if there are gaps between the <see cref="CompetitionDistanceRule"/> objects for the requested <see cref="SwimmingStyles"/>
+        /// e.g. Rule 6-10, Rule 15-99 --> Gap 11-14
+        /// </summary>
+        /// <param name="style"><see cref="SwimmingStyles"/> to filter the rules</param>
+        /// <returns><see cref="CompetitionDistanceRuleValidationIssue"/> list</returns>
+        private List<CompetitionDistanceRuleValidationIssue> validateAgeGaps(SwimmingStyles style)
+        {
+            List<CompetitionDistanceRuleValidationIssue> validationResult = new List<CompetitionDistanceRuleValidationIssue>();
+
+            List<CompetitionDistanceRule> orderedAndFilteredRules = _competitionDistanceRules.Where(r => r.SwimmingStyle == style)?.OrderBy(r => r.MinAge).ToList();
+            for (int i = 0; i < orderedAndFilteredRules.Count - 1; i++)
+            {
+                CompetitionDistanceRule currentRule = orderedAndFilteredRules[i];
+                CompetitionDistanceRule nextRule = orderedAndFilteredRules[i + 1];
+
+                if (currentRule.MaxAge + 1 < nextRule.MinAge)
+                {
+                    CompetitionDistanceRuleValidationIssue issue = new CompetitionDistanceRuleValidationIssue
+                    {
+                        IssueType = CompetitionDistanceRuleValidationIssue.CompetitionDistanceRuleValidationIssueType.AgeGap,
+                        SwimmingStyle = style,
+                        MinAge = (byte)(currentRule.MaxAge + 1),
+                        MaxAge = (byte)(nextRule.MinAge - 1),
+                        Rule1 = currentRule,
+                        Rule2 = nextRule
+                    };
+
+                    validationResult.Add(issue);
+                }
+            }
+            return validationResult;
+        }
+
+        /// <summary>
+        /// Check if there are overlaps between the <see cref="CompetitionDistanceRule"/> objects for the requested <see cref="SwimmingStyles"/>
+        /// e.g. Rule 6-15, Rule 10-99 --> Overlap 10-15
+        /// </summary>
+        /// <param name="style"><see cref="SwimmingStyles"/> to filter the rules</param>
+        /// <returns><see cref="CompetitionDistanceRuleValidationIssue"/> list</returns>
+        private List<CompetitionDistanceRuleValidationIssue> validateOverlaps(SwimmingStyles style)
+        {
+            List<CompetitionDistanceRuleValidationIssue> validationResult = new List<CompetitionDistanceRuleValidationIssue>();
+
+            List<CompetitionDistanceRule> orderedAndFilteredRules = _competitionDistanceRules.Where(r => r.SwimmingStyle == style)?.OrderBy(r => r.MinAge).ToList();
+            for (int i = 0; i < orderedAndFilteredRules.Count - 1; i++)
+            {
+                CompetitionDistanceRule currentRule = orderedAndFilteredRules[i];
+                CompetitionDistanceRule nextRule = orderedAndFilteredRules[i + 1];
+
+                if (nextRule.MinAge <= currentRule.MaxAge)
+                {
+                    CompetitionDistanceRuleValidationIssue issue = new CompetitionDistanceRuleValidationIssue
+                    {
+                        IssueType = CompetitionDistanceRuleValidationIssue.CompetitionDistanceRuleValidationIssueType.Overlap,
+                        SwimmingStyle = style,
+                        MinAge = nextRule.MinAge,
+                        MaxAge = (byte)Math.Min(currentRule.MaxAge, nextRule.MaxAge),
+                        Rule1 = currentRule,
+                        Rule2 = nextRule
+                    };
+
+                    validationResult.Add(issue);
+                }
+            }
+            return validationResult;
+        }
+
+        /// <summary>
+        /// Check if there are <see cref="CompetitionDistanceRule"/> objects for the requested <see cref="SwimmingStyles"/> that are never reached
+        /// e.g. Rule 6-99, Rule 10-20 --> Rule 10-20 will never be reached because the first rule will always be taken
+        /// </summary>
+        /// <param name="style"><see cref="SwimmingStyles"/> to filter the rules</param>
+        /// <returns><see cref="CompetitionDistanceRuleValidationIssue"/> list</returns>
+        private List<CompetitionDistanceRuleValidationIssue> validateUnreachableRules(SwimmingStyles style)
+        {
+            List<CompetitionDistanceRuleValidationIssue> validationResult = new List<CompetitionDistanceRuleValidationIssue>();
+
+            List<CompetitionDistanceRule> filteredRules = _competitionDistanceRules.Where(r => r.SwimmingStyle == style).ToList();
+
+            HashSet<byte> coveredAges = new HashSet<byte>();
+            foreach (CompetitionDistanceRule rule in filteredRules)
+            {
+                bool anyReachable = false;
+
+                for (byte age = rule.MinAge; age <= rule.MaxAge; age++)
+                {
+                    if (!coveredAges.Contains(age))
+                    {
+                        anyReachable = true;
+                        break;
+                    }
+                }
+
+                if (!anyReachable)
+                {
+                    CompetitionDistanceRuleValidationIssue issue = new CompetitionDistanceRuleValidationIssue
+                    {
+                        IssueType = CompetitionDistanceRuleValidationIssue.CompetitionDistanceRuleValidationIssueType.UnreachableRule,
+                        SwimmingStyle = style,
+                        Rule1 = rule
+                    };
+                    validationResult.Add(issue);
+                }
+
+                for (byte age = rule.MinAge; age <= rule.MaxAge; age++)
+                {
+                    coveredAges.Add(age);
+                }
+            }
+            return validationResult;
+        }
+
+        #endregion
     }
 }

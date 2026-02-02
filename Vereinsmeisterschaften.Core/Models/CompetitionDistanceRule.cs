@@ -59,21 +59,15 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _maxAge, value);
         }
 
-        private SwimmingStyles? _swimmingStyle = null;
+        private SwimmingStyles _swimmingStyle;
         /// <summary>
-        /// <see cref="SwimmingStyles"/> for this rule. Use <see langword="null"/> to use the rule for all styles.
+        /// <see cref="SwimmingStyles"/> for this rule.
         /// </summary>
         [FileServiceOrder]
-        public SwimmingStyles? SwimmingStyle
+        public SwimmingStyles SwimmingStyle
         {
             get => _swimmingStyle;
-            set
-            {
-                if (SetProperty(ref _swimmingStyle, value))
-                {
-                    OnPropertyChanged(nameof(IsAllSwimmingStyles));
-                }
-            }
+            set => SetProperty(ref _swimmingStyle, value);
         }
 
         private ushort _distance;
@@ -85,21 +79,6 @@ namespace Vereinsmeisterschaften.Core.Models
         {
             get => _distance;
             set => SetProperty(ref _distance, value);
-        }
-
-        /// <summary>
-        /// Flag indicating if <see cref="SwimmingStyles"/> should be used or all styles are targeted.
-        /// This property uses the <see cref="SwimmingStyle"/> and checks if it is <see langword="null"/> or not.
-        /// </summary>
-        [FileServiceIgnore]
-        public bool IsAllSwimmingStyles
-        {
-            get => SwimmingStyle == null;
-            set
-            {
-                SwimmingStyle = value ? null : SwimmingStyles.Breaststroke;
-                OnPropertyChanged();
-            }
         }
 
         #endregion
@@ -124,10 +103,6 @@ namespace Vereinsmeisterschaften.Core.Models
                     if (EnumCoreLocalizedStringHelper.TryParse(value, out SwimmingStyles parsedStyle))
                     {
                         dataObj.SwimmingStyle = parsedStyle;
-                    }
-                    else
-                    {
-                        dataObj.SwimmingStyle = null;   // null means all styles allowed
                     }
                     break;
                 case nameof(Distance): dataObj.Distance = ushort.Parse(value); break;
@@ -172,7 +147,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-            => $"MinAge: {MinAge}, MaxAge: {MaxAge}, SwimmingStyle: {(SwimmingStyle == null ? "all" : SwimmingStyle)} --> Distance: {Distance}m";
+            => $"MinAge: {MinAge}, MaxAge: {MaxAge}, SwimmingStyle: {SwimmingStyle} --> Distance: {Distance}m";
 
         /// <summary>
         /// Create a new object that has the same property values than this one

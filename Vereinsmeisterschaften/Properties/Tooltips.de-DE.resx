@@ -448,4 +448,7 @@ Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Dista
   <data name="TooltipDuplicateCompetition" xml:space="preserve">
     <value>Es wurde mindestens ein anderer Wettkampf mit den selben Basiswerten gefunden.</value>
   </data>
+  <data name="CompetitionDistanceDeterminedByCompetitionDistanceRuleString" xml:space="preserve">
+    <value>Die Strecke für diesen Wettkampf wird über die erste passende Wettkampf Distanz Regel festgelegt.</value>
+  </data>
 </root>

@@ -25,29 +25,244 @@
         <Style x:Key="DataGridTextCellCenteringStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
+
+        <converters:CompetitionDistanceRuleValidationIssueToStringConverter x:Key="CompetitionDistanceRuleValidationIssueStringConverter"/>
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <controls:FontIcon FontSize="40" Glyph="&#xF0E3;"/>
-            <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.CompetitionPageTitle}" />
-            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoCompetitionPage}"/>
+            <TextBlock Text="{x:Static properties:Resources.CompetitionPageTitle}" 
+                       Style="{StaticResource PageTitleStyle}"/>
+            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;"
+                               Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                               ToolTip="{x:Static properties:Tooltips.TooltipPageInfoCompetitionPage}"/>
         </StackPanel>
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <!-- Competition Distance Rules and Rudolph Table handling -->
+        <Grid Grid.Row="1" Grid.RowSpan="5" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Distance Rule configuration -->
+            <TextBlock Grid.Row="0"
+                       Text="{x:Static properties:Resources.CompetitionDistanceRulesString}"
+                       Style="{StaticResource SubtitleTextStyle}"/>
+
+            <TextBlock Grid.Row="1" Margin="{StaticResource XSmallTopMargin}"
+                       Text="{x:Static properties:Resources.CompetitionDistanceRuleExplanationString}" TextWrapping="Wrap"/>
+
+            <DockPanel Grid.Row="2" LastChildFill="True">
+                <!-- Add Distance Rule Button -->
+                <Button DockPanel.Dock="Bottom" HorizontalAlignment="Left"
+                        Margin="{StaticResource SmallTopBottomMargin}"
+                        Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                        Command="{Binding AddDistanceRuleCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
+                                   Text="{x:Static properties:Resources.AddNewDistanceRule}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Distance Rule Validation Issues -->
+                <Border DockPanel.Dock="Bottom"
+                        Background="{StaticResource BrushWarning}">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CompetitionDistanceRuleValidationIssues.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <DockPanel MaxHeight="80">
+                        <!-- Warning icon -->
+                        <controls:FontIcon Margin="10" Glyph="&#xE7BA;"/>
+                        <ScrollViewer Margin="2" VerticalAlignment="Center"
+                                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding CompetitionDistanceRuleValidationIssues}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type coreModels:CompetitionDistanceRuleValidationIssue}">
+                                        <DockPanel>
+                                            <ContentControl Width="150" HorizontalAlignment="Center"
+                                                            Content="{Binding SwimmingStyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                            <TextBlock Text="{Binding Path='.', Converter={StaticResource CompetitionDistanceRuleValidationIssueStringConverter}}"
+                                                       FontSize="{StaticResource MediumFontSize}"
+                                                       VerticalAlignment="Center"/>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+
+                <!-- DataGrid to edit the CompetitionDistanceRules -->
+                <DataGrid Margin="0,15,0,0" ItemsSource="{Binding CompetitionDistanceRuleCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
+                          behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
+                          dd:DragDrop.IsDropTarget="True"
+                          dd:DragDrop.IsDragSource="True"
+                          dd:DragDrop.UseDefaultDragAdorner="True"
+                          dd:DragDrop.UseDropTargetHint="True"
+                          dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedSameTypeAndNotSortedHandler.Instance}"
+                          dd:DragDrop.DropHintDataTemplate="{StaticResource DropHintOnlyErrorBackgroundTemplate}">
+                    <DataGrid.RowHeaderStyle>
+                        <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.RowHeaderStyle>
+
+                    <DataGrid.Columns>
+                        <!-- Minimum age -->
+                        <DataGridTextColumn Binding="{Binding MinAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
+                                    <TextBlock Text="{x:Static properties:Resources.MinAgeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                    <TextBlock Text=" (&gt;=)" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <!-- Maximum age -->
+                        <DataGridTextColumn Binding="{Binding MaxAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
+                                    <TextBlock Text="{x:Static properties:Resources.MaxAgeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                    <TextBlock Text=" (&lt;=)" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <!-- Swimming Style -->
+                        <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
+                            <DataGridTemplateColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
+                                    <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                </StackPanel>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalAlignment="Center" Content="{Binding SwimmingStyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox HorizontalAlignment="Center"
+                                              ItemsSource="{Binding DataContext.AvailableSwimmingStyles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                              SelectedValue="{Binding SwimmingStyle, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Distance -->
+                        <DataGridTextColumn Binding="{Binding Distance, StringFormat={}{0}m}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
+                                    <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <!-- Remove Distance Rule Button -->
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="RemoveDistanceRuleButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
+                                            Visibility="Hidden" Width="30" Height="30"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemoveDistanceRuleCommand}" CommandParameter="{Binding}">
+                                        <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
+                                    </Button>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsMouseOver}" Value="True">
+                                            <Setter TargetName="RemoveDistanceRuleButton" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsSelected}" Value="True">
+                                            <Setter TargetName="RemoveDistanceRuleButton" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+
+            <!-- Controls for Rudolph table -->
+            <GroupBox Grid.Row="3" Margin="0,20,0,0"
+                      Header="{x:Static properties:Resources.RudolphTableString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
+                <StackPanel Orientation="Vertical" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
+                    <TextBlock VerticalAlignment="Center"
+                               Text="{x:Static properties:Resources.RudolphTableExplanationString}" TextWrapping="Wrap"/>
+
+                    <!-- Update Competition Times from Rudolph table Button -->
+                    <Button Margin="0,10,0,0" HorizontalAlignment="Left"
+                            Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                            Command="{Binding UpdateCompetitionTimesFromRudolphTableCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon FontSize="20" Glyph="&#xE916;"/>
+                            <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Create Competitions from Rudolph table Button -->
+                    <Button Margin="0,10,0,0" HorizontalAlignment="Left"
+                            Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                            Command="{Binding CreateCompetitionsFromRudolphTableCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <controls:FontIcon FontSize="20" Glyph="&#xEDAD;"/>
+                            <TextBlock Text="{x:Static properties:Resources.CreateCompetitionsFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <!-- Competitions title -->
+        <TextBlock Grid.Row="1" Grid.Column="1"
+                   Margin="{StaticResource MediumLeftTopRightMargin}"
+                   Text="{x:Static properties:Resources.CompetitionPageTitle}"
+                   Style="{StaticResource SubtitleTextStyle}"/>
+        
         <!-- DataGrid with all competitions -->
-        <DataGrid Grid.Row="1" Grid.Column="0" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+        <DataGrid Grid.Row="2" Grid.Column="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}"
                   ItemsSource="{Binding CompetitionsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
                   SelectedItem="{Binding SelectedCompetition}" behaviors:DataGridBehavior.ObserveSelectedItem="{Binding SelectedCompetition}"
@@ -123,7 +338,7 @@
                         </StackPanel>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                
+
                 <!-- Swimming Style -->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
                     <DataGridTemplateColumn.Header>
@@ -163,7 +378,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray}"
+                                           ToolTip="{x:Static properties:Tooltips.CompetitionDistanceDeterminedByCompetitionDistanceRuleString}"
+                                           FontStyle="Italic">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Text" Value="{Binding Distance, StringFormat={}{0}m}"/>
@@ -244,7 +462,7 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
         <!-- Invalid Distance Found Warning -->
-        <Border Grid.Row="2" Margin="{StaticResource MediumLeftRightMargin}"
+        <Border Grid.Row="3" Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}"
                 Background="{StaticResource BrushWarning}"
                 Visibility="{Binding IsAnyDistanceInvalid, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
@@ -257,208 +475,30 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
         <!-- Duplicate Competition Warning -->
-        <Border Grid.Row="3" Background="{StaticResource BrushWarning}" Margin="{StaticResource MediumLeftRightMargin}"
+        <Border Grid.Row="4" Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}"
+                Background="{StaticResource BrushWarning}"
                 Visibility="{Binding HasDuplicateCompetitions, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <!-- Warning icon -->
                 <controls:FontIcon Margin="5" Glyph="&#xE8C8;"/>
-                <TextBlock Text="{x:Static properties:Resources.DuplicateCompetitionFound}" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Static properties:Resources.DuplicateCompetitionFound}"/>
             </StackPanel>
         </Border>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
         <!-- Add Competition Button -->
-        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left"
+        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"
                 Margin="{StaticResource MediumLeftTopRightMargin}"
                 Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
                 Command="{Binding AddCompetitionCommand}">
             <StackPanel Orientation="Horizontal">
                 <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
-                <TextBlock Text="{x:Static properties:Resources.AddNewCompetition}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
+                           Text="{x:Static properties:Resources.AddNewCompetition}"/>
             </StackPanel>
         </Button>
-
-        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-        <!-- Competition Distance Rules and Rudolph Table handling -->
-        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <!-- Distance Rule configuration -->
-            <TextBlock Grid.Row="0"
-                       Text="{x:Static properties:Resources.CompetitionDistanceRulesString}"
-                       Style="{StaticResource SubtitleTextStyle}"/>
-
-            <TextBlock Grid.Row="1" Margin="{StaticResource XSmallTopMargin}"
-                       Text="{x:Static properties:Resources.CompetitionDistanceRuleExplanationString}" TextWrapping="Wrap"/>
-
-            <DockPanel Grid.Row="2" LastChildFill="True">
-                <!-- Add Distance Rule Button -->
-                <Button DockPanel.Dock="Bottom" HorizontalAlignment="Left"
-                        Margin="{StaticResource SmallTopBottomMargin}"
-                        Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                        Command="{Binding AddDistanceRuleCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
-                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
-                                   Text="{x:Static properties:Resources.AddNewDistanceRule}"/>
-                    </StackPanel>
-                </Button>                
-
-                <!-- DataGrid to edit the CompetitionDistanceRules -->
-                <DataGrid Margin="0,15,0,0" ItemsSource="{Binding CompetitionDistanceRuleCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
-                          dd:DragDrop.IsDropTarget="True"
-                          dd:DragDrop.IsDragSource="True"
-                          dd:DragDrop.UseDefaultDragAdorner="True"
-                          dd:DragDrop.UseDropTargetHint="True"
-                          dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedSameTypeAndNotSortedHandler.Instance}"
-                          dd:DragDrop.DropHintDataTemplate="{StaticResource DropHintOnlyErrorBackgroundTemplate}">
-                    <DataGrid.RowHeaderStyle>
-                        <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        </Style>
-                    </DataGrid.RowHeaderStyle>
-
-                    <DataGrid.Columns>
-                        <!-- Minimum age -->
-                        <DataGridTextColumn Binding="{Binding MinAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
-                            <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
-                                    <TextBlock Text="{x:Static properties:Resources.MinAgeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                    <TextBlock Text=" (&gt;=)" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                </StackPanel>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-
-                        <!-- Maximum age -->
-                        <DataGridTextColumn Binding="{Binding MaxAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
-                            <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
-                                    <TextBlock Text="{x:Static properties:Resources.MaxAgeString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                    <TextBlock Text=" (&lt;=)" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                </StackPanel>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-
-                        <!-- Swimming Style -->
-                        <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
-                            <DataGridTemplateColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
-                                    <TextBlock Text="{x:Static properties:Resources.SwimmingStyleString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                </StackPanel>
-                            </DataGridTemplateColumn.Header>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ContentControl HorizontalAlignment="Center">
-                                        <ContentControl.Style>
-                                            <Style TargetType="{x:Type ContentControl}">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <ContentControl Content="{Binding SwimmingStyle}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SwimmingStyle}" Value="{x:Null}">
-                                                        <Setter Property="Content" Value="{x:Static properties:Resources.AllString}"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ContentControl.Style>
-                                    </ContentControl>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <CheckBox Margin="0,0,10,0" Content="{x:Static properties:Resources.AllString}"
-                                                  IsChecked="{Binding IsAllSwimmingStyles, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox ItemsSource="{Binding DataContext.AvailableSwimmingStyles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
-                                                  SelectedValue="{Binding SwimmingStyle, UpdateSourceTrigger=PropertyChanged}"
-                                                  Visibility="{Binding IsAllSwimmingStyles, Converter={StaticResource InvertedBoolVisibilityConverter}}">
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
-
-                        <!-- Distance -->
-                        <DataGridTextColumn Binding="{Binding Distance, StringFormat={}{0}m}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
-                            <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
-                                    <TextBlock Text="{x:Static properties:Resources.DistanceString}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
-                                </StackPanel>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-
-                        <!-- Remove Distance Rule Button -->
-                        <DataGridTemplateColumn Width="50">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="RemoveDistanceRuleButton" Margin="0,1,0,1" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{StaticResource MahApps.Brushes.Gray2}"
-                                            Visibility="Hidden" Width="30" Height="30"
-                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.RemoveDistanceRuleCommand}" CommandParameter="{Binding}">
-                                        <controls:FontIcon FontSize="15" Glyph="&#xE74D;"/>
-                                    </Button>
-                                    <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsMouseOver}" Value="True">
-                                            <Setter TargetName="RemoveDistanceRuleButton" Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=IsSelected}" Value="True">
-                                            <Setter TargetName="RemoveDistanceRuleButton" Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </DockPanel>
-
-            <!-- Controls for Rudolph table -->
-            <GroupBox Grid.Row="3" Margin="0,20,0,0"
-                      Header="{x:Static properties:Resources.RudolphTableString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
-                <StackPanel Orientation="Vertical" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
-                    <TextBlock VerticalAlignment="Center"
-                               Text="{x:Static properties:Resources.RudolphTableExplanationString}" TextWrapping="Wrap"/>
-
-                    <!-- Update Competition Times from Rudolph table Button -->
-                    <Button Margin="0,10,0,0" HorizontalAlignment="Left"
-                            Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                            Command="{Binding UpdateCompetitionTimesFromRudolphTableCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <controls:FontIcon FontSize="20" Glyph="&#xE916;"/>
-                            <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Create Competitions from Rudolph table Button -->
-                    <Button Margin="0,10,0,0" HorizontalAlignment="Left"
-                            Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                            Command="{Binding CreateCompetitionsFromRudolphTableCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <controls:FontIcon FontSize="20" Glyph="&#xEDAD;"/>
-                            <TextBlock Text="{x:Static properties:Resources.CreateCompetitionsFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </GroupBox>
-        </Grid>
 
     </Grid>
 </Page>

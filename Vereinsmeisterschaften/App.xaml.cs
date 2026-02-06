@@ -105,6 +105,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModuleStartDistances>();
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
         services.AddSingleton<AnalyticsModuleRacesAges>();
+        services.AddSingleton<AnalyticsModuleCompetitionTimes>();
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderPersons>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderStarts>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsPerStyle>());
@@ -116,6 +117,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartDistances>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePlacesAgeDistribution>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAges>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleCompetitionTimes>());
         services.AddSingleton<IDocumentFileConverterSelector, DocumentFileConverterSelector>();
         services.AddSingleton<IDocumentFileConverter, MsWordDocumentFileConverter>();
         services.AddSingleton<IDocumentFileConverter, LibreOfficeDocumentFileConverter>();
@@ -176,6 +178,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetDistancesBetweenStarts>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPlacesAgeDistribution>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetRacesAges>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetCompetitionTimes>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

@@ -89,6 +89,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the competition times per age and style. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetCompetitionTimes {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetCompetitionTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the distances between the starts of a person.
         ///Only active starts are regarded. ähnelt.
         /// </summary>

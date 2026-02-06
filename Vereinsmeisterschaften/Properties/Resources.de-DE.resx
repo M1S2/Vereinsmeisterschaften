@@ -814,4 +814,7 @@ Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wicht
   <data name="ListEmptyString" xml:space="preserve">
     <value>Die Liste ist momentan leer.</value>
   </data>
+  <data name="AnalyticsWidgetCompetitionTimesTitle" xml:space="preserve">
+    <value>Wettkampf Zeiten</value>
+  </data>
 </root>

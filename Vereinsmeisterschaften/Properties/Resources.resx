@@ -813,4 +813,7 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="ListEmptyString" xml:space="preserve">
     <value>The list ist currently empty.</value>
   </data>
+  <data name="AnalyticsWidgetCompetitionTimesTitle" xml:space="preserve">
+    <value>Competition Times</value>
+  </data>
 </root>

@@ -451,4 +451,7 @@ Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Dista
   <data name="CompetitionDistanceDeterminedByCompetitionDistanceRuleString" xml:space="preserve">
     <value>Die Strecke für diesen Wettkampf wird über die erste passende Wettkampf Distanz Regel festgelegt.</value>
   </data>
+  <data name="TooltipAnalyticsWidgetCompetitionTimes" xml:space="preserve">
+    <value>Analysieren, welche Wettkampfzeiten pro Alter und Stil geschwommen werden müssen.</value>
+  </data>
 </root>

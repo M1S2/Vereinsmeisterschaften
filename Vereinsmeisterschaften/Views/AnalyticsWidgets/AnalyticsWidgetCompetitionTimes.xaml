@@ -1,0 +1,39 @@
+﻿<local:AnalyticsWidgetBase x:Class="Vereinsmeisterschaften.Views.AnalyticsWidgets.AnalyticsWidgetCompetitionTimes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
+             xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+             Template="{StaticResource ControlTemplateAnalyticsWidgetBase}">
+
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <!-- Selection for swimming style -->
+            <ComboBox Width="170" Height="35" VerticalAlignment="Center"
+                      ItemsSource="{Binding AvailableSwimmingStyles}" SelectedItem="{Binding SelectedSwimmingStyle}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Style="{StaticResource SwimmingStyleWithIconStyle}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- Selection for gender -->
+            <ComboBox Margin="10,0,0,0" Width="150" Height="35" VerticalAlignment="Center"
+                      ItemsSource="{Binding Source={StaticResource AvailableGenders}}" SelectedItem="{Binding SelectedGender}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Style="{StaticResource GenderWithIconStyle}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        
+        <liveCharts:CartesianChart Series="{Binding CompetitionTimesPerAgeSeries}"
+                               XAxes="{Binding XAxes}"
+                               YAxes="{Binding YAxes}"/>
+    </DockPanel>
+</local:AnalyticsWidgetBase>

@@ -86,7 +86,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        _competitionDistanceRules.Clear();
+                        ClearAll();
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else
@@ -199,7 +199,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 rule.PropertyChanged -= DistanceRule_PropertyChanged;
             }
-            _competitionDistanceRules.Clear();
+            if (_competitionDistanceRules.Count > 0) { _competitionDistanceRules.Clear(); }
 
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }

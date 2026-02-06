@@ -112,6 +112,8 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
                     OnWorkspaceLoaded?.Invoke(this, folderDialog.FolderName);
                     OnPropertyChanged(nameof(LastWorkspacePaths));
 
+                    _navigationService.ReloadCurrent();     // Navigate to the current page to trigger the reload of the page
+
                     if (!result)
                     {
                         await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.WorkspaceNotLoadedString);
@@ -147,7 +149,9 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
                 OnWorkspaceLoaded?.Invoke(this, path);
                 OnPropertyChanged(nameof(LastWorkspacePaths));
 
-                if(!result)
+                _navigationService.ReloadCurrent();     // Navigate to the current page to trigger the reload of the page
+
+                if (!result)
                 {
                     await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, Resources.WorkspaceNotLoadedString);
                 }

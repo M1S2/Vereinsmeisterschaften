@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Reflection.Metadata;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -99,6 +100,26 @@ public class NavigationService : INavigationService
     public bool NavigateTo<T_VM>(object parameter = null, bool clearNavigation = false)
     {
         return NavigateTo(typeof(T_VM).FullName);
+    }
+
+    /// <inheritdoc/>
+    public bool ReloadCurrent()
+    {
+        string pageKey = CurrentFrameViewModel.GetType().FullName;
+        var pageType = _pageService.GetPageType(pageKey);
+
+        _frame.Tag = false;     // clearNavigation
+        var page = _pageService.GetPage(pageKey);
+        var navigated = _frame.Navigate(page, _lastParameterUsed);
+        if (navigated)
+        {
+            var dataContext = _frame.GetDataContext();
+            if (dataContext is INavigationAware navigationAware)
+            {
+                navigationAware.OnNavigatedFrom();
+            }
+        }
+        return navigated;
     }
 
     /// <inheritdoc/>

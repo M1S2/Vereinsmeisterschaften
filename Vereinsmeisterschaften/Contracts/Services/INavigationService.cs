@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Vereinsmeisterschaften.Contracts.ViewModels;
 
 namespace Vereinsmeisterschaften.Contracts.Services;
 
@@ -50,6 +51,13 @@ public interface INavigationService
     /// <param name="clearNavigation">True to clear the navigation</param>
     /// <returns>True on navigation success</returns>
     bool NavigateTo<T_VM>(object parameter = null, bool clearNavigation = false);
+
+    /// <summary>
+    /// Navigate to the current page again.
+    /// This can be used to trigger the <see cref="INavigationAware.OnNavigatedTo(object)"/> again.
+    /// </summary>
+    /// <returns>True on navigation success</returns>
+    public bool ReloadCurrent();
 
     /// <summary>
     /// Goes back to the previous page in the navigation stack if possible.

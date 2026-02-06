@@ -241,7 +241,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 person.PropertyChanged -= Person_PropertyChanged;
             }
-            _personList.Clear();
+            if (_personList.Count > 0) { _personList.Clear(); }
 
             OnPropertyChanged(nameof(PersonCount));
             OnPropertyChanged(nameof(PersonStarts));

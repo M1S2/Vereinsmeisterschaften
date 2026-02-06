@@ -109,7 +109,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     if (!File.Exists(path))
                     {
                         OnFileProgress?.Invoke(this, 0);
-                        _competitionList.Clear();
+                        ClearAll();
                         OnFileProgress?.Invoke(this, 100);
                     }
                     else
@@ -222,7 +222,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 competition.PropertyChanged -= Competition_PropertyChanged;
             }
-            _competitionList.Clear();
+            if (_competitionList.Count > 0) { _competitionList.Clear(); }
 
             OnPropertyChanged(nameof(CompetitionCount));
             UpdateAllCompetitionsForPerson();

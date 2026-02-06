@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.IO.Compression;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -99,16 +99,17 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
         {
             try
             {
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                OpenFolderDialog folderDialog = new OpenFolderDialog();
+                folderDialog.Multiselect = false;
                 folderDialog.InitialDirectory = CurrentWorkspaceFolder;
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                if (folderDialog.ShowDialog() == true)
                 {
                     if (_workspaceService?.IsWorkspaceOpen ?? false)
                     {
                         await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
                     }
-                    bool result = await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
-                    OnWorkspaceLoaded?.Invoke(this, folderDialog.SelectedPath);
+                    bool result = await _workspaceService?.Load(folderDialog.FolderName, CancellationToken.None);
+                    OnWorkspaceLoaded?.Invoke(this, folderDialog.FolderName);
                     OnPropertyChanged(nameof(LastWorkspacePaths));
 
                     if (!result)
@@ -189,16 +190,16 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
             {
                 await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.InfoString, Resources.WorkspaceCreateNewInfoDialogString);
 
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.ShowNewFolderButton = true;
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                OpenFolderDialog folderDialog = new OpenFolderDialog();
+                folderDialog.Multiselect = false;
+                if (folderDialog.ShowDialog() == true)
                 {
                     if (_workspaceService?.IsWorkspaceOpen ?? false)
                     {
                         await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
                     }
-                    bool result = await _workspaceService?.Load(folderDialog.SelectedPath, CancellationToken.None);
-                    OnWorkspaceLoaded?.Invoke(this, folderDialog.SelectedPath);
+                    bool result = await _workspaceService?.Load(folderDialog.FolderName, CancellationToken.None);
+                    OnWorkspaceLoaded?.Invoke(this, folderDialog.FolderName);
                     OnPropertyChanged(nameof(LastWorkspacePaths));
 
                     if (!result)

@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
+using Microsoft.Win32;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -186,7 +186,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         fileDialog.InitialDirectory = _workspaceService.PersistentPath;
         fileDialog.Filter = Resources.FileDialogCsvFilterString;
         fileDialog.Title = Resources.SelectRudolphTableString;
-        if (fileDialog.ShowDialog() == DialogResult.OK)
+        if (fileDialog.ShowDialog() == true)
         {
             string inputStr = await _dialogCoordinator.ShowInputAsync(_shellVM, Resources.RudolphTableString, Resources.EnterRudolphScoreString, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
             if (inputStr != null)
@@ -222,7 +222,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
             fileDialog.InitialDirectory = _workspaceService.PersistentPath;
             fileDialog.Filter = Resources.FileDialogCsvFilterString;
             fileDialog.Title = Resources.SelectRudolphTableString;
-            if (fileDialog.ShowDialog() == DialogResult.OK)
+            if (fileDialog.ShowDialog() == true)
             {
                 string inputStr = await _dialogCoordinator.ShowInputAsync(_shellVM, Resources.RudolphTableString, Resources.EnterRudolphScoreString, new MetroDialogSettings() { NegativeButtonText = Resources.CancelString });
                 if (inputStr != null)

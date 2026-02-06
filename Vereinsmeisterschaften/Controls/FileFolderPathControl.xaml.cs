@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Vereinsmeisterschaften.Core.Contracts.Services;
+using Microsoft.Win32;
 using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.Controls
@@ -181,11 +181,11 @@ namespace Vereinsmeisterschaften.Controls
             {
                 case FileFolderSelectionModes.Files:
                     {
-                        System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
                         openFileDialog.InitialDirectory = Path.GetDirectoryName(ResolvedFileFolderPath);
                         openFileDialog.FileName = FileFolderPath;
                         openFileDialog.Filter = OpenFileDialogFilter;
-                        if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        if (openFileDialog.ShowDialog() == true)
                         {
                             tmpFileFolderPath = openFileDialog.FileName;
                         }
@@ -193,12 +193,12 @@ namespace Vereinsmeisterschaften.Controls
                     }
                 case FileFolderSelectionModes.Folders:
                     {
-                        System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-                        folderBrowserDialog.InitialDirectory = ResolvedFileFolderPath;
-                        folderBrowserDialog.SelectedPath = FileFolderPath;
-                        if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        OpenFolderDialog openFolderDialog = new OpenFolderDialog();
+                        openFolderDialog.InitialDirectory = ResolvedFileFolderPath;
+                        openFolderDialog.FolderName = FileFolderPath;
+                        if (openFolderDialog.ShowDialog() == true)
                         {
-                            tmpFileFolderPath = folderBrowserDialog.SelectedPath;
+                            tmpFileFolderPath = openFolderDialog.FolderName;
                         }
                         break;
                     }

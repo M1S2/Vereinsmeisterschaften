@@ -393,13 +393,19 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="filter">Filter used to only return a subset of all <see cref="PersonStart"/> objects</param>
         /// <param name="filterParameter">Parameter used depending on the selected filter</param>
+        /// <param name="onlyValidStarts">Return only the starts that are active and have a competition assigned</param>
         /// <returns>List with <see cref="PersonStart"/> objects</returns>
-        public List<PersonStart> GetAllPersonStarts(PersonStartFilters filter = PersonStartFilters.None, object filterParameter = null)
+        public List<PersonStart> GetAllPersonStarts(PersonStartFilters filter = PersonStartFilters.None, object filterParameter = null, bool onlyValidStarts = false)
         {
             List<PersonStart> allPersonStarts = new List<PersonStart>();
             foreach (Person person in _personList)
             {
                 allPersonStarts.AddRange(person.Starts.Values.Cast<PersonStart>().Where(s => s != null));
+            }
+
+            if(onlyValidStarts)
+            {
+                allPersonStarts = allPersonStarts.Where(s => s.IsActive && s.IsCompetitionObjAssigned).ToList();
             }
 
             switch (filter)

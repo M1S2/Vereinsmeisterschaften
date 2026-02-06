@@ -38,6 +38,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Converters-->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <converters:EnumToLocalizedStringConverter x:Key="enumLocalizedStringConverter"/>
             <converters:EnumValueToAvailableEnumValuesConverter x:Key="enumValuesConverter"/>
             <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolVisibilityConverter"/>
@@ -45,12 +48,9 @@
             <converters:BooleanToVisibilityHiddenConverter x:Key="BoolVisibilityHiddenConverter"/>
             <converters:BooleanInvertConverter x:Key="BoolInvertConverter"/>
 
-            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="coreModels:Genders"/>
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
-
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Colors -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <SolidColorBrush x:Key="BrushError">#FF8B0000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushErrorWithTransparency">#B48B0000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushOk">#FF008000</SolidColorBrush>
@@ -60,8 +60,24 @@
             <SolidColorBrush x:Key="BrushHighlight">Orange</SolidColorBrush>
             <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Constants-->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <sys:Double x:Key="OpacityDisabled">0.25</sys:Double>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Data Providers -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="AvailableGenders">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="coreModels:Genders"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Styles -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            
             <Style x:Key="DataGridColumnHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
             </Style>
@@ -75,7 +91,7 @@
             </Style>
 
             <!-- Style to enable three state sorting (Ascending, Descending, Disabled) and MultiColumn sorting with Shift key for all DataGrids -->
-            <Style TargetType="DataGrid" BasedOn="{StaticResource MahApps.Styles.DataGrid}">
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource MahApps.Styles.DataGrid}">
                 <Setter Property="behaviors:DataGridBehavior.EnableThreeStateSorting" Value="True" />
             </Style>
 
@@ -110,7 +126,55 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
+            <!-- Style for reset settings button -->
+            <Style x:Key="StyleResetSettingsButton" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <controls:FontIcon x:Name="PART_ICON" Margin="0,0,3,0" FontSize="20" Glyph="&#xE777;" ToolTip="{x:Static properties:Resources.SettingsResetString}">
+                                <controls:FontIcon.Style>
+                                    <Style TargetType="{x:Type controls:FontIcon}">
+                                        <Setter Property="Foreground" Value="Orange"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:FontIcon.Style>
+                            </controls:FontIcon>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Style for default settings button-->
+            <Style x:Key="StyleDefaultSettingsButton" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <controls:FontIcon Margin="0,0,3,0" FontSize="20" Glyph="&#xE845;" ToolTip="{x:Static properties:Resources.SettingsDefaultString}">
+                                <controls:FontIcon.Style>
+                                    <Style TargetType="{x:Type controls:FontIcon}">
+                                        <Setter Property="Foreground" Value="Orange"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:FontIcon.Style>
+                            </controls:FontIcon>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Control Templates for Icons -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
             <!-- Ok Indicator -->
             <ControlTemplate x:Key="ControlTemplateOkIndicator">
                 <Grid>
@@ -143,6 +207,10 @@
                 </Grid>
             </ControlTemplate>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Control Template for Analytics -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            
             <!-- ControlTemplate for the AnalyticsUserControlBase base styling -->
             <ControlTemplate TargetType="{x:Type analyticsControls:AnalyticsWidgetBase}" x:Key="ControlTemplateAnalyticsWidgetBase" x:Shared="false">
                 <GroupBox DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type analyticsControls:AnalyticsWidgetBase}}}"
@@ -238,6 +306,10 @@
                 </GroupBox>
             </ControlTemplate>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- DataTemplate for models -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            
             <!-- DataTemplate to show all relevant infos of a person in short form -->
             <DataTemplate x:Key="DataTemplatePersonShort" DataType="{x:Type coreModels:Person}">
                 <TextBlock>
@@ -250,51 +322,30 @@
                     </TextBlock.Text>
                 </TextBlock>
             </DataTemplate>
-            
-            <!-- Style for reset settings button -->
-            <Style x:Key="StyleResetSettingsButton" TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <controls:FontIcon x:Name="PART_ICON" Margin="0,0,3,0" FontSize="20" Glyph="&#xE777;" ToolTip="{x:Static properties:Resources.SettingsResetString}">
-                                <controls:FontIcon.Style>
-                                    <Style TargetType="{x:Type controls:FontIcon}">
-                                        <Setter Property="Foreground" Value="Orange"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </controls:FontIcon.Style>
-                            </controls:FontIcon>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
-            <!-- Style for default settings button-->
-            <Style x:Key="StyleDefaultSettingsButton" TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <controls:FontIcon Margin="0,0,3,0" FontSize="20" Glyph="&#xE845;" ToolTip="{x:Static properties:Resources.SettingsDefaultString}">
-                                <controls:FontIcon.Style>
-                                    <Style TargetType="{x:Type controls:FontIcon}">
-                                        <Setter Property="Foreground" Value="Orange"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </controls:FontIcon.Style>
-                            </controls:FontIcon>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Data Templates for controls -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+            <!-- DataTemplate thas is used in empty lists as warning that no items are available -->
+            <DataTemplate x:Key="EmptyItemsControlAdornerDataTemplate" DataType="{x:Type ContentPresenter}">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <!-- List Icon -->
+                        <controls:FontIcon FontSize="60" Glyph="&#xEA37;"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray}"/>
+                        <!-- Blocked icon -->
+                        <controls:FontIcon Margin="30,0,0,0"
+                                           FontSize="60" Glyph="&#xE871;"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray}"/>
+                    </Grid>
+                    <TextBlock Margin ="10" 
+                               Text="{x:Static properties:Resources.ListEmptyString}" FontSize="25"
+                               Foreground="{DynamicResource MahApps.Brushes.Gray}"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </StackPanel>
+            </DataTemplate>
+            
             <!-- DataTemplate for a drag & drop hint that only shows a red background on Error and a hint text -->
             <DataTemplate x:Key="DropHintOnlyErrorBackgroundTemplate" DataType="{x:Type dd:DropHintData}">
                 <Border x:Name="DropHintRootBorder" BorderBrush="Transparent" Background="Transparent">
@@ -322,6 +373,10 @@
                 </DataTemplate.Triggers>
             </DataTemplate>
 
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Icons -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            
             <!-- App Icon -->
             <DrawingImage x:Key="DrawingImage_AppIcon">
                 <DrawingImage.Drawing>

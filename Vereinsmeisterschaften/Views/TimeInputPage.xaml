@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
@@ -126,6 +127,10 @@
         <DataGrid Grid.Row="2" ItemsSource="{Binding AvailablePersonStartsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False"
                   behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+            <b:Interaction.Behaviors>
+                <behaviors:EmptyItemsControlAdornerBehavior DataTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" Data="{Binding}"/>
+            </b:Interaction.Behaviors>
+
             <!-- Center the row numbers -->
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">

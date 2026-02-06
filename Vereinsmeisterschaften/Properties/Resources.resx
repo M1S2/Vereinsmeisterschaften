@@ -810,4 +810,7 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="CompetitionDistanceRuleValidationIssueFormat_UnreachableRule" xml:space="preserve">
     <value>Unreachable rule: {0} to {1} years</value>
   </data>
+  <data name="ListEmptyString" xml:space="preserve">
+    <value>The list ist currently empty.</value>
+  </data>
 </root>

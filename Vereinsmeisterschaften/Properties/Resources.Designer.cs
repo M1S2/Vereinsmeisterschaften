@@ -968,6 +968,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The list ist currently empty. ähnelt.
+        /// </summary>
+        public static string ListEmptyString {
+            get {
+                return ResourceManager.GetString("ListEmptyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Workspace... ähnelt.
         /// </summary>
         public static string LoadWorkspaceString {
@@ -1486,7 +1495,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
         ///It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
         ///It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
-        ///The table considers performance levels from age 8 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///The table considers performance levels from age 8 un [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string RudolphTableExplanationString {
             get {

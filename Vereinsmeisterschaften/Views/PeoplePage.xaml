@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:converters="clr-namespace:Vereinsmeisterschaften.Converters"
@@ -81,6 +82,10 @@
                   dd:DragDrop.UseDropTargetHint="True"
                   dd:DragDrop.DropHandler="{x:Static viewModels:DropAllowedSameTypeAndNotSortedHandler.Instance}"
                   dd:DragDrop.DropHintDataTemplate="{StaticResource DropHintOnlyErrorBackgroundTemplate}">
+            <b:Interaction.Behaviors>
+                <behaviors:EmptyItemsControlAdornerBehavior DataTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" Data="{Binding}"/>
+            </b:Interaction.Behaviors>
+
             <!-- Center the row numbers -->
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridRowHeader}">

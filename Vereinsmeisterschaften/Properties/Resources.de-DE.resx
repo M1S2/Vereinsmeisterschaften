@@ -811,4 +811,7 @@ Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wicht
   <data name="CompetitionDistanceRuleValidationIssueFormat_UnreachableRule" xml:space="preserve">
     <value>Unerreichbare Regel: {0} bis {1} Jahre</value>
   </data>
+  <data name="ListEmptyString" xml:space="preserve">
+    <value>Die Liste ist momentan leer.</value>
+  </data>
 </root>

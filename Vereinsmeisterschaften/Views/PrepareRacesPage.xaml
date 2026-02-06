@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
     xmlns:viewModels="clr-namespace:Vereinsmeisterschaften.ViewModels"
@@ -315,6 +316,10 @@
                  dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.UseDefaultDragAdorner="True"
                  BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="1">
+            <b:Interaction.Behaviors>
+                <behaviors:EmptyItemsControlAdornerBehavior DataTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" Data="{Binding}"/>
+            </b:Interaction.Behaviors>
+
             <ListBox.ItemTemplate>
                 <!-- Item template for the complete race row -->
                 <DataTemplate>

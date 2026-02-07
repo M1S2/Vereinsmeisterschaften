@@ -119,11 +119,11 @@ namespace Vereinsmeisterschaften.Core.Services
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Competition), header);
                         });
                         _competitionList = new ObservableCollection<Competition>();
-                        _competitionList.CollectionChanged += _competitionList_CollectionChanged;
                         foreach (Competition competition in list)
                         {
                             AddCompetition(competition);
                         }
+                        _competitionList.CollectionChanged += _competitionList_CollectionChanged;
                     }
 
                     _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
@@ -236,11 +236,14 @@ namespace Vereinsmeisterschaften.Core.Services
         public void ResetToLoadedState()
         {
             if (_competitionListOnLoad == null) { return; }
+            _competitionList.CollectionChanged -= _competitionList_CollectionChanged;
             ClearAll();
             foreach (Competition competition in _competitionListOnLoad)
             {
                 AddCompetition(new Competition(competition));
             }
+            _competitionList.CollectionChanged += _competitionList_CollectionChanged;
+            UpdateAllCompetitionDistancesFromDistanceRules(true);
         }
 
         /// <summary>
@@ -294,7 +297,7 @@ namespace Vereinsmeisterschaften.Core.Services
             }
 
             UpdateAllCompetitionsForPerson();
-            UpdateCompetitionDistanceFromDistanceRules(sender as Competition);
+            UpdateCompetitionDistanceFromDistanceRules(sender as Competition, false);
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
@@ -451,20 +454,25 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
-        public void UpdateCompetitionDistanceFromDistanceRules(Competition competition)
+        public void UpdateCompetitionDistanceFromDistanceRules(Competition competition, bool keepRudolphTableFlags)
         {
             if (competition == null) { return; }
+            bool isTimeFromRudolphTable = competition.IsTimeFromRudolphTable;
             competition.Distance = _competitionDistanceRuleService.GetCompetitionDistanceFromRules(competition.Age, competition.SwimmingStyle);
+            if(keepRudolphTableFlags)
+            {
+                competition.IsTimeFromRudolphTable = isTimeFromRudolphTable;
+            }
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
-        public void UpdateAllCompetitionDistancesFromDistanceRules()
+        public void UpdateAllCompetitionDistancesFromDistanceRules(bool keepRudolphTableFlags)
         {
             foreach (Competition competition in _competitionList)
             {
-                UpdateCompetitionDistanceFromDistanceRules(competition);
+                UpdateCompetitionDistanceFromDistanceRules(competition, keepRudolphTableFlags);
             }
         }
 

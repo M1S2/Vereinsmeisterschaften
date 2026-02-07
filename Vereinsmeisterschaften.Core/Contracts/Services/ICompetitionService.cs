@@ -76,12 +76,14 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// Update the <see cref="Competition.Distance"/> from the matching <see cref="CompetitionDistanceRule"/>
         /// </summary>
         /// <param name="competition"><see cref="Competition"/> that is updated</param>
-        void UpdateCompetitionDistanceFromDistanceRules(Competition competition);
+        /// <param name="keepRudolphTableFlags">Set this to true to make sure that the rudolph table related flags aren't changed (otherwise changing the Distance will reset the flags)</param>
+        void UpdateCompetitionDistanceFromDistanceRules(Competition competition, bool keepRudolphTableFlags = false);
 
         /// <summary>
         /// Update the <see cref="Competition.Distance"/> from the matching <see cref="CompetitionDistanceRule"/> for all <see cref="Competition"/> objects.
         /// </summary>
-        void UpdateAllCompetitionDistancesFromDistanceRules();
+        /// <param name="keepRudolphTableFlags">Set this to true to make sure that the rudolph table related flags aren't changed (otherwise changing the Distance will reset the flags)</param>
+        void UpdateAllCompetitionDistancesFromDistanceRules(bool keepRudolphTableFlags = false);
 
         /// <summary>
         /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.

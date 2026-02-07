@@ -305,7 +305,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 if(!openResult) { return openResult; }
                 
                 _competitionService.UpdateAllCompetitionsForPerson();
-                _competitionService.UpdateAllCompetitionDistancesFromDistanceRules();
+                _competitionService.UpdateAllCompetitionDistancesFromDistanceRules(true);
 
                 // Best Race
                 openResult = await _raceService.Load(filePathBestRace, cancellationToken);

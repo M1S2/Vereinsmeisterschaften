@@ -96,11 +96,11 @@ namespace Vereinsmeisterschaften.Core.Services
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(CompetitionDistanceRule), header);
                         });
                         _competitionDistanceRules = new ObservableCollection<CompetitionDistanceRule>();
-                        _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
                         foreach (CompetitionDistanceRule rule in list)
                         {
                             AddDistanceRule(rule);
                         }
+                        _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
                     }
 
                     _competitionDistanceRulesOnLoad = _competitionDistanceRules.ToList().ConvertAll(cr => new CompetitionDistanceRule(cr));
@@ -208,11 +208,13 @@ namespace Vereinsmeisterschaften.Core.Services
         public void ResetToLoadedState()
         {
             if (_competitionDistanceRulesOnLoad == null) { return; }
+            _competitionDistanceRules.CollectionChanged -= _competitionDistanceRules_CollectionChanged;
             ClearAll();
             foreach (CompetitionDistanceRule rule in _competitionDistanceRulesOnLoad)
             {
                 AddDistanceRule(new CompetitionDistanceRule(rule));
             }
+            _competitionDistanceRules.CollectionChanged += _competitionDistanceRules_CollectionChanged;
         }
 
         /// <inheritdoc/>

@@ -106,11 +106,20 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Is Time from Rudolph Table ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Is Time from Rudolph Table? ähnelt.
         /// </summary>
         internal static string Competition_IsTimeFromRudolphTable {
             get {
                 return ResourceManager.GetString("Competition_IsTimeFromRudolphTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Is Time interpolated? ähnelt.
+        /// </summary>
+        internal static string Competition_IsTimeInterpolatedFromRudolphTable {
+            get {
+                return ResourceManager.GetString("Competition_IsTimeInterpolatedFromRudolphTable", resourceCulture);
             }
         }
         

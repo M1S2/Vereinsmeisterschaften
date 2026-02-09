@@ -817,4 +817,10 @@ Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wicht
   <data name="AnalyticsWidgetCompetitionTimesTitle" xml:space="preserve">
     <value>Wettkampf Zeiten</value>
   </data>
+  <data name="InterpolateMissingCompetitionTimesFromRudolphTableString" xml:space="preserve">
+    <value>Fehlende Wettkampfzeiten aus Rudolph Tabelle anpassen</value>
+  </data>
+  <data name="InterpolatedFromRudolphTableString" xml:space="preserve">
+    <value>Interpoliert aus Rudolph Tabelle</value>
+  </data>
 </root>

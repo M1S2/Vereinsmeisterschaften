@@ -85,11 +85,15 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
                         {
                             tooltipString += $"{Environment.NewLine}{Properties.Resources.ParsedFromRudolphTableString}";
                         }
+                        if (point.Model.IsTimeInterpolatedFromRudolphTable)
+                        {
+                            tooltipString += $"{Environment.NewLine}{Properties.Resources.InterpolatedFromRudolphTableString}";
+                        }
                         return tooltipString;
                     },
                     Stroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
                     Fill = new SolidColorPaint(ColorPaintMahAppsAccent.Color.WithAlpha(0x33)),     // modify alpha channel for transparency
-                    GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 4),
+                    GeometryStroke = new SolidColorPaint(ColorPaintMahAppsAccent.Color, 2),
                     GeometrySize = 15
                 }
                 .OnPointMeasured(point =>
@@ -100,7 +104,12 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
                     SolidColorBrush displayColor;
                     if (point.Model.IsTimeFromRudolphTable)
                     {
-                        displayColor = Application.Current.Resources["BrushOk"] as SolidColorBrush;
+                        displayColor = Application.Current.Resources["BrushTimeFromRudolphTable"] as SolidColorBrush;
+                        point.Visual.Fill = new SolidColorPaint(SKColor.Parse(displayColor.Color.ToString()));
+                    }
+                    else if(point.Model.IsTimeInterpolatedFromRudolphTable)
+                    {
+                        displayColor = Application.Current.Resources["BrushTimeInterpolatedFromRudolphTable"] as SolidColorBrush;
                         point.Visual.Fill = new SolidColorPaint(SKColor.Parse(displayColor.Color.ToString()));
                     }
                 });

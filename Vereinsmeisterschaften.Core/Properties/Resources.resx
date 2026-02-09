@@ -150,4 +150,7 @@
   <data name="AllString" xml:space="preserve">
     <value>all</value>
   </data>
+  <data name="InterpolateMissingCompetitionTimesFromRudolphTableErrorFormatString" xml:space="preserve">
+    <value>Not able to interpolate for {0}m {1} {2}: at least 3 points from the rudolph table inside the corresponding group (style, gender, distance) are necessary!</value>
+  </data>
 </root>

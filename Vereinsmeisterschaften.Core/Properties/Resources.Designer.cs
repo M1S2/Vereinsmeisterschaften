@@ -142,6 +142,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Not able to interpolate for {0}m {1} {2}: at least 3 points from the rudolph table inside the corresponding group (style, gender, distance) are necessary! ähnelt.
+        /// </summary>
+        public static string InterpolateMissingCompetitionTimesFromRudolphTableErrorFormatString {
+            get {
+                return ResourceManager.GetString("InterpolateMissingCompetitionTimesFromRudolphTableErrorFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Race ähnelt.
         /// </summary>
         public static string RaceString {

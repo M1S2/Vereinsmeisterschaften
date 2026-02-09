@@ -210,4 +210,7 @@
   <data name="CompetitionDistanceRule_Distance" xml:space="preserve">
     <value>Strecke</value>
   </data>
+  <data name="Competition_IsTimeInterpolatedFromRudolphTable" xml:space="preserve">
+    <value>Zeit interpoliert?</value>
+  </data>
 </root>

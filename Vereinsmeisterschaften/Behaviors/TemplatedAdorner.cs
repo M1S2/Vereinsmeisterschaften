@@ -31,7 +31,7 @@ namespace Vereinsmeisterschaften.Behaviors
             };
 
             AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(AdornedElement);
-            adornerLayer.Add(this);
+            adornerLayer?.Add(this);
         }
 
         #endregion

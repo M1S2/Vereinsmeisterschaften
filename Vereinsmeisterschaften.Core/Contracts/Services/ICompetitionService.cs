@@ -100,6 +100,13 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// </summary>
         /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
         /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
-        public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
+        void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
+
+        /// <summary>
+        /// For each swimming style, gender and distance take all competitions with times from the rudolph table and interpolate these times to find values for the competitions without times from the rudolph table.
+        /// </summary>
+        /// <exception cref="Exception">An exception is thrown, when the interpolation fails for at least one group of <see cref="Competition"/></exception>
+        void InterpolateMissingCompetitionTimesFromRudolphTable();
+
     }
 }

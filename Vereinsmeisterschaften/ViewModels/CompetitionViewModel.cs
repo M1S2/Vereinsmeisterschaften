@@ -247,6 +247,22 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         }
     }));
 
+    private ICommand _interpolateMissingCompetitionTimesFromRudolphTableCommand;
+    /// <summary>
+    /// Command to interpolate the missing times from the rudolph table
+    /// </summary>
+    public ICommand InterpolateMissingCompetitionTimesFromRudolphTableCommand => _interpolateMissingCompetitionTimesFromRudolphTableCommand ?? (_interpolateMissingCompetitionTimesFromRudolphTableCommand = new RelayCommand(async () =>
+    {
+        try
+        {
+            _competitionService.InterpolateMissingCompetitionTimesFromRudolphTable();
+        }
+        catch(Exception ex)
+        {
+            await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.ErrorString, ex.Message);
+        }
+    }));
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     /// <inheritdoc/>

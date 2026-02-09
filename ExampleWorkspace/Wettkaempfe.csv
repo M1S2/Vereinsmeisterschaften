@@ -1,10 +1,10 @@
-﻿Id;Geschlecht;Schwimmstil;Alter;Bestzeit;Zeit aus Rudolph Tabelle?
-1;Weiblich;Brust;7;00:00:49
-2;Männlich;Brust;7;00:00:48
-3;Weiblich;Freistil;7;00:00:38.5000000
-4;Männlich;Freistil;7;00:00:36
-51;Männlich;Rücken;7;00:00:42.5000000
-52;Weiblich;Rücken;7;00:00:43.5000000
+﻿Id;Geschlecht;Schwimmstil;Alter;Bestzeit;Zeit aus Rudolph Tabelle?;Zeit interpoliert?
+1;Weiblich;Brust;7;00:00:51.1000000;;X
+2;Männlich;Brust;7;00:00:54.4310000;;X
+3;Weiblich;Freistil;7;00:00:43.4200000;;X
+4;Männlich;Freistil;7;00:00:39.1590000;;X
+51;Männlich;Rücken;7;00:00:46.1050000;;X
+52;Weiblich;Rücken;7;00:00:49.3490000;;X
 50;Männlich;Wasserfloh;6;00:00:15
 50;Weiblich;Wasserfloh;6;00:00:15
 5;Weiblich;Freistil;8;00:00:38.3800000;X

@@ -816,4 +816,10 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="AnalyticsWidgetCompetitionTimesTitle" xml:space="preserve">
     <value>Competition Times</value>
   </data>
+  <data name="InterpolateMissingCompetitionTimesFromRudolphTableString" xml:space="preserve">
+    <value>Interpolate missing competition times from Rudolph Table</value>
+  </data>
+  <data name="InterpolatedFromRudolphTableString" xml:space="preserve">
+    <value>Interpolated from Rudolph Table</value>
+  </data>
 </root>

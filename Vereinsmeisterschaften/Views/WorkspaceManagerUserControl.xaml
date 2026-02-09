@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+             xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -154,7 +156,10 @@
                             Command="{Binding ClearAllLastWorkspacePathsCommand}"/>
                 </DockPanel>
             </GroupBox.Header>
-            <ListBox ItemsSource="{Binding LastWorkspacePaths}">
+            <ListBox ItemsSource="{Binding LastWorkspacePaths}" MinHeight="100" MinWidth="350">
+                <b:Interaction.Behaviors>
+                    <behaviors:EmptyItemsControlAdornerBehavior DataTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" Data="{Binding}"/>
+                </b:Interaction.Behaviors>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="True">

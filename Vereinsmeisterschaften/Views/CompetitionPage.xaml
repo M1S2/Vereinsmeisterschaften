@@ -143,7 +143,7 @@
 
                     <DataGrid.Columns>
                         <!-- Minimum age -->
-                        <DataGridTextColumn Binding="{Binding MinAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                        <DataGridTextColumn Binding="{Binding MinAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
@@ -154,7 +154,7 @@
                         </DataGridTextColumn>
 
                         <!-- Maximum age -->
-                        <DataGridTextColumn Binding="{Binding MaxAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                        <DataGridTextColumn Binding="{Binding MaxAge}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
@@ -165,7 +165,7 @@
                         </DataGridTextColumn>
 
                         <!-- Swimming Style -->
-                        <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
+                        <DataGridTemplateColumn SortMemberPath="SwimmingStyle">
                             <DataGridTemplateColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
@@ -193,7 +193,7 @@
                         </DataGridTemplateColumn>
 
                         <!-- Distance -->
-                        <DataGridTextColumn Binding="{Binding Distance, StringFormat={}{0}m}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                        <DataGridTextColumn Binding="{Binding Distance, StringFormat={}{0}m}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
@@ -311,7 +311,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- ID -->
-                <DataGridTextColumn Binding="{Binding Id}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding Id}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="#" FontSize="20" Margin="5"/>
@@ -321,7 +321,7 @@
                 </DataGridTextColumn>
 
                 <!-- Gender -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="Gender">
+                <DataGridTemplateColumn SortMemberPath="Gender">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE77B;" Margin="5"/>
@@ -349,7 +349,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Age -->
-                <DataGridTextColumn Binding="{Binding Age}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}">
+                <DataGridTextColumn Binding="{Binding Age}" ElementStyle="{StaticResource DataGridTextCellCenteringStyle}">
                     <DataGridTextColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xED55;" Margin="5"/>
@@ -359,7 +359,7 @@
                 </DataGridTextColumn>
 
                 <!-- Swimming Style -->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="SwimmingStyle">
+                <DataGridTemplateColumn SortMemberPath="SwimmingStyle">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <Path Data="{StaticResource Geometry_Breaststroke}" Style="{StaticResource IconStyleSwimmingIcons}"/>
@@ -387,7 +387,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Distance -->
-                <DataGridTemplateColumn IsReadOnly="True" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="Distance">
+                <DataGridTemplateColumn IsReadOnly="True" SortMemberPath="Distance">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xECC6;" Margin="5"/>
@@ -423,7 +423,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Best Time -->
-                <DataGridTemplateColumn Width="300" HeaderStyle="{StaticResource DataGridHeaderCenteringStyle}" SortMemberPath="BestTime">
+                <DataGridTemplateColumn Width="300" SortMemberPath="BestTime">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE916;" Margin="5"/>

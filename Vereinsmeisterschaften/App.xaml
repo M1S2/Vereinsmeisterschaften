@@ -80,12 +80,14 @@
             <!-- Styles -->
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             
-            <Style x:Key="DataGridColumnHeaderCenteringStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
+            <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="ToolTip" Value="{x:Static properties:Resources.DataGridHeaderSortHintString}"/>
             </Style>
 
             <Style x:Key="DataGridColumnHeaderLeftStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="ToolTip" Value="{x:Static properties:Resources.DataGridHeaderSortHintString}"/>
             </Style>
 
             <Style x:Key="DataGridTextCellCenteringStyle" TargetType="{x:Type TextBlock}">

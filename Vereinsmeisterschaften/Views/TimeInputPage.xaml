@@ -125,8 +125,7 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
         <DataGrid Grid.Row="2" ItemsSource="{Binding AvailablePersonStartsCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False"
-                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single"
-                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+                  behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="All" RowHeaderWidth="20" SelectionMode="Single">
             <b:Interaction.Behaviors>
                 <behaviors:EmptyItemsControlAdornerBehavior DataTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" Data="{Binding}"/>
             </b:Interaction.Behaviors>

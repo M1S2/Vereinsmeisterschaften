@@ -823,4 +823,8 @@ Wenn mehrere Regeln zutreffen, wird nur die erste angewendet. Daher ist es wicht
   <data name="InterpolatedFromRudolphTableString" xml:space="preserve">
     <value>Interpoliert aus Rudolph Tabelle</value>
   </data>
+  <data name="DataGridHeaderSortHintString" xml:space="preserve">
+    <value>SHIFT Taste verwenden, um mehrere Spalten zu sortieren.
+Die Reihenfolgen, in der die Spalten ausgewählt werden, bestimmt die Sortierpriorität.</value>
+  </data>
 </root>

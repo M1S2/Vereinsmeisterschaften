@@ -686,6 +686,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use the SHIFT key to sort multiple columns.
+        ///The order in which the columns are selected determines the sort priority. ähnelt.
+        /// </summary>
+        public static string DataGridHeaderSortHintString {
+            get {
+                return ResourceManager.GetString("DataGridHeaderSortHintString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Default Templates ähnelt.
         /// </summary>
         public static string DefaultTemplatesString {

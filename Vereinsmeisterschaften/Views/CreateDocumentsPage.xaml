@@ -218,8 +218,7 @@
 
                 <!-- Placeholder table -->
                 <DataGrid ItemsSource="{Binding PlaceholderViewConfigsView}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="Column" SelectionMode="Single" CanUserReorderColumns="False"
-                          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenteringStyle}">
+                          behaviors:DataGridBehavior.DisplayRowNumber="True" HeadersVisibility="Column" SelectionMode="Single" CanUserReorderColumns="False">
                     <DataGrid.RowStyle>
                         <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
                             <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
@@ -264,7 +263,7 @@
 
                         <!-- Placeholders -->
                         <DataGridTemplateColumn Header="{x:Static properties:Resources.AvailablePlaceholdersString}" HeaderStyle="{StaticResource DataGridColumnHeaderLeftStyle}"
-                                                IsReadOnly="True">
+                                                IsReadOnly="True" SortMemberPath="Placeholders">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Placeholders}" Style="{StaticResource selectableTextBlockStyle}"/>

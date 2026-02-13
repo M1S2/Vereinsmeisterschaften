@@ -822,4 +822,8 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="InterpolatedFromRudolphTableString" xml:space="preserve">
     <value>Interpolated from Rudolph Table</value>
   </data>
+  <data name="DataGridHeaderSortHintString" xml:space="preserve">
+    <value>Use the SHIFT key to sort multiple columns.
+The order in which the columns are selected determines the sort priority.</value>
+  </data>
 </root>

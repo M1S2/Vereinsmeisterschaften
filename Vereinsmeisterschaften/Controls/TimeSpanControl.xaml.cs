@@ -448,6 +448,11 @@ namespace Vereinsmeisterschaften.Controls
             {
                 decreaseDigit();
             }
+            else if (e.Key == Key.Enter)
+            {
+                EditMode = TimeSpanControlEditModes.None;
+                Keyboard.ClearFocus();
+            }
             e.Handled = true;
         }
 

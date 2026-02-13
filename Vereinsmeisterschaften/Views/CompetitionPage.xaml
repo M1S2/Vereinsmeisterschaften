@@ -423,7 +423,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Best Time -->
-                <DataGridTemplateColumn Width="300" SortMemberPath="BestTime">
+                <DataGridTemplateColumn Width="320" SortMemberPath="BestTime">
                     <DataGridTemplateColumn.Header>
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon Glyph="&#xE916;" Margin="5"/>
@@ -433,8 +433,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding BestTime, StringFormat='mm\\:ss\\.fff'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Border Margin="10,0,0,0" CornerRadius="5" VerticalAlignment="Center"
+                                <userControls:TimeSpanControl Value="{Binding BestTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" HoursVisible="False" EditMode="EditSeconds" ToolTip="mm:ss.fff"/>
+                                <Border Margin="2,0,0,0" CornerRadius="5" VerticalAlignment="Center"
                                         Background="{DynamicResource BrushTimeFromRudolphTable}"
                                         Visibility="{Binding IsTimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal">
@@ -444,7 +444,7 @@
                                                    Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
                                     </StackPanel>
                                 </Border>
-                                <Border Margin="10,0,0,0" CornerRadius="5" VerticalAlignment="Center"
+                                <Border Margin="2,0,0,0" CornerRadius="5" VerticalAlignment="Center"
                                         Background="{DynamicResource BrushTimeInterpolatedFromRudolphTable}"
                                         Visibility="{Binding IsTimeInterpolatedFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal">
@@ -457,11 +457,6 @@
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <userControls:TimeSpanControl Value="{Binding BestTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" HoursVisible="False" EditMode="EditSeconds" ToolTip="mm:ss.fff"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
                 <!-- Remove Competition Button -->

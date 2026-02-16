@@ -311,6 +311,25 @@
             </ControlTemplate>
 
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- ControlTemplate for validation error -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+            <ControlTemplate x:Key="ControlTemplateValidationError">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" HorizontalAlignment="Left"
+                            BorderBrush="{StaticResource BrushError}" BorderThickness="3">
+                        <AdornedElementPlaceholder/>
+                    </Border>
+                    <Border DockPanel.Dock="Top" HorizontalAlignment="Left"
+                            Background="{StaticResource BrushError}">
+                        <TextBlock Margin="3,0,0,3"
+                                   Text="{Binding [0].ErrorContent}" FontSize="{StaticResource MediumFontSize}"
+                                   Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <!-- DataTemplate for models -->
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             

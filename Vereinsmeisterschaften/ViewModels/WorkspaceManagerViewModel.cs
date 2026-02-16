@@ -1,14 +1,18 @@
-﻿using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.IO.Compression;
+using System.Resources;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
-using Microsoft.Win32;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
 using Vereinsmeisterschaften.Contracts.Services;
 using Vereinsmeisterschaften.Contracts.ViewModels;
+using Vereinsmeisterschaften.Controls;
 using Vereinsmeisterschaften.Core.Contracts.Services;
+using Vereinsmeisterschaften.Core.Helpers;
+using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
 using Vereinsmeisterschaften.Properties;
 
@@ -192,18 +196,35 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
         {
             try
             {
-                await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.InfoString, Resources.WorkspaceCreateNewInfoDialogString);
+                NewWorkspaceSettingsDialog dialog = new NewWorkspaceSettingsDialog();
+                dialog.PreviousWorkspaceFolder = CurrentWorkspaceFolder;
+                await _dialogCoordinator.ShowMetroDialogAsync(_shellVM, dialog);
+                MessageDialogResult dialogResult = await dialog.WaitForDialogButtonPressAsync();
+                await _dialogCoordinator.HideMetroDialogAsync(_shellVM, dialog);
 
-                OpenFolderDialog folderDialog = new OpenFolderDialog();
-                folderDialog.Multiselect = false;
-                if (folderDialog.ShowDialog() == true)
+                if(dialogResult == MessageDialogResult.Affirmative)
                 {
                     if (_workspaceService?.IsWorkspaceOpen ?? false)
                     {
                         await _workspaceService?.CloseWorkspace(CancellationToken.None, save);
                     }
-                    bool result = await _workspaceService?.Load(folderDialog.FolderName, CancellationToken.None);
-                    OnWorkspaceLoaded?.Invoke(this, folderDialog.FolderName);
+
+                    // Copy files from the old workspace
+                    if (!string.IsNullOrEmpty(dialog.PreviousWorkspaceFolder) && dialog.CopyCompetitions)
+                    {
+                        copyFilesFromOldWorkspace(dialog.PreviousWorkspaceFolder, dialog.NewWorkspaceFolder, WorkspaceService.KEY_FILENAME_COMPETITIONS);
+                    }
+                    if (!string.IsNullOrEmpty(dialog.PreviousWorkspaceFolder) && dialog.CopyCompetitionDistanceRules)
+                    {
+                        copyFilesFromOldWorkspace(dialog.PreviousWorkspaceFolder, dialog.NewWorkspaceFolder, WorkspaceService.KEY_FILENAME_COMPETITIONDISTANCERULES);
+                    }
+                    if (!string.IsNullOrEmpty(dialog.PreviousWorkspaceFolder) && dialog.CopyTemplates)
+                    {
+                        copyTemplatesFolderFromOldWorkspace(dialog.PreviousWorkspaceFolder, dialog.NewWorkspaceFolder);
+                    }
+
+                    bool result = await _workspaceService?.Load(dialog.NewWorkspaceFolder, CancellationToken.None);
+                    OnWorkspaceLoaded?.Invoke(this, dialog.NewWorkspaceFolder);
                     OnPropertyChanged(nameof(LastWorkspacePaths));
 
                     if (!result)
@@ -214,8 +235,8 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
 
                     // Save the workspace to create the workspace files
                     await _workspaceService.Save(CancellationToken.None);
-                    MessageDialogResult messageResult = await _dialogCoordinator.ShowMessageAsync(_shellVM, Resources.DefaultTemplatesString, string.Format(Resources.WorkspaceCreateNewCopyTemplatesDialogString, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Resources.YesString, NegativeButtonText = Resources.NoString });
-                    if (messageResult == MessageDialogResult.Affirmative)
+                                        
+                    if (dialog.CopyDefaultTemplates)
                     {
                         // Extract the default templates from the ZIP file to the workspace folder (subfolder for the templates)
                         string templateZipPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), DEFAULT_TEMPLATE_ZIP_FILE_NAME);
@@ -240,6 +261,70 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
             }
         }
     }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Copy the file identified by the <paramref name="fileNameResourceKey"/> from the <paramref name="oldWorkspacePath"/> to the <paramref name="newWorkspacePath"/>
+    /// Only use this before the workspace is loaded because this method only copies files.
+    /// </summary>
+    /// <param name="oldWorkspacePath">Path to the old workspace with the source file</param>
+    /// <param name="newWorkspacePath">Path to the new workspace where the file should be copied to</param>
+    /// <param name="fileNameResourceKey">Key used to identify the file (e.g. <see cref="WorkspaceService.KEY_FILENAME_COMPETITIONS"/>)</param>
+    private void copyFilesFromOldWorkspace(string oldWorkspacePath, string newWorkspacePath, string fileNameResourceKey)
+    {
+        if (!Directory.Exists(oldWorkspacePath) || string.IsNullOrEmpty(newWorkspacePath) || oldWorkspacePath == newWorkspacePath) { return; }
+
+        ResourceManager fileNameResources = new ResourceManager(typeof(Core.Properties.Resources));
+
+        // Get all supported file names that are searched in the old workspace path and combine them to full pathes
+        List<string> localizedFileNames = GeneralLocalizationHelper.GetAllTranslationsForKey(fileNameResources, fileNameResourceKey).Values.ToList();
+        List<string> localizedFilePaths = localizedFileNames.Select(f => Path.Combine(oldWorkspacePath, f)).ToList();
+        foreach (string localizedFilePath in localizedFilePaths)
+        {
+            if (File.Exists(localizedFilePath))
+            {
+                string newFileName = fileNameResources.GetString(fileNameResourceKey);
+                // Copy the file to the new workspace
+                File.Copy(localizedFilePath, Path.Combine(newWorkspacePath, newFileName), true);
+                continue;
+            }
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Copy the templates folder from the <paramref name="oldWorkspacePath"/> to the <paramref name="newWorkspacePath"/>
+    /// </summary>
+    /// <param name="oldWorkspacePath">Path to the old workspace with the source file</param>
+    /// <param name="newWorkspacePath">Path to the new workspace where the file should be copied to</param>
+    private void copyTemplatesFolderFromOldWorkspace(string oldWorkspacePath, string newWorkspacePath)
+    {
+        if (!Directory.Exists(oldWorkspacePath) || string.IsNullOrEmpty(newWorkspacePath) || oldWorkspacePath == newWorkspacePath) { return; }
+
+        string oldTemplateFolder = Path.Combine(oldWorkspacePath, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME);
+        string newTemplateFolder = Path.Combine(newWorkspacePath, WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME);
+
+        if(!Directory.Exists(oldTemplateFolder)) { return; }
+        if(Directory.Exists(newTemplateFolder))
+        {
+            Directory.Delete(newTemplateFolder, true);
+        }
+        Directory.CreateDirectory(newTemplateFolder);
+
+        // https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp
+        // create all of the directories (if nested ones exist)
+        foreach (string dirPath in Directory.GetDirectories(oldTemplateFolder, "*", SearchOption.AllDirectories))
+        {
+            Directory.CreateDirectory(dirPath.Replace(oldTemplateFolder, newTemplateFolder));
+        }
+        //Copy all the files & Replaces any files with the same name
+        foreach (string newPath in Directory.GetFiles(oldTemplateFolder, "*.*", SearchOption.AllDirectories))
+        {
+            File.Copy(newPath, newPath.Replace(oldTemplateFolder, newTemplateFolder), true);
+        }
+    }
 
     #endregion
 

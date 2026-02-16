@@ -442,10 +442,10 @@ namespace Vereinsmeisterschaften.Core.Services
         public string WorkspaceSettingsFilePath => Path.Combine(PersistentPath, WorkspaceSettingsFileName);
 
         private readonly ResourceManager _fileNameResources = new ResourceManager(typeof(Properties.Resources));
-        private const string KEY_FILENAME_PERSON = "FileName_Person";
-        private const string KEY_FILENAME_COMPETITIONS = "FileName_Competitions";
-        private const string KEY_FILENAME_COMPETITIONDISTANCERULES = "FileName_CompetitionDistanceRules";
-        private const string KEY_FILENAME_BESTRACE = "FileName_BestRace";
+        public const string KEY_FILENAME_PERSON = "FileName_Person";
+        public const string KEY_FILENAME_COMPETITIONS = "FileName_Competitions";
+        public const string KEY_FILENAME_COMPETITIONDISTANCERULES = "FileName_CompetitionDistanceRules";
+        public const string KEY_FILENAME_BESTRACE = "FileName_BestRace";
 
         private string getLocalizedFilePath(string resourceKey, CultureInfo culture = null)
         {

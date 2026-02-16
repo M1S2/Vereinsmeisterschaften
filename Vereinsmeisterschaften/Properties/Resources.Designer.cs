@@ -696,15 +696,6 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Default Templates ähnelt.
-        /// </summary>
-        public static string DefaultTemplatesString {
-            get {
-                return ResourceManager.GetString("DefaultTemplatesString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Really delete? ähnelt.
         /// </summary>
         public static string DeleteConfirmationTitleString {
@@ -812,6 +803,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string DuplicatePersonFound {
             get {
                 return ResourceManager.GetString("DuplicatePersonFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Empty Path! ähnelt.
+        /// </summary>
+        public static string EmptyPathString {
+            get {
+                return ResourceManager.GetString("EmptyPathString", resourceCulture);
             }
         }
         
@@ -1104,6 +1104,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Workspace ähnelt.
+        /// </summary>
+        public static string NewWorkspaceString {
+            get {
+                return ResourceManager.GetString("NewWorkspaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No data is available ähnelt.
         /// </summary>
         public static string NoDataAvailableWarningString {
@@ -1200,6 +1209,24 @@ namespace Vereinsmeisterschaften.Properties {
         public static string NumberStartsString {
             get {
                 return ResourceManager.GetString("NumberStartsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ok ähnelt.
+        /// </summary>
+        public static string OkString {
+            get {
+                return ResourceManager.GetString("OkString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only one option can be active ähnelt.
+        /// </summary>
+        public static string OnlyOneOptionCanBeActiveString {
+            get {
+                return ResourceManager.GetString("OnlyOneOptionCanBeActiveString", resourceCulture);
             }
         }
         
@@ -1532,7 +1559,7 @@ namespace Vereinsmeisterschaften.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
         ///It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
         ///It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
-        ///The table considers performance levels from age 8 un [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///The table considers performance levels from age 8 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string RudolphTableExplanationString {
             get {
@@ -2099,20 +2126,65 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the default templates to the Workspace folder (subfolder {0})? Already existing templates will be overriden! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the competition distance rules from the previous workspace? ähnelt.
         /// </summary>
-        public static string WorkspaceCreateNewCopyTemplatesDialogString {
+        public static string WorkspaceCreateNewDialogCopyCompetitionDistanceRulesString {
             get {
-                return ResourceManager.GetString("WorkspaceCreateNewCopyTemplatesDialogString", resourceCulture);
+                return ResourceManager.GetString("WorkspaceCreateNewDialogCopyCompetitionDistanceRulesString", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die In the following dialog select the folder where the new workspace should be created. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the competitions from the previous workspace? ähnelt.
         /// </summary>
-        public static string WorkspaceCreateNewInfoDialogString {
+        public static string WorkspaceCreateNewDialogCopyCompetitionsString {
             get {
-                return ResourceManager.GetString("WorkspaceCreateNewInfoDialogString", resourceCulture);
+                return ResourceManager.GetString("WorkspaceCreateNewDialogCopyCompetitionsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy default templates to the new workspace folder (already existing templates will be overriden!) ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewDialogCopyDefaultTemplatesString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewDialogCopyDefaultTemplatesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy the templates folder from the previous workspace? ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewDialogCopyTemplatesString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewDialogCopyTemplatesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Data import from old workspace ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewDialogDataImportString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewDialogDataImportString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New workspace folder ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewDialogNewFolderString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewDialogNewFolderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Previous workspace folder ähnelt.
+        /// </summary>
+        public static string WorkspaceCreateNewDialogPreviousFolderString {
+            get {
+                return ResourceManager.GetString("WorkspaceCreateNewDialogPreviousFolderString", resourceCulture);
             }
         }
         

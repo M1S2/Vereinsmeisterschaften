@@ -960,20 +960,11 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Interpolated from Rudolph Table ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Interpolated ähnelt.
         /// </summary>
         public static string InterpolatedFromRudolphTableString {
             get {
                 return ResourceManager.GetString("InterpolatedFromRudolphTableString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Interpolate missing competition times from Rudolph Table ähnelt.
-        /// </summary>
-        public static string InterpolateMissingCompetitionTimesFromRudolphTableString {
-            get {
-                return ResourceManager.GetString("InterpolateMissingCompetitionTimesFromRudolphTableString", resourceCulture);
             }
         }
         
@@ -1227,6 +1218,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string OnlyOneOptionCanBeActiveString {
             get {
                 return ResourceManager.GetString("OnlyOneOptionCanBeActiveString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open Age ähnelt.
+        /// </summary>
+        public static string OpenAgeTimeFromRudolphTableString {
+            get {
+                return ResourceManager.GetString("OpenAgeTimeFromRudolphTableString", resourceCulture);
             }
         }
         

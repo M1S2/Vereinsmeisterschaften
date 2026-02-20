@@ -360,6 +360,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Interpolated from Rudolph Table ähnelt.
+        /// </summary>
+        public static string TooltipInterpolatedFromRudolphTable {
+            get {
+                return ResourceManager.GetString("TooltipInterpolatedFromRudolphTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This start is using a competition that was selected, because the person is older than all available competitions for this style and gender.
         ///The competition with the highest age is used then. ähnelt.
         /// </summary>
@@ -423,6 +432,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipNumberRacesVariantsAfterCalculation {
             get {
                 return ResourceManager.GetString("TooltipNumberRacesVariantsAfterCalculation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open Age from Rudolph Table ähnelt.
+        /// </summary>
+        public static string TooltipOpenAgeTimeFromRudolphTable {
+            get {
+                return ResourceManager.GetString("TooltipOpenAgeTimeFromRudolphTable", resourceCulture);
             }
         }
         
@@ -522,6 +540,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string TooltipPageInfoWorkspacePage {
             get {
                 return ResourceManager.GetString("TooltipPageInfoWorkspacePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Parsed from Rudolph Table ähnelt.
+        /// </summary>
+        public static string TooltipParsedFromRudolphTable {
+            get {
+                return ResourceManager.GetString("TooltipParsedFromRudolphTable", resourceCulture);
             }
         }
         

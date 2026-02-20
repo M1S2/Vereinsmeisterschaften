@@ -16,6 +16,7 @@ namespace Vereinsmeisterschaften.Core.Analytics
             public TimeSpan Time { get; set; }
             public bool IsTimeFromRudolphTable { get; set; }
             public bool IsTimeInterpolatedFromRudolphTable { get; set; }
+            public bool IsOpenAgeTimeFromRudolphTable { get; set; }
         }
         #endregion
 
@@ -43,8 +44,15 @@ namespace Vereinsmeisterschaften.Core.Analytics
             => _competitionService.GetCompetitions()
                                   .Where(c => c.Gender == gender && c.SwimmingStyle == swimmingStyle)
                                   .OrderBy(c => c.Age)
-                                  .Select(c => new ModelCompetitionTimes() { Age = c.Age, Time = c.BestTime, IsTimeFromRudolphTable = c.IsTimeFromRudolphTable, IsTimeInterpolatedFromRudolphTable = c.IsTimeInterpolatedFromRudolphTable })
-                                  .ToList();
+                                  .Select(c => new ModelCompetitionTimes()
+                                               {
+                                                   Age = c.Age,
+                                                   Time = c.BestTime,
+                                                   IsTimeFromRudolphTable = c.IsTimeFromRudolphTable,
+                                                   IsTimeInterpolatedFromRudolphTable = c.IsTimeInterpolatedFromRudolphTable,
+                                                   IsOpenAgeTimeFromRudolphTable = c.IsOpenAgeTimeFromRudolphTable
+                                               }
+                                  ).ToList();
 
         /// <inheritdoc/>
         public DocXPlaceholderHelper.TextPlaceholders CollectDocumentPlaceholderContents() => null;

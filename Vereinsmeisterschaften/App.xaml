@@ -61,6 +61,7 @@
             <SolidColorBrush x:Key="BrushStartInactive">Purple</SolidColorBrush>
             <SolidColorBrush x:Key="BrushTimeFromRudolphTable">#FF008000</SolidColorBrush>
             <SolidColorBrush x:Key="BrushTimeInterpolatedFromRudolphTable">LightSeaGreen</SolidColorBrush>
+            <SolidColorBrush x:Key="BrushOpenAgeTimeFromRudolphTable">Purple</SolidColorBrush>
             
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <!-- Constants-->

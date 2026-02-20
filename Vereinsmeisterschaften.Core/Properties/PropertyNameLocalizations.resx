@@ -213,4 +213,7 @@
   <data name="Competition_IsTimeInterpolatedFromRudolphTable" xml:space="preserve">
     <value>Is Time interpolated?</value>
   </data>
+  <data name="Competition_IsOpenAgeTimeFromRudolphTable" xml:space="preserve">
+    <value>Is Open Age from Rudolph Table?</value>
+  </data>
 </root>

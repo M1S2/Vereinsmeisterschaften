@@ -86,13 +86,6 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void UpdateAllCompetitionDistancesFromDistanceRules(bool keepRudolphTableFlags = false);
 
         /// <summary>
-        /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.
-        /// </summary>
-        /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
-        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
-        void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
-
-        /// <summary>
         /// Create the <see cref="Competition"/> objects from the given rudolph table.
         /// The lines from the given rudolph score are used.
         /// To find the correct columns (distances), the <see cref="CompetitionDistanceRules"/> are used.
@@ -103,10 +96,10 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
 
         /// <summary>
-        /// For each swimming style, gender and distance take all competitions with times from the rudolph table and interpolate these times to find values for the competitions without times from the rudolph table.
+        /// Update all <see cref="Competition.BestTime"/> properties from the given rudolph table.
         /// </summary>
-        /// <exception cref="Exception">An exception is thrown, when the interpolation fails for at least one group of <see cref="Competition"/></exception>
-        void InterpolateMissingCompetitionTimesFromRudolphTable();
-
+        /// <param name="rudolphTableCsvFile">CSV file for the rudolph table</param>
+        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
+        void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore);
     }
 }

@@ -33,6 +33,7 @@ namespace Vereinsmeisterschaften.Core.Models
             this.BestTime = other.BestTime;
             this.IsTimeFromRudolphTable = other.IsTimeFromRudolphTable;
             this.IsTimeInterpolatedFromRudolphTable = other.IsTimeInterpolatedFromRudolphTable;
+            this.IsOpenAgeTimeFromRudolphTable = other.IsOpenAgeTimeFromRudolphTable;
         }
 
         #endregion
@@ -99,6 +100,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 {
                     IsTimeFromRudolphTable = false;
                     IsTimeInterpolatedFromRudolphTable = false;
+                    IsOpenAgeTimeFromRudolphTable = false;
                 }
             }
         }
@@ -127,6 +129,17 @@ namespace Vereinsmeisterschaften.Core.Models
             set => SetProperty(ref _isTimeInterpolatedFromRudolphTable, value);
         }
 
+        private bool _isOpenAgeTimeFromRudolphTable = false;
+        /// <summary>
+        /// True, when the <see cref="BestTime"/> was the open age value taken from the <see cref="RudolphTable"/>.
+        /// This flag will be <see langword="false"/> as soon as the <see cref="BestTime"/> is changed manually.
+        /// </summary>
+        [FileServiceOrder]
+        public bool IsOpenAgeTimeFromRudolphTable
+        {
+            get => _isOpenAgeTimeFromRudolphTable;
+            set => SetProperty(ref _isOpenAgeTimeFromRudolphTable, value);
+        }
 
         private ushort _distance = 0;
         /// <summary>
@@ -141,6 +154,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 if (SetProperty(ref _distance, value))
                 {
                     IsTimeFromRudolphTable = false;
+                    IsOpenAgeTimeFromRudolphTable = false;
                     OnPropertyChanged(nameof(IsDistanceValid));
                 }
             }
@@ -193,6 +207,7 @@ namespace Vereinsmeisterschaften.Core.Models
                 case nameof(BestTime): dataObj.BestTime = TimeSpan.Parse(value); break;
                 case nameof(IsTimeFromRudolphTable): dataObj.IsTimeFromRudolphTable = !string.IsNullOrEmpty(value); break;
                 case nameof(IsTimeInterpolatedFromRudolphTable): dataObj.IsTimeInterpolatedFromRudolphTable = !string.IsNullOrEmpty(value); break;
+                case nameof(IsOpenAgeTimeFromRudolphTable): dataObj.IsOpenAgeTimeFromRudolphTable = !string.IsNullOrEmpty(value); break;
                 default: break;
             }
         }
@@ -209,7 +224,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <param name="obj">Other Competition to compare against this instance.</param>
         /// <returns>true if both instances are equal; false if not equal or obj isn't of type <see cref="Competition"/></returns>
         public override bool Equals(object obj)
-            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.BestTime, c.IsTimeFromRudolphTable, c.IsTimeInterpolatedFromRudolphTable).Equals((Id, Gender, SwimmingStyle, Age, BestTime, IsTimeFromRudolphTable, IsTimeInterpolatedFromRudolphTable));
+            => obj is Competition c && (c.Id, c.Gender, c.SwimmingStyle, c.Age, c.BestTime, c.IsTimeFromRudolphTable, c.IsTimeInterpolatedFromRudolphTable, c.IsOpenAgeTimeFromRudolphTable).Equals((Id, Gender, SwimmingStyle, Age, BestTime, IsTimeFromRudolphTable, IsTimeInterpolatedFromRudolphTable, IsOpenAgeTimeFromRudolphTable));
 
         /// <summary>
         /// Indicates wheather the current object is equal to another object of the same type.
@@ -227,14 +242,14 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
             => base.GetHashCode();
-            //=> (Id, Gender, SwimmingStyle, Age, BestTime, IsTimeFromRudolphTable, IsTimeInterpolatedFromRudolphTable).GetHashCode();
+            //=> (Id, Gender, SwimmingStyle, Age, BestTime, IsTimeFromRudolphTable, IsTimeInterpolatedFromRudolphTable, IsOpenAgeTimeFromRudolphTable).GetHashCode();
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-            => $"{Id}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age}{(IsTimeFromRudolphTable ? ", from rudolph table" : "")}{(IsTimeInterpolatedFromRudolphTable ? ", interpolated from rudolph table" : "")})";
+            => $"{Id}: {Distance}m {SwimmingStyle} {Gender} (Age: {Age}{(IsTimeFromRudolphTable ? ", from rudolph table" : "")}{(IsOpenAgeTimeFromRudolphTable ? " (open age)" : "")}{(IsTimeInterpolatedFromRudolphTable ? ", interpolated from rudolph table" : "")})";
 
         /// <summary>
         /// Create a new object that has the same property values than this one

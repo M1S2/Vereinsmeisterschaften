@@ -232,17 +232,7 @@
                 <StackPanel Orientation="Vertical" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
                     <TextBlock VerticalAlignment="Center"
                                Text="{x:Static properties:Resources.RudolphTableExplanationString}" TextWrapping="Wrap"/>
-
-                    <!-- Update Competition Times from Rudolph table Button -->
-                    <Button Margin="0,10,0,0" HorizontalAlignment="Left"
-                            Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                            Command="{Binding UpdateCompetitionTimesFromRudolphTableCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <controls:FontIcon FontSize="20" Glyph="&#xE916;"/>
-                            <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-
+                    
                     <!-- Create Competitions from Rudolph table Button -->
                     <Button Margin="0,10,0,0" HorizontalAlignment="Left"
                             Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
@@ -252,14 +242,14 @@
                             <TextBlock Text="{x:Static properties:Resources.CreateCompetitionsFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         </StackPanel>
                     </Button>
-
-                    <!-- Interpolate Competition Times from Rudolph table Button -->
+                    
+                    <!-- Update Competition Times from Rudolph table Button -->
                     <Button Margin="0,10,0,0" HorizontalAlignment="Left"
                             Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                            Command="{Binding InterpolateMissingCompetitionTimesFromRudolphTableCommand}">
+                            Command="{Binding UpdateCompetitionTimesFromRudolphTableCommand}">
                         <StackPanel Orientation="Horizontal">
                             <controls:FontIcon FontSize="20" Glyph="&#xE916;"/>
-                            <TextBlock Text="{x:Static properties:Resources.InterpolateMissingCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -434,9 +424,23 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <userControls:TimeSpanControl Value="{Binding BestTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" HoursVisible="False" EditMode="EditSeconds" ToolTip="mm:ss.fff"/>
+                                <!-- Is time from rudolph table -->
                                 <Border Margin="2,0,0,0" CornerRadius="5" VerticalAlignment="Center"
                                         Background="{DynamicResource BrushTimeFromRudolphTable}"
-                                        Visibility="{Binding IsTimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        ToolTip="{x:Static properties:Tooltips.TooltipParsedFromRudolphTable}">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsTimeFromRudolphTable}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsOpenAgeTimeFromRudolphTable}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                     <StackPanel Orientation="Horizontal">
                                         <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
                                         <TextBlock Margin="5,0" VerticalAlignment="Center"
@@ -444,13 +448,27 @@
                                                    Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
                                     </StackPanel>
                                 </Border>
+                                <!-- Is time interpolated from rudolph table -->
                                 <Border Margin="2,0,0,0" CornerRadius="5" VerticalAlignment="Center"
                                         Background="{DynamicResource BrushTimeInterpolatedFromRudolphTable}"
-                                        Visibility="{Binding IsTimeInterpolatedFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding IsTimeInterpolatedFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        ToolTip="{x:Static properties:Tooltips.TooltipInterpolatedFromRudolphTable}">
                                     <StackPanel Orientation="Horizontal">
                                         <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
                                         <TextBlock Margin="5,0" VerticalAlignment="Center"
                                                    Text="{x:Static properties:Resources.InterpolatedFromRudolphTableString}"
+                                                   Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Is open age time from rudolph table -->
+                                <Border Margin="2,0,0,0" CornerRadius="5" VerticalAlignment="Center"
+                                        Background="{DynamicResource BrushOpenAgeTimeFromRudolphTable}"
+                                        Visibility="{Binding IsOpenAgeTimeFromRudolphTable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        ToolTip="{x:Static properties:Tooltips.TooltipOpenAgeTimeFromRudolphTable}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:FontIcon Margin="5,0" FontSize="20" Glyph="&#xF13E;" Foreground="White"/>
+                                        <TextBlock Margin="5,0" VerticalAlignment="Center"
+                                                   Text="{x:Static properties:Resources.OpenAgeTimeFromRudolphTableString}"
                                                    Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
                                     </StackPanel>
                                 </Border>

@@ -810,11 +810,8 @@ When multiple rules will match, only the first one will be applied. So it is imp
   <data name="AnalyticsWidgetCompetitionTimesTitle" xml:space="preserve">
     <value>Competition Times</value>
   </data>
-  <data name="InterpolateMissingCompetitionTimesFromRudolphTableString" xml:space="preserve">
-    <value>Interpolate missing competition times from Rudolph Table</value>
-  </data>
   <data name="InterpolatedFromRudolphTableString" xml:space="preserve">
-    <value>Interpolated from Rudolph Table</value>
+    <value>Interpolated</value>
   </data>
   <data name="DataGridHeaderSortHintString" xml:space="preserve">
     <value>Use the SHIFT key to sort multiple columns.
@@ -849,5 +846,8 @@ The order in which the columns are selected determines the sort priority.</value
   </data>
   <data name="OnlyOneOptionCanBeActiveString" xml:space="preserve">
     <value>Only one option can be active</value>
+  </data>
+  <data name="OpenAgeTimeFromRudolphTableString" xml:space="preserve">
+    <value>Open Age</value>
   </data>
 </root>

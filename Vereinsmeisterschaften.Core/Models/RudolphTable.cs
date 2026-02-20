@@ -273,6 +273,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <summary>
         /// Try to get a specific <see cref="RudolphTableEntry"/>.
         /// The input is the list returned by <see cref="ParseFromCsv(string)"/>
+        /// When the <paramref name="age"/> is too big, return the open age table entry.
         /// </summary>
         /// <param name="rudolphTable">Complete rudolph table with all entries</param>
         /// <param name="gender"><see cref="Genders"/> to search</param>
@@ -283,8 +284,18 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Found <see cref="RudolphTableEntry"/> if found or <see langword="null"/></returns>
         public RudolphTableEntry GetEntryByParameters(Genders gender, byte age, SwimmingStyles swimmingStyle, ushort distance, byte rudolphScore)
         {
-            RudolphTableEntry foundEntry = Entries.FirstOrDefault(e => e.Gender == gender && e.Age == age && e.SwimmingStyle == swimmingStyle && e.Distance == distance && e.RudolphScore == rudolphScore);
-            return foundEntry;
+            List<RudolphTableEntry> entries = Entries.Where(e => e.Gender == gender && e.SwimmingStyle == swimmingStyle && e.Distance == distance && e.RudolphScore == rudolphScore).ToList();
+            if(entries == null || entries.Count == 0) { return null; }
+
+            byte maxAgeEntries = entries.Max(e => e.Age);
+            if (age > maxAgeEntries)
+            {
+                return entries.FirstOrDefault(e => e.IsOpenAge);
+            }
+            else
+            {
+                return entries.FirstOrDefault(e => e.Age == age);
+            }
         }
     }
 }

@@ -454,4 +454,13 @@ Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Dista
   <data name="TooltipAnalyticsWidgetCompetitionTimes" xml:space="preserve">
     <value>Analysieren, welche Wettkampfzeiten pro Alter und Stil geschwommen werden müssen.</value>
   </data>
+  <data name="TooltipInterpolatedFromRudolphTable" xml:space="preserve">
+    <value>Interpoliert aus Rudolph Tabelle</value>
+  </data>
+  <data name="TooltipOpenAgeTimeFromRudolphTable" xml:space="preserve">
+    <value>Offene Klasse aus Rudolph Tabelle</value>
+  </data>
+  <data name="TooltipParsedFromRudolphTable" xml:space="preserve">
+    <value>Aus Rudolph Tabelle</value>
+  </data>
 </root>

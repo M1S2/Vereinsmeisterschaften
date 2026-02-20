@@ -455,4 +455,13 @@ Make sure, there is a distance rule for the age and swimming style.</value>
   <data name="TooltipAnalyticsWidgetCompetitionTimes" xml:space="preserve">
     <value>Analyse the competition times per age and style.</value>
   </data>
+  <data name="TooltipInterpolatedFromRudolphTable" xml:space="preserve">
+    <value>Interpolated from Rudolph Table</value>
+  </data>
+  <data name="TooltipOpenAgeTimeFromRudolphTable" xml:space="preserve">
+    <value>Open Age from Rudolph Table</value>
+  </data>
+  <data name="TooltipParsedFromRudolphTable" xml:space="preserve">
+    <value>Parsed from Rudolph Table</value>
+  </data>
 </root>

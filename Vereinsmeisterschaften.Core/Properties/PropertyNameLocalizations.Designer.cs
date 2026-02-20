@@ -106,6 +106,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Is Open Age from Rudolph Table? ähnelt.
+        /// </summary>
+        internal static string Competition_IsOpenAgeTimeFromRudolphTable {
+            get {
+                return ResourceManager.GetString("Competition_IsOpenAgeTimeFromRudolphTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Is Time from Rudolph Table? ähnelt.
         /// </summary>
         internal static string Competition_IsTimeFromRudolphTable {

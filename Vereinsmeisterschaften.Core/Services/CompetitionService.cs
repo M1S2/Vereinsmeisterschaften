@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MathNet.Numerics.Interpolation;
+using MathNet.Numerics;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
@@ -460,11 +459,13 @@ namespace Vereinsmeisterschaften.Core.Services
             if (competition == null) { return; }
             bool isTimeFromRudolphTable = competition.IsTimeFromRudolphTable;
             bool isTimeInterpolatedFromRudolphTable = competition.IsTimeInterpolatedFromRudolphTable;
+            bool isOpenAgeTimeFromRudolphTable = competition.IsOpenAgeTimeFromRudolphTable;
             competition.Distance = _competitionDistanceRuleService.GetCompetitionDistanceFromRules(competition.Age, competition.SwimmingStyle);
             if(keepRudolphTableFlags)
             {
                 competition.IsTimeFromRudolphTable = isTimeFromRudolphTable;
                 competition.IsTimeInterpolatedFromRudolphTable = isTimeInterpolatedFromRudolphTable;
+                competition.IsOpenAgeTimeFromRudolphTable = isOpenAgeTimeFromRudolphTable;
             }
         }
 
@@ -482,47 +483,28 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
-        public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
-        {
-            RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
-
-            foreach(Competition competition in _competitionList)
-            {
-                RudolphTableEntry foundRudolphTableEntry = rudolphTable.GetEntryByParameters(competition.Gender, competition.Age, competition.SwimmingStyle, competition.Distance, rudolphScore);
-                if (foundRudolphTableEntry != null)
-                {
-                    competition.BestTime = foundRudolphTableEntry.Time;
-                    competition.IsTimeFromRudolphTable = true;
-                    competition.IsTimeInterpolatedFromRudolphTable = false;
-                }
-                else
-                {
-                    competition.IsTimeFromRudolphTable = false;
-                    competition.IsTimeInterpolatedFromRudolphTable = false;
-                }
-            }
-        }
-
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// <inheritdoc/>
         public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
 
+            // Find the maximum ages for each swimming style in the rudolph table
+            Dictionary<SwimmingStyles, byte> maxAgesBySwimmingStyles = rudolphTable.Entries
+                                                                        .GroupBy(e => e.SwimmingStyle)
+                                                                        .ToDictionary(g => g.Key, g => g.Max(e => e.Age));
+
             List<Competition> competitions = rudolphTable.Entries
                                                 .Where(e => e.RudolphScore == rudolphScore &&
-                                                            !e.IsOpenAge &&
-                                                            e.Distance == _competitionDistanceRuleService.GetCompetitionDistanceFromRules(e.Age, e.SwimmingStyle))
+                                                            e.Distance == _competitionDistanceRuleService.GetCompetitionDistanceFromRules(e.IsOpenAge ? maxAgesBySwimmingStyles[e.SwimmingStyle] : e.Age, e.SwimmingStyle))
                                                 .Select(e => new Competition
                                                              {
                                                                  Gender = e.Gender,
-                                                                 Age = e.Age,
+                                                                 Age = e.IsOpenAge ? (byte)(maxAgesBySwimmingStyles[e.SwimmingStyle] + 1) : e.Age,      // for the open age, use the maximum age + 1
                                                                  SwimmingStyle = e.SwimmingStyle,
                                                                  Distance = e.Distance,
                                                                  BestTime = e.Time,
                                                                  IsTimeFromRudolphTable = true,
-                                                                 IsTimeInterpolatedFromRudolphTable = false
+                                                                 IsTimeInterpolatedFromRudolphTable = false,
+                                                                 IsOpenAgeTimeFromRudolphTable = e.IsOpenAge
                                                              }
                                                 ).ToList();
 
@@ -537,10 +519,11 @@ namespace Vereinsmeisterschaften.Core.Services
             }
             OnPropertyChanged(nameof(CompetitionCount));
             UpdateAllCompetitionsForPerson();
-            // Reset the IsTimeInterpolatedFromRudolphTable flag for all remaining competitions
+            // Reset the IsTimeInterpolatedFromRudolphTable and IsOpenAgeTimeFromRudolphTable flag for all remaining competitions
             foreach (Competition competition in _competitionList)
             {
                 competition.IsTimeInterpolatedFromRudolphTable = false;
+                competition.IsOpenAgeTimeFromRudolphTable = false;
             }
             OnPropertyChanged(nameof(HasUnsavedChanges));
 
@@ -559,7 +542,39 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
-        public void InterpolateMissingCompetitionTimesFromRudolphTable()
+        public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
+        {
+            RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
+
+            foreach (Competition competition in _competitionList)
+            {
+                RudolphTableEntry foundRudolphTableEntry = rudolphTable.GetEntryByParameters(competition.Gender, competition.Age, competition.SwimmingStyle, competition.Distance, rudolphScore);
+                if (foundRudolphTableEntry != null)
+                {
+                    competition.BestTime = foundRudolphTableEntry.Time;
+                    competition.IsTimeFromRudolphTable = true;
+                    competition.IsTimeInterpolatedFromRudolphTable = false;
+                    competition.IsOpenAgeTimeFromRudolphTable = foundRudolphTableEntry.IsOpenAge;
+                }
+                else
+                {
+                    competition.IsTimeFromRudolphTable = false;
+                    competition.IsTimeInterpolatedFromRudolphTable = false;
+                    competition.IsOpenAgeTimeFromRudolphTable = false;
+                }
+            }
+            interpolateMissingCompetitionTimesFromRudolphTable(rudolphTable, rudolphScore);
+        }
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <summary>
+        /// For each swimming style, gender and distance take all competitions with times from the rudolph table and interpolate these times to find values for the competitions without times from the rudolph table.
+        /// </summary>
+        /// <exception cref="Exception">An exception is thrown, when the interpolation fails for at least one group of <see cref="Competition"/></exception>
+        /// <param name="rudolphTable">Object with the rudolph table</param>
+        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
+        private void interpolateMissingCompetitionTimesFromRudolphTable(RudolphTable rudolphTable, byte rudolphScore)
         {
             // Create groups for specific combinations of SwimmingStyle, Gender and Distance
             var groups = _competitionList.GroupBy(c => (c.SwimmingStyle, c.Gender, c.Distance));
@@ -592,12 +607,14 @@ namespace Vereinsmeisterschaften.Core.Services
                     continue;
                 }
 
-                List<double> splineX = competitionsRudolphTable.Select(c => (double)c.Age).ToList();
-                List<double> splineY = competitionsRudolphTable.Select(c => c.BestTime.TotalMilliseconds).ToList();
-                CubicSpline spline = CubicSpline.InterpolatePchip(splineX, splineY);
-                foreach(Competition missingTimeCompetition in competitionsMissingTimes)
+                double[] dataX = competitionsRudolphTable.Select(c => (double)c.Age).ToArray();
+                double[] dataY = competitionsRudolphTable.Select(c => c.BestTime.TotalMilliseconds).ToArray();
+
+                // Rudolph data seems to use a polynom of 3th grade: https://schwimmlexikon.de/rudolph-tabelle/
+                Polynomial poly = Polynomial.Fit(dataX, dataY, 3);
+                foreach (Competition missingTimeCompetition in competitionsMissingTimes)
                 {
-                    double interpolatedTimeMilliseconds = spline.Interpolate(missingTimeCompetition.Age);
+                    double interpolatedTimeMilliseconds = poly.Evaluate(missingTimeCompetition.Age);
                     missingTimeCompetition.BestTime = new TimeSpan(0, 0, 0, 0, (int)interpolatedTimeMilliseconds);
                     missingTimeCompetition.IsTimeInterpolatedFromRudolphTable = true;
                 }

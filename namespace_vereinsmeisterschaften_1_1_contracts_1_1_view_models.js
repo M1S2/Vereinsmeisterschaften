@@ -1,0 +1,6 @@
+var namespace_vereinsmeisterschaften_1_1_contracts_1_1_view_models =
+[
+    [ "INavigationAware", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware.html", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware" ],
+    [ "IWorkspaceManagerViewModel", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model" ],
+    [ "IWorkspaceSettingViewModel", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model.html", "interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model" ]
+];

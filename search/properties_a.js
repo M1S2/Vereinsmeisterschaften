@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['keepwhileracescalculation_0',['KeepWhileRacesCalculation',['../class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_races_variant.html#ab4161201b7960de03fa7187159a202ba',1,'Vereinsmeisterschaften::Core::Models::RacesVariant']]],
+  ['key_1',['Key',['../interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html#ac446af250d306d8d2fd479e81e07914a',1,'Vereinsmeisterschaften.Core.Settings.IWorkspaceSetting.Key'],['../class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_setting.html#a32d7f73f470e2d3d5f837e08d2429a39',1,'Vereinsmeisterschaften.Core.Settings.SerializableWorkspaceSetting.Key'],['../class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html#aabedeb8c5d0d0613eaeb0934976d8b3a',1,'Vereinsmeisterschaften.Core.Settings.WorkspaceSetting-1-g.Key'],['../class_vereinsmeisterschaften_1_1_view_models_1_1_document_placeholder_view_config.html#aef94966202f9ffbe696926c2f3342231',1,'Vereinsmeisterschaften.ViewModels.DocumentPlaceholderViewConfig.Key']]]
+];

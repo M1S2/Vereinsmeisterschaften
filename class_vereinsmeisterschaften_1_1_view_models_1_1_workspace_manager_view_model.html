@@ -1,0 +1,1028 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#events">Events</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>ViewModel for the workspace manager.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.png" usemap="#Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel_map" alt=""/>
+  <map id="Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel_map" name="Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel_map">
+<area href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html" title="Interface for the workspace manager." alt="Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel" shape="rect" coords="469,56,928,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7852bc39881f29929377c37d70e4e0bc" id="r_a7852bc39881f29929377c37d70e4e0bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7852bc39881f29929377c37d70e4e0bc">WorkspaceManagerViewModel</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService, IDialogCoordinator dialogCoordinator, <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a> shellVM, <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> navigationService)</td></tr>
+<tr class="memdesc:a7852bc39881f29929377c37d70e4e0bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the workspace view model.  <br /></td></tr>
+<tr class="separator:a7852bc39881f29929377c37d70e4e0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a></td></tr>
+<tr class="memitem:a92d828ab659d9b3a4c5d7ebe5ff24e3e inherit pub_methods_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model" id="r_a92d828ab659d9b3a4c5d7ebe5ff24e3e"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a92d828ab659d9b3a4c5d7ebe5ff24e3e">WorkspaceLoadedDelegate</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html">WorkspaceManagerViewModel</a> workspaceManagerViewModel, string currentWorkspacePath)</td></tr>
+<tr class="memdesc:a92d828ab659d9b3a4c5d7ebe5ff24e3e inherit pub_methods_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delegate void for the <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#ac6d775d420bfa9ce62026aca97990270" title="Event that his raised when the LoadWorkspaceCommand was executed successfully.">OnWorkspaceLoaded</a> event.  <br /></td></tr>
+<tr class="separator:a92d828ab659d9b3a4c5d7ebe5ff24e3e inherit pub_methods_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a83cf8d963dccbb7ff536b4997851b896" id="r_a83cf8d963dccbb7ff536b4997851b896"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83cf8d963dccbb7ff536b4997851b896">DEFAULT_TEMPLATE_ZIP_FILE_NAME</a> = &quot;DefaultTemplates.zip&quot;</td></tr>
+<tr class="memdesc:a83cf8d963dccbb7ff536b4997851b896"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the file name for the default templates ZIP (this name should match the name used in the PostBuildEvent of the Vereinsmeisterschaften.csproj)  <br /></td></tr>
+<tr class="separator:a83cf8d963dccbb7ff536b4997851b896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ae1ad17385ef42ca0636289acb3a0dc27" id="r_ae1ad17385ef42ca0636289acb3a0dc27"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1ad17385ef42ca0636289acb3a0dc27">CurrentWorkspaceFolder</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae1ad17385ef42ca0636289acb3a0dc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current workspace folder path.  <br /></td></tr>
+<tr class="separator:ae1ad17385ef42ca0636289acb3a0dc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a2dca6595b0d6e3d382d0747cc2ad3" id="r_ae3a2dca6595b0d6e3d382d0747cc2ad3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3a2dca6595b0d6e3d382d0747cc2ad3">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae3a2dca6595b0d6e3d382d0747cc2ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the workspace has unsaved changes, false otherwise.  <br /></td></tr>
+<tr class="separator:ae3a2dca6595b0d6e3d382d0747cc2ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f46dfc1e579ac5342c241f30bce501" id="r_a02f46dfc1e579ac5342c241f30bce501"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02f46dfc1e579ac5342c241f30bce501">LastWorkspacePaths</a><code> [get]</code></td></tr>
+<tr class="memdesc:a02f46dfc1e579ac5342c241f30bce501"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with previous workspace paths.  <br /></td></tr>
+<tr class="separator:a02f46dfc1e579ac5342c241f30bce501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99bf8888927a8dd20b4077fac8788fb1" id="r_a99bf8888927a8dd20b4077fac8788fb1"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99bf8888927a8dd20b4077fac8788fb1">CloseWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a99bf8888927a8dd20b4077fac8788fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to close the current workspace.  <br /></td></tr>
+<tr class="separator:a99bf8888927a8dd20b4077fac8788fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6b9a8a4f675a1f05a73eb8817247e49" id="r_aa6b9a8a4f675a1f05a73eb8817247e49"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6b9a8a4f675a1f05a73eb8817247e49">SaveWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa6b9a8a4f675a1f05a73eb8817247e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to save the current workspace to a folder.  <br /></td></tr>
+<tr class="separator:aa6b9a8a4f675a1f05a73eb8817247e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1db12b3bc1a1c8ced0a4d5df77197c7" id="r_ac1db12b3bc1a1c8ced0a4d5df77197c7"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1db12b3bc1a1c8ced0a4d5df77197c7">LoadWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac1db12b3bc1a1c8ced0a4d5df77197c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to load a workspace from a folder.  <br /></td></tr>
+<tr class="separator:ac1db12b3bc1a1c8ced0a4d5df77197c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72c62dd36055f91e96252f7f99138873" id="r_a72c62dd36055f91e96252f7f99138873"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72c62dd36055f91e96252f7f99138873">LoadLastWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a72c62dd36055f91e96252f7f99138873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to load a previous workspace from the selected folder (command parameter).  <br /></td></tr>
+<tr class="separator:a72c62dd36055f91e96252f7f99138873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647091e3b0e023a37fefd2c287b0bebe" id="r_a647091e3b0e023a37fefd2c287b0bebe"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a647091e3b0e023a37fefd2c287b0bebe">OpenWorkspaceFolderCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a647091e3b0e023a37fefd2c287b0bebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to open the current workspace folder in the file explorer.  <br /></td></tr>
+<tr class="separator:a647091e3b0e023a37fefd2c287b0bebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae261022cbad79aaf668819583330faa1" id="r_ae261022cbad79aaf668819583330faa1"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae261022cbad79aaf668819583330faa1">CreateNewWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae261022cbad79aaf668819583330faa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to create a new workspace (add all configuration files to the folder and optionally add default templates)  <br /></td></tr>
+<tr class="separator:ae261022cbad79aaf668819583330faa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e0784d4955b1723c51da14cee3bdad" id="r_aa0e0784d4955b1723c51da14cee3bdad"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0e0784d4955b1723c51da14cee3bdad">ClearAllLastWorkspacePathsCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa0e0784d4955b1723c51da14cee3bdad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a7e1c01a73220656c8686b73cc497e5c6" title="List with previous workspace paths.">LastWorkspacePaths</a>  <br /></td></tr>
+<tr class="separator:aa0e0784d4955b1723c51da14cee3bdad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="events" name="events"></a>
+Events</h2></td></tr>
+<tr class="memitem:a9b7f27be14683f35f5ed74d69b4e656a" id="r_a9b7f27be14683f35f5ed74d69b4e656a"><td class="memItemLeft" align="right" valign="top">IWorkspaceManagerViewModel.WorkspaceLoadedDelegate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b7f27be14683f35f5ed74d69b4e656a">OnWorkspaceLoaded</a></td></tr>
+<tr class="separator:a9b7f27be14683f35f5ed74d69b4e656a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header events_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a></td></tr>
+<tr class="memitem:ac6d775d420bfa9ce62026aca97990270 inherit events_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model" id="r_ac6d775d420bfa9ce62026aca97990270"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a92d828ab659d9b3a4c5d7ebe5ff24e3e">WorkspaceLoadedDelegate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#ac6d775d420bfa9ce62026aca97990270">OnWorkspaceLoaded</a></td></tr>
+<tr class="memdesc:ac6d775d420bfa9ce62026aca97990270 inherit events_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that his raised when the <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a8531992e61eefa774674988372a26698" title="Command to load a workspace from a folder.">LoadWorkspaceCommand</a> was executed successfully.  <br /></td></tr>
+<tr class="separator:ac6d775d420bfa9ce62026aca97990270 inherit events_interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8ca1056c659575a7e2e4b1e13e9ffd08" id="r_a8ca1056c659575a7e2e4b1e13e9ffd08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ca1056c659575a7e2e4b1e13e9ffd08">copyFilesFromOldWorkspace</a> (string oldWorkspacePath, string newWorkspacePath, string fileNameResourceKey)</td></tr>
+<tr class="memdesc:a8ca1056c659575a7e2e4b1e13e9ffd08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the file identified by the <em>fileNameResourceKey</em>  from the <em>oldWorkspacePath</em>  to the <em>newWorkspacePath</em>  Only use this before the workspace is loaded because this method only copies files.  <br /></td></tr>
+<tr class="separator:a8ca1056c659575a7e2e4b1e13e9ffd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26a4ac65f60289e6b0540e86bef45b4" id="r_ad26a4ac65f60289e6b0540e86bef45b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad26a4ac65f60289e6b0540e86bef45b4">copyTemplatesFolderFromOldWorkspace</a> (string oldWorkspacePath, string newWorkspacePath)</td></tr>
+<tr class="memdesc:ad26a4ac65f60289e6b0540e86bef45b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the templates folder from the <em>oldWorkspacePath</em>  to the <em>newWorkspacePath</em>   <br /></td></tr>
+<tr class="separator:ad26a4ac65f60289e6b0540e86bef45b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f8ee3a6c4d3a2b49d740203ea996065" id="r_a5f8ee3a6c4d3a2b49d740203ea996065"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f8ee3a6c4d3a2b49d740203ea996065">_workspaceService_PropertyChanged</a> (object sender, System.ComponentModel.PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a5f8ee3a6c4d3a2b49d740203ea996065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3cdbeda0d9b817ec16bc70e9b8625847" id="r_a3cdbeda0d9b817ec16bc70e9b8625847"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cdbeda0d9b817ec16bc70e9b8625847">_closeWorkspaceCommand</a></td></tr>
+<tr class="separator:a3cdbeda0d9b817ec16bc70e9b8625847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733b871b0920686047074877d0c649e7" id="r_a733b871b0920686047074877d0c649e7"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a733b871b0920686047074877d0c649e7">_saveWorkspaceCommand</a></td></tr>
+<tr class="separator:a733b871b0920686047074877d0c649e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca41f854b3acd7ff2ed7f3ebf076bd14" id="r_aca41f854b3acd7ff2ed7f3ebf076bd14"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca41f854b3acd7ff2ed7f3ebf076bd14">_loadWorkspaceCommand</a></td></tr>
+<tr class="separator:aca41f854b3acd7ff2ed7f3ebf076bd14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf1d8468065531d74405fcf169dcb80" id="r_aecf1d8468065531d74405fcf169dcb80"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecf1d8468065531d74405fcf169dcb80">_loadLastWorkspaceCommand</a></td></tr>
+<tr class="separator:aecf1d8468065531d74405fcf169dcb80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd1328ac64b06e288b8d6e2cd28fb1e2" id="r_acd1328ac64b06e288b8d6e2cd28fb1e2"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd1328ac64b06e288b8d6e2cd28fb1e2">_openWorkspaceFolderCommand</a></td></tr>
+<tr class="separator:acd1328ac64b06e288b8d6e2cd28fb1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba774902d944f01bbc5e3b3a51dfa887" id="r_aba774902d944f01bbc5e3b3a51dfa887"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba774902d944f01bbc5e3b3a51dfa887">_createNewWorkspaceCommand</a></td></tr>
+<tr class="separator:aba774902d944f01bbc5e3b3a51dfa887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3c3581011c1dafcf0d52eea3586203" id="r_adc3c3581011c1dafcf0d52eea3586203"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc3c3581011c1dafcf0d52eea3586203">_clearAllLastWorkspacePathsCommand</a></td></tr>
+<tr class="separator:adc3c3581011c1dafcf0d52eea3586203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c80e45bcdeb690bb0a3ccfefaa52c24" id="r_a7c80e45bcdeb690bb0a3ccfefaa52c24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c80e45bcdeb690bb0a3ccfefaa52c24">_workspaceService</a></td></tr>
+<tr class="separator:a7c80e45bcdeb690bb0a3ccfefaa52c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01340a19b497dceae7da3fcc8b57093" id="r_ab01340a19b497dceae7da3fcc8b57093"><td class="memItemLeft" align="right" valign="top">IDialogCoordinator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab01340a19b497dceae7da3fcc8b57093">_dialogCoordinator</a></td></tr>
+<tr class="separator:ab01340a19b497dceae7da3fcc8b57093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95edd53147803da26f2ca829861e2f67" id="r_a95edd53147803da26f2ca829861e2f67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95edd53147803da26f2ca829861e2f67">_shellVM</a></td></tr>
+<tr class="separator:a95edd53147803da26f2ca829861e2f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4667df017f2cffa5fac70bf7ad58fd01" id="r_a4667df017f2cffa5fac70bf7ad58fd01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4667df017f2cffa5fac70bf7ad58fd01">_navigationService</a></td></tr>
+<tr class="separator:a4667df017f2cffa5fac70bf7ad58fd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>ViewModel for the workspace manager. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00024">24</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7852bc39881f29929377c37d70e4e0bc" name="a7852bc39881f29929377c37d70e4e0bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7852bc39881f29929377c37d70e4e0bc">&#9670;&#160;</a></span>WorkspaceManagerViewModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.WorkspaceManagerViewModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a></td>          <td class="paramname"><span class="paramname"><em>workspaceService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IDialogCoordinator</td>          <td class="paramname"><span class="paramname"><em>dialogCoordinator</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a></td>          <td class="paramname"><span class="paramname"><em>shellVM</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a></td>          <td class="paramname"><span class="paramname"><em>navigationService</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the workspace view model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">workspaceService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html" title="Interface for a service used to manage a workspace.">IWorkspaceService</a> object</td></tr>
+    <tr><td class="paramname">dialogCoordinator</td><td>IDialogCoordinator object</td></tr>
+    <tr><td class="paramname">shellVM</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html" title="ViewModel for the main shell of the application.">ShellViewModel</a> object used for dialog display</td></tr>
+    <tr><td class="paramname">navigationService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html" title="Interface for a service for handling navigation within the application.">INavigationService</a> object</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00363">363</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5f8ee3a6c4d3a2b49d740203ea996065" name="a5f8ee3a6c4d3a2b49d740203ea996065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f8ee3a6c4d3a2b49d740203ea996065">&#9670;&#160;</a></span>_workspaceService_PropertyChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._workspaceService_PropertyChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.ComponentModel.PropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00376">376</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8ca1056c659575a7e2e4b1e13e9ffd08" name="a8ca1056c659575a7e2e4b1e13e9ffd08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca1056c659575a7e2e4b1e13e9ffd08">&#9670;&#160;</a></span>copyFilesFromOldWorkspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.copyFilesFromOldWorkspace </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>oldWorkspacePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>newWorkspacePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>fileNameResourceKey</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy the file identified by the <em>fileNameResourceKey</em>  from the <em>oldWorkspacePath</em>  to the <em>newWorkspacePath</em>  Only use this before the workspace is loaded because this method only copies files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldWorkspacePath</td><td>Path to the old workspace with the source file</td></tr>
+    <tr><td class="paramname">newWorkspacePath</td><td>Path to the new workspace where the file should be copied to</td></tr>
+    <tr><td class="paramname">fileNameResourceKey</td><td>Key used to identify the file (e.g. WorkspaceService.KEY_FILENAME_COMPETITIONS)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00274">274</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad26a4ac65f60289e6b0540e86bef45b4" name="ad26a4ac65f60289e6b0540e86bef45b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad26a4ac65f60289e6b0540e86bef45b4">&#9670;&#160;</a></span>copyTemplatesFolderFromOldWorkspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.copyTemplatesFolderFromOldWorkspace </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>oldWorkspacePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>newWorkspacePath</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy the templates folder from the <em>oldWorkspacePath</em>  to the <em>newWorkspacePath</em>  </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldWorkspacePath</td><td>Path to the old workspace with the source file</td></tr>
+    <tr><td class="paramname">newWorkspacePath</td><td>Path to the new workspace where the file should be copied to</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00302">302</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="adc3c3581011c1dafcf0d52eea3586203" name="adc3c3581011c1dafcf0d52eea3586203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc3c3581011c1dafcf0d52eea3586203">&#9670;&#160;</a></span>_clearAllLastWorkspacePathsCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._clearAllLastWorkspacePathsCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00333">333</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3cdbeda0d9b817ec16bc70e9b8625847" name="a3cdbeda0d9b817ec16bc70e9b8625847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cdbeda0d9b817ec16bc70e9b8625847">&#9670;&#160;</a></span>_closeWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._closeWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00050">50</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aba774902d944f01bbc5e3b3a51dfa887" name="aba774902d944f01bbc5e3b3a51dfa887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba774902d944f01bbc5e3b3a51dfa887">&#9670;&#160;</a></span>_createNewWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._createNewWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00188">188</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab01340a19b497dceae7da3fcc8b57093" name="ab01340a19b497dceae7da3fcc8b57093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01340a19b497dceae7da3fcc8b57093">&#9670;&#160;</a></span>_dialogCoordinator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDialogCoordinator Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._dialogCoordinator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00352">352</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aecf1d8468065531d74405fcf169dcb80" name="aecf1d8468065531d74405fcf169dcb80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf1d8468065531d74405fcf169dcb80">&#9670;&#160;</a></span>_loadLastWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._loadLastWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00136">136</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aca41f854b3acd7ff2ed7f3ebf076bd14" name="aca41f854b3acd7ff2ed7f3ebf076bd14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca41f854b3acd7ff2ed7f3ebf076bd14">&#9670;&#160;</a></span>_loadWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._loadWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00095">95</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4667df017f2cffa5fac70bf7ad58fd01" name="a4667df017f2cffa5fac70bf7ad58fd01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4667df017f2cffa5fac70bf7ad58fd01">&#9670;&#160;</a></span>_navigationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._navigationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00354">354</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="acd1328ac64b06e288b8d6e2cd28fb1e2" name="acd1328ac64b06e288b8d6e2cd28fb1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd1328ac64b06e288b8d6e2cd28fb1e2">&#9670;&#160;</a></span>_openWorkspaceFolderCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._openWorkspaceFolderCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00172">172</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a733b871b0920686047074877d0c649e7" name="a733b871b0920686047074877d0c649e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a733b871b0920686047074877d0c649e7">&#9670;&#160;</a></span>_saveWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._saveWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00079">79</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a95edd53147803da26f2ca829861e2f67" name="a95edd53147803da26f2ca829861e2f67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95edd53147803da26f2ca829861e2f67">&#9670;&#160;</a></span>_shellVM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a> Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._shellVM</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00353">353</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7c80e45bcdeb690bb0a3ccfefaa52c24" name="a7c80e45bcdeb690bb0a3ccfefaa52c24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c80e45bcdeb690bb0a3ccfefaa52c24">&#9670;&#160;</a></span>_workspaceService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel._workspaceService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00351">351</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a83cf8d963dccbb7ff536b4997851b896" name="a83cf8d963dccbb7ff536b4997851b896"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83cf8d963dccbb7ff536b4997851b896">&#9670;&#160;</a></span>DEFAULT_TEMPLATE_ZIP_FILE_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.DEFAULT_TEMPLATE_ZIP_FILE_NAME = &quot;DefaultTemplates.zip&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the file name for the default templates ZIP (this name should match the name used in the PostBuildEvent of the Vereinsmeisterschaften.csproj) </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00029">29</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="aa0e0784d4955b1723c51da14cee3bdad" name="aa0e0784d4955b1723c51da14cee3bdad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0e0784d4955b1723c51da14cee3bdad">&#9670;&#160;</a></span>ClearAllLastWorkspacePathsCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.ClearAllLastWorkspacePathsCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear all <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a7e1c01a73220656c8686b73cc497e5c6" title="List with previous workspace paths.">LastWorkspacePaths</a> </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a53897a10ab20a8b157303ee828c109d3">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00335">335</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a99bf8888927a8dd20b4077fac8788fb1" name="a99bf8888927a8dd20b4077fac8788fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99bf8888927a8dd20b4077fac8788fb1">&#9670;&#160;</a></span>CloseWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.CloseWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to close the current workspace. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a44fde7147b344aa8f7c42d3020b4170a">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00052">52</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae261022cbad79aaf668819583330faa1" name="ae261022cbad79aaf668819583330faa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae261022cbad79aaf668819583330faa1">&#9670;&#160;</a></span>CreateNewWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.CreateNewWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to create a new workspace (add all configuration files to the folder and optionally add default templates) </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#af2d3b780e58e3745ba222f80496cd9b5">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00190">190</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae1ad17385ef42ca0636289acb3a0dc27" name="ae1ad17385ef42ca0636289acb3a0dc27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ad17385ef42ca0636289acb3a0dc27">&#9670;&#160;</a></span>CurrentWorkspaceFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.CurrentWorkspaceFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current workspace folder path. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a6a92d64a88a3423c83f41cf0240ccb43">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00036">36</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae3a2dca6595b0d6e3d382d0747cc2ad3" name="ae3a2dca6595b0d6e3d382d0747cc2ad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a2dca6595b0d6e3d382d0747cc2ad3">&#9670;&#160;</a></span>HasUnsavedChanges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.HasUnsavedChanges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the workspace has unsaved changes, false otherwise. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#aa897a90405678e9a0d7c21de6d54b3e8">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00039">39</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a02f46dfc1e579ac5342c241f30bce501" name="a02f46dfc1e579ac5342c241f30bce501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02f46dfc1e579ac5342c241f30bce501">&#9670;&#160;</a></span>LastWorkspacePaths</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;string&gt; Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.LastWorkspacePaths</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with previous workspace paths. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a7e1c01a73220656c8686b73cc497e5c6">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00042">42</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a72c62dd36055f91e96252f7f99138873" name="a72c62dd36055f91e96252f7f99138873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72c62dd36055f91e96252f7f99138873">&#9670;&#160;</a></span>LoadLastWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.LoadLastWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to load a previous workspace from the selected folder (command parameter). </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a83c91bb76dddc4cf9c2e2235e0e406f7">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00138">138</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac1db12b3bc1a1c8ced0a4d5df77197c7" name="ac1db12b3bc1a1c8ced0a4d5df77197c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1db12b3bc1a1c8ced0a4d5df77197c7">&#9670;&#160;</a></span>LoadWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.LoadWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to load a workspace from a folder. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a8531992e61eefa774674988372a26698">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00097">97</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a647091e3b0e023a37fefd2c287b0bebe" name="a647091e3b0e023a37fefd2c287b0bebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a647091e3b0e023a37fefd2c287b0bebe">&#9670;&#160;</a></span>OpenWorkspaceFolderCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.OpenWorkspaceFolderCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to open the current workspace folder in the file explorer. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a620a4a3c4224e14206dcd9c1b563018b">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00174">174</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa6b9a8a4f675a1f05a73eb8817247e49" name="aa6b9a8a4f675a1f05a73eb8817247e49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6b9a8a4f675a1f05a73eb8817247e49">&#9670;&#160;</a></span>SaveWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.SaveWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to save the current workspace to a folder. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_manager_view_model.html#a99f4fa83dc057d931fb37454668b3884">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceManagerViewModel</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00081">81</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Event Documentation</h2>
+<a id="a9b7f27be14683f35f5ed74d69b4e656a" name="a9b7f27be14683f35f5ed74d69b4e656a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b7f27be14683f35f5ed74d69b4e656a">&#9670;&#160;</a></span>OnWorkspaceLoaded</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IWorkspaceManagerViewModel.WorkspaceLoadedDelegate Vereinsmeisterschaften.ViewModels.WorkspaceManagerViewModel.OnWorkspaceLoaded</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_manager_view_model_8cs_source.html#l00345">345</a> of file <a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/ViewModels/<a class="el" href="_workspace_manager_view_model_8cs_source.html">WorkspaceManagerViewModel.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_view_models.html">ViewModels</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_manager_view_model.html">WorkspaceManagerViewModel</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:15 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

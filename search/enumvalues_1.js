@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['backstroke_0',['Backstroke',['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6821ec16d8aa55e8976ee5907e736b13af08d7f223f4f7b6303e3744cf0728960',1,'Vereinsmeisterschaften.Core.Models.Backstroke'],['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950af08d7f223f4f7b6303e3744cf0728960',1,'Vereinsmeisterschaften.Core.Models.Backstroke']]],
+  ['boolean_1',['Boolean',['../namespace_vereinsmeisterschaften_1_1_view_models.html#a82462784192246929e7f47552c56c97ca27226c864bac7454a8504f8edb15d95b',1,'Vereinsmeisterschaften::ViewModels']]],
+  ['breaststroke_2',['Breaststroke',['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6821ec16d8aa55e8976ee5907e736b13acb9f2a81582d80a94ad2ec89d0040c4c',1,'Vereinsmeisterschaften.Core.Models.Breaststroke'],['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950acb9f2a81582d80a94ad2ec89d0040c4c',1,'Vereinsmeisterschaften.Core.Models.Breaststroke']]],
+  ['bronze_3',['Bronze',['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#aaeddb73433a8af1f704ed4b052298381aa0df72576daf9a1137d39f7553d36e82',1,'Vereinsmeisterschaften::Core::Models']]],
+  ['butterfly_4',['Butterfly',['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6821ec16d8aa55e8976ee5907e736b13a29ecfc45c7bd93061222062f86d4161d',1,'Vereinsmeisterschaften.Core.Models.Butterfly'],['../namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950a29ecfc45c7bd93061222062f86d4161d',1,'Vereinsmeisterschaften.Core.Models.Butterfly']]]
+];

@@ -1,0 +1,1325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.ViewModels.ShellViewModel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#events">Events</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.ViewModels.ShellViewModel Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>ViewModel for the main shell of the application.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.ViewModels.ShellViewModel:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa5fcf58e7fcddb890fc8c1c4aab9d81c" id="r_aa5fcf58e7fcddb890fc8c1c4aab9d81c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5fcf58e7fcddb890fc8c1c4aab9d81c">ShellViewModel</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> navigationService, IDialogCoordinator dialogCoordinator, <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService)</td></tr>
+<tr class="memdesc:aa5fcf58e7fcddb890fc8c1c4aab9d81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the view model of the main shell of the application.  <br /></td></tr>
+<tr class="separator:aa5fcf58e7fcddb890fc8c1c4aab9d81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5931020f2e5267c9a1918571d0d9dca" id="r_ab5931020f2e5267c9a1918571d0d9dca"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool saveOut, bool cancelOut)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5931020f2e5267c9a1918571d0d9dca">CheckForUnsavedChangesAndQueryUserAction</a> ()</td></tr>
+<tr class="memdesc:ab5931020f2e5267c9a1918571d0d9dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show a dialog to the user when there are unsaved changes.  <br /></td></tr>
+<tr class="separator:ab5931020f2e5267c9a1918571d0d9dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a501170e18bd76658376ed51e4926273c" id="r_a501170e18bd76658376ed51e4926273c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a501170e18bd76658376ed51e4926273c">OnClosing</a> (CancelEventArgs e)</td></tr>
+<tr class="separator:a501170e18bd76658376ed51e4926273c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a08f4f3492b4f59afdbb8bc7324edebf4" id="r_a08f4f3492b4f59afdbb8bc7324edebf4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08f4f3492b4f59afdbb8bc7324edebf4">CurrentWorkspaceFolder</a><code> [get]</code></td></tr>
+<tr class="memdesc:a08f4f3492b4f59afdbb8bc7324edebf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the current workspace folder.  <br /></td></tr>
+<tr class="separator:a08f4f3492b4f59afdbb8bc7324edebf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83e7f2823e7d8f968d2853241e6540d" id="r_ac83e7f2823e7d8f968d2853241e6540d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83e7f2823e7d8f968d2853241e6540d">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac83e7f2823e7d8f968d2853241e6540d"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the workspace has unsaved changes; otherwise false.  <br /></td></tr>
+<tr class="separator:ac83e7f2823e7d8f968d2853241e6540d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb9ab6d031c4918c7296cc998b009d7f" id="r_abb9ab6d031c4918c7296cc998b009d7f"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; HamburgerMenuItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb9ab6d031c4918c7296cc998b009d7f">MenuItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:abb9ab6d031c4918c7296cc998b009d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available menu items in the hamburger menu.  <br /></td></tr>
+<tr class="separator:abb9ab6d031c4918c7296cc998b009d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70022b6d3f693df21015b81938052cc7" id="r_a70022b6d3f693df21015b81938052cc7"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; HamburgerMenuItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70022b6d3f693df21015b81938052cc7">OptionMenuItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:a70022b6d3f693df21015b81938052cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available menu items in the hamburger menu options section.  <br /></td></tr>
+<tr class="separator:a70022b6d3f693df21015b81938052cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22abb82026e6714ffb0b359d0ad2a049" id="r_a22abb82026e6714ffb0b359d0ad2a049"><td class="memItemLeft" align="right" valign="top">RelayCommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22abb82026e6714ffb0b359d0ad2a049">GoBackCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a22abb82026e6714ffb0b359d0ad2a049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to navigate back in the navigation stack.  <br /></td></tr>
+<tr class="separator:a22abb82026e6714ffb0b359d0ad2a049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6ba34bf5f23156c96fadb26d8031dbd" id="r_ac6ba34bf5f23156c96fadb26d8031dbd"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6ba34bf5f23156c96fadb26d8031dbd">MenuItemInvokedCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac6ba34bf5f23156c96fadb26d8031dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command that is invoked when a menu item in the hamburger menu is clicked.  <br /></td></tr>
+<tr class="separator:ac6ba34bf5f23156c96fadb26d8031dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a732e3acba9f2aef905f5af046b1eef8c" id="r_a732e3acba9f2aef905f5af046b1eef8c"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a732e3acba9f2aef905f5af046b1eef8c">OptionsMenuItemInvokedCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a732e3acba9f2aef905f5af046b1eef8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command that is invoked when an options menu item in the hamburger menu is clicked.  <br /></td></tr>
+<tr class="separator:a732e3acba9f2aef905f5af046b1eef8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe03f6e635d2e5f69960d407d2bfbcf7" id="r_afe03f6e635d2e5f69960d407d2bfbcf7"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe03f6e635d2e5f69960d407d2bfbcf7">LoadedCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:afe03f6e635d2e5f69960d407d2bfbcf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command that is invoked when the shell is loaded.  <br /></td></tr>
+<tr class="separator:afe03f6e635d2e5f69960d407d2bfbcf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22fed73738de3ddf7bc25f8a2ec35a6" id="r_ad22fed73738de3ddf7bc25f8a2ec35a6"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad22fed73738de3ddf7bc25f8a2ec35a6">UnloadedCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad22fed73738de3ddf7bc25f8a2ec35a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command that is invoked when the shell is unloaded.  <br /></td></tr>
+<tr class="separator:ad22fed73738de3ddf7bc25f8a2ec35a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a242bce9c11cd24e0280feff36b5cd409" id="r_a242bce9c11cd24e0280feff36b5cd409"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a242bce9c11cd24e0280feff36b5cd409">ClosingCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a242bce9c11cd24e0280feff36b5cd409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command that is invoked when the shell is closing.  <br /></td></tr>
+<tr class="separator:a242bce9c11cd24e0280feff36b5cd409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1005b0acbecfd5e45b153d616fef1b7c" id="r_a1005b0acbecfd5e45b153d616fef1b7c"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1005b0acbecfd5e45b153d616fef1b7c">SaveWorkspaceCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1005b0acbecfd5e45b153d616fef1b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to save the current workspace.  <br /></td></tr>
+<tr class="separator:a1005b0acbecfd5e45b153d616fef1b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f0de03c66b12d2f867e7d2fd964d89a" id="r_a2f0de03c66b12d2f867e7d2fd964d89a"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f0de03c66b12d2f867e7d2fd964d89a">OpenWorkspaceFlyoutCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2f0de03c66b12d2f867e7d2fd964d89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to open the workspace flyout.  <br /></td></tr>
+<tr class="separator:a2f0de03c66b12d2f867e7d2fd964d89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="events" name="events"></a>
+Events</h2></td></tr>
+<tr class="memitem:ac67965a27603cd5aa06be53f94bcfe18" id="r_ac67965a27603cd5aa06be53f94bcfe18"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac67965a27603cd5aa06be53f94bcfe18">WindowCloseRequested</a></td></tr>
+<tr class="memdesc:ac67965a27603cd5aa06be53f94bcfe18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the window close is requested.  <br /></td></tr>
+<tr class="separator:ac67965a27603cd5aa06be53f94bcfe18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a47fb05d1c4887dc46ebf5b5285b4c69b" id="r_a47fb05d1c4887dc46ebf5b5285b4c69b"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47fb05d1c4887dc46ebf5b5285b4c69b">OnLoaded</a> ()</td></tr>
+<tr class="separator:a47fb05d1c4887dc46ebf5b5285b4c69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a234f6aeff3735dcd78ccc2b00d0936bb" id="r_a234f6aeff3735dcd78ccc2b00d0936bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a234f6aeff3735dcd78ccc2b00d0936bb">OnUnloaded</a> ()</td></tr>
+<tr class="separator:a234f6aeff3735dcd78ccc2b00d0936bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46a6fd17ae2be9cf0a17a63133cc919" id="r_aa46a6fd17ae2be9cf0a17a63133cc919"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa46a6fd17ae2be9cf0a17a63133cc919">_workspaceService_PropertyChanged</a> (object sender, System.ComponentModel.PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:aa46a6fd17ae2be9cf0a17a63133cc919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea27efc39c6a9864893fd4c93195983d" id="r_aea27efc39c6a9864893fd4c93195983d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea27efc39c6a9864893fd4c93195983d">updateMenuItemsEnabledState</a> ()</td></tr>
+<tr class="memdesc:aea27efc39c6a9864893fd4c93195983d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the enabled state of the menu items based on whether a workspace is open.  <br /></td></tr>
+<tr class="separator:aea27efc39c6a9864893fd4c93195983d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34573a50ecae6c97d6220334309fd18" id="r_ac34573a50ecae6c97d6220334309fd18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac34573a50ecae6c97d6220334309fd18">NavigateTo</a> (Type targetViewModel)</td></tr>
+<tr class="separator:ac34573a50ecae6c97d6220334309fd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87257712c4161dcfc17e4fb02759d036" id="r_a87257712c4161dcfc17e4fb02759d036"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87257712c4161dcfc17e4fb02759d036">OnNavigated</a> (object sender, string viewModelName)</td></tr>
+<tr class="separator:a87257712c4161dcfc17e4fb02759d036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5baf372859b962675db23e40bb43d27b" id="r_a5baf372859b962675db23e40bb43d27b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5baf372859b962675db23e40bb43d27b">_isWorkspaceFlyoutOpen</a></td></tr>
+<tr class="memdesc:a5baf372859b962675db23e40bb43d27b"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the workspace flyout is open (used to open, save, ... the workspace)  <br /></td></tr>
+<tr class="separator:a5baf372859b962675db23e40bb43d27b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7930b121f9e4875309fb95d1cacc50e" id="r_ab7930b121f9e4875309fb95d1cacc50e"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7930b121f9e4875309fb95d1cacc50e">_navigationService</a></td></tr>
+<tr class="separator:ab7930b121f9e4875309fb95d1cacc50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa308888d150e96dd8e14b9c15ff119fb" id="r_aa308888d150e96dd8e14b9c15ff119fb"><td class="memItemLeft" align="right" valign="top">IDialogCoordinator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa308888d150e96dd8e14b9c15ff119fb">_dialogCoordinator</a></td></tr>
+<tr class="separator:aa308888d150e96dd8e14b9c15ff119fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae969eefaebc84219063051ffeafa9b3f" id="r_ae969eefaebc84219063051ffeafa9b3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae969eefaebc84219063051ffeafa9b3f">_workspaceService</a></td></tr>
+<tr class="separator:ae969eefaebc84219063051ffeafa9b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03aec82b94891c6d90dc046f4b9c9e96" id="r_a03aec82b94891c6d90dc046f4b9c9e96"><td class="memItemLeft" align="right" valign="top">HamburgerMenuItem&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03aec82b94891c6d90dc046f4b9c9e96">_selectedMenuItem</a></td></tr>
+<tr class="memdesc:a03aec82b94891c6d90dc046f4b9c9e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu item that is currently selected in the hamburger menu.  <br /></td></tr>
+<tr class="separator:a03aec82b94891c6d90dc046f4b9c9e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b56a1742accb00d212c4d268b33647d" id="r_a7b56a1742accb00d212c4d268b33647d"><td class="memItemLeft" align="right" valign="top">HamburgerMenuItem&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b56a1742accb00d212c4d268b33647d">_selectedOptionsMenuItem</a></td></tr>
+<tr class="memdesc:a7b56a1742accb00d212c4d268b33647d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu item that is currently selected in the hamburger menu options section.  <br /></td></tr>
+<tr class="separator:a7b56a1742accb00d212c4d268b33647d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fb64d39c6937234604cf6be4446846" id="r_ad4fb64d39c6937234604cf6be4446846"><td class="memItemLeft" align="right" valign="top">RelayCommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4fb64d39c6937234604cf6be4446846">_goBackCommand</a></td></tr>
+<tr class="separator:ad4fb64d39c6937234604cf6be4446846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12db9fa61c7ff006d17303c6254caa6" id="r_af12db9fa61c7ff006d17303c6254caa6"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af12db9fa61c7ff006d17303c6254caa6">_menuItemInvokedCommand</a></td></tr>
+<tr class="separator:af12db9fa61c7ff006d17303c6254caa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14f449092448d838d937c6d9a533bf01" id="r_a14f449092448d838d937c6d9a533bf01"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14f449092448d838d937c6d9a533bf01">_optionsMenuItemInvokedCommand</a></td></tr>
+<tr class="separator:a14f449092448d838d937c6d9a533bf01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a2ac80190638968482a620ed15f2092" id="r_a9a2ac80190638968482a620ed15f2092"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2ac80190638968482a620ed15f2092">_loadedCommand</a></td></tr>
+<tr class="separator:a9a2ac80190638968482a620ed15f2092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c8c8b8281f78fb8a9914871878324bd" id="r_a8c8c8b8281f78fb8a9914871878324bd"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c8c8b8281f78fb8a9914871878324bd">_unloadedCommand</a></td></tr>
+<tr class="separator:a8c8c8b8281f78fb8a9914871878324bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a7ef02d8c3789233a581480f26e8d35" id="r_a0a7ef02d8c3789233a581480f26e8d35"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a7ef02d8c3789233a581480f26e8d35">_closingCommand</a></td></tr>
+<tr class="separator:a0a7ef02d8c3789233a581480f26e8d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ccb7ab9851a22fbe3ac3be679cf4c0" id="r_a69ccb7ab9851a22fbe3ac3be679cf4c0"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ccb7ab9851a22fbe3ac3be679cf4c0">_saveWorkspaceCommand</a></td></tr>
+<tr class="separator:a69ccb7ab9851a22fbe3ac3be679cf4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a381b0c320e1252d13dca1a551681c8a9" id="r_a381b0c320e1252d13dca1a551681c8a9"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a381b0c320e1252d13dca1a551681c8a9">_openWorkspaceFlyoutCommand</a></td></tr>
+<tr class="separator:a381b0c320e1252d13dca1a551681c8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a099e772fb522d06a5ddf9da0b649956a" id="r_a099e772fb522d06a5ddf9da0b649956a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a099e772fb522d06a5ddf9da0b649956a">_forceClose</a> = false</td></tr>
+<tr class="separator:a099e772fb522d06a5ddf9da0b649956a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a01853cc54a276cb7e42953da1ac43cb3" id="r_a01853cc54a276cb7e42953da1ac43cb3"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01853cc54a276cb7e42953da1ac43cb3">SETTING_KEY_LAST_WORKSPACE_PATHS</a> = &quot;LastWorkspacePaths&quot;</td></tr>
+<tr class="separator:a01853cc54a276cb7e42953da1ac43cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a054006f8574eb29d89e389fd27f329f4" id="r_a054006f8574eb29d89e389fd27f329f4"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a054006f8574eb29d89e389fd27f329f4">SETTING_KEY_LAST_WORKSPACE_FOLDER</a> = &quot;LastWorkspaceFolder&quot;</td></tr>
+<tr class="separator:a054006f8574eb29d89e389fd27f329f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>ViewModel for the main shell of the application. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00018">18</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa5fcf58e7fcddb890fc8c1c4aab9d81c" name="aa5fcf58e7fcddb890fc8c1c4aab9d81c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5fcf58e7fcddb890fc8c1c4aab9d81c">&#9670;&#160;</a></span>ShellViewModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.ViewModels.ShellViewModel.ShellViewModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a></td>          <td class="paramname"><span class="paramname"><em>navigationService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IDialogCoordinator</td>          <td class="paramname"><span class="paramname"><em>dialogCoordinator</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a></td>          <td class="paramname"><span class="paramname"><em>workspaceService</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the view model of the main shell of the application. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">navigationService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html" title="Interface for a service for handling navigation within the application.">INavigationService</a> object</td></tr>
+    <tr><td class="paramname">dialogCoordinator</td><td>IDialogCoordinator object</td></tr>
+    <tr><td class="paramname">workspaceService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html" title="Interface for a service used to manage a workspace.">IWorkspaceService</a> object</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00156">156</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa46a6fd17ae2be9cf0a17a63133cc919" name="aa46a6fd17ae2be9cf0a17a63133cc919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46a6fd17ae2be9cf0a17a63133cc919">&#9670;&#160;</a></span>_workspaceService_PropertyChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel._workspaceService_PropertyChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.ComponentModel.PropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00198">198</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab5931020f2e5267c9a1918571d0d9dca" name="ab5931020f2e5267c9a1918571d0d9dca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5931020f2e5267c9a1918571d0d9dca">&#9670;&#160;</a></span>CheckForUnsavedChangesAndQueryUserAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool saveOut, bool cancelOut)&gt; Vereinsmeisterschaften.ViewModels.ShellViewModel.CheckForUnsavedChangesAndQueryUserAction </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Show a dialog to the user when there are unsaved changes. </p>
+<p>The user can choose to save, not save or cancel.</p>
+<dl class="section return"><dt>Returns</dt><dd>Tuple of two bools (save, cancel)</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00282">282</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac34573a50ecae6c97d6220334309fd18" name="ac34573a50ecae6c97d6220334309fd18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac34573a50ecae6c97d6220334309fd18">&#9670;&#160;</a></span>NavigateTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel.NavigateTo </td>
+          <td>(</td>
+          <td class="paramtype">Type</td>          <td class="paramname"><span class="paramname"><em>targetViewModel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00311">311</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a501170e18bd76658376ed51e4926273c" name="a501170e18bd76658376ed51e4926273c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a501170e18bd76658376ed51e4926273c">&#9670;&#160;</a></span>OnClosing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel.OnClosing </td>
+          <td>(</td>
+          <td class="paramtype">CancelEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00240">240</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a47fb05d1c4887dc46ebf5b5285b4c69b" name="a47fb05d1c4887dc46ebf5b5285b4c69b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47fb05d1c4887dc46ebf5b5285b4c69b">&#9670;&#160;</a></span>OnLoaded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async void Vereinsmeisterschaften.ViewModels.ShellViewModel.OnLoaded </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00167">167</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a87257712c4161dcfc17e4fb02759d036" name="a87257712c4161dcfc17e4fb02759d036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87257712c4161dcfc17e4fb02759d036">&#9670;&#160;</a></span>OnNavigated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel.OnNavigated </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>viewModelName</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00319">319</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a234f6aeff3735dcd78ccc2b00d0936bb" name="a234f6aeff3735dcd78ccc2b00d0936bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a234f6aeff3735dcd78ccc2b00d0936bb">&#9670;&#160;</a></span>OnUnloaded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel.OnUnloaded </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00192">192</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aea27efc39c6a9864893fd4c93195983d" name="aea27efc39c6a9864893fd4c93195983d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea27efc39c6a9864893fd4c93195983d">&#9670;&#160;</a></span>updateMenuItemsEnabledState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.ShellViewModel.updateMenuItemsEnabledState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update the enabled state of the menu items based on whether a workspace is open. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00217">217</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0a7ef02d8c3789233a581480f26e8d35" name="a0a7ef02d8c3789233a581480f26e8d35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a7ef02d8c3789233a581480f26e8d35">&#9670;&#160;</a></span>_closingCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._closingCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00102">102</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa308888d150e96dd8e14b9c15ff119fb" name="aa308888d150e96dd8e14b9c15ff119fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa308888d150e96dd8e14b9c15ff119fb">&#9670;&#160;</a></span>_dialogCoordinator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDialogCoordinator Vereinsmeisterschaften.ViewModels.ShellViewModel._dialogCoordinator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00039">39</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a099e772fb522d06a5ddf9da0b649956a" name="a099e772fb522d06a5ddf9da0b649956a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a099e772fb522d06a5ddf9da0b649956a">&#9670;&#160;</a></span>_forceClose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.ShellViewModel._forceClose = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00234">234</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad4fb64d39c6937234604cf6be4446846" name="ad4fb64d39c6937234604cf6be4446846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4fb64d39c6937234604cf6be4446846">&#9670;&#160;</a></span>_goBackCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RelayCommand Vereinsmeisterschaften.ViewModels.ShellViewModel._goBackCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00097">97</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5baf372859b962675db23e40bb43d27b" name="a5baf372859b962675db23e40bb43d27b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5baf372859b962675db23e40bb43d27b">&#9670;&#160;</a></span>_isWorkspaceFlyoutOpen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.ShellViewModel._isWorkspaceFlyoutOpen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the workspace flyout is open (used to open, save, ... the workspace) </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00034">34</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9a2ac80190638968482a620ed15f2092" name="a9a2ac80190638968482a620ed15f2092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a2ac80190638968482a620ed15f2092">&#9670;&#160;</a></span>_loadedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._loadedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00100">100</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="af12db9fa61c7ff006d17303c6254caa6" name="af12db9fa61c7ff006d17303c6254caa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12db9fa61c7ff006d17303c6254caa6">&#9670;&#160;</a></span>_menuItemInvokedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._menuItemInvokedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00098">98</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab7930b121f9e4875309fb95d1cacc50e" name="ab7930b121f9e4875309fb95d1cacc50e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7930b121f9e4875309fb95d1cacc50e">&#9670;&#160;</a></span>_navigationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> Vereinsmeisterschaften.ViewModels.ShellViewModel._navigationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00038">38</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a381b0c320e1252d13dca1a551681c8a9" name="a381b0c320e1252d13dca1a551681c8a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a381b0c320e1252d13dca1a551681c8a9">&#9670;&#160;</a></span>_openWorkspaceFlyoutCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._openWorkspaceFlyoutCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00104">104</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a14f449092448d838d937c6d9a533bf01" name="a14f449092448d838d937c6d9a533bf01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14f449092448d838d937c6d9a533bf01">&#9670;&#160;</a></span>_optionsMenuItemInvokedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._optionsMenuItemInvokedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00099">99</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a69ccb7ab9851a22fbe3ac3be679cf4c0" name="a69ccb7ab9851a22fbe3ac3be679cf4c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ccb7ab9851a22fbe3ac3be679cf4c0">&#9670;&#160;</a></span>_saveWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._saveWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00103">103</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a03aec82b94891c6d90dc046f4b9c9e96" name="a03aec82b94891c6d90dc046f4b9c9e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03aec82b94891c6d90dc046f4b9c9e96">&#9670;&#160;</a></span>_selectedMenuItem</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HamburgerMenuItem Vereinsmeisterschaften.ViewModels.ShellViewModel._selectedMenuItem</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Menu item that is currently selected in the hamburger menu. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00059">59</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7b56a1742accb00d212c4d268b33647d" name="a7b56a1742accb00d212c4d268b33647d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b56a1742accb00d212c4d268b33647d">&#9670;&#160;</a></span>_selectedOptionsMenuItem</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HamburgerMenuItem Vereinsmeisterschaften.ViewModels.ShellViewModel._selectedOptionsMenuItem</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Menu item that is currently selected in the hamburger menu options section. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00065">65</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8c8c8b8281f78fb8a9914871878324bd" name="a8c8c8b8281f78fb8a9914871878324bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8c8b8281f78fb8a9914871878324bd">&#9670;&#160;</a></span>_unloadedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel._unloadedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00101">101</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae969eefaebc84219063051ffeafa9b3f" name="ae969eefaebc84219063051ffeafa9b3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae969eefaebc84219063051ffeafa9b3f">&#9670;&#160;</a></span>_workspaceService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> Vereinsmeisterschaften.ViewModels.ShellViewModel._workspaceService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00040">40</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a054006f8574eb29d89e389fd27f329f4" name="a054006f8574eb29d89e389fd27f329f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a054006f8574eb29d89e389fd27f329f4">&#9670;&#160;</a></span>SETTING_KEY_LAST_WORKSPACE_FOLDER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.ViewModels.ShellViewModel.SETTING_KEY_LAST_WORKSPACE_FOLDER = &quot;LastWorkspaceFolder&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00047">47</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a01853cc54a276cb7e42953da1ac43cb3" name="a01853cc54a276cb7e42953da1ac43cb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01853cc54a276cb7e42953da1ac43cb3">&#9670;&#160;</a></span>SETTING_KEY_LAST_WORKSPACE_PATHS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.ViewModels.ShellViewModel.SETTING_KEY_LAST_WORKSPACE_PATHS = &quot;LastWorkspacePaths&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00046">46</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a242bce9c11cd24e0280feff36b5cd409" name="a242bce9c11cd24e0280feff36b5cd409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a242bce9c11cd24e0280feff36b5cd409">&#9670;&#160;</a></span>ClosingCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.ClosingCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command that is invoked when the shell is closing. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00134">134</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a08f4f3492b4f59afdbb8bc7324edebf4" name="a08f4f3492b4f59afdbb8bc7324edebf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f4f3492b4f59afdbb8bc7324edebf4">&#9670;&#160;</a></span>CurrentWorkspaceFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.ViewModels.ShellViewModel.CurrentWorkspaceFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Path to the current workspace folder. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00023">23</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a22abb82026e6714ffb0b359d0ad2a049" name="a22abb82026e6714ffb0b359d0ad2a049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22abb82026e6714ffb0b359d0ad2a049">&#9670;&#160;</a></span>GoBackCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RelayCommand Vereinsmeisterschaften.ViewModels.ShellViewModel.GoBackCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to navigate back in the navigation stack. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00109">109</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac83e7f2823e7d8f968d2853241e6540d" name="ac83e7f2823e7d8f968d2853241e6540d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83e7f2823e7d8f968d2853241e6540d">&#9670;&#160;</a></span>HasUnsavedChanges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.ShellViewModel.HasUnsavedChanges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the workspace has unsaved changes; otherwise false. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00028">28</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="afe03f6e635d2e5f69960d407d2bfbcf7" name="afe03f6e635d2e5f69960d407d2bfbcf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe03f6e635d2e5f69960d407d2bfbcf7">&#9670;&#160;</a></span>LoadedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.LoadedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command that is invoked when the shell is loaded. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00124">124</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac6ba34bf5f23156c96fadb26d8031dbd" name="ac6ba34bf5f23156c96fadb26d8031dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6ba34bf5f23156c96fadb26d8031dbd">&#9670;&#160;</a></span>MenuItemInvokedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.MenuItemInvokedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command that is invoked when a menu item in the hamburger menu is clicked. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00114">114</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="abb9ab6d031c4918c7296cc998b009d7f" name="abb9ab6d031c4918c7296cc998b009d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb9ab6d031c4918c7296cc998b009d7f">&#9670;&#160;</a></span>MenuItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;HamburgerMenuItem&gt; Vereinsmeisterschaften.ViewModels.ShellViewModel.MenuItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> ObservableCollection&lt;HamburgerMenuItem&gt;()</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = <span class="stringliteral">&quot;\uE80F&quot;</span>, TargetPageType = typeof(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_view_models_1_1_main_view_model.html">MainViewModel</a>) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellWorkspacePage, Glyph = <span class="stringliteral">&quot;\uE821&quot;</span>, TargetPageType = typeof(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_view_model.html">WorkspaceViewModel</a>) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellCompetitionPage, Glyph = <span class="stringliteral">&quot;\uF0E3&quot;</span>, TargetPageType = typeof(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_view_models_1_1_competition_view_model.html">CompetitionViewModel</a>) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellPeoplePage, Glyph = <span class="stringliteral">&quot;\uE77B&quot;</span>, TargetPageType = typeof(PeopleViewModel) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellPrepareRacesPage, Glyph = <span class="stringliteral">&quot;\uE7C1&quot;</span>, TargetPageType = typeof(PrepareRacesViewModel) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellTimeInputPage, Glyph = <span class="stringliteral">&quot;\uE916&quot;</span>, TargetPageType = typeof(TimeInputViewModel) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellResultsPage, Glyph = <span class="stringliteral">&quot;\uE9F9&quot;</span>, TargetPageType = typeof(ResultsViewModel) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellAnalyticsPage, Glyph = <span class="stringliteral">&quot;\uE9D2&quot;</span>, TargetPageType = typeof(AnalyticsViewModel) },</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellCreateDocumentsPage, Glyph = <span class="stringliteral">&quot;\uE8A5&quot;</span>, TargetPageType = typeof(CreateDocumentsViewModel) },</div>
+<div class="line">    }</div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_view_models_1_1_competition_view_model_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_view_models_1_1_competition_view_model.html">Vereinsmeisterschaften.ViewModels.CompetitionViewModel</a></div><div class="ttdoc">ViewModel for the competitions page.</div><div class="ttdef"><b>Definition</b> <a href="_competition_view_model_8cs_source.html#l00020">CompetitionViewModel.cs:21</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_view_models_1_1_main_view_model_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_view_models_1_1_main_view_model.html">Vereinsmeisterschaften.ViewModels.MainViewModel</a></div><div class="ttdoc">View model for the main view of the application.</div><div class="ttdef"><b>Definition</b> <a href="_main_view_model_8cs_source.html#l00014">MainViewModel.cs:15</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_view_models_1_1_workspace_view_model_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_view_model.html">Vereinsmeisterschaften.ViewModels.WorkspaceViewModel</a></div><div class="ttdoc">ViewModel for the workspace, managing the current workspace folder, settings, and commands to load,...</div><div class="ttdef"><b>Definition</b> <a href="_workspace_view_model_8cs_source.html#l00015">WorkspaceViewModel.cs:16</a></div></div>
+</div><!-- fragment -->
+<p>Available menu items in the hamburger menu. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00070">70</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2f0de03c66b12d2f867e7d2fd964d89a" name="a2f0de03c66b12d2f867e7d2fd964d89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f0de03c66b12d2f867e7d2fd964d89a">&#9670;&#160;</a></span>OpenWorkspaceFlyoutCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.OpenWorkspaceFlyoutCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to open the workspace flyout. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00144">144</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a70022b6d3f693df21015b81938052cc7" name="a70022b6d3f693df21015b81938052cc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70022b6d3f693df21015b81938052cc7">&#9670;&#160;</a></span>OptionMenuItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;HamburgerMenuItem&gt; Vereinsmeisterschaften.ViewModels.ShellViewModel.OptionMenuItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> ObservableCollection&lt;HamburgerMenuItem&gt;()</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keyword">new</span> HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = <span class="stringliteral">&quot;\uE713&quot;</span>, TargetPageType = typeof(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a>) }</div>
+<div class="line">    }</div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_view_models_1_1_settings_view_model_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_view_models_1_1_settings_view_model.html">Vereinsmeisterschaften.ViewModels.SettingsViewModel</a></div><div class="ttdoc">ViewModel for the settings page.</div><div class="ttdef"><b>Definition</b> <a href="_settings_view_model_8cs_source.html#l00013">SettingsViewModel.cs:14</a></div></div>
+</div><!-- fragment -->
+<p>Available menu items in the hamburger menu options section. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00086">86</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a732e3acba9f2aef905f5af046b1eef8c" name="a732e3acba9f2aef905f5af046b1eef8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a732e3acba9f2aef905f5af046b1eef8c">&#9670;&#160;</a></span>OptionsMenuItemInvokedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.OptionsMenuItemInvokedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command that is invoked when an options menu item in the hamburger menu is clicked. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00119">119</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1005b0acbecfd5e45b153d616fef1b7c" name="a1005b0acbecfd5e45b153d616fef1b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1005b0acbecfd5e45b153d616fef1b7c">&#9670;&#160;</a></span>SaveWorkspaceCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.SaveWorkspaceCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to save the current workspace. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00139">139</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad22fed73738de3ddf7bc25f8a2ec35a6" name="ad22fed73738de3ddf7bc25f8a2ec35a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad22fed73738de3ddf7bc25f8a2ec35a6">&#9670;&#160;</a></span>UnloadedCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.ShellViewModel.UnloadedCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command that is invoked when the shell is unloaded. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00129">129</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Event Documentation</h2>
+<a id="ac67965a27603cd5aa06be53f94bcfe18" name="ac67965a27603cd5aa06be53f94bcfe18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac67965a27603cd5aa06be53f94bcfe18">&#9670;&#160;</a></span>WindowCloseRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler Vereinsmeisterschaften.ViewModels.ShellViewModel.WindowCloseRequested</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event that is raised when the window close is requested. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shell_view_model_8cs_source.html#l00239">239</a> of file <a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/ViewModels/<a class="el" href="_shell_view_model_8cs_source.html">ShellViewModel.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_view_models.html">ViewModels</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

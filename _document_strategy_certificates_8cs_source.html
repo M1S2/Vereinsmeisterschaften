@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: /github/workspace/Vereinsmeisterschaften.Core/Documents/DocumentStrategies/DocumentStrategyCertificates.cs Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_document_strategy_certificates_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">DocumentStrategyCertificates.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers.html">Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers</a>;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_helpers.html">Vereinsmeisterschaften.Core.Helpers</a>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_services.html">Vereinsmeisterschaften.Core.Services</a>;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Vereinsmeisterschaften.Core.Settings</a>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies.html">Vereinsmeisterschaften.Core.Documents.DocumentStrategies</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html">   13</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a223fa199ffe6a15a7a0fb44bbb68da15">DocumentStrategyCertificates</a> : <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_base-1-g.html#a6c8266f707756dcb0cb4e64b783ff0b4">DocumentStrategyBase</a>&lt;PersonStart&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">private</span> readonly <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> _personService;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a223fa199ffe6a15a7a0fb44bbb68da15">   23</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a223fa199ffe6a15a7a0fb44bbb68da15">DocumentStrategyCertificates</a>(<a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> personService, <a class="code hl_interface" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService, IServiceProvider serviceProvider) : base(workspaceService, serviceProvider)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            _personService = personService;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a42bbc847516cab1093ef3dfa24d8efcc">   29</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6b47c461f6af89e3ba40e8c49fbba9a6">DocumentCreationTypes</a> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a42bbc847516cab1093ef3dfa24d8efcc">DocumentType</a> =&gt; <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6b47c461f6af89e3ba40e8c49fbba9a6">DocumentCreationTypes</a>.Certificates;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a861f33a47a20b7296b4fe965a3a9f543">   32</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a861f33a47a20b7296b4fe965a3a9f543">TemplatePath</a> =&gt; <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service.html">DocumentService</a>.<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service.html#a873032517f3fee3b737099eb78051216">GetDocumentPathAbsolute</a>(<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH, _workspaceService);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a9f68cdf270822c268605aa04efa74f89">   35</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a9f68cdf270822c268605aa04efa74f89">TemplateFileNamePostfixReplaceStr</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            get</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                if (ItemFilter is PersonStartFilters)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                    string templateFileNamePostfixReplaceStr = string.Empty;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                    switch ((PersonStartFilters)ItemFilter)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                        case PersonStartFilters.None:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                            break;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                        case PersonStartFilters.Person:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                            if (ItemFilterParameter is Person) { templateFileNamePostfixReplaceStr = <span class="stringliteral">&quot;_&quot;</span> + ((Person)ItemFilterParameter).FirstName + <span class="stringliteral">&quot;_&quot;</span> + ((Person)ItemFilterParameter).Name; }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                            break;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                        case PersonStartFilters.SwimmingStyle:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                            if (ItemFilterParameter is SwimmingStyles) { templateFileNamePostfixReplaceStr = <span class="stringliteral">&quot;_&quot;</span> + EnumCoreLocalizedStringHelper.Convert((SwimmingStyles)ItemFilterParameter); }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                            break;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                        case PersonStartFilters.CompetitionID:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                            if (ItemFilterParameter is int || ItemFilterParameter is double) { templateFileNamePostfixReplaceStr = <span class="stringliteral">&quot;_WK&quot;</span> + Convert.ToInt32(ItemFilterParameter); }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                            break;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                        default: break;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    return templateFileNamePostfixReplaceStr;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                else</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                    return base.TemplateFileNamePostfixReplaceStr;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        }</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a14a3469a6659275d48f5257adf170f1d">   69</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a14a3469a6659275d48f5257adf170f1d">CreateMultiplePages</a> =&gt; <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a60d272565770faa2e7a4bb3ddd65d14f">   72</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> Enum <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a60d272565770faa2e7a4bb3ddd65d14f">ItemOrdering</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; } = ItemOrderingsCertificate.None;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a298ed63b4bd52765ac83d1dbe8f244a7">   75</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> IEnumerable&lt;Enum&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a298ed63b4bd52765ac83d1dbe8f244a7">AvailableItemOrderings</a> =&gt; Enum.GetValues(typeof(<a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>)).Cast&lt;Enum&gt;();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#ad5967e3482a22419e1bb1d895bec8ff8">   78</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> IEnumerable&lt;Enum&gt; <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#ad5967e3482a22419e1bb1d895bec8ff8">AvailableItemFilters</a> =&gt; Enum.GetValues(typeof(<a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>)).Cast&lt;Enum&gt;();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#acadd6a39f254d836fe5f2bb9e1ab303a">   81</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> Enum <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#acadd6a39f254d836fe5f2bb9e1ab303a">ItemFilter</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; } = <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.None;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">   84</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; } = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a144b98785c304cc42a9f63742ce883b4">   90</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a>[] <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a144b98785c304cc42a9f63742ce883b4">GetItems</a>()</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a> personStartFilter = <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.None;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keywordtype">object</span> personStartFilterParameter = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keywordflow">if</span>(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#acadd6a39f254d836fe5f2bb9e1ab303a">ItemFilter</a> is <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                personStartFilter = (<a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>)<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#acadd6a39f254d836fe5f2bb9e1ab303a">ItemFilter</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="keywordflow">switch</span>(personStartFilter)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                    <span class="keywordflow">case</span> <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.Person:</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                        <span class="keywordflow">if</span>(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> is <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a>) { personStartFilterParameter = <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> as <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a>; }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    <span class="keywordflow">case</span> <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.SwimmingStyle:</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                        <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> is <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>) { personStartFilterParameter = (<a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>)<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a>; }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    <span class="keywordflow">case</span> <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.CompetitionID:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                        <span class="keywordflow">if</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> is <span class="keywordtype">int</span> || <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a> is <span class="keywordtype">double</span>) { personStartFilterParameter = Convert.ToInt32(<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">ItemFilterParameter</a>); }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">if</span>(personStartFilterParameter == <span class="keyword">null</span>) { personStartFilter = <a class="code hl_enumeration" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a>.None; }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            List&lt;PersonStart&gt; starts = _personService.GetAllPersonStarts(personStartFilter, personStartFilterParameter).Where(s =&gt; s.CompetitionObj != <span class="keyword">null</span> &amp;&amp; s.IsActive).ToList();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keywordflow">switch</span> (<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a60d272565770faa2e7a4bb3ddd65d14f">ItemOrdering</a>)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByNameAscending: starts = starts.OrderBy(s =&gt; s.PersonObj?.Name).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByNameDescending: starts = starts.OrderByDescending(s =&gt; s.PersonObj?.Name).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByFirstNameAscending: starts = starts.OrderBy(s =&gt; s.PersonObj?.FirstName).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByFirstNameDescending: starts = starts.OrderByDescending(s =&gt; s.PersonObj?.FirstName).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByCompetitionAscending: starts = starts.OrderBy(s =&gt; s.CompetitionObj?.Id).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a>.ByCompetitionDescending: starts = starts.OrderByDescending(s =&gt; s.CompetitionObj?.Id).ToList(); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="keywordflow">default</span>: <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keywordflow">return</span> starts.ToArray();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        }</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="comment">// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="};">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">  132</a></span>        <span class="keyword">public</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">ItemOrderingsCertificate</a></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            None,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            ByNameAscending,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            ByNameDescending,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            ByFirstNameAscending,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            ByFirstNameDescending,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            ByCompetitionAscending,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            ByCompetitionDescending</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_base-1-g_html_a6c8266f707756dcb0cb4e64b783ff0b4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_base-1-g.html#a6c8266f707756dcb0cb4e64b783ff0b4">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyBase-1-g.DocumentStrategyBase</a></div><div class="ttdeci">DocumentStrategyBase(IWorkspaceService workspaceService, IServiceProvider serviceProvider)</div><div class="ttdoc">Constructor for the document strategy base class.</div><div class="ttdef"><b>Definition</b> <a href="_document_strategy_base_8cs_source.html#l00022">DocumentStrategyBase.cs:22</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a04a1aaaf1870253d0e4fe84ce8441cb5"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a04a1aaaf1870253d0e4fe84ce8441cb5">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.ItemOrderingsCertificate</a></div><div class="ttdeci">ItemOrderingsCertificate</div><div class="ttdoc">Enum with all available orderings for certificates.</div><div class="ttdef"><b>Definition</b> <a href="#l00132">DocumentStrategyCertificates.cs:133</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a144b98785c304cc42a9f63742ce883b4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a144b98785c304cc42a9f63742ce883b4">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.GetItems</a></div><div class="ttdeci">override PersonStart[] GetItems()</div><div class="ttdoc">Return a list of all PersonStart items which have PersonStart.CompetitionObj assigned.</div><div class="ttdef"><b>Definition</b> <a href="#l00090">DocumentStrategyCertificates.cs:90</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a14a3469a6659275d48f5257adf170f1d"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a14a3469a6659275d48f5257adf170f1d">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.CreateMultiplePages</a></div><div class="ttdeci">override bool CreateMultiplePages</div><div class="ttdoc">This always returns true</div><div class="ttdef"><b>Definition</b> <a href="#l00069">DocumentStrategyCertificates.cs:69</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a223fa199ffe6a15a7a0fb44bbb68da15"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a223fa199ffe6a15a7a0fb44bbb68da15">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.DocumentStrategyCertificates</a></div><div class="ttdeci">DocumentStrategyCertificates(IPersonService personService, IWorkspaceService workspaceService, IServiceProvider serviceProvider)</div><div class="ttdoc">Constructor for the document strategy for certificates.</div><div class="ttdef"><b>Definition</b> <a href="#l00023">DocumentStrategyCertificates.cs:23</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a298ed63b4bd52765ac83d1dbe8f244a7"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a298ed63b4bd52765ac83d1dbe8f244a7">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.AvailableItemOrderings</a></div><div class="ttdeci">override IEnumerable&lt; Enum &gt; AvailableItemOrderings</div><div class="ttdoc">Array with all available orderings for the items.If no ordering is supported, this will be null.</div><div class="ttdef"><b>Definition</b> <a href="#l00075">DocumentStrategyCertificates.cs:75</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a42bbc847516cab1093ef3dfa24d8efcc"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a42bbc847516cab1093ef3dfa24d8efcc">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.DocumentType</a></div><div class="ttdeci">override DocumentCreationTypes DocumentType</div><div class="ttdoc">Gets the type of document this strategy creates.</div><div class="ttdef"><b>Definition</b> <a href="#l00029">DocumentStrategyCertificates.cs:29</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a5ecde5862615f0772628ab2bcdb04f74"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a5ecde5862615f0772628ab2bcdb04f74">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.ItemFilterParameter</a></div><div class="ttdeci">override object ItemFilterParameter</div><div class="ttdoc">Filter parameter that can be used together with ItemFiltering.The type and usage of this parameter de...</div><div class="ttdef"><b>Definition</b> <a href="#l00084">DocumentStrategyCertificates.cs:84</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a60d272565770faa2e7a4bb3ddd65d14f"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a60d272565770faa2e7a4bb3ddd65d14f">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.ItemOrdering</a></div><div class="ttdeci">override Enum ItemOrdering</div><div class="ttdoc">Current ordering for the items.If no ordering is supported, this will be null.</div><div class="ttdef"><b>Definition</b> <a href="#l00072">DocumentStrategyCertificates.cs:72</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a861f33a47a20b7296b4fe965a3a9f543"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a861f33a47a20b7296b4fe965a3a9f543">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.TemplatePath</a></div><div class="ttdeci">override string TemplatePath</div><div class="ttdoc">Gets the path to the template used for creating the document.</div><div class="ttdef"><b>Definition</b> <a href="#l00032">DocumentStrategyCertificates.cs:32</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_a9f68cdf270822c268605aa04efa74f89"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#a9f68cdf270822c268605aa04efa74f89">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.TemplateFileNamePostfixReplaceStr</a></div><div class="ttdeci">override string TemplateFileNamePostfixReplaceStr</div><div class="ttdoc">Use this string instead of the template file name postfix during document creation....</div><div class="ttdef"><b>Definition</b> <a href="#l00035">DocumentStrategyCertificates.cs:36</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_acadd6a39f254d836fe5f2bb9e1ab303a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#acadd6a39f254d836fe5f2bb9e1ab303a">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.ItemFilter</a></div><div class="ttdeci">override Enum ItemFilter</div><div class="ttdoc">Current filter for the items.If no filtering is supported, this will be null.</div><div class="ttdef"><b>Definition</b> <a href="#l00081">DocumentStrategyCertificates.cs:81</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates_html_ad5967e3482a22419e1bb1d895bec8ff8"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_certificates.html#ad5967e3482a22419e1bb1d895bec8ff8">Vereinsmeisterschaften.Core.Documents.DocumentStrategies.DocumentStrategyCertificates.AvailableItemFilters</a></div><div class="ttdeci">override IEnumerable&lt; Enum &gt; AvailableItemFilters</div><div class="ttdoc">Array with all available filters for the items.If no filtering is supported, this will be null.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">DocumentStrategyCertificates.cs:78</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Vereinsmeisterschaften.Core.Models.Person</a></div><div class="ttdoc">Class describing a person.</div><div class="ttdef"><b>Definition</b> <a href="_person_8cs_source.html#l00011">Person.cs:12</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">Vereinsmeisterschaften.Core.Models.PersonStart</a></div><div class="ttdoc">Class describing a start of a person.</div><div class="ttdef"><b>Definition</b> <a href="_person_start_8cs_source.html#l00008">PersonStart.cs:9</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service.html">Vereinsmeisterschaften.Core.Services.DocumentService</a></div><div class="ttdoc">Service used to create documents like certificates or start lists.</div><div class="ttdef"><b>Definition</b> <a href="_document_service_8cs_source.html#l00015">DocumentService.cs:16</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service_html_a873032517f3fee3b737099eb78051216"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_document_service.html#a873032517f3fee3b737099eb78051216">Vereinsmeisterschaften.Core.Services.DocumentService.GetDocumentPathAbsolute</a></div><div class="ttdeci">static string GetDocumentPathAbsolute(string documentCreationSettingKey, IWorkspaceService workspaceService)</div><div class="ttdoc">Get the absolute path for the requested document creation setting.</div><div class="ttdef"><b>Definition</b> <a href="_document_service_8cs_source.html#l00219">DocumentService.cs:219</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings</a></div><div class="ttdoc">Class holding all workspace settings.</div><div class="ttdef"><b>Definition</b> <a href="_workspace_settings_8cs_source.html#l00010">WorkspaceSettings.cs:11</a></div></div>
+<div class="ttc" id="ainterface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service_html"><div class="ttname"><a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">Vereinsmeisterschaften.Core.Contracts.Services.IPersonService</a></div><div class="ttdoc">Interface for a service used to get and store a list of Person objects.</div><div class="ttdef"><b>Definition</b> <a href="_i_person_service_8cs_source.html#l00010">IPersonService.cs:11</a></div></div>
+<div class="ttc" id="ainterface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service_html"><div class="ttname"><a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService</a></div><div class="ttdoc">Interface for a service used to manage a workspace.</div><div class="ttdef"><b>Definition</b> <a href="_i_workspace_service_8cs_source.html#l00011">IWorkspaceService.cs:12</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a></div><div class="ttdef"><b>Definition</b> <a href="_delegates_8cs_source.html#l00004">Delegates.cs:5</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers.html">Vereinsmeisterschaften.Core.Documents.DocumentPlaceholderResolvers</a></div><div class="ttdef"><b>Definition</b> <a href="_document_placeholder_resolver_base_8cs_source.html#l00004">DocumentPlaceholderResolverBase.cs:5</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies.html">Vereinsmeisterschaften.Core.Documents.DocumentStrategies</a></div><div class="ttdef"><b>Definition</b> <a href="_document_strategy_analytics_8cs_source.html#l00008">DocumentStrategyAnalytics.cs:9</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_helpers_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_helpers.html">Vereinsmeisterschaften.Core.Helpers</a></div><div class="ttdef"><b>Definition</b> <a href="_collection_helper_8cs_source.html#l00003">CollectionHelper.cs:4</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a></div><div class="ttdef"><b>Definition</b> <a href="_competition_8cs_source.html#l00005">Competition.cs:6</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html_a2c1a30a544e19fbe07754b882f19a950"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">Vereinsmeisterschaften.Core.Models.SwimmingStyles</a></div><div class="ttdeci">SwimmingStyles</div><div class="ttdoc">Available swimming styles.</div><div class="ttdef"><b>Definition</b> <a href="_swimming_styles_8cs_source.html#l00006">SwimmingStyles.cs:7</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html_a6b47c461f6af89e3ba40e8c49fbba9a6"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a6b47c461f6af89e3ba40e8c49fbba9a6">Vereinsmeisterschaften.Core.Models.DocumentCreationTypes</a></div><div class="ttdeci">DocumentCreationTypes</div><div class="ttdoc">Different types of documents that can be created.</div><div class="ttdef"><b>Definition</b> <a href="_document_creation_types_8cs_source.html#l00006">DocumentCreationTypes.cs:7</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html_a777edc4a1e85cdbcce65d5ad235657d1"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">Vereinsmeisterschaften.Core.Models.PersonStartFilters</a></div><div class="ttdeci">PersonStartFilters</div><div class="ttdoc">Available filters for PersonStart objects.</div><div class="ttdef"><b>Definition</b> <a href="_person_start_filters_8cs_source.html#l00006">PersonStartFilters.cs:7</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_services_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_services.html">Vereinsmeisterschaften.Core.Services</a></div><div class="ttdef"><b>Definition</b> <a href="_competition_distance_rule_service_8cs_source.html#l00011">CompetitionDistanceRuleService.cs:12</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_settings_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Vereinsmeisterschaften.Core.Settings</a></div><div class="ttdef"><b>Definition</b> <a href="_i_workspace_setting_8cs_source.html#l00003">IWorkspaceSetting.cs:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d79f3fde44629127f89592e101ede6a6.html">Vereinsmeisterschaften.Core</a></li><li class="navelem"><a class="el" href="dir_2733ebbeca147e76cec00ad781cc7a45.html">Documents</a></li><li class="navelem"><a class="el" href="dir_5b69ca9af01a78c178e5d2746e54f076.html">DocumentStrategies</a></li><li class="navelem"><b>DocumentStrategyCertificates.cs</b></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:13 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

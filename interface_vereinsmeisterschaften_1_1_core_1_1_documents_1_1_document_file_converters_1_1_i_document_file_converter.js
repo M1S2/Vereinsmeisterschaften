@@ -1,0 +1,6 @@
+var interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter =
+[
+    [ "Convert", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter.html#a260dba1e136e30fcd16684db25a9188a", null ],
+    [ "IsDocxCreateWithThisConverter", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter.html#a1c5b23c4a8ca9153c5182dbe04282987", null ],
+    [ "IsAvailable", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter.html#a270fec3923c940ef87d255f21ac39ba1", null ]
+];

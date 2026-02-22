@@ -1,0 +1,7 @@
+var class_vereinsmeisterschaften_1_1_views_1_1_analytics_widgets_1_1_analytics_widget_races_ages_1_1_widget_model_race_age_point =
+[
+    [ "WidgetModelRaceAgePoint", "class_vereinsmeisterschaften_1_1_views_1_1_analytics_widgets_1_1_analytics_widget_races_ages_1_1_widget_model_race_age_point.html#aac27a667c18128c4fcb72ebd8f03d96e", null ],
+    [ "BirthYear", "class_vereinsmeisterschaften_1_1_views_1_1_analytics_widgets_1_1_analytics_widget_races_ages_1_1_widget_model_race_age_point.html#a9c9932ec74880e20ec7f92a8a88e7950", null ],
+    [ "IsDisplayedFaded", "class_vereinsmeisterschaften_1_1_views_1_1_analytics_widgets_1_1_analytics_widget_races_ages_1_1_widget_model_race_age_point.html#a98c9ac6968d2f21db97f6eed8526e88b", null ],
+    [ "RaceID", "class_vereinsmeisterschaften_1_1_views_1_1_analytics_widgets_1_1_analytics_widget_races_ages_1_1_widget_model_race_age_point.html#acc94bbabfaa0e8904a152a52be544762", null ]
+];

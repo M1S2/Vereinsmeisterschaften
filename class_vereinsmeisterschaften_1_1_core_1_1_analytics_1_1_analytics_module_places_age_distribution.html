@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_analytics.html">Analytics</a> module to calculate the age distribution over the result places.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution.png" usemap="#Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution_map" name="Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution_map">
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html" title="Interface for an analytics module." alt="Vereinsmeisterschaften.Core.Analytics.IAnalyticsModule" shape="rect" coords="0,0,454,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distributionff5e8336c33087c6069ac09145bbb46b.html">ModelPlacesAgeDistribution</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2d1f56ab9c73fd02f3e2ab3af6180726" id="r_a2d1f56ab9c73fd02f3e2ab3af6180726"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d1f56ab9c73fd02f3e2ab3af6180726">AnalyticsModulePlacesAgeDistribution</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a> scoreService, <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> personService)</td></tr>
+<tr class="memdesc:a2d1f56ab9c73fd02f3e2ab3af6180726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution.html" title="Analytics module to calculate the age distribution over the result places.">AnalyticsModulePlacesAgeDistribution</a>  <br /></td></tr>
+<tr class="separator:a2d1f56ab9c73fd02f3e2ab3af6180726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a0fd8b0fd9bc23c54e4241aef01b32" id="r_a97a0fd8b0fd9bc23c54e4241aef01b32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html">DocXPlaceholderHelper.TextPlaceholders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97a0fd8b0fd9bc23c54e4241aef01b32">CollectDocumentPlaceholderContents</a> ()</td></tr>
+<tr class="memdesc:a97a0fd8b0fd9bc23c54e4241aef01b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect the values for all document placeholders that are supported by this <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html" title="Interface for an analytics module.">IAnalyticsModule</a>.If the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html">doesn't support any placeholders for the document creation return </a><dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a> or <code>null</code> if no placeholders are supported</dd></dl>
+  <br /></td></tr>
+<tr class="separator:a97a0fd8b0fd9bc23c54e4241aef01b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a0e19c8e8866d2971bf4e375eaa2dfb8a" id="r_a0e19c8e8866d2971bf4e375eaa2dfb8a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e19c8e8866d2971bf4e375eaa2dfb8a">AnalyticsAvailable</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0e19c8e8866d2971bf4e375eaa2dfb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if the analytics module has data.  <br /></td></tr>
+<tr class="separator:a0e19c8e8866d2971bf4e375eaa2dfb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab029c04ad6e0f4af46b01e6871f6e4d6" id="r_ab029c04ad6e0f4af46b01e6871f6e4d6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distributionff5e8336c33087c6069ac09145bbb46b.html">ModelPlacesAgeDistribution</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab029c04ad6e0f4af46b01e6871f6e4d6">BirthYearsPerResultPlace</a><code> [get]</code></td></tr>
+<tr class="memdesc:ab029c04ad6e0f4af46b01e6871f6e4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distributionff5e8336c33087c6069ac09145bbb46b.html">ModelPlacesAgeDistribution</a> ordered by the result place.  <br /></td></tr>
+<tr class="separator:ab029c04ad6e0f4af46b01e6871f6e4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e01ba36a2c893cee257d638128ebc2c" id="r_a6e01ba36a2c893cee257d638128ebc2c"><td class="memItemLeft" align="right" valign="top">List&lt; PointF &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e01ba36a2c893cee257d638128ebc2c">LinearRegressionLinePoints</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6e01ba36a2c893cee257d638128ebc2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with the start and end points of a linear regression line through the BirthYearsPerResultPlace points.  <br /></td></tr>
+<tr class="separator:a6e01ba36a2c893cee257d638128ebc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74703c4ede4db86ac83052a6fb2fd1cb" id="r_a74703c4ede4db86ac83052a6fb2fd1cb"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74703c4ede4db86ac83052a6fb2fd1cb">SupportedDocumentPlaceholderKeys</a><code> [get]</code></td></tr>
+<tr class="memdesc:a74703c4ede4db86ac83052a6fb2fd1cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all document placeholder keys that are supported by this analytics module.If the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html">doesn't support any placeholders for the document creation return </a>  <br /></td></tr>
+<tr class="separator:a74703c4ede4db86ac83052a6fb2fd1cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a65d43baa62c5f53edab5bb03bdb0203e" id="r_a65d43baa62c5f53edab5bb03bdb0203e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65d43baa62c5f53edab5bb03bdb0203e">_scoreService</a></td></tr>
+<tr class="separator:a65d43baa62c5f53edab5bb03bdb0203e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab63d42d873c20072c6d2c5005711955b" id="r_ab63d42d873c20072c6d2c5005711955b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab63d42d873c20072c6d2c5005711955b">_personService</a></td></tr>
+<tr class="separator:ab63d42d873c20072c6d2c5005711955b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_analytics.html">Analytics</a> module to calculate the age distribution over the result places. </p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00012">12</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2d1f56ab9c73fd02f3e2ab3af6180726" name="a2d1f56ab9c73fd02f3e2ab3af6180726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1f56ab9c73fd02f3e2ab3af6180726">&#9670;&#160;</a></span>AnalyticsModulePlacesAgeDistribution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.AnalyticsModulePlacesAgeDistribution </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a></td>          <td class="paramname"><span class="paramname"><em>scoreService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a></td>          <td class="paramname"><span class="paramname"><em>personService</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution.html" title="Analytics module to calculate the age distribution over the result places.">AnalyticsModulePlacesAgeDistribution</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scoreService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html" title="Interface for a service used to calculate the scores for all persons.">IScoreService</a> object</td></tr>
+    <tr><td class="paramname">personService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html" title="Interface for a service used to get and store a list of Person objects.">IPersonService</a> object</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00031">31</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a97a0fd8b0fd9bc23c54e4241aef01b32" name="a97a0fd8b0fd9bc23c54e4241aef01b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97a0fd8b0fd9bc23c54e4241aef01b32">&#9670;&#160;</a></span>CollectDocumentPlaceholderContents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html">DocXPlaceholderHelper.TextPlaceholders</a> Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.CollectDocumentPlaceholderContents </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Collect the values for all document placeholders that are supported by this <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html" title="Interface for an analytics module.">IAnalyticsModule</a>.If the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html">doesn't support any placeholders for the document creation return </a><dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_helpers_1_1_doc_x_placeholder_helper_1_1_text_placeholders.html" title="Class to hold text placeholders and their values.">DocXPlaceholderHelper.TextPlaceholders</a> or <code>null</code> if no placeholders are supported</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html#a4d8b599adbeb7a254ffd344c462d70e6">Vereinsmeisterschaften.Core.Analytics.IAnalyticsModule</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00087">87</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab63d42d873c20072c6d2c5005711955b" name="ab63d42d873c20072c6d2c5005711955b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab63d42d873c20072c6d2c5005711955b">&#9670;&#160;</a></span>_personService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution._personService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00024">24</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<a id="a65d43baa62c5f53edab5bb03bdb0203e" name="a65d43baa62c5f53edab5bb03bdb0203e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d43baa62c5f53edab5bb03bdb0203e">&#9670;&#160;</a></span>_scoreService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a> Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution._scoreService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00023">23</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a0e19c8e8866d2971bf4e375eaa2dfb8a" name="a0e19c8e8866d2971bf4e375eaa2dfb8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e19c8e8866d2971bf4e375eaa2dfb8a">&#9670;&#160;</a></span>AnalyticsAvailable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.AnalyticsAvailable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if the analytics module has data. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html#a8012e3f017096516fb6ec490b037bcac">Vereinsmeisterschaften.Core.Analytics.IAnalyticsModule</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00038">38</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab029c04ad6e0f4af46b01e6871f6e4d6" name="ab029c04ad6e0f4af46b01e6871f6e4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab029c04ad6e0f4af46b01e6871f6e4d6">&#9670;&#160;</a></span>BirthYearsPerResultPlace</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distributionff5e8336c33087c6069ac09145bbb46b.html">ModelPlacesAgeDistribution</a>&gt; Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.BirthYearsPerResultPlace</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distributionff5e8336c33087c6069ac09145bbb46b.html">ModelPlacesAgeDistribution</a> ordered by the result place. </p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00043">43</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6e01ba36a2c893cee257d638128ebc2c" name="a6e01ba36a2c893cee257d638128ebc2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e01ba36a2c893cee257d638128ebc2c">&#9670;&#160;</a></span>LinearRegressionLinePoints</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;PointF&gt; Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.LinearRegressionLinePoints</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with the start and end points of a linear regression line through the BirthYearsPerResultPlace points. </p>
+<p>Point.X is the result place, Point.Y is the birth year. </p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00050">50</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<a id="a74703c4ede4db86ac83052a6fb2fd1cb" name="a74703c4ede4db86ac83052a6fb2fd1cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74703c4ede4db86ac83052a6fb2fd1cb">&#9670;&#160;</a></span>SupportedDocumentPlaceholderKeys</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;string&gt; Vereinsmeisterschaften.Core.Analytics.AnalyticsModulePlacesAgeDistribution.SupportedDocumentPlaceholderKeys</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of all document placeholder keys that are supported by this analytics module.If the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html">doesn't support any placeholders for the document creation return </a> </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_i_analytics_module.html#a4d6ecbe76c222d43ab8a3ca214ffa799">Vereinsmeisterschaften.Core.Analytics.IAnalyticsModule</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html#l00099">99</a> of file <a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Analytics/<a class="el" href="_analytics_module_places_age_distribution_8cs_source.html">AnalyticsModulePlacesAgeDistribution.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_analytics.html">Analytics</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_analytics_1_1_analytics_module_places_age_distribution.html">AnalyticsModulePlacesAgeDistribution</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:13 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

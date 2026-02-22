@@ -1,0 +1,28 @@
+var class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model =
+[
+    [ "PrepareRacesViewModel", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a68b04673646f8fb2362883653664e125", null ],
+    [ "OnNavigatedFrom", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a587a56bf67d1a68ea7bb468b06efd6d7", null ],
+    [ "OnNavigatedTo", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#af59692135ce214d5215c990d2f300534", null ],
+    [ "recalculateHighlightedPersonStarts", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a44f24b874f5a43de55edb41bb909643f", null ],
+    [ "recalculateVariantIDs", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a2eda20093e81965f9007a3a7204928e2", null ],
+    [ "AddNewRaceCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a27dbcb0ba423441f05b3463169dd8300", null ],
+    [ "AddNewRaceVariantCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a0982a001e60a327a6d29b80cad7225e9", null ],
+    [ "AllRacesVariants", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#ad4e466622970d3a257aedb4f634ad6b5", null ],
+    [ "AreFriendGroupsAvailable", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a20d10091431dc658355dd92bd1bca849", null ],
+    [ "AreRacesVariantsAvailable", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a22ce2e06dbd9647d0aabdc1e6fe6f61e", null ],
+    [ "AvailablePersons", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a95fd71ed292ec67417921cec66ed969e", null ],
+    [ "AvailableSwimmingStyles", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#ac18f2818c35075101eb0bf1b821e2cd6", null ],
+    [ "CalculateRacesVariantsCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a722e9492a39f1adbdb89bec871888b44", null ],
+    [ "CleanupRacesCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a5f9b295375d72547cf4512ed56840a83", null ],
+    [ "CopyRaceVariantCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a996b79c5075e58c55afe34443a07a81a", null ],
+    [ "CurrentRacesVariant", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a98b012d57da7c931d5565b5b79aa45fc", null ],
+    [ "CurrentRacesVariantIsPersistent", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a1959509fe3a87ea9976a770cf463294c", null ],
+    [ "CurrentVariantID", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a863629cf4c41638f3191c403399b0fd8", null ],
+    [ "HighlightedDistance", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#aff3e903e1d44b59f6927cc3516b9c16b", null ],
+    [ "HighlightedGender", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a62445f7c3c887693482cff97a866a64e", null ],
+    [ "HighlightedPerson", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a689d571bcba05dc72bc10a871ad30ed8", null ],
+    [ "HighlightedSwimmingStyle", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a88d8b963e5a6cadba2bef1fd8117bc2e", null ],
+    [ "HighlightPersonStartMode", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#ad9b3269d6552d30661340048068a1e67", null ],
+    [ "RemoveRaceVariantCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#adc9c3fcebfdb43d228b53fa68afa480c", null ],
+    [ "ReorderRaceVariantsCommand", "class_vereinsmeisterschaften_1_1_view_models_1_1_prepare_races_view_model.html#a5f78e7325b22f05825a1e785df255b33", null ]
+];

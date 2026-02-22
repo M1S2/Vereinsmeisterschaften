@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel Interface Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#properties">Properties</a> &#124;
+<a href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel Interface Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface for the workspace setting view model.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model.png" usemap="#Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel_map" name="Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel_map">
+<area href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html" title="Workspace setting view model." alt="Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;" shape="rect" coords="0,112,446,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a8bdf5fd2fef9d0a848abf09b38676f46" id="r_a8bdf5fd2fef9d0a848abf09b38676f46"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bdf5fd2fef9d0a848abf09b38676f46">Label</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8bdf5fd2fef9d0a848abf09b38676f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Label describing the setting.  <br /></td></tr>
+<tr class="separator:a8bdf5fd2fef9d0a848abf09b38676f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ceb5a6b3e2cecd9b6e1488e19da6e6" id="r_ad7ceb5a6b3e2cecd9b6e1488e19da6e6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ceb5a6b3e2cecd9b6e1488e19da6e6">Tooltip</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad7ceb5a6b3e2cecd9b6e1488e19da6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tooltip for this setting.  <br /></td></tr>
+<tr class="separator:ad7ceb5a6b3e2cecd9b6e1488e19da6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada6b225e9e988606b688c484ab598a24" id="r_ada6b225e9e988606b688c484ab598a24"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada6b225e9e988606b688c484ab598a24">Icon</a><code> [get]</code></td></tr>
+<tr class="memdesc:ada6b225e9e988606b688c484ab598a24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon for this setting.  <br /></td></tr>
+<tr class="separator:ada6b225e9e988606b688c484ab598a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b92e47fa29c28a1ab90e2dcb0222cce" id="r_a0b92e47fa29c28a1ab90e2dcb0222cce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b92e47fa29c28a1ab90e2dcb0222cce">HasChanged</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0b92e47fa29c28a1ab90e2dcb0222cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">True, if the setting value is not the snapshot value.  <br /></td></tr>
+<tr class="separator:a0b92e47fa29c28a1ab90e2dcb0222cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7854cb40bc7872ebd5937a6ce852a1" id="r_aca7854cb40bc7872ebd5937a6ce852a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7854cb40bc7872ebd5937a6ce852a1">HasDefaultValue</a><code> [get]</code></td></tr>
+<tr class="memdesc:aca7854cb40bc7872ebd5937a6ce852a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the setting value is the default value.  <br /></td></tr>
+<tr class="separator:aca7854cb40bc7872ebd5937a6ce852a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f4e04ff7567532fdae49f72b566731" id="r_ab6f4e04ff7567532fdae49f72b566731"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6f4e04ff7567532fdae49f72b566731">SupportResetToDefault</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab6f4e04ff7567532fdae49f72b566731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Support for resetting the setting value to the default value.  <br /></td></tr>
+<tr class="separator:ab6f4e04ff7567532fdae49f72b566731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeffbeb36671d41405b1f8d5260cffb7e" id="r_aeffbeb36671d41405b1f8d5260cffb7e"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeffbeb36671d41405b1f8d5260cffb7e">ResetCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:aeffbeb36671d41405b1f8d5260cffb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to set the setting value back to the snapshot value.  <br /></td></tr>
+<tr class="separator:aeffbeb36671d41405b1f8d5260cffb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9eeaa10a1e85248edd6b7f37a56518d" id="r_ad9eeaa10a1e85248edd6b7f37a56518d"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9eeaa10a1e85248edd6b7f37a56518d">SetToDefaultCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad9eeaa10a1e85248edd6b7f37a56518d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to set the setting value back to the default value.  <br /></td></tr>
+<tr class="separator:ad9eeaa10a1e85248edd6b7f37a56518d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd34312114228ae1eec7d093e2a3c6df" id="r_acd34312114228ae1eec7d093e2a3c6df"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd34312114228ae1eec7d093e2a3c6df">ValueType</a><code> [get]</code></td></tr>
+<tr class="memdesc:acd34312114228ae1eec7d093e2a3c6df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the setting value.  <br /></td></tr>
+<tr class="separator:acd34312114228ae1eec7d093e2a3c6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a618f2ec6c77e677225198df9b52231" id="r_a6a618f2ec6c77e677225198df9b52231"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a618f2ec6c77e677225198df9b52231">UntypedValue</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6a618f2ec6c77e677225198df9b52231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value for the setting.  <br /></td></tr>
+<tr class="separator:a6a618f2ec6c77e677225198df9b52231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0122c475599806dcfc0cdf694533eb" id="r_a2d0122c475599806dcfc0cdf694533eb"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d0122c475599806dcfc0cdf694533eb">UntypedMinValue</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2d0122c475599806dcfc0cdf694533eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for the setting.  <br /></td></tr>
+<tr class="separator:a2d0122c475599806dcfc0cdf694533eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615d350951789c313be262dae589b362" id="r_a615d350951789c313be262dae589b362"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a615d350951789c313be262dae589b362">UntypedMaxValue</a><code> [get]</code></td></tr>
+<tr class="memdesc:a615d350951789c313be262dae589b362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for the setting.  <br /></td></tr>
+<tr class="separator:a615d350951789c313be262dae589b362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a425d2867b6c5a3791bbddd61d5706514" id="r_a425d2867b6c5a3791bbddd61d5706514"><td class="memItemLeft" align="right" valign="top">DataTemplate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a425d2867b6c5a3791bbddd61d5706514">EditorTemplate</a><code> [get]</code></td></tr>
+<tr class="memdesc:a425d2867b6c5a3791bbddd61d5706514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data template to assign a setting dependent editor view.  <br /></td></tr>
+<tr class="separator:a425d2867b6c5a3791bbddd61d5706514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for the workspace setting view model. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00010">10</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+</div><h2 class="groupheader">Property Documentation</h2>
+<a id="a425d2867b6c5a3791bbddd61d5706514" name="a425d2867b6c5a3791bbddd61d5706514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a425d2867b6c5a3791bbddd61d5706514">&#9670;&#160;</a></span>EditorTemplate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataTemplate Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.EditorTemplate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data template to assign a setting dependent editor view. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a436e0ba3a0df16ff0a579b1fd038f459">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00078">78</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0b92e47fa29c28a1ab90e2dcb0222cce" name="a0b92e47fa29c28a1ab90e2dcb0222cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b92e47fa29c28a1ab90e2dcb0222cce">&#9670;&#160;</a></span>HasChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.HasChanged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True, if the setting value is not the snapshot value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a467b5b8df2bd2e10c123e8c474a737cb">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00030">30</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aca7854cb40bc7872ebd5937a6ce852a1" name="aca7854cb40bc7872ebd5937a6ce852a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7854cb40bc7872ebd5937a6ce852a1">&#9670;&#160;</a></span>HasDefaultValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.HasDefaultValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the setting value is the default value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a689dd94f0134f32e9319b76471bbd8d6">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00035">35</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ada6b225e9e988606b688c484ab598a24" name="ada6b225e9e988606b688c484ab598a24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6b225e9e988606b688c484ab598a24">&#9670;&#160;</a></span>Icon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.Icon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Icon for this setting. </p>
+<p>This should be e.g. "\uE787" </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#ade6991bad5059a43f2a66ee11d8b0d5e">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00025">25</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8bdf5fd2fef9d0a848abf09b38676f46" name="a8bdf5fd2fef9d0a848abf09b38676f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bdf5fd2fef9d0a848abf09b38676f46">&#9670;&#160;</a></span>Label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.Label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Label describing the setting. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a9243f1b978b4fa16247665612406e28f">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00015">15</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="aeffbeb36671d41405b1f8d5260cffb7e" name="aeffbeb36671d41405b1f8d5260cffb7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeffbeb36671d41405b1f8d5260cffb7e">&#9670;&#160;</a></span>ResetCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.ResetCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to set the setting value back to the snapshot value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#acdddfcb6c9bcf23bce5e5ae7381025dc">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00045">45</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad9eeaa10a1e85248edd6b7f37a56518d" name="ad9eeaa10a1e85248edd6b7f37a56518d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9eeaa10a1e85248edd6b7f37a56518d">&#9670;&#160;</a></span>SetToDefaultCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.SetToDefaultCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to set the setting value back to the default value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a7d93b4baa8c789a5a175979e3a642116">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00050">50</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab6f4e04ff7567532fdae49f72b566731" name="ab6f4e04ff7567532fdae49f72b566731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6f4e04ff7567532fdae49f72b566731">&#9670;&#160;</a></span>SupportResetToDefault</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.SupportResetToDefault</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Support for resetting the setting value to the default value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a01683e505b4798dbe7d36eeba3bf0bca">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00040">40</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad7ceb5a6b3e2cecd9b6e1488e19da6e6" name="ad7ceb5a6b3e2cecd9b6e1488e19da6e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ceb5a6b3e2cecd9b6e1488e19da6e6">&#9670;&#160;</a></span>Tooltip</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.Tooltip</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tooltip for this setting. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a691bb71c96d16fdd1de01c5055db9f49">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00020">20</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a615d350951789c313be262dae589b362" name="a615d350951789c313be262dae589b362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a615d350951789c313be262dae589b362">&#9670;&#160;</a></span>UntypedMaxValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.UntypedMaxValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum value for the setting. </p>
+<p>This is type independent by using the object type. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#a72c91db0f66ca778c086a4dd3a3c1c09">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00073">73</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2d0122c475599806dcfc0cdf694533eb" name="a2d0122c475599806dcfc0cdf694533eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0122c475599806dcfc0cdf694533eb">&#9670;&#160;</a></span>UntypedMinValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.UntypedMinValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimum value for the setting. </p>
+<p>This is type independent by using the object type. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#ae79e98fe2e82be522ecfaf4595ec173e">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00067">67</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6a618f2ec6c77e677225198df9b52231" name="a6a618f2ec6c77e677225198df9b52231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a618f2ec6c77e677225198df9b52231">&#9670;&#160;</a></span>UntypedValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.UntypedValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Value for the setting. </p>
+<p>This is type independent by using the object type. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#acec8716865e244851281127181e5c714">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00061">61</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="acd34312114228ae1eec7d093e2a3c6df" name="acd34312114228ae1eec7d093e2a3c6df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd34312114228ae1eec7d093e2a3c6df">&#9670;&#160;</a></span>ValueType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type Vereinsmeisterschaften.Contracts.ViewModels.IWorkspaceSettingViewModel.ValueType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of the setting value. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_workspace_setting_view_model-1-g.html#ac1e388485bce30ef7f74964479c04fe7">Vereinsmeisterschaften.ViewModels.WorkspaceSettingViewModel&lt; T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_setting_view_model_8cs_source.html#l00055">55</a> of file <a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/Contracts/ViewModels/<a class="el" href="_i_workspace_setting_view_model_8cs_source.html">IWorkspaceSettingViewModel.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_contracts.html">Contracts</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_contracts_1_1_view_models.html">ViewModels</a></li><li class="navelem"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_workspace_setting_view_model.html">IWorkspaceSettingViewModel</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:13 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

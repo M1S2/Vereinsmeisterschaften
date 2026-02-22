@@ -1,0 +1,1088 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.ViewModels.PeopleViewModel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_view_models_1_1_people_view_model.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_view_models_1_1_people_view_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.ViewModels.PeopleViewModel Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>ViewModel for the person overview page.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.ViewModels.PeopleViewModel:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_view_models_1_1_people_view_model.png" usemap="#Vereinsmeisterschaften.ViewModels.PeopleViewModel_map" alt=""/>
+  <map id="Vereinsmeisterschaften.ViewModels.PeopleViewModel_map" name="Vereinsmeisterschaften.ViewModels.PeopleViewModel_map">
+<area href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware.html" title="Interface for objects that need to handle navigation events." alt="Vereinsmeisterschaften.Contracts.ViewModels.INavigationAware" shape="rect" coords="389,0,768,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a38b78e78cddba9363c9510976fad1529" id="r_a38b78e78cddba9363c9510976fad1529"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38b78e78cddba9363c9510976fad1529">PeopleViewModel</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> personService, <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a> competitionService, IDialogCoordinator dialogCoordinator, <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a> shellVM)</td></tr>
+<tr class="memdesc:a38b78e78cddba9363c9510976fad1529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the people view model.  <br /></td></tr>
+<tr class="separator:a38b78e78cddba9363c9510976fad1529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d6674e90511f4b32d405dcba935575" id="r_af0d6674e90511f4b32d405dcba935575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0d6674e90511f4b32d405dcba935575">AddNewFriendGroup</a> ()</td></tr>
+<tr class="memdesc:af0d6674e90511f4b32d405dcba935575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new friend group.  <br /></td></tr>
+<tr class="separator:af0d6674e90511f4b32d405dcba935575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4058bc8603dab54a5d9beb385e039245" id="r_a4058bc8603dab54a5d9beb385e039245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4058bc8603dab54a5d9beb385e039245">RemoveFriendGroup</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a> group)</td></tr>
+<tr class="memdesc:a4058bc8603dab54a5d9beb385e039245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the given friend group and remove the group ID from all persons belonging to this group.  <br /></td></tr>
+<tr class="separator:a4058bc8603dab54a5d9beb385e039245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae28cd1ce9f88b04a6ccb113944b30edf" id="r_ae28cd1ce9f88b04a6ccb113944b30edf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae28cd1ce9f88b04a6ccb113944b30edf">CreateFriendGroupViewModel</a> ()</td></tr>
+<tr class="memdesc:ae28cd1ce9f88b04a6ccb113944b30edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the friend group view model based on the persons' friend group IDs and friends.  <br /></td></tr>
+<tr class="separator:ae28cd1ce9f88b04a6ccb113944b30edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eec740b0c1b4564976e96b1effc13c2" id="r_a8eec740b0c1b4564976e96b1effc13c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eec740b0c1b4564976e96b1effc13c2">OnNavigatedTo</a> (object parameter)</td></tr>
+<tr class="memdesc:a8eec740b0c1b4564976e96b1effc13c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnNavigatedTo method to handle navigation to this object.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>Parameter that can be passed by the caller</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="separator:a8eec740b0c1b4564976e96b1effc13c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8bd27075e69f61442d94be13cbf1b30" id="r_ae8bd27075e69f61442d94be13cbf1b30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8bd27075e69f61442d94be13cbf1b30">OnNavigatedFrom</a> ()</td></tr>
+<tr class="memdesc:ae8bd27075e69f61442d94be13cbf1b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnNavigatedFrom method to handle navigation away from this object.  <br /></td></tr>
+<tr class="separator:ae8bd27075e69f61442d94be13cbf1b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a7e57a8cbd4d29726979ec3ad8f8906ce" id="r_a7e57a8cbd4d29726979ec3ad8f8906ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e57a8cbd4d29726979ec3ad8f8906ce">HasEmptyPersons</a><code> [get]</code></td></tr>
+<tr class="memdesc:a7e57a8cbd4d29726979ec3ad8f8906ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if there are persons with empty starts.  <br /></td></tr>
+<tr class="separator:a7e57a8cbd4d29726979ec3ad8f8906ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab615b9094acea34098912f50ad4e81f3" id="r_ab615b9094acea34098912f50ad4e81f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab615b9094acea34098912f50ad4e81f3">HasDuplicatePersons</a><code> [get]</code></td></tr>
+<tr class="memdesc:ab615b9094acea34098912f50ad4e81f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if there are duplicate persons.  <br /></td></tr>
+<tr class="separator:ab615b9094acea34098912f50ad4e81f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49f4c32a61f2fd0eab824f041d8f759e" id="r_a49f4c32a61f2fd0eab824f041d8f759e"><td class="memItemLeft" align="right" valign="top">ICollectionView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49f4c32a61f2fd0eab824f041d8f759e">PeopleCollectionView</a><code> [get, private set]</code></td></tr>
+<tr class="memdesc:a49f4c32a61f2fd0eab824f041d8f759e"><td class="mdescLeft">&#160;</td><td class="mdescRight">CollectionView used to display the list of people and filter.  <br /></td></tr>
+<tr class="separator:a49f4c32a61f2fd0eab824f041d8f759e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e79fb34f80fab7f70e1be854de5a343" id="r_a7e79fb34f80fab7f70e1be854de5a343"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e79fb34f80fab7f70e1be854de5a343">FilterText</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7e79fb34f80fab7f70e1be854de5a343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text used to filter the person list.  <br /></td></tr>
+<tr class="separator:a7e79fb34f80fab7f70e1be854de5a343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80130f3fc5ec1172287dde8f73baf3f8" id="r_a80130f3fc5ec1172287dde8f73baf3f8"><td class="memItemLeft" align="right" valign="top">Predicate&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80130f3fc5ec1172287dde8f73baf3f8">PersonFilterPredicate</a><code> [get]</code></td></tr>
+<tr class="memdesc:a80130f3fc5ec1172287dde8f73baf3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used when filtering the person list.  <br /></td></tr>
+<tr class="separator:a80130f3fc5ec1172287dde8f73baf3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aed5afac31d2a9637956b4117f6508b" id="r_a2aed5afac31d2a9637956b4117f6508b"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2aed5afac31d2a9637956b4117f6508b">ClearFilterCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2aed5afac31d2a9637956b4117f6508b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to clear the filter.  <br /></td></tr>
+<tr class="separator:a2aed5afac31d2a9637956b4117f6508b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ae2f915c34982f1baec360946700fd" id="r_aa1ae2f915c34982f1baec360946700fd"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1ae2f915c34982f1baec360946700fd">AddPersonCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa1ae2f915c34982f1baec360946700fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to add a new person.  <br /></td></tr>
+<tr class="separator:aa1ae2f915c34982f1baec360946700fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cccdbcb1e178bf0d33b932294eec4f8" id="r_a8cccdbcb1e178bf0d33b932294eec4f8"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cccdbcb1e178bf0d33b932294eec4f8">RemovePersonCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8cccdbcb1e178bf0d33b932294eec4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to remove a person from the list.  <br /></td></tr>
+<tr class="separator:a8cccdbcb1e178bf0d33b932294eec4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e158d182085361c9a2a57f25f2c2c6" id="r_a58e158d182085361c9a2a57f25f2c2c6"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58e158d182085361c9a2a57f25f2c2c6">PersonActiveInactiveCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:a58e158d182085361c9a2a57f25f2c2c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to set a person active or inactive.  <br /></td></tr>
+<tr class="separator:a58e158d182085361c9a2a57f25f2c2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab4f27eda212ea8b9fa2c23f548913933" id="r_ab4f27eda212ea8b9fa2c23f548913933"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4f27eda212ea8b9fa2c23f548913933">Friends_CollectionChanged</a> (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e, <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a> groupViewModel)</td></tr>
+<tr class="separator:ab4f27eda212ea8b9fa2c23f548913933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8bea12270e014315292f432d95b3cd" id="r_a3b8bea12270e014315292f432d95b3cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b8bea12270e014315292f432d95b3cd">Person_PropertyChanged</a> (object sender, PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a3b8bea12270e014315292f432d95b3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afa78e1036a3f92b376978284cd506702" id="r_afa78e1036a3f92b376978284cd506702"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa78e1036a3f92b376978284cd506702">_people</a></td></tr>
+<tr class="memdesc:afa78e1036a3f92b376978284cd506702"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of people shown on the person overview page.  <br /></td></tr>
+<tr class="separator:afa78e1036a3f92b376978284cd506702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c239e030b0352bf3c02313ab2ec9dc" id="r_a93c239e030b0352bf3c02313ab2ec9dc"><td class="memItemLeft" align="right" valign="top">ICollectionView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93c239e030b0352bf3c02313ab2ec9dc">_peopleCollectionView</a></td></tr>
+<tr class="separator:a93c239e030b0352bf3c02313ab2ec9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c9f368e335cf0f3dd81da66f1f8f18" id="r_ad1c9f368e335cf0f3dd81da66f1f8f18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1c9f368e335cf0f3dd81da66f1f8f18">_selectedPerson</a></td></tr>
+<tr class="memdesc:ad1c9f368e335cf0f3dd81da66f1f8f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently selected <a class="el" href="namespace_vereinsmeisterschaften_1_1_view_models.html#a05748cbdb8adf937cf6306c699c81304a40bed7cf9b3d4bb3a3d7a7e3eb18c5eb" title="Highlight all PersonStart objects that have the same Person object.">Person</a>  <br /></td></tr>
+<tr class="separator:ad1c9f368e335cf0f3dd81da66f1f8f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a871fd2dc6102485a78768b33b6b335" id="r_a8a871fd2dc6102485a78768b33b6b335"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a871fd2dc6102485a78768b33b6b335">_filterText</a> = &quot;&quot;</td></tr>
+<tr class="separator:a8a871fd2dc6102485a78768b33b6b335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001c9c68a641617be3a7e5f84e11ba1c" id="r_a001c9c68a641617be3a7e5f84e11ba1c"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a001c9c68a641617be3a7e5f84e11ba1c">_clearFilterCommand</a></td></tr>
+<tr class="separator:a001c9c68a641617be3a7e5f84e11ba1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b77d02d8bff1e6d6994a56658f0c98e" id="r_a5b77d02d8bff1e6d6994a56658f0c98e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b77d02d8bff1e6d6994a56658f0c98e">_personService</a></td></tr>
+<tr class="separator:a5b77d02d8bff1e6d6994a56658f0c98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0ab0a5d584a6deaf4d918eb28974ab" id="r_a0c0ab0a5d584a6deaf4d918eb28974ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c0ab0a5d584a6deaf4d918eb28974ab">_competitionService</a></td></tr>
+<tr class="separator:a0c0ab0a5d584a6deaf4d918eb28974ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a735fdccdacad478e9ddf75af80f06e5f" id="r_a735fdccdacad478e9ddf75af80f06e5f"><td class="memItemLeft" align="right" valign="top">IDialogCoordinator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a735fdccdacad478e9ddf75af80f06e5f">_dialogCoordinator</a></td></tr>
+<tr class="separator:a735fdccdacad478e9ddf75af80f06e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd4975fa876a200743d27bd21707712" id="r_a9fd4975fa876a200743d27bd21707712"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fd4975fa876a200743d27bd21707712">_shellVM</a></td></tr>
+<tr class="separator:a9fd4975fa876a200743d27bd21707712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86529f7cca32186d79c4aeab895a55b" id="r_af86529f7cca32186d79c4aeab895a55b"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af86529f7cca32186d79c4aeab895a55b">_addPersonCommand</a></td></tr>
+<tr class="separator:af86529f7cca32186d79c4aeab895a55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd66f1f2406f130f400331d35556511c" id="r_afd66f1f2406f130f400331d35556511c"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd66f1f2406f130f400331d35556511c">_removePersonCommand</a></td></tr>
+<tr class="separator:afd66f1f2406f130f400331d35556511c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada9b143ecde40ce155e0407a05b17076" id="r_ada9b143ecde40ce155e0407a05b17076"><td class="memItemLeft" align="right" valign="top">ICommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada9b143ecde40ce155e0407a05b17076">_personActiveInactiveCommand</a></td></tr>
+<tr class="separator:ada9b143ecde40ce155e0407a05b17076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb4f3eb437d3b8d440ffeddfa069cc9" id="r_afdb4f3eb437d3b8d440ffeddfa069cc9"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdb4f3eb437d3b8d440ffeddfa069cc9">_friendGroups</a> = new ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a>&gt;()</td></tr>
+<tr class="memdesc:afdb4f3eb437d3b8d440ffeddfa069cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all friend group view models.  <br /></td></tr>
+<tr class="separator:afdb4f3eb437d3b8d440ffeddfa069cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c82bdde97da1a4f060f6da2382af17c" id="r_a7c82bdde97da1a4f060f6da2382af17c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c82bdde97da1a4f060f6da2382af17c">_pauseFriendsCollectionChangedEvent</a> = false</td></tr>
+<tr class="separator:a7c82bdde97da1a4f060f6da2382af17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>ViewModel for the person overview page. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00018">18</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a38b78e78cddba9363c9510976fad1529" name="a38b78e78cddba9363c9510976fad1529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b78e78cddba9363c9510976fad1529">&#9670;&#160;</a></span>PeopleViewModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.ViewModels.PeopleViewModel.PeopleViewModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a></td>          <td class="paramname"><span class="paramname"><em>personService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a></td>          <td class="paramname"><span class="paramname"><em>competitionService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IDialogCoordinator</td>          <td class="paramname"><span class="paramname"><em>dialogCoordinator</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a></td>          <td class="paramname"><span class="paramname"><em>shellVM</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the people view model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">personService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html" title="Interface for a service used to get and store a list of Person objects.">IPersonService</a> object</td></tr>
+    <tr><td class="paramname">competitionService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> object</td></tr>
+    <tr><td class="paramname">dialogCoordinator</td><td>IDialogCoordinator object</td></tr>
+    <tr><td class="paramname">shellVM</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html" title="ViewModel for the main shell of the application.">ShellViewModel</a> object used for dialog display</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00116">116</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af0d6674e90511f4b32d405dcba935575" name="af0d6674e90511f4b32d405dcba935575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d6674e90511f4b32d405dcba935575">&#9670;&#160;</a></span>AddNewFriendGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.AddNewFriendGroup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new friend group. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00180">180</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae28cd1ce9f88b04a6ccb113944b30edf" name="ae28cd1ce9f88b04a6ccb113944b30edf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae28cd1ce9f88b04a6ccb113944b30edf">&#9670;&#160;</a></span>CreateFriendGroupViewModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.CreateFriendGroupViewModel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates the friend group view model based on the persons' friend group IDs and friends. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00215">215</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab4f27eda212ea8b9fa2c23f548913933" name="ab4f27eda212ea8b9fa2c23f548913933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f27eda212ea8b9fa2c23f548913933">&#9670;&#160;</a></span>Friends_CollectionChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.Friends_CollectionChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.Collections.Specialized.NotifyCollectionChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a></td>          <td class="paramname"><span class="paramname"><em>groupViewModel</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00244">244</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae8bd27075e69f61442d94be13cbf1b30" name="ae8bd27075e69f61442d94be13cbf1b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8bd27075e69f61442d94be13cbf1b30">&#9670;&#160;</a></span>OnNavigatedFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.OnNavigatedFrom </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OnNavigatedFrom method to handle navigation away from this object. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware.html#aeb500fca379a8701bd22ef1d101d086c">Vereinsmeisterschaften.Contracts.ViewModels.INavigationAware</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00305">305</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8eec740b0c1b4564976e96b1effc13c2" name="a8eec740b0c1b4564976e96b1effc13c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eec740b0c1b4564976e96b1effc13c2">&#9670;&#160;</a></span>OnNavigatedTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.OnNavigatedTo </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>parameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OnNavigatedTo method to handle navigation to this object.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>Parameter that can be passed by the caller</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_view_models_1_1_i_navigation_aware.html#a20731d26a319b3da8af6d774aea6441b">Vereinsmeisterschaften.Contracts.ViewModels.INavigationAware</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00284">284</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3b8bea12270e014315292f432d95b3cd" name="a3b8bea12270e014315292f432d95b3cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8bea12270e014315292f432d95b3cd">&#9670;&#160;</a></span>Person_PropertyChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.Person_PropertyChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00318">318</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4058bc8603dab54a5d9beb385e039245" name="a4058bc8603dab54a5d9beb385e039245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4058bc8603dab54a5d9beb385e039245">&#9670;&#160;</a></span>RemoveFriendGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.ViewModels.PeopleViewModel.RemoveFriendGroup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a></td>          <td class="paramname"><span class="paramname"><em>group</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the given friend group and remove the group ID from all persons belonging to this group. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">group</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html" title="ViewModel for a group of friends.">FriendGroupViewModel</a> to remove</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00199">199</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af86529f7cca32186d79c4aeab895a55b" name="af86529f7cca32186d79c4aeab895a55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af86529f7cca32186d79c4aeab895a55b">&#9670;&#160;</a></span>_addPersonCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel._addPersonCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00126">126</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a001c9c68a641617be3a7e5f84e11ba1c" name="a001c9c68a641617be3a7e5f84e11ba1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001c9c68a641617be3a7e5f84e11ba1c">&#9670;&#160;</a></span>_clearFilterCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel._clearFilterCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00093">93</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0c0ab0a5d584a6deaf4d918eb28974ab" name="a0c0ab0a5d584a6deaf4d918eb28974ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0ab0a5d584a6deaf4d918eb28974ab">&#9670;&#160;</a></span>_competitionService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a> Vereinsmeisterschaften.ViewModels.PeopleViewModel._competitionService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00105">105</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a735fdccdacad478e9ddf75af80f06e5f" name="a735fdccdacad478e9ddf75af80f06e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a735fdccdacad478e9ddf75af80f06e5f">&#9670;&#160;</a></span>_dialogCoordinator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDialogCoordinator Vereinsmeisterschaften.ViewModels.PeopleViewModel._dialogCoordinator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00106">106</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8a871fd2dc6102485a78768b33b6b335" name="a8a871fd2dc6102485a78768b33b6b335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a871fd2dc6102485a78768b33b6b335">&#9670;&#160;</a></span>_filterText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.ViewModels.PeopleViewModel._filterText = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00054">54</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="afdb4f3eb437d3b8d440ffeddfa069cc9" name="afdb4f3eb437d3b8d440ffeddfa069cc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdb4f3eb437d3b8d440ffeddfa069cc9">&#9670;&#160;</a></span>_friendGroups</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a>&gt; Vereinsmeisterschaften.ViewModels.PeopleViewModel._friendGroups = new ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_friend_group_view_model.html">FriendGroupViewModel</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all friend group view models. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00174">174</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7c82bdde97da1a4f060f6da2382af17c" name="a7c82bdde97da1a4f060f6da2382af17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c82bdde97da1a4f060f6da2382af17c">&#9670;&#160;</a></span>_pauseFriendsCollectionChangedEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.PeopleViewModel._pauseFriendsCollectionChangedEvent = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00243">243</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="afa78e1036a3f92b376978284cd506702" name="afa78e1036a3f92b376978284cd506702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa78e1036a3f92b376978284cd506702">&#9670;&#160;</a></span>_people</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a>&gt; Vereinsmeisterschaften.ViewModels.PeopleViewModel._people</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of people shown on the person overview page. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00024">24</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a93c239e030b0352bf3c02313ab2ec9dc" name="a93c239e030b0352bf3c02313ab2ec9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c239e030b0352bf3c02313ab2ec9dc">&#9670;&#160;</a></span>_peopleCollectionView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICollectionView Vereinsmeisterschaften.ViewModels.PeopleViewModel._peopleCollectionView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00036">36</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ada9b143ecde40ce155e0407a05b17076" name="ada9b143ecde40ce155e0407a05b17076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada9b143ecde40ce155e0407a05b17076">&#9670;&#160;</a></span>_personActiveInactiveCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel._personActiveInactiveCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00157">157</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5b77d02d8bff1e6d6994a56658f0c98e" name="a5b77d02d8bff1e6d6994a56658f0c98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b77d02d8bff1e6d6994a56658f0c98e">&#9670;&#160;</a></span>_personService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a> Vereinsmeisterschaften.ViewModels.PeopleViewModel._personService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00104">104</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="afd66f1f2406f130f400331d35556511c" name="afd66f1f2406f130f400331d35556511c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd66f1f2406f130f400331d35556511c">&#9670;&#160;</a></span>_removePersonCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel._removePersonCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00141">141</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad1c9f368e335cf0f3dd81da66f1f8f18" name="ad1c9f368e335cf0f3dd81da66f1f8f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c9f368e335cf0f3dd81da66f1f8f18">&#9670;&#160;</a></span>_selectedPerson</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> Vereinsmeisterschaften.ViewModels.PeopleViewModel._selectedPerson</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Currently selected <a class="el" href="namespace_vereinsmeisterschaften_1_1_view_models.html#a05748cbdb8adf937cf6306c699c81304a40bed7cf9b3d4bb3a3d7a7e3eb18c5eb" title="Highlight all PersonStart objects that have the same Person object.">Person</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00050">50</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9fd4975fa876a200743d27bd21707712" name="a9fd4975fa876a200743d27bd21707712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd4975fa876a200743d27bd21707712">&#9670;&#160;</a></span>_shellVM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_shell_view_model.html">ShellViewModel</a> Vereinsmeisterschaften.ViewModels.PeopleViewModel._shellVM</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00107">107</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="aa1ae2f915c34982f1baec360946700fd" name="aa1ae2f915c34982f1baec360946700fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1ae2f915c34982f1baec360946700fd">&#9670;&#160;</a></span>AddPersonCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel.AddPersonCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to add a new person. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00130">130</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2aed5afac31d2a9637956b4117f6508b" name="a2aed5afac31d2a9637956b4117f6508b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aed5afac31d2a9637956b4117f6508b">&#9670;&#160;</a></span>ClearFilterCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel.ClearFilterCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to clear the filter. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00097">97</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7e79fb34f80fab7f70e1be854de5a343" name="a7e79fb34f80fab7f70e1be854de5a343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e79fb34f80fab7f70e1be854de5a343">&#9670;&#160;</a></span>FilterText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.ViewModels.PeopleViewModel.FilterText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Text used to filter the person list. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00058">58</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab615b9094acea34098912f50ad4e81f3" name="ab615b9094acea34098912f50ad4e81f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab615b9094acea34098912f50ad4e81f3">&#9670;&#160;</a></span>HasDuplicatePersons</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.PeopleViewModel.HasDuplicatePersons</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if there are duplicate persons. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00034">34</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7e57a8cbd4d29726979ec3ad8f8906ce" name="a7e57a8cbd4d29726979ec3ad8f8906ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e57a8cbd4d29726979ec3ad8f8906ce">&#9670;&#160;</a></span>HasEmptyPersons</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.ViewModels.PeopleViewModel.HasEmptyPersons</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if there are persons with empty starts. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00029">29</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a49f4c32a61f2fd0eab824f041d8f759e" name="a49f4c32a61f2fd0eab824f041d8f759e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49f4c32a61f2fd0eab824f041d8f759e">&#9670;&#160;</a></span>PeopleCollectionView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICollectionView Vereinsmeisterschaften.ViewModels.PeopleViewModel.PeopleCollectionView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel private-set">private set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CollectionView used to display the list of people and filter. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00040">40</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a58e158d182085361c9a2a57f25f2c2c6" name="a58e158d182085361c9a2a57f25f2c2c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58e158d182085361c9a2a57f25f2c2c6">&#9670;&#160;</a></span>PersonActiveInactiveCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel.PersonActiveInactiveCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to set a person active or inactive. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00161">161</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a80130f3fc5ec1172287dde8f73baf3f8" name="a80130f3fc5ec1172287dde8f73baf3f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80130f3fc5ec1172287dde8f73baf3f8">&#9670;&#160;</a></span>PersonFilterPredicate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Predicate&lt;object&gt; Vereinsmeisterschaften.ViewModels.PeopleViewModel.PersonFilterPredicate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function used when filtering the person list. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00073">73</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8cccdbcb1e178bf0d33b932294eec4f8" name="a8cccdbcb1e178bf0d33b932294eec4f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cccdbcb1e178bf0d33b932294eec4f8">&#9670;&#160;</a></span>RemovePersonCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICommand Vereinsmeisterschaften.ViewModels.PeopleViewModel.RemovePersonCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to remove a person from the list. </p>
+
+<p class="definition">Definition at line <a class="el" href="_people_view_model_8cs_source.html#l00145">145</a> of file <a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/ViewModels/<a class="el" href="_people_view_model_8cs_source.html">PeopleViewModel.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_view_models.html">ViewModels</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_view_models_1_1_people_view_model.html">PeopleViewModel</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

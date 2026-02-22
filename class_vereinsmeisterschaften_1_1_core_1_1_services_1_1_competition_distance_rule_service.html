@@ -1,0 +1,975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#events">Events</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Service used to get and store a list of <a class="el" href="">objects. </a> 
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service.png" usemap="#Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService_map" name="Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService_map">
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html" title="Interface for a service used to get and store a list of CompetitionDistanceRule objects." alt="Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService" shape="rect" coords="488,56,966,80"/>
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html" title="Interface for saveable objects." alt="Vereinsmeisterschaften.Core.Contracts.Services.ISaveable" shape="rect" coords="732,0,1210,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a398b378674b95af0caa0147c05e2e060" id="r_a398b378674b95af0caa0147c05e2e060"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a398b378674b95af0caa0147c05e2e060">CompetitionDistanceRuleService</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> fileService)</td></tr>
+<tr class="memdesc:a398b378674b95af0caa0147c05e2e060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:a398b378674b95af0caa0147c05e2e060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d3987c3a615d12554d1bd9a42f855b4" id="r_a0d3987c3a615d12554d1bd9a42f855b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d3987c3a615d12554d1bd9a42f855b4">SetCompetitionServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a> competitionService)</td></tr>
+<tr class="memdesc:a0d3987c3a615d12554d1bd9a42f855b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> object.Dependency Injection in the constructor can't be used here because there would be a circular dependency.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">competitionService</td><td>Reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="separator:a0d3987c3a615d12554d1bd9a42f855b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4df052a2a78dd78b410dc9bf5f466c7" id="r_af4df052a2a78dd78b410dc9bf5f466c7"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4df052a2a78dd78b410dc9bf5f466c7">Load</a> (string path, CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:af4df052a2a78dd78b410dc9bf5f466c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a list of <a class="el" href="">to the </a>.  <br /></td></tr>
+<tr class="separator:af4df052a2a78dd78b410dc9bf5f466c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00457930c9fed902a3c0689082a4b6cc" id="r_a00457930c9fed902a3c0689082a4b6cc"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00457930c9fed902a3c0689082a4b6cc">Save</a> (CancellationToken cancellationToken, string path=&quot;&quot;)</td></tr>
+<tr class="memdesc:a00457930c9fed902a3c0689082a4b6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the list of Competitions to a file.  <br /></td></tr>
+<tr class="separator:a00457930c9fed902a3c0689082a4b6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a009c1c63601486ae487c5e6b051e6c38" id="r_a009c1c63601486ae487c5e6b051e6c38"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a009c1c63601486ae487c5e6b051e6c38">GetCompetitionDistanceRules</a> ()</td></tr>
+<tr class="memdesc:a009c1c63601486ae487c5e6b051e6c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all available <a class="el" href="">objects.</a><dl class="section return"><dt>Returns</dt><dd>List of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects</dd></dl>
+  <br /></td></tr>
+<tr class="separator:a009c1c63601486ae487c5e6b051e6c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69325cf9c5d6ac7bb7537af7e934ef64" id="r_a69325cf9c5d6ac7bb7537af7e934ef64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69325cf9c5d6ac7bb7537af7e934ef64">ClearAll</a> ()</td></tr>
+<tr class="memdesc:a69325cf9c5d6ac7bb7537af7e934ef64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all <a class="el" href="">CompetitionDistanceRule</a>  <br /></td></tr>
+<tr class="separator:a69325cf9c5d6ac7bb7537af7e934ef64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac4c52b3aed81b4b6b1a7b14e07f85a" id="r_acac4c52b3aed81b4b6b1a7b14e07f85a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acac4c52b3aed81b4b6b1a7b14e07f85a">ResetToLoadedState</a> ()</td></tr>
+<tr class="memdesc:acac4c52b3aed81b4b6b1a7b14e07f85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the list of <a class="el" href="">to the state when the </a> method was called.This will clear all <a class="el" href="">and add the </a> that were loaded at that time.  <br /></td></tr>
+<tr class="separator:acac4c52b3aed81b4b6b1a7b14e07f85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0163dedf4daf304282bb6d47ba7e6b67" id="r_a0163dedf4daf304282bb6d47ba7e6b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0163dedf4daf304282bb6d47ba7e6b67">AddDistanceRule</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> distanceRule)</td></tr>
+<tr class="memdesc:a0163dedf4daf304282bb6d47ba7e6b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to the CompetitionDistanceRules list.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distanceRule</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to add</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="separator:a0163dedf4daf304282bb6d47ba7e6b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0652e8ec1c8d1d17facb08d766694b" id="r_a6a0652e8ec1c8d1d17facb08d766694b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a0652e8ec1c8d1d17facb08d766694b">RemoveDistanceRule</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> distanceRule)</td></tr>
+<tr class="memdesc:a6a0652e8ec1c8d1d17facb08d766694b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the given <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> from the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html" title="Class describing a competition.">Competition</a> list.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distanceRule</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to remove</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="separator:a6a0652e8ec1c8d1d17facb08d766694b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc6ed8ccab6f721d8bcd9e35cf7cd9c2" id="r_adc6ed8ccab6f721d8bcd9e35cf7cd9c2"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc6ed8ccab6f721d8bcd9e35cf7cd9c2">GetCompetitionDistanceFromRules</a> (byte age, <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> swimmingStyle)</td></tr>
+<tr class="memdesc:adc6ed8ccab6f721d8bcd9e35cf7cd9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to find a matching rule for the requested age and swimming style.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">age</td><td>Age to find</td></tr>
+    <tr><td class="paramname">swimmingStyle</td><td><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> to find</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found distance or 0 if not found</dd></dl>
+  <br /></td></tr>
+<tr class="separator:adc6ed8ccab6f721d8bcd9e35cf7cd9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada16819b2f80cdf40898bbca20194a60" id="r_ada16819b2f80cdf40898bbca20194a60"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada16819b2f80cdf40898bbca20194a60">ValidateRules</a> ()</td></tr>
+<tr class="memdesc:ada16819b2f80cdf40898bbca20194a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if all rules are valid and return a list of found issues.<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html" title="Class describing one issue during the validation of the CompetitionDistanceRule">CompetitionDistanceRuleValidationIssue</a> list</dd></dl>
+  <br /></td></tr>
+<tr class="separator:ada16819b2f80cdf40898bbca20194a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a71ed1372d5b404d3e9e150a721d24f15" id="r_a71ed1372d5b404d3e9e150a721d24f15"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71ed1372d5b404d3e9e150a721d24f15">PersistentPath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a71ed1372d5b404d3e9e150a721d24f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the competition distance rule file.  <br /></td></tr>
+<tr class="separator:a71ed1372d5b404d3e9e150a721d24f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89d76500a46f91d1a1921ef862ed61ae" id="r_a89d76500a46f91d1a1921ef862ed61ae"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89d76500a46f91d1a1921ef862ed61ae">_competitionDistanceRules</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a89d76500a46f91d1a1921ef862ed61ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all <a class="el" href="">objects. </a> <br /></td></tr>
+<tr class="separator:a89d76500a46f91d1a1921ef862ed61ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15dffc7ff793626df3c7b8ffaaf3da0b" id="r_a15dffc7ff793626df3c7b8ffaaf3da0b"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15dffc7ff793626df3c7b8ffaaf3da0b">_competitionDistanceRulesOnLoad</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a15dffc7ff793626df3c7b8ffaaf3da0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all <a class="el" href="">objects at the time the </a> method was called.  <br /></td></tr>
+<tr class="separator:a15dffc7ff793626df3c7b8ffaaf3da0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98482bbe2d83a9fa88b077352e171200" id="r_a98482bbe2d83a9fa88b077352e171200"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98482bbe2d83a9fa88b077352e171200">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:a98482bbe2d83a9fa88b077352e171200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the list of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> has not saved changed.  <br /></td></tr>
+<tr class="separator:a98482bbe2d83a9fa88b077352e171200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="events" name="events"></a>
+Events</h2></td></tr>
+<tr class="memitem:ae0c0eba387f935b7c8c3603220311cc5" id="r_ae0c0eba387f935b7c8c3603220311cc5"><td class="memItemLeft" align="right" valign="top">ProgressDelegate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0c0eba387f935b7c8c3603220311cc5">OnFileProgress</a></td></tr>
+<tr class="memdesc:ae0c0eba387f935b7c8c3603220311cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="separator:ae0c0eba387f935b7c8c3603220311cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f79d140cbfd9feead7b8522e370c5b" id="r_ad5f79d140cbfd9feead7b8522e370c5b"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5f79d140cbfd9feead7b8522e370c5b">OnFileFinished</a></td></tr>
+<tr class="memdesc:ad5f79d140cbfd9feead7b8522e370c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+<tr class="separator:ad5f79d140cbfd9feead7b8522e370c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a6e9e23b29c45352af55ea7b381334c87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a6e9e23b29c45352af55ea7b381334c87">OnFileProgress</a></td></tr>
+<tr class="memdesc:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="separator:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a3260ed9a0f39704e0aa4b4958870c18d"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a3260ed9a0f39704e0aa4b4958870c18d">OnFileFinished</a></td></tr>
+<tr class="memdesc:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+<tr class="separator:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aa654dcfc168c2a5130bf7c4d4a2a1bd7" id="r_aa654dcfc168c2a5130bf7c4d4a2a1bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa654dcfc168c2a5130bf7c4d4a2a1bd7">DistanceRule_PropertyChanged</a> (object sender, PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:aa654dcfc168c2a5130bf7c4d4a2a1bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdcfbbe7c94271e0f5789d08b9c8f5f5" id="r_acdcfbbe7c94271e0f5789d08b9c8f5f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdcfbbe7c94271e0f5789d08b9c8f5f5">_competitionDistanceRules_CollectionChanged</a> (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)</td></tr>
+<tr class="separator:acdcfbbe7c94271e0f5789d08b9c8f5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8b59fe0da2a6c5dedcda36541b317a" id="r_a9a8b59fe0da2a6c5dedcda36541b317a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a8b59fe0da2a6c5dedcda36541b317a">validateAgeGaps</a> (<a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> style)</td></tr>
+<tr class="memdesc:a9a8b59fe0da2a6c5dedcda36541b317a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are gaps between the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> e.g.  <br /></td></tr>
+<tr class="separator:a9a8b59fe0da2a6c5dedcda36541b317a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7652600d757a6b876e1deb5d2b809638" id="r_a7652600d757a6b876e1deb5d2b809638"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7652600d757a6b876e1deb5d2b809638">validateOverlaps</a> (<a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> style)</td></tr>
+<tr class="memdesc:a7652600d757a6b876e1deb5d2b809638"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are overlaps between the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> e.g.  <br /></td></tr>
+<tr class="separator:a7652600d757a6b876e1deb5d2b809638"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1236a450ef1b2a6dac6812c0f0419a00" id="r_a1236a450ef1b2a6dac6812c0f0419a00"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1236a450ef1b2a6dac6812c0f0419a00">validateUnreachableRules</a> (<a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> style)</td></tr>
+<tr class="memdesc:a1236a450ef1b2a6dac6812c0f0419a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> that are never reached e.g.  <br /></td></tr>
+<tr class="separator:a1236a450ef1b2a6dac6812c0f0419a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4a47b96cb6efee85053a04e0436dfe68" id="r_a4a47b96cb6efee85053a04e0436dfe68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a47b96cb6efee85053a04e0436dfe68">_fileService</a></td></tr>
+<tr class="separator:a4a47b96cb6efee85053a04e0436dfe68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae60724c5eac1d1960bd862f3270d0c69" id="r_ae60724c5eac1d1960bd862f3270d0c69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae60724c5eac1d1960bd862f3270d0c69">_competitionService</a></td></tr>
+<tr class="separator:ae60724c5eac1d1960bd862f3270d0c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Service used to get and store a list of <a class="el" href="">objects. </a></p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00016">16</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a398b378674b95af0caa0147c05e2e060" name="a398b378674b95af0caa0147c05e2e060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398b378674b95af0caa0147c05e2e060">&#9670;&#160;</a></span>CompetitionDistanceRuleService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.CompetitionDistanceRuleService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a></td>          <td class="paramname"><span class="paramname"><em>fileService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00055">55</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acdcfbbe7c94271e0f5789d08b9c8f5f5" name="acdcfbbe7c94271e0f5789d08b9c8f5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdcfbbe7c94271e0f5789d08b9c8f5f5">&#9670;&#160;</a></span>_competitionDistanceRules_CollectionChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService._competitionDistanceRules_CollectionChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.Collections.Specialized.NotifyCollectionChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00249">249</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0163dedf4daf304282bb6d47ba7e6b67" name="a0163dedf4daf304282bb6d47ba7e6b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0163dedf4daf304282bb6d47ba7e6b67">&#9670;&#160;</a></span>AddDistanceRule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.AddDistanceRule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a></td>          <td class="paramname"><span class="paramname"><em>distanceRule</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to the CompetitionDistanceRules list.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distanceRule</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to add</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#aa1240a1be8c89cd5f3dc66ba8e246ce6">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00221">221</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a69325cf9c5d6ac7bb7537af7e934ef64" name="a69325cf9c5d6ac7bb7537af7e934ef64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69325cf9c5d6ac7bb7537af7e934ef64">&#9670;&#160;</a></span>ClearAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.ClearAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear all <a class="el" href="">CompetitionDistanceRule</a> </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#a268485c77e2dc1ddbfe57847d12b3649">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00191">191</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa654dcfc168c2a5130bf7c4d4a2a1bd7" name="aa654dcfc168c2a5130bf7c4d4a2a1bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa654dcfc168c2a5130bf7c4d4a2a1bd7">&#9670;&#160;</a></span>DistanceRule_PropertyChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.DistanceRule_PropertyChanged </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00243">243</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="adc6ed8ccab6f721d8bcd9e35cf7cd9c2" name="adc6ed8ccab6f721d8bcd9e35cf7cd9c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc6ed8ccab6f721d8bcd9e35cf7cd9c2">&#9670;&#160;</a></span>GetCompetitionDistanceFromRules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ushort Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.GetCompetitionDistanceFromRules </td>
+          <td>(</td>
+          <td class="paramtype">byte</td>          <td class="paramname"><span class="paramname"><em>age</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a></td>          <td class="paramname"><span class="paramname"><em>swimmingStyle</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Try to find a matching rule for the requested age and swimming style.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">age</td><td>Age to find</td></tr>
+    <tr><td class="paramname">swimmingStyle</td><td><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> to find</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found distance or 0 if not found</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#adf52ae0a729e548a6b4b932655eb5b12">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00256">256</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a009c1c63601486ae487c5e6b051e6c38" name="a009c1c63601486ae487c5e6b051e6c38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a009c1c63601486ae487c5e6b051e6c38">&#9670;&#160;</a></span>GetCompetitionDistanceRules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a> &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.GetCompetitionDistanceRules </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all available <a class="el" href="">objects.</a><dl class="section return"><dt>Returns</dt><dd>List of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#a94d198be44bcadb8fb14460ff02e308c">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+</div>
+</div>
+<a id="af4df052a2a78dd78b410dc9bf5f466c7" name="af4df052a2a78dd78b410dc9bf5f466c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4df052a2a78dd78b410dc9bf5f466c7">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.Load </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a list of <a class="el" href="">to the </a>. </p>
+<p>This is using a separate Task because the file possibly can be large. If the file doesn't exist, the <a class="el" href="#a89d76500a46f91d1a1921ef862ed61ae" title="List with all objects.">_competitionDistanceRules</a> is cleared and the functions returns loading success.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path from where to load</td></tr>
+    <tr><td class="paramname">cancellationToken</td><td>Cancellation token</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if importing succeeded; false if importing failed (e.g. canceled)</dd></dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00078">78</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6a0652e8ec1c8d1d17facb08d766694b" name="a6a0652e8ec1c8d1d17facb08d766694b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a0652e8ec1c8d1d17facb08d766694b">&#9670;&#160;</a></span>RemoveDistanceRule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.RemoveDistanceRule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a></td>          <td class="paramname"><span class="paramname"><em>distanceRule</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the given <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> from the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html" title="Class describing a competition.">Competition</a> list.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distanceRule</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> to remove</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#ade6583b6fd6e8a3116c40c9c81cbb8e5">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00235">235</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="acac4c52b3aed81b4b6b1a7b14e07f85a" name="acac4c52b3aed81b4b6b1a7b14e07f85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac4c52b3aed81b4b6b1a7b14e07f85a">&#9670;&#160;</a></span>ResetToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.ResetToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the list of <a class="el" href="">to the state when the </a> method was called.This will clear all <a class="el" href="">and add the </a> that were loaded at that time. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#ae91f5537062f69c4b4e809608ffaac4c">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00208">208</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a00457930c9fed902a3c0689082a4b6cc" name="a00457930c9fed902a3c0689082a4b6cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00457930c9fed902a3c0689082a4b6cc">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.Save </td>
+          <td>(</td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the list of Competitions to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cancellationToken</td><td>Cancellation token</td></tr>
+    <tr><td class="paramname">path</td><td>Path to which to save</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if saving succeeded; false if saving failed (e.g. canceled)</dd></dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a385b90d093b32995df0f4d519ad2e94d">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00134">134</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0d3987c3a615d12554d1bd9a42f855b4" name="a0d3987c3a615d12554d1bd9a42f855b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d3987c3a615d12554d1bd9a42f855b4">&#9670;&#160;</a></span>SetCompetitionServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.SetCompetitionServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a></td>          <td class="paramname"><span class="paramname"><em>competitionService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> object.Dependency Injection in the constructor can't be used here because there would be a circular dependency.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">competitionService</td><td>Reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#a09f580c69bad078a9699fce4e8a91c90">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00063">63</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9a8b59fe0da2a6c5dedcda36541b317a" name="a9a8b59fe0da2a6c5dedcda36541b317a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8b59fe0da2a6c5dedcda36541b317a">&#9670;&#160;</a></span>validateAgeGaps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.validateAgeGaps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a></td>          <td class="paramname"><span class="paramname"><em>style</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if there are gaps between the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> e.g. </p>
+<p>Rule 6-10, Rule 15-99 --&gt; Gap 11-14</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">style</td><td><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> to filter the rules</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html" title="Class describing one issue during the validation of the CompetitionDistanceRule">CompetitionDistanceRuleValidationIssue</a> list</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00302">302</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7652600d757a6b876e1deb5d2b809638" name="a7652600d757a6b876e1deb5d2b809638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7652600d757a6b876e1deb5d2b809638">&#9670;&#160;</a></span>validateOverlaps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.validateOverlaps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a></td>          <td class="paramname"><span class="paramname"><em>style</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if there are overlaps between the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> e.g. </p>
+<p>Rule 6-15, Rule 10-99 --&gt; Overlap 10-15</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">style</td><td><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> to filter the rules</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html" title="Class describing one issue during the validation of the CompetitionDistanceRule">CompetitionDistanceRuleValidationIssue</a> list</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00336">336</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ada16819b2f80cdf40898bbca20194a60" name="ada16819b2f80cdf40898bbca20194a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada16819b2f80cdf40898bbca20194a60">&#9670;&#160;</a></span>ValidateRules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.ValidateRules </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if all rules are valid and return a list of found issues.<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html" title="Class describing one issue during the validation of the CompetitionDistanceRule">CompetitionDistanceRuleValidationIssue</a> list</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#a3199126ec2bba0a235356d7590b53175">Vereinsmeisterschaften.Core.Contracts.Services.ICompetitionDistanceRuleService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00273">273</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1236a450ef1b2a6dac6812c0f0419a00" name="a1236a450ef1b2a6dac6812c0f0419a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1236a450ef1b2a6dac6812c0f0419a00">&#9670;&#160;</a></span>validateUnreachableRules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html">CompetitionDistanceRuleValidationIssue</a> &gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.validateUnreachableRules </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a></td>          <td class="paramname"><span class="paramname"><em>style</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if there are <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> objects for the requested <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> that are never reached e.g. </p>
+<p>Rule 6-99, Rule 10-20 --&gt; Rule 10-20 will never be reached because the first rule will always be taken</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">style</td><td><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> to filter the rules</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule_validation_issue.html" title="Class describing one issue during the validation of the CompetitionDistanceRule">CompetitionDistanceRuleValidationIssue</a> list</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00370">370</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae60724c5eac1d1960bd862f3270d0c69" name="ae60724c5eac1d1960bd862f3270d0c69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae60724c5eac1d1960bd862f3270d0c69">&#9670;&#160;</a></span>_competitionService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a> Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService._competitionService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00050">50</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4a47b96cb6efee85053a04e0436dfe68" name="a4a47b96cb6efee85053a04e0436dfe68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a47b96cb6efee85053a04e0436dfe68">&#9670;&#160;</a></span>_fileService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService._fileService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00049">49</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a89d76500a46f91d1a1921ef862ed61ae" name="a89d76500a46f91d1a1921ef862ed61ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89d76500a46f91d1a1921ef862ed61ae">&#9670;&#160;</a></span>_competitionDistanceRules</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a>&gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService._competitionDistanceRules</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all <a class="el" href="">objects. </a></p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00040">40</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a15dffc7ff793626df3c7b8ffaaf3da0b" name="a15dffc7ff793626df3c7b8ffaaf3da0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15dffc7ff793626df3c7b8ffaaf3da0b">&#9670;&#160;</a></span>_competitionDistanceRulesOnLoad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html">CompetitionDistanceRule</a>&gt; Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService._competitionDistanceRulesOnLoad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all <a class="el" href="">objects at the time the </a> method was called. </p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00045">45</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a98482bbe2d83a9fa88b077352e171200" name="a98482bbe2d83a9fa88b077352e171200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98482bbe2d83a9fa88b077352e171200">&#9670;&#160;</a></span>HasUnsavedChanges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.HasUnsavedChanges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the list of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition_distance_rule.html" title="Class describing a competition distance rule.">CompetitionDistanceRule</a> has not saved changed. </p>
+<p>True, if unsaved changes exist; otherwise false. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af3ee02ab96df1cae04892eaedce2d64d">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00183">183</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a71ed1372d5b404d3e9e150a721d24f15" name="a71ed1372d5b404d3e9e150a721d24f15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ed1372d5b404d3e9e150a721d24f15">&#9670;&#160;</a></span>PersistentPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.PersistentPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Path to the competition distance rule file. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#ae2f862deee5e9066a146f36a261ca424">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00033">33</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Event Documentation</h2>
+<a id="ad5f79d140cbfd9feead7b8522e370c5b" name="ad5f79d140cbfd9feead7b8522e370c5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f79d140cbfd9feead7b8522e370c5b">&#9670;&#160;</a></span>OnFileFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.OnFileFinished</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event that is raised when the file operation is finished. </p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00026">26</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae0c0eba387f935b7c8c3603220311cc5" name="ae0c0eba387f935b7c8c3603220311cc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c0eba387f935b7c8c3603220311cc5">&#9670;&#160;</a></span>OnFileProgress</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProgressDelegate Vereinsmeisterschaften.Core.Services.CompetitionDistanceRuleService.OnFileProgress</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event that is raised when the file operation progress changes. </p>
+
+<p class="definition">Definition at line <a class="el" href="_competition_distance_rule_service_8cs_source.html#l00021">21</a> of file <a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Services/<a class="el" href="_competition_distance_rule_service_8cs_source.html">CompetitionDistanceRuleService.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service.html">CompetitionDistanceRuleService</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

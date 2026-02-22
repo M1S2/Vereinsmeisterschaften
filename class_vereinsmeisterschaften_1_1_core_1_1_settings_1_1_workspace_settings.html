@@ -1,0 +1,1625 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Settings.WorkspaceSettings Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class holding all workspace settings.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Settings.WorkspaceSettings:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3aa6fa1420a66e0b2e62bc1cc2aa3136" id="r_a3aa6fa1420a66e0b2e62bc1cc2aa3136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3aa6fa1420a66e0b2e62bc1cc2aa3136">AddGroup</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a> group)</td></tr>
+<tr class="memdesc:a3aa6fa1420a66e0b2e62bc1cc2aa3136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a>  <br /></td></tr>
+<tr class="separator:a3aa6fa1420a66e0b2e62bc1cc2aa3136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf05a5c48a53f59b01699b725532439" id="r_a1cf05a5c48a53f59b01699b725532439"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cf05a5c48a53f59b01699b725532439">GetGroup</a> (string groupKey, bool createGroupIfNotExisting=false)</td></tr>
+<tr class="memdesc:a1cf05a5c48a53f59b01699b725532439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> with the requested key.  <br /></td></tr>
+<tr class="separator:a1cf05a5c48a53f59b01699b725532439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8144c0a5ffa6111f75ca352a353964" id="r_adb8144c0a5ffa6111f75ca352a353964"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html">IWorkspaceSetting</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb8144c0a5ffa6111f75ca352a353964">GetSetting</a> (string groupKey, string settingKey)</td></tr>
+<tr class="memdesc:adb8144c0a5ffa6111f75ca352a353964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> by the requested keys.  <br /></td></tr>
+<tr class="separator:adb8144c0a5ffa6111f75ca352a353964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaad43fb6e8c33498b0238567a8db0ea" id="r_aeaad43fb6e8c33498b0238567a8db0ea"><td class="memItemLeft" align="right" valign="top">WorkspaceSetting&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeaad43fb6e8c33498b0238567a8db0ea">GetSetting&lt; T &gt;</a> (string groupKey, string settingKey)</td></tr>
+<tr class="memdesc:aeaad43fb6e8c33498b0238567a8db0ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html" title="Implementation for a single workspace setting.">WorkspaceSetting&lt;T&gt;</a> by the requested keys.  <br /></td></tr>
+<tr class="separator:aeaad43fb6e8c33498b0238567a8db0ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a40fdf35a2d4c67e3d913e77212486" id="r_aa4a40fdf35a2d4c67e3d913e77212486"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a40fdf35a2d4c67e3d913e77212486">GetSettingValue&lt; T &gt;</a> (string groupKey, string settingKey)</td></tr>
+<tr class="memdesc:aa4a40fdf35a2d4c67e3d913e77212486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html#a5af82ffd2c16e39236e50ca3f0501c84" title="Value for the setting.">WorkspaceSetting&lt;T&gt;.Value</a> by the requested keys.  <br /></td></tr>
+<tr class="separator:aa4a40fdf35a2d4c67e3d913e77212486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbf6c0155b48e93c1f55b6725a81caeb" id="r_abbf6c0155b48e93c1f55b6725a81caeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbf6c0155b48e93c1f55b6725a81caeb">ResetAll</a> ()</td></tr>
+<tr class="memdesc:abbf6c0155b48e93c1f55b6725a81caeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> instances in all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances.  <br /></td></tr>
+<tr class="separator:abbf6c0155b48e93c1f55b6725a81caeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b1b2a1ff8a209a7993e4e1b74f09c2" id="r_af9b1b2a1ff8a209a7993e4e1b74f09c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9b1b2a1ff8a209a7993e4e1b74f09c2">CreateSnapshot</a> ()</td></tr>
+<tr class="memdesc:af9b1b2a1ff8a209a7993e4e1b74f09c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a snapshot of all <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> instances in all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances.  <br /></td></tr>
+<tr class="separator:af9b1b2a1ff8a209a7993e4e1b74f09c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab88fad19f578ebd5588ec06551b4d0c" id="r_aab88fad19f578ebd5588ec06551b4d0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab88fad19f578ebd5588ec06551b4d0c">WorkspaceSettings</a> ()</td></tr>
+<tr class="memdesc:aab88fad19f578ebd5588ec06551b4d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterless Constructor Initialize all settings.  <br /></td></tr>
+<tr class="separator:aab88fad19f578ebd5588ec06551b4d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e60cc32eee56900631bc55603e2e5c9" id="r_a4e60cc32eee56900631bc55603e2e5c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e60cc32eee56900631bc55603e2e5c9">WorkspaceSettings</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a> other)</td></tr>
+<tr class="memdesc:a4e60cc32eee56900631bc55603e2e5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Constructor.  <br /></td></tr>
+<tr class="separator:a4e60cc32eee56900631bc55603e2e5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17484d758e1568dc15ada5a70a170c7b" id="r_a17484d758e1568dc15ada5a70a170c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17484d758e1568dc15ada5a70a170c7b">Save</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> fileService, string filePath)</td></tr>
+<tr class="memdesc:a17484d758e1568dc15ada5a70a170c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save this instance to a file using the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a>.  <br /></td></tr>
+<tr class="separator:a17484d758e1568dc15ada5a70a170c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab437de79ac537e20838ed72e2f54e326" id="r_ab437de79ac537e20838ed72e2f54e326"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab437de79ac537e20838ed72e2f54e326">Load</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> fileService, string filePath)</td></tr>
+<tr class="memdesc:ab437de79ac537e20838ed72e2f54e326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the settings from a file using the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a> The <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_setting.html" title="Class describing the properties of the WorkspaceSetting&lt;T&gt; that should be saved to a file.">SerializableWorkspaceSetting</a> and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_settings_group.html" title="Class describing the properties of the WorkspaceSettingsGroup that should be saved to a file.">SerializableWorkspaceSettingsGroup</a> classes are used to describe the file structure.  <br /></td></tr>
+<tr class="separator:ab437de79ac537e20838ed72e2f54e326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf31d17207e29c786853f8a4729fb6a" id="r_a8bf31d17207e29c786853f8a4729fb6a"><td class="memItemLeft" align="right" valign="top"><a id="a8bf31d17207e29c786853f8a4729fb6a" name="a8bf31d17207e29c786853f8a4729fb6a"></a>
+override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (object obj)</td></tr>
+<tr class="separator:a8bf31d17207e29c786853f8a4729fb6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1fd2eac962e1c35112dc0e52e405430" id="r_ad1fd2eac962e1c35112dc0e52e405430"><td class="memItemLeft" align="right" valign="top"><a id="ad1fd2eac962e1c35112dc0e52e405430" name="ad1fd2eac962e1c35112dc0e52e405430"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a> other)</td></tr>
+<tr class="separator:ad1fd2eac962e1c35112dc0e52e405430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade58c60424cadb887e8634b9f7f06fd7" id="r_ade58c60424cadb887e8634b9f7f06fd7"><td class="memItemLeft" align="right" valign="top"><a id="ade58c60424cadb887e8634b9f7f06fd7" name="ade58c60424cadb887e8634b9f7f06fd7"></a>
+override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
+<tr class="separator:ade58c60424cadb887e8634b9f7f06fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a444bcebae4d0eb53b1688d65122f09a7" id="r_a444bcebae4d0eb53b1688d65122f09a7"><td class="memItemLeft" align="right" valign="top"><a id="a444bcebae4d0eb53b1688d65122f09a7" name="a444bcebae4d0eb53b1688d65122f09a7"></a>
+object&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> ()</td></tr>
+<tr class="separator:a444bcebae4d0eb53b1688d65122f09a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a0999b1045a0e528b490be357788b3c79" id="r_a0999b1045a0e528b490be357788b3c79"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0999b1045a0e528b490be357788b3c79">GROUP_GENERAL</a> = &quot;General&quot;</td></tr>
+<tr class="separator:a0999b1045a0e528b490be357788b3c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f60dfb64af03fa4bc08a495a57d446a" id="r_a8f60dfb64af03fa4bc08a495a57d446a"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f60dfb64af03fa4bc08a495a57d446a">SETTING_GENERAL_COMPETITIONYEAR</a> = &quot;CompetitionYear&quot;</td></tr>
+<tr class="separator:a8f60dfb64af03fa4bc08a495a57d446a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69b796511c8ed25ad27da56367d901ab" id="r_a69b796511c8ed25ad27da56367d901ab"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69b796511c8ed25ad27da56367d901ab">SETTING_GENERAL_COMPETITIONDATE</a> = &quot;CompetitionDate&quot;</td></tr>
+<tr class="separator:a69b796511c8ed25ad27da56367d901ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a5912f56ef6ca884de121df2d284161" id="r_a7a5912f56ef6ca884de121df2d284161"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a5912f56ef6ca884de121df2d284161">SETTING_GENERAL_COMPETITIONSEARCHMODE</a> = &quot;CompetitionSearchMode&quot;</td></tr>
+<tr class="separator:a7a5912f56ef6ca884de121df2d284161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7237968dadd6bfb283331662a958b0" id="r_a7c7237968dadd6bfb283331662a958b0"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c7237968dadd6bfb283331662a958b0">SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS</a> = &quot;TimeInputMillisecondDigits&quot;</td></tr>
+<tr class="separator:a7c7237968dadd6bfb283331662a958b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6018de740adca014dbed86187dc9db76" id="r_a6018de740adca014dbed86187dc9db76"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6018de740adca014dbed86187dc9db76">SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS</a> = &quot;ScoreFractionalDigits&quot;</td></tr>
+<tr class="separator:a6018de740adca014dbed86187dc9db76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f842c6a7fc04bb24b274234eaf8cf49" id="r_a7f842c6a7fc04bb24b274234eaf8cf49"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f842c6a7fc04bb24b274234eaf8cf49">GROUP_RACE_CALCULATION</a> = &quot;RaceCalculation&quot;</td></tr>
+<tr class="separator:a7f842c6a7fc04bb24b274234eaf8cf49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeab96a1da6a60a134b58c16c4745787" id="r_afeab96a1da6a60a134b58c16c4745787"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeab96a1da6a60a134b58c16c4745787">SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES</a> = &quot;NumberOfSwimLanes&quot;</td></tr>
+<tr class="separator:afeab96a1da6a60a134b58c16c4745787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48eea77a387fc4604e448a548d0fb6b2" id="r_a48eea77a387fc4604e448a548d0fb6b2"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48eea77a387fc4604e448a548d0fb6b2">SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION</a> = &quot;NumberRacesVariantsAfterCalculation&quot;</td></tr>
+<tr class="separator:a48eea77a387fc4604e448a548d0fb6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4396c11890d198de9f58c8b3bdd91995" id="r_a4396c11890d198de9f58c8b3bdd91995"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4396c11890d198de9f58c8b3bdd91995">SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS</a> = &quot;MaxRacesVariantCalculationLoops&quot;</td></tr>
+<tr class="separator:a4396c11890d198de9f58c8b3bdd91995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5ef90bc11a62f29dbd4f401693d805" id="r_adc5ef90bc11a62f29dbd4f401693d805"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5ef90bc11a62f29dbd4f401693d805">SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE</a> = &quot;MinRacesVariantsScore&quot;</td></tr>
+<tr class="separator:adc5ef90bc11a62f29dbd4f401693d805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591da3c861e7410929f1851d29e71918" id="r_a591da3c861e7410929f1851d29e71918"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a591da3c861e7410929f1851d29e71918">SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS</a> = &quot;WeightSingleStarts&quot;</td></tr>
+<tr class="separator:a591da3c861e7410929f1851d29e71918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500b80b58dd6fd10ff0e18e4b2844186" id="r_a500b80b58dd6fd10ff0e18e4b2844186"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a500b80b58dd6fd10ff0e18e4b2844186">SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE</a> = &quot;WeightSameStyleSequence&quot;</td></tr>
+<tr class="separator:a500b80b58dd6fd10ff0e18e4b2844186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2ae16593e030e0e43a9229ca9ab795" id="r_a0f2ae16593e030e0e43a9229ca9ab795"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f2ae16593e030e0e43a9229ca9ab795">SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES</a> = &quot;WeightPersonStartPauses&quot;</td></tr>
+<tr class="separator:a0f2ae16593e030e0e43a9229ca9ab795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69aec4b4d8d9863a9ad07dd9da6b1749" id="r_a69aec4b4d8d9863a9ad07dd9da6b1749"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69aec4b4d8d9863a9ad07dd9da6b1749">SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER</a> = &quot;WeightStyleOrder&quot;</td></tr>
+<tr class="separator:a69aec4b4d8d9863a9ad07dd9da6b1749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa273744293b2426750deaaf6795a0c" id="r_abaa273744293b2426750deaaf6795a0c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaa273744293b2426750deaaf6795a0c">SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS</a> = &quot;WeightStartGenders&quot;</td></tr>
+<tr class="separator:abaa273744293b2426750deaaf6795a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebb6e66b3a18353ada222e3e98c31f4" id="r_a8ebb6e66b3a18353ada222e3e98c31f4"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ebb6e66b3a18353ada222e3e98c31f4">SETTING_RACE_CALCULATION_WEIGHT_FRIENDSHIP</a> = &quot;WeightFriendship&quot;</td></tr>
+<tr class="separator:a8ebb6e66b3a18353ada222e3e98c31f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc72b51820cfce766de3a62f6a5eb708" id="r_afc72b51820cfce766de3a62f6a5eb708"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc72b51820cfce766de3a62f6a5eb708">SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD</a> = &quot;ShortPauseThreshold&quot;</td></tr>
+<tr class="separator:afc72b51820cfce766de3a62f6a5eb708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24919bef19b5f444ac85c495681b5fc" id="r_ac24919bef19b5f444ac85c495681b5fc"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac24919bef19b5f444ac85c495681b5fc">SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE</a> = &quot;PriorityStyleBreaststroke&quot;</td></tr>
+<tr class="separator:ac24919bef19b5f444ac85c495681b5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6255c7aee58455b10b6011d716e3dca" id="r_af6255c7aee58455b10b6011d716e3dca"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6255c7aee58455b10b6011d716e3dca">SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE</a> = &quot;PriorityStyleFreestyle&quot;</td></tr>
+<tr class="separator:af6255c7aee58455b10b6011d716e3dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770fde8c82ae7218d2223e1c7b442674" id="r_a770fde8c82ae7218d2223e1c7b442674"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a770fde8c82ae7218d2223e1c7b442674">SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE</a> = &quot;PriorityStyleBackstroke&quot;</td></tr>
+<tr class="separator:a770fde8c82ae7218d2223e1c7b442674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dbf2ae1be437cc528edff914c1bdb50" id="r_a2dbf2ae1be437cc528edff914c1bdb50"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dbf2ae1be437cc528edff914c1bdb50">SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY</a> = &quot;PriorityStyleButterfly&quot;</td></tr>
+<tr class="separator:a2dbf2ae1be437cc528edff914c1bdb50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e559a745eaa09f3414f9f6365928b1" id="r_a85e559a745eaa09f3414f9f6365928b1"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85e559a745eaa09f3414f9f6365928b1">SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY</a> = &quot;PriorityStyleMedley&quot;</td></tr>
+<tr class="separator:a85e559a745eaa09f3414f9f6365928b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cbaed1f0f5a57cbf0e20e22cdbdc721" id="r_a0cbaed1f0f5a57cbf0e20e22cdbdc721"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cbaed1f0f5a57cbf0e20e22cdbdc721">SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA</a> = &quot;PriorityStyleWaterflea&quot;</td></tr>
+<tr class="separator:a0cbaed1f0f5a57cbf0e20e22cdbdc721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a565be33ea7118f1c3422e6535c1f9c" id="r_a8a565be33ea7118f1c3422e6535c1f9c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a565be33ea7118f1c3422e6535c1f9c">GROUP_DOCUMENT_CREATION</a> = &quot;DocumentCreation&quot;</td></tr>
+<tr class="separator:a8a565be33ea7118f1c3422e6535c1f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d46ee877dffd090c3de9a9a6b8763ba" id="r_a3d46ee877dffd090c3de9a9a6b8763ba"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d46ee877dffd090c3de9a9a6b8763ba">SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER</a> = &quot;PlaceholderMarker&quot;</td></tr>
+<tr class="separator:a3d46ee877dffd090c3de9a9a6b8763ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cc897c4730feb1c82b60476a8de1f1" id="r_aa8cc897c4730feb1c82b60476a8de1f1"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8cc897c4730feb1c82b60476a8de1f1">SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX</a> = &quot;TemplateFilenamePostfix&quot;</td></tr>
+<tr class="separator:aa8cc897c4730feb1c82b60476a8de1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a729114b30e208347a74b8877af534fbe" id="r_a729114b30e208347a74b8877af534fbe"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a729114b30e208347a74b8877af534fbe">SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER</a> = &quot;DocumentOutputFolder&quot;</td></tr>
+<tr class="separator:a729114b30e208347a74b8877af534fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48f8fae8758de2fb6d35b4a75360b3f" id="r_ae48f8fae8758de2fb6d35b4a75360b3f"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae48f8fae8758de2fb6d35b4a75360b3f">SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH</a> = &quot;CertificateTemplatePath&quot;</td></tr>
+<tr class="separator:ae48f8fae8758de2fb6d35b4a75360b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173e339f1517f6a52d4c13d7e6f24216" id="r_a173e339f1517f6a52d4c13d7e6f24216"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a173e339f1517f6a52d4c13d7e6f24216">SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH</a> = &quot;OverviewlistTemplatePath&quot;</td></tr>
+<tr class="separator:a173e339f1517f6a52d4c13d7e6f24216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31ed672e2703f6f6bd85fbda80eeaf6d" id="r_a31ed672e2703f6f6bd85fbda80eeaf6d"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31ed672e2703f6f6bd85fbda80eeaf6d">SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH</a> = &quot;RaceStartListTemplatePath&quot;</td></tr>
+<tr class="separator:a31ed672e2703f6f6bd85fbda80eeaf6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f88507b566bd0274a7e21ed348150e7" id="r_a5f88507b566bd0274a7e21ed348150e7"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f88507b566bd0274a7e21ed348150e7">SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH</a> = &quot;TimeFormsTemplatePath&quot;</td></tr>
+<tr class="separator:a5f88507b566bd0274a7e21ed348150e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe7ac9f9fe745a06c3567a30f82fc75" id="r_a5fe7ac9f9fe745a06c3567a30f82fc75"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe7ac9f9fe745a06c3567a30f82fc75">SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH</a> = &quot;ResultListTemplatePath&quot;</td></tr>
+<tr class="separator:a5fe7ac9f9fe745a06c3567a30f82fc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9e4ebe1b00d81555d93d28cc7c2cfe2" id="r_ad9e4ebe1b00d81555d93d28cc7c2cfe2"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9e4ebe1b00d81555d93d28cc7c2cfe2">SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH</a> = &quot;ResultListDetailTemplatePath&quot;</td></tr>
+<tr class="separator:ad9e4ebe1b00d81555d93d28cc7c2cfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca0842b9b68513b69423a6978e0ac4f" id="r_a7ca0842b9b68513b69423a6978e0ac4f"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ca0842b9b68513b69423a6978e0ac4f">SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH</a> = &quot;AnalyticsTemplatePath&quot;</td></tr>
+<tr class="separator:a7ca0842b9b68513b69423a6978e0ac4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9071c9ae0a3ccf4b13ef493610d2c99" id="r_ab9071c9ae0a3ccf4b13ef493610d2c99"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9071c9ae0a3ccf4b13ef493610d2c99">SETTING_DOCUMENT_CREATION_FILE_TYPES</a> = &quot;DocumentFileTypes&quot;</td></tr>
+<tr class="separator:ab9071c9ae0a3ccf4b13ef493610d2c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189698606e5e17b6c861f8ee06b7bf37" id="r_a189698606e5e17b6c861f8ee06b7bf37"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a189698606e5e17b6c861f8ee06b7bf37">DEFAULT_TEMPLATE_FOLDER_NAME</a> = &quot;Templates&quot;</td></tr>
+<tr class="memdesc:a189698606e5e17b6c861f8ee06b7bf37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Folder name where the document templates are located per default (e.g.  <br /></td></tr>
+<tr class="separator:a189698606e5e17b6c861f8ee06b7bf37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ad098fc45339872ab462701bd95eeae79" id="r_ad098fc45339872ab462701bd95eeae79"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad098fc45339872ab462701bd95eeae79">Groups</a> = new List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:ad098fc45339872ab462701bd95eeae79"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances.  <br /></td></tr>
+<tr class="separator:ad098fc45339872ab462701bd95eeae79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada12d1f503a25d1feec0eabca959f177" id="r_ada12d1f503a25d1feec0eabca959f177"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada12d1f503a25d1feec0eabca959f177">HasChanged</a><code> [get]</code></td></tr>
+<tr class="memdesc:ada12d1f503a25d1feec0eabca959f177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicating if any of the <a class="el" href="#ad098fc45339872ab462701bd95eeae79" title="List with WorkspaceSettingsGroup instances.">Groups</a> has changed.  <br /></td></tr>
+<tr class="separator:ada12d1f503a25d1feec0eabca959f177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a84cfb59ddf9e80c8d7c6b606222539d4" id="r_a84cfb59ddf9e80c8d7c6b606222539d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84cfb59ddf9e80c8d7c6b606222539d4">initializeSettings</a> ()</td></tr>
+<tr class="memdesc:a84cfb59ddf9e80c8d7c6b606222539d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure that all necessary groups and settings are available and create them is not existing.  <br /></td></tr>
+<tr class="separator:a84cfb59ddf9e80c8d7c6b606222539d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class holding all workspace settings. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00010">10</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aab88fad19f578ebd5588ec06551b4d0c" name="aab88fad19f578ebd5588ec06551b4d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab88fad19f578ebd5588ec06551b4d0c">&#9670;&#160;</a></span>WorkspaceSettings() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.WorkspaceSettings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parameterless Constructor Initialize all settings. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00283">283</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4e60cc32eee56900631bc55603e2e5c9" name="a4e60cc32eee56900631bc55603e2e5c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e60cc32eee56900631bc55603e2e5c9">&#9670;&#160;</a></span>WorkspaceSettings() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.WorkspaceSettings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html" title="Class holding all workspace settings.">WorkspaceSettings</a> to copy</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00292">292</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3aa6fa1420a66e0b2e62bc1cc2aa3136" name="a3aa6fa1420a66e0b2e62bc1cc2aa3136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aa6fa1420a66e0b2e62bc1cc2aa3136">&#9670;&#160;</a></span>AddGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.AddGroup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a></td>          <td class="paramname"><span class="paramname"><em>group</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">group</td><td>Group to add</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>If a group with the same key already exists, this exception is thrown</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00147">147</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="af9b1b2a1ff8a209a7993e4e1b74f09c2" name="af9b1b2a1ff8a209a7993e4e1b74f09c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b1b2a1ff8a209a7993e4e1b74f09c2">&#9670;&#160;</a></span>CreateSnapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.CreateSnapshot </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a snapshot of all <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> instances in all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00262">262</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1cf05a5c48a53f59b01699b725532439" name="a1cf05a5c48a53f59b01699b725532439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf05a5c48a53f59b01699b725532439">&#9670;&#160;</a></span>GetGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a> Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GetGroup </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>groupKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>createGroupIfNotExisting</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> with the requested key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupKey</td><td>Key of the group to find</td></tr>
+    <tr><td class="paramname">createGroupIfNotExisting</td><td>If true, a new group with the key is created if it wasn't found; if false, no new group is created</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> or <code>null</code> if not found and create group parameter is false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00174">174</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="adb8144c0a5ffa6111f75ca352a353964" name="adb8144c0a5ffa6111f75ca352a353964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb8144c0a5ffa6111f75ca352a353964">&#9670;&#160;</a></span>GetSetting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html">IWorkspaceSetting</a> Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GetSetting </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>groupKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>settingKey</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> by the requested keys. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupKey</td><td>Key for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a></td></tr>
+    <tr><td class="paramname">settingKey</td><td>Key for the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00197">197</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="aeaad43fb6e8c33498b0238567a8db0ea" name="aeaad43fb6e8c33498b0238567a8db0ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaad43fb6e8c33498b0238567a8db0ea">&#9670;&#160;</a></span>GetSetting&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WorkspaceSetting&lt; T &gt; <a class="el" href="#adb8144c0a5ffa6111f75ca352a353964">Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GetSetting</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>groupKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>settingKey</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html" title="Implementation for a single workspace setting.">WorkspaceSetting&lt;T&gt;</a> by the requested keys. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the setting value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupKey</td><td>Key for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a></td></tr>
+    <tr><td class="paramname">settingKey</td><td>Key for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html" title="Implementation for a single workspace setting.">WorkspaceSetting&lt;T&gt;</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html" title="Implementation for a single workspace setting.">WorkspaceSetting&lt;T&gt;</a></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00215">215</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa4a40fdf35a2d4c67e3d913e77212486" name="aa4a40fdf35a2d4c67e3d913e77212486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a40fdf35a2d4c67e3d913e77212486">&#9670;&#160;</a></span>GetSettingValue&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GetSettingValue&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>groupKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>settingKey</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html#a5af82ffd2c16e39236e50ca3f0501c84" title="Value for the setting.">WorkspaceSetting&lt;T&gt;.Value</a> by the requested keys. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the setting value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupKey</td><td>Key for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a></td></tr>
+    <tr><td class="paramname">settingKey</td><td>Key for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html" title="Implementation for a single workspace setting.">WorkspaceSetting&lt;T&gt;</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_setting-1-g.html#a5af82ffd2c16e39236e50ca3f0501c84" title="Value for the setting.">WorkspaceSetting&lt;T&gt;.Value</a></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00233">233</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a84cfb59ddf9e80c8d7c6b606222539d4" name="a84cfb59ddf9e80c8d7c6b606222539d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84cfb59ddf9e80c8d7c6b606222539d4">&#9670;&#160;</a></span>initializeSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.initializeSettings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make sure that all necessary groups and settings are available and create them is not existing. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00069">69</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab437de79ac537e20838ed72e2f54e326" name="ab437de79ac537e20838ed72e2f54e326"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab437de79ac537e20838ed72e2f54e326">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.Load </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a></td>          <td class="paramname"><span class="paramname"><em>fileService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load the settings from a file using the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a> The <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_setting.html" title="Class describing the properties of the WorkspaceSetting&lt;T&gt; that should be saved to a file.">SerializableWorkspaceSetting</a> and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_settings_group.html" title="Class describing the properties of the WorkspaceSettingsGroup that should be saved to a file.">SerializableWorkspaceSettingsGroup</a> classes are used to describe the file structure. </p>
+<p>A snapshot is created after loading using the <a class="el" href="#af9b1b2a1ff8a209a7993e4e1b74f09c2" title="Create a snapshot of all IWorkspaceSetting instances in all WorkspaceSettingsGroup instances.">CreateSnapshot</a> method</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a> used to load the file</td></tr>
+    <tr><td class="paramname">filePath</td><td>Path from where the file should be loaded</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00345">345</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="abbf6c0155b48e93c1f55b6725a81caeb" name="abbf6c0155b48e93c1f55b6725a81caeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbf6c0155b48e93c1f55b6725a81caeb">&#9670;&#160;</a></span>ResetAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.ResetAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset all <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_i_workspace_setting.html" title="Interface for a single workspace setting.">IWorkspaceSetting</a> instances in all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00248">248</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a17484d758e1568dc15ada5a70a170c7b" name="a17484d758e1568dc15ada5a70a170c7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17484d758e1568dc15ada5a70a170c7b">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.Save </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a></td>          <td class="paramname"><span class="paramname"><em>fileService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save this instance to a file using the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a>. </p>
+<p>The <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_setting.html" title="Class describing the properties of the WorkspaceSetting&lt;T&gt; that should be saved to a file.">SerializableWorkspaceSetting</a> and <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_serializable_workspace_settings_group.html" title="Class describing the properties of the WorkspaceSettingsGroup that should be saved to a file.">SerializableWorkspaceSettingsGroup</a> classes are used to describe the file structure.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html" title="Interface for a service that handles file operations.">IFileService</a> used to save the file</td></tr>
+    <tr><td class="paramname">filePath</td><td>Path where the file should be saved</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00322">322</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a189698606e5e17b6c861f8ee06b7bf37" name="a189698606e5e17b6c861f8ee06b7bf37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a189698606e5e17b6c861f8ee06b7bf37">&#9670;&#160;</a></span>DEFAULT_TEMPLATE_FOLDER_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.DEFAULT_TEMPLATE_FOLDER_NAME = &quot;Templates&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Folder name where the document templates are located per default (e.g. </p>
+<p>"Templates"). </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00064">64</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8a565be33ea7118f1c3422e6535c1f9c" name="a8a565be33ea7118f1c3422e6535c1f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a565be33ea7118f1c3422e6535c1f9c">&#9670;&#160;</a></span>GROUP_DOCUMENT_CREATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GROUP_DOCUMENT_CREATION = &quot;DocumentCreation&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00040">40</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0999b1045a0e528b490be357788b3c79" name="a0999b1045a0e528b490be357788b3c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0999b1045a0e528b490be357788b3c79">&#9670;&#160;</a></span>GROUP_GENERAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GROUP_GENERAL = &quot;General&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00014">14</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7f842c6a7fc04bb24b274234eaf8cf49" name="a7f842c6a7fc04bb24b274234eaf8cf49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f842c6a7fc04bb24b274234eaf8cf49">&#9670;&#160;</a></span>GROUP_RACE_CALCULATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.GROUP_RACE_CALCULATION = &quot;RaceCalculation&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00021">21</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7ca0842b9b68513b69423a6978e0ac4f" name="a7ca0842b9b68513b69423a6978e0ac4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca0842b9b68513b69423a6978e0ac4f">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_ANALYTICS_TEMPLATE_PATH = &quot;AnalyticsTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00050">50</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae48f8fae8758de2fb6d35b4a75360b3f" name="ae48f8fae8758de2fb6d35b4a75360b3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae48f8fae8758de2fb6d35b4a75360b3f">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_CERTIFICATE_TEMPLATE_PATH = &quot;CertificateTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00044">44</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab9071c9ae0a3ccf4b13ef493610d2c99" name="ab9071c9ae0a3ccf4b13ef493610d2c99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9071c9ae0a3ccf4b13ef493610d2c99">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_FILE_TYPES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_FILE_TYPES = &quot;DocumentFileTypes&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00051">51</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a729114b30e208347a74b8877af534fbe" name="a729114b30e208347a74b8877af534fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a729114b30e208347a74b8877af534fbe">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_OUTPUT_FOLDER = &quot;DocumentOutputFolder&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00043">43</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a173e339f1517f6a52d4c13d7e6f24216" name="a173e339f1517f6a52d4c13d7e6f24216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173e339f1517f6a52d4c13d7e6f24216">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_OVERVIEW_LIST_TEMPLATE_PATH = &quot;OverviewlistTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00045">45</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3d46ee877dffd090c3de9a9a6b8763ba" name="a3d46ee877dffd090c3de9a9a6b8763ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d46ee877dffd090c3de9a9a6b8763ba">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_PLACEHOLDER_MARKER = &quot;PlaceholderMarker&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00041">41</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a31ed672e2703f6f6bd85fbda80eeaf6d" name="a31ed672e2703f6f6bd85fbda80eeaf6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ed672e2703f6f6bd85fbda80eeaf6d">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_RACE_START_LIST_TEMPLATE_PATH = &quot;RaceStartListTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00046">46</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad9e4ebe1b00d81555d93d28cc7c2cfe2" name="ad9e4ebe1b00d81555d93d28cc7c2cfe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9e4ebe1b00d81555d93d28cc7c2cfe2">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_DETAIL_TEMPLATE_PATH = &quot;ResultListDetailTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00049">49</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5fe7ac9f9fe745a06c3567a30f82fc75" name="a5fe7ac9f9fe745a06c3567a30f82fc75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe7ac9f9fe745a06c3567a30f82fc75">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_RESULT_LIST_TEMPLATE_PATH = &quot;ResultListTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00048">48</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa8cc897c4730feb1c82b60476a8de1f1" name="aa8cc897c4730feb1c82b60476a8de1f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cc897c4730feb1c82b60476a8de1f1">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_TEMPLATE_FILENAME_POSTFIX = &quot;TemplateFilenamePostfix&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00042">42</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5f88507b566bd0274a7e21ed348150e7" name="a5f88507b566bd0274a7e21ed348150e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f88507b566bd0274a7e21ed348150e7">&#9670;&#160;</a></span>SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_DOCUMENT_CREATION_TIME_FORMS_TEMPLATE_PATH = &quot;TimeFormsTemplatePath&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00047">47</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a69b796511c8ed25ad27da56367d901ab" name="a69b796511c8ed25ad27da56367d901ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69b796511c8ed25ad27da56367d901ab">&#9670;&#160;</a></span>SETTING_GENERAL_COMPETITIONDATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_GENERAL_COMPETITIONDATE = &quot;CompetitionDate&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00016">16</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7a5912f56ef6ca884de121df2d284161" name="a7a5912f56ef6ca884de121df2d284161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a5912f56ef6ca884de121df2d284161">&#9670;&#160;</a></span>SETTING_GENERAL_COMPETITIONSEARCHMODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_GENERAL_COMPETITIONSEARCHMODE = &quot;CompetitionSearchMode&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00017">17</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8f60dfb64af03fa4bc08a495a57d446a" name="a8f60dfb64af03fa4bc08a495a57d446a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f60dfb64af03fa4bc08a495a57d446a">&#9670;&#160;</a></span>SETTING_GENERAL_COMPETITIONYEAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_GENERAL_COMPETITIONYEAR = &quot;CompetitionYear&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00015">15</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6018de740adca014dbed86187dc9db76" name="a6018de740adca014dbed86187dc9db76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6018de740adca014dbed86187dc9db76">&#9670;&#160;</a></span>SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_GENERAL_SCORE_FRACTIONAL_DIGITS = &quot;ScoreFractionalDigits&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00019">19</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7c7237968dadd6bfb283331662a958b0" name="a7c7237968dadd6bfb283331662a958b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7237968dadd6bfb283331662a958b0">&#9670;&#160;</a></span>SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_GENERAL_TIMEINPUT_NUMBER_MILLISECOND_DIGITS = &quot;TimeInputMillisecondDigits&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00018">18</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4396c11890d198de9f58c8b3bdd91995" name="a4396c11890d198de9f58c8b3bdd91995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4396c11890d198de9f58c8b3bdd91995">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS = &quot;MaxRacesVariantCalculationLoops&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00024">24</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="adc5ef90bc11a62f29dbd4f401693d805" name="adc5ef90bc11a62f29dbd4f401693d805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5ef90bc11a62f29dbd4f401693d805">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE = &quot;MinRacesVariantsScore&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00025">25</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a48eea77a387fc4604e448a548d0fb6b2" name="a48eea77a387fc4604e448a548d0fb6b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48eea77a387fc4604e448a548d0fb6b2">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION = &quot;NumberRacesVariantsAfterCalculation&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00023">23</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="afeab96a1da6a60a134b58c16c4745787" name="afeab96a1da6a60a134b58c16c4745787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeab96a1da6a60a134b58c16c4745787">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_NUMBER_OF_SWIM_LANES = &quot;NumberOfSwimLanes&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00022">22</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a770fde8c82ae7218d2223e1c7b442674" name="a770fde8c82ae7218d2223e1c7b442674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770fde8c82ae7218d2223e1c7b442674">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BACKSTROKE = &quot;PriorityStyleBackstroke&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00035">35</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac24919bef19b5f444ac85c495681b5fc" name="ac24919bef19b5f444ac85c495681b5fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24919bef19b5f444ac85c495681b5fc">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BREASTSTROKE = &quot;PriorityStyleBreaststroke&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00033">33</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2dbf2ae1be437cc528edff914c1bdb50" name="a2dbf2ae1be437cc528edff914c1bdb50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dbf2ae1be437cc528edff914c1bdb50">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_BUTTERFLY = &quot;PriorityStyleButterfly&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00036">36</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="af6255c7aee58455b10b6011d716e3dca" name="af6255c7aee58455b10b6011d716e3dca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6255c7aee58455b10b6011d716e3dca">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_FREESTYLE = &quot;PriorityStyleFreestyle&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00034">34</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a85e559a745eaa09f3414f9f6365928b1" name="a85e559a745eaa09f3414f9f6365928b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e559a745eaa09f3414f9f6365928b1">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_MEDLEY = &quot;PriorityStyleMedley&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00037">37</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0cbaed1f0f5a57cbf0e20e22cdbdc721" name="a0cbaed1f0f5a57cbf0e20e22cdbdc721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cbaed1f0f5a57cbf0e20e22cdbdc721">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_PRIORITY_STYLE_WATERFLEA = &quot;PriorityStyleWaterflea&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00038">38</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="afc72b51820cfce766de3a62f6a5eb708" name="afc72b51820cfce766de3a62f6a5eb708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc72b51820cfce766de3a62f6a5eb708">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_SHORT_PAUSE_THRESHOLD = &quot;ShortPauseThreshold&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00032">32</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8ebb6e66b3a18353ada222e3e98c31f4" name="a8ebb6e66b3a18353ada222e3e98c31f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebb6e66b3a18353ada222e3e98c31f4">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_FRIENDSHIP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_FRIENDSHIP = &quot;WeightFriendship&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00031">31</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0f2ae16593e030e0e43a9229ca9ab795" name="a0f2ae16593e030e0e43a9229ca9ab795"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2ae16593e030e0e43a9229ca9ab795">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_PERSON_START_PAUSES = &quot;WeightPersonStartPauses&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00028">28</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a500b80b58dd6fd10ff0e18e4b2844186" name="a500b80b58dd6fd10ff0e18e4b2844186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500b80b58dd6fd10ff0e18e4b2844186">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SAME_STYLE_SEQUENCE = &quot;WeightSameStyleSequence&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00027">27</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a591da3c861e7410929f1851d29e71918" name="a591da3c861e7410929f1851d29e71918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591da3c861e7410929f1851d29e71918">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_SINGLE_STARTS = &quot;WeightSingleStarts&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00026">26</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="abaa273744293b2426750deaaf6795a0c" name="abaa273744293b2426750deaaf6795a0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa273744293b2426750deaaf6795a0c">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_START_GENDERS = &quot;WeightStartGenders&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00030">30</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="a69aec4b4d8d9863a9ad07dd9da6b1749" name="a69aec4b4d8d9863a9ad07dd9da6b1749"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69aec4b4d8d9863a9ad07dd9da6b1749">&#9670;&#160;</a></span>SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.SETTING_RACE_CALCULATION_WEIGHT_STYLE_ORDER = &quot;WeightStyleOrder&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00029">29</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="ad098fc45339872ab462701bd95eeae79" name="ad098fc45339872ab462701bd95eeae79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad098fc45339872ab462701bd95eeae79">&#9670;&#160;</a></span>Groups</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a>&gt; Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.Groups = new List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html">WorkspaceSettingsGroup</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings_group.html" title="A group of WorkspaceSetting&lt;T&gt; objects.">WorkspaceSettingsGroup</a> instances. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00129">129</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<a id="ada12d1f503a25d1feec0eabca959f177" name="ada12d1f503a25d1feec0eabca959f177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada12d1f503a25d1feec0eabca959f177">&#9670;&#160;</a></span>HasChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Settings.WorkspaceSettings.HasChanged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicating if any of the <a class="el" href="#ad098fc45339872ab462701bd95eeae79" title="List with WorkspaceSettingsGroup instances.">Groups</a> has changed. </p>
+
+<p class="definition">Definition at line <a class="el" href="_workspace_settings_8cs_source.html#l00134">134</a> of file <a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Settings/<a class="el" href="_workspace_settings_8cs_source.html">WorkspaceSettings.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

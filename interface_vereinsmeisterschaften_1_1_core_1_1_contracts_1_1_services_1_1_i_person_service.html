@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Contracts.Services.IPersonService Interface Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Contracts.Services.IPersonService Interface Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface for a service used to get and store a list of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Contracts.Services.IPersonService:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.png" usemap="#Vereinsmeisterschaften.Core.Contracts.Services.IPersonService_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Core.Contracts.Services.IPersonService_map" name="Vereinsmeisterschaften.Core.Contracts.Services.IPersonService_map">
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html" title="Interface for saveable objects." alt="Vereinsmeisterschaften.Core.Contracts.Services.ISaveable" shape="rect" coords="389,0,768,24"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html" title="Service used to get and store a list of Person objects." alt="Vereinsmeisterschaften.Core.Services.PersonService" shape="rect" coords="194,112,573,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a637845787ad82815548b1513d6bdeabc" id="r_a637845787ad82815548b1513d6bdeabc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a637845787ad82815548b1513d6bdeabc">SetScoreServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a> scoreService)</td></tr>
+<tr class="memdesc:a637845787ad82815548b1513d6bdeabc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html" title="Interface for a service used to calculate the scores for all persons.">IScoreService</a> object.  <br /></td></tr>
+<tr class="separator:a637845787ad82815548b1513d6bdeabc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d6aa34f7b2cd5bb769995a5eacac22" id="r_a40d6aa34f7b2cd5bb769995a5eacac22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40d6aa34f7b2cd5bb769995a5eacac22">SetCompetitionServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a> competitionService)</td></tr>
+<tr class="memdesc:a40d6aa34f7b2cd5bb769995a5eacac22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> object.  <br /></td></tr>
+<tr class="separator:a40d6aa34f7b2cd5bb769995a5eacac22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a71897003e57e4268c03147b04128b8" id="r_a3a71897003e57e4268c03147b04128b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a71897003e57e4268c03147b04128b8">SetRaceServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html">IRaceService</a> raceService)</td></tr>
+<tr class="memdesc:a3a71897003e57e4268c03147b04128b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html" title="Interface for a service used to manage Race and RacesVariant objects.">IRaceService</a> object.  <br /></td></tr>
+<tr class="separator:a3a71897003e57e4268c03147b04128b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4ff3ac7d8ab24a40b6d9ac7eddf733" id="r_a3b4ff3ac7d8ab24a40b6d9ac7eddf733"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b4ff3ac7d8ab24a40b6d9ac7eddf733">GetPersons</a> ()</td></tr>
+<tr class="memdesc:a3b4ff3ac7d8ab24a40b6d9ac7eddf733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all available Persons.  <br /></td></tr>
+<tr class="separator:a3b4ff3ac7d8ab24a40b6d9ac7eddf733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5ee43970764911f9ed14876e1ba525" id="r_a0f5ee43970764911f9ed14876e1ba525"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f5ee43970764911f9ed14876e1ba525">ClearAll</a> ()</td></tr>
+<tr class="memdesc:a0f5ee43970764911f9ed14876e1ba525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all Persons.  <br /></td></tr>
+<tr class="separator:a0f5ee43970764911f9ed14876e1ba525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa83157a68bd2a58fd7c373ddf6959ba2" id="r_aa83157a68bd2a58fd7c373ddf6959ba2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa83157a68bd2a58fd7c373ddf6959ba2">ResetToLoadedState</a> ()</td></tr>
+<tr class="memdesc:aa83157a68bd2a58fd7c373ddf6959ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the list of Persons to the state when the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a" title="Load from the given file This is using a separate Task because the file possibly can be large.">Load(string, CancellationToken)</a> method was called.  <br /></td></tr>
+<tr class="separator:aa83157a68bd2a58fd7c373ddf6959ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f05cedb8911d12642707ba722afb83" id="r_a00f05cedb8911d12642707ba722afb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00f05cedb8911d12642707ba722afb83">AddPerson</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> person)</td></tr>
+<tr class="memdesc:a00f05cedb8911d12642707ba722afb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> to the list of Persons.  <br /></td></tr>
+<tr class="separator:a00f05cedb8911d12642707ba722afb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df8a6985f8fb4156f8bd0e2208747ae" id="r_a2df8a6985f8fb4156f8bd0e2208747ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df8a6985f8fb4156f8bd0e2208747ae">RemovePerson</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> person)</td></tr>
+<tr class="memdesc:a2df8a6985f8fb4156f8bd0e2208747ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the given <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> from the list of Persons.  <br /></td></tr>
+<tr class="separator:a2df8a6985f8fb4156f8bd0e2208747ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad440551175d520aa24825f8b49650542" id="r_ad440551175d520aa24825f8b49650542"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad440551175d520aa24825f8b49650542">UpdateHasDuplicatesForPersons</a> ()</td></tr>
+<tr class="memdesc:ad440551175d520aa24825f8b49650542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all duplicate <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects and update the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a9a17eb65b06fee38eb7029365b9182d4" title="This flag indicates if there are duplicates of this in the person list.">Person.HasDuplicates</a> flags.  <br /></td></tr>
+<tr class="separator:ad440551175d520aa24825f8b49650542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a4bab8e794e538672020f757bfccae" id="r_a25a4bab8e794e538672020f757bfccae"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a4bab8e794e538672020f757bfccae">GetAllPersonStarts</a> (<a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a> filter=PersonStartFilters.None, object filterParameter=null, bool onlyValidStarts=false)</td></tr>
+<tr class="memdesc:a25a4bab8e794e538672020f757bfccae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> objects for all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects that are not <code>null</code>.  <br /></td></tr>
+<tr class="separator:a25a4bab8e794e538672020f757bfccae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e5acfe8fab606b57e0d448d3cc09c7" id="r_a39e5acfe8fab606b57e0d448d3cc09c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39e5acfe8fab606b57e0d448d3cc09c7">UpdateAllFriendReferencesFromFriendGroupIDs</a> ()</td></tr>
+<tr class="memdesc:a39e5acfe8fab606b57e0d448d3cc09c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects and update their friend references (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a89375d8c0e9860e5afdd59b950595ac8" title="Friends of the person.">Person.Friends</a>) from the friend group IDs (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a40017ad42b13b6e6d40bab83aa09a3f9" title="IDs of the friend groups the person belongs to.">Person.FriendGroupIDs</a>).  <br /></td></tr>
+<tr class="separator:a39e5acfe8fab606b57e0d448d3cc09c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_af08cd91796d9094e489461b49e459b4a"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a">Load</a> (string path, CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from the given file This is using a separate Task because the file possibly can be large.  <br /></td></tr>
+<tr class="separator:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a385b90d093b32995df0f4d519ad2e94d"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a385b90d093b32995df0f4d519ad2e94d">Save</a> (CancellationToken cancellationToken, string path=&quot;&quot;)</td></tr>
+<tr class="memdesc:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to a file.  <br /></td></tr>
+<tr class="separator:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a452473f3ba22e91b13a00e31902c4fad" id="r_a452473f3ba22e91b13a00e31902c4fad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a452473f3ba22e91b13a00e31902c4fad">PersonCount</a><code> [get]</code></td></tr>
+<tr class="memdesc:a452473f3ba22e91b13a00e31902c4fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a>  <br /></td></tr>
+<tr class="separator:a452473f3ba22e91b13a00e31902c4fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae88c5361c2ab0ed262492343cfff89b" id="r_aae88c5361c2ab0ed262492343cfff89b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae88c5361c2ab0ed262492343cfff89b">PersonStarts</a><code> [get]</code></td></tr>
+<tr class="memdesc:aae88c5361c2ab0ed262492343cfff89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the total number of starts of all persons.  <br /></td></tr>
+<tr class="separator:aae88c5361c2ab0ed262492343cfff89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cd8d689926de71a65498e0f28160f7" id="r_aa8cd8d689926de71a65498e0f28160f7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8cd8d689926de71a65498e0f28160f7">NumberFriendGroups</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa8cd8d689926de71a65498e0f28160f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of friend groups.  <br /></td></tr>
+<tr class="separator:aa8cd8d689926de71a65498e0f28160f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_ae2f862deee5e9066a146f36a261ca424"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#ae2f862deee5e9066a146f36a261ca424">PersistentPath</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the used file.  <br /></td></tr>
+<tr class="separator:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_af3ee02ab96df1cae04892eaedce2d64d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af3ee02ab96df1cae04892eaedce2d64d">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are unsave changes.  <br /></td></tr>
+<tr class="separator:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a6e9e23b29c45352af55ea7b381334c87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a6e9e23b29c45352af55ea7b381334c87">OnFileProgress</a></td></tr>
+<tr class="memdesc:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="separator:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a3260ed9a0f39704e0aa4b4958870c18d"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a3260ed9a0f39704e0aa4b4958870c18d">OnFileFinished</a></td></tr>
+<tr class="memdesc:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+<tr class="separator:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for a service used to get and store a list of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_person_service_8cs_source.html#l00010">10</a> of file <a class="el" href="_i_person_service_8cs_source.html">IPersonService.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a00f05cedb8911d12642707ba722afb83" name="a00f05cedb8911d12642707ba722afb83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00f05cedb8911d12642707ba722afb83">&#9670;&#160;</a></span>AddPerson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.AddPerson </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a></td>          <td class="paramname"><span class="paramname"><em>person</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> to the list of Persons. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">person</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> to add</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab9dab3950fb28b0d950b63ac672e1a95">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a0f5ee43970764911f9ed14876e1ba525" name="a0f5ee43970764911f9ed14876e1ba525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f5ee43970764911f9ed14876e1ba525">&#9670;&#160;</a></span>ClearAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.ClearAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear all Persons. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab5a5212d6fafa4d7a82590fee95263e2">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a25a4bab8e794e538672020f757bfccae" name="a25a4bab8e794e538672020f757bfccae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a4bab8e794e538672020f757bfccae">&#9670;&#160;</a></span>GetAllPersonStarts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt; Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.GetAllPersonStarts </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a777edc4a1e85cdbcce65d5ad235657d1">PersonStartFilters</a></td>          <td class="paramname"><span class="paramname"><em>filter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">PersonStartFilters.None</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>filterParameter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>onlyValidStarts</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> objects for all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects that are not <code>null</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filter</td><td>Filter used to only return a subset of all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> objects</td></tr>
+    <tr><td class="paramname">filterParameter</td><td>Parameter used depending on the selected filter</td></tr>
+    <tr><td class="paramname">onlyValidStarts</td><td>Return only the starts that are active and have a competition assigned</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List with <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> objects</dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a137951ff0403803c21bd6915af1fe78a">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a3b4ff3ac7d8ab24a40b6d9ac7eddf733" name="a3b4ff3ac7d8ab24a40b6d9ac7eddf733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4ff3ac7d8ab24a40b6d9ac7eddf733">&#9670;&#160;</a></span>GetPersons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> &gt; Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.GetPersons </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all available Persons. </p>
+<dl class="section return"><dt>Returns</dt><dd>List of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects</dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a031dd075ca448e18fb1a77c02cf1e98a">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a2df8a6985f8fb4156f8bd0e2208747ae" name="a2df8a6985f8fb4156f8bd0e2208747ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df8a6985f8fb4156f8bd0e2208747ae">&#9670;&#160;</a></span>RemovePerson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.RemovePerson </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a></td>          <td class="paramname"><span class="paramname"><em>person</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the given <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> from the list of Persons. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">person</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> to remove</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ad3246812d6957ab784032e51bd26ea1d">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="aa83157a68bd2a58fd7c373ddf6959ba2" name="aa83157a68bd2a58fd7c373ddf6959ba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83157a68bd2a58fd7c373ddf6959ba2">&#9670;&#160;</a></span>ResetToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.ResetToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the list of Persons to the state when the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a" title="Load from the given file This is using a separate Task because the file possibly can be large.">Load(string, CancellationToken)</a> method was called. </p>
+<p>This will clear all Persons and add the Persons that were loaded at that time. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a8471a3b69e6d8a83091f5f1b2b2bae1e">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a40d6aa34f7b2cd5bb769995a5eacac22" name="a40d6aa34f7b2cd5bb769995a5eacac22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40d6aa34f7b2cd5bb769995a5eacac22">&#9670;&#160;</a></span>SetCompetitionServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.SetCompetitionServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html">ICompetitionService</a></td>          <td class="paramname"><span class="paramname"><em>competitionService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> object. </p>
+<p>Dependency Injection in the constructor can't be used here because there would be a circular dependency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">competitionService</td><td>Reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_service.html" title="Interface for a service used to get and store a list of objects.">ICompetitionService</a> implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a39be663bae7fcef14095a64ec450a66c">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a3a71897003e57e4268c03147b04128b8" name="a3a71897003e57e4268c03147b04128b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a71897003e57e4268c03147b04128b8">&#9670;&#160;</a></span>SetRaceServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.SetRaceServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html">IRaceService</a></td>          <td class="paramname"><span class="paramname"><em>raceService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html" title="Interface for a service used to manage Race and RacesVariant objects.">IRaceService</a> object. </p>
+<p>Dependency Injection in the constructor can't be used here because there would be a circular dependency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">raceService</td><td>Reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html" title="Interface for a service used to manage Race and RacesVariant objects.">IRaceService</a> implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#aa509fbbcf8f716c4b584a8c9248efbcc">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a637845787ad82815548b1513d6bdeabc" name="a637845787ad82815548b1513d6bdeabc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a637845787ad82815548b1513d6bdeabc">&#9670;&#160;</a></span>SetScoreServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.SetScoreServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a></td>          <td class="paramname"><span class="paramname"><em>scoreService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html" title="Interface for a service used to calculate the scores for all persons.">IScoreService</a> object. </p>
+<p>Dependency Injection in the constructor can't be used here because there would be a circular dependency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scoreService</td><td>Reference to the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html" title="Interface for a service used to calculate the scores for all persons.">IScoreService</a> implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a60ce44f258df8af7402f596fdb809ea7">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="a39e5acfe8fab606b57e0d448d3cc09c7" name="a39e5acfe8fab606b57e0d448d3cc09c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e5acfe8fab606b57e0d448d3cc09c7">&#9670;&#160;</a></span>UpdateAllFriendReferencesFromFriendGroupIDs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.UpdateAllFriendReferencesFromFriendGroupIDs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loop all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects and update their friend references (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a89375d8c0e9860e5afdd59b950595ac8" title="Friends of the person.">Person.Friends</a>) from the friend group IDs (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a40017ad42b13b6e6d40bab83aa09a3f9" title="IDs of the friend groups the person belongs to.">Person.FriendGroupIDs</a>). </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab6489dfeb92df857adea89d4fd74360a">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<a id="ad440551175d520aa24825f8b49650542" name="ad440551175d520aa24825f8b49650542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad440551175d520aa24825f8b49650542">&#9670;&#160;</a></span>UpdateHasDuplicatesForPersons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.UpdateHasDuplicatesForPersons </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find all duplicate <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> objects and update the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html#a9a17eb65b06fee38eb7029365b9182d4" title="This flag indicates if there are duplicates of this in the person list.">Person.HasDuplicates</a> flags. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ae398721a5764d104b3ea284bb9b701a9">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="aa8cd8d689926de71a65498e0f28160f7" name="aa8cd8d689926de71a65498e0f28160f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cd8d689926de71a65498e0f28160f7">&#9670;&#160;</a></span>NumberFriendGroups</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.NumberFriendGroups</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the number of friend groups. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a9dc05ffb6ac01c44528085fdef55edad">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_person_service_8cs_source.html#l00095">95</a> of file <a class="el" href="_i_person_service_8cs_source.html">IPersonService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a452473f3ba22e91b13a00e31902c4fad" name="a452473f3ba22e91b13a00e31902c4fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a452473f3ba22e91b13a00e31902c4fad">&#9670;&#160;</a></span>PersonCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.PersonCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the number of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html" title="Class describing a person.">Person</a></dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a1231221cf1ba262d46b15346dac66027">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_person_service_8cs_source.html#l00066">66</a> of file <a class="el" href="_i_person_service_8cs_source.html">IPersonService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aae88c5361c2ab0ed262492343cfff89b" name="aae88c5361c2ab0ed262492343cfff89b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae88c5361c2ab0ed262492343cfff89b">&#9670;&#160;</a></span>PersonStarts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Contracts.Services.IPersonService.PersonStarts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the total number of starts of all persons. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a475e9b8c1f8ffd2e92724bacddd4456c">Vereinsmeisterschaften.Core.Services.PersonService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_person_service_8cs_source.html#l00071">71</a> of file <a class="el" href="_i_person_service_8cs_source.html">IPersonService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Contracts/Services/<a class="el" href="_i_person_service_8cs_source.html">IPersonService.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts.html">Contracts</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html">IPersonService</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:13 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

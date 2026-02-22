@@ -1,0 +1,742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Models.PersonStart Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Models.PersonStart Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class describing a start of a person.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Models.PersonStart:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a72132662fa638c2260e76535d398af2f" id="r_a72132662fa638c2260e76535d398af2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72132662fa638c2260e76535d398af2f">PersonStart</a> ()</td></tr>
+<tr class="memdesc:a72132662fa638c2260e76535d398af2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> object.  <br /></td></tr>
+<tr class="separator:a72132662fa638c2260e76535d398af2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00d1b395133092f47d73e4d56e00c26e" id="r_a00d1b395133092f47d73e4d56e00c26e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00d1b395133092f47d73e4d56e00c26e">PersonStart</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> other)</td></tr>
+<tr class="memdesc:a00d1b395133092f47d73e4d56e00c26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clone constructor for a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> object.  <br /></td></tr>
+<tr class="separator:a00d1b395133092f47d73e4d56e00c26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af473942610224f08e74a000159be9089" id="r_af473942610224f08e74a000159be9089"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af473942610224f08e74a000159be9089">Equals</a> (object obj)</td></tr>
+<tr class="memdesc:af473942610224f08e74a000159be9089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare if two PersonStarts are equal.  <br /></td></tr>
+<tr class="separator:af473942610224f08e74a000159be9089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c27da957a8416be2afeb05b1f5145b3" id="r_a8c27da957a8416be2afeb05b1f5145b3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c27da957a8416be2afeb05b1f5145b3">Equals</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> other)</td></tr>
+<tr class="memdesc:a8c27da957a8416be2afeb05b1f5145b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates wheather the current object is equal to another object of the same type.  <br /></td></tr>
+<tr class="separator:a8c27da957a8416be2afeb05b1f5145b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb22bf91a7f515615f78da357744eb1" id="r_afbb22bf91a7f515615f78da357744eb1"><td class="memItemLeft" align="right" valign="top">override int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbb22bf91a7f515615f78da357744eb1">GetHashCode</a> ()</td></tr>
+<tr class="memdesc:afbb22bf91a7f515615f78da357744eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serves as the default hash function.  <br /></td></tr>
+<tr class="separator:afbb22bf91a7f515615f78da357744eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45bcf2cb694aa9fcfe75f0f36ed6e11c" id="r_a45bcf2cb694aa9fcfe75f0f36ed6e11c"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45bcf2cb694aa9fcfe75f0f36ed6e11c">ToString</a> ()</td></tr>
+<tr class="memdesc:a45bcf2cb694aa9fcfe75f0f36ed6e11c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string that represents the current object.  <br /></td></tr>
+<tr class="separator:a45bcf2cb694aa9fcfe75f0f36ed6e11c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c5add3972b60eb81b5d5d2b7bfc36f" id="r_a05c5add3972b60eb81b5d5d2b7bfc36f"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05c5add3972b60eb81b5d5d2b7bfc36f">Clone</a> ()</td></tr>
+<tr class="memdesc:a05c5add3972b60eb81b5d5d2b7bfc36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object that has the same property values than this one.  <br /></td></tr>
+<tr class="separator:a05c5add3972b60eb81b5d5d2b7bfc36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ac30a65a3b7de4466565fc23a37e484b3" id="r_ac30a65a3b7de4466565fc23a37e484b3"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac30a65a3b7de4466565fc23a37e484b3">Time</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac30a65a3b7de4466565fc23a37e484b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time the person needed during the race of this start.  <br /></td></tr>
+<tr class="separator:ac30a65a3b7de4466565fc23a37e484b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a02b0e60d54c51069469a9896b4bb17" id="r_a1a02b0e60d54c51069469a9896b4bb17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a02b0e60d54c51069469a9896b4bb17">IsTimeSet</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1a02b0e60d54c51069469a9896b4bb17"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the <a class="el" href="#ac30a65a3b7de4466565fc23a37e484b3" title="Time the person needed during the race of this start.">Time</a> is set (not TimeSpan.Zero)  <br /></td></tr>
+<tr class="separator:a1a02b0e60d54c51069469a9896b4bb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8104ec1f215eb09300544f3c59c5e76" id="r_ad8104ec1f215eb09300544f3c59c5e76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html">Competition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8104ec1f215eb09300544f3c59c5e76">CompetitionObj</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad8104ec1f215eb09300544f3c59c5e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the competition object to which the start belongs.  <br /></td></tr>
+<tr class="separator:ad8104ec1f215eb09300544f3c59c5e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a403891c7a3aea2527d9167fff4d9336d" id="r_a403891c7a3aea2527d9167fff4d9336d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a403891c7a3aea2527d9167fff4d9336d">IsCompetitionObjAssigned</a><code> [get]</code></td></tr>
+<tr class="memdesc:a403891c7a3aea2527d9167fff4d9336d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if the <a class="el" href="#ad8104ec1f215eb09300544f3c59c5e76" title="Reference to the competition object to which the start belongs.">CompetitionObj</a> is assigned (<a class="el" href="#ad8104ec1f215eb09300544f3c59c5e76" title="Reference to the competition object to which the start belongs.">CompetitionObj</a> != null).  <br /></td></tr>
+<tr class="separator:a403891c7a3aea2527d9167fff4d9336d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2dcd5fff7393d555bd67ab249f4002ae" id="r_a2dcd5fff7393d555bd67ab249f4002ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dcd5fff7393d555bd67ab249f4002ae">_personObj</a></td></tr>
+<tr class="memdesc:a2dcd5fff7393d555bd67ab249f4002ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the person object to which the start belongs.  <br /></td></tr>
+<tr class="separator:a2dcd5fff7393d555bd67ab249f4002ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47a5827a4863c0782b9594b2d6eabb4a" id="r_a47a5827a4863c0782b9594b2d6eabb4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47a5827a4863c0782b9594b2d6eabb4a">_style</a></td></tr>
+<tr class="memdesc:a47a5827a4863c0782b9594b2d6eabb4a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> of the start  <br /></td></tr>
+<tr class="separator:a47a5827a4863c0782b9594b2d6eabb4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5be4bc138a3246262681340815afda" id="r_a2b5be4bc138a3246262681340815afda"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b5be4bc138a3246262681340815afda">_time</a></td></tr>
+<tr class="separator:a2b5be4bc138a3246262681340815afda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a0d48b43e1a7d2bffe077a753154f3" id="r_a68a0d48b43e1a7d2bffe077a753154f3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68a0d48b43e1a7d2bffe077a753154f3">_score</a></td></tr>
+<tr class="memdesc:a68a0d48b43e1a7d2bffe077a753154f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Score of the person for this start.  <br /></td></tr>
+<tr class="separator:a68a0d48b43e1a7d2bffe077a753154f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3154edbe45766f74531a439ce8805b5e" id="r_a3154edbe45766f74531a439ce8805b5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3154edbe45766f74531a439ce8805b5e">_isActive</a> = true</td></tr>
+<tr class="memdesc:a3154edbe45766f74531a439ce8805b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if this start is currently active.  <br /></td></tr>
+<tr class="separator:a3154edbe45766f74531a439ce8805b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3bbe93f0c79a312afb95f569a939df" id="r_aea3bbe93f0c79a312afb95f569a939df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html">Competition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea3bbe93f0c79a312afb95f569a939df">_competitionObj</a></td></tr>
+<tr class="separator:aea3bbe93f0c79a312afb95f569a939df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b07a0118cee29e7320aa7114f8fa356" id="r_a1b07a0118cee29e7320aa7114f8fa356"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b07a0118cee29e7320aa7114f8fa356">_isUsingMaxAgeCompetition</a></td></tr>
+<tr class="memdesc:a1b07a0118cee29e7320aa7114f8fa356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if this start is using a competition that was found by the max available age.  <br /></td></tr>
+<tr class="separator:a1b07a0118cee29e7320aa7114f8fa356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3eff8f86bda9eeee7f48549510d63e" id="r_a7d3eff8f86bda9eeee7f48549510d63e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d3eff8f86bda9eeee7f48549510d63e">_isUsingExactAgeCompetition</a></td></tr>
+<tr class="memdesc:a7d3eff8f86bda9eeee7f48549510d63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if this start is using a competition for which the age of the person matches the competition age.  <br /></td></tr>
+<tr class="separator:a7d3eff8f86bda9eeee7f48549510d63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0768ee41b03cd3b28bd09384a52e3394" id="r_a0768ee41b03cd3b28bd09384a52e3394"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0768ee41b03cd3b28bd09384a52e3394">_isHighlighted</a></td></tr>
+<tr class="memdesc:a0768ee41b03cd3b28bd09384a52e3394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if this start should be highlighted in the UI.  <br /></td></tr>
+<tr class="separator:a0768ee41b03cd3b28bd09384a52e3394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class describing a start of a person. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00008">8</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a72132662fa638c2260e76535d398af2f" name="a72132662fa638c2260e76535d398af2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72132662fa638c2260e76535d398af2f">&#9670;&#160;</a></span>PersonStart() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.PersonStart.PersonStart </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> object. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00015">15</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a00d1b395133092f47d73e4d56e00c26e" name="a00d1b395133092f47d73e4d56e00c26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00d1b395133092f47d73e4d56e00c26e">&#9670;&#160;</a></span>PersonStart() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.PersonStart.PersonStart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clone constructor for a new <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Object to clone</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00023">23</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a05c5add3972b60eb81b5d5d2b7bfc36f" name="a05c5add3972b60eb81b5d5d2b7bfc36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c5add3972b60eb81b5d5d2b7bfc36f">&#9670;&#160;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Core.Models.PersonStart.Clone </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new object that has the same property values than this one. </p>
+<dl class="section return"><dt>Returns</dt><dd>Cloned object of type</dd></dl>
+
+</div>
+</div>
+<a id="af473942610224f08e74a000159be9089" name="af473942610224f08e74a000159be9089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af473942610224f08e74a000159be9089">&#9670;&#160;</a></span>Equals() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override bool Vereinsmeisterschaften.Core.Models.PersonStart.Equals </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare if two PersonStarts are equal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>Other <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> to compare against this instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if both instances are equal; false if not equal or obj isn't of type <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a></dd></dl>
+
+</div>
+</div>
+<a id="a8c27da957a8416be2afeb05b1f5145b3" name="a8c27da957a8416be2afeb05b1f5145b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c27da957a8416be2afeb05b1f5145b3">&#9670;&#160;</a></span>Equals() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart.Equals </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates wheather the current object is equal to another object of the same type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Other object to compare.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the current object is equal to the other parameter; otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="afbb22bf91a7f515615f78da357744eb1" name="afbb22bf91a7f515615f78da357744eb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb22bf91a7f515615f78da357744eb1">&#9670;&#160;</a></span>GetHashCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override int Vereinsmeisterschaften.Core.Models.PersonStart.GetHashCode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serves as the default hash function. </p>
+<dl class="section return"><dt>Returns</dt><dd>A hash code for the current object.</dd></dl>
+
+</div>
+</div>
+<a id="a45bcf2cb694aa9fcfe75f0f36ed6e11c" name="a45bcf2cb694aa9fcfe75f0f36ed6e11c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45bcf2cb694aa9fcfe75f0f36ed6e11c">&#9670;&#160;</a></span>ToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string Vereinsmeisterschaften.Core.Models.PersonStart.ToString </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a string that represents the current object. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string that represents the current object.</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aea3bbe93f0c79a312afb95f569a939df" name="aea3bbe93f0c79a312afb95f569a939df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea3bbe93f0c79a312afb95f569a939df">&#9670;&#160;</a></span>_competitionObj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html">Competition</a> Vereinsmeisterschaften.Core.Models.PersonStart._competitionObj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00092">92</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3154edbe45766f74531a439ce8805b5e" name="a3154edbe45766f74531a439ce8805b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3154edbe45766f74531a439ce8805b5e">&#9670;&#160;</a></span>_isActive</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart._isActive = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if this start is currently active. </p>
+<p>You can disable starts to exclude them from races and start rankings. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00084">84</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0768ee41b03cd3b28bd09384a52e3394" name="a0768ee41b03cd3b28bd09384a52e3394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0768ee41b03cd3b28bd09384a52e3394">&#9670;&#160;</a></span>_isHighlighted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart._isHighlighted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if this start should be highlighted in the UI. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00137">137</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7d3eff8f86bda9eeee7f48549510d63e" name="a7d3eff8f86bda9eeee7f48549510d63e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3eff8f86bda9eeee7f48549510d63e">&#9670;&#160;</a></span>_isUsingExactAgeCompetition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart._isUsingExactAgeCompetition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if this start is using a competition for which the age of the person matches the competition age. </p>
+<p>E.g. if a competition for age 18 is defined, and the person is 18 years old, this is an exact age competition. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00125">125</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1b07a0118cee29e7320aa7114f8fa356" name="a1b07a0118cee29e7320aa7114f8fa356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b07a0118cee29e7320aa7114f8fa356">&#9670;&#160;</a></span>_isUsingMaxAgeCompetition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart._isUsingMaxAgeCompetition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if this start is using a competition that was found by the max available age. </p>
+<p>E.g. if competitions up to an age of 18 are defined, but the person is 20 years old, the competition for 18 years is used. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00118">118</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2dcd5fff7393d555bd67ab249f4002ae" name="a2dcd5fff7393d555bd67ab249f4002ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dcd5fff7393d555bd67ab249f4002ae">&#9670;&#160;</a></span>_personObj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person.html">Person</a> Vereinsmeisterschaften.Core.Models.PersonStart._personObj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the person object to which the start belongs. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00045">45</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a68a0d48b43e1a7d2bffe077a753154f3" name="a68a0d48b43e1a7d2bffe077a753154f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68a0d48b43e1a7d2bffe077a753154f3">&#9670;&#160;</a></span>_score</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Vereinsmeisterschaften.Core.Models.PersonStart._score</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Score of the person for this start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00078">78</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a47a5827a4863c0782b9594b2d6eabb4a" name="a47a5827a4863c0782b9594b2d6eabb4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47a5827a4863c0782b9594b2d6eabb4a">&#9670;&#160;</a></span>_style</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> Vereinsmeisterschaften.Core.Models.PersonStart._style</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> of the start </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00051">51</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2b5be4bc138a3246262681340815afda" name="a2b5be4bc138a3246262681340815afda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b5be4bc138a3246262681340815afda">&#9670;&#160;</a></span>_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeSpan Vereinsmeisterschaften.Core.Models.PersonStart._time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00053">53</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="ad8104ec1f215eb09300544f3c59c5e76" name="ad8104ec1f215eb09300544f3c59c5e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8104ec1f215eb09300544f3c59c5e76">&#9670;&#160;</a></span>CompetitionObj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_competition.html">Competition</a> Vereinsmeisterschaften.Core.Models.PersonStart.CompetitionObj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the competition object to which the start belongs. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00096">96</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a403891c7a3aea2527d9167fff4d9336d" name="a403891c7a3aea2527d9167fff4d9336d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a403891c7a3aea2527d9167fff4d9336d">&#9670;&#160;</a></span>IsCompetitionObjAssigned</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart.IsCompetitionObjAssigned</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if the <a class="el" href="#ad8104ec1f215eb09300544f3c59c5e76" title="Reference to the competition object to which the start belongs.">CompetitionObj</a> is assigned (<a class="el" href="#ad8104ec1f215eb09300544f3c59c5e76" title="Reference to the competition object to which the start belongs.">CompetitionObj</a> != null). </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00111">111</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1a02b0e60d54c51069469a9896b4bb17" name="a1a02b0e60d54c51069469a9896b4bb17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a02b0e60d54c51069469a9896b4bb17">&#9670;&#160;</a></span>IsTimeSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.PersonStart.IsTimeSet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the <a class="el" href="#ac30a65a3b7de4466565fc23a37e484b3" title="Time the person needed during the race of this start.">Time</a> is set (not TimeSpan.Zero) </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00072">72</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac30a65a3b7de4466565fc23a37e484b3" name="ac30a65a3b7de4466565fc23a37e484b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30a65a3b7de4466565fc23a37e484b3">&#9670;&#160;</a></span>Time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeSpan Vereinsmeisterschaften.Core.Models.PersonStart.Time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time the person needed during the race of this start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_person_start_8cs_source.html#l00057">57</a> of file <a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Models/<a class="el" href="_person_start_8cs_source.html">PersonStart.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Models</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

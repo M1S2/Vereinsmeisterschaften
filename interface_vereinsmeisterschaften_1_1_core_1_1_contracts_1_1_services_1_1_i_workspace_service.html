@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService Interface Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService Interface Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface for a service used to manage a workspace.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.png" usemap="#Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService_map" alt=""/>
+  <map id="Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService_map" name="Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService_map">
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html" title="Interface for saveable objects." alt="Vereinsmeisterschaften.Core.Contracts.Services.ISaveable" shape="rect" coords="412,0,814,24"/>
+<area href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html" title="Service used to manage a workspace." alt="Vereinsmeisterschaften.Core.Services.WorkspaceService" shape="rect" coords="206,112,608,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a61bce7ff2a9768f57bdbaf69bd9bc8df" id="r_a61bce7ff2a9768f57bdbaf69bd9bc8df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61bce7ff2a9768f57bdbaf69bd9bc8df">AddLastWorkspacePath</a> (string path)</td></tr>
+<tr class="memdesc:a61bce7ff2a9768f57bdbaf69bd9bc8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a path to the <a class="el" href="#add584cc6b1823d97c293c393c8235485" title="List with previous workspace paths.">LastWorkspacePaths</a>  <br /></td></tr>
+<tr class="separator:a61bce7ff2a9768f57bdbaf69bd9bc8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a4fc817080cc7101020f8b14edea247" id="r_a5a4fc817080cc7101020f8b14edea247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a4fc817080cc7101020f8b14edea247">ClearAllLastWorkspacePaths</a> ()</td></tr>
+<tr class="memdesc:a5a4fc817080cc7101020f8b14edea247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all <a class="el" href="#add584cc6b1823d97c293c393c8235485" title="List with previous workspace paths.">LastWorkspacePaths</a>  <br /></td></tr>
+<tr class="separator:a5a4fc817080cc7101020f8b14edea247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4518b5b678c8bda13816b059b100cd" id="r_a2f4518b5b678c8bda13816b059b100cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f4518b5b678c8bda13816b059b100cd">ResetCompetitionsToLoadedState</a> ()</td></tr>
+<tr class="memdesc:a2f4518b5b678c8bda13816b059b100cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the &lt;see cref="ICompetitionService.ResetToLoadedState" and <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#ae91f5537062f69c4b4e809608ffaac4c" title="Reset the list of to the state when the  method was called.">ICompetitionDistanceRuleService.ResetToLoadedState</a>/&gt;  <br /></td></tr>
+<tr class="separator:a2f4518b5b678c8bda13816b059b100cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a238d40cea076f32ec53e602be65f51df" id="r_a238d40cea076f32ec53e602be65f51df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a238d40cea076f32ec53e602be65f51df">ResetPersonsToLoadedState</a> ()</td></tr>
+<tr class="memdesc:a238d40cea076f32ec53e602be65f51df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html#aa83157a68bd2a58fd7c373ddf6959ba2" title="Reset the list of Persons to the state when the Load(string, CancellationToken) method was called.">IPersonService.ResetToLoadedState</a>  <br /></td></tr>
+<tr class="separator:a238d40cea076f32ec53e602be65f51df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27af1ec9b0653327c80bf5a3ad75f631" id="r_a27af1ec9b0653327c80bf5a3ad75f631"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27af1ec9b0653327c80bf5a3ad75f631">ResetRacesToLoadedState</a> ()</td></tr>
+<tr class="memdesc:a27af1ec9b0653327c80bf5a3ad75f631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html#a2493534a6078480b06b9eee49dcddab6" title="Reset the to the state when the  method was called.">IRaceService.ResetToLoadedState</a>  <br /></td></tr>
+<tr class="separator:a27af1ec9b0653327c80bf5a3ad75f631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79998c7010439139684ee841184a045c" id="r_a79998c7010439139684ee841184a045c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79998c7010439139684ee841184a045c">ResetSettingsToLoadedState</a> ()</td></tr>
+<tr class="memdesc:a79998c7010439139684ee841184a045c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">to the state when the </a> method was called.  <br /></td></tr>
+<tr class="separator:a79998c7010439139684ee841184a045c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08cd9584ca5fc144e29d220756be9800" id="r_a08cd9584ca5fc144e29d220756be9800"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08cd9584ca5fc144e29d220756be9800">CloseWorkspace</a> (CancellationToken cancellationToken, bool save=true)</td></tr>
+<tr class="memdesc:a08cd9584ca5fc144e29d220756be9800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the current workspace (set the current path to string.Empty and the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> to <code>null</code>)  <br /></td></tr>
+<tr class="separator:a08cd9584ca5fc144e29d220756be9800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_af08cd91796d9094e489461b49e459b4a"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a">Load</a> (string path, CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from the given file This is using a separate Task because the file possibly can be large.  <br /></td></tr>
+<tr class="separator:af08cd91796d9094e489461b49e459b4a inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a385b90d093b32995df0f4d519ad2e94d"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a385b90d093b32995df0f4d519ad2e94d">Save</a> (CancellationToken cancellationToken, string path=&quot;&quot;)</td></tr>
+<tr class="memdesc:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to a file.  <br /></td></tr>
+<tr class="separator:a385b90d093b32995df0f4d519ad2e94d inherit pub_methods_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:add584cc6b1823d97c293c393c8235485" id="r_add584cc6b1823d97c293c393c8235485"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add584cc6b1823d97c293c393c8235485">LastWorkspacePaths</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:add584cc6b1823d97c293c393c8235485"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with previous workspace paths.  <br /></td></tr>
+<tr class="separator:add584cc6b1823d97c293c393c8235485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9583defedaa4ad925b13ac0c32778acc" id="r_a9583defedaa4ad925b13ac0c32778acc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9583defedaa4ad925b13ac0c32778acc">IsWorkspaceOpen</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9583defedaa4ad925b13ac0c32778acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, a workspace is loaded; if false, not workspace is loaded.  <br /></td></tr>
+<tr class="separator:a9583defedaa4ad925b13ac0c32778acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59003b8eafdd714bd12506634986a0d7" id="r_a59003b8eafdd714bd12506634986a0d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59003b8eafdd714bd12506634986a0d7">IsCompletelyNewWorkspace</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a59003b8eafdd714bd12506634986a0d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, the workspace wasn't loaded from previously saved files.  <br /></td></tr>
+<tr class="separator:a59003b8eafdd714bd12506634986a0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1057097851e6a710c4e3acbea0075e28" id="r_a1057097851e6a710c4e3acbea0075e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1057097851e6a710c4e3acbea0075e28">Settings</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1057097851e6a710c4e3acbea0075e28"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> for the current workspace.  <br /></td></tr>
+<tr class="separator:a1057097851e6a710c4e3acbea0075e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6754dbb61e81034f03f91db82b05bacf" id="r_a6754dbb61e81034f03f91db82b05bacf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6754dbb61e81034f03f91db82b05bacf">SettingsPersistedInFile</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6754dbb61e81034f03f91db82b05bacf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> loaded from the file for the current workspace.  <br /></td></tr>
+<tr class="separator:a6754dbb61e81034f03f91db82b05bacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a746e1302ed11a9204e9df7dbc1e63b58" id="r_a746e1302ed11a9204e9df7dbc1e63b58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a746e1302ed11a9204e9df7dbc1e63b58">HasUnsavedChanges_Persons</a><code> [get]</code></td></tr>
+<tr class="memdesc:a746e1302ed11a9204e9df7dbc1e63b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsaved changes exist in the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html" title="Service used to get and store a list of Person objects.">PersonService</a>  <br /></td></tr>
+<tr class="separator:a746e1302ed11a9204e9df7dbc1e63b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af711733d8b5642c4238a3305ed945e5a" id="r_af711733d8b5642c4238a3305ed945e5a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af711733d8b5642c4238a3305ed945e5a">HasUnsavedChanges_Competitions</a><code> [get]</code></td></tr>
+<tr class="memdesc:af711733d8b5642c4238a3305ed945e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsaved changes exist in the &lt;see cref="CompetitionService" or <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service.html" title="Service used to get and store a list of objects.">CompetitionDistanceRuleService</a>/&gt;  <br /></td></tr>
+<tr class="separator:af711733d8b5642c4238a3305ed945e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add28b5efab41ed6c5a873c4d50394c8e" id="r_add28b5efab41ed6c5a873c4d50394c8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add28b5efab41ed6c5a873c4d50394c8e">HasUnsavedChanges_Races</a><code> [get]</code></td></tr>
+<tr class="memdesc:add28b5efab41ed6c5a873c4d50394c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsaved changes exist in the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_race_service.html" title="Service used to manage Race and RacesVariant objects.">RaceService</a>  <br /></td></tr>
+<tr class="separator:add28b5efab41ed6c5a873c4d50394c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a518624d161021601f95bded11f642156" id="r_a518624d161021601f95bded11f642156"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a518624d161021601f95bded11f642156">HasUnsavedChanges_Settings</a><code> [get]</code></td></tr>
+<tr class="memdesc:a518624d161021601f95bded11f642156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsaved changes exist in the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a>.  <br /></td></tr>
+<tr class="separator:a518624d161021601f95bded11f642156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_ae2f862deee5e9066a146f36a261ca424"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#ae2f862deee5e9066a146f36a261ca424">PersistentPath</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the used file.  <br /></td></tr>
+<tr class="separator:ae2f862deee5e9066a146f36a261ca424 inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_af3ee02ab96df1cae04892eaedce2d64d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af3ee02ab96df1cae04892eaedce2d64d">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are unsave changes.  <br /></td></tr>
+<tr class="separator:af3ee02ab96df1cae04892eaedce2d64d inherit properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a6e9e23b29c45352af55ea7b381334c87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a6e9e23b29c45352af55ea7b381334c87">OnFileProgress</a></td></tr>
+<tr class="memdesc:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="separator:a6e9e23b29c45352af55ea7b381334c87 inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a3260ed9a0f39704e0aa4b4958870c18d"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a3260ed9a0f39704e0aa4b4958870c18d">OnFileFinished</a></td></tr>
+<tr class="memdesc:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+<tr class="separator:a3260ed9a0f39704e0aa4b4958870c18d inherit events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for a service used to manage a workspace. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00011">11</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a61bce7ff2a9768f57bdbaf69bd9bc8df" name="a61bce7ff2a9768f57bdbaf69bd9bc8df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bce7ff2a9768f57bdbaf69bd9bc8df">&#9670;&#160;</a></span>AddLastWorkspacePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.AddLastWorkspacePath </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a path to the <a class="el" href="#add584cc6b1823d97c293c393c8235485" title="List with previous workspace paths.">LastWorkspacePaths</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path to add</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a32592078eded814779aa0f6970c3e933">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a5a4fc817080cc7101020f8b14edea247" name="a5a4fc817080cc7101020f8b14edea247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a4fc817080cc7101020f8b14edea247">&#9670;&#160;</a></span>ClearAllLastWorkspacePaths()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.ClearAllLastWorkspacePaths </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear all <a class="el" href="#add584cc6b1823d97c293c393c8235485" title="List with previous workspace paths.">LastWorkspacePaths</a> </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#acbd3cc3fb68ba11bed1cf804fd07cc00">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a08cd9584ca5fc144e29d220756be9800" name="a08cd9584ca5fc144e29d220756be9800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08cd9584ca5fc144e29d220756be9800">&#9670;&#160;</a></span>CloseWorkspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt; bool &gt; Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.CloseWorkspace </td>
+          <td>(</td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>save</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Close the current workspace (set the current path to string.Empty and the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> to <code>null</code>) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cancellationToken</td><td>Cancellation token</td></tr>
+    <tr><td class="paramname">save</td><td>If true, <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a385b90d093b32995df0f4d519ad2e94d" title="Save to a file.">Save(CancellationToken, string)</a> is called before</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if saving during close succeeded; false if saving failed (e.g. canceled)</dd></dl>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#ab84180630b4be13c72b211b102dc2296">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a2f4518b5b678c8bda13816b059b100cd" name="a2f4518b5b678c8bda13816b059b100cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f4518b5b678c8bda13816b059b100cd">&#9670;&#160;</a></span>ResetCompetitionsToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.ResetCompetitionsToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call the &lt;see cref="ICompetitionService.ResetToLoadedState" and <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_competition_distance_rule_service.html#ae91f5537062f69c4b4e809608ffaac4c" title="Reset the list of to the state when the  method was called.">ICompetitionDistanceRuleService.ResetToLoadedState</a>/&gt; </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a2ff22cf17c868a5bab4a228ec36c7e0a">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a238d40cea076f32ec53e602be65f51df" name="a238d40cea076f32ec53e602be65f51df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a238d40cea076f32ec53e602be65f51df">&#9670;&#160;</a></span>ResetPersonsToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.ResetPersonsToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_person_service.html#aa83157a68bd2a58fd7c373ddf6959ba2" title="Reset the list of Persons to the state when the Load(string, CancellationToken) method was called.">IPersonService.ResetToLoadedState</a> </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#ad638e1e7378cba4c2508afedc3bf8456">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a27af1ec9b0653327c80bf5a3ad75f631" name="a27af1ec9b0653327c80bf5a3ad75f631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27af1ec9b0653327c80bf5a3ad75f631">&#9670;&#160;</a></span>ResetRacesToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.ResetRacesToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call the <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_race_service.html#a2493534a6078480b06b9eee49dcddab6" title="Reset the to the state when the  method was called.">IRaceService.ResetToLoadedState</a> </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a2b2bd85a1f59409c1a04b326e4f59bac">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<a id="a79998c7010439139684ee841184a045c" name="a79998c7010439139684ee841184a045c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79998c7010439139684ee841184a045c">&#9670;&#160;</a></span>ResetSettingsToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.ResetSettingsToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">to the state when the </a> method was called. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a756ea4a71481664bcc108a0d0e3356cb">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="af711733d8b5642c4238a3305ed945e5a" name="af711733d8b5642c4238a3305ed945e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af711733d8b5642c4238a3305ed945e5a">&#9670;&#160;</a></span>HasUnsavedChanges_Competitions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.HasUnsavedChanges_Competitions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unsaved changes exist in the &lt;see cref="CompetitionService" or <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_competition_distance_rule_service.html" title="Service used to get and store a list of objects.">CompetitionDistanceRuleService</a>/&gt; </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a160fecea3ff3cc8e38e49e8a625748ea">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00057">57</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a746e1302ed11a9204e9df7dbc1e63b58" name="a746e1302ed11a9204e9df7dbc1e63b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a746e1302ed11a9204e9df7dbc1e63b58">&#9670;&#160;</a></span>HasUnsavedChanges_Persons</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.HasUnsavedChanges_Persons</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unsaved changes exist in the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html" title="Service used to get and store a list of Person objects.">PersonService</a> </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#aded93641c00a16356a4daec099d8744c">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00052">52</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="add28b5efab41ed6c5a873c4d50394c8e" name="add28b5efab41ed6c5a873c4d50394c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add28b5efab41ed6c5a873c4d50394c8e">&#9670;&#160;</a></span>HasUnsavedChanges_Races</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.HasUnsavedChanges_Races</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unsaved changes exist in the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_race_service.html" title="Service used to manage Race and RacesVariant objects.">RaceService</a> </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a0cf978953afce7ca6ffd4a7d943ac45b">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00062">62</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a518624d161021601f95bded11f642156" name="a518624d161021601f95bded11f642156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a518624d161021601f95bded11f642156">&#9670;&#160;</a></span>HasUnsavedChanges_Settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.HasUnsavedChanges_Settings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unsaved changes exist in the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a>. </p>
+<p>This is true if the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> was changed since loading it from the file. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#ab7b63087076d9c11e23f2a7c1adeebdd">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00067">67</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a59003b8eafdd714bd12506634986a0d7" name="a59003b8eafdd714bd12506634986a0d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59003b8eafdd714bd12506634986a0d7">&#9670;&#160;</a></span>IsCompletelyNewWorkspace</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.IsCompletelyNewWorkspace</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, the workspace wasn't loaded from previously saved files. </p>
+<p>If at least one part of the workspace is loaded from a file, this will be false. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00037">37</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9583defedaa4ad925b13ac0c32778acc" name="a9583defedaa4ad925b13ac0c32778acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9583defedaa4ad925b13ac0c32778acc">&#9670;&#160;</a></span>IsWorkspaceOpen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.IsWorkspaceOpen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, a workspace is loaded; if false, not workspace is loaded. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#aa039fef632c21ea586269e04c8ac8e52">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00032">32</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="add584cc6b1823d97c293c393c8235485" name="add584cc6b1823d97c293c393c8235485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add584cc6b1823d97c293c393c8235485">&#9670;&#160;</a></span>LastWorkspacePaths</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;string&gt; Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.LastWorkspacePaths</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with previous workspace paths. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a090a5142a0b2773eebfd2760a9ce74c7">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00016">16</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1057097851e6a710c4e3acbea0075e28" name="a1057097851e6a710c4e3acbea0075e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1057097851e6a710c4e3acbea0075e28">&#9670;&#160;</a></span>Settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a> Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.Settings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> for the current workspace. </p>
+
+<p>Implemented in <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_workspace_service.html#a1f8b4bcd02081887dcca6e383aa3bc3b">Vereinsmeisterschaften.Core.Services.WorkspaceService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00042">42</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6754dbb61e81034f03f91db82b05bacf" name="a6754dbb61e81034f03f91db82b05bacf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6754dbb61e81034f03f91db82b05bacf">&#9670;&#160;</a></span>SettingsPersistedInFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_settings_1_1_workspace_settings.html">WorkspaceSettings</a> Vereinsmeisterschaften.Core.Contracts.Services.IWorkspaceService.SettingsPersistedInFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_settings.html">Settings</a> loaded from the file for the current workspace. </p>
+<p>This can be used to compare for changes. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_workspace_service_8cs_source.html#l00047">47</a> of file <a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Contracts/Services/<a class="el" href="_i_workspace_service_8cs_source.html">IWorkspaceService.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts.html">Contracts</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

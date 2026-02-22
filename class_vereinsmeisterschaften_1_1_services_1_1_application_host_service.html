@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Services.ApplicationHostService Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_services_1_1_application_host_service.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_services_1_1_application_host_service-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Services.ApplicationHostService Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p> 
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Services.ApplicationHostService:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_services_1_1_application_host_service.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c4286ce935ee738318016fb896d9591" id="r_a8c4286ce935ee738318016fb896d9591"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c4286ce935ee738318016fb896d9591">ApplicationHostService</a> (IServiceProvider serviceProvider, IEnumerable&lt; <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html">IActivationHandler</a> &gt; activationHandlers, <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> navigationService, <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html">IThemeSelectorService</a> themeSelectorService, <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html">IPersistAndRestoreService</a> persistAndRestoreService)</td></tr>
+<tr class="memdesc:a8c4286ce935ee738318016fb896d9591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_services_1_1_application_host_service.html">ApplicationHostService</a>.  <br /></td></tr>
+<tr class="separator:a8c4286ce935ee738318016fb896d9591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51159aaabf7d10ee5bca034ceac8bea" id="r_ab51159aaabf7d10ee5bca034ceac8bea"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab51159aaabf7d10ee5bca034ceac8bea">StartAsync</a> (CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:ab51159aaabf7d10ee5bca034ceac8bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggered when the application host is ready to start the service.  <br /></td></tr>
+<tr class="separator:ab51159aaabf7d10ee5bca034ceac8bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2031d3a7a747b78a83d0b7092f0505aa" id="r_a2031d3a7a747b78a83d0b7092f0505aa"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2031d3a7a747b78a83d0b7092f0505aa">StopAsync</a> (CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:a2031d3a7a747b78a83d0b7092f0505aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggered when the application host is performing a graceful shutdown.  <br /></td></tr>
+<tr class="separator:a2031d3a7a747b78a83d0b7092f0505aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a9479fec7300d04b29b20d1b0b754d470" id="r_a9479fec7300d04b29b20d1b0b754d470"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9479fec7300d04b29b20d1b0b754d470">InitializeAsync</a> ()</td></tr>
+<tr class="separator:a9479fec7300d04b29b20d1b0b754d470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b8516ef47156fa48579a675ab69596" id="r_a19b8516ef47156fa48579a675ab69596"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19b8516ef47156fa48579a675ab69596">StartupAsync</a> ()</td></tr>
+<tr class="separator:a19b8516ef47156fa48579a675ab69596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d67994c92a89f18eccb6bb467a02986" id="r_a3d67994c92a89f18eccb6bb467a02986"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d67994c92a89f18eccb6bb467a02986">HandleActivationAsync</a> ()</td></tr>
+<tr class="separator:a3d67994c92a89f18eccb6bb467a02986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae24916d61d5e6ca14cff2a37214961db" id="r_ae24916d61d5e6ca14cff2a37214961db"><td class="memItemLeft" align="right" valign="top">readonly IServiceProvider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae24916d61d5e6ca14cff2a37214961db">_serviceProvider</a></td></tr>
+<tr class="separator:ae24916d61d5e6ca14cff2a37214961db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a593194fb75a1b621622aa5c236229e17" id="r_a593194fb75a1b621622aa5c236229e17"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a593194fb75a1b621622aa5c236229e17">_navigationService</a></td></tr>
+<tr class="separator:a593194fb75a1b621622aa5c236229e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531d21e7dffb5bc390ac6cb8ae03033b" id="r_a531d21e7dffb5bc390ac6cb8ae03033b"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html">IPersistAndRestoreService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a531d21e7dffb5bc390ac6cb8ae03033b">_persistAndRestoreService</a></td></tr>
+<tr class="separator:a531d21e7dffb5bc390ac6cb8ae03033b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc9160fdc65e3bb50b2cb6decfee099" id="r_afbc9160fdc65e3bb50b2cb6decfee099"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html">IThemeSelectorService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbc9160fdc65e3bb50b2cb6decfee099">_themeSelectorService</a></td></tr>
+<tr class="separator:afbc9160fdc65e3bb50b2cb6decfee099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc08ffe5b46cea31bb99f24192609a6" id="r_afbc08ffe5b46cea31bb99f24192609a6"><td class="memItemLeft" align="right" valign="top">readonly IEnumerable&lt; <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html">IActivationHandler</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbc08ffe5b46cea31bb99f24192609a6">_activationHandlers</a></td></tr>
+<tr class="separator:afbc08ffe5b46cea31bb99f24192609a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb3b2b042cebfab5f158e9f2d30df766" id="r_aeb3b2b042cebfab5f158e9f2d30df766"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_views_1_1_i_shell_window.html">IShellWindow</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb3b2b042cebfab5f158e9f2d30df766">_shellWindow</a></td></tr>
+<tr class="separator:aeb3b2b042cebfab5f158e9f2d30df766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d8459b0d0a859e99ddcbe2094de0b0e" id="r_a3d8459b0d0a859e99ddcbe2094de0b0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d8459b0d0a859e99ddcbe2094de0b0e">_isInitialized</a></td></tr>
+<tr class="separator:a3d8459b0d0a859e99ddcbe2094de0b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00011">11</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8c4286ce935ee738318016fb896d9591" name="a8c4286ce935ee738318016fb896d9591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4286ce935ee738318016fb896d9591">&#9670;&#160;</a></span>ApplicationHostService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Services.ApplicationHostService.ApplicationHostService </td>
+          <td>(</td>
+          <td class="paramtype">IServiceProvider</td>          <td class="paramname"><span class="paramname"><em>serviceProvider</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html">IActivationHandler</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>activationHandlers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a></td>          <td class="paramname"><span class="paramname"><em>navigationService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html">IThemeSelectorService</a></td>          <td class="paramname"><span class="paramname"><em>themeSelectorService</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html">IPersistAndRestoreService</a></td>          <td class="paramname"><span class="paramname"><em>persistAndRestoreService</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_services_1_1_application_host_service.html">ApplicationHostService</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serviceProvider</td><td>IServiceProvider object</td></tr>
+    <tr><td class="paramname">activationHandlers</td><td>List of <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html" title="Interface for activation handlers.">IActivationHandler</a> objects</td></tr>
+    <tr><td class="paramname">navigationService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html" title="Interface for a service for handling navigation within the application.">INavigationService</a> object</td></tr>
+    <tr><td class="paramname">themeSelectorService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html" title="Interface for a service to manage the application theme selection.">IThemeSelectorService</a> object</td></tr>
+    <tr><td class="paramname">persistAndRestoreService</td><td><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html" title="Interface for a service to persist and restore application data.">IPersistAndRestoreService</a> object</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00029">29</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3d67994c92a89f18eccb6bb467a02986" name="a3d67994c92a89f18eccb6bb467a02986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d67994c92a89f18eccb6bb467a02986">&#9670;&#160;</a></span>HandleActivationAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Vereinsmeisterschaften.Services.ApplicationHostService.HandleActivationAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00084">84</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9479fec7300d04b29b20d1b0b754d470" name="a9479fec7300d04b29b20d1b0b754d470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9479fec7300d04b29b20d1b0b754d470">&#9670;&#160;</a></span>InitializeAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Vereinsmeisterschaften.Services.ApplicationHostService.InitializeAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00066">66</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab51159aaabf7d10ee5bca034ceac8bea" name="ab51159aaabf7d10ee5bca034ceac8bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab51159aaabf7d10ee5bca034ceac8bea">&#9670;&#160;</a></span>StartAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Vereinsmeisterschaften.Services.ApplicationHostService.StartAsync </td>
+          <td>(</td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Triggered when the application host is ready to start the service. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cancellationToken</td><td>Indicates that the start process has been aborted.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Task</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00043">43</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a19b8516ef47156fa48579a675ab69596" name="a19b8516ef47156fa48579a675ab69596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b8516ef47156fa48579a675ab69596">&#9670;&#160;</a></span>StartupAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Vereinsmeisterschaften.Services.ApplicationHostService.StartupAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00076">76</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2031d3a7a747b78a83d0b7092f0505aa" name="a2031d3a7a747b78a83d0b7092f0505aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2031d3a7a747b78a83d0b7092f0505aa">&#9670;&#160;</a></span>StopAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Vereinsmeisterschaften.Services.ApplicationHostService.StopAsync </td>
+          <td>(</td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Triggered when the application host is performing a graceful shutdown. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cancellationToken</td><td>Indicates that the shutdown process should no longer be graceful.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Task</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00060">60</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afbc08ffe5b46cea31bb99f24192609a6" name="afbc08ffe5b46cea31bb99f24192609a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc08ffe5b46cea31bb99f24192609a6">&#9670;&#160;</a></span>_activationHandlers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly IEnumerable&lt;<a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_activation_1_1_i_activation_handler.html">IActivationHandler</a>&gt; Vereinsmeisterschaften.Services.ApplicationHostService._activationHandlers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00017">17</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3d8459b0d0a859e99ddcbe2094de0b0e" name="a3d8459b0d0a859e99ddcbe2094de0b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d8459b0d0a859e99ddcbe2094de0b0e">&#9670;&#160;</a></span>_isInitialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Services.ApplicationHostService._isInitialized</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00019">19</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a593194fb75a1b621622aa5c236229e17" name="a593194fb75a1b621622aa5c236229e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593194fb75a1b621622aa5c236229e17">&#9670;&#160;</a></span>_navigationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_navigation_service.html">INavigationService</a> Vereinsmeisterschaften.Services.ApplicationHostService._navigationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00014">14</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a531d21e7dffb5bc390ac6cb8ae03033b" name="a531d21e7dffb5bc390ac6cb8ae03033b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531d21e7dffb5bc390ac6cb8ae03033b">&#9670;&#160;</a></span>_persistAndRestoreService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_persist_and_restore_service.html">IPersistAndRestoreService</a> Vereinsmeisterschaften.Services.ApplicationHostService._persistAndRestoreService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00015">15</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae24916d61d5e6ca14cff2a37214961db" name="ae24916d61d5e6ca14cff2a37214961db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae24916d61d5e6ca14cff2a37214961db">&#9670;&#160;</a></span>_serviceProvider</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly IServiceProvider Vereinsmeisterschaften.Services.ApplicationHostService._serviceProvider</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00013">13</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aeb3b2b042cebfab5f158e9f2d30df766" name="aeb3b2b042cebfab5f158e9f2d30df766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb3b2b042cebfab5f158e9f2d30df766">&#9670;&#160;</a></span>_shellWindow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_views_1_1_i_shell_window.html">IShellWindow</a> Vereinsmeisterschaften.Services.ApplicationHostService._shellWindow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00018">18</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<a id="afbc9160fdc65e3bb50b2cb6decfee099" name="afbc9160fdc65e3bb50b2cb6decfee099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc9160fdc65e3bb50b2cb6decfee099">&#9670;&#160;</a></span>_themeSelectorService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_vereinsmeisterschaften_1_1_contracts_1_1_services_1_1_i_theme_selector_service.html">IThemeSelectorService</a> Vereinsmeisterschaften.Services.ApplicationHostService._themeSelectorService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_application_host_service_8cs_source.html#l00016">16</a> of file <a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/Services/<a class="el" href="_application_host_service_8cs_source.html">ApplicationHostService.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_services_1_1_application_host_service.html">ApplicationHostService</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+var class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list =
+[
+    [ "DocumentStrategyRaceStartList", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list.html#a8af90736d2b44c90ce9fad5209f0f936", null ],
+    [ "GetItems", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list.html#a2fa04feed4c49667105dbfcc36cca7b6", null ],
+    [ "CreateMultiplePages", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list.html#ad79a152e5449a9ee89d68fa7b989cef2", null ],
+    [ "DocumentType", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list.html#a0e5133f71b310b0e941bb6d7e5fe5034", null ],
+    [ "TemplatePath", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_race_start_list.html#a9cfbf3e285c99e95117ad3d3c66484ef", null ]
+];

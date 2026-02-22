@@ -1,0 +1,758 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Controls.FileFolderPathControl Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Controls.FileFolderPathControl Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interaktionslogik für FileFolderPathControl.xaml.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Controls.FileFolderPathControl:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae1ce1d08b16e01dbd858345008bac25c" id="r_ae1ce1d08b16e01dbd858345008bac25c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">FileFolderSelectionModes</a> { <b>Files</b>
+, <b>Folders</b>
+ }</td></tr>
+<tr class="memdesc:ae1ce1d08b16e01dbd858345008bac25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available selection modes for the file/folder path control.  <a href="#ae1ce1d08b16e01dbd858345008bac25c">More...</a><br /></td></tr>
+<tr class="separator:ae1ce1d08b16e01dbd858345008bac25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7b38430f38f4f2c251b433db5754516a" id="r_a7b38430f38f4f2c251b433db5754516a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b38430f38f4f2c251b433db5754516a">FileFolderPathControl</a> ()</td></tr>
+<tr class="memdesc:a7b38430f38f4f2c251b433db5754516a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html" title="Interaktionslogik für FileFolderPathControl.xaml.">FileFolderPathControl</a>  <br /></td></tr>
+<tr class="separator:a7b38430f38f4f2c251b433db5754516a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab182e7e70dc40b89f0d1caced0291529" id="r_ab182e7e70dc40b89f0d1caced0291529"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab182e7e70dc40b89f0d1caced0291529">FileFolderSelectionModeProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#ad9f30bd862f62748fb114c5175458a0f">FileFolderSelectionMode</a>), typeof(<a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">FileFolderSelectionModes</a>), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(FileFolderSelectionModes.Files))</td></tr>
+<tr class="memdesc:ab182e7e70dc40b89f0d1caced0291529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#ad9f30bd862f62748fb114c5175458a0f" title="Current selection mode for the file/folder path control.">FileFolderSelectionMode</a>.  <br /></td></tr>
+<tr class="separator:ab182e7e70dc40b89f0d1caced0291529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5978f18c39a77befc56df5c235476223" id="r_a5978f18c39a77befc56df5c235476223"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5978f18c39a77befc56df5c235476223">FileFolderPathProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#ad2432bafb999f729bf79663fb0f63129">FileFolderPath</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new FrameworkPropertyMetadata(&quot;&quot;, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnFileFolderPathChanged))</td></tr>
+<tr class="memdesc:a5978f18c39a77befc56df5c235476223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#ad2432bafb999f729bf79663fb0f63129" title="Current file or folder path (can be relative or absolute).">FileFolderPath</a>.  <br /></td></tr>
+<tr class="separator:a5978f18c39a77befc56df5c235476223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a933e08e075d7348ee46130b633da53c4" id="r_a933e08e075d7348ee46130b633da53c4"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a933e08e075d7348ee46130b633da53c4">RootFolderForRelativePathsProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84">RootFolderForRelativePaths</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;&quot;, OnRootFolderForRelativePathsChanged))</td></tr>
+<tr class="memdesc:a933e08e075d7348ee46130b633da53c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84" title="Root folder used for relative paths.">RootFolderForRelativePaths</a>.  <br /></td></tr>
+<tr class="separator:a933e08e075d7348ee46130b633da53c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae07b61dd1ac54489c81faab7d944e718" id="r_ae07b61dd1ac54489c81faab7d944e718"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae07b61dd1ac54489c81faab7d944e718">ResolvedFileFolderPathProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#acaa0b687f67b402869aed4058064da13">ResolvedFileFolderPath</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;&quot;))</td></tr>
+<tr class="memdesc:ae07b61dd1ac54489c81faab7d944e718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#acaa0b687f67b402869aed4058064da13" title="Resolved file or folder path (absolute path).">ResolvedFileFolderPath</a>.  <br /></td></tr>
+<tr class="separator:ae07b61dd1ac54489c81faab7d944e718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3b4900d0a180ccc4ea77e5ed757306" id="r_a0c3b4900d0a180ccc4ea77e5ed757306"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c3b4900d0a180ccc4ea77e5ed757306">OpenFileDialogFilterProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#a520708d9aead935fc7b1239588fa62cf">OpenFileDialogFilter</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;All files (*.*)|*.*&quot;))</td></tr>
+<tr class="memdesc:a0c3b4900d0a180ccc4ea77e5ed757306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#a520708d9aead935fc7b1239588fa62cf" title="Filter for the OpenFileDialog.">OpenFileDialogFilter</a>.  <br /></td></tr>
+<tr class="separator:a0c3b4900d0a180ccc4ea77e5ed757306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a220c80b19b5608ad64da374543a30c1f" id="r_a220c80b19b5608ad64da374543a30c1f"><td class="memItemLeft" align="right" valign="top">static readonly DependencyProperty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a220c80b19b5608ad64da374543a30c1f">ShouldShowFullPathProperty</a> = DependencyProperty.Register(nameof(<a class="el" href="#a3e6708346e26f5bac508df87bd691ecf">ShouldShowFullPath</a>), typeof(bool), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(false))</td></tr>
+<tr class="memdesc:a220c80b19b5608ad64da374543a30c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependency property for the <a class="el" href="#a3e6708346e26f5bac508df87bd691ecf" title="Indicating whether the ResolvedFileFolderPath should be shown.">ShouldShowFullPath</a>.  <br /></td></tr>
+<tr class="separator:a220c80b19b5608ad64da374543a30c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ad9f30bd862f62748fb114c5175458a0f" id="r_ad9f30bd862f62748fb114c5175458a0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">FileFolderSelectionModes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9f30bd862f62748fb114c5175458a0f">FileFolderSelectionMode</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad9f30bd862f62748fb114c5175458a0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current selection mode for the file/folder path control.  <br /></td></tr>
+<tr class="separator:ad9f30bd862f62748fb114c5175458a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2432bafb999f729bf79663fb0f63129" id="r_ad2432bafb999f729bf79663fb0f63129"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2432bafb999f729bf79663fb0f63129">FileFolderPath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad2432bafb999f729bf79663fb0f63129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current file or folder path (can be relative or absolute).  <br /></td></tr>
+<tr class="separator:ad2432bafb999f729bf79663fb0f63129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d16067de3ed23945a7e5a28a5dbf84" id="r_ad3d16067de3ed23945a7e5a28a5dbf84"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84">RootFolderForRelativePaths</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad3d16067de3ed23945a7e5a28a5dbf84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root folder used for relative paths.  <br /></td></tr>
+<tr class="separator:ad3d16067de3ed23945a7e5a28a5dbf84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa0b687f67b402869aed4058064da13" id="r_acaa0b687f67b402869aed4058064da13"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaa0b687f67b402869aed4058064da13">ResolvedFileFolderPath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acaa0b687f67b402869aed4058064da13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolved file or folder path (absolute path).  <br /></td></tr>
+<tr class="separator:acaa0b687f67b402869aed4058064da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520708d9aead935fc7b1239588fa62cf" id="r_a520708d9aead935fc7b1239588fa62cf"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a520708d9aead935fc7b1239588fa62cf">OpenFileDialogFilter</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a520708d9aead935fc7b1239588fa62cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter for the OpenFileDialog.  <br /></td></tr>
+<tr class="separator:a520708d9aead935fc7b1239588fa62cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e6708346e26f5bac508df87bd691ecf" id="r_a3e6708346e26f5bac508df87bd691ecf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e6708346e26f5bac508df87bd691ecf">ShouldShowFullPath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3e6708346e26f5bac508df87bd691ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicating whether the <a class="el" href="#acaa0b687f67b402869aed4058064da13" title="Resolved file or folder path (absolute path).">ResolvedFileFolderPath</a> should be shown.  <br /></td></tr>
+<tr class="separator:a3e6708346e26f5bac508df87bd691ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a311289f77c7b9bb9aeb3d5383f019597" id="r_a311289f77c7b9bb9aeb3d5383f019597"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a311289f77c7b9bb9aeb3d5383f019597">calculateResolvedFileFolderPath</a> ()</td></tr>
+<tr class="separator:a311289f77c7b9bb9aeb3d5383f019597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101d64a742bcbaaa76503f913c3048b9" id="r_a101d64a742bcbaaa76503f913c3048b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a101d64a742bcbaaa76503f913c3048b9">btn_browse_Click</a> (object sender, RoutedEventArgs e)</td></tr>
+<tr class="separator:a101d64a742bcbaaa76503f913c3048b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17acfa039d9f8dd3baf0baa5026faad3" id="r_a17acfa039d9f8dd3baf0baa5026faad3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17acfa039d9f8dd3baf0baa5026faad3">btn_showFullPath_Click</a> (object sender, RoutedEventArgs e)</td></tr>
+<tr class="separator:a17acfa039d9f8dd3baf0baa5026faad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a52c9e1cfb25916fc0c0d157feff4aa9d" id="r_a52c9e1cfb25916fc0c0d157feff4aa9d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52c9e1cfb25916fc0c0d157feff4aa9d">OnFileFolderPathChanged</a> (DependencyObject d, DependencyPropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a52c9e1cfb25916fc0c0d157feff4aa9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9ed910505f157d74ea2ea84d5e9595" id="r_a6a9ed910505f157d74ea2ea84d5e9595"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a9ed910505f157d74ea2ea84d5e9595">OnRootFolderForRelativePathsChanged</a> (DependencyObject d, DependencyPropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a6a9ed910505f157d74ea2ea84d5e9595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interaktionslogik für FileFolderPathControl.xaml. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00012">12</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ae1ce1d08b16e01dbd858345008bac25c" name="ae1ce1d08b16e01dbd858345008bac25c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ce1d08b16e01dbd858345008bac25c">&#9670;&#160;</a></span>FileFolderSelectionModes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderSelectionModes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available selection modes for the file/folder path control. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00017">17</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7b38430f38f4f2c251b433db5754516a" name="a7b38430f38f4f2c251b433db5754516a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b38430f38f4f2c251b433db5754516a">&#9670;&#160;</a></span>FileFolderPathControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderPathControl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the <a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html" title="Interaktionslogik für FileFolderPathControl.xaml.">FileFolderPathControl</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00028">28</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a101d64a742bcbaaa76503f913c3048b9" name="a101d64a742bcbaaa76503f913c3048b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101d64a742bcbaaa76503f913c3048b9">&#9670;&#160;</a></span>btn_browse_Click()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Controls.FileFolderPathControl.btn_browse_Click </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RoutedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00177">177</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a17acfa039d9f8dd3baf0baa5026faad3" name="a17acfa039d9f8dd3baf0baa5026faad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17acfa039d9f8dd3baf0baa5026faad3">&#9670;&#160;</a></span>btn_showFullPath_Click()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Controls.FileFolderPathControl.btn_showFullPath_Click </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RoutedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00221">221</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a311289f77c7b9bb9aeb3d5383f019597" name="a311289f77c7b9bb9aeb3d5383f019597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a311289f77c7b9bb9aeb3d5383f019597">&#9670;&#160;</a></span>calculateResolvedFileFolderPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Controls.FileFolderPathControl.calculateResolvedFileFolderPath </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00118">118</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a52c9e1cfb25916fc0c0d157feff4aa9d" name="a52c9e1cfb25916fc0c0d157feff4aa9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52c9e1cfb25916fc0c0d157feff4aa9d">&#9670;&#160;</a></span>OnFileFolderPathChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Vereinsmeisterschaften.Controls.FileFolderPathControl.OnFileFolderPathChanged </td>
+          <td>(</td>
+          <td class="paramtype">DependencyObject</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DependencyPropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00065">65</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6a9ed910505f157d74ea2ea84d5e9595" name="a6a9ed910505f157d74ea2ea84d5e9595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9ed910505f157d74ea2ea84d5e9595">&#9670;&#160;</a></span>OnRootFolderForRelativePathsChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Vereinsmeisterschaften.Controls.FileFolderPathControl.OnRootFolderForRelativePathsChanged </td>
+          <td>(</td>
+          <td class="paramtype">DependencyObject</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DependencyPropertyChangedEventArgs</td>          <td class="paramname"><span class="paramname"><em>e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00087">87</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5978f18c39a77befc56df5c235476223" name="a5978f18c39a77befc56df5c235476223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5978f18c39a77befc56df5c235476223">&#9670;&#160;</a></span>FileFolderPathProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderPathProperty = DependencyProperty.Register(nameof(<a class="el" href="#ad2432bafb999f729bf79663fb0f63129">FileFolderPath</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new FrameworkPropertyMetadata(&quot;&quot;, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnFileFolderPathChanged))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#ad2432bafb999f729bf79663fb0f63129" title="Current file or folder path (can be relative or absolute).">FileFolderPath</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00063">63</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab182e7e70dc40b89f0d1caced0291529" name="ab182e7e70dc40b89f0d1caced0291529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab182e7e70dc40b89f0d1caced0291529">&#9670;&#160;</a></span>FileFolderSelectionModeProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderSelectionModeProperty = DependencyProperty.Register(nameof(<a class="el" href="#ad9f30bd862f62748fb114c5175458a0f">FileFolderSelectionMode</a>), typeof(<a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">FileFolderSelectionModes</a>), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(FileFolderSelectionModes.Files))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#ad9f30bd862f62748fb114c5175458a0f" title="Current selection mode for the file/folder path control.">FileFolderSelectionMode</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00047">47</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0c3b4900d0a180ccc4ea77e5ed757306" name="a0c3b4900d0a180ccc4ea77e5ed757306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3b4900d0a180ccc4ea77e5ed757306">&#9670;&#160;</a></span>OpenFileDialogFilterProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.OpenFileDialogFilterProperty = DependencyProperty.Register(nameof(<a class="el" href="#a520708d9aead935fc7b1239588fa62cf">OpenFileDialogFilter</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;All files (*.*)|*.*&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#a520708d9aead935fc7b1239588fa62cf" title="Filter for the OpenFileDialog.">OpenFileDialogFilter</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00156">156</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae07b61dd1ac54489c81faab7d944e718" name="ae07b61dd1ac54489c81faab7d944e718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae07b61dd1ac54489c81faab7d944e718">&#9670;&#160;</a></span>ResolvedFileFolderPathProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.ResolvedFileFolderPathProperty = DependencyProperty.Register(nameof(<a class="el" href="#acaa0b687f67b402869aed4058064da13">ResolvedFileFolderPath</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#acaa0b687f67b402869aed4058064da13" title="Resolved file or folder path (absolute path).">ResolvedFileFolderPath</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00116">116</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a933e08e075d7348ee46130b633da53c4" name="a933e08e075d7348ee46130b633da53c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a933e08e075d7348ee46130b633da53c4">&#9670;&#160;</a></span>RootFolderForRelativePathsProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.RootFolderForRelativePathsProperty = DependencyProperty.Register(nameof(<a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84">RootFolderForRelativePaths</a>), typeof(string), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(&quot;&quot;, OnRootFolderForRelativePathsChanged))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84" title="Root folder used for relative paths.">RootFolderForRelativePaths</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00085">85</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a220c80b19b5608ad64da374543a30c1f" name="a220c80b19b5608ad64da374543a30c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220c80b19b5608ad64da374543a30c1f">&#9670;&#160;</a></span>ShouldShowFullPathProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly DependencyProperty Vereinsmeisterschaften.Controls.FileFolderPathControl.ShouldShowFullPathProperty = DependencyProperty.Register(nameof(<a class="el" href="#a3e6708346e26f5bac508df87bd691ecf">ShouldShowFullPath</a>), typeof(bool), typeof(<a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a>), new PropertyMetadata(false))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dependency property for the <a class="el" href="#a3e6708346e26f5bac508df87bd691ecf" title="Indicating whether the ResolvedFileFolderPath should be shown.">ShouldShowFullPath</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00173">173</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="ad2432bafb999f729bf79663fb0f63129" name="ad2432bafb999f729bf79663fb0f63129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2432bafb999f729bf79663fb0f63129">&#9670;&#160;</a></span>FileFolderPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current file or folder path (can be relative or absolute). </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00054">54</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad9f30bd862f62748fb114c5175458a0f" name="ad9f30bd862f62748fb114c5175458a0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f30bd862f62748fb114c5175458a0f">&#9670;&#160;</a></span>FileFolderSelectionMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ae1ce1d08b16e01dbd858345008bac25c">FileFolderSelectionModes</a> Vereinsmeisterschaften.Controls.FileFolderPathControl.FileFolderSelectionMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current selection mode for the file/folder path control. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00038">38</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a520708d9aead935fc7b1239588fa62cf" name="a520708d9aead935fc7b1239588fa62cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520708d9aead935fc7b1239588fa62cf">&#9670;&#160;</a></span>OpenFileDialogFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Controls.FileFolderPathControl.OpenFileDialogFilter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filter for the OpenFileDialog. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00147">147</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="acaa0b687f67b402869aed4058064da13" name="acaa0b687f67b402869aed4058064da13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa0b687f67b402869aed4058064da13">&#9670;&#160;</a></span>ResolvedFileFolderPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Controls.FileFolderPathControl.ResolvedFileFolderPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resolved file or folder path (absolute path). </p>
+<p>This property is automatically calculated based on the <a class="el" href="#ad2432bafb999f729bf79663fb0f63129" title="Current file or folder path (can be relative or absolute).">FileFolderPath</a> and <a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84" title="Root folder used for relative paths.">RootFolderForRelativePaths</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00107">107</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad3d16067de3ed23945a7e5a28a5dbf84" name="ad3d16067de3ed23945a7e5a28a5dbf84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d16067de3ed23945a7e5a28a5dbf84">&#9670;&#160;</a></span>RootFolderForRelativePaths</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Controls.FileFolderPathControl.RootFolderForRelativePaths</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Root folder used for relative paths. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00076">76</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3e6708346e26f5bac508df87bd691ecf" name="a3e6708346e26f5bac508df87bd691ecf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e6708346e26f5bac508df87bd691ecf">&#9670;&#160;</a></span>ShouldShowFullPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Controls.FileFolderPathControl.ShouldShowFullPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicating whether the <a class="el" href="#acaa0b687f67b402869aed4058064da13" title="Resolved file or folder path (absolute path).">ResolvedFileFolderPath</a> should be shown. </p>
+<p>Only available when the <a class="el" href="#ad3d16067de3ed23945a7e5a28a5dbf84" title="Root folder used for relative paths.">RootFolderForRelativePaths</a> is set. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html#l00164">164</a> of file <a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften/Controls/<a class="el" href="_file_folder_path_control_8xaml_8cs_source.html">FileFolderPathControl.xaml.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_controls.html">Controls</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_controls_1_1_file_folder_path_control.html">FileFolderPathControl</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:13 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

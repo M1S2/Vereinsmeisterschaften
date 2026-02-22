@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Models.Race Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">22aa7800eae54b428d40e835886cefe1fdefdfdf</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Models.Race Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class that represents a single race.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Models.Race:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abbee484b2e411c52a85d4458eb3869be" id="r_abbee484b2e411c52a85d4458eb3869be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbee484b2e411c52a85d4458eb3869be">Race</a> ()</td></tr>
+<tr class="memdesc:abbee484b2e411c52a85d4458eb3869be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (create an empty <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection).  <br /></td></tr>
+<tr class="separator:abbee484b2e411c52a85d4458eb3869be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763839fc986fa7568ce796f1a4571f69" id="r_a763839fc986fa7568ce796f1a4571f69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a763839fc986fa7568ce796f1a4571f69">Race</a> (List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt; starts)</td></tr>
+<tr class="memdesc:a763839fc986fa7568ce796f1a4571f69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (copy an <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection).  <br /></td></tr>
+<tr class="separator:a763839fc986fa7568ce796f1a4571f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf7e6696ae5588fb66b7c8081dddd564" id="r_aaf7e6696ae5588fb66b7c8081dddd564"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf7e6696ae5588fb66b7c8081dddd564">Race</a> (ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt; starts)</td></tr>
+<tr class="memdesc:aaf7e6696ae5588fb66b7c8081dddd564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (copy an <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection).  <br /></td></tr>
+<tr class="separator:aaf7e6696ae5588fb66b7c8081dddd564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd77a5d8cc61818e52425d8c55c1d2ff" id="r_abd77a5d8cc61818e52425d8c55c1d2ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd77a5d8cc61818e52425d8c55c1d2ff">Race</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a> other, bool deepClone=true)</td></tr>
+<tr class="memdesc:abd77a5d8cc61818e52425d8c55c1d2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object that has the same property values than this one.  <br /></td></tr>
+<tr class="separator:abd77a5d8cc61818e52425d8c55c1d2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4877fec35d44d423a89415cdfb52d4a" id="r_ad4877fec35d44d423a89415cdfb52d4a"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4877fec35d44d423a89415cdfb52d4a">Equals</a> (object obj)</td></tr>
+<tr class="memdesc:ad4877fec35d44d423a89415cdfb52d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare if two <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> are equal.  <br /></td></tr>
+<tr class="separator:ad4877fec35d44d423a89415cdfb52d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c87ee382f6dee91ae6673427fc04e34" id="r_a2c87ee382f6dee91ae6673427fc04e34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c87ee382f6dee91ae6673427fc04e34">Equals</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a> other)</td></tr>
+<tr class="memdesc:a2c87ee382f6dee91ae6673427fc04e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates wheather the current object is equal to another object of the same type.  <br /></td></tr>
+<tr class="separator:a2c87ee382f6dee91ae6673427fc04e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59e4bcaf57ff8c4fb6f2207a1161894" id="r_af59e4bcaf57ff8c4fb6f2207a1161894"><td class="memItemLeft" align="right" valign="top">override int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af59e4bcaf57ff8c4fb6f2207a1161894">GetHashCode</a> ()</td></tr>
+<tr class="memdesc:af59e4bcaf57ff8c4fb6f2207a1161894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serves as the default hash function.  <br /></td></tr>
+<tr class="separator:af59e4bcaf57ff8c4fb6f2207a1161894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804c0501899287e9333ff348e3b3617d" id="r_a804c0501899287e9333ff348e3b3617d"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a804c0501899287e9333ff348e3b3617d">Clone</a> ()</td></tr>
+<tr class="memdesc:a804c0501899287e9333ff348e3b3617d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object that has the same property values than this one.  <br /></td></tr>
+<tr class="separator:a804c0501899287e9333ff348e3b3617d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a9bbdddc9952ee77471208a31e1314029" id="r_a9bbdddc9952ee77471208a31e1314029"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bbdddc9952ee77471208a31e1314029">Style</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9bbdddc9952ee77471208a31e1314029"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">for this </a>.  <br /></td></tr>
+<tr class="separator:a9bbdddc9952ee77471208a31e1314029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418f63c2af9fb951b8b2621f92faf3f8" id="r_a418f63c2af9fb951b8b2621f92faf3f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a418f63c2af9fb951b8b2621f92faf3f8">Distance</a><code> [get]</code></td></tr>
+<tr class="memdesc:a418f63c2af9fb951b8b2621f92faf3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance for this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a>.  <br /></td></tr>
+<tr class="separator:a418f63c2af9fb951b8b2621f92faf3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5397538e251571bae3edb33d18e2f9ea" id="r_a5397538e251571bae3edb33d18e2f9ea"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5397538e251571bae3edb33d18e2f9ea">Starts</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5397538e251571bae3edb33d18e2f9ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all starts of this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a>  <br /></td></tr>
+<tr class="separator:a5397538e251571bae3edb33d18e2f9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ebd604527e90bc4d0a99aaf5f3ca3b5" id="r_a3ebd604527e90bc4d0a99aaf5f3ca3b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ebd604527e90bc4d0a99aaf5f3ca3b5">IsValid_SameDistances</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3ebd604527e90bc4d0a99aaf5f3ca3b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same distance.  <br /></td></tr>
+<tr class="separator:a3ebd604527e90bc4d0a99aaf5f3ca3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad514807dfc6fb6c4c86fbcae8dfdc14e" id="r_ad514807dfc6fb6c4c86fbcae8dfdc14e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad514807dfc6fb6c4c86fbcae8dfdc14e">IsValid_SameStyles</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad514807dfc6fb6c4c86fbcae8dfdc14e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a>  <br /></td></tr>
+<tr class="separator:ad514807dfc6fb6c4c86fbcae8dfdc14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97393c0c1e935bf7acdb63d3ece8e244" id="r_a97393c0c1e935bf7acdb63d3ece8e244"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97393c0c1e935bf7acdb63d3ece8e244">IsValid_StartsAvailable</a><code> [get]</code></td></tr>
+<tr class="memdesc:a97393c0c1e935bf7acdb63d3ece8e244"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when the starts are not empty.  <br /></td></tr>
+<tr class="separator:a97393c0c1e935bf7acdb63d3ece8e244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc319101e4fc3cb46bac5043278a040f" id="r_abc319101e4fc3cb46bac5043278a040f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc319101e4fc3cb46bac5043278a040f">IsValid</a><code> [get]</code></td></tr>
+<tr class="memdesc:abc319101e4fc3cb46bac5043278a040f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> is considered as valid, when:  <br /></td></tr>
+<tr class="separator:abc319101e4fc3cb46bac5043278a040f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f77ebbe93844cfbe093f56dd0577a9d" id="r_a2f77ebbe93844cfbe093f56dd0577a9d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f77ebbe93844cfbe093f56dd0577a9d">RaceID</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2f77ebbe93844cfbe093f56dd0577a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number for this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a>  <br /></td></tr>
+<tr class="separator:a2f77ebbe93844cfbe093f56dd0577a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a52ce4da4f236878aff38b49099f30d8d" id="r_a52ce4da4f236878aff38b49099f30d8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52ce4da4f236878aff38b49099f30d8d">RegisterEvents</a> ()</td></tr>
+<tr class="separator:a52ce4da4f236878aff38b49099f30d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d862af5358363213e692aaa77c130e" id="r_a79d862af5358363213e692aaa77c130e"><td class="memItemLeft" align="right" valign="top"><a id="a79d862af5358363213e692aaa77c130e" name="a79d862af5358363213e692aaa77c130e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Competition_PropertyChanged</b> (object sender, System.ComponentModel.PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a79d862af5358363213e692aaa77c130e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47a55b2451e480818b4a65a3978007a0" id="r_a47a55b2451e480818b4a65a3978007a0"><td class="memItemLeft" align="right" valign="top"><a id="a47a55b2451e480818b4a65a3978007a0" name="a47a55b2451e480818b4a65a3978007a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start_PropertyChanged</b> (object sender, System.ComponentModel.PropertyChangedEventArgs e)</td></tr>
+<tr class="separator:a47a55b2451e480818b4a65a3978007a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecaa1fdb83bd0cf912fd789fb2b112d0" id="r_aecaa1fdb83bd0cf912fd789fb2b112d0"><td class="memItemLeft" align="right" valign="top"><a id="aecaa1fdb83bd0cf912fd789fb2b112d0" name="aecaa1fdb83bd0cf912fd789fb2b112d0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Starts_CollectionChanged</b> (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)</td></tr>
+<tr class="separator:aecaa1fdb83bd0cf912fd789fb2b112d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ce1542a732c5766efb84f5299da8ad" id="r_a92ce1542a732c5766efb84f5299da8ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92ce1542a732c5766efb84f5299da8ad">raiseAllPropertyChanged</a> ()</td></tr>
+<tr class="separator:a92ce1542a732c5766efb84f5299da8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aecfc1594a306241bf9cd2021aaa5d223" id="r_aecfc1594a306241bf9cd2021aaa5d223"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecfc1594a306241bf9cd2021aaa5d223">_starts</a></td></tr>
+<tr class="separator:aecfc1594a306241bf9cd2021aaa5d223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5c3b05f0efe068e1f2f24205e03479" id="r_aca5c3b05f0efe068e1f2f24205e03479"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca5c3b05f0efe068e1f2f24205e03479">_raceID</a></td></tr>
+<tr class="separator:aca5c3b05f0efe068e1f2f24205e03479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that represents a single race. </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00011">11</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abbee484b2e411c52a85d4458eb3869be" name="abbee484b2e411c52a85d4458eb3869be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbee484b2e411c52a85d4458eb3869be">&#9670;&#160;</a></span>Race() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.Race.Race </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (create an empty <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection). </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00018">18</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a763839fc986fa7568ce796f1a4571f69" name="a763839fc986fa7568ce796f1a4571f69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763839fc986fa7568ce796f1a4571f69">&#9670;&#160;</a></span>Race() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.Race.Race </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>starts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (copy an <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">starts</td><td>List of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> to copy</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00028">28</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="aaf7e6696ae5588fb66b7c8081dddd564" name="aaf7e6696ae5588fb66b7c8081dddd564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf7e6696ae5588fb66b7c8081dddd564">&#9670;&#160;</a></span>Race() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.Race.Race </td>
+          <td>(</td>
+          <td class="paramtype">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>starts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> class (copy an <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">starts</td><td>Observable collection of <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> to copy</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00038">38</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="abd77a5d8cc61818e52425d8c55c1d2ff" name="abd77a5d8cc61818e52425d8c55c1d2ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd77a5d8cc61818e52425d8c55c1d2ff">&#9670;&#160;</a></span>Race() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Models.Race.Race </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>deepClone</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new object that has the same property values than this one. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> object to clone</td></tr>
+    <tr><td class="paramname">deepClone</td><td>If true, the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> are also cloned. Otherwise the same <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea">references are used.</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00049">49</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a804c0501899287e9333ff348e3b3617d" name="a804c0501899287e9333ff348e3b3617d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804c0501899287e9333ff348e3b3617d">&#9670;&#160;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object Vereinsmeisterschaften.Core.Models.Race.Clone </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new object that has the same property values than this one. </p>
+<dl class="section return"><dt>Returns</dt><dd>Cloned object of type</dd></dl>
+
+</div>
+</div>
+<a id="ad4877fec35d44d423a89415cdfb52d4a" name="ad4877fec35d44d423a89415cdfb52d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4877fec35d44d423a89415cdfb52d4a">&#9670;&#160;</a></span>Equals() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override bool Vereinsmeisterschaften.Core.Models.Race.Equals </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare if two <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> are equal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>Other <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">to compare against this instance.</a> <dl class="section return"><dt>Returns</dt><dd>true if both instances are equal; false if not equal or obj isn't of type <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a></dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c87ee382f6dee91ae6673427fc04e34" name="a2c87ee382f6dee91ae6673427fc04e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c87ee382f6dee91ae6673427fc04e34">&#9670;&#160;</a></span>Equals() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.Race.Equals </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates wheather the current object is equal to another object of the same type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Other object to compare.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the current object is equal to the other parameter; otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="af59e4bcaf57ff8c4fb6f2207a1161894" name="af59e4bcaf57ff8c4fb6f2207a1161894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af59e4bcaf57ff8c4fb6f2207a1161894">&#9670;&#160;</a></span>GetHashCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override int Vereinsmeisterschaften.Core.Models.Race.GetHashCode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serves as the default hash function. </p>
+<dl class="section return"><dt>Returns</dt><dd>A hash code for the current object.</dd></dl>
+
+</div>
+</div>
+<a id="a92ce1542a732c5766efb84f5299da8ad" name="a92ce1542a732c5766efb84f5299da8ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ce1542a732c5766efb84f5299da8ad">&#9670;&#160;</a></span>raiseAllPropertyChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Models.Race.raiseAllPropertyChanged </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00174">174</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a52ce4da4f236878aff38b49099f30d8d" name="a52ce4da4f236878aff38b49099f30d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ce4da4f236878aff38b49099f30d8d">&#9670;&#160;</a></span>RegisterEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Models.Race.RegisterEvents </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00151">151</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aca5c3b05f0efe068e1f2f24205e03479" name="aca5c3b05f0efe068e1f2f24205e03479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca5c3b05f0efe068e1f2f24205e03479">&#9670;&#160;</a></span>_raceID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Models.Race._raceID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00134">134</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="aecfc1594a306241bf9cd2021aaa5d223" name="aecfc1594a306241bf9cd2021aaa5d223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecfc1594a306241bf9cd2021aaa5d223">&#9670;&#160;</a></span>_starts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a>&gt; Vereinsmeisterschaften.Core.Models.Race._starts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00084">84</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a418f63c2af9fb951b8b2621f92faf3f8" name="a418f63c2af9fb951b8b2621f92faf3f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418f63c2af9fb951b8b2621f92faf3f8">&#9670;&#160;</a></span>Distance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Models.Race.Distance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Distance for this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a>. </p>
+<p>This is the distance from the first <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection. </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00082">82</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="abc319101e4fc3cb46bac5043278a040f" name="abc319101e4fc3cb46bac5043278a040f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc319101e4fc3cb46bac5043278a040f">&#9670;&#160;</a></span>IsValid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.Race.IsValid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> is considered as valid, when: </p>
+<ul>
+<li>all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a></li>
+<li>all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same distance</li>
+<li>the starts are not empty </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00126">126</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3ebd604527e90bc4d0a99aaf5f3ca3b5" name="a3ebd604527e90bc4d0a99aaf5f3ca3b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ebd604527e90bc4d0a99aaf5f3ca3b5">&#9670;&#160;</a></span>IsValid_SameDistances</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.Race.IsValid_SameDistances</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same distance. </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00105">105</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad514807dfc6fb6c4c86fbcae8dfdc14e" name="ad514807dfc6fb6c4c86fbcae8dfdc14e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad514807dfc6fb6c4c86fbcae8dfdc14e">&#9670;&#160;</a></span>IsValid_SameStyles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.Race.IsValid_SameStyles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when all <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection have the same <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00111">111</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a97393c0c1e935bf7acdb63d3ece8e244" name="a97393c0c1e935bf7acdb63d3ece8e244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97393c0c1e935bf7acdb63d3ece8e244">&#9670;&#160;</a></span>IsValid_StartsAvailable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Models.Race.IsValid_StartsAvailable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when the starts are not empty. </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00117">117</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2f77ebbe93844cfbe093f56dd0577a9d" name="a2f77ebbe93844cfbe093f56dd0577a9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f77ebbe93844cfbe093f56dd0577a9d">&#9670;&#160;</a></span>RaceID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Models.Race.RaceID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number for this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00139">139</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5397538e251571bae3edb33d18e2f9ea" name="a5397538e251571bae3edb33d18e2f9ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5397538e251571bae3edb33d18e2f9ea">&#9670;&#160;</a></span>Starts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html">PersonStart</a>&gt; Vereinsmeisterschaften.Core.Models.Race.Starts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all starts of this <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html" title="Class that represents a single race.">Race</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00089">89</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9bbdddc9952ee77471208a31e1314029" name="a9bbdddc9952ee77471208a31e1314029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bbdddc9952ee77471208a31e1314029">&#9670;&#160;</a></span>Style</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">SwimmingStyles</a> Vereinsmeisterschaften.Core.Models.Race.Style</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950">for this </a>. </p>
+<p>This is the <a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#a2c1a30a544e19fbe07754b882f19a950" title="Available swimming styles.">SwimmingStyles</a>&gt; from the first <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_person_start.html" title="Class describing a start of a person.">PersonStart</a> in the <a class="el" href="#a5397538e251571bae3edb33d18e2f9ea" title="List with all starts of this Race">Starts</a> collection. </p>
+
+<p class="definition">Definition at line <a class="el" href="_race_8cs_source.html#l00076">76</a> of file <a class="el" href="_race_8cs_source.html">Race.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Models/<a class="el" href="_race_8cs_source.html">Race.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Models</a></li><li class="navelem"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_race.html">Race</a></li>
+    <li class="footer">Generated on Sun Feb 22 2026 13:06:14 for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

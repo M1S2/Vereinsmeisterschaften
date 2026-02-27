@@ -11,6 +11,7 @@ using Vereinsmeisterschaften.Contracts.ViewModels;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Properties;
+using System.IO;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -50,6 +51,21 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
     /// True if there are duplicate <see cref="Competition">
     /// </summary>
     public bool HasDuplicateCompetitions => Competitions?.Any(c => c.HasDuplicates) ?? false;
+
+    /// <summary>
+    /// Path to the last used rudolph table file
+    /// </summary>
+    public string LastUsedRudolphTablePath => _competitionService.LastUsedRudolphTablePath;
+
+    /// <summary>
+    /// Score of the last used rudolph table
+    /// </summary>
+    public byte LastUsedRudolphTableScore => _competitionService.LastUsedRudolphTableScore;
+
+    /// <summary>
+    /// Flag that indicates that at least one of the <see cref="LastUsedRudolphTablePath"/> or <see cref="LastUsedRudolphTableScore"/> is set
+    /// </summary>
+    public bool LastUsedRudolphTableValuesAvailable => !string.IsNullOrEmpty(LastUsedRudolphTablePath) || LastUsedRudolphTableScore != 0;
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -112,6 +128,16 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
             switch(e.PropertyName)
             {
                 case nameof(ICompetitionDistanceRuleService.HasUnsavedChanges): OnPropertyChanged(nameof(CompetitionDistanceRuleValidationIssues)); break;
+                default: break;
+            }
+        };
+
+        _competitionService.PropertyChanged += (sender, e) =>
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ICompetitionService.LastUsedRudolphTablePath): OnPropertyChanged(nameof(LastUsedRudolphTablePath)); OnPropertyChanged(nameof(LastUsedRudolphTableValuesAvailable)); break;
+                case nameof(ICompetitionService.LastUsedRudolphTableScore): OnPropertyChanged(nameof(LastUsedRudolphTableScore)); OnPropertyChanged(nameof(LastUsedRudolphTableValuesAvailable)); break;
                 default: break;
             }
         };
@@ -183,7 +209,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
     public ICommand UpdateCompetitionTimesFromRudolphTableCommand => _updateCompetitionTimesFromRudolphTableCommand ?? (_updateCompetitionTimesFromRudolphTableCommand = new RelayCommand(async () =>
     {
         OpenFileDialog fileDialog = new OpenFileDialog();
-        fileDialog.InitialDirectory = _workspaceService.PersistentPath;
+        fileDialog.InitialDirectory = File.Exists(LastUsedRudolphTablePath) ? Path.GetDirectoryName(LastUsedRudolphTablePath) : _workspaceService.PersistentPath;
         fileDialog.Filter = Resources.FileDialogCsvFilterString;
         fileDialog.Title = Resources.SelectRudolphTableString;
         if (fileDialog.ShowDialog() == true)
@@ -219,7 +245,7 @@ public partial class CompetitionViewModel : ObservableObject, INavigationAware
         if (result == MessageDialogResult.Affirmative)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = _workspaceService.PersistentPath;
+            fileDialog.InitialDirectory = File.Exists(LastUsedRudolphTablePath) ? Path.GetDirectoryName(LastUsedRudolphTablePath) : _workspaceService.PersistentPath;
             fileDialog.Filter = Resources.FileDialogCsvFilterString;
             fileDialog.Title = Resources.SelectRudolphTableString;
             if (fileDialog.ShowDialog() == true)

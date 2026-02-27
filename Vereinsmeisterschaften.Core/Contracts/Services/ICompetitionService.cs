@@ -85,6 +85,17 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
         /// <param name="keepRudolphTableFlags">Set this to true to make sure that the rudolph table related flags aren't changed (otherwise changing the Distance will reset the flags)</param>
         void UpdateAllCompetitionDistancesFromDistanceRules(bool keepRudolphTableFlags = false);
 
+
+        /// <summary>
+        /// Path to the last used rudolph table file
+        /// </summary>
+        string LastUsedRudolphTablePath { get; set; }
+
+        /// <summary>
+        /// Score of the last used rudolph table
+        /// </summary>
+        byte LastUsedRudolphTableScore { get; set; }
+
         /// <summary>
         /// Create the <see cref="Competition"/> objects from the given rudolph table.
         /// The lines from the given rudolph score are used.

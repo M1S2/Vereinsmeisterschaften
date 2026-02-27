@@ -744,10 +744,11 @@ Alle Starts sind zugewiesen.</value>
     <value>Aus Rudolph Tabelle</value>
   </data>
   <data name="RudolphTableExplanationString" xml:space="preserve">
-    <value>Die Rudolph-Tabelle des DSV ist ein zentrales Instrument zur altersgerechten Bewertung von Schwimmzeiten, das von Dr. Klaus Rudolph entwickelt wurde.
+    <value>Die Rudolph Tabelle des DSV ist ein zentrales Instrument zur altersgerechten Bewertung von Schwimmzeiten, das von Dr. Klaus Rudolph entwickelt wurde.
 Sie ordnet erzielte Zeiten ab 8 Jahren über ein Punktesystem (meist 1-20) in Leistungsniveaus ein, wobei 20 Punkte Weltniveau entsprechen.
 Sie basiert auf einer Analyse der ewigen Bestenlisten der Altersklassen im DSV und wird jährlich an die Leistungsentwicklung angepasst.
-Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Erwachsenenbereich.</value>
+Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Erwachsenenbereich.
+Beim Erstellen von Wettkämpfen aus der Rudolph Tabelle werden die Distanz Regeln verwendet, um zu entscheiden, welche Distanzen für welches Alter verwendet werden sollen. Sind z.B. nur Brust Regeln vorhanden, werden auch nur Brust Wettkämpfe erstellt.</value>
   </data>
   <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
     <value>Wettkämpfe aus Rudolph Tabelle erstellen</value>
@@ -850,5 +851,11 @@ Die Reihenfolgen, in der die Spalten ausgewählt werden, bestimmt die Sortierpri
   </data>
   <data name="OpenAgeTimeFromRudolphTableString" xml:space="preserve">
     <value>Offene Klasse</value>
+  </data>
+  <data name="LastUsedRudolphTableString" xml:space="preserve">
+    <value>Zuletzt verwendete Rudolph Tabelle</value>
+  </data>
+  <data name="RudolphScoreString" xml:space="preserve">
+    <value>Rudolph Punkte</value>
   </data>
 </root>

@@ -227,7 +227,7 @@
             </DockPanel>
 
             <!-- Controls for Rudolph table -->
-            <GroupBox Grid.Row="3" Margin="0,20,0,0"
+            <Expander Grid.Row="3" Margin="0,20,0,0" IsExpanded="True"
                       Header="{x:Static properties:Resources.RudolphTableString}" controls:ControlsHelper.ContentCharacterCasing="Normal">
                 <StackPanel Orientation="Vertical" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
                     <TextBlock VerticalAlignment="Center"
@@ -252,8 +252,22 @@
                             <TextBlock Text="{x:Static properties:Resources.UpdateCompetitionTimesFromRudolphTableString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         </StackPanel>
                     </Button>
+
+                    <!-- Last rudolph table values -->
+                    <TextBlock Margin="0,10,0,0"
+                               Text="{x:Static properties:Resources.LastUsedRudolphTableString}"
+                               Style="{StaticResource SubtitleTextStyle}"
+                               Visibility="{Binding LastUsedRudolphTableValuesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{Binding LastUsedRudolphTablePath}" TextWrapping="Wrap" FontSize="{StaticResource MediumFontSize}"
+                               Visibility="{Binding LastUsedRudolphTableValuesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding LastUsedRudolphTableValuesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="{x:Static properties:Resources.RudolphScoreString}" FontSize="{StaticResource MediumFontSize}"/>
+                        <TextBlock Text=" = " FontSize="{StaticResource MediumFontSize}"/>
+                        <TextBlock Text="{Binding LastUsedRudolphTableScore}" FontSize="{StaticResource MediumFontSize}"/>
+                    </StackPanel>
                 </StackPanel>
-            </GroupBox>
+            </Expander>
         </Grid>
 
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

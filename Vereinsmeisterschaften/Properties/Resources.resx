@@ -746,7 +746,8 @@
     <value>The Rudolph Table of the German Swimming Federation (DSV) is a key tool for age-appropriate evaluation of swimming times, developed by Dr. Klaus Rudolph.
 It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
 It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
-The table considers performance levels from age 8 until the transition to adulthood.</value>
+The table considers performance levels from age 8 until the transition to adulthood.
+When creating competitions from the Rudolph table, the distance rules are used to determine which distances should be used for which age. For example, if only breaststroke rules are available, only breaststroke competitions will be created.</value>
   </data>
   <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
     <value>Create Competitions from Rudolph Table</value>
@@ -849,5 +850,11 @@ The order in which the columns are selected determines the sort priority.</value
   </data>
   <data name="OpenAgeTimeFromRudolphTableString" xml:space="preserve">
     <value>Open Age</value>
+  </data>
+  <data name="LastUsedRudolphTableString" xml:space="preserve">
+    <value>Last used Rudolph Table</value>
+  </data>
+  <data name="RudolphScoreString" xml:space="preserve">
+    <value>Rudolph score</value>
   </data>
 </root>

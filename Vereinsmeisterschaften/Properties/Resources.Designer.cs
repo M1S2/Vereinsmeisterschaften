@@ -987,6 +987,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last used Rudolph Table ähnelt.
+        /// </summary>
+        public static string LastUsedRudolphTableString {
+            get {
+                return ResourceManager.GetString("LastUsedRudolphTableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Last workspace paths ähnelt.
         /// </summary>
         public static string LastWorkspacePathsString {
@@ -1543,6 +1552,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string ResultsPageTitle {
             get {
                 return ResourceManager.GetString("ResultsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rudolph score ähnelt.
+        /// </summary>
+        public static string RudolphScoreString {
+            get {
+                return ResourceManager.GetString("RudolphScoreString", resourceCulture);
             }
         }
         

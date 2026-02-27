@@ -167,5 +167,23 @@ namespace Vereinsmeisterschaften.Core.Properties {
                 return ResourceManager.GetString("ResultPlaceString", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die RudolphTableScore ähnelt.
+        /// </summary>
+        public static string RudolphTableScoreString {
+            get {
+                return ResourceManager.GetString("RudolphTableScoreString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die RudolphTable ähnelt.
+        /// </summary>
+        public static string RudolphTableString {
+            get {
+                return ResourceManager.GetString("RudolphTableString", resourceCulture);
+            }
+        }
     }
 }

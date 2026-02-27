@@ -153,4 +153,10 @@
   <data name="InterpolateMissingCompetitionTimesFromRudolphTableErrorFormatString" xml:space="preserve">
     <value>Interpolieren nicht möglich für {0}m {1} {2}: mindestens 3 Punkte aus der Rudolph Tabelle innerhalb der jeweiligen Gruppe (Stil, Geschlecht, Distanz) sind nötig!</value>
   </data>
+  <data name="RudolphTableString" xml:space="preserve">
+    <value>RudolphTabelle</value>
+  </data>
+  <data name="RudolphTableScoreString" xml:space="preserve">
+    <value>RudolphTabellePunkte</value>
+  </data>
 </root>

@@ -39,11 +39,12 @@ public interface IFileService
     /// <param name="filePath">Save to this file</param>
     /// <param name="dataList">List with data to save</param>
     /// <param name="cancellationToken">Used to cancel the save process</param>
+    /// <param name="metadataDict">Dictionary with metadata that is saved as headers in front of the <paramref name="dataList"/>. Use <see langword="null"/> if not used.</param>
     /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report save progress</param>
     /// <param name="formatData">Callback that can be used to format the data. Use <see langword="null"/> to use the default ToString method</param>
     /// <param name="formatDataHeader">Callback that can be used to format the data headers. Use <see langword="null"/> to use the default header</param>
     /// <param name="delimiter">Delimiter for the .csv file</param>
-    void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';');
+    void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, Dictionary<string, string> metadataDict = null, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';');
 
     /// <summary>
     /// Load the .csv file to a list of data
@@ -52,11 +53,12 @@ public interface IFileService
     /// <param name="filePath">Load from this file</param>
     /// <param name="cancellationToken">Used to cancel the load process</param>
     /// <param name="setPropertyFromStringDelegate">Delegate used to change the data element properties</param>
+    /// <param name="metadataDict">Output dictionary with metadata that is loaded from headers in front of the <paramref name="dataList"/>. <see langword="null"/> if not available.</param>
     /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report load progress</param>
     /// <param name="findPropertyFromHeader">Callback that can be used to get the property name from the data headers. Use <see langword="null"/> to use the header name as property name</param>
     /// <param name="delimiter">Delimiter for the .csv file</param>
     /// <returns>Loaded data list</returns>
-    List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, ProgressDelegate onProgress = null, FindPropertyFromHeaderDelegate findPropertyFromHeader = null, char delimiter = ';') where T : new();
+    List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, out Dictionary<string, string> metadataDict, ProgressDelegate onProgress = null, FindPropertyFromHeaderDelegate findPropertyFromHeader = null, char delimiter = ';') where T : new();
 }
 
 /// <summary>

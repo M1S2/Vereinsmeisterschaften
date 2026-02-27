@@ -116,7 +116,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Person> list = _fileService.LoadFromCsv<Person>(path, cancellationToken, Person.SetPropertyFromString, OnFileProgress, (header) =>
+                        List<Person> list = _fileService.LoadFromCsv<Person>(path, cancellationToken, Person.SetPropertyFromString, out _, OnFileProgress, (header) =>
                         {
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Person), header);
                         });
@@ -166,7 +166,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _personList.ToList(), cancellationToken, OnFileProgress, (data, parentObject, currentProperty) =>
+                    _fileService.SaveToCsv(path, _personList.ToList(), cancellationToken, null, OnFileProgress, (data, parentObject, currentProperty) =>
                     {
                         if (data is bool dataBool)
                         {

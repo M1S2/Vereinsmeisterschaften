@@ -91,7 +91,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<CompetitionDistanceRule> list = _fileService.LoadFromCsv<CompetitionDistanceRule>(path, cancellationToken, CompetitionDistanceRule.SetPropertyFromString, OnFileProgress, (header) =>
+                        List<CompetitionDistanceRule> list = _fileService.LoadFromCsv<CompetitionDistanceRule>(path, cancellationToken, CompetitionDistanceRule.SetPropertyFromString, out _, OnFileProgress, (header) =>
                         {
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(CompetitionDistanceRule), header);
                         });
@@ -141,7 +141,7 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _competitionDistanceRules.ToList(), cancellationToken, OnFileProgress, (data, parentObject, currentProperty) =>
+                    _fileService.SaveToCsv(path, _competitionDistanceRules.ToList(), cancellationToken, null, OnFileProgress, (data, parentObject, currentProperty) =>
                     {
                         if (data is Enum dataEnum)
                         {

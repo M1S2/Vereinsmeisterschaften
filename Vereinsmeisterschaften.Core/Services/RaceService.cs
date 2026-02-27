@@ -165,7 +165,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, OnFileProgress, (header) =>
+                        List<Race> raceList = _fileService.LoadFromCsv<Race>(path, cancellationToken, setRacePropertyFromString, out _, OnFileProgress, (header) =>
                         {
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Race), header);
                         });
@@ -262,7 +262,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     else
                     {
                         int maxNumberStarts = PersistedRacesVariant.Races.Count == 0 ? 0 : PersistedRacesVariant.Races.Select(r => r.Starts.Count).Max();
-                        _fileService.SaveToCsv(path, PersistedRacesVariant.Races.ToList(), cancellationToken, OnFileProgress,
+                        _fileService.SaveToCsv(path, PersistedRacesVariant.Races.ToList(), cancellationToken, null, OnFileProgress,
                         (data, parentObject, currentProperty) =>
                         {
                             if (data is IList<PersonStart> dataList)

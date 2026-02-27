@@ -114,10 +114,22 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
                     else
                     {
-                        List<Competition> list = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, OnFileProgress, (header) =>
+                        Dictionary<string, string> metadata = new Dictionary<string, string>();
+                        List<Competition> list = _fileService.LoadFromCsv<Competition>(path, cancellationToken, Competition.SetPropertyFromString, out metadata, OnFileProgress, (header) =>
                         {
                             return PropertyNameLocalizedStringHelper.FindProperty(typeof(Competition), header);
                         });
+
+                        string rudolphTablePath = string.Empty;
+                        metadata.TryGetValue(Properties.Resources.RudolphTableString, out rudolphTablePath);
+                        LastUsedRudolphTablePath = rudolphTablePath;
+
+                        string rudolphTableScoreStr = string.Empty;
+                        byte rudolphTableScore = 0;
+                        metadata.TryGetValue(Properties.Resources.RudolphTableScoreString, out rudolphTableScoreStr);
+                        byte.TryParse(rudolphTableScoreStr, out rudolphTableScore);
+                        LastUsedRudolphTableScore = rudolphTableScore;
+
                         _competitionList = new ObservableCollection<Competition>();
                         foreach (Competition competition in list)
                         {
@@ -127,6 +139,8 @@ namespace Vereinsmeisterschaften.Core.Services
                     }
 
                     _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
+                    _lastUsedRudolphTablePathOnLoad = LastUsedRudolphTablePath;
+                    _lastUsedRudolphTableScoreOnLoad = LastUsedRudolphTableScore;
 
                     PersistentPath = path;
                     importingResult = true;
@@ -163,7 +177,11 @@ namespace Vereinsmeisterschaften.Core.Services
             {
                 try
                 {
-                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, OnFileProgress, (data, parentObject, currentProperty) =>
+                    Dictionary<string, string> metadata = new Dictionary<string, string>();
+                    metadata.Add(Properties.Resources.RudolphTableString, LastUsedRudolphTablePath);
+                    metadata.Add(Properties.Resources.RudolphTableScoreString, LastUsedRudolphTableScore.ToString());
+
+                    _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, metadata, OnFileProgress, (data, parentObject, currentProperty) =>
                     {
                         if (data is Enum dataEnum)
                         {
@@ -184,6 +202,8 @@ namespace Vereinsmeisterschaften.Core.Services
                     });
 
                     _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
+                    _lastUsedRudolphTablePathOnLoad = LastUsedRudolphTablePath;
+                    _lastUsedRudolphTableScoreOnLoad = LastUsedRudolphTableScore;
                     saveResult = true;
                 }
                 catch (OperationCanceledException)
@@ -235,6 +255,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         public void ResetToLoadedState()
         {
+            LastUsedRudolphTablePath = _lastUsedRudolphTablePathOnLoad;
+            LastUsedRudolphTableScore = _lastUsedRudolphTableScoreOnLoad;
             if (_competitionListOnLoad == null) { return; }
             _competitionList.CollectionChanged -= _competitionList_CollectionChanged;
             ClearAll();
@@ -338,7 +360,9 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Check if the list of <see cref="Competition"/> has not saved changed.
         /// True, if unsaved changes exist; otherwise false.
         /// </summary>
-        public bool HasUnsavedChanges => (_competitionList != null && _competitionListOnLoad != null) ? !_competitionList.SequenceEqual(_competitionListOnLoad) : false;
+        public bool HasUnsavedChanges => ((_competitionList != null && _competitionListOnLoad != null) ? !_competitionList.SequenceEqual(_competitionListOnLoad) : false) ||
+                                         LastUsedRudolphTablePath != _lastUsedRudolphTablePathOnLoad ||
+                                         LastUsedRudolphTableScore != _lastUsedRudolphTableScoreOnLoad;
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -483,6 +507,25 @@ namespace Vereinsmeisterschaften.Core.Services
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <inheritdoc/>
+        public string LastUsedRudolphTablePath { get; set; }
+
+        /// <summary>
+        /// <see cref="LastUsedRudolphTablePath"/> at the time the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        private string _lastUsedRudolphTablePathOnLoad { get; set; }
+
+        /// <inheritdoc/>
+        public byte LastUsedRudolphTableScore { get; set; }
+
+        /// <summary>
+        /// <see cref="LastUsedRudolphTableScore"/> at the time the <see cref="Load(string, CancellationToken)"/> method was called.
+        /// </summary>
+        private byte _lastUsedRudolphTableScoreOnLoad { get; set; }
+
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /// <inheritdoc/>
         public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
@@ -537,6 +580,10 @@ namespace Vereinsmeisterschaften.Core.Services
                 competition.Id = id;
                 AddCompetition(competition);
             }
+
+            LastUsedRudolphTablePath = rudolphTableCsvFile;
+            LastUsedRudolphTableScore = rudolphScore;
+            OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -564,6 +611,9 @@ namespace Vereinsmeisterschaften.Core.Services
                 }
             }
             interpolateMissingCompetitionTimesFromRudolphTable(rudolphTable, rudolphScore);
+            LastUsedRudolphTablePath = rudolphTableCsvFile;
+            LastUsedRudolphTableScore = rudolphScore;
+            OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

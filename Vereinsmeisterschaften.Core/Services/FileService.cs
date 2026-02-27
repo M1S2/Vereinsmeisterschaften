@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 
@@ -10,13 +11,7 @@ namespace Vereinsmeisterschaften.Core.Services;
 /// </summary>
 public class FileService : IFileService
 {
-    /// <summary>
-    /// Read the given file and deserialize it to the given type.
-    /// </summary>
-    /// <typeparam name="T">Type to deserialize to</typeparam>
-    /// <param name="folderPath">Path where the file is located</param>
-    /// <param name="fileName">Filename with extension</param>
-    /// <returns>Deserialized object</returns>
+    /// <inheritdoc/>
     public T Read<T>(string folderPath, string fileName)
     {
         var path = Path.Combine(folderPath, fileName);
@@ -31,13 +26,7 @@ public class FileService : IFileService
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    /// <summary>
-    /// Save the given object to a file. The file is overwritten if it already exists.
-    /// </summary>
-    /// <typeparam name="T">Type of the object to serialize</typeparam>
-    /// <param name="folderPath">Path where the file should be saved</param>
-    /// <param name="fileName">Filename with extension</param>
-    /// <param name="content">Object to save</param>
+    /// <inheritdoc/>
     public void Save<T>(string folderPath, string fileName, T content)
     {
         if (!Directory.Exists(folderPath))
@@ -51,11 +40,7 @@ public class FileService : IFileService
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    /// <summary>
-    /// Delete the given file.
-    /// </summary>
-    /// <param name="folderPath">Path where the file is located</param>
-    /// <param name="fileName">Filename with extension</param>
+    /// <inheritdoc/>
     public void Delete(string folderPath, string fileName)
     {
         if (fileName != null && File.Exists(Path.Combine(folderPath, fileName)))
@@ -66,22 +51,25 @@ public class FileService : IFileService
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    /// <summary>
-    /// Save the given data list to a .csv file
-    /// </summary>
-    /// <typeparam name="T">Type of the data elements</typeparam>
-    /// <param name="filePath">Save to this file</param>
-    /// <param name="dataList">List with data to save</param>
-    /// <param name="cancellationToken">Used to cancel the save process</param>
-    /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report save progress</param>
-    /// <param name="formatData">Callback that can be used to format the data. Use <see langword="null"/> to use the default ToString method</param>
-    /// <param name="formatDataHeader">Callback that can be used to format the data headers. Use <see langword="null"/> to use the default header</param>
-    /// <param name="delimiter">Delimiter for the .csv file</param>
-    public void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';')
+    public const string CSV_METADATA_FORMAT = "#{0}={1}";
+    public const string CSV_METADATA_REGEX = "#(.*)=(.*)";
+
+    /// <inheritdoc/>
+    public void SaveToCsv<T>(string filePath, List<T> dataList, CancellationToken cancellationToken, Dictionary<string, string> metadataDict = null, ProgressDelegate onProgress = null, FormatDataDelegate formatData = null, FormatDataHeaderDelegate formatDataHeader = null, char delimiter = ';')
     {
         // https://stackoverflow.com/questions/25683161/fastest-way-to-convert-a-list-of-objects-to-csv-with-each-object-values-in-a-new
         onProgress?.Invoke(this, 0);
         List<string> lines = new List<string>();
+
+        if (metadataDict != null)
+        {
+            // Write all metadata key-value-pairs to the file header
+            foreach (KeyValuePair<string, string> metadata in metadataDict)
+            {
+                lines.Add(string.Format(CSV_METADATA_FORMAT, metadata.Key, metadata.Value));
+            }
+            lines.Add("");
+        }
 
         List<PropertyInfo> props = typeof(T).GetProperties().ToList();
         props = props.Where(p => p.GetCustomAttributes<FileServiceIgnoreAttribute>().Count() == 0).ToList();
@@ -127,32 +115,42 @@ public class FileService : IFileService
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    /// <summary>
-    /// Load the .csv file to a list of data
-    /// </summary>
-    /// <typeparam name="T">Type of the data elements</typeparam>
-    /// <param name="filePath">Load from this file</param>
-    /// <param name="cancellationToken">Used to cancel the load process</param>
-    /// <param name="setPropertyFromStringDelegate">Delegate used to change the data element properties</param>
-    /// <param name="onProgress"><see cref="ProgressDelegate"/> used to report load progress</param>
-    /// <param name="findPropertyFromHeader">Callback that can be used to get the property name from the data headers. Use <see langword="null"/> to use the header name as property name</param>
-    /// <param name="delimiter">Delimiter for the .csv file</param>
-    /// <returns>Loaded data list</returns>
-    public List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, ProgressDelegate onProgress = null, FindPropertyFromHeaderDelegate findPropertyFromHeader = null, char delimiter = ';') where T : new()
+    /// <inheritdoc/>
+    public List<T> LoadFromCsv<T>(string filePath, CancellationToken cancellationToken, SetPropertyFromStringDelegate<T> setPropertyFromStringDelegate, out Dictionary<string, string> metadataDict, ProgressDelegate onProgress = null, FindPropertyFromHeaderDelegate findPropertyFromHeader = null, char delimiter = ';') where T : new()
     {
+        metadataDict = null;
         List<T> dataList = new List<T>();
         if (!File.Exists(filePath)) { return dataList; }
 
         onProgress?.Invoke(this, 0);
 
-        List<string> lines = File.ReadAllLines(filePath, Encoding.UTF8).ToList();
-        if (lines.Count >= 2)
+        List<string> allLines = File.ReadAllLines(filePath, Encoding.UTF8).ToList();
+        List<string> metadataLines = allLines.Where(l => Regex.Match(l, CSV_METADATA_REGEX).Success).ToList();
+        List<string> dataLines = allLines.Except(metadataLines).Where(l => !string.IsNullOrEmpty(l)).ToList();
+
+        if (metadataLines.Count > 0)
         {
-            List<string> headers = lines.First().Split(delimiter).ToList();
-            lines.RemoveAt(0);
+            metadataDict = new Dictionary<string, string>();
+            // loop all found metadata lines
+            foreach (string metadataLine in metadataLines)
+            {
+                Match match = Regex.Match(metadataLine, CSV_METADATA_REGEX);
+                if (match.Success && match.Groups.Count >= 3)
+                {
+                    string key = match.Groups[1].Value;
+                    string value = match.Groups[2].Value;
+                    metadataDict.Add(key, value);
+                }
+            }
+        }
+
+        if (dataLines.Count >= 2)
+        {
+            List<string> headers = dataLines.First().Split(delimiter).ToList();
+            dataLines.RemoveAt(0);
 
             int processedElementsCnt = 0;
-            foreach (string line in lines)
+            foreach (string line in dataLines)
             {
                 List<string> lineParts = line.Split(delimiter).ToList();
                 T data = new T();
@@ -164,7 +162,7 @@ public class FileService : IFileService
                 }
                 dataList.Add(data);
 
-                onProgress?.Invoke(this, (processedElementsCnt++ / (float)lines.Count) * 100);
+                onProgress?.Invoke(this, (processedElementsCnt++ / (float)dataLines.Count) * 100);
             }
         }
         onProgress?.Invoke(this, 100);

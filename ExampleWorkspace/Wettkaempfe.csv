@@ -1,4 +1,7 @@
-﻿Id;Geschlecht;Schwimmstil;Alter;Bestzeit;Zeit aus Rudolph Tabelle?;Zeit interpoliert?;Offene Klasse aus Rudolph Tabelle?
+﻿#RudolphTabelle=C:\Users\Markus\Desktop\Vereinsmeisterschaften\ExampleWorkspace\20250511_rudolphpunkte.csv
+#RudolphTabellePunkte=14
+
+Id;Geschlecht;Schwimmstil;Alter;Bestzeit;Zeit aus Rudolph Tabelle?;Zeit interpoliert?;Offene Klasse aus Rudolph Tabelle?
 1;Weiblich;Brust;7;00:00:52.7980000;;X
 2;Männlich;Brust;7;00:00:54.7960000;;X
 3;Weiblich;Freistil;7;00:00:44.2060000;;X

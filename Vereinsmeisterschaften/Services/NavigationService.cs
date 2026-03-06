@@ -137,12 +137,14 @@ public class NavigationService : INavigationService
             }
 
             var dataContext = frame.GetDataContext();
-            if (dataContext is INavigationAware navigationAware)
+            if (dataContext != null)
             {
-                navigationAware.OnNavigatedTo(e.ExtraData);
+                if (dataContext is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedTo(e.ExtraData);
+                }
+                Navigated?.Invoke(sender, dataContext.GetType().FullName);
             }
-
-            Navigated?.Invoke(sender, dataContext.GetType().FullName);
         }
     }
 }

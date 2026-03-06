@@ -27,7 +27,8 @@ namespace Vereinsmeisterschaften.Core.Helpers
             // Remove any relative paths from these strings
             fullPath = Path.GetFullPath(fullPath);
             rootFolder = Path.GetFullPath(rootFolder);
-            return Path.GetRelativePath(rootFolder, fullPath);
+            string relPath = Path.GetRelativePath(rootFolder, fullPath);
+            return (relPath == fullPath || relPath.StartsWith("./") || relPath.StartsWith(".\\") || relPath.StartsWith("../") || relPath.StartsWith("..\\")) ? relPath : $".\\{relPath}";
         }
 
         /// <summary>

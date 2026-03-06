@@ -748,7 +748,8 @@ Alle Starts sind zugewiesen.</value>
 Sie ordnet erzielte Zeiten ab 8 Jahren über ein Punktesystem (meist 1-20) in Leistungsniveaus ein, wobei 20 Punkte Weltniveau entsprechen.
 Sie basiert auf einer Analyse der ewigen Bestenlisten der Altersklassen im DSV und wird jährlich an die Leistungsentwicklung angepasst.
 Berücksichtigt wird das Leistungsniveau ab 8 Jahren bis zum Übergang in den Erwachsenenbereich.
-Beim Erstellen von Wettkämpfen aus der Rudolph Tabelle werden die Distanz Regeln verwendet, um zu entscheiden, welche Distanzen für welches Alter verwendet werden sollen. Sind z.B. nur Brust Regeln vorhanden, werden auch nur Brust Wettkämpfe erstellt.</value>
+Beim Erstellen von Wettkämpfen aus der Rudolph Tabelle werden die Distanz Regeln verwendet, um zu entscheiden, welche Distanzen für welches Alter verwendet werden sollen. Sind z.B. nur Brust Regeln vorhanden, werden auch nur Brust Wettkämpfe erstellt.
+Zum Umwandeln der Rudolph Tabelle von PDF zu CSV kann folgender Online-Konverter verwendet werden: https://pdfcandy.com/de/pdf-to-csv.html</value>
   </data>
   <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
     <value>Wettkämpfe aus Rudolph Tabelle erstellen</value>

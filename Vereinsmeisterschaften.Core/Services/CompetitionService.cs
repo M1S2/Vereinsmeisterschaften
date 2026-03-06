@@ -124,7 +124,7 @@ namespace Vereinsmeisterschaften.Core.Services
                         {
                             string rudolphTablePath = string.Empty;
                             metadata.TryGetValue(Properties.Resources.RudolphTableString, out rudolphTablePath);
-                            LastUsedRudolphTablePath = rudolphTablePath;
+                            LastUsedRudolphTablePath = FilePathHelper.MakePathAbsolute(rudolphTablePath, Path.GetDirectoryName(path));
 
                             string rudolphTableScoreStr = string.Empty;
                             byte rudolphTableScore = 0;
@@ -144,6 +144,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     _competitionListOnLoad = _competitionList.ToList().ConvertAll(c => new Competition(c));
                     _lastUsedRudolphTablePathOnLoad = LastUsedRudolphTablePath;
                     _lastUsedRudolphTableScoreOnLoad = LastUsedRudolphTableScore;
+                    if (!File.Exists(LastUsedRudolphTablePath)) { LastUsedRudolphTablePath = string.Empty; }
 
                     PersistentPath = path;
                     importingResult = true;
@@ -181,7 +182,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 try
                 {
                     Dictionary<string, string> metadata = new Dictionary<string, string>();
-                    metadata.Add(Properties.Resources.RudolphTableString, LastUsedRudolphTablePath);
+                    metadata.Add(Properties.Resources.RudolphTableString, FilePathHelper.MakePathRelative(LastUsedRudolphTablePath, Path.GetDirectoryName(path)));
                     metadata.Add(Properties.Resources.RudolphTableScoreString, LastUsedRudolphTableScore.ToString());
 
                     _fileService.SaveToCsv(path, _competitionList.ToList(), cancellationToken, metadata, OnFileProgress, (data, parentObject, currentProperty) =>
@@ -534,6 +535,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public void CreateCompetitionsFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
+            if(rudolphTable.Entries.Count == 0) { return; }
 
             // Find the maximum ages for each swimming style in the rudolph table
             Dictionary<SwimmingStyles, byte> maxAgesBySwimmingStyles = rudolphTable.Entries
@@ -597,6 +599,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public void UpdateAllCompetitionTimesFromRudolphTable(string rudolphTableCsvFile, byte rudolphScore)
         {
             RudolphTable rudolphTable = new RudolphTable(rudolphTableCsvFile);
+            if (rudolphTable.Entries.Count == 0) { return; }
 
             foreach (Competition competition in _competitionList)
             {
@@ -615,7 +618,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     competition.IsOpenAgeTimeFromRudolphTable = false;
                 }
             }
-            interpolateMissingCompetitionTimesFromRudolphTable(rudolphTable, rudolphScore);
+            interpolateMissingCompetitionTimesFromRudolphTable();
             LastUsedRudolphTablePath = rudolphTableCsvFile;
             LastUsedRudolphTableScore = rudolphScore;
             OnPropertyChanged(nameof(HasUnsavedChanges));
@@ -627,9 +630,7 @@ namespace Vereinsmeisterschaften.Core.Services
         /// For each swimming style, gender and distance take all competitions with times from the rudolph table and interpolate these times to find values for the competitions without times from the rudolph table.
         /// </summary>
         /// <exception cref="Exception">An exception is thrown, when the interpolation fails for at least one group of <see cref="Competition"/></exception>
-        /// <param name="rudolphTable">Object with the rudolph table</param>
-        /// <param name="rudolphScore">Rudolph score used to identify the row in the table to use</param>
-        private void interpolateMissingCompetitionTimesFromRudolphTable(RudolphTable rudolphTable, byte rudolphScore)
+        private void interpolateMissingCompetitionTimesFromRudolphTable()
         {
             // Create groups for specific combinations of SwimmingStyle, Gender and Distance
             var groups = _competitionList.GroupBy(c => (c.SwimmingStyle, c.Gender, c.Distance));

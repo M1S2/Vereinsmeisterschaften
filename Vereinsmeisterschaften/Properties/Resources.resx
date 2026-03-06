@@ -747,7 +747,8 @@
 It categorizes times achieved from age 8 and up into performance levels using a points system (usually 1-20), with 20 points representing world-class performance.
 It is based on an analysis of the all-time best lists for each age group within the DSV and is updated annually to reflect performance trends.
 The table considers performance levels from age 8 until the transition to adulthood.
-When creating competitions from the Rudolph table, the distance rules are used to determine which distances should be used for which age. For example, if only breaststroke rules are available, only breaststroke competitions will be created.</value>
+When creating competitions from the Rudolph table, the distance rules are used to determine which distances should be used for which age. For example, if only breaststroke rules are available, only breaststroke competitions will be created.
+For the conversion of the Rudolph Table from PDF to CSV the following online converter can be used: https://pdfcandy.com/de/pdf-to-csv.html</value>
   </data>
   <data name="CreateCompetitionsFromRudolphTableString" xml:space="preserve">
     <value>Create Competitions from Rudolph Table</value>

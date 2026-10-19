@@ -356,5 +356,41 @@ namespace Vereinsmeisterschaften.Core.Properties {
                 return ResourceManager.GetString("Race_Style", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Timestamp ähnelt.
+        /// </summary>
+        internal static string WinnerHistoryElement_Timestamp {
+            get {
+                return ResourceManager.GetString("WinnerHistoryElement_Timestamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bronze ähnelt.
+        /// </summary>
+        internal static string WinnerHistoryElement_WinnersBronze {
+            get {
+                return ResourceManager.GetString("WinnerHistoryElement_WinnersBronze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gold ähnelt.
+        /// </summary>
+        internal static string WinnerHistoryElement_WinnersGold {
+            get {
+                return ResourceManager.GetString("WinnerHistoryElement_WinnersGold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Silver ähnelt.
+        /// </summary>
+        internal static string WinnerHistoryElement_WinnersSilver {
+            get {
+                return ResourceManager.GetString("WinnerHistoryElement_WinnersSilver", resourceCulture);
+            }
+        }
     }
 }

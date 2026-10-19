@@ -858,4 +858,31 @@ The order in which the columns are selected determines the sort priority.</value
   <data name="RudolphScoreString" xml:space="preserve">
     <value>Rudolph score</value>
   </data>
+  <data name="ShellWinnerHistoryPage" xml:space="preserve">
+    <value>Winner History</value>
+  </data>
+  <data name="WinnerHistoryPageTitle" xml:space="preserve">
+    <value>Winner History</value>
+  </data>
+  <data name="SavedStatusWinnersHistoryString" xml:space="preserve">
+    <value>Winners history saved</value>
+  </data>
+  <data name="WinnerHistoryAddCurrentString" xml:space="preserve">
+    <value>Add to previous winners</value>
+  </data>
+  <data name="WinnerHistoryRemoveCurrentString" xml:space="preserve">
+    <value>Remove from previous winners</value>
+  </data>
+  <data name="WinnerHistoryCurrentString" xml:space="preserve">
+    <value>Current winners</value>
+  </data>
+  <data name="WinnerHistoryPreviousString" xml:space="preserve">
+    <value>Previous winners</value>
+  </data>
+  <data name="AnalyticsWidgetPodiumWinnersTitle" xml:space="preserve">
+    <value>Previous podium places per person</value>
+  </data>
+  <data name="CurrentWinnersInfoFormatString" xml:space="preserve">
+    <value>{0} is the {1}. time on the {2} place.</value>
+  </data>
 </root>

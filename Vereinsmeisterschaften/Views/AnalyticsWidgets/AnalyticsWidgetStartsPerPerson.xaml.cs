@@ -93,7 +93,8 @@ namespace Vereinsmeisterschaften.Views.AnalyticsWidgets
                 LabelsPaint = ColorPaintMahAppsText,
                 TextSize = ANALYTICS_WIDGET_AXIS_TEXTSIZE_DEFAULT,
                 MinStep = 1,
-                ForceStepToMin = true
+                ForceStepToMin = true,
+                Position = AxisPosition.End
             }
         ];
 

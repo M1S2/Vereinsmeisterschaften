@@ -18,6 +18,11 @@
         /// <summary>
         /// Bronze medal
         /// </summary>
-        Bronze
+        Bronze,
+
+        /// <summary>
+        /// Combined mode, used for some analysis
+        /// </summary>
+        All
     }
 }

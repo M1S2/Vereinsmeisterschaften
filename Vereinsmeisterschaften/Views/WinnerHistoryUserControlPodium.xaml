@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Vereinsmeisterschaften.Views.WinnerHistoryUserControlPodium"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:sysWindows="clr-namespace:System.Windows;assembly=PresentationCore"
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="colorBrushGold" Color="#d5a500"/>
+        <SolidColorBrush x:Key="colorBrushSilver" Color="#b7b7b7"/>
+        <SolidColorBrush x:Key="colorBrushBronze" Color="#a17419"/>
+
+        <sys:Double x:Key="podiumHeightGold">40</sys:Double>
+        <sys:Double x:Key="podiumHeightSilver">30</sys:Double>
+        <sys:Double x:Key="podiumHeightBronze">25</sys:Double>
+        <GridLength x:Key="podiumRowHeight">85</GridLength>
+        <sys:Double x:Key="podiumWidth">100</sys:Double>
+
+        <sysWindows:Duration x:Key="animationDuration">0:0:0.5</sysWindows:Duration>
+    </UserControl.Resources>
+
+    <!-- UserControl width-->
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="Width" Value="{StaticResource podiumWidth}"/>
+        </Style>
+    </UserControl.Style>
+
+    <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource podiumRowHeight}"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" VerticalAlignment="Bottom">
+            <Grid DockPanel.Dock="Bottom">
+                <Border x:Name="podiumBar" BorderBrush="Black" BorderThickness="1">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Background" Value="Red"/>
+                            <Style.Triggers>
+                                <!-- Gold -->
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Gold">
+                                    <Setter Property="Background" Value="{StaticResource colorBrushGold}"/>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="{StaticResource podiumHeightGold}" Duration="{StaticResource animationDuration}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+
+                                <!-- Silver -->
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Silver">
+                                    <Setter Property="Background" Value="{StaticResource colorBrushSilver}"/>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="{StaticResource podiumHeightSilver}" Duration="{StaticResource animationDuration}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+
+                                <!-- Bronze -->
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Bronze">
+                                    <Setter Property="Background" Value="{StaticResource colorBrushBronze}"/>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="{StaticResource podiumHeightBronze}" Duration="{StaticResource animationDuration}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <!-- Podium place number -->
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="{Binding ElementName=podiumBar, Path=Height}">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Content" Value="?"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Gold">
+                                    <Setter Property="Content" Value="1"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Silver">
+                                    <Setter Property="Content" Value="2"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PodiumsPlace}" Value="Bronze">
+                                    <Setter Property="Content" Value="3"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </Grid>
+            <!-- Name -->
+            <TextBlock DockPanel.Dock="Bottom" Text="{Binding PersonName, FallbackValue='---'}" FontSize="{StaticResource MediumFontSize}" HorizontalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Highlighted}" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <!-- First Name -->
+            <TextBlock DockPanel.Dock="Bottom" Text="{Binding PersonFirstName, FallbackValue='---'}" FontSize="{StaticResource MediumFontSize}" HorizontalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Highlighted}" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </DockPanel>
+    </Grid>
+</UserControl>

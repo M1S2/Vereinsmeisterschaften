@@ -97,10 +97,15 @@ namespace Vereinsmeisterschaften.Core.Services
         public bool HasUnsavedChanges_Settings => _settings != null && SettingsPersistedInFile != null && (!Settings?.Equals(SettingsPersistedInFile) ?? true);
 
         /// <summary>
+        /// Unsaved changes exist in the <see cref="WinnerHistoryService"/>.
+        /// </summary>
+        public bool HasUnsavedChanges_WinnersHistory => _winnerHistoryService?.HasUnsavedChanges ?? false;
+
+        /// <summary>
         /// Check if there are unsaved changes in the workspace.
         /// </summary>
         public bool HasUnsavedChanges => IsWorkspaceOpen && 
-                                        (HasUnsavedChanges_Persons || HasUnsavedChanges_Competitions || HasUnsavedChanges_Races || HasUnsavedChanges_Settings || IsCompletelyNewWorkspace);
+                                        (HasUnsavedChanges_Persons || HasUnsavedChanges_Competitions || HasUnsavedChanges_Races || HasUnsavedChanges_Settings || HasUnsavedChanges_WinnersHistory || IsCompletelyNewWorkspace);
 
         private void OnPropertyChangedAllHasUnsavedChanges()
         {
@@ -108,6 +113,7 @@ namespace Vereinsmeisterschaften.Core.Services
             OnPropertyChanged(nameof(HasUnsavedChanges_Competitions));
             OnPropertyChanged(nameof(HasUnsavedChanges_Races));
             OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+            OnPropertyChanged(nameof(HasUnsavedChanges_WinnersHistory));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         }
 
@@ -148,6 +154,11 @@ namespace Vereinsmeisterschaften.Core.Services
                 Settings.PropertyChanged += Settings_PropertyChanged;
             }
         }
+
+        /// <summary>
+        /// Call the <see cref="IWinnerHistoryService.ResetToLoadedState"/>
+        /// </summary>
+        public void ResetWinnerHistoryToLoadedState() => _winnerHistoryService.ResetToLoadedState();
 
         #endregion
 
@@ -192,6 +203,7 @@ namespace Vereinsmeisterschaften.Core.Services
         private ICompetitionDistanceRuleService _competitionDistanceRuleService;
         private IRaceService _raceService;
         private IFileService _fileService;
+        private IWinnerHistoryService _winnerHistoryService;
 
         /// <summary>
         /// Constructor for the <see cref="WorkspaceService"/>.
@@ -201,7 +213,8 @@ namespace Vereinsmeisterschaften.Core.Services
         /// <param name="competitionDistanceRuleService"><see cref="ICompetitionDistanceRuleService"/> object</param>
         /// <param name="raceService"><see cref="IRaceService"/> object</param>
         /// <param name="fileService"><see cref="IFileService"/> object</param>
-        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, ICompetitionDistanceRuleService competitionDistanceRuleService, IRaceService raceService, IFileService fileService)
+        /// <param name="_winnerHistoryService"><see cref="IWinnerHistoryService"/> object</param>
+        public WorkspaceService(IPersonService personService, ICompetitionService competitionService, ICompetitionDistanceRuleService competitionDistanceRuleService, IRaceService raceService, IFileService fileService, IWinnerHistoryService winnerHistoryService)
         {
             _personService = personService;
             _competitionService = competitionService;
@@ -210,6 +223,8 @@ namespace Vereinsmeisterschaften.Core.Services
             _raceService = raceService;
             _raceService.SetWorkspaceServiceObj(this);          // Dependency Injection can't be used in the constructor because of circular dependency
             _fileService = fileService;
+            _winnerHistoryService = winnerHistoryService;
+            _winnerHistoryService.SetWorkspaceServiceObj(this); // Dependency Injection can't be used in the constructor because of circular dependency
             IsWorkspaceOpen = false;
             _personService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, p / 3, "Loading persons...");
             _competitionService.OnFileProgress += (sender, p, currentStep) => OnFileProgress?.Invoke(this, (100 / 3) + (p / 3), "Loading competitions...");
@@ -247,6 +262,14 @@ namespace Vereinsmeisterschaften.Core.Services
                     default: break;
                 }
             };
+            _winnerHistoryService.PropertyChanged += (sender, e) =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(WinnerHistoryService.HasUnsavedChanges): OnPropertyChanged(nameof(HasUnsavedChanges)); break;
+                    default: break;
+                }
+            };
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -278,6 +301,7 @@ namespace Vereinsmeisterschaften.Core.Services
                 string filePathCompetitionDistanceRules = getFilePathToLoadFrom(KEY_FILENAME_COMPETITIONDISTANCERULES);
                 string filePathPersons = getFilePathToLoadFrom(KEY_FILENAME_PERSON);
                 string filePathBestRace = getFilePathToLoadFrom(KEY_FILENAME_BESTRACE);
+                string filePathWinnersHistory = getFilePathToLoadFrom(KEY_FILENAME_WINNERSHISTORY);
                 if (!File.Exists(WorkspaceSettingsFilePath) && !File.Exists(filePathCompetitions) && !File.Exists(filePathPersons) && !File.Exists(filePathBestRace))
                 {
                     IsCompletelyNewWorkspace = true;
@@ -303,7 +327,10 @@ namespace Vereinsmeisterschaften.Core.Services
                 // Persons
                 openResult = await _personService.Load(filePathPersons, cancellationToken);
                 if(!openResult) { return openResult; }
-                
+
+                // Winners History
+                openResult = await _winnerHistoryService.Load(filePathWinnersHistory, cancellationToken);
+
                 _competitionService.UpdateAllCompetitionsForPerson();
                 _competitionService.UpdateAllCompetitionDistancesFromDistanceRules(true);
 
@@ -361,6 +388,10 @@ namespace Vereinsmeisterschaften.Core.Services
 
                 // Best Race
                 if (!await saveServiceAsync(KEY_FILENAME_BESTRACE, _raceService, cancellationToken))
+                    return false;
+                
+                // Winners History
+                if (!await saveServiceAsync(KEY_FILENAME_WINNERSHISTORY, _winnerHistoryService, cancellationToken))
                     return false;
 
                 SettingsPersistedInFile = new WorkspaceSettings(Settings);
@@ -420,6 +451,7 @@ namespace Vereinsmeisterschaften.Core.Services
             _competitionService.ClearAll();
             _competitionDistanceRuleService.ClearAll();
             _raceService.AllRacesVariants.Clear();
+            _winnerHistoryService.ClearAll();
             PersistentPath = string.Empty;
             IsWorkspaceOpen = false;
             
@@ -446,6 +478,7 @@ namespace Vereinsmeisterschaften.Core.Services
         public const string KEY_FILENAME_COMPETITIONS = "FileName_Competitions";
         public const string KEY_FILENAME_COMPETITIONDISTANCERULES = "FileName_CompetitionDistanceRules";
         public const string KEY_FILENAME_BESTRACE = "FileName_BestRace";
+        public const string KEY_FILENAME_WINNERSHISTORY = "FileName_WinnersHistory";
 
         private string getLocalizedFilePath(string resourceKey, CultureInfo culture = null)
         {

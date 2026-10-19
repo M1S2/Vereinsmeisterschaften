@@ -59,6 +59,11 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
     /// </summary>
     public bool HasUnsavedChanges_Settings => _workspaceService?.HasUnsavedChanges_Settings ?? false;
 
+    /// <summary>
+    /// True if the workspace has unsaved changes in the winners history.
+    /// </summary>
+    public bool HasUnsavedChanges_WinnersHistory => _workspaceService?.HasUnsavedChanges_WinnersHistory ?? false;
+
     // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -122,6 +127,18 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
         _workspaceService.ResetSettingsToLoadedState();
         OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
         initSettingsGroups(_workspaceService.Settings);
+    }));
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    private ICommand _resetWinnersHistoryCommand;
+    /// <summary>
+    /// Command to reset the winners history.
+    /// </summary>
+    public ICommand ResetWinnersHistoryCommand => _resetWinnersHistoryCommand ?? (_resetWinnersHistoryCommand = new RelayCommand(() =>
+    {
+        _workspaceService.ResetWinnerHistoryToLoadedState();
+        OnPropertyChanged(nameof(HasUnsavedChanges_WinnersHistory));
     }));
 
     #endregion
@@ -227,6 +244,7 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
                     OnPropertyChanged(nameof(SettingsGroups));
                     break;
                 }
+            case nameof(IWorkspaceService.HasUnsavedChanges_WinnersHistory): OnPropertyChanged(nameof(HasUnsavedChanges_WinnersHistory)); break;
             case nameof(IWorkspaceService.PersistentPath): OnPropertyChanged(nameof(CurrentWorkspaceFolder)); break;
             case nameof(IWorkspaceService.IsWorkspaceOpen):
                 {
@@ -251,6 +269,7 @@ public partial class WorkspaceViewModel : ObservableObject, INavigationAware
         OnPropertyChanged(nameof(HasUnsavedChanges_Persons));
         OnPropertyChanged(nameof(HasUnsavedChanges_Races));
         OnPropertyChanged(nameof(HasUnsavedChanges_Settings));
+        OnPropertyChanged(nameof(HasUnsavedChanges_WinnersHistory));
 
         initSettingsGroups(_workspaceService.Settings);
     }

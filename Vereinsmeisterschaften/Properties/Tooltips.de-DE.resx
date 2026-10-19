@@ -463,4 +463,13 @@ Sicherstellen, dass für das Alter und den Schwimmstil auch eine Wettkampf Dista
   <data name="TooltipParsedFromRudolphTable" xml:space="preserve">
     <value>Aus Rudolph Tabelle</value>
   </data>
+  <data name="TooltipPageInfoWinnerHistoryPage" xml:space="preserve">
+    <value>Auf dieser Seite werden alle ehemaligen Vereinsmeister angezeigt.
+Die aktuellen Vereinsmeister werden von der Ergebnisseite genommen.
+Die ehemaligen Vereinsmeister werden aus einer Datei geladen. Neue Einträge können nur hinzugefügt werden, indem die aktuellen Vereinsmeister über den Button auf dieser Seite hinzugefügt werden. Alle anderen Änderungen müssen direkt in der Datei gemacht werden.</value>
+  </data>
+  <data name="TooltipAnalyticsWidgetPodiumWinners" xml:space="preserve">
+    <value>Analysieren, wie viele Podiumsplätze jede Person bisher hatte.
+Die hier dargestellten Personen sind die Vereinsmeister der vergangenen Jahre. Die momentanen (potentiellen) Vereinsmeister werden nicht mit angezeigt.</value>
+  </data>
 </root>

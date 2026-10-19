@@ -19,7 +19,7 @@ namespace Vereinsmeisterschaften.Core.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EnumsCore {
@@ -363,6 +363,42 @@ namespace Vereinsmeisterschaften.Core.Properties {
         public static string PersonStartFilters_SwimmingStyle {
             get {
                 return ResourceManager.GetString("PersonStartFilters_SwimmingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All ähnelt.
+        /// </summary>
+        public static string ResultPodiumsPlaces_All {
+            get {
+                return ResourceManager.GetString("ResultPodiumsPlaces_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bronze ähnelt.
+        /// </summary>
+        public static string ResultPodiumsPlaces_Bronze {
+            get {
+                return ResourceManager.GetString("ResultPodiumsPlaces_Bronze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gold ähnelt.
+        /// </summary>
+        public static string ResultPodiumsPlaces_Gold {
+            get {
+                return ResourceManager.GetString("ResultPodiumsPlaces_Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Silver ähnelt.
+        /// </summary>
+        public static string ResultPodiumsPlaces_Silver {
+            get {
+                return ResourceManager.GetString("ResultPodiumsPlaces_Silver", resourceCulture);
             }
         }
         

@@ -132,6 +132,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -222,13 +223,36 @@
                     <controls:FontIcon Grid.Row="5" Grid.Column="0" Margin="{StaticResource MarginIcons}"
                                        FontSize="30" Glyph="&#xE74E;"/>
                     <TextBlock Grid.Row="5" Grid.Column="1" Margin="{StaticResource MarginNames}" VerticalAlignment="Center"
-                               Text="{x:Static properties:Resources.SavedStatusSettingsString}"
+                               Text="{x:Static properties:Resources.SavedStatusWinnersHistoryString}"
                                FontSize="{StaticResource MediumFontSize}"/>
                     <userControls:BoolTemplateContentControl Grid.Row="5" Grid.Column="2" Margin="0,0,5,0"
                                                              TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
                                                              FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
-                                                             BoolValue="{Binding HasUnsavedChanges_Settings}"/>
+                                                             BoolValue="{Binding HasUnsavedChanges_WinnersHistory}"/>
                     <Button Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0"
+                            Command="{Binding ResetWinnersHistoryCommand}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasUnsavedChanges_WinnersHistory}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <controls:FontIcon Grid.Row="6" Grid.Column="0" Margin="{StaticResource MarginIcons}"
+                                       FontSize="30" Glyph="&#xE74E;"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="{StaticResource MarginNames}" VerticalAlignment="Center"
+                               Text="{x:Static properties:Resources.SavedStatusSettingsString}"
+                               FontSize="{StaticResource MediumFontSize}"/>
+                    <userControls:BoolTemplateContentControl Grid.Row="6" Grid.Column="2" Margin="0,0,5,0"
+                                                             TrueTemplate="{StaticResource ControlTemplateErrorIndicator}"
+                                                             FalseTemplate="{StaticResource ControlTemplateOkIndicator}"
+                                                             BoolValue="{Binding HasUnsavedChanges_Settings}"/>
+                    <Button Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,3,0"
                             Command="{Binding ResetSettingsCommand}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StyleResetSettingsButton}">

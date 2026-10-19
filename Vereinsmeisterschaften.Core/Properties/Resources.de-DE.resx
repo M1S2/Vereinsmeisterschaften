@@ -159,4 +159,7 @@
   <data name="RudolphTableScoreString" xml:space="preserve">
     <value>RudolphTabellePunkte</value>
   </data>
+  <data name="FileName_WinnersHistory" xml:space="preserve">
+    <value>LetzteVereinsmeister.csv</value>
+  </data>
 </root>

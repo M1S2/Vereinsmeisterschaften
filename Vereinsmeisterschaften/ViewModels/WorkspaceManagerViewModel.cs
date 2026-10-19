@@ -222,6 +222,7 @@ public class WorkspaceManagerViewModel : ObservableObject, IWorkspaceManagerView
                     {
                         copyTemplatesFolderFromOldWorkspace(dialog.PreviousWorkspaceFolder, dialog.NewWorkspaceFolder);
                     }
+                    copyFilesFromOldWorkspace(dialog.PreviousWorkspaceFolder, dialog.NewWorkspaceFolder, WorkspaceService.KEY_FILENAME_WINNERSHISTORY);
 
                     bool result = await _workspaceService?.Load(dialog.NewWorkspaceFolder, CancellationToken.None);
                     OnWorkspaceLoaded?.Invoke(this, dialog.NewWorkspaceFolder);

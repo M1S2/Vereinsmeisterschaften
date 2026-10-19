@@ -142,6 +142,15 @@ namespace Vereinsmeisterschaften.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die WinnersHistory.csv ähnelt.
+        /// </summary>
+        public static string FileName_WinnersHistory {
+            get {
+                return ResourceManager.GetString("FileName_WinnersHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Not able to interpolate for {0}m {1} {2}: at least 3 points from the rudolph table inside the corresponding group (style, gender, distance) are necessary! ähnelt.
         /// </summary>
         public static string InterpolateMissingCompetitionTimesFromRudolphTableErrorFormatString {

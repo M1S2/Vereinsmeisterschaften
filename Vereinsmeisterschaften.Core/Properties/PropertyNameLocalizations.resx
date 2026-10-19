@@ -216,4 +216,16 @@
   <data name="Competition_IsOpenAgeTimeFromRudolphTable" xml:space="preserve">
     <value>Is Open Age from Rudolph Table?</value>
   </data>
+  <data name="WinnerHistoryElement_Timestamp" xml:space="preserve">
+    <value>Timestamp</value>
+  </data>
+  <data name="WinnerHistoryElement_WinnersGold" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="WinnerHistoryElement_WinnersSilver" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="WinnerHistoryElement_WinnersBronze" xml:space="preserve">
+    <value>Bronze</value>
+  </data>
 </root>

@@ -16,6 +16,7 @@ namespace Vereinsmeisterschaften.Core.Services
 
         private IPersonService _personService;
         private ICompetitionService _competitionService;
+        private IWinnerHistoryService _winnerHistoryService;
         private IWorkspaceService _workspaceService;
 
         /// <summary>
@@ -23,12 +24,15 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="personService"><see cref="IPersonService"/> object</param>
         /// <param name="competitionService"><see cref="ICompetitionService"/> object</param>
+        /// <param name="winnerHistoryService"><see cref="IWinnerHistoryService"/> object</param>
         /// <param name="workspaceService"><see cref="IWorkspaceService"/> object</param>
-        public ScoreService(IPersonService personService, ICompetitionService competitionService, IWorkspaceService workspaceService)
+        public ScoreService(IPersonService personService, ICompetitionService competitionService, IWinnerHistoryService winnerHistoryService, IWorkspaceService workspaceService)
         {
             _personService = personService;
             _personService.SetScoreServiceObj(this);        // Dependency Injection can't be used in the constructor because of circular dependency
             _competitionService = competitionService;
+            _winnerHistoryService = winnerHistoryService;
+            _winnerHistoryService.SetScoreServiceObj(this); // Dependency Injection can't be used in the constructor because of circular dependency
             _workspaceService = workspaceService;
 
             _workspaceService.PropertyChanged += (sender, e) =>
@@ -178,6 +182,14 @@ namespace Vereinsmeisterschaften.Core.Services
             else if (podiumsPlace == ResultPodiumsPlaces.Bronze && groupedStarts.Count > 2)
             {
                 return groupedStarts[2].ToList();
+            }
+            else if (podiumsPlace == ResultPodiumsPlaces.All)
+            {
+                List<PersonStart> allStarts = new List<PersonStart>();
+                if (groupedStarts.Count > 0) { allStarts.AddRange(groupedStarts[0]); }
+                if (groupedStarts.Count > 1) { allStarts.AddRange(groupedStarts[1]); }
+                if (groupedStarts.Count > 2) { allStarts.AddRange(groupedStarts[2]); }
+                return allStarts;
             }
             return null;
         }

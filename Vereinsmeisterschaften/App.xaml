@@ -176,6 +176,15 @@
                 </Setter>
             </Style>
 
+            <!-- Style for a TextBlock that is invisible (collapsed) when it contains no text -->
+            <Style x:Key="StyleTextBlockCollapsedWhenEmpty" TargetType="{x:Type TextBlock}">
+                <Style.Triggers>
+                    <Trigger Property="Text" Value="">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <!-- Control Templates for Icons -->
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

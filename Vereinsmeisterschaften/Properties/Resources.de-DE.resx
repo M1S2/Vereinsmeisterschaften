@@ -859,4 +859,31 @@ Die Reihenfolgen, in der die Spalten ausgewählt werden, bestimmt die Sortierpri
   <data name="RudolphScoreString" xml:space="preserve">
     <value>Rudolph Punkte</value>
   </data>
+  <data name="ShellWinnerHistoryPage" xml:space="preserve">
+    <value>Ehemalige Vereinsmeister</value>
+  </data>
+  <data name="WinnerHistoryPageTitle" xml:space="preserve">
+    <value>Ehemalige Vereinsmeister</value>
+  </data>
+  <data name="SavedStatusWinnersHistoryString" xml:space="preserve">
+    <value>Ehemalige Vereinsmeister gespeichert</value>
+  </data>
+  <data name="WinnerHistoryAddCurrentString" xml:space="preserve">
+    <value>Zu ehemaligen Vereinsmeistern hinzufügen</value>
+  </data>
+  <data name="WinnerHistoryRemoveCurrentString" xml:space="preserve">
+    <value>Von ehemaligen Vereinsmeistern entfernen</value>
+  </data>
+  <data name="WinnerHistoryCurrentString" xml:space="preserve">
+    <value>Aktuelle Vereinsmeister</value>
+  </data>
+  <data name="WinnerHistoryPreviousString" xml:space="preserve">
+    <value>Ehemalige Vereinsmeister</value>
+  </data>
+  <data name="AnalyticsWidgetPodiumWinnersTitle" xml:space="preserve">
+    <value>Bisherige Podiumsplätze pro Person</value>
+  </data>
+  <data name="CurrentWinnersInfoFormatString" xml:space="preserve">
+    <value>{0} ist zum {1}. Mal auf dem {2} Platz.</value>
+  </data>
 </root>

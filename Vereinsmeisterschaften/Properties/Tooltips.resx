@@ -464,4 +464,13 @@ Make sure, there is a distance rule for the age and swimming style.</value>
   <data name="TooltipParsedFromRudolphTable" xml:space="preserve">
     <value>Parsed from Rudolph Table</value>
   </data>
+  <data name="TooltipPageInfoWinnerHistoryPage" xml:space="preserve">
+    <value>This page displays all winners from the last competitions.
+The current winners are taken from the results page.
+The previous winners are taken from an input file and can only be edited by adding the current winners to the list of previous ones via the button on this page. All other adaptions must be directly made to the file.</value>
+  </data>
+  <data name="TooltipAnalyticsWidgetPodiumWinners" xml:space="preserve">
+    <value>Analyse the number of podium places per person to date.
+The displayed persons are the winners of the ancient years. The current (potential) winners aren't shown here.</value>
+  </data>
 </root>

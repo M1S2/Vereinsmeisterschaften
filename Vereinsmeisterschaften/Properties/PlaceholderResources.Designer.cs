@@ -232,6 +232,42 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the complete podium places (gold, silver and bronze) of all persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPodiumWinners {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPodiumWinners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the bronze podium places of all persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPodiumWinners_Bronze {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPodiumWinners_Bronze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the gold podium places of all persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPodiumWinners_Gold {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPodiumWinners_Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the silver podium places of all persons. ähnelt.
+        /// </summary>
+        public static string PlaceholderInfoAnalyticsPodiumWinners_Silver {
+            get {
+                return ResourceManager.GetString("PlaceholderInfoAnalyticsPodiumWinners_Silver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use these placeholders to insert an overview of the birth years per race. ähnelt.
         /// </summary>
         public static string PlaceholderInfoAnalyticsRacesAges {
@@ -622,7 +658,7 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Distances between starts ähnelt.
         /// </summary>
         public static string PlaceholderNameAnalyticsDistancesBetweenStarts {
             get {
@@ -735,6 +771,42 @@ namespace Vereinsmeisterschaften.Properties {
         public static string PlaceholderNameAnalyticsPlacesAgeDistribution {
             get {
                 return ResourceManager.GetString("PlaceholderNameAnalyticsPlacesAgeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Podium winners ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPodiumWinners {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPodiumWinners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Podium winners - Bronze ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPodiumWinners_Bronze {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPodiumWinners_Bronze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Podium winners - Gold ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPodiumWinners_Gold {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPodiumWinners_Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analytics: Podium winners - Silver ähnelt.
+        /// </summary>
+        public static string PlaceholderNameAnalyticsPodiumWinners_Silver {
+            get {
+                return ResourceManager.GetString("PlaceholderNameAnalyticsPodiumWinners_Silver", resourceCulture);
             }
         }
         

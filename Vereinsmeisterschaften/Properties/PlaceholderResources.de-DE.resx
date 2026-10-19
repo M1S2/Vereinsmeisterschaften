@@ -456,4 +456,28 @@ Kann nur außerhalb von Tabellen genutzt werden.</value>
   <data name="PlaceholderLegendAvailableTextAndTable" xml:space="preserve">
     <value>Platzhalter verfügbar (im Text und in Tabellen)</value>
   </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht von allen Podiumsplätzen (Gold, Silber und Bronze) von allen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Gold" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Gold Podiumsplätzen von allen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Silver" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Silber Podiumsplätzen von allen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Bronze" xml:space="preserve">
+    <value>Diese Platzhalter nutzen, um eine Übersicht der Bronze Podiumsplätzen von allen Personen einzufügen.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners" xml:space="preserve">
+    <value>Analyse: Podiumsplätze</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Gold" xml:space="preserve">
+    <value>Analyse: Podiumsplätze - Gold</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Silver" xml:space="preserve">
+    <value>Analyse: Podiumsplätze - Silber</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Bronze" xml:space="preserve">
+    <value>Analyse: Podiumsplätze - Bronze</value>
+  </data>
 </root>

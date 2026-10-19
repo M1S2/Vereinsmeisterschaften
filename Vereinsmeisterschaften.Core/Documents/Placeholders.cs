@@ -213,6 +213,22 @@
         /// List with all placeholders that can be used in the template to insert the analytics distances between starts.
         /// </summary>
         public static List<string> Placeholders_AnalyticsDistancesBetweenStarts = new List<string>() { "DistancesBetweenStarts", "AbständeZwischenStarts", "A_DBS", "A_AZS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics podium winners.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPodiumWinners = new List<string>() { "PodiumPlaces", "AnzahlPodiumsPlätze", "A_PP", "A_APP" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics podium winners for the gold podium.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPodiumWinners_Gold = new List<string>() { "PodiumPlaces_Gold", "AnzahlPodiumsPlätze_Gold", "A_PPG", "A_APPG" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics podium winners for the silver podium.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPodiumWinners_Silver = new List<string>() { "PodiumPlaces_Silver", "AnzahlPodiumsPlätze_Silber", "A_PPS", "A_APPS" };
+        /// <summary>
+        /// List with all placeholders that can be used in the template to insert the analytics podium winners for the bronze podium.
+        /// </summary>
+        public static List<string> Placeholders_AnalyticsPodiumWinners_Bronze = new List<string>() { "PodiumPlaces_Bronze", "AnzahlPodiumsPlätze_Bronze", "A_PPB", "A_APPB" };
 
         #endregion
 
@@ -287,6 +303,10 @@
         public const string PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION = "AnalyticsPlacesAgeDistribution";
         public const string PLACEHOLDER_KEY_ANALYTICS_RACES_AGES = "AnalyticsRacesAges";
         public const string PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS = "AnalyticsDistancesBetweenStarts";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS = "AnalyticsPodiumWinners";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_GOLD = "AnalyticsPodiumWinners_Gold";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_SILVER = "AnalyticsPodiumWinners_Silver";
+        public const string PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_BRONZE = "AnalyticsPodiumWinners_Bronze";
 
         #endregion
 
@@ -351,7 +371,11 @@
             { PLACEHOLDER_KEY_ANALYTICS_STARTS_COUNTERS_NUMBER_STARTS_WITH_MISSING_COMPETITION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsStartsCountersNumberStartsWithMissingCompetition) },
             { PLACEHOLDER_KEY_ANALYTICS_PLACES_AGE_DISTRIBUTION, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPlacesAgeDistribution) },
             { PLACEHOLDER_KEY_ANALYTICS_RACES_AGES, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsRacesAges) },
-            { PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsDistancesBetweenStarts) }
+            { PLACEHOLDER_KEY_ANALYTICS_DISTANCES_BETWEEN_STARTS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsDistancesBetweenStarts) },
+            { PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPodiumWinners) },
+            { PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_GOLD, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPodiumWinners_Gold) },
+            { PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_SILVER, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPodiumWinners_Silver) },
+            { PLACEHOLDER_KEY_ANALYTICS_PODIUM_WINNERS_BRONZE, (PLACEHOLDER_GROUP_ANALYTICS, Placeholders_AnalyticsPodiumWinners_Bronze) }
         };
     }
 }

@@ -54,6 +54,11 @@ public class MainViewModel : ObservableObject
     public ICommand ResultsCommand => _resultsCommand ?? (_resultsCommand = new RelayCommand(() => _navigationService.NavigateTo<ResultsViewModel>(), () => _workspaceService.IsWorkspaceOpen));
 
     /// <summary>
+    /// Command to navigate to the winner history view.
+    /// </summary>
+    public ICommand WinnerHistoryCommand => _winnerHistoryCommand ?? (_winnerHistoryCommand = new RelayCommand(() => _navigationService.NavigateTo<WinnerHistoryViewModel>(), () => _workspaceService.IsWorkspaceOpen));
+
+    /// <summary>
     /// Command to navigate to the analytics view.
     /// </summary>
     public ICommand AnalyticsCommand => _analyticsCommand ?? (_analyticsCommand = new RelayCommand(() => _navigationService.NavigateTo<AnalyticsViewModel>(), () => _workspaceService.IsWorkspaceOpen));
@@ -67,6 +72,7 @@ public class MainViewModel : ObservableObject
     private ICommand _prepareDocumentsCommand;
     private ICommand _timeInputCommand;
     private ICommand _resultsCommand;
+    private ICommand _winnerHistoryCommand;
     private ICommand _analyticsCommand;
 
     private IWorkspaceService _workspaceService;
@@ -97,6 +103,7 @@ public class MainViewModel : ObservableObject
                     ((RelayCommand)PrepareDocumentsCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)TimeInputCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)ResultsCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)WinnerHistoryCommand).NotifyCanExecuteChanged();
                     ((RelayCommand)AnalyticsCommand).NotifyCanExecuteChanged();
                     break;
                 }

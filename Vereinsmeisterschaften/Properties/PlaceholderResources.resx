@@ -448,12 +448,36 @@ This only works outside of tables.</value>
     <value>Use these placeholders to insert an overview of the distances between the starts of a person.</value>
   </data>
   <data name="PlaceholderNameAnalyticsDistancesBetweenStarts" xml:space="preserve">
-    <value />
+    <value>Analytics: Distances between starts</value>
   </data>
   <data name="PlaceholderLegendAvailableOnlyTable" xml:space="preserve">
     <value>Placeholder available (only inside tables)</value>
   </data>
   <data name="PlaceholderLegendAvailableTextAndTable" xml:space="preserve">
     <value>Placeholder available (inside text and tables)</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the complete podium places (gold, silver and bronze) of all persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Gold" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the gold podium places of all persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Silver" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the silver podium places of all persons.</value>
+  </data>
+  <data name="PlaceholderInfoAnalyticsPodiumWinners_Bronze" xml:space="preserve">
+    <value>Use these placeholders to insert an overview of the bronze podium places of all persons.</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners" xml:space="preserve">
+    <value>Analytics: Podium winners</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Gold" xml:space="preserve">
+    <value>Analytics: Podium winners - Gold</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Silver" xml:space="preserve">
+    <value>Analytics: Podium winners - Silver</value>
+  </data>
+  <data name="PlaceholderNameAnalyticsPodiumWinners_Bronze" xml:space="preserve">
+    <value>Analytics: Podium winners - Bronze</value>
   </data>
 </root>

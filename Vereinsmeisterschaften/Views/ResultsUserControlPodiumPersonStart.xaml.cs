@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Views
@@ -21,6 +9,23 @@ namespace Vereinsmeisterschaften.Views
     /// </summary>
     public partial class ResultsUserControlPodiumPersonStart : UserControl
     {
+        public enum PodiumPersonStartDisplayStyles
+        {
+            Normal,
+            Small
+        }
+
+
+        public PodiumPersonStartDisplayStyles DisplayStyle
+        {
+            get { return (PodiumPersonStartDisplayStyles)GetValue(DisplayStyleProperty); }
+            set { SetValue(DisplayStyleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DisplayStyle.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DisplayStyleProperty = DependencyProperty.Register(nameof(DisplayStyle), typeof(PodiumPersonStartDisplayStyles), typeof(ResultsUserControlPodiumPersonStart), new PropertyMetadata(PodiumPersonStartDisplayStyles.Normal));
+
+
         public PersonStart Start
         {
             get { return (PersonStart)GetValue(StartProperty); }

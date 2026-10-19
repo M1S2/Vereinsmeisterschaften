@@ -232,6 +232,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Previous podium places per person ähnelt.
+        /// </summary>
+        public static string AnalyticsWidgetPodiumWinnersTitle {
+            get {
+                return ResourceManager.GetString("AnalyticsWidgetPodiumWinnersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Birth years per race ähnelt.
         /// </summary>
         public static string AnalyticsWidgetRacesAgesTitle {
@@ -682,6 +691,15 @@ namespace Vereinsmeisterschaften.Properties {
         public static string CreateTimeFormsString {
             get {
                 return ResourceManager.GetString("CreateTimeFormsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} is the {1}. time on the {2} place. ähnelt.
+        /// </summary>
+        public static string CurrentWinnersInfoFormatString {
+            get {
+                return ResourceManager.GetString("CurrentWinnersInfoFormatString", resourceCulture);
             }
         }
         
@@ -1631,6 +1649,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Winners history saved ähnelt.
+        /// </summary>
+        public static string SavedStatusWinnersHistoryString {
+            get {
+                return ResourceManager.GetString("SavedStatusWinnersHistoryString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         public static string SaveString {
@@ -1919,6 +1946,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Winner History ähnelt.
+        /// </summary>
+        public static string ShellWinnerHistoryPage {
+            get {
+                return ResourceManager.GetString("ShellWinnerHistoryPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Workspace ähnelt.
         /// </summary>
         public static string ShellWorkspacePage {
@@ -2140,6 +2176,51 @@ namespace Vereinsmeisterschaften.Properties {
         public static string WeightStyleOrderString {
             get {
                 return ResourceManager.GetString("WeightStyleOrderString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add to previous winners ähnelt.
+        /// </summary>
+        public static string WinnerHistoryAddCurrentString {
+            get {
+                return ResourceManager.GetString("WinnerHistoryAddCurrentString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Current winners ähnelt.
+        /// </summary>
+        public static string WinnerHistoryCurrentString {
+            get {
+                return ResourceManager.GetString("WinnerHistoryCurrentString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Winner History ähnelt.
+        /// </summary>
+        public static string WinnerHistoryPageTitle {
+            get {
+                return ResourceManager.GetString("WinnerHistoryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Previous winners ähnelt.
+        /// </summary>
+        public static string WinnerHistoryPreviousString {
+            get {
+                return ResourceManager.GetString("WinnerHistoryPreviousString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove from previous winners ähnelt.
+        /// </summary>
+        public static string WinnerHistoryRemoveCurrentString {
+            get {
+                return ResourceManager.GetString("WinnerHistoryRemoveCurrentString", resourceCulture);
             }
         }
         

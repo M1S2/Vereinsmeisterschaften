@@ -146,6 +146,16 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the number of podium places per person to date.
+        ///The displayed persons are the winners of the ancient years. The current (potential) winners aren&apos;t shown here. ähnelt.
+        /// </summary>
+        public static string TooltipAnalyticsWidgetPodiumWinners {
+            get {
+                return ResourceManager.GetString("TooltipAnalyticsWidgetPodiumWinners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Analyse the birth years for each race ähnelt.
         /// </summary>
         public static string TooltipAnalyticsWidgetRacesAges {
@@ -500,7 +510,7 @@ namespace Vereinsmeisterschaften.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On this page, you can create a order for the starts. This can be done either manually (by adding a variant and manually dragging the starts from the right area to the middle) or automatically (variants are randomly created and evaluated according to various criteria).
         ///Each race variant is scored from 0% (poor) to 100% (perfect). In the workspace, you can set the weighting or various parameters for the automatic calculation.
-        ///You can also highlight specific starts. For example, all of a person&apos;s starts to c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///You can also highlight specific starts. For example, all of a person&apos;s starts to che [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoPrepareRacesPage {
             get {
@@ -529,13 +539,24 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This page displays all winners from the last competitions.
+        ///The current winners are taken from the results page.
+        ///The previous winners are taken from an input file and can only be edited by adding the current winners to the list of previous ones via the button on this page. All other adaptions must be directly made to the file. ähnelt.
+        /// </summary>
+        public static string TooltipPageInfoWinnerHistoryPage {
+            get {
+                return ResourceManager.GetString("TooltipPageInfoWinnerHistoryPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The workspace is a folder where all settings, competitions, and people are saved. It&apos;s a good idea to create a new folder for each competition (e.g. each year). It doesn&apos;t matter where the folder is located on the hard drive.
         ///
         ///The following files are created:
         ///- WorkspaceSettings.json: JSON file with all settings for the workspace.
         ///- Person.csv: List of all people and swim times.
         ///- Competitions.csv: List of all available competitions.
-        ///- BestRace.csv: The race marked as a good option is saved here. If n [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///- BestRace.csv: The race marked as a good option is saved here. If no race [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         public static string TooltipPageInfoWorkspacePage {
             get {

@@ -1,0 +1,194 @@
+﻿<Page
+    x:Class="Vereinsmeisterschaften.Views.WinnerHistoryPage"
+    Style="{DynamicResource MahApps.Styles.Page}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
+    xmlns:local="clr-namespace:Vereinsmeisterschaften.Views"
+    xmlns:coreModels="clr-namespace:Vereinsmeisterschaften.Core.Models;assembly=Vereinsmeisterschaften.Core"
+    xmlns:userControls="clr-namespace:Vereinsmeisterschaften.Controls"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors" 
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="1200">
+
+    <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <controls:FontIcon FontSize="40" Glyph="&#xE81C;"/>
+            <TextBlock Style="{StaticResource PageTitleStyle}" Text="{x:Static properties:Resources.WinnerHistoryPageTitle}" />
+            <controls:FontIcon Margin="30,0,0,0" FontSize="25" Glyph="&#xF167;" Foreground="{DynamicResource MahApps.Brushes.Accent}" ToolTip="{x:Static properties:Tooltips.TooltipPageInfoWinnerHistoryPage}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource MediumTopMargin}">
+            <!-- Current icon -->
+            <controls:FontIcon FontSize="25" Glyph="&#xE9F9;" Margin="0,0,10,0"/>
+            <TextBlock Text="{x:Static properties:Resources.WinnerHistoryCurrentString}" Margin="{StaticResource SmallTopBottomMargin}" Style="{StaticResource SubtitleTextStyle}"/>
+        </StackPanel>
+        
+        <!-- Current winner's podium -->
+        <Grid Grid.Row="2">
+            <!-- Info text shown, when there are no winners yet -->
+            <ContentControl ContentTemplate="{StaticResource EmptyItemsControlAdornerDataTemplate}" HorizontalAlignment="Left"
+                            Visibility="{Binding CurrentWinnersHasAtLeastOneWinner, Converter={StaticResource InvertedBoolVisibilityConverter}}"/>
+
+            <StackPanel Orientation="Vertical" Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                        Visibility="{Binding CurrentWinnersHasAtLeastOneWinner, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <ContentControl Template="{StaticResource ControlTemplateOkIndicator}" Margin="0,0,10,0"
+                                    Visibility="{Binding IsCurrentWinnersPartOfPreviousWinners, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <TextBlock Text="{Binding CurrentWinners.Timestamp, StringFormat={}dd.MM.yyyy}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" Margin="0,0,30,0"/>
+
+                    <ItemsControl ItemsSource="{Binding CurrentWinners.WinnersSilver}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Silver"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding CurrentWinners.WinnersGold}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Gold"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding CurrentWinners.WinnersBronze}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Bronze"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="{StaticResource MediumLeftMargin}">
+                        <TextBlock Text="{Binding CurrentWinnersInfoTextGold}" FontSize="{StaticResource MediumFontSize}" Style="{StaticResource StyleTextBlockCollapsedWhenEmpty}"/>
+                        <TextBlock Text="{Binding CurrentWinnersInfoTextSilver}" FontSize="{StaticResource MediumFontSize}" Style="{StaticResource StyleTextBlockCollapsedWhenEmpty}"/>
+                        <TextBlock Text="{Binding CurrentWinnersInfoTextBronze}" FontSize="{StaticResource MediumFontSize}" Style="{StaticResource StyleTextBlockCollapsedWhenEmpty}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Options for current winners -->
+                <Button Margin="{StaticResource SmallTopMargin}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left"
+                        Command="{Binding AddCurrentWinnersToPreviousCommand}"
+                        Visibility="{Binding IsCurrentWinnersPartOfPreviousWinners, Converter={StaticResource InvertedBoolVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:FontIcon FontSize="20" Glyph="&#xE710;"/>
+                        <TextBlock Text="{x:Static properties:Resources.WinnerHistoryAddCurrentString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="{StaticResource SmallTopMargin}" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Background="{DynamicResource BrushError}" HorizontalAlignment="Left"
+                        Command="{Binding RemoveCurrentWinnersFromPreviousCommand}"
+                        Visibility="{Binding IsCurrentWinnersPartOfPreviousWinners, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:FontIcon FontSize="20" Glyph="&#xE738;"/>
+                        <TextBlock Text="{x:Static properties:Resources.WinnerHistoryRemoveCurrentString}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource MediumTopMargin}">
+            <!-- Previous icon -->
+            <controls:FontIcon FontSize="25" Glyph="&#xE81C;" Margin="0,0,10,0"/>
+            <TextBlock Text="{x:Static properties:Resources.WinnerHistoryPreviousString}" Margin="{StaticResource SmallTopBottomMargin}" Style="{StaticResource SubtitleTextStyle}"/>
+        </StackPanel>
+
+        <!-- Previous winner's podium -->
+        <ListBox Grid.Row="4" Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                 ItemsSource="{Binding PreviousWinners}">
+            <!--<ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        --><!-- When this previous element matches the current element: hide it --><!--
+                        <DataTrigger Binding="{Binding MatchesCurrentWinnersElement}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>-->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Current icon -->
+                        <controls:FontIcon FontSize="15" Glyph="&#xE9F9;" Margin="0,0,10,0"
+                                           Visibility="{Binding MatchesCurrentWinnersElement, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                           ToolTip="{x:Static properties:Resources.WinnerHistoryCurrentString}"/>
+                        <!-- Previous icon -->
+                        <controls:FontIcon FontSize="15" Glyph="&#xE81C;" Margin="0,0,10,0"
+                                           Visibility="{Binding MatchesCurrentWinnersElement, Converter={StaticResource InvertedBoolVisibilityConverter}}"
+                                           ToolTip="{x:Static properties:Resources.WinnerHistoryPreviousString}"/>
+
+                        <TextBlock Text="{Binding Timestamp, StringFormat={}dd.MM.yyyy}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" Margin="0,0,30,0"/>
+
+                        <ItemsControl ItemsSource="{Binding WinnersSilver}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Silver"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding WinnersGold}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Gold"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding WinnersBronze}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:WinnerHistoryUserControlPodium PersonName="{Binding Name}" PersonFirstName="{Binding FirstName}" Highlighted="{Binding IsPartOfCurrentWinners}" PodiumsPlace="Bronze"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>           
+        </ListBox>
+        
+    </Grid>
+</Page>

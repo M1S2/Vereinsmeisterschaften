@@ -1,0 +1,32 @@
+﻿<local:AnalyticsWidgetBase x:Class="Vereinsmeisterschaften.Views.AnalyticsWidgets.AnalyticsWidgetPodiumWinners"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vereinsmeisterschaften.Views.AnalyticsWidgets"
+             xmlns:behaviors="clr-namespace:Vereinsmeisterschaften.Behaviors"
+             xmlns:liveCharts="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+             Template="{StaticResource ControlTemplateAnalyticsWidgetBase}">
+
+    <DockPanel LastChildFill="True">
+        <!-- Selection for podium places -->
+        <ComboBox DockPanel.Dock="Top"  Width="170" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left"
+                  ItemsSource="{Binding AvailablePodiumPlaces}" SelectedItem="{Binding SelectedPodiumPlace}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource enumLocalizedStringConverter}}" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ScrollViewer x:Name="PART_scrollViewerChart" behaviors:NestedScrollViewersBehavior.IsEnabled="True" Margin="{StaticResource SmallTopMargin}">
+            <liveCharts:CartesianChart Height="{Binding ChartHeight}"
+                                       Series="{Binding PodiumPlacesPerPersonSeries}"
+                                       XAxes="{Binding XAxes}"
+                                       YAxes="{Binding YAxes}"
+                                       TooltipPosition="Hidden"/>
+        </ScrollViewer>
+    </DockPanel>
+</local:AnalyticsWidgetBase>

@@ -264,4 +264,16 @@
   <data name="CompetitionSearchModes_ExactOrNearestPreferHigher" xml:space="preserve">
     <value>Exact or nearest age (prefer higher age when distance is equal)</value>
   </data>
+  <data name="ResultPodiumsPlaces_Gold" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="ResultPodiumsPlaces_Silver" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="ResultPodiumsPlaces_Bronze" xml:space="preserve">
+    <value>Bronze</value>
+  </data>
+  <data name="ResultPodiumsPlaces_All" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

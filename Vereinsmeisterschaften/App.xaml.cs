@@ -83,6 +83,7 @@ public partial class App : Application
         services.AddSingleton<IWorkspaceService, WorkspaceService>();
         services.AddSingleton<IScoreService, ScoreService>();
         services.AddSingleton<IRaceService, RaceService>();
+        services.AddSingleton<IWinnerHistoryService, WinnerHistoryService>();
         services.AddSingleton<IDocumentPlaceholderResolver<PersonStart>, DocumentPlaceholderResolverPersonStart>();
         services.AddSingleton<IDocumentPlaceholderResolver<Person>, DocumentPlaceholderResolverPerson>();
         services.AddSingleton<IDocumentPlaceholderResolver<Race>, DocumentPlaceholderResolverRace>();
@@ -106,6 +107,7 @@ public partial class App : Application
         services.AddSingleton<AnalyticsModulePlacesAgeDistribution>();
         services.AddSingleton<AnalyticsModuleRacesAges>();
         services.AddSingleton<AnalyticsModuleCompetitionTimes>();
+        services.AddSingleton<AnalyticsModulePodiumWinners>();
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderPersons>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleGenderStarts>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleStartsPerStyle>());
@@ -118,6 +120,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePlacesAgeDistribution>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleRacesAges>());
         services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModuleCompetitionTimes>());
+        services.AddSingleton<IAnalyticsModule>(sp => sp.GetRequiredService<AnalyticsModulePodiumWinners>());
         services.AddSingleton<IDocumentFileConverterSelector, DocumentFileConverterSelector>();
         services.AddSingleton<IDocumentFileConverter, MsWordDocumentFileConverter>();
         services.AddSingleton<IDocumentFileConverter, LibreOfficeDocumentFileConverter>();
@@ -158,6 +161,9 @@ public partial class App : Application
         services.AddSingleton<ResultsViewModel>();
         services.AddSingleton<ResultsPage>();
 
+        services.AddSingleton<WinnerHistoryViewModel>();
+        services.AddSingleton<WinnerHistoryPage>();
+
         services.AddSingleton<AnalyticsViewModel>();
         services.AddSingleton<AnalyticsPage>();
 
@@ -179,6 +185,7 @@ public partial class App : Application
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPlacesAgeDistribution>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetRacesAges>();
         services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetCompetitionTimes>();
+        services.AddSingleton<IAnalyticsWidget, AnalyticsWidgetPodiumWinners>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

@@ -78,6 +78,16 @@ Hier wird die Auswertung aus allen Starts angezeigt (wie viele Punkte die jeweil
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Results.png" width="100%"></img>
 
+### Ehemalige Vereinsmeister
+
+Hier werden alle ehemaligen und die aktuellen Vereinsmeister angezeigt. Dargestellt werden alle Personen, die im jeweiligen Jahr auf dem Gold, Silber oder Bronze Platz gelandet sind (Gesamtwertung).
+Die aktuellen Vereinsmeister werden von der Ergebnisseite genommen.
+
+Alle Informationen über die ehemaligen Vereinsmeister werden in einer Datei abgespeichert (nur die Namen und ein Zeitstempel pro Jahr).
+Neue Einträge können nur hinzugefügt werden, indem die aktuellen Vereinsmeister über den Button auf dieser Seite hinzugefügt werden. Alle anderen Änderungen müssen direkt in der Datei gemacht werden.
+
+<img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_WinnerHistory.png" width="100%"></img>
+
 ### Dokumente erstellen
 Hier können verschiedene Dokumente erstellt werden, die vor, während oder nach dem Wettkampf nötig sind.
 
@@ -101,6 +111,8 @@ Infos zu den einzelnen Analysen:
 - **Abstände zwischen den Starts einer Person:** Analysieren, wie viel Pause zwischen den Starts einer Person ist. Nur aktive Starts werden gezählt.
 - **Geburtsjahr je Platz im Gesamtergebnis:** Analysieren, welches Geburtsjahr für jeden Platz im Gesamtergebnis zugeordnet ist.
 - **Geburtsjahre je Rennen:** Analysieren, welche Geburtsjahre je Rennen antreten.
+- **Wettkampf Zeiten:** Analysieren, welche Wettkampfzeiten pro Alter und Stil geschwommen werden müssen.
+- **Bisherige Podiumsplätze pro Person: Analysieren, wie viele Podiumsplätze jede Person bisher hatte. Die hier dargestellten Personen sind die Vereinsmeister der vergangenen Jahre. Die momentanen (potentiellen) Vereinsmeister werden nicht mit angezeigt.**
 
 <img src="https://github.com/M1S2/Vereinsmeisterschaften/raw/master/Doc/Screenshots/Screenshot_Analytics.png" width="100%"></img>
 
@@ -118,6 +130,7 @@ Folgende Dateien werden erzeugt:
 - Wettkaempfe.csv / Competitions.csv: Liste mit allen verfügbaren Wettkämpfen.
 - WettkampfDistanzRegeln.csv / CompetitionDistanceRules.csv: Liste mit allen verfügbaren Regeln für die Wettkampf Distanzen.
 - BestesRennen.csv / BestRace.csv: Das Rennen, das als gute Variante markiert wurde, wird hier gespeichert. Wenn kein Rennen markiert wurde, existiert diese Datei nicht.
+- LetzteVereinsmeister.csv / WinnersHistory.csv: Diese Datei enthält alle bisherigen Vereinsmeister. Pro Zeile wird für ein Jahr gespeichert, wer auf dem Gold, Silber und Bronze Platz gelandet ist. Diese Datei wird immer mit kopiert, wenn ein neuer Arbeitsbereich aus einem Alten erstellt wurde, damit die Historie fortgeführt werden kann.
 
 Die Dateinamen werden folgendermaßen ermittelt:
 - Beim Laden des Arbeitsbereichs wird die Datei der aktuellen Systemsprache verwendet (wenn verfügbar). Wenn nicht verfügbar, wird die neueste Datei aus allen verfügbaren Sprachen (momentan Deutsch und Englisch) verwendet.
@@ -172,6 +185,10 @@ Welches Programm zur Umwandlung verwendet wird, wird folgendermaßen bestimmt:
 Jeder Start einer Person muss einem Wettkampf zugeordnet werden. Dies geschieht abhängig vom gewählten Modus. Folgendes Diagramm zeigt exemplarisch die Zuordnung für Brust Starts (Wasserflöhe werden immer dem ersten gefundenen Wasserfloh-Wettkampf zugeordnet):
 
 ```mermaid
+---
+config:
+    layout: elk
+---
 flowchart LR
     subgraph Wettkämpfe
         C18f["♀ Brust 18J."]

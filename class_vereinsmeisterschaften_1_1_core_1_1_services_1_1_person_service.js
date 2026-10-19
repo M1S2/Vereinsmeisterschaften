@@ -1,0 +1,27 @@
+var class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service =
+[
+    [ "PersonService", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab18884bced8069eecb62feb7ad3fd88b", null ],
+    [ "AddPerson", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab9dab3950fb28b0d950b63ac672e1a95", null ],
+    [ "ClearAll", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab5a5212d6fafa4d7a82590fee95263e2", null ],
+    [ "GetAllPersonStarts", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a137951ff0403803c21bd6915af1fe78a", null ],
+    [ "GetPersons", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a031dd075ca448e18fb1a77c02cf1e98a", null ],
+    [ "Load", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#aae2ff6f5f349129d64e14d90c39752a5", null ],
+    [ "Person_PropertyChanged", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#af2f951eff5cbcf999395b736e5d2cdc3", null ],
+    [ "RemovePerson", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ad3246812d6957ab784032e51bd26ea1d", null ],
+    [ "ResetToLoadedState", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a8471a3b69e6d8a83091f5f1b2b2bae1e", null ],
+    [ "Save", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a75a6b9c54bc1e28c49e8789674a29c5c", null ],
+    [ "SetCompetitionServiceObj", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a39be663bae7fcef14095a64ec450a66c", null ],
+    [ "SetRaceServiceObj", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#aa509fbbcf8f716c4b584a8c9248efbcc", null ],
+    [ "SetScoreServiceObj", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a60ce44f258df8af7402f596fdb809ea7", null ],
+    [ "UpdateAllFriendReferencesFromFriendGroupIDs", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab6489dfeb92df857adea89d4fd74360a", null ],
+    [ "UpdateHasDuplicatesForPersons", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ae398721a5764d104b3ea284bb9b701a9", null ],
+    [ "_personList", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a451950bd5591f9887e5d64d3f47417c9", null ],
+    [ "_personListOnLoad", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a82924607f96fa8676f27112c7fb0f481", null ],
+    [ "HasUnsavedChanges", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a020063bfe727832f41f93361e39440c2", null ],
+    [ "NumberFriendGroups", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a9dc05ffb6ac01c44528085fdef55edad", null ],
+    [ "PersistentPath", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#ab7622e2fe28be139e57c7fea76fe0cea", null ],
+    [ "PersonCount", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a1231221cf1ba262d46b15346dac66027", null ],
+    [ "PersonStarts", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a475e9b8c1f8ffd2e92724bacddd4456c", null ],
+    [ "OnFileFinished", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a5efc8627a605c3bcfc6acb9ae664513d", null ],
+    [ "OnFileProgress", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_person_service.html#a84a5f2d7a80d5cc7393d6a02e168c27d", null ]
+];

@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: /github/workspace/Vereinsmeisterschaften.Core/Models/WinnerHistoryElement.cs Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">fe2df0ad6a000a2c39d7d9d0bfc63868e09f22f1</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_winner_history_element_8cs_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">WinnerHistoryElement.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>CommunityToolkit.Mvvm.ComponentModel;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a>;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">    9</a></span>    <span class="keyword">public</span> <span class="keyword">partial class </span><a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> : ObservableObject, IEquatable&lt;WinnerHistoryElement&gt;, ICloneable, IComparable&lt;WinnerHistoryElement&gt;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">        #region Constructors</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">   16</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a>()</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        }</div>
+</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a41ed34ca2bc901a34397725a30c942ac">   27</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a41ed34ca2bc901a34397725a30c942ac">WinnerHistoryElement</a>(DateTime timestamp, List&lt;WinnerName&gt; winnersGold, List&lt;WinnerName&gt; winnersSilver, List&lt;WinnerName&gt; winnersBronze)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            Timestamp = timestamp;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            WinnersGold = winnersGold;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            WinnersSilver = winnersSilver;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            WinnersBronze = winnersBronze;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ac95482658530a3b81e7ba57842857482">   42</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ac95482658530a3b81e7ba57842857482">WinnerHistoryElement</a>(DateTime timestamp, List&lt;PersonStart&gt; winnersGold, List&lt;PersonStart&gt; winnersSilver, List&lt;PersonStart&gt; winnersBronze)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            Timestamp = timestamp;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            WinnersGold = winnersGold?.Select(s =&gt; <span class="keyword">new</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html#a03d07cb92fd1063bc55b8a1db21b0c5a">WinnerName</a>(s?.PersonObj?.FirstName, s?.PersonObj?.Name) { IsPartOfCurrentWinners = <span class="keyword">false</span> }).ToList();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            WinnersSilver = winnersSilver?.Select(s =&gt; <span class="keyword">new</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html#a03d07cb92fd1063bc55b8a1db21b0c5a">WinnerName</a>(s?.PersonObj?.FirstName, s?.PersonObj?.Name) { IsPartOfCurrentWinners = <span class="keyword">false</span> }).ToList();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            WinnersBronze = winnersBronze?.Select(s =&gt; <span class="keyword">new</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html#a03d07cb92fd1063bc55b8a1db21b0c5a">WinnerName</a>(s?.PersonObj?.FirstName, s?.PersonObj?.Name) { IsPartOfCurrentWinners = <span class="keyword">false</span> }).ToList();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        }</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a738a6fc223aaee22c721159472511a90">   54</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a738a6fc223aaee22c721159472511a90">WinnerHistoryElement</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> other) : this()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keywordflow">if</span> (other == <span class="keyword">null</span>) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            this.Timestamp = other.Timestamp;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="comment">// Deep clone of the winner lists</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            this.WinnersGold = <span class="keyword">new</span> List&lt;WinnerName&gt;(other.WinnersGold ?? Enumerable.Empty&lt;<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>&gt;());</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            this.WinnersSilver = <span class="keyword">new</span> List&lt;WinnerName&gt;(other.WinnersSilver ?? Enumerable.Empty&lt;<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>&gt;());</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            this.WinnersBronze = <span class="keyword">new</span> List&lt;WinnerName&gt;(other.WinnersBronze ?? Enumerable.Empty&lt;<a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>&gt;());</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            this.MatchesCurrentWinnersElement = other.<a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a238557dce22784782d9a52204c284ab5">MatchesCurrentWinnersElement</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">        #region Basic properties</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        [ObservableProperty]</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a833fc1fdbd1bb57403b3601c4e1824cc">   77</a></span>        <span class="keyword">private</span> DateTime <a class="code hl_variable" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a833fc1fdbd1bb57403b3601c4e1824cc">_timestamp</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        [ObservableProperty]</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9fcc8093f5d20b4a624214680ad0904b">   83</a></span>        <span class="keyword">private</span> List&lt;WinnerName&gt; <a class="code hl_variable" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9fcc8093f5d20b4a624214680ad0904b">_winnersGold</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        [ObservableProperty]</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9ae258e5ad07d469a60aa4474701e74e">   89</a></span>        <span class="keyword">private</span> List&lt;WinnerName&gt; <a class="code hl_variable" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9ae258e5ad07d469a60aa4474701e74e">_winnersSilver</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        [ObservableProperty]</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ad5bdf651b4f63a1a04aa9af5e6620bd4">   95</a></span>        <span class="keyword">private</span> List&lt;WinnerName&gt; <a class="code hl_variable" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ad5bdf651b4f63a1a04aa9af5e6620bd4">_winnersBronze</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">        #region Helper properties for previous elements</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">private</span> <span class="keywordtype">bool</span> _matchesCurrentWinnersElement = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        [FileServiceIgnore]</div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="};">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a238557dce22784782d9a52204c284ab5">  108</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a238557dce22784782d9a52204c284ab5">MatchesCurrentWinnersElement</a></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keyword">get</span> =&gt; _matchesCurrentWinnersElement;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _matchesCurrentWinnersElement, value);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        }</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">        #region Helper properties for current element</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keyword">private</span> <span class="keywordtype">bool</span> _isCurrentWinnersElement = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        [FileServiceIgnore]</div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#afec5d24c5a1de11c859bd26f55591175">  125</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_property" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#afec5d24c5a1de11c859bd26f55591175">IsCurrentWinnersElement</a></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keyword">get</span> =&gt; _isCurrentWinnersElement;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <span class="keyword">set</span> =&gt; SetProperty(ref _isCurrentWinnersElement, value);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">        #region SetPropertyFromString helper</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="foldopen" id="foldopen00143" data-start="{" data-end="}">
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aa17957f09441657385173dd51d242bd4">  143</a></span>        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aa17957f09441657385173dd51d242bd4">SetPropertyFromString</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> dataObj, <span class="keywordtype">string</span> propertyName, <span class="keywordtype">string</span> value)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(value)) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <span class="keywordflow">switch</span> (propertyName)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">case</span> nameof(Timestamp): dataObj.Timestamp = DateTime.Parse(value); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keywordflow">case</span> nameof(WinnersGold): dataObj.WinnersGold = <span class="keyword">new</span> List&lt;WinnerName&gt;(value.Split(<span class="charliteral">&#39;|&#39;</span>).Select(s =&gt; <span class="keyword">new</span> <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>(s.Trim()))); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                <span class="keywordflow">case</span> nameof(WinnersSilver): dataObj.WinnersSilver = <span class="keyword">new</span> List&lt;WinnerName&gt;(value.Split(<span class="charliteral">&#39;|&#39;</span>).Select(s =&gt; <span class="keyword">new</span> <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>(s.Trim()))); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                <span class="keywordflow">case</span> nameof(WinnersBronze): dataObj.WinnersBronze = <span class="keyword">new</span> List&lt;WinnerName&gt;(value.Split(<span class="charliteral">&#39;|&#39;</span>).Select(s =&gt; <span class="keyword">new</span> <a class="code hl_class" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>(s.Trim()))); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <span class="keywordflow">default</span>: <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">        #region Equality, HashCode, ToString, Clone, Comparable</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span></div>
+<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a03f785d3c8e3c78cdb93e52ac6cef6da">  168</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a03f785d3c8e3c78cdb93e52ac6cef6da">Equals</a>(<span class="keywordtype">object</span> obj)</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            =&gt; obj is <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> h &amp;&amp; </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                h.Timestamp.Equals(Timestamp) &amp;&amp;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                (h.WinnersGold == <span class="keyword">null</span> || WinnersGold == <span class="keyword">null</span> || h.WinnersGold.SequenceEqual(WinnersGold)) &amp;&amp;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                (h.WinnersSilver == <span class="keyword">null</span> || WinnersSilver == <span class="keyword">null</span> || h.WinnersSilver.SequenceEqual(WinnersSilver)) &amp;&amp;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                (h.WinnersBronze == <span class="keyword">null</span> || WinnersBronze == <span class="keyword">null</span> || h.WinnersBronze.SequenceEqual(WinnersBronze));</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a951a4f89f289eb4dafcd21ee22d1fdd2">  180</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a951a4f89f289eb4dafcd21ee22d1fdd2">Equals</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> other)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            =&gt; <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a03f785d3c8e3c78cdb93e52ac6cef6da">Equals</a>((<span class="keywordtype">object</span>)other);</div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span></div>
+<div class="foldopen" id="foldopen00187" data-start="{" data-end="}">
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#abb9608f9bc746c52291a20906f8a3634">  187</a></span>        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#abb9608f9bc746c52291a20906f8a3634">GetHashCode</a>()</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            =&gt; (Timestamp, WinnersGold, WinnersSilver, WinnersBronze).<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#abb9608f9bc746c52291a20906f8a3634">GetHashCode</a>();</div>
+</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span></div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aab73a76803e8c7957c54939256de8e4b">  194</a></span>        <span class="keyword">public</span> <span class="keywordtype">object</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aab73a76803e8c7957c54939256de8e4b">Clone</a>()</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            =&gt; <span class="keyword">new</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a>(<span class="keyword">this</span>);</div>
+</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span></div>
+<div class="foldopen" id="foldopen00207" data-start="{" data-end="}">
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a700d8cd0a5ca2aa1c1504398f873b71c">  207</a></span>        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a700d8cd0a5ca2aa1c1504398f873b71c">CompareTo</a>(<a class="code hl_function" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">WinnerHistoryElement</a> other)</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <span class="keywordflow">if</span> (other == <span class="keyword">null</span>) <span class="keywordflow">return</span> 1;    <span class="comment">// Every object is greater than null</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            <span class="keywordflow">return</span> this.Timestamp.CompareTo(other.Timestamp);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        }</div>
+</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }</div>
+</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a03f785d3c8e3c78cdb93e52ac6cef6da"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a03f785d3c8e3c78cdb93e52ac6cef6da">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.Equals</a></div><div class="ttdeci">override bool Equals(object obj)</div><div class="ttdoc">Compare if two WinnerHistoryElements are equal.</div><div class="ttdef"><b>Definition</b> <a href="#l00168">WinnerHistoryElement.cs:168</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a238557dce22784782d9a52204c284ab5"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a238557dce22784782d9a52204c284ab5">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.MatchesCurrentWinnersElement</a></div><div class="ttdeci">bool MatchesCurrentWinnersElement</div><div class="ttdoc">true when this WinnerHistoryElement matches the current one (but is in the list of previous winners)</div><div class="ttdef"><b>Definition</b> <a href="#l00108">WinnerHistoryElement.cs:109</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a41ed34ca2bc901a34397725a30c942ac"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a41ed34ca2bc901a34397725a30c942ac">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.WinnerHistoryElement</a></div><div class="ttdeci">WinnerHistoryElement(DateTime timestamp, List&lt; WinnerName &gt; winnersGold, List&lt; WinnerName &gt; winnersSilver, List&lt; WinnerName &gt; winnersBronze)</div><div class="ttdoc">Constructor for a new WinnerHistoryElement object using name strings.</div><div class="ttdef"><b>Definition</b> <a href="#l00027">WinnerHistoryElement.cs:27</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a700d8cd0a5ca2aa1c1504398f873b71c"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a700d8cd0a5ca2aa1c1504398f873b71c">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.CompareTo</a></div><div class="ttdeci">int CompareTo(WinnerHistoryElement other)</div><div class="ttdoc">Compare this WinnerHistoryElement to another one.</div><div class="ttdef"><b>Definition</b> <a href="#l00207">WinnerHistoryElement.cs:207</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a738a6fc223aaee22c721159472511a90"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a738a6fc223aaee22c721159472511a90">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.WinnerHistoryElement</a></div><div class="ttdeci">WinnerHistoryElement(WinnerHistoryElement other)</div><div class="ttdoc">Clone constructor for a WinnerHistoryElement object.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">WinnerHistoryElement.cs:54</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a833fc1fdbd1bb57403b3601c4e1824cc"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a833fc1fdbd1bb57403b3601c4e1824cc">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement._timestamp</a></div><div class="ttdeci">DateTime _timestamp</div><div class="ttdoc">Timestamp for the history element.</div><div class="ttdef"><b>Definition</b> <a href="#l00077">WinnerHistoryElement.cs:77</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a951a4f89f289eb4dafcd21ee22d1fdd2"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a951a4f89f289eb4dafcd21ee22d1fdd2">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.Equals</a></div><div class="ttdeci">bool Equals(WinnerHistoryElement other)</div><div class="ttdoc">Indicates wheather the current object is equal to another object of the same type.</div><div class="ttdef"><b>Definition</b> <a href="#l00180">WinnerHistoryElement.cs:180</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a9ae258e5ad07d469a60aa4474701e74e"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9ae258e5ad07d469a60aa4474701e74e">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement._winnersSilver</a></div><div class="ttdeci">List&lt; WinnerName &gt; _winnersSilver</div><div class="ttdoc">All silver winners of the history element.</div><div class="ttdef"><b>Definition</b> <a href="#l00089">WinnerHistoryElement.cs:89</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_a9fcc8093f5d20b4a624214680ad0904b"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#a9fcc8093f5d20b4a624214680ad0904b">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement._winnersGold</a></div><div class="ttdeci">List&lt; WinnerName &gt; _winnersGold</div><div class="ttdoc">All gold winners of the history element.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">WinnerHistoryElement.cs:83</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_aa17957f09441657385173dd51d242bd4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aa17957f09441657385173dd51d242bd4">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.SetPropertyFromString</a></div><div class="ttdeci">static void SetPropertyFromString(WinnerHistoryElement dataObj, string propertyName, string value)</div><div class="ttdoc">Set the requested property in the WinnerHistoryElement object by parsing the given string value.</div><div class="ttdef"><b>Definition</b> <a href="#l00143">WinnerHistoryElement.cs:143</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_aab73a76803e8c7957c54939256de8e4b"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#aab73a76803e8c7957c54939256de8e4b">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.Clone</a></div><div class="ttdeci">object Clone()</div><div class="ttdoc">Create a new object that has the same property values than this one.</div><div class="ttdef"><b>Definition</b> <a href="#l00194">WinnerHistoryElement.cs:194</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_abb9608f9bc746c52291a20906f8a3634"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#abb9608f9bc746c52291a20906f8a3634">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.GetHashCode</a></div><div class="ttdeci">override int GetHashCode()</div><div class="ttdoc">Serves as the default hash function.</div><div class="ttdef"><b>Definition</b> <a href="#l00187">WinnerHistoryElement.cs:187</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_ac95482658530a3b81e7ba57842857482"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ac95482658530a3b81e7ba57842857482">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.WinnerHistoryElement</a></div><div class="ttdeci">WinnerHistoryElement(DateTime timestamp, List&lt; PersonStart &gt; winnersGold, List&lt; PersonStart &gt; winnersSilver, List&lt; PersonStart &gt; winnersBronze)</div><div class="ttdoc">Constructor for a new WinnerHistoryElement object using PersonStart objects.</div><div class="ttdef"><b>Definition</b> <a href="#l00042">WinnerHistoryElement.cs:42</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_ad5bdf651b4f63a1a04aa9af5e6620bd4"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#ad5bdf651b4f63a1a04aa9af5e6620bd4">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement._winnersBronze</a></div><div class="ttdeci">List&lt; WinnerName &gt; _winnersBronze</div><div class="ttdoc">All bronze winners of the history element.</div><div class="ttdef"><b>Definition</b> <a href="#l00095">WinnerHistoryElement.cs:95</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_af9592048e57178db6ca13116f2cca33a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#af9592048e57178db6ca13116f2cca33a">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.WinnerHistoryElement</a></div><div class="ttdeci">WinnerHistoryElement()</div><div class="ttdoc">Constructor for a new WinnerHistoryElement object.</div><div class="ttdef"><b>Definition</b> <a href="#l00016">WinnerHistoryElement.cs:16</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element_html_afec5d24c5a1de11c859bd26f55591175"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html#afec5d24c5a1de11c859bd26f55591175">Vereinsmeisterschaften.Core.Models.WinnerHistoryElement.IsCurrentWinnersElement</a></div><div class="ttdeci">bool IsCurrentWinnersElement</div><div class="ttdoc">true when this WinnerHistoryElement is the current winners element</div><div class="ttdef"><b>Definition</b> <a href="#l00125">WinnerHistoryElement.cs:126</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name_html"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">Vereinsmeisterschaften.Core.Models.WinnerName</a></div><div class="ttdoc">Class describing the name of one winner.</div><div class="ttdef"><b>Definition</b> <a href="_winner_name_8cs_source.html#l00009">WinnerName.cs:10</a></div></div>
+<div class="ttc" id="aclass_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name_html_a03d07cb92fd1063bc55b8a1db21b0c5a"><div class="ttname"><a href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html#a03d07cb92fd1063bc55b8a1db21b0c5a">Vereinsmeisterschaften.Core.Models.WinnerName.WinnerName</a></div><div class="ttdeci">WinnerName()</div><div class="ttdoc">Constructor for a new object.</div><div class="ttdef"><b>Definition</b> <a href="_winner_name_8cs_source.html#l00016">WinnerName.cs:16</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html">Vereinsmeisterschaften.Core.Contracts.Services</a></div><div class="ttdef"><b>Definition</b> <a href="_delegates_8cs_source.html#l00004">Delegates.cs:5</a></div></div>
+<div class="ttc" id="anamespace_vereinsmeisterschaften_1_1_core_1_1_models_html"><div class="ttname"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html">Vereinsmeisterschaften.Core.Models</a></div><div class="ttdef"><b>Definition</b> <a href="_competition_8cs_source.html#l00005">Competition.cs:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>Vereinsmeisterschaften.Core</b></li><li class="navelem"><b>Models</b></li><li class="navelem"><b>WinnerHistoryElement.cs</b></li>
+    <li class="footer">Generated on <span class="timestamp"></span> for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+var class_vereinsmeisterschaften_1_1_converters_1_1_competition_distance_rule_validation_issue_to_string_converter =
+[
+    [ "Convert", "class_vereinsmeisterschaften_1_1_converters_1_1_competition_distance_rule_validation_issue_to_string_converter.html#a3d7389a3e5d5afa9494fc0d6bfbbf24a", null ],
+    [ "ConvertBack", "class_vereinsmeisterschaften_1_1_converters_1_1_competition_distance_rule_validation_issue_to_string_converter.html#a7518bbd0ddc9aefabaf96e84ae77afb1", null ]
+];

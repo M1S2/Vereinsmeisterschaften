@@ -1,0 +1,11 @@
+var class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail =
+[
+    [ "ItemOrderingsResultListDetail", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a9087b6b987f9855e51e266d93fee4886", null ],
+    [ "DocumentStrategyResultListDetail", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a670f1f129e61984bf065bbc5fb7bcf53", null ],
+    [ "GetItems", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a2b1e7912ceb943b79d605465f1332b0f", null ],
+    [ "AvailableItemOrderings", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a5ae1060ad184d7b8e6e84eaaf0eb9fcc", null ],
+    [ "CreateMultiplePages", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#ae739013eb8a48a3f5525f819139ab386", null ],
+    [ "DocumentType", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#ae208ab22efab75b0f3887f26f028810a", null ],
+    [ "ItemOrdering", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a68e68518bbf71126dff82247b48d520b", null ],
+    [ "TemplatePath", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_strategies_1_1_document_strategy_result_list_detail.html#a9732d62ab41c0ed6a387ef814b59885a", null ]
+];

@@ -1,0 +1,1081 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Vereinsmeisterschaften: Vereinsmeisterschaften.Core.Services.WinnerHistoryService Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/Vereinsmeisterschaften" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Vereinsmeisterschaften
+   &#160;<span id="projectnumber">fe2df0ad6a000a2c39d7d9d0bfc63868e09f22f1</span>
+   </div>
+   <div id="projectbrief">This is a software that can be used to manage the internal competition of the swimming club Illertissen called &quot;Vereinsmeisterschaften&quot;.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html','','class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Vereinsmeisterschaften.Core.Services.WinnerHistoryService Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Service used to keep the history of all winners.  
+ <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Vereinsmeisterschaften.Core.Services.WinnerHistoryService:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.png" usemap="#Vereinsmeisterschaften_2ECore_2EServices_2EWinnerHistoryService_map" alt=""/>
+  <map id="Vereinsmeisterschaften_2ECore_2EServices_2EWinnerHistoryService_map" name="Vereinsmeisterschaften_2ECore_2EServices_2EWinnerHistoryService_map">
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html" title="Interface for a service used to keep the history of all winners." alt="Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService" shape="rect" coords="429,56,848,80"/>
+<area href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html" title="Interface for saveable objects." alt="Vereinsmeisterschaften.Core.Contracts.Services.ISaveable" shape="rect" coords="643,0,1062,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a03d66f193f481f37af1376c4df86d016" id="r_a03d66f193f481f37af1376c4df86d016"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a03d66f193f481f37af1376c4df86d016">WinnerHistoryService</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> fileService)</td></tr>
+<tr class="memdesc:a03d66f193f481f37af1376c4df86d016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the WinnerHistoryService.  <br /></td></tr>
+<tr class="memitem:aecadfa29eb9a2b1eb56d9b8aca326ffd" id="r_aecadfa29eb9a2b1eb56d9b8aca326ffd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aecadfa29eb9a2b1eb56d9b8aca326ffd">SetScoreServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a> scoreService)</td></tr>
+<tr class="memdesc:aecadfa29eb9a2b1eb56d9b8aca326ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the IScoreService object.  <br /></td></tr>
+<tr class="memitem:ac8efc9337a2718bb0dad1f3925baccc2" id="r_ac8efc9337a2718bb0dad1f3925baccc2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac8efc9337a2718bb0dad1f3925baccc2">SetWorkspaceServiceObj</a> (<a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> workspaceService)</td></tr>
+<tr class="memdesc:ac8efc9337a2718bb0dad1f3925baccc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the reference to the IWorkspaceService object.  <br /></td></tr>
+<tr class="memitem:a625986c3045d8360bd26e5c8a6f6e6fc" id="r_a625986c3045d8360bd26e5c8a6f6e6fc"><td class="memItemLeft">async Task&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a625986c3045d8360bd26e5c8a6f6e6fc">Load</a> (string path, CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:a625986c3045d8360bd26e5c8a6f6e6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a list of <a class="el" href="">to the </a>.  <br /></td></tr>
+<tr class="memitem:ae417cd855767e1b09cbd379169f8a6b6" id="r_ae417cd855767e1b09cbd379169f8a6b6"><td class="memItemLeft">async Task&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae417cd855767e1b09cbd379169f8a6b6">Save</a> (CancellationToken cancellationToken, string path=&quot;&quot;)</td></tr>
+<tr class="memdesc:ae417cd855767e1b09cbd379169f8a6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the list of previous winners to a file.  <br /></td></tr>
+<tr class="memitem:a32945aa499a7f96013c0dbd071ea1258" id="r_a32945aa499a7f96013c0dbd071ea1258"><td class="memItemLeft">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a32945aa499a7f96013c0dbd071ea1258">GetPreviousWinnersList</a> ()</td></tr>
+<tr class="memdesc:a32945aa499a7f96013c0dbd071ea1258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all available previous WinnerHistoryElement entries.<dl class="section return"><dt>Returns</dt><dd>List of WinnerHistoryElement objects</dd></dl>
+  <br /></td></tr>
+<tr class="memitem:aaf69754bc1eb2a16556fdd9b51742623" id="r_aaf69754bc1eb2a16556fdd9b51742623"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaf69754bc1eb2a16556fdd9b51742623">ClearAll</a> ()</td></tr>
+<tr class="memdesc:aaf69754bc1eb2a16556fdd9b51742623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all previous winners.  <br /></td></tr>
+<tr class="memitem:ae02f0ad8668405a8c8b134e8a6624dfc" id="r_ae02f0ad8668405a8c8b134e8a6624dfc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae02f0ad8668405a8c8b134e8a6624dfc">ResetToLoadedState</a> ()</td></tr>
+<tr class="memdesc:ae02f0ad8668405a8c8b134e8a6624dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the list of previous winners to the state when the Load(string, CancellationToken) method was called.This will clear all <a class="el" href="">objects and add the </a> objects that were loaded at that time.  <br /></td></tr>
+<tr class="memitem:a8248706f6526dc7b91743c07ed531c33" id="r_a8248706f6526dc7b91743c07ed531c33"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8248706f6526dc7b91743c07ed531c33">AddPreviousWinner</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> previousWinner)</td></tr>
+<tr class="memdesc:a8248706f6526dc7b91743c07ed531c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new WinnerHistoryElement to the list of previous winners.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">previousWinner</td><td>WinnerHistoryElement to add</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="memitem:a1c0703c9fd7a0e212ebf5cad53ec623d" id="r_a1c0703c9fd7a0e212ebf5cad53ec623d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1c0703c9fd7a0e212ebf5cad53ec623d">RemovePreviousWinner</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> previousWinner)</td></tr>
+<tr class="memdesc:a1c0703c9fd7a0e212ebf5cad53ec623d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the given WinnerHistoryElement from the list of previous winners.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">previousWinner</td><td><a class="el" href="">to remove</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
+<tr class="memitem:a8ead4f872dc3155b69d095fa30c2dde1" id="r_a8ead4f872dc3155b69d095fa30c2dde1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8ead4f872dc3155b69d095fa30c2dde1">CopyCurrentWinnersToPrevious</a> ()</td></tr>
+<tr class="memdesc:a8ead4f872dc3155b69d095fa30c2dde1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the CurrentWinners to the list of previous WinnerHistoryElement list.If there is already an entry with the same timestamp, it will be replaced.  <br /></td></tr>
+<tr class="memitem:af1dec7b6ef3779ae138a66a85051a8a2" id="r_af1dec7b6ef3779ae138a66a85051a8a2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af1dec7b6ef3779ae138a66a85051a8a2">RemoveCurrentWinnersFromPrevious</a> ()</td></tr>
+<tr class="memdesc:af1dec7b6ef3779ae138a66a85051a8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the CurrentWinners from the previous WinnerHistoryElement list.<dl class="section return"><dt>Returns</dt><dd><code>true</code> when an element was removed; otherwise <code>false</code></dd></dl>
+  <br /></td></tr>
+<tr class="memitem:ab7e013455ea0d1a71bf7b577d42dc5e8" id="r_ab7e013455ea0d1a71bf7b577d42dc5e8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab7e013455ea0d1a71bf7b577d42dc5e8">UpdateCurrentWinners</a> ()</td></tr>
+<tr class="memdesc:ab7e013455ea0d1a71bf7b577d42dc5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the list of all current winners and the corresponding flags inside.  <br /></td></tr>
+<tr class="memitem:a3942c2585ca287b4ddf131adc6715a00" id="r_a3942c2585ca287b4ddf131adc6715a00"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3942c2585ca287b4ddf131adc6715a00">UpdatePreviousWinnersHistoryFlags</a> ()</td></tr>
+<tr class="memdesc:a3942c2585ca287b4ddf131adc6715a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the flags of all previous WinnerHistoryElement objects.  <br /></td></tr>
+<tr class="memitem:af7155abdaea0b6654d56d98c5be3431c" id="r_af7155abdaea0b6654d56d98c5be3431c"><td class="memItemLeft">Dictionary&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>, int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af7155abdaea0b6654d56d98c5be3431c">GetPreviousWinnersCountPerPerson</a> (<a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#aaeddb73433a8af1f704ed4b052298381">ResultPodiumsPlaces</a> podiumPlace=ResultPodiumsPlaces.All, bool ignoreCurrentWinners=false)</td></tr>
+<tr class="memdesc:af7155abdaea0b6654d56d98c5be3431c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a dictionary how often each person was on the specific podium.Only persons with at least one time on the podium are returned.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">podiumPlace</td><td>Podium place used to count.</td></tr>
+    <tr><td class="paramname">ignoreCurrentWinners</td><td>if <code>true</code> ignore the element in the previous winners list that is the current winners element</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Dictionary with names and the number of specific podium times (ordered descending by the count).</dd></dl>
+  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a869b96b3c85e8fe7c6e8d4bfa19ec771" id="r_a869b96b3c85e8fe7c6e8d4bfa19ec771"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a869b96b3c85e8fe7c6e8d4bfa19ec771">PersistentPath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a869b96b3c85e8fe7c6e8d4bfa19ec771"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the person file.  <br /></td></tr>
+<tr class="memitem:a3f634788a0e92ce2adb7d25b1c2c7ed8" id="r_a3f634788a0e92ce2adb7d25b1c2c7ed8"><td class="memItemLeft">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3f634788a0e92ce2adb7d25b1c2c7ed8">_previousWinnersList</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3f634788a0e92ce2adb7d25b1c2c7ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all previous WinnerHistoryElement objects.  <br /></td></tr>
+<tr class="memitem:a5532f28db60ee73465052a94065871d1" id="r_a5532f28db60ee73465052a94065871d1"><td class="memItemLeft">List&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5532f28db60ee73465052a94065871d1">_previousWinnersListOnLoad</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5532f28db60ee73465052a94065871d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">List with all previous WinnerHistoryElement objects at the time the Load(string, CancellationToken) method was called.  <br /></td></tr>
+<tr class="memitem:a780ce1b5c23c7d385601a6836939dc66" id="r_a780ce1b5c23c7d385601a6836939dc66"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a780ce1b5c23c7d385601a6836939dc66">IndexOfCurrentWinnersInsidePreviousWinners</a><code> [get]</code></td></tr>
+<tr class="memdesc:a780ce1b5c23c7d385601a6836939dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the CurrentWinners inside of the PreviousWinners list.  <br /></td></tr>
+<tr class="memitem:af68ded37f9c348285df405008331b750" id="r_af68ded37f9c348285df405008331b750"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af68ded37f9c348285df405008331b750">IsCurrentWinnersPartOfPreviousWinners</a><code> [get]</code></td></tr>
+<tr class="memdesc:af68ded37f9c348285df405008331b750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the CurrentWinners is part of the PreviousWinners list.  <br /></td></tr>
+<tr class="memitem:aa4ea0ddd2d1b5107a0436f7c058da21d" id="r_aa4ea0ddd2d1b5107a0436f7c058da21d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa4ea0ddd2d1b5107a0436f7c058da21d">HasUnsavedChanges</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa4ea0ddd2d1b5107a0436f7c058da21d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the list of previous WinnerHistoryElement has not saved changed.  <br /></td></tr>
+<tr class="inherit_header properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service"><td colspan="2">Properties inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a></td></tr>
+<tr class="memitem:aa25adb2b2601526d6f719083272ee0d0 properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service" id="r_aa25adb2b2601526d6f719083272ee0d0"><td class="memItemLeft"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a>&#160;</td><td class="memItemRight"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#aa25adb2b2601526d6f719083272ee0d0">CurrentWinners</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa25adb2b2601526d6f719083272ee0d0 properties_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Winners of the current competition year.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-events" class="groupheader"><a id="events" name="events"></a>
+Events</h2></td></tr>
+<tr class="memitem:a83f550d268c57eb03a7eac494205875a" id="r_a83f550d268c57eb03a7eac494205875a"><td class="memItemLeft"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a83f550d268c57eb03a7eac494205875a">OnFileProgress</a></td></tr>
+<tr class="memdesc:a83f550d268c57eb03a7eac494205875a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="memitem:aa0b3514fe9a2e71253a86f3c2dd825ae" id="r_aa0b3514fe9a2e71253a86f3c2dd825ae"><td class="memItemLeft">EventHandler&#160;</td><td class="memItemRight"><a class="el" href="#aa0b3514fe9a2e71253a86f3c2dd825ae">OnFileFinished</a></td></tr>
+<tr class="memdesc:aa0b3514fe9a2e71253a86f3c2dd825ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+<tr class="inherit_header events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td colspan="2">Events inherited from <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a></td></tr>
+<tr class="memitem:a6e9e23b29c45352af55ea7b381334c87 events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a6e9e23b29c45352af55ea7b381334c87"><td class="memItemLeft"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a>&#160;</td><td class="memItemRight"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a6e9e23b29c45352af55ea7b381334c87">OnFileProgress</a></td></tr>
+<tr class="memdesc:a6e9e23b29c45352af55ea7b381334c87 events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation progress changes.  <br /></td></tr>
+<tr class="memitem:a3260ed9a0f39704e0aa4b4958870c18d events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable" id="r_a3260ed9a0f39704e0aa4b4958870c18d"><td class="memItemLeft">EventHandler&#160;</td><td class="memItemRight"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a3260ed9a0f39704e0aa4b4958870c18d">OnFileFinished</a></td></tr>
+<tr class="memdesc:a3260ed9a0f39704e0aa4b4958870c18d events_interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is raised when the file operation is finished.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2cd6e6f98f15dadaeac3dce99c311995" id="r_a2cd6e6f98f15dadaeac3dce99c311995"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2cd6e6f98f15dadaeac3dce99c311995">addPreviousWinnerInternal</a> (<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> previousWinner, bool sortElements=true)</td></tr>
+<tr class="memdesc:a2cd6e6f98f15dadaeac3dce99c311995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as the AddPreviousWinner(WinnerHistoryElement) but with the possibility to disable the sorting.  <br /></td></tr>
+<tr class="memitem:a5a4941fe102339fe6aa518e66461b353" id="r_a5a4941fe102339fe6aa518e66461b353"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5a4941fe102339fe6aa518e66461b353">sortPreviousWinners</a> ()</td></tr>
+<tr class="memdesc:a5a4941fe102339fe6aa518e66461b353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort the _previousWinnersList descending by the WinnerHistoryElement.Timestamp.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aee8527d73fd34da68d880d74df455f18" id="r_aee8527d73fd34da68d880d74df455f18"><td class="memItemLeft"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a>&#160;</td><td class="memItemRight"><a class="el" href="#aee8527d73fd34da68d880d74df455f18">_fileService</a></td></tr>
+<tr class="memitem:a4011c3ce53069b7883e8b0c6b9497aad" id="r_a4011c3ce53069b7883e8b0c6b9497aad"><td class="memItemLeft"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4011c3ce53069b7883e8b0c6b9497aad">_scoreService</a></td></tr>
+<tr class="memitem:ac66a19bbe085ab9706aa88228fe40c29" id="r_ac66a19bbe085ab9706aa88228fe40c29"><td class="memItemLeft"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac66a19bbe085ab9706aa88228fe40c29">_workspaceService</a></td></tr>
+<tr class="memitem:a1eb499dba0adea9d66fdf57c66877235" id="r_a1eb499dba0adea9d66fdf57c66877235"><td class="memItemLeft"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1eb499dba0adea9d66fdf57c66877235">_currentWinners</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Service used to keep the history of all winners. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00014">14</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a03d66f193f481f37af1376c4df86d016" name="a03d66f193f481f37af1376c4df86d016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d66f193f481f37af1376c4df86d016">&#9670;&#160;</a></span>WinnerHistoryService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vereinsmeisterschaften.Core.Services.WinnerHistoryService.WinnerHistoryService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a></td>          <td class="paramname"><span class="paramname"><em>fileService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the WinnerHistoryService. </p>
+<p><br  />
+ /// </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileService</td><td>IFileService object</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00055">55</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8248706f6526dc7b91743c07ed531c33" name="a8248706f6526dc7b91743c07ed531c33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8248706f6526dc7b91743c07ed531c33">&#9670;&#160;</a></span>AddPreviousWinner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.AddPreviousWinner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a></td>          <td class="paramname"><span class="paramname"><em>previousWinner</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new WinnerHistoryElement to the list of previous winners.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">previousWinner</td><td>WinnerHistoryElement to add</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a38bfdb723bb3683f2a8c0f884cb3db08">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00240">240</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2cd6e6f98f15dadaeac3dce99c311995" name="a2cd6e6f98f15dadaeac3dce99c311995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd6e6f98f15dadaeac3dce99c311995">&#9670;&#160;</a></span>addPreviousWinnerInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.addPreviousWinnerInternal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a></td>          <td class="paramname"><span class="paramname"><em>previousWinner</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>sortElements</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same as the AddPreviousWinner(WinnerHistoryElement) but with the possibility to disable the sorting. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">previousWinner</td><td>WinnerHistoryElement to add</td></tr>
+    <tr><td class="paramname">sortElements</td><td>If <code>true</code> sort the _previousWinnersList</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00250">250</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aaf69754bc1eb2a16556fdd9b51742623" name="aaf69754bc1eb2a16556fdd9b51742623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf69754bc1eb2a16556fdd9b51742623">&#9670;&#160;</a></span>ClearAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.ClearAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear all previous winners. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#aadf21f3fc62d954ddc211b8d3b98c7c3">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00215">215</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8ead4f872dc3155b69d095fa30c2dde1" name="a8ead4f872dc3155b69d095fa30c2dde1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ead4f872dc3155b69d095fa30c2dde1">&#9670;&#160;</a></span>CopyCurrentWinnersToPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.CopyCurrentWinnersToPrevious </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy the CurrentWinners to the list of previous WinnerHistoryElement list.If there is already an entry with the same timestamp, it will be replaced. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#aac8c5bcce82714f63bfab63631d1f8ac">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00285">285</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="af7155abdaea0b6654d56d98c5be3431c" name="af7155abdaea0b6654d56d98c5be3431c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7155abdaea0b6654d56d98c5be3431c">&#9670;&#160;</a></span>GetPreviousWinnersCountPerPerson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_name.html">WinnerName</a>, int &gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService.GetPreviousWinnersCountPerPerson </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_models.html#aaeddb73433a8af1f704ed4b052298381">ResultPodiumsPlaces</a></td>          <td class="paramname"><span class="paramname"><em>podiumPlace</em></span><span class="paramdefsep"> = </span><span class="paramdefval">ResultPodiumsPlaces::All</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>ignoreCurrentWinners</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a dictionary how often each person was on the specific podium.Only persons with at least one time on the podium are returned.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">podiumPlace</td><td>Podium place used to count.</td></tr>
+    <tr><td class="paramname">ignoreCurrentWinners</td><td>if <code>true</code> ignore the element in the previous winners list that is the current winners element</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Dictionary with names and the number of specific podium times (ordered descending by the count).</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a1d564571ab83a046d5fd419693e58f20">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00347">347</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a32945aa499a7f96013c0dbd071ea1258" name="a32945aa499a7f96013c0dbd071ea1258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32945aa499a7f96013c0dbd071ea1258">&#9670;&#160;</a></span>GetPreviousWinnersList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt; <a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> &gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService.GetPreviousWinnersList </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all available previous WinnerHistoryElement entries.<dl class="section return"><dt>Returns</dt><dd>List of WinnerHistoryElement objects</dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#aed1fbe6f4bcb135acc74e37becae6c0e">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00212">212</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a625986c3045d8360bd26e5c8a6f6e6fc" name="a625986c3045d8360bd26e5c8a6f6e6fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a625986c3045d8360bd26e5c8a6f6e6fc">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService.Load </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a list of <a class="el" href="">to the </a>. </p>
+<p>This is using a separate Task because the file possibly can be large. If the file doesn't exist, the _previousWinnersList is cleared and the functions returns loading success.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path from where to load</td></tr>
+    <tr><td class="paramname">cancellationToken</td><td>Cancellation token</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if importing succeeded; false if importing failed (e.g. canceled)</dd></dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af08cd91796d9094e489461b49e459b4a">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00091">91</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="af1dec7b6ef3779ae138a66a85051a8a2" name="af1dec7b6ef3779ae138a66a85051a8a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1dec7b6ef3779ae138a66a85051a8a2">&#9670;&#160;</a></span>RemoveCurrentWinnersFromPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Services.WinnerHistoryService.RemoveCurrentWinnersFromPrevious </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the CurrentWinners from the previous WinnerHistoryElement list.<dl class="section return"><dt>Returns</dt><dd><code>true</code> when an element was removed; otherwise <code>false</code></dd></dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#ae7d9118bfde6e49b4b17624d5d1f19fc">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00292">292</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1c0703c9fd7a0e212ebf5cad53ec623d" name="a1c0703c9fd7a0e212ebf5cad53ec623d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c0703c9fd7a0e212ebf5cad53ec623d">&#9670;&#160;</a></span>RemovePreviousWinner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.RemovePreviousWinner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a></td>          <td class="paramname"><span class="paramname"><em>previousWinner</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the given WinnerHistoryElement from the list of previous winners.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">previousWinner</td><td><a class="el" href="">to remove</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a0776b13633845e343dc53ecc80e6bd48">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00274">274</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae02f0ad8668405a8c8b134e8a6624dfc" name="ae02f0ad8668405a8c8b134e8a6624dfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae02f0ad8668405a8c8b134e8a6624dfc">&#9670;&#160;</a></span>ResetToLoadedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.ResetToLoadedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the list of previous winners to the state when the Load(string, CancellationToken) method was called.This will clear all <a class="el" href="">objects and add the </a> objects that were loaded at that time. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a9e4fdba6c6c34c8a90c8151a5123db4f">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00229">229</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae417cd855767e1b09cbd379169f8a6b6" name="ae417cd855767e1b09cbd379169f8a6b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae417cd855767e1b09cbd379169f8a6b6">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService.Save </td>
+          <td>(</td>
+          <td class="paramtype">CancellationToken</td>          <td class="paramname"><span class="paramname"><em>cancellationToken</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the list of previous winners to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cancellationToken</td><td>Cancellation token</td></tr>
+    <tr><td class="paramname">path</td><td>Path to which to save</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if saving succeeded; false if saving failed (e.g. canceled)</dd></dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#a385b90d093b32995df0f4d519ad2e94d">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00147">147</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aecadfa29eb9a2b1eb56d9b8aca326ffd" name="aecadfa29eb9a2b1eb56d9b8aca326ffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecadfa29eb9a2b1eb56d9b8aca326ffd">&#9670;&#160;</a></span>SetScoreServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.SetScoreServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a></td>          <td class="paramname"><span class="paramname"><em>scoreService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the IScoreService object. </p>
+<p>Dependency Injection in the constructor can't be used here because there would be a circular dependency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scoreService</td><td>Reference to the IScoreService implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a7697e720dadbe0a75648dea964940d14">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00066">66</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac8efc9337a2718bb0dad1f3925baccc2" name="ac8efc9337a2718bb0dad1f3925baccc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8efc9337a2718bb0dad1f3925baccc2">&#9670;&#160;</a></span>SetWorkspaceServiceObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.SetWorkspaceServiceObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a></td>          <td class="paramname"><span class="paramname"><em>workspaceService</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the reference to the IWorkspaceService object. </p>
+<p>Dependency Injection in the constructor can't be used here because there would be a circular dependency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">workspaceService</td><td>Reference to the IWorkspaceService implementation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a876cc2ce838501cf422dbf2df8b25297">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00076">76</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5a4941fe102339fe6aa518e66461b353" name="a5a4941fe102339fe6aa518e66461b353"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a4941fe102339fe6aa518e66461b353">&#9670;&#160;</a></span>sortPreviousWinners()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.sortPreviousWinners </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sort the _previousWinnersList descending by the WinnerHistoryElement.Timestamp. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00268">268</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab7e013455ea0d1a71bf7b577d42dc5e8" name="ab7e013455ea0d1a71bf7b577d42dc5e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7e013455ea0d1a71bf7b577d42dc5e8">&#9670;&#160;</a></span>UpdateCurrentWinners()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.UpdateCurrentWinners </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the list of all current winners and the corresponding flags inside. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a96bf1540d3409d58dd4fa2fe549f43e1">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00306">306</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3942c2585ca287b4ddf131adc6715a00" name="a3942c2585ca287b4ddf131adc6715a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3942c2585ca287b4ddf131adc6715a00">&#9670;&#160;</a></span>UpdatePreviousWinnersHistoryFlags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vereinsmeisterschaften.Core.Services.WinnerHistoryService.UpdatePreviousWinnersHistoryFlags </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the flags of all previous WinnerHistoryElement objects. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a4921aba39358c50686d533c9a79fcbbe">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00322">322</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a1eb499dba0adea9d66fdf57c66877235" name="a1eb499dba0adea9d66fdf57c66877235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eb499dba0adea9d66fdf57c66877235">&#9670;&#160;</a></span>_currentWinners</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a> Vereinsmeisterschaften.Core.Services.WinnerHistoryService._currentWinners</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00197">197</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aee8527d73fd34da68d880d74df455f18" name="aee8527d73fd34da68d880d74df455f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8527d73fd34da68d880d74df455f18">&#9670;&#160;</a></span>_fileService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_file_service.html">IFileService</a> Vereinsmeisterschaften.Core.Services.WinnerHistoryService._fileService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00047">47</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4011c3ce53069b7883e8b0c6b9497aad" name="a4011c3ce53069b7883e8b0c6b9497aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4011c3ce53069b7883e8b0c6b9497aad">&#9670;&#160;</a></span>_scoreService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_score_service.html">IScoreService</a> Vereinsmeisterschaften.Core.Services.WinnerHistoryService._scoreService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00048">48</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac66a19bbe085ab9706aa88228fe40c29" name="ac66a19bbe085ab9706aa88228fe40c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac66a19bbe085ab9706aa88228fe40c29">&#9670;&#160;</a></span>_workspaceService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_workspace_service.html">IWorkspaceService</a> Vereinsmeisterschaften.Core.Services.WinnerHistoryService._workspaceService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00049">49</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a name="doc-property-members" id="doc-property-members"></a><h2 id="header-doc-property-members" class="groupheader">Property Documentation</h2>
+<a id="a3f634788a0e92ce2adb7d25b1c2c7ed8" name="a3f634788a0e92ce2adb7d25b1c2c7ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f634788a0e92ce2adb7d25b1c2c7ed8">&#9670;&#160;</a></span>_previousWinnersList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a>&gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService._previousWinnersList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all previous WinnerHistoryElement objects. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00038">38</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5532f28db60ee73465052a94065871d1" name="a5532f28db60ee73465052a94065871d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5532f28db60ee73465052a94065871d1">&#9670;&#160;</a></span>_previousWinnersListOnLoad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_vereinsmeisterschaften_1_1_core_1_1_models_1_1_winner_history_element.html">WinnerHistoryElement</a>&gt; Vereinsmeisterschaften.Core.Services.WinnerHistoryService._previousWinnersListOnLoad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List with all previous WinnerHistoryElement objects at the time the Load(string, CancellationToken) method was called. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00043">43</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa4ea0ddd2d1b5107a0436f7c058da21d" name="aa4ea0ddd2d1b5107a0436f7c058da21d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ea0ddd2d1b5107a0436f7c058da21d">&#9670;&#160;</a></span>HasUnsavedChanges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Services.WinnerHistoryService.HasUnsavedChanges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the list of previous WinnerHistoryElement has not saved changed. </p>
+<p>True, if unsaved changes exist; otherwise false. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#af3ee02ab96df1cae04892eaedce2d64d">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00207">207</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a780ce1b5c23c7d385601a6836939dc66" name="a780ce1b5c23c7d385601a6836939dc66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780ce1b5c23c7d385601a6836939dc66">&#9670;&#160;</a></span>IndexOfCurrentWinnersInsidePreviousWinners</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Vereinsmeisterschaften.Core.Services.WinnerHistoryService.IndexOfCurrentWinnersInsidePreviousWinners</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the index of the CurrentWinners inside of the PreviousWinners list. </p>
+<p>The <a class="el" href="">and all winner lists must match. If no matching element is found, -1 is returned. </a></p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a140c61bfff004c3baf274ec07e1b2c8b">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00199">199</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="af68ded37f9c348285df405008331b750" name="af68ded37f9c348285df405008331b750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68ded37f9c348285df405008331b750">&#9670;&#160;</a></span>IsCurrentWinnersPartOfPreviousWinners</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vereinsmeisterschaften.Core.Services.WinnerHistoryService.IsCurrentWinnersPartOfPreviousWinners</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the CurrentWinners is part of the PreviousWinners list. </p>
+<p>The <a class="el" href="">and all winner lists must match. </a></p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_winner_history_service.html#a7e02b022917afd4b0b165052ed6be1f2">Vereinsmeisterschaften.Core.Contracts.Services.IWinnerHistoryService</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00201">201</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a869b96b3c85e8fe7c6e8d4bfa19ec771" name="a869b96b3c85e8fe7c6e8d4bfa19ec771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a869b96b3c85e8fe7c6e8d4bfa19ec771">&#9670;&#160;</a></span>PersistentPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Vereinsmeisterschaften.Core.Services.WinnerHistoryService.PersistentPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span><span class="mlabel set">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Path to the person file. </p>
+
+<p>Implements <a class="el" href="interface_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services_1_1_i_saveable.html#ae2f862deee5e9066a146f36a261ca424">Vereinsmeisterschaften.Core.Contracts.Services.ISaveable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00031">31</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a name="doc-event-members" id="doc-event-members"></a><h2 id="header-doc-event-members" class="groupheader">Event Documentation</h2>
+<a id="aa0b3514fe9a2e71253a86f3c2dd825ae" name="aa0b3514fe9a2e71253a86f3c2dd825ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0b3514fe9a2e71253a86f3c2dd825ae">&#9670;&#160;</a></span>OnFileFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler Vereinsmeisterschaften.Core.Services.WinnerHistoryService.OnFileFinished</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event that is raised when the file operation is finished. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00024">24</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a83f550d268c57eb03a7eac494205875a" name="a83f550d268c57eb03a7eac494205875a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f550d268c57eb03a7eac494205875a">&#9670;&#160;</a></span>OnFileProgress</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_vereinsmeisterschaften_1_1_core_1_1_contracts_1_1_services.html#a4763632570937ea6e371abc8ef241941">ProgressDelegate</a> Vereinsmeisterschaften.Core.Services.WinnerHistoryService.OnFileProgress</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event that is raised when the file operation progress changes. </p>
+
+<p class="definition">Definition at line <a class="el" href="_winner_history_service_8cs_source.html#l00019">19</a> of file <a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/github/workspace/Vereinsmeisterschaften.Core/Services/<a class="el" href="_winner_history_service_8cs_source.html">WinnerHistoryService.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_vereinsmeisterschaften.html">Vereinsmeisterschaften</a></li><li class="navelem"><a href="namespace_vereinsmeisterschaften_1_1_core.html">Core</a></li><li class="navelem"><a href="namespace_vereinsmeisterschaften_1_1_core_1_1_services.html">Services</a></li><li class="navelem"><a href="class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html">WinnerHistoryService</a></li>
+    <li class="footer">Generated on <span class="timestamp"></span> for Vereinsmeisterschaften by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

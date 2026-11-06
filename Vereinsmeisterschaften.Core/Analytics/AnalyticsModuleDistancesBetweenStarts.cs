@@ -83,11 +83,15 @@ namespace Vereinsmeisterschaften.Core.Analytics
             int maxValueStrLen = valueStringsDict.Max(kv => kv.Value?.Length) ?? 20;
 
             // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: Firstname, Name: 3, 4, 2 | ###|####|## )
-            string moduleString = string.Join(Environment.NewLine,
-                                              distancesBetweenStartsPerPerson
-                                                .Select(kv => $"{nameStringsDict[kv.Key]}: ".PadRight(maxNameStrLen + 2) +
-                                                              $"{valueStringsDict[kv.Key].PadRight(maxValueStrLen)} | " +
-                                                              $"{string.Join("|", kv.Value.Select(v => new string('#', v)))}"));
+            string moduleString = "/";
+            if (distancesBetweenStartsPerPerson != null && distancesBetweenStartsPerPerson.Count > 0)
+            {
+                moduleString = string.Join(Environment.NewLine,
+                                           distancesBetweenStartsPerPerson
+                                             .Select(kv => $"{nameStringsDict[kv.Key]}: ".PadRight(maxNameStrLen + 2) +
+                                                           $"{valueStringsDict[kv.Key].PadRight(maxValueStrLen)} | " +
+                                                           $"{string.Join("|", kv.Value.Select(v => new string('#', v)))}"));
+            }
             foreach (string placeholder in Placeholders.Placeholders_AnalyticsDistancesBetweenStarts) { textPlaceholder.Add(placeholder, moduleString); }
             return textPlaceholder;
         }

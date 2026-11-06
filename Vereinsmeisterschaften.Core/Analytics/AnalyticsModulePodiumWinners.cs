@@ -48,11 +48,14 @@ namespace Vereinsmeisterschaften.Core.Analytics
                 int maxNameStrLen = previousWinnerCountPerPerson.Max(kv => kv.Key?.ToString().Length) ?? 30;
 
                 // Create a string for each dictionary entry including a ASCII diagramm (Format e.g.: Firstname, Name: 3x | ###)
-                string moduleString = string.Join(Environment.NewLine,
-                                                  previousWinnerCountPerPerson
-                                                    .Select(kv => $"{kv.Key}: ".PadRight(maxNameStrLen + 2) +
-                                                                  $"{kv.Value.ToString()}x | {new string('#', kv.Value)}"));
-
+                string moduleString = "/";
+                if (previousWinnerCountPerPerson != null && previousWinnerCountPerPerson.Count > 0)
+                {
+                    moduleString = string.Join(Environment.NewLine,
+                                               previousWinnerCountPerPerson
+                                                 .Select(kv => $"{kv.Key}: ".PadRight(maxNameStrLen + 2) +
+                                                               $"{kv.Value.ToString()}x | {new string('#', kv.Value)}"));
+                }
                 List<string> podiumPlacePlaceholders = podiumsPlace switch
                 {
                     ResultPodiumsPlaces.Gold => Placeholders.Placeholders_AnalyticsPodiumWinners_Gold,

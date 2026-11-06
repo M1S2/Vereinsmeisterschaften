@@ -51,9 +51,8 @@ namespace Vereinsmeisterschaften.Core.Analytics
         {
             DocXPlaceholderHelper.TextPlaceholders textPlaceholder = new DocXPlaceholderHelper.TextPlaceholders();
             // Create a string for each list entry (Format e.g.: Race 1: 2000, 2010, 2015)
-            string placeholderString = string.Join(Environment.NewLine,
-                                                   AgeListsPerRace
-                                                        .Select(e => $"{Properties.Resources.RaceString} {e.RaceID.ToString().PadLeft(2)}: {string.Join(", ", e.BirthYears)}"));
+            string placeholderString = AgeListsPerRace == null ? "/" : string.Join(Environment.NewLine,
+                                                                                  AgeListsPerRace.Select(e => $"{Properties.Resources.RaceString} {e.RaceID.ToString().PadLeft(2)}: {string.Join(", ", e.BirthYears)}"));
             foreach (string placeholder in Placeholders.Placeholders_AnalyticsRacesAges) { textPlaceholder.Add(placeholder, placeholderString); }
             return textPlaceholder;
         }

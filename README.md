@@ -246,6 +246,14 @@ flowchart LR
 ## Entwickler Dokumentation
 Detailliertere Entwickler Dokumentation: https://m1s2.github.io/Vereinsmeisterschaften
 
+### Release Erstellung
+Um ein neues Release zu erstellen, reichen folgende Schritte aus:
+- Alles lokal testen
+- Sicherstellen, dass alles auf dem master committed und auch auf GitHub gepushed ist.
+- CHANGELOG.md auch mit den wichtigsten Änderungen aktualisieren und committen und pushen.
+- Einen neuen Git Tag im Format v* (z.B. "v1.0") erzeugen und pushen
+- Den ganzen Rest erledigt eine GitHub Action
+
 ## Icons
 - SwimmingStyles.png: https://www.vecteezy.com/vector-art/349116-swimming-aqua-aquatic-sport-game-icon-symbol-sign-pictogram
 - icons8-child-64.png: https://icons8.com/icon/67246/babys-room

@@ -1,0 +1,43 @@
+# Created with ChatGPT
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore
+      run: dotnet restore Vereinsmeisterschaften.slnx
+
+    - name: Publish
+      run: dotnet publish Vereinsmeisterschaften.slnx -c Release -o ./publish
+
+    - name: Create ZIP
+      run: Compress-Archive -Path ./publish/* -DestinationPath Vereinsmeisterschaften.zip
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v3
+      with:
+        name: Release ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        generate_release_notes: true
+        files: Vereinsmeisterschaften.zip

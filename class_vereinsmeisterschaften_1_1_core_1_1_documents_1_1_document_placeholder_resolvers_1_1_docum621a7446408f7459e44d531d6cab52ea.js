@@ -1,0 +1,8 @@
+var class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea =
+[
+    [ "DocumentPlaceholderResolverBase", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea.html#a4108fa27f538e81344a14ca8f3ea8621", null ],
+    [ "ResolveTablePlaceholders", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea.html#ab7cc99a1a74525629bd60e36070ec957", null ],
+    [ "ResolveTextPlaceholders", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea.html#a84e4621fa79bdd13916b6839d0d6bc4d", null ],
+    [ "PostfixNumbersSupported", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea.html#ac0dc7fca7316d3fc8d9a325983864c83", null ],
+    [ "SupportedPlaceholderKeys", "class_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_docum621a7446408f7459e44d531d6cab52ea.html#acbed74fe3d8faabf5b989957c1a9e85b", null ]
+];

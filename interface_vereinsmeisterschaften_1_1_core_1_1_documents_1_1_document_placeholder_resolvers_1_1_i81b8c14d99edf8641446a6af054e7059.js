@@ -1,0 +1,7 @@
+var interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_i81b8c14d99edf8641446a6af054e7059 =
+[
+    [ "ResolveTablePlaceholders", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_i81b8c14d99edf8641446a6af054e7059.html#ac43d8b39956ab575bc390c94bb14580e", null ],
+    [ "ResolveTextPlaceholders", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_i81b8c14d99edf8641446a6af054e7059.html#a7236391f46d8244cccebc4d18f80b740", null ],
+    [ "PostfixNumbersSupported", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_i81b8c14d99edf8641446a6af054e7059.html#aedb641b2914a42507cccd1e61b768ad6", null ],
+    [ "SupportedPlaceholderKeys", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_placeholder_resolvers_1_1_i81b8c14d99edf8641446a6af054e7059.html#ac3446ccb657ee2ed32c7006c42cd790e", null ]
+];

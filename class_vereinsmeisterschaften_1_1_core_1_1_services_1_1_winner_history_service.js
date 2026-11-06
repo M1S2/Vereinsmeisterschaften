@@ -1,0 +1,28 @@
+var class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service =
+[
+    [ "WinnerHistoryService", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a03d66f193f481f37af1376c4df86d016", null ],
+    [ "AddPreviousWinner", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a8248706f6526dc7b91743c07ed531c33", null ],
+    [ "addPreviousWinnerInternal", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a2cd6e6f98f15dadaeac3dce99c311995", null ],
+    [ "ClearAll", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#aaf69754bc1eb2a16556fdd9b51742623", null ],
+    [ "CopyCurrentWinnersToPrevious", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a8ead4f872dc3155b69d095fa30c2dde1", null ],
+    [ "GetPreviousWinnersCountPerPerson", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#af7155abdaea0b6654d56d98c5be3431c", null ],
+    [ "GetPreviousWinnersList", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a32945aa499a7f96013c0dbd071ea1258", null ],
+    [ "Load", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a625986c3045d8360bd26e5c8a6f6e6fc", null ],
+    [ "RemoveCurrentWinnersFromPrevious", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#af1dec7b6ef3779ae138a66a85051a8a2", null ],
+    [ "RemovePreviousWinner", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a1c0703c9fd7a0e212ebf5cad53ec623d", null ],
+    [ "ResetToLoadedState", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#ae02f0ad8668405a8c8b134e8a6624dfc", null ],
+    [ "Save", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#ae417cd855767e1b09cbd379169f8a6b6", null ],
+    [ "SetScoreServiceObj", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#aecadfa29eb9a2b1eb56d9b8aca326ffd", null ],
+    [ "SetWorkspaceServiceObj", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#ac8efc9337a2718bb0dad1f3925baccc2", null ],
+    [ "sortPreviousWinners", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a5a4941fe102339fe6aa518e66461b353", null ],
+    [ "UpdateCurrentWinners", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#ab7e013455ea0d1a71bf7b577d42dc5e8", null ],
+    [ "UpdatePreviousWinnersHistoryFlags", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a3942c2585ca287b4ddf131adc6715a00", null ],
+    [ "_previousWinnersList", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a3f634788a0e92ce2adb7d25b1c2c7ed8", null ],
+    [ "_previousWinnersListOnLoad", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a5532f28db60ee73465052a94065871d1", null ],
+    [ "HasUnsavedChanges", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#aa4ea0ddd2d1b5107a0436f7c058da21d", null ],
+    [ "IndexOfCurrentWinnersInsidePreviousWinners", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a780ce1b5c23c7d385601a6836939dc66", null ],
+    [ "IsCurrentWinnersPartOfPreviousWinners", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#af68ded37f9c348285df405008331b750", null ],
+    [ "PersistentPath", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a869b96b3c85e8fe7c6e8d4bfa19ec771", null ],
+    [ "OnFileFinished", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#aa0b3514fe9a2e71253a86f3c2dd825ae", null ],
+    [ "OnFileProgress", "class_vereinsmeisterschaften_1_1_core_1_1_services_1_1_winner_history_service.html#a83f550d268c57eb03a7eac494205875a", null ]
+];

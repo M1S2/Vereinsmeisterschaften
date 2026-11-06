@@ -1,0 +1,4 @@
+var interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter_selector =
+[
+    [ "GetConverter", "interface_vereinsmeisterschaften_1_1_core_1_1_documents_1_1_document_file_converters_1_1_i_document_file_converter_selector.html#a6cb4fc5b615b102b7d55cbb4b6bf92a7", null ]
+];

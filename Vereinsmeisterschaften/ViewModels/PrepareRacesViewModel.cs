@@ -338,7 +338,9 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
 
         try
         {
+            _progressDialog.IsElapsedTimeEnabled = true;
             await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgressIteration, onProgressSolution);
+            _progressDialog.IsElapsedTimeEnabled = false;
             recalculateVariantIDs();
 
             await _dialogCoordinator.HideMetroDialogAsync(_shellVM, _progressDialog);

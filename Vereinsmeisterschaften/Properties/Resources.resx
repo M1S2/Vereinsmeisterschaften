@@ -885,4 +885,7 @@ The order in which the columns are selected determines the sort priority.</value
   <data name="CurrentWinnersInfoFormatString" xml:space="preserve">
     <value>{0} is the {1}. time on the {2} place.</value>
   </data>
+  <data name="ElapsedTimeString" xml:space="preserve">
+    <value>Elapsed Time (hh:mm:ss)</value>
+  </data>
 </root>

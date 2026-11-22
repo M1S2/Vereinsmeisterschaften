@@ -1,7 +1,7 @@
 ﻿<dialogs:CustomDialog x:Class="Vereinsmeisterschaften.Controls.DoubleProgressDialog"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:local="clr-namespace:Vereinsmeisterschaften.Controls"
                       xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
@@ -84,6 +84,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProgressDescription1, ElementName=root}" VerticalAlignment="Center"/>
@@ -99,6 +101,11 @@
                            helpers:StringFormatHelper.Value="{Binding Progress2, ElementName=root}"
                            Text="{Binding (helpers:StringFormatHelper.FormattedValue), RelativeSource={RelativeSource Mode=Self}}"/>
                 <controls:MetroProgressBar Grid.Row="3" Grid.Column="1" Margin="0,5" Height="15" Value="{Binding Progress2, ElementName=root}"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static properties:Resources.ElapsedTimeString}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Margin="0,5,0,0" FontSize="{StaticResource LargeFontSize}"
+                           Text="{Binding ElapsedTime, ElementName=root, StringFormat='hh\\:mm\\:ss'}"
+                           Visibility="{Binding IsElapsedTimeEnabled, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </Grid>
         </DockPanel>
     </dialogs:CustomDialog.Content>

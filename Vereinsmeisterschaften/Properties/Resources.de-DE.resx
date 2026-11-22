@@ -886,4 +886,7 @@ Die Reihenfolgen, in der die Spalten ausgewählt werden, bestimmt die Sortierpri
   <data name="CurrentWinnersInfoFormatString" xml:space="preserve">
     <value>{0} ist zum {1}. Mal auf dem {2} Platz.</value>
   </data>
+  <data name="ElapsedTimeString" xml:space="preserve">
+    <value>Vergangene Zeit (hh:mm:ss)</value>
+  </data>
 </root>

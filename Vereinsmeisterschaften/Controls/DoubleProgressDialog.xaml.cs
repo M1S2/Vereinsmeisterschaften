@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -20,6 +21,10 @@ namespace Vereinsmeisterschaften.Controls
             InitializeComponent();
         }
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Message
+
         /// <summary>
         /// Message displayed on the dialog
         /// </summary>
@@ -29,6 +34,12 @@ namespace Vereinsmeisterschaften.Controls
             set { SetValue(MessageProperty, value); }
         }
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(nameof(Message), typeof(string), typeof(DoubleProgressDialog), new PropertyMetadata(""));
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Progress 1
 
         /// <summary>
         /// Progress in % (0..100) for the progress bar 1
@@ -50,6 +61,12 @@ namespace Vereinsmeisterschaften.Controls
         }
         public static readonly DependencyProperty ProgressDescription1Property = DependencyProperty.Register(nameof(ProgressDescription1), typeof(string), typeof(DoubleProgressDialog), new PropertyMetadata(""));
 
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Progress 2
+
         /// <summary>
         /// Progress in % (0..100) for the progress bar 2
         /// </summary>
@@ -69,6 +86,12 @@ namespace Vereinsmeisterschaften.Controls
             set { SetValue(ProgressDescription2Property, value); }
         }
         public static readonly DependencyProperty ProgressDescription2Property = DependencyProperty.Register(nameof(ProgressDescription2), typeof(string), typeof(DoubleProgressDialog), new PropertyMetadata(""));
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Progress Format
 
         /// <summary>
         /// Number of decimal places used to display the progress
@@ -99,6 +122,55 @@ namespace Vereinsmeisterschaften.Controls
         }
         public static readonly DependencyProperty ProgressFormatStringProperty = DependencyProperty.Register(nameof(ProgressFormatString), typeof(string), typeof(DoubleProgressDialog), new PropertyMetadata("{0:F1}%"));
 
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Elapsed Time Measurement
+
+        private DateTime elapsedTimeStart;
+        private DispatcherTimer elapsedTimeTimer = new DispatcherTimer();
+
+        /// <summary>
+        /// Elapsed time displayed in the dialog. The time is only displayed and updated when the <see cref="IsElapsedTimeEnabled"/> flag is set.
+        /// </summary>
+        public TimeSpan ElapsedTime
+        {
+            get { return (TimeSpan)GetValue(ElapsedTimePropertyKey.DependencyProperty); }
+            protected set { SetValue(ElapsedTimePropertyKey, value); }
+        }
+        private static readonly DependencyPropertyKey ElapsedTimePropertyKey = DependencyProperty.RegisterReadOnly(nameof(ElapsedTime), typeof(TimeSpan), typeof(DoubleProgressDialog), new PropertyMetadata(new TimeSpan(0, 0, 0, 0, 0)));
+
+        /// <summary>
+        /// The elapsed time is only displayed when this flag is on.
+        /// Toggle the flag to <see langword="false"/> and <see langword="true"/> again to restart the elapsed time.
+        /// </summary>
+        public bool IsElapsedTimeEnabled
+        {
+            get { return (bool)GetValue(IsElapsedTimeEnabledProperty); }
+            set { SetValue(IsElapsedTimeEnabledProperty, value); }
+        }
+        public static readonly DependencyProperty IsElapsedTimeEnabledProperty = DependencyProperty.Register(nameof(IsElapsedTimeEnabled), typeof(bool), typeof(DoubleProgressDialog), new PropertyMetadata(false, OnIsElapsedTimeEnabledChanged));
+
+        private static void OnIsElapsedTimeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            DoubleProgressDialog dialog = (DoubleProgressDialog)d;
+            if(e.NewValue is bool enabled && enabled)
+            {
+                dialog.elapsedTimeStart = DateTime.Now;
+                dialog.elapsedTimeTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+                dialog.elapsedTimeTimer.Tick += (sender, e) => dialog.ElapsedTime = DateTime.Now - dialog.elapsedTimeStart;
+                dialog.elapsedTimeTimer.Start();
+            }
+            else
+            {
+                dialog.elapsedTimeTimer.Stop();
+            }
+        }
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Command to raise the <see cref="OnCanceled"/> event via the Cancel button

@@ -378,6 +378,15 @@ namespace Vereinsmeisterschaften.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel and Dismiss ähnelt.
+        /// </summary>
+        public static string CancelAndDismissString {
+            get {
+                return ResourceManager.GetString("CancelAndDismissString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string CancelString {

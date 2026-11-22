@@ -12,7 +12,7 @@
       },
       {
         "Key": "CompetitionSearchMode",
-        "Value": "ExactOrNextLowerOnlyMaxAge"
+        "Value": "ExactOrNearestPreferLower"
       },
       {
         "Key": "TimeInputMillisecondDigits",
@@ -41,7 +41,7 @@
       },
       {
         "Key": "MinRacesVariantsScore",
-        "Value": 20.0
+        "Value": 26.0
       },
       {
         "Key": "WeightSingleStarts",

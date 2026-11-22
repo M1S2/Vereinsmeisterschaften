@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls;
@@ -172,19 +173,48 @@ namespace Vereinsmeisterschaften.Controls
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        #region Detail Section
+
+        /// <summary>
+        /// List with entries for the details section of the dialog.
+        /// It is possible to use any data type here.
+        /// The correct <see cref="DataTemplate"/> targeting the type of the list elements must be available as app-wide resource (e.g. in App.xaml).
+        /// </summary>
+        public ObservableCollection<object> DetailSectionEntries
+        {
+            get { return (ObservableCollection<object>)GetValue(DetailSectionEntriesProperty); }
+            set { SetValue(DetailSectionEntriesProperty, value); }
+        }
+        public static readonly DependencyProperty DetailSectionEntriesProperty = DependencyProperty.Register(nameof(DetailSectionEntries), typeof(ObservableCollection<object>), typeof(DoubleProgressDialog), new PropertyMetadata(new ObservableCollection<object>()));
+
+        #endregion
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Cancel
+
         /// <summary>
         /// Command to raise the <see cref="OnCanceled"/> event via the Cancel button
         /// </summary>
+        /// <param name="dismissData">Depending on which button this command is used, the calculated data should be dismissed or not.</param>
         [ICommand]
-        public void Cancel()
+        public void Cancel(bool dismissData = false)
         {
-            OnCanceled?.Invoke(this, null);
+            OnCanceled?.Invoke(this, dismissData);
         }
 
         /// <summary>
-        /// Event that is raised, when the user clicks the Cancel button
+        /// Delegate used for the <see cref="OnCanceled"/> event
         /// </summary>
-        public event EventHandler OnCanceled;
+        /// <param name="senderDialog">Dialog that is sending the cancel event</param>
+        /// <param name="dismissData">Flag that is indicating if the calculated data (while the dialog is open) should be dismissed or not.</param>
+        public delegate void CancelDelegate(object? senderDialog, bool dismissData);
 
+        /// <summary>
+        /// Event that is raised, when the user clicks one of the Cancel buttons
+        /// </summary>
+        public event CancelDelegate OnCanceled;
+
+        #endregion
     }
 }

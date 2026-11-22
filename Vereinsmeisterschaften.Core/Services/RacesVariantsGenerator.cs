@@ -16,7 +16,9 @@ namespace Vereinsmeisterschaften.Core.Services
         private readonly double _maxOneElementGroupPercentage;
         private readonly IProgress<double> _progressIteration;
         private readonly IProgress<double> _progressSolution;
+        private readonly IProgress<RacesVariant> _progressInfoNewVariantFound;
         private readonly int _requiredVariantsCount;
+        private readonly int _numberKeptResults;
         private readonly int _maxIterations;
 
         /// <summary>
@@ -24,24 +26,29 @@ namespace Vereinsmeisterschaften.Core.Services
         /// </summary>
         /// <param name="progressIteration">Progress reporting functionality for the iteration progress</param>
         /// <param name="progressSolution">Progress reporting functionality for the solution progress</param>
+        /// <param name="progressInfoNewVariantFound">Progress reporting functionality used whenever a new variant was found</param>
         /// <param name="requiredVariantsCount">Number of required variants to generate. If this number is reached, the loop breaks.</param>
+        /// <param name="numberKeptResults">Number of already found variants e.g. kept variants from a previous run. This is used to start the progress from not 0</param>
         /// <param name="maxIterations">Maximum number of iterations the loop will run in the worst case.</param>
         /// <param name="minScoreThreshold">Only <see cref="RacesVariant"/> with a score higher or equal this value are kept.</param>
         /// <param name="maxGroupSize">Maximum allowed number of elements per group</param>
         /// <param name="maxOneElementGroupPercentage">Maximum percentage of single-item groups allowed in the final result</param>
-        public RacesVariantsGenerator(IProgress<double> progressIteration = null, IProgress<double> progressSolution = null, int requiredVariantsCount = 100, int maxIterations = 100000, double minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
+        public RacesVariantsGenerator(IProgress<double> progressIteration = null, IProgress<double> progressSolution = null, IProgress<RacesVariant> progressInfoNewVariantFound = null, int requiredVariantsCount = 100, int numberKeptResults = 0, int maxIterations = 100000, double minScoreThreshold = 90, int maxGroupSize = 3, double maxOneElementGroupPercentage = 0.15)
         {
             _progressIteration = progressIteration;
             _progressSolution = progressSolution;
+            _progressInfoNewVariantFound = progressInfoNewVariantFound;
             _maxGroupSize = maxGroupSize;
             _minScoreThreshold = minScoreThreshold;
             _maxOneElementGroupPercentage = maxOneElementGroupPercentage;
             _requiredVariantsCount = requiredVariantsCount;
+            _numberKeptResults = numberKeptResults;
             _maxIterations = maxIterations;
         }
 
         /// <summary>
         /// Calculate the variants asynchronously.
+        /// This method returns <see cref="_requiredVariantsCount"/> - <see cref="_numberKeptResults"/> variants.
         /// </summary>
         /// <param name="sets">Sets with elements to combine. The elements are not mixed between sets.</param>
         /// <param name="workspaceService">Reference to the <see cref="IWorkspaceService"/> passed to the <see cref="RacesVariant"/></param>
@@ -51,13 +58,13 @@ namespace Vereinsmeisterschaften.Core.Services
         {
             ConcurrentBag<RacesVariant> bestRaces = new ConcurrentBag<RacesVariant>();
             int attempts = 0;
-            int foundVariants = 0;
+            int foundVariants = _numberKeptResults;
 
             await Task.Run(() =>
             {
                 Parallel.For(0, _maxIterations, new ParallelOptions() { MaxDegreeOfParallelism = (int)(0.25 * Environment.ProcessorCount) }, (i, state) =>
                 {
-                    if (cancellationToken.IsCancellationRequested || bestRaces.Count >= _requiredVariantsCount)
+                    if (cancellationToken.IsCancellationRequested || foundVariants >= _requiredVariantsCount)
                     {
                         state.Stop();
                         return;
@@ -72,6 +79,7 @@ namespace Vereinsmeisterschaften.Core.Services
                     {
                         bestRaces.Add(candidate);
                         Interlocked.Increment(ref foundVariants);
+                        _progressInfoNewVariantFound?.Report(candidate);
                     }
 
                     Interlocked.Increment(ref attempts);
@@ -79,7 +87,6 @@ namespace Vereinsmeisterschaften.Core.Services
                     // Calculate progress as a mixture of iteration progress and solution progress
                     double iterationProgress = (double)attempts / _maxIterations;
                     double solutionProgress = (double)foundVariants / _requiredVariantsCount;
-                    //double overallProgress = Math.Min(1.0, Math.Max(iterationProgress, solutionProgress));
 
                     _progressIteration?.Report(iterationProgress * 100);
                     _progressSolution?.Report(solutionProgress * 100);

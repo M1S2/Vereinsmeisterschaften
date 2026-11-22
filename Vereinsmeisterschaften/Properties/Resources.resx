@@ -888,4 +888,7 @@ The order in which the columns are selected determines the sort priority.</value
   <data name="ElapsedTimeString" xml:space="preserve">
     <value>Elapsed Time (hh:mm:ss)</value>
   </data>
+  <data name="CancelAndDismissString" xml:space="preserve">
+    <value>Cancel and Dismiss</value>
+  </data>
 </root>

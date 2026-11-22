@@ -889,4 +889,7 @@ Die Reihenfolgen, in der die Spalten ausgewählt werden, bestimmt die Sortierpri
   <data name="ElapsedTimeString" xml:space="preserve">
     <value>Vergangene Zeit (hh:mm:ss)</value>
   </data>
+  <data name="CancelAndDismissString" xml:space="preserve">
+    <value>Abbrechen und verwerfen</value>
+  </data>
 </root>

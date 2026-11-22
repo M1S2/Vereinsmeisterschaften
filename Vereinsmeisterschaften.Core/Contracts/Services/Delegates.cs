@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using Vereinsmeisterschaften.Core.Models;
 
 namespace Vereinsmeisterschaften.Core.Contracts.Services
 {
@@ -43,4 +44,11 @@ namespace Vereinsmeisterschaften.Core.Contracts.Services
     /// <param name="propertyName">Name of the property in the data object to change</param>
     /// <param name="value">String value with the new value for the property</param>
     public delegate void SetPropertyFromStringDelegate<T>(T dataObj, string propertyName, string value);
+
+    /// <summary>
+    /// Delegate void for reporting a new found <see cref="RacesVariant"/>
+    /// </summary>
+    /// <param name="sender">Progress sender</param>
+    /// <param name="variant">Found <see cref="RacesVariant"/></param>
+    public delegate void RaceVariantFoundProgressDelegate(object sender, RacesVariant variant);
 }

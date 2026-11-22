@@ -205,7 +205,7 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- Displayed variant -->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
-            <ComboBox HorizontalAlignment="Left" Width="250"
+            <ComboBox HorizontalAlignment="Left" MinWidth="350"
                       ItemsSource="{Binding AllRacesVariants}"
                       SelectedValue="{Binding CurrentVariantID}"
                       SelectedValuePath="VariantID"
@@ -215,35 +215,7 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </ComboBox.ItemContainerStyle>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="False">
-                            <TextBlock DockPanel.Dock="Left" Text="{x:Static properties:Resources.VariantString}"/>
-                            <TextBlock DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding VariantID, StringFormat=#{0}}"/>
-                            <TextBlock DockPanel.Dock="Left" Text="{Binding Score, StringFormat=({0:N2}%)}" Margin="5,0,0,0"/>
-
-                            <!-- Show warning icon if element is not valid -->
-                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE7BA;"
-                                               Visibility="{Binding IsValid, Converter={StaticResource InvertedBoolVisibilityConverter}}"
-                                               ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantContainsError}"/>
-                            
-                            <!-- Show filled pin for element that should be kept during race calculation -->
-                            <Grid DockPanel.Dock="Right" Margin="0,0,10,0"
-                                  Visibility="{Binding KeepWhileRacesCalculation, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantKeepWhileCalculation}">
-                                <!-- Pin empty-->
-                                <controls:FontIcon FontSize="15" Glyph="&#xE840;"/>
-                                <!-- Fill for pin -->
-                                <controls:FontIcon FontSize="15" Glyph="&#xE842;"/>
-                            </Grid>
-
-                            <!-- Show filled start for persisted element -->
-                            <controls:FontIcon DockPanel.Dock="Right" Margin="0,0,10,0" FontSize="15" Glyph="&#xE735;"
-                                               Visibility="{Binding IsPersistent, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                               ToolTip="{x:Static properties:Tooltips.TooltipRaceVariantIsPersistentIcon}"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
+                <!-- The ItemTemplate is globally assigned by the DataTemplate for the RacesVariant in App.xaml -->
             </ComboBox>
 
             <!-- Toggle button for IsPersistent of current races variant -->

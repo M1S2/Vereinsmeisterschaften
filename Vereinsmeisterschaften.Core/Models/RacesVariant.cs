@@ -208,7 +208,7 @@ namespace Vereinsmeisterschaften.Core.Models
         /// True when there are no empty unassigned races
         /// </summary>
         [FileServiceIgnore]
-        public bool IsValid_AllStartsAssigned => NotAssignedStarts?.Count == 0;
+        public bool IsValid_AllStartsAssigned => NotAssignedStarts == null || NotAssignedStarts?.Count == 0;
 
         /// <summary>
         /// This <see cref="RacesVariant"/> is consideres valid when:
@@ -724,6 +724,15 @@ namespace Vereinsmeisterschaften.Core.Models
         /// <returns>Cloned object of type</returns>
         public object Clone()
             => new RacesVariant(this, true, true);
+
+        /// <summary>
+        /// Return a string describing this object
+        /// </summary>
+        /// <returns>String describing this object</returns>
+        public override string ToString()
+        {
+            return $"RaceVariant: Score = {Score:F2}%, Number Races = {Races.Count}";
+        }
 
         #endregion
     }

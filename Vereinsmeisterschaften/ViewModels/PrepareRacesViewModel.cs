@@ -9,6 +9,7 @@ using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Models;
 using Vereinsmeisterschaften.Core.Services;
 using Vereinsmeisterschaften.Core.Settings;
+using Vereinsmeisterschaften.Core.Helpers;
 
 namespace Vereinsmeisterschaften.ViewModels;
 
@@ -312,6 +313,7 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
         _progressDialog.ProgressDescription1 = Properties.Resources.IterationProgressString;
         _progressDialog.ProgressDescription2 = Properties.Resources.SolutionProgressString;
         _progressDialog.ProgressNumberDecimals = 1;
+        _progressDialog.DetailSectionEntries = new ObservableCollection<object>();
 
         double nextProgressLevelIteration = 0.0;
         ProgressDelegate onProgressIteration = (sender, progress, currentStep) =>
@@ -331,15 +333,41 @@ public class PrepareRacesViewModel : ObservableObject, INavigationAware
                 _progressDialog.Progress2 = progress;
             }
         };
+        List<RacesVariant> keptVariants = new List<RacesVariant>();
+        RacesVariantFullEqualityComparer racesVariantFullEqualityComparer = new RacesVariantFullEqualityComparer();
+        RaceVariantFoundProgressDelegate onVariantFound = (sender, variant) =>
+        {
+            // Create a temporary collection to support ordering by score
+            List<RacesVariant> tempCollection = _progressDialog.DetailSectionEntries.Cast<RacesVariant>().ToList();
+            tempCollection.Add(variant);
+            tempCollection = tempCollection.OrderByDescending(r => r.Score).ToList();
+            if(variant.KeepWhileRacesCalculation) { keptVariants.Add(variant); }
 
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        _progressDialog.OnCanceled += (sender, e) => cancellationTokenSource.Cancel();
+            _progressDialog.DetailSectionEntries.Clear();
+            int nextVariantID = 0;
+            List<int> keptVariantIDs = keptVariants.Select(v => v.VariantID).ToList();
+            foreach (RacesVariant element in tempCollection)
+            {
+                if(!keptVariants.Contains(element, racesVariantFullEqualityComparer))
+                {
+                    do
+                    {
+                        nextVariantID++;
+                    } while (keptVariantIDs.Contains(nextVariantID));
+                    element.VariantID = nextVariantID;
+                }
+                _progressDialog.DetailSectionEntries.Add(element);
+            }
+        };
+
+        CancellationTokenSourceDismissable dismissCancellationTokenSource = new CancellationTokenSourceDismissable();
+        _progressDialog.OnCanceled += (sender, dismissData) => dismissCancellationTokenSource.Cancel(dismissData);
         await _dialogCoordinator.ShowMetroDialogAsync(_shellVM, _progressDialog);
 
         try
         {
             _progressDialog.IsElapsedTimeEnabled = true;
-            await _raceService.CalculateRacesVariants(cancellationTokenSource.Token, onProgressIteration, onProgressSolution);
+            await _raceService.CalculateRacesVariants(dismissCancellationTokenSource.Token, dismissCancellationTokenSource, onProgressIteration, onProgressSolution, onVariantFound);
             _progressDialog.IsElapsedTimeEnabled = false;
             recalculateVariantIDs();
 

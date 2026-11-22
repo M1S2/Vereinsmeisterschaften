@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using Vereinsmeisterschaften.Core.Contracts;
 using Vereinsmeisterschaften.Core.Contracts.Services;
 using Vereinsmeisterschaften.Core.Helpers;
 using Vereinsmeisterschaften.Core.Models;
@@ -85,10 +86,12 @@ namespace Vereinsmeisterschaften.Core.Services
         /// Calculate some <see cref="RacesVariant"/> objects for all person starts
         /// </summary>
         /// <param name="cancellationToken">Cancellation token that can be used to cancel this calculation</param>
+        /// <param name="cancellationInfo">Info for the cancellation token</param>
         /// <param name="onProgressIteration">Callback used to report progress of the iterations of the calculation</param>
         /// <param name="onProgressSolution">Callback used to report progress of the solutions of the calculation</param>
+        /// <param name="onVariantFound">Callback used to report a new found variant.</param>
         /// <returns>All results if calculation was finished successfully; otherwise <see langword="null"/></returns>
-        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ProgressDelegate onProgressIteration = null, ProgressDelegate onProgressSolution = null)
+        public async Task<ObservableCollection<RacesVariant>> CalculateRacesVariants(CancellationToken cancellationToken, ICancellationInfo cancellationInfo, ProgressDelegate onProgressIteration = null, ProgressDelegate onProgressSolution = null, RaceVariantFoundProgressDelegate onVariantFound = null)
         {
             // Collect all starts
             _competitionService.UpdateAllCompetitionsForPerson();
@@ -116,24 +119,30 @@ namespace Vereinsmeisterschaften.Core.Services
             ushort numberRequestedVariants = _workspaceService?.Settings?.GetSettingValue<ushort>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_NUM_RACE_VARIANTS_AFTER_CALCULATION) ?? 0;
             int maxRaceVariantCalculationLoops = _workspaceService?.Settings?.GetSettingValue<int>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_MAX_CALCULATION_LOOPS) ?? 0;
             double minRacesVariantsScore = _workspaceService?.Settings?.GetSettingValue<double>(WorkspaceSettings.GROUP_RACE_CALCULATION, WorkspaceSettings.SETTING_RACE_CALCULATION_MIN_RACES_VARIANTS_SCORE) ?? 0;
-            int numberOfResultsToGenerate = Math.Max(0, numberRequestedVariants - AllRacesVariants.Count(r => r.KeepWhileRacesCalculation));
-            
+            List<RacesVariant> racesToKeep = AllRacesVariants.Where(r => r.KeepWhileRacesCalculation).ToList();
+
+            // Report all variants that should be kept as already "found" variants
+            racesToKeep?.ForEach(r => onVariantFound(this, r));
+
             RacesVariantsGenerator generator = new RacesVariantsGenerator(new Progress<double>(progress => onProgressIteration?.Invoke(this, (float)progress, "")),
                                                                           new Progress<double>(progress => onProgressSolution?.Invoke(this, (float)progress, "")),
-                                                                          numberOfResultsToGenerate,
+                                                                          new Progress<RacesVariant>(variant => onVariantFound?.Invoke(this, variant)),
+                                                                          numberRequestedVariants,
+                                                                          racesToKeep.Count,
                                                                           maxRaceVariantCalculationLoops,
                                                                           minRacesVariantsScore,
                                                                           numSwimLanes);
+
             List<RacesVariant> tmpRacesVariants = await generator.GenerateBestRacesAsync(groupedValuesStarts.Values.ToList(), _workspaceService, cancellationToken);
 
-            if (!cancellationToken.IsCancellationRequested)
+            List<RacesVariant> racesToDelete = AllRacesVariants.Where(r => !r.KeepWhileRacesCalculation).ToList();
+            racesToDelete.ForEach(r => AllRacesVariants.Remove(r));
+            if (!cancellationInfo.Dismiss)      // If the cancel info has the dismiss flag set, no races are added. Otherwise (not canceled or canceled without dismiss) add the found races so far.
             {
-                List<RacesVariant> racesToDelete = AllRacesVariants.Where(r => !r.KeepWhileRacesCalculation).ToList();
-                racesToDelete.ForEach(r => AllRacesVariants.Remove(r));
                 tmpRacesVariants.ForEach(AddRacesVariant);
-                SortVariantsByScore();
-                OnPropertyChanged(nameof(PersistedRacesVariant));
             }
+            SortVariantsByScore();
+            OnPropertyChanged(nameof(PersistedRacesVariant));
             return AllRacesVariants;
         }
 

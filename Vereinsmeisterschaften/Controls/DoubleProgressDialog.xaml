@@ -1,7 +1,8 @@
 ﻿<dialogs:CustomDialog x:Class="Vereinsmeisterschaften.Controls.DoubleProgressDialog"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:local="clr-namespace:Vereinsmeisterschaften.Controls"
                       xmlns:properties="clr-namespace:Vereinsmeisterschaften.Properties"
@@ -14,6 +15,11 @@
                       x:Name="root"
                       Title="{Binding Title, ElementName=root}">
 
+    <dialogs:CustomDialog.Resources>
+        <sys:Boolean x:Key="FalseValue">False</sys:Boolean>
+        <sys:Boolean x:Key="TrueValue">True</sys:Boolean>
+    </dialogs:CustomDialog.Resources>
+    
     <!-- Style taken from https://github.com/punker76/MahApps.Metro.CustomDialog.Sample/blob/master/TinyLittleMvvm/MahApps.CustomDialog.Sample/ChoiceDialogView.xaml -->
     <dialogs:CustomDialog.Style>
         <Style BasedOn="{StaticResource {x:Type dialogs:BaseMetroDialog}}" TargetType="{x:Type dialogs:CustomDialog}">
@@ -63,11 +69,18 @@
     </dialogs:CustomDialog.Style>
 
     <dialogs:CustomDialog.DialogBottom>
-        <!-- Cancel Button -->
-        <Button DockPanel.Dock="Bottom" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Center"
-                Command="{Binding CancelCommand, ElementName=root}"
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- Cancel and Dismiss Button -->
+            <Button Margin="20" VerticalAlignment="Center"
+                Command="{Binding CancelCommand, ElementName=root}" CommandParameter="{StaticResource TrueValue}"
+                Content="{x:Static properties:Resources.CancelAndDismissString}" FontSize="{DynamicResource MahApps.Font.Size.Dialog.Button}"
+                Style="{StaticResource MahApps.Styles.Button.Dialogs.Accent}"/>
+            <!-- Cancel Button -->
+            <Button Margin="20" VerticalAlignment="Center"
+                Command="{Binding CancelCommand, ElementName=root}" CommandParameter="{StaticResource FalseValue}"
                 Content="{x:Static properties:Resources.CancelString}" FontSize="{DynamicResource MahApps.Font.Size.Dialog.Button}"
                 Style="{StaticResource MahApps.Styles.Button.Dialogs.Accent}"/>
+        </StackPanel>
     </dialogs:CustomDialog.DialogBottom>
 
     <dialogs:CustomDialog.Content>
@@ -80,6 +93,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -106,6 +120,11 @@
                 <TextBlock Grid.Row="5" Grid.Column="1" Margin="0,5,0,0" FontSize="{StaticResource LargeFontSize}"
                            Text="{Binding ElapsedTime, ElementName=root, StringFormat='hh\\:mm\\:ss'}"
                            Visibility="{Binding IsElapsedTimeEnabled, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <ScrollViewer Grid.Row="6" Grid.Column="1" Margin="0,30,0,0" MaxHeight="250"
+                              VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{Binding DetailSectionEntries, ElementName=root}"/>
+                </ScrollViewer>
             </Grid>
         </DockPanel>
     </dialogs:CustomDialog.Content>
